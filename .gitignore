@@ -1,0 +1,10 @@
+# Large binaries do not belong in this repository.
+# Use Git LFS or a release asset if something genuinely must be stored.
+*.zip
+*.tar.gz
+*.pdf
+*.epub
+
+.DS_Store
+Thumbs.db
+.env

@@ -3,6 +3,13 @@
 The only place that asks anything of the owner. One decision per
 section. Nothing here is actionable by an agent alone.
 
+Qualifying categories:
+- payment or institutional access required
+- lawful acquisition of a source
+- two consequential interpretive positions both remaining viable
+- living-community consent
+- publication approval
+
 ---
 
 ## D-001 — Widen the network egress allowlist
@@ -32,7 +39,7 @@ allowlist? Suggested minimum for this programme:
 
 Egress policy is set on the environment, not in this repository, so
 this cannot be changed from a session. See
-https://code.claude.com/docs/en/claude-code-on-the-web
+https://code.claude.com/docs/en/cloud-environments
 
 ---
 
