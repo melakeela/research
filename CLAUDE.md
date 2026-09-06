@@ -62,6 +62,16 @@ claim_id,claim,status,source_id,locator,retrieval_date,supports_page,notes
 - **Correction history is preserved.** Rejected reasoning stays
   visible so it is not re-proposed. Never delete a `REJECTED` row.
 
+  ## Blocked domains
+
+When a retrieval fails at the egress proxy, log it in
+02-SOURCES/access-ledger.csv with status EGRESS_BLOCKED, the URL,
+and what it was needed for. Do not work around it and do not treat
+a WebSearch snippet as a substitute for the source. Collect blocked
+domains through the session and list them at the end of the PR
+under "Domains requested".
+
+
 ## Positions already settled by the owner
 
 Kumari Kandam, Sumerian-Dravidian origin, and Austroasiatic-as-oldest
