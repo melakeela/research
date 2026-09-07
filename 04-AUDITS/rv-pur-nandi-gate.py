@@ -1,0 +1,198 @@
+#!/usr/bin/env python3
+"""
+rv-pur-nandi-gate.py — the measurements behind the Nandi gate, and behind the
+corpus-wide control on the ninety-nine expression.
+
+Constitution §4J names one prohibition — "Do not automatically translate pur
+into a Mature Harappan city" — and R. N. Nandi, "The City and the Citadel"
+(An Outline of the Aryan Civilization, ch. 4, Routledge 2017,
+DOI 10.4324/9781315101149-4) is that translation in its canonical published
+form. The chapter is NOT retrieved (SRC-088, EGRESS_BLOCKED on both channels).
+What is gated here is the thesis as its publisher's abstract states it, and
+the gate is over this corpus, not over Nandi's argument, which has not been
+read.
+
+This script only measures. Every verdict is in
+03-REGISTERS/domain-j-interpretations.csv and 03-REGISTERS/HYPOTHESIS-
+ELIGIBILITY.csv, and every measurement in 03-REGISTERS/domain-j-measurements.csv.
+
+Sources (02-SOURCES/access-ledger.csv):
+  SRC-069  clone @ d3eb8af7324338161520d2d35eae8f7e985a19a5
+  SRC-020  aufrecht.csv        SRC-022 Zurich token layer
+  SRC-072  geldner   SRC-073 griffith   SRC-074 grassmann
+  SRC-022  Zurich annotation layer, incl. info/matched_lemmata.json, the
+           Grassmann gloss. Per DEP-005 the lemmatisation and the gloss are
+           ONE source: a claim citing the lemma and a claim citing the meaning
+           are not two sources, and no gloss-based result below is independent
+           of Grassmann.
+  SRC-084  this session's re-clone and reproduction check
+
+Input:  rv_tokens_vedaweb.tsv, from 04-AUDITS/rv-token-extract.py
+Usage:  python3 rv-pur-nandi-gate.py <clone>/rigveda rv_tokens_vedaweb.tsv
+"""
+import csv, json, os, sys, collections
+
+csv.field_size_limit(10 ** 8)
+
+CL = sys.argv[1] if len(sys.argv) > 1 else \
+    "/home/user/vedawebproject/vedaweb-data/rigveda"
+TOKENS = sys.argv[2] if len(sys.argv) > 2 else "rv_tokens_vedaweb.tsv"
+
+# The seven lemmas of PUR-006, over eight lemma strings.
+FAMILY = {"púr-", "puraṃdará-", "pūrbhíd-", "pūrbhíttama-",
+          "pūrbhídya-", "pū́rpati-", "purohán-", "púrya-"}
+
+# The six fort-adjacent non-púr- lemmas PUR-006 excluded by design. They are
+# the semantic reading of "the complete corpus" that reconciliation C-2 leaves
+# open, and they are searched here so the exclusion is measured, not assumed.
+ADJACENT = ["paridhí-", "dehī́-", "saṃdíh-", "harmyá-", "ádhr̥ṣṭa-", "dārú-"]
+
+# Cardinals, keyed on the corpus's own lemma strings. 'náva- 1' is nine;
+# 'náva- 2' is new. The corpus disambiguates the homograph and a search on a
+# bare 'náva-' silently returns nothing at all — which is how this script's
+# first draft "established" that the 99 expression does not occur.
+NUMERAL = {
+    "éka-": 1, "dvá-": 2, "trí-": 3, "catúr-": 4, "páñca-": 5, "ṣáṣ-": 6,
+    "saptá-": 7, "aṣṭá-": 8, "náva- 1": 9, "dáśa-": 10, "viṃśatí-": 20,
+    "triṃśát-": 30, "catvāriṃśát-": 40, "pañcāśát-": 50, "ṣaṣṭí-": 60,
+    "saptatí-": 70, "aśītí-": 80, "navatí-": 90, "śatá-": 100,
+    "sahásra-": 1000,
+}
+
+# German gloss probes. Grassmann wrote in German; an English probe returns
+# nothing and would read as an absence. Latin appears in a handful of glosses
+# and is not probed here — see the coverage figure the script prints.
+GLOSS_PROBES = {
+    "brick":              ["ziegel"],
+    "city":               ["stadt", "städt"],
+    "wall/rampart":       ["mauer", "wall", "verschanz", "palisad", "damm",
+                           "aufwurf"],
+    "clay":               ["lehm"],
+    "stone":              ["stein"],
+    "well/cistern":       ["brunnen", "zisterne"],
+    "street":             ["strasse", "straße", "gasse"],
+    "house/dwelling":     ["haus", "wohnung", "behausung"],
+    "village/settlement": ["dorf", "siedlung", "ansiedl", "niederlassung"],
+    "fortress":           ["burg", "festung"],
+}
+
+# Nandi's four terms, as the abstract names them, by lemma stem.
+NANDI_TERMS = ["púr", "durg", "vr̥tra", "vr̥jána"]
+
+
+def load_glosses():
+    path = os.path.join(CL, "info/matched_lemmata.json")
+    gl = json.load(open(path, encoding="utf-8"))
+    by_lemma = collections.defaultdict(set)
+    for _surface, e in gl.items():
+        if e.get("lemma") and e.get("meaning"):
+            by_lemma[e["lemma"]].add(e["meaning"])
+    return by_lemma
+
+
+def main():
+    toks = list(csv.DictReader(open(TOKENS, encoding="utf-8"), delimiter="\t"))
+    by_stanza = collections.defaultdict(list)
+    for t in toks:
+        by_stanza[t["stanza"]].append(t)
+    freq = collections.Counter(t["lemma"] for t in toks)
+    gloss = load_glosses()
+
+    print("corpus: %d tokens, %d stanzas, %d distinct lemmas"
+          % (len(toks), len(by_stanza), len(freq)))
+
+    # ---- the denominator every absence below is stated against -------------
+    unglossed = [l for l in freq if l not in gloss]
+    ung_tokens = sum(freq[l] for l in unglossed)
+    print("\n== DENOMINATOR ==")
+    print("  lemmas with a Grassmann gloss : %d / %d (%.1f%%)"
+          % (len(freq) - len(unglossed), len(freq),
+             100.0 * (len(freq) - len(unglossed)) / len(freq)))
+    print("  tokens under a glossed lemma  : %.2f%%"
+          % (100.0 * (len(toks) - ung_tokens) / len(toks)))
+    print("  commonest unglossed lemmas    : %s"
+          % [l for _, l in sorted(((freq[l], l) for l in unglossed),
+                                  reverse=True)[:10]])
+
+    # ---- the 99 expression, over the whole corpus --------------------------
+    pur_stanzas = {s for s, ts in by_stanza.items()
+                   if any(t["lemma"] in FAMILY for t in ts)}
+    nn = sorted(s for s, ts in by_stanza.items()
+                if any(t["lemma"] == "navatí-" for t in ts)
+                and any(t["lemma"] == "náva- 1" for t in ts))
+    nav = sorted(s for s, ts in by_stanza.items()
+                 if any(t["lemma"] == "navatí-" for t in ts))
+    print("\n== THE NINETY-NINE EXPRESSION, CORPUS-WIDE ==")
+    print("  stanzas with navatí- at all                  : %d" % len(nav))
+    print("  stanzas with navatí- AND náva- 1 (i.e. 99)   : %d" % len(nn))
+    inside = [s for s in nn if s in pur_stanzas]
+    outside = [s for s in nn if s not in pur_stanzas]
+    print("  of those, inside the púr- corpus            : %d %s"
+          % (len(inside), inside))
+    print("  of those, outside it                        : %d %s"
+          % (len(outside), outside))
+
+    # ---- the semantic reading of the corpus (reconciliation C-2) -----------
+    print("\n== THE SIX FORT-ADJACENT LEMMAS, AND THEIR NUMERALS ==")
+    for lem in ADJACENT:
+        st = sorted(s for s, ts in by_stanza.items()
+                    if any(t["lemma"] == lem for t in ts))
+        withnum = [(s, sorted({t["lemma"] for t in by_stanza[s]
+                               if t["lemma"] in NUMERAL})) for s in st]
+        withnum = [(s, n) for s, n in withnum if n]
+        print("  %-11s %2d stanzas; %d carry a cardinal: %s"
+              % (lem, len(st), len(withnum), withnum))
+
+    # ---- the locative test -------------------------------------------------
+    print("\n== IS A púr- A PLACE ANYONE IS IN? ==")
+    cases = collections.Counter()
+    locs = []
+    for t in toks:
+        if t["lemma"] == "púr-":
+            c = [x for x in t["morph"].split("|") if x.startswith("case=")]
+            k = c[0][5:] if c else "?"
+            cases[k] += 1
+            if k == "LOC":
+                locs.append((t["stanza"], t["pada"], t["surface"]))
+    n = sum(cases.values())
+    for k, v in cases.most_common():
+        print("  %-4s %3d  %5.1f%%" % (k, v, 100.0 * v / n))
+    print("  the locative tokens: %s" % locs)
+
+    # ---- the architecture lexicon -----------------------------------------
+    print("\n== ARCHITECTURE VOCABULARY, BY GRASSMANN GLOSS ==")
+    for label, keys in GLOSS_PROBES.items():
+        hits = []
+        for l in freq:
+            for m in gloss.get(l, ()):
+                if any(k in m.lower() for k in keys):
+                    hits.append((freq[l], l, m))
+                    break
+        hits.sort(reverse=True)
+        if hits:
+            print("  %-19s %2d lemmas; commonest: %s"
+                  % (label, len(hits), [(l, c) for c, l, _ in hits[:5]]))
+        else:
+            print("  %-19s ABSENT from every glossed lemma" % label)
+
+    # ---- Nandi's four terms ------------------------------------------------
+    print("\n== NANDI'S FOUR TERMS ==")
+    for stem in NANDI_TERMS:
+        hits = sorted(((freq[l], l, "; ".join(sorted(gloss.get(l, {"(none)"}))))
+                       for l in freq if l.startswith(stem)), reverse=True)
+        print("  stem %-8s %d lemmas" % (repr(stem), len(hits)))
+        for c, l, m in hits[:4]:
+            print("      %5d  %-16s %s" % (c, l, m[:88]))
+
+    # durgá- is the term the gate turns on: every token, with its case.
+    print("\n== EVERY durgá- TOKEN ==")
+    dg = [t for t in toks if t["lemma"] == "durgá-"]
+    gen = collections.Counter(
+        [x[7:] for t in dg for x in t["morph"].split("|")
+         if x.startswith("gender=")])
+    print("  %d tokens; gender: %s" % (len(dg), dict(gen)))
+    print("  stanzas: %s" % sorted({t["stanza"] for t in dg}))
+
+
+if __name__ == "__main__":
+    main()

@@ -961,3 +961,75 @@ touches published copy.
 **Asked of the owner:** whether the page should name its digitization
 and carry the range in the interim. The change itself belongs in
 `melakeela/site`, not here. Queued as `RA-009`.
+
+---
+
+## D-046 — the one source domain J cannot read is domain J's named trap
+
+**Raised:** 2026-09-07 by the domain J unit.
+**Register row:** `09-DECISIONS/OWNER-DECISIONS.csv`, `D-046`.
+**Blocks:** promotion of the `HYP-J-001` gate verdict above a verdict taken on
+an abstract. Blocks nothing else in domain J.
+
+### What is needed
+
+R. N. Nandi, "The City and the Citadel", chapter 4 of *An Outline of the Aryan
+Civilization*, Routledge/Taylor & Francis 2017, DOI `10.4324/9781315101149-4`.
+
+### Why this one and not another
+
+Constitution §4J states one prohibition for this domain — *"Do not
+automatically translate pur into a Mature Harappan city"* — and this chapter is
+that translation in its canonical published form. The domain's named trap and
+the domain's unreadable source are the same object. A gate run on a publisher's
+abstract can test the thesis against this corpus, which `HYP-J-001` does; it
+cannot test the argument, because no argument has been read. The distinction is
+recorded on every leg of the gate and it is not repairable by more corpus work.
+
+### What was tried
+
+| Channel | Hosts | Result |
+|---|---|---|
+| `curl` via the session egress proxy | taylorfrancis.com, doi.org, routledge.com, researchgate.net, pragyata.com, api.crossref.org, api.openalex.org | `EGRESS_BLOCKED`, HTTP 000 on all seven (`SRC-087`) |
+| `WebFetch` | taylorfrancis.com | `error_type EGRESS_BLOCKED` (`SRC-087`) |
+| `WebSearch` | — | Bibliographic identity and an abstract summary only; **discovery, not retrieval** (`SRC-086`) |
+
+Both retrieval channels available to this session refuse the same host, so the
+failure is the environment's rather than one tool's.
+
+### Why it is the owner's
+
+Two of the escalation triggers in `CLAUDE.md`, together:
+
+1. **Payment or institutional access.** The chapter is paywalled. Unblocking
+   the host would not make the text available.
+2. **Lawful acquisition.** Because of (1), any route that *did* produce the
+   text needs a decision that this repository is entitled to it. That is not a
+   decision a session should take for itself, and this unit did not look for
+   such a route.
+
+`doi.org`, `api.crossref.org` and `api.openalex.org` are a separable and much
+smaller ask: they are metadata hosts, not paywalled full text, and unblocking
+them would let this repository resolve a DOI to an authoritative bibliographic
+record instead of a search-engine summary. That would not close `D-046`. It
+would close the smaller defect that `SRC-086`'s abstract currently reaches this
+repository through a search index rather than through its publisher.
+
+### Options
+
+- **(a)** Purchase or institutional access to the chapter. Closes `D-046`.
+- **(b)** Unblock the three metadata hosts only. Does not close `D-046`;
+  upgrades `SRC-086` from a search summary to a publisher record.
+- **(c)** Proceed as the unit currently stands — the gate runs against the
+  thesis as the abstract states it, with the unread argument recorded at every
+  leg and `HOLD-007` open. **This is the current state and it costs nothing to
+  continue.**
+- **(d)** Substitute a reachable statement of the same thesis. `SRC-088`
+  (Semenenko) is a stronger form of it and is also unreachable; no reachable
+  substitute has been found.
+
+### What this decision does not decide
+
+Whether Nandi is right. The gate's verdict is about eligibility for analytical
+space under step 7, not about the truth of the thesis, and obtaining the
+chapter would re-run the gate rather than settle it.
