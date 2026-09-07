@@ -961,3 +961,96 @@ touches published copy.
 **Asked of the owner:** whether the page should name its digitization
 and carry the range in the interim. The change itself belongs in
 `melakeela/site`, not here. Queued as `RA-009`.
+
+## D-044 — Arnold's assignments have never been checked against Arnold
+
+**Raised:** 2026-09-07, domain A. **Category:** two consequential
+positions both viable; and an access question.
+
+The programme's whole relative chronology descends from one file,
+`rigveda/info/strata.json`, which VedaWeb attributes to E. V. Arnold,
+*Vedic Metre in its Historical Development*, Cambridge 1905
+(`DEP-001`, `PUR-013`). Two different things have been conflated in
+that dependency and this unit separates them.
+
+**Arnold's criteria and letters are retrieved.** `SRC-026` records a
+successful retrieval on 2026-09-07T00:50Z of the archive.org OCR of
+Arnold 1905, including Appendix IV §265 at printed p. 269, which is
+where `PUR-011` gets the five stratum letters. That is a real retrieval
+event and `PUR-011` is properly `VERIFIED`.
+
+**Arnold's per-pāda assignment list is not retrieved, and never has
+been here.** The only per-pāda assignments in this repository are
+Gunkel and Ryan's transcription. Whether that transcription is faithful
+to Arnold's own assignments — for which padas, with what editorial
+decisions where Arnold hedged, and with what treatment of his
+lower-case flag — has not been checked against Arnold once. 9.1% of the
+coded corpus carries that lower-case flag (`DA-M-008`), and in book 1
+and book 3 it is over a fifth.
+
+This unit made the dependency worse, not better, by measuring it.
+`DA-M-005` puts Cramér's V between book and stratum at 0.463 and
+`DA-M-007` finds five book-by-stratum cells that are exactly zero:
+books 3, 4 and 7 contain no Archaic pāda at all, book 6 no Strophic,
+books 4 and 8 no Cretic. Those five books hold 43.6% of the coded
+corpus. A zero cell is not a small count; it is the classification
+declining to assign a period to a book. Whether that is Arnold's
+finding, Arnold's assumption, or the transcription's artefact cannot be
+told from the file.
+
+It is not all bad news for the strata, and the good news is stated
+because the record has to stay capable of contradicting this unit too.
+`DA-M-012` finds three markings not by Arnold — Grassmann 1876-7,
+Oldenberg 1888 as digested with Wüst 1928, and Witzel 1995 — agreeing
+with Arnold's Popular stratum at φ = +0.28 to +0.45, and two of those
+three were published *before* Arnold. `DA-M-014` finds that the 171
+stanzas all five scholars mark are 98.8% Popular. Something real is
+being tracked at the late end. Nothing corroborates the five-period
+sequence.
+
+**Asked of the owner, in order of cost:**
+
+1. Add `archive.org` to the egress allowlist so the Arnold OCR can be
+   re-fetched and `strata.json` spot-checked against the printed
+   assignments. This is the cheapest thing that would settle it and it
+   is already asked for other reasons at `D-001` and `D-043`.
+2. Restore the scite quota, or supply Hellwig et al. 2021 (*JAOS*) as a
+   file. It is the one modern reassessment of exactly these strata and
+   this unit could only read its abstract (`SRC-082`, `HOLD-009`).
+3. Failing both, decide whether the strata keep a permanent
+   `PROVISIONAL` cap on every chronological reading, or are retired
+   from chronological use in this repository.
+
+`HOLD-010` holds the check itself. `DA-D-001` records, claim by claim,
+what does and does not change if the strata turn out to be unreliable.
+
+## D-045 — Multi-valued `source_id` cells, and the push gate
+
+**Raised:** 2026-09-07, domain A. **Category:** a standing rule
+disagreement that blocks a mechanism.
+
+`04-AUDITS/VALIDATOR-FINDINGS-2026-09-07.md` set out this disagreement
+in full on 2026-09-07: `CLAUDE.md` gives one `source_id` per register
+row and says it must resolve to a ledger row, singular, while the
+registers as written record every source a corpus measurement rests on,
+routinely four. The findings document named three ways out and took
+none of them, correctly, because amending a validator to make current
+rows pass is the move this repository forbids doing casually.
+
+What was missed is that it was never allocated a `D-` identifier. Under
+`CLAUDE.md`'s one-identifier-namespace rule, `09-DECISIONS/OWNER-DECISIONS.csv`
+is authoritative for `D-` identifiers and every owner decision taken in
+this repository has a row there. This one has been blocking every push
+in the repository — the `PreToolUse` hook refuses a push while the
+validator fails — without a row. That is the gap this closes; the
+analysis is not restated.
+
+Domain A's 35 measurement rows follow the existing convention and add
+28 failures of the same class, taking the total to 82, of which 81 are
+this rule and one is `D-045`'s own reference before this section
+existed.
+
+**Asked of the owner:** choose option 1, 2 or 3 from the findings
+document. Option 1 — the validator splits on `;` — is the smallest
+change that keeps both rules true, but it is the owner's call and not
+this session's.
