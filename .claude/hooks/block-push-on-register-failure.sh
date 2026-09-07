@@ -16,6 +16,14 @@
 # a repository setting only the owner can turn on. Do not describe this hook as
 # the gate.
 #
+# WHAT STILL GETS THROUGH. A push assembled entirely out of shell variables,
+# or one spelled in a way this parser has not seen. That is the standing
+# reason CI is the gate and this is not: a text matcher in front of a shell
+# cannot be complete, and claiming otherwise would be the same overstatement
+# this hook was rewritten to remove. `(git push)`, `echo $(git push)`,
+# `echo push | xargs git` and `git pu"sh"` were all found to walk past an
+# earlier version of this parser and are now caught.
+#
 # NO ORDINARY BYPASS. The one-token MELAKEELA_REGISTER_GATE=off marker was
 # removed on 2026-09-07. It made the gate advisory by construction: the hook
 # searched the command text before establishing that the marker was an
@@ -44,14 +52,15 @@ VALIDATOR="$ROOT/04-AUDITS/validate-registers.py"
 
 PAYLOAD="$(cat)"
 
+# Emits the deny decision without invoking python3. A missing or broken
+# python3 is one of the conditions this hook exists to fail closed on, so the
+# denial path must not itself depend on it.
 deny() {
-  python3 -c '
-import json, sys
-print(json.dumps({"hookSpecificOutput": {
-    "hookEventName": "PreToolUse",
-    "permissionDecision": "deny",
-    "permissionDecisionReason": sys.argv[1],
-}}))' "$1"
+  local reason
+  reason=$(printf '%s' "$1" | sed -e 's/\\/\\\\/g' -e 's/"/\\"/g' \
+                                 -e ':a' -e 'N' -e '$!ba' -e 's/\n/\\n/g' \
+                                 -e 's/\t/\\t/g' -e 's/\r//g')
+  printf '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"%s"}}\n' "$reason"
   exit 0
 }
 
@@ -81,12 +90,30 @@ command = (payload.get("tool_input") or {}).get("command") or ""
 # `sh -c 'git push'` all walked past it. A push assembled entirely out of shell
 # variables still gets through; this is a guard rail, not a sandbox, and that
 # is why CI is the gate.
-SEGMENT = re.compile(r"&&|\|\||;|\||\n")
-GIT_TOKEN = re.compile(r"(?:^|[\s'\"/])git(?:\.exe)?(?![\w-])")
+# Commit-message arguments are removed BEFORE quotes are stripped, so that
+# `git commit -m "add push button"` is not read as a push. Then quotes go, so
+# that `git pu"sh"` and `git "push"` cannot hide the verb behind them. The
+# segment delimiters include the shell grouping characters: `(git push)` and
+# `echo $(git push)` both walked past a parser that required the segment to
+# open with a whitespace-or-slash-delimited `git`.
+MESSAGE_ARG = re.compile(
+    r"""(?:-m|-F|--message|--file)\s*=?\s*(?:"[^"]*"|'[^']*'|\S+)""")
+stripped = MESSAGE_ARG.sub(" ", command).replace('"', "").replace("'", "")
+SEGMENT = re.compile(r"&&|\|\||;|\||\n|\(|\)|`|\{|\}|\$")
+GIT_TOKEN = re.compile(r"(?:^|[\s/])git(?:\.exe)?(?![\w-])")
 PUSH_VERB = re.compile(r"(?<![\w-])push(?![\w-])")
 
-if not any(GIT_TOKEN.search(seg) and PUSH_VERB.search(seg)
-           for seg in SEGMENT.split(command)):
+segments = SEGMENT.split(stripped)
+looks_like_push = any(GIT_TOKEN.search(seg) and PUSH_VERB.search(seg)
+                      for seg in segments)
+
+# A verb piped into git through xargs lands in a different segment from the
+# git token, so the per-segment test cannot see it.
+if not looks_like_push and re.search(r"(?<![\w-])xargs\b", stripped):
+    looks_like_push = (any(GIT_TOKEN.search(seg) for seg in segments)
+                       and PUSH_VERB.search(stripped) is not None)
+
+if not looks_like_push:
     sys.exit(0)
 
 validator = os.environ["VALIDATOR"]

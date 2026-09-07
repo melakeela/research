@@ -168,7 +168,14 @@ decision's status; allocate the next free number from it, never from the
 highest number seen in a document. The inherited `HD-01`–`HD-20` series
 is a separate namespace with no CSV rows.
 
-Decisions currently blocking real work, each named by its actual row:
+The three rows whose `status` is `BLOCKED` — meaning they cannot be
+answered until something else lands — are **`D-008`, `D-009` and `D-011`**.
+`09-DECISIONS/OWNER-DECISIONS.csv` is authoritative for status; the list
+below is a different thing, and was previously presented as though it
+were the same one.
+
+Decisions that are `OPEN` and are holding up work in practice, each named
+by its actual row:
 
 1. **D-001** — which domains are added to the egress allowlist. Blocks
    every `VERIFIED` promotion that depends on an unreachable source;
@@ -191,7 +198,9 @@ carried:
 
 No identifier is quoted for them, because the identifiers the draft used
 do not exist and repeating them would put unresolvable references back
-into the tree. The highest allocated decision is `D-035`.
+into the tree. The highest allocated decision is `D-044`; take the next
+free number from `09-DECISIONS/OWNER-DECISIONS.csv` and never from a
+figure quoted in a document, this one included.
 
 - *Register naming — do the twelve mandated files accumulate under their
   names, or does each domain get its own?* The draft attributed this to
@@ -204,8 +213,15 @@ into the tree. The highest allocated decision is `D-035`.
   / publication / product / access?* Attributed to another row past the
   end of the register. The five-dimension proposal comes from
   `06-BACKLOG/EXPANSION-PROMPT-2026-09-07.md`, which is
-  `INHERITED-UNVERIFIED`; `CLAUDE.md` presently mandates one status
-  column with the C-1 disposition recorded alongside it.
+  `INHERITED-UNVERIFIED`. **Taken on 2026-09-07 and pending owner review
+  as `D-044`.** `CLAUDE.md` now mandates `evidence_status` as the single
+  evidence gate with `interpretive_status`, `editorial_status`,
+  `publication_status` and `gate_verdict` beside it; definitions are in
+  `00-CONTROLLER/STATUS-DIMENSIONS.md`. The C-1 disposition is unchanged
+  and is still recorded alongside a status, never in place of one. This
+  paragraph said the opposite until the row existed, which is the defect
+  `CR-014` describes: a rule corrected in one surface and left standing
+  in another.
 - *Live-site audit gate — does it precede the research packets?*
   Attributed to `D-035`, which is a different decision entirely (where
   the challenged Brahui leave-one-out measurement lives). The audit-first

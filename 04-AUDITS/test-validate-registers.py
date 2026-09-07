@@ -104,6 +104,48 @@ CASES = [
                           "publication_status", "PUBLISHED"),
      "PUBLISHED but not release-eligible"),
 
+    ("VERIFIED in a register that cannot record a retrieval (F1)",
+     lambda c: set_column(c, "03-REGISTERS/HYPOTHESIS-ELIGIBILITY.csv", "HYP-E-000",
+                          "evidence_status", "VERIFIED", idcol="hypothesis_id"),
+     "in a register with no source_id, locator, retrieval_date column"),
+
+    ("an emptied inline source cell while the join still holds rows (F2)",
+     lambda c: set_column(c, "03-REGISTERS/domain-e-claims.csv", "DME-019",
+                          "source_id", ""),
+     "inline but the join register holds"),
+
+    ("a join row for a claim that exists nowhere (F2)",
+     lambda c: (c / "03-REGISTERS/claim-sources.csv").write_text(
+         (c / "03-REGISTERS/claim-sources.csv").read_text()
+         + '"CS-9999","DME-999","03-REGISTERS/domain-e-claims.csv","CLAIM",'
+           '"SRC-047","SOLE","somewhere","IG-SRC-047",""\n'),
+     "which holds no such row"),
+
+    ("two registers issuing the same identifier (F7)",
+     lambda c: (c / "03-REGISTERS/domain-e-interpretations.csv").write_text(
+         (c / "03-REGISTERS/domain-e-interpretations.csv").read_text()
+         + '"DME-001","a duplicate of a claim in another register","PROVISIONAL",'
+           '"","","","","","","","UNASSIGNED","UNASSIGNED","UNASSIGNED","",""\n'),
+     "is also issued by"),
+
+    ("a gate_verdict edited away from the prose it was parsed from (F7)",
+     lambda c: set_column(c, "03-REGISTERS/domain-e-hypothesis-eligibility.csv", "E-3",
+                          "gate_verdict", "ELIGIBLE", idcol="hypothesis_id"),
+     "does not match"),
+
+    ("an override with a non-date expiry (F3)",
+     lambda c: (c / "00-CONTROLLER/OVERRIDE-LOG.csv").write_text(
+         (c / "00-CONTROLLER/OVERRIDE-LOG.csv").read_text()
+         + '"OV-901","because","someone","2026-09-07","never",'
+           '"evidence_status not in its vocabulary","one push","owner",""\n'),
+     "is not an ISO date"),
+
+    ("an override signature short enough to waive everything (F3)",
+     lambda c: (c / "00-CONTROLLER/OVERRIDE-LOG.csv").write_text(
+         (c / "00-CONTROLLER/OVERRIDE-LOG.csv").read_text()
+         + '"OV-902","because","someone","2026-09-07","2026-10-01","-","one push","owner",""\n'),
+     "waives failures nobody has read"),
+
     ("a hold file nothing references",
      lambda c: track_new_file(c, "05-HOLDS/HOLD-099-orphan.md", "# HOLD-099\n\nnothing waits on this\n"),
      "HOLD-099 is referenced by nothing outside"),
@@ -138,17 +180,22 @@ def blank_column(clone, rel, column):
         w.writerows(rows)
 
 
-def set_column(clone, rel, row_id, column, value):
+def set_column(clone, rel, row_id, column, value, idcol="claim_id"):
     import csv
     path = clone / rel
     with open(path, newline="", encoding="utf-8") as fh:
         rows = list(csv.DictReader(fh))
         fields = list(rows[0].keys())
+    hit = False
     for r in rows:
-        if (r.get("claim_id") or "") == row_id:
+        if (r.get(idcol) or "") == row_id:
             r[column] = value
+            hit = True
+    if not hit:
+        raise AssertionError(f"fixture row {row_id} not found in {rel}")
     with open(path, "w", newline="", encoding="utf-8") as fh:
-        w = csv.DictWriter(fh, fieldnames=fields, lineterminator="\r\n")
+        w = csv.DictWriter(fh, fieldnames=fields, quoting=csv.QUOTE_ALL,
+                           lineterminator="\r\n")
         w.writeheader()
         w.writerows(rows)
 

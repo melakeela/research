@@ -22,7 +22,8 @@ python3 04-AUDITS/test-validate-registers.py
 
 The 53 were 52 source-reference failures (cells holding several identifiers,
 which the validator read as one) and 1 status-vocabulary failure (a status
-cell carrying prose). The cross-repository audit of the same date reported
+cell carrying prose). Reproduce by checking out `aa40d3a` into a worktree and
+running the validator there. The cross-repository audit of the same date reported
 43; it was written against an earlier tree, before further registers landed.
 Recorded as CR-012.
 
@@ -56,17 +57,31 @@ provisional `DRAFT`. Release eligibility is consequently 0 of 510, which is
 the truthful state: no claim in this repository has been through the
 adversarial-review loop that `editorial_status: APPROVED` would record.
 
-**One cell was decomposed**, not rewritten:
+**One cell was decomposed, and the decomposition was then reversed.**
 
-> `domain-e-hypothesis-eligibility.csv` row 12 (E-11)
-> was `VERIFIED as a measurement; not a claim about origins`
-> is `evidence_status=VERIFIED`, `interpretive_status=MEASUREMENT-ONLY`,
-> `status_reason` = the original string, verbatim.
+`domain-e-hypothesis-eligibility.csv` row 12 (E-11) was first migrated from
+`VERIFIED as a measurement; not a claim about origins` to
+`evidence_status=VERIFIED` plus `interpretive_status=MEASUREMENT-ONLY`, with
+the original in `status_reason`. Adversarial review found that this was a
+promotion in the only sense that bites: the cell had been one of the 53
+failures and afterwards passed the gate, in a register with **no `source_id`,
+`locator` or `retrieval_date` column**, so no check could ever trace the
+retrieval behind it. The row also states a residue — *"Some Rigvedic
+vocabulary has no identified source of any kind"* — which constitution §6
+keeps out of the positive column.
 
-The cell already said `VERIFIED`; it was unparseable, not unstated. Nothing
-was added to it and nothing was dropped.
+The cell is restored verbatim, the migration script now refuses to decompose
+a `VERIFIED` opening in a register that cannot record a retrieval, the
+validator fails on such a row, and MH-008 records what is blocked. The
+failure is downgraded to a warning by an exact-coordinate waiver
+(`path:line`, from an OPEN hold, no pattern or file-level form available) and
+printed on every run.
 
-**Every other original cell is byte-identical to its pre-migration value.**
+**So: zero cells changed meaning.**
+
+**Every original cell is byte-identical to its pre-migration value**, except
+12 status and priority tokens, each of whose original text survives verbatim
+in `status_reason` or `priority_reason`.
 Checked by reading `git show aa40d3a:<file>` and the current file into
 dictionaries and comparing every column of every row. One mismatch, the one
 above. The check is not a claim about the script's intent; it is a
@@ -106,7 +121,25 @@ the validator itself. They no longer are (CR-016).
 
 `03-REGISTERS/claim-sources.csv`, generated: **4,569 join rows** over 1,272
 distinct claim and data rows, of which **4,492 come from cells that held more
-than one source identifier**. Claim identifiers and claim rows are unchanged;
+than one source identifier**. The generator prints all three figures; the
+ones quoted here are the ones it printed.
+
+**1,195 inline cells still hold more than one identifier** and were
+deliberately not rewritten (MH-009). Reproduce with:
+
+```
+python3 - <<'EOF'
+import csv, glob
+n = 0
+for p in sorted(glob.glob('03-REGISTERS/*.csv') + glob.glob('04-AUDITS/*.csv')):
+    if 'claim-sources' in p: continue
+    rows = list(csv.DictReader(open(p, newline='', encoding='utf-8')))
+    if not rows or 'source_id' not in rows[0]: continue
+    n += sum(1 for r in rows
+             if ';' in (r.get('source_id') or '') or ' to ' in (r.get('source_id') or ''))
+print(n)
+EOF
+``` Claim identifiers and claim rows are unchanged;
 no claim row was duplicated to carry a second source.
 
 Two cell shapes beyond the semicolon list were found and handled as
@@ -116,10 +149,23 @@ the validator and by the generator, so they cannot disagree about what a cell
 says.
 
 `independence_group` is computed from `02-SOURCES/dependency.csv` by
-union-find over the 9 dependency rows that collapse two observations into
-one; the 11 rows whose `effect_on_status` opens with "No effect" are not
-merged, because the same source probed twice is a fact about retrieval, not a
-collapse of independence. **4 groups hold more than one source**:
+union-find over the **9** of 20 dependency rows that collapse two
+observations into one. The other 11 are not merged, for three different
+reasons that this report previously ran together as "the 11 rows whose
+`effect_on_status` opens with 'No effect'": **7** do open that way, because
+the same source probed twice is a fact about retrieval rather than a collapse
+of independence; **3** are self-pairs naming one source twice (DEP-005,
+DEP-014, DEP-015); and **1** names no second source at all (DEP-007). Only
+the first reason was disclosed; the other four rows were dropped by structure
+with no note.
+
+This is the fragile part of the computation, and it should be said plainly:
+whether two sources are one observation is decided by
+`effect_on_status.upper().startswith("NO EFFECT")` over a free-prose column.
+Rewording one cell to open "There is no effect…" would silently merge or
+unmerge two sources. The migration script's own rule 5 says it never
+guesses; this is the place where it does, and a controlled column would fix
+it. **4 groups hold more than one source**:
 
 - `IG-SRC-019`: SRC-019, SRC-023, SRC-026
 - `IG-SRC-021`: SRC-021, SRC-022
@@ -159,6 +205,8 @@ does not become "buried".
 | MH-005 | Reconciliation `C-1`–`C-9` | Renaming to `RCF-` is right but touches 14 files; a reference migration does not belong inside a schema migration. |
 | MH-006 | All 115 paths | 1,024 enumerated references. Path moves are a separate mechanical commit after this passes review. |
 | MH-007 | `museum-framework.md` 96-page counts | Relabelling means re-reading each argument against a site this session cannot see. |
+| MH-008 | `E-11` `evidence_status` | Restored verbatim: no value in the vocabulary states what a residue's standing is, and `VERIFIED` here is untraceable by construction. |
+| MH-009 | 1,195 multi-identifier inline cells | The join expands them. Rewriting that many research rows to satisfy a schema is what this repository refuses to do. |
 
 ## What was checked, and how
 

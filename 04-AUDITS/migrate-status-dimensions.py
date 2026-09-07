@@ -45,6 +45,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import csvdialect  # noqa: E402
+import gatevocab  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -73,41 +74,13 @@ ELIGIBILITY_REGISTERS = [
 NEW_DIMENSIONS = ("interpretive_status", "editorial_status", "publication_status")
 NEW_QUALIFIERS = ("status_reason", "superseded_by")
 
-# Longest-first: NOT-ELIGIBLE-SOURCE-BLOCKED must be tried before NOT-ELIGIBLE.
-GATE_TERMS = [
-    "NOT-ELIGIBLE-SOURCE-BLOCKED",
-    "NOT-ELIGIBLE-GATE-FAILED",
-    "NOT-A-HYPOTHESIS",
-    "NOT-ELIGIBLE",
-    "CANNOT-GATE",
-    "DEFERRED",
-    "ELIGIBLE",
-]
-
-# The two eligibility registers were written in different vocabularies for the
-# same column. 03-REGISTERS/domain-e-hypothesis-eligibility.csv opens the cell
-# with a gate term; 03-REGISTERS/HYPOTHESIS-ELIGIBILITY.csv answers the column
-# heading ("eligible for extended analysis?") with YES or NO. That the two
-# disagree on vocabulary is itself a defect and is recorded in the
-# contradiction register; here they are read into one gate_verdict.
-#
-# Each entry maps a prose opening to the gate term asserting the SAME
-# proposition — YES means eligible, NO for lack of sources means the gate was
-# not reached because the sources are blocked. Nothing is reclassified: the
-# prose column keeps every word, and the mapping is longest-prefix so that
-# "NO - FOR LACK OF SOURCES" cannot be swallowed by bare "NO".
-GATE_SYNONYMS = [
-    ("NO - FOR LACK OF SOURCES, NOT FOR LACK OF MERIT", "NOT-ELIGIBLE-SOURCE-BLOCKED"),
-    ("NO - FOR LACK OF SOURCES", "NOT-ELIGIBLE-SOURCE-BLOCKED"),
-    ("NO, PENDING SOURCES", "NOT-ELIGIBLE-SOURCE-BLOCKED"),
-    ("YES, WHEN THE BRAHUI LITERATURE IS RETRIEVABLE", "NOT-ELIGIBLE-SOURCE-BLOCKED"),
-    ("YES", "ELIGIBLE"),
-    ("NO", "NOT-ELIGIBLE"),
-]
 
 SUPERSEDED_BY = re.compile(r"SUPERSEDED\s+BY\s+([A-Z]+-[0-9A-Za-z-]+)", re.I)
 
 report = {"renamed": [], "decomposed": [], "superseded": [], "gate": [], "holds": []}
+
+
+REGISTER_CAN_CARRY_RETRIEVAL = True   # set per register by migrate_claim_register
 
 
 def decompose(cell):
@@ -122,10 +95,16 @@ def decompose(cell):
     if term not in EVIDENCE_STATUS:
         return None
     rest = cell[len(term):].strip(" ;,")
-    # "as a measurement" is the only qualifier in the tree; it says the row is
-    # a measurement and not an interpretation, which is what MEASUREMENT-ONLY
-    # means. Anything else is left UNASSIGNED rather than invented.
-    interpretive = "MEASUREMENT-ONLY" if re.search(r"\bas a measurement\b", rest, re.I) else "UNASSIGNED"
+    # A decomposition is only safe where the leading term is a standing the
+    # register can actually carry. It is NOT safe merely because a vocabulary
+    # word appears first: E-11 opened with VERIFIED in a register that has no
+    # source_id, locator or retrieval_date column, so decomposing it produced a
+    # VERIFIED row whose retrieval no check could ever reach. That is a
+    # promotion in machine standing, and it is refused here. The caller records
+    # a migration hold instead.
+    if term == "VERIFIED" and not REGISTER_CAN_CARRY_RETRIEVAL:
+        return None
+    interpretive = "UNASSIGNED"
     return term, interpretive
 
 
@@ -136,6 +115,9 @@ def migrate_claim_register(rel):
         return False                      # already migrated
     if "status" not in fields:
         return False
+    global REGISTER_CAN_CARRY_RETRIEVAL
+    REGISTER_CAN_CARRY_RETRIEVAL = all(
+        c in fields for c in ("source_id", "locator", "retrieval_date"))
     out_fields = ["evidence_status" if f == "status" else f for f in fields]
     for extra in NEW_DIMENSIONS + NEW_QUALIFIERS:
         if extra not in out_fields:
@@ -195,17 +177,7 @@ def migrate_gate_verdict(rel):
     )
     for n, row in enumerate(rows, start=2):
         cell = (row.get("eligible_for_extended_analysis") or "").strip()
-        verdict = "UNASSIGNED"
-        upper = cell.upper()
-        for term in GATE_TERMS:
-            if upper.startswith(term):
-                verdict = term
-                break
-        else:
-            for prose, term in GATE_SYNONYMS:   # longest-prefix, see GATE_SYNONYMS
-                if upper.startswith(prose):
-                    verdict = term
-                    break
+        verdict = gatevocab.parse(cell)     # shared with the validator
         if verdict == "UNASSIGNED" and cell:
             report["holds"].append(
                 f"{rel}:{n}: eligibility cell {cell[:60]!r} opens with no "

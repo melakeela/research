@@ -61,6 +61,9 @@ import sys
 from datetime import date
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import gatevocab  # noqa: E402
+
 ROOT = Path(__file__).resolve().parents[1]
 CONTROLLER = ROOT / "00-CONTROLLER"
 CANONICAL = CONTROLLER / "CANONICAL-FILES.csv"
@@ -82,11 +85,15 @@ EDITORIAL_STATUS = {"UNASSIGNED", "DRAFT", "IN-REVIEW", "CHANGES-REQUIRED",
                     "APPROVED", "RETIRED"}
 PUBLICATION_STATUS = {"UNASSIGNED", "PRIVATE", "PREVIEW", "PUBLISHED",
                       "WITHDRAWN", "ARCHIVED"}
-GATE_VERDICT = {"UNASSIGNED", "ELIGIBLE", "NOT-ELIGIBLE", "NOT-ELIGIBLE-SOURCE-BLOCKED",
-                "NOT-ELIGIBLE-GATE-FAILED", "NOT-A-HYPOTHESIS", "CANNOT-GATE", "DEFERRED"}
+GATE_VERDICT = gatevocab.GATE_VERDICT
 DECISION_STATUS = {"OPEN", "BLOCKED", "TAKEN-PENDING-REVIEW", "RESOLVED", "SUPERSEDED"}
 REAUDIT_STATUS = {"OPEN", "IN-PROGRESS", "CLOSED"}
 PRIORITY = {"HIGH", "MEDIUM", "LOW"}
+EVIDENCE_ROLE = {"SOLE", "CONTRIBUTING", "UNASSIGNED"}
+
+# An override signature this short matches half the failure lines in the tree.
+# "-" appears in every path; a one-token waiver is a blanket waiver.
+MIN_OVERRIDE_SIGNATURE = 24
 
 DIMENSIONS = {
     "evidence_status": EVIDENCE_STATUS,
@@ -112,6 +119,13 @@ COMPOSITE_KEY = {
     "09-DECISIONS/DECISION-ID-MAP.csv": ("old_id", "old_file", "new_id"),
 }
 
+# Registers exempt from cross-register identifier uniqueness. Both exist to
+# carry identifiers issued elsewhere, so repeating them is their function.
+ALIAS_REGISTERS = {
+    "09-DECISIONS/DECISION-ID-MAP.csv",     # holds D- identifiers from the register
+    "03-REGISTERS/claim-sources.csv",       # its claim_id column names other files' rows
+}
+
 # A locator has to let a reader re-find the passage. These do not.
 VAGUE_LOCATOR = re.compile(
     r"^(see the (article|source|paper|book)|passim|various|throughout|"
@@ -119,10 +133,27 @@ VAGUE_LOCATOR = re.compile(
 BARE_IDENTIFIER = re.compile(r"^[A-Z]{1,6}(-[A-Z]{1,3})?-\d{1,4}[A-Za-z-]*$")
 
 failures, warnings, notes = [], [], []
+# {"path:line": "MH-nnn"} — exact coordinates an open migration hold covers.
+# Narrow by construction: a whole-file or prefix waiver is not expressible.
+waived_at = {}
 
 
 def fail(msg):
-    failures.append(msg)
+    """Record a failure, unless an open migration hold names its exact row.
+
+    A waiver here is not a pass. It downgrades one named coordinate to a
+    warning that prints the hold on every run, and it can only be created by
+    committing a row to MIGRATION-HOLDS.csv that says what could not be
+    migrated and what it is blocked on. There is no file-level or pattern
+    waiver: `path:line`, or nothing.
+    """
+    coord = msg.split(":")[0:2]
+    key = ":".join(coord)
+    hold = waived_at.get(key)
+    if hold:
+        warnings.append(f"{msg}  [held unmigrated by {hold}]")
+    else:
+        failures.append(msg)
 
 
 def warn(msg):
@@ -294,10 +325,29 @@ def check_file(rel, mode, prefix, ledger, known_ids):
             if v and v not in PRIORITY:
                 report(f"{rel}:{n}: priority '{v[:40]}' not in {sorted(PRIORITY)}")
 
+        # --- 3b. the parsed gate verdict must still agree with its prose
+        if "gate_verdict" in fields and "eligible_for_extended_analysis" in fields:
+            declared = (row.get("gate_verdict") or "").strip()
+            derived = gatevocab.parse(row.get("eligible_for_extended_analysis"))
+            if declared != derived:
+                report(f"{rel}:{n}: gate_verdict {declared!r} does not match "
+                       f"{derived!r}, which is what its eligibility prose says; "
+                       f"the parse is not a one-time act")
+
         status = (row.get("evidence_status") or "").strip()
 
         # --- 4. retrieval
         if status == "VERIFIED":
+            absent = [c for c in REQUIRED_FOR_VERIFIED if c not in fields]
+            if absent:
+                # Without these columns the retrieval check is structurally
+                # unreachable: the row can claim VERIFIED and no check can
+                # ever trace it. A register that cannot carry a retrieval
+                # cannot carry a VERIFIED row.
+                report(f"{rel}:{n}: VERIFIED row in a register with no "
+                       f"{', '.join(absent)} column; the retrieval that would "
+                       f"back it cannot be recorded here, so VERIFIED is "
+                       f"untraceable in this file")
             for col in REQUIRED_FOR_VERIFIED:
                 if col in fields and not (row.get(col) or "").strip():
                     report(f"{rel}:{n}: VERIFIED row missing {col}")
@@ -325,6 +375,85 @@ def check_file(rel, mode, prefix, ledger, known_ids):
                 report(f"{rel}:{n}: superseded_by {target} resolves to no register row")
 
 
+def check_identifier_namespaces(governed):
+    """No two registers issue the same identifier.
+
+    Uniqueness was per-file, so two registers could both issue E-4 and
+    nothing noticed. The docstring claimed otherwise; this implements it.
+    """
+    issued = {}
+    for rel, (mode, prefix, _role) in sorted(governed.items()):
+        if mode == "NOT-VALIDATED" or not rel.endswith(".csv") or rel in ALIAS_REGISTERS:
+            continue
+        path = ROOT / rel
+        if not path.is_file():
+            continue
+        try:
+            rows = read_csv(path)
+        except (OSError, csv.Error):
+            continue
+        if not rows:
+            continue
+        idcol = id_column(rows[0].keys())
+        if not idcol:
+            continue
+        for n, row in enumerate(rows, start=2):
+            rid = (row.get(idcol) or "").strip()
+            if not rid:
+                continue
+            if rid in issued and issued[rid][0] != rel:
+                fail(f"{rel}:{n}: identifier {rid} is also issued by "
+                     f"{issued[rid][0]}:{issued[rid][1]}; an identifier names "
+                     f"one row in this repository, not one row per file")
+            issued.setdefault(rid, (rel, n))
+
+
+def check_independence(governed):
+    """Report claims whose cited sources collapse to one observation.
+
+    The join computes independence_group and, until now, nothing read it.
+    CLAUDE.md: two citations tracing to the same author, excavation report or
+    dataset count as one. This is a note rather than a failure because
+    02-SOURCES/dependency.csv records in prose that some collapses were
+    assessed and cleared (DEP-006 on DME-008 and DME-009), and nothing in the
+    data distinguishes assessed from unassessed. Naming them is what makes
+    that gap visible instead of latent.
+    """
+    if not JOIN.exists():
+        return
+    per_claim = {}
+    for r in read_csv(JOIN):
+        if r.get("register_class") != "CLAIM":
+            continue
+        per_claim.setdefault((r["register"], r["claim_id"]), []).append(
+            (r["source_id"], r["independence_group"]))
+    collapsed = []
+    for (rel, cid), pairs in sorted(per_claim.items()):
+        if len(pairs) < 2:
+            continue
+        if len({g for _s, g in pairs}) < len(pairs):
+            collapsed.append((rel, cid, len(pairs), len({g for _s, g in pairs})))
+    verified = set()
+    for rel in {c[0] for c in collapsed}:
+        try:
+            rows = read_csv(ROOT / rel)
+        except (OSError, csv.Error):
+            continue
+        idcol = id_column(rows[0].keys()) if rows else None
+        for row in rows:
+            if (row.get("evidence_status") or "").strip() == "VERIFIED":
+                verified.add((rel, (row.get(idcol) or "").strip()))
+    hits = [c for c in collapsed if (c[0], c[1]) in verified]
+    if hits:
+        notes.append(
+            f"independence: {len(hits)} VERIFIED claim(s) cite sources the "
+            f"dependency register collapses into fewer independent observations")
+        for rel, cid, cited, groups in hits:
+            notes.append(f"  {rel} {cid}: {cited} sources, {groups} independent")
+        notes.append("  assessed-and-cleared is not distinguishable from "
+                     "unassessed in the data; RA-012 tracks that gap")
+
+
 def check_join(governed, ledger):
     """7. The join is authoritative; the inline cell must agree with it exactly."""
     if not JOIN.exists():
@@ -335,6 +464,14 @@ def check_join(governed, ledger):
     by_claim = {}
     for n, r in enumerate(join, start=2):
         sid = (r.get("source_id") or "").strip()
+        role = (r.get("evidence_role") or "").strip()
+        if role and role not in EVIDENCE_ROLE:
+            fail(f"03-REGISTERS/claim-sources.csv:{n}: evidence_role {role!r} "
+                 f"not in {sorted(EVIDENCE_ROLE)}")
+        loc = (r.get("locator") or "").strip()
+        if loc and VAGUE_LOCATOR.match(loc):
+            fail(f"03-REGISTERS/claim-sources.csv:{n}: locator {loc!r} is not "
+                 f"specific enough to re-find")
         if ";" in sid or "," in sid:
             fail(f"03-REGISTERS/claim-sources.csv:{n}: source_id {sid!r} holds more "
                  f"than one identifier; the join exists to prevent exactly this")
@@ -360,14 +497,23 @@ def check_join(governed, ledger):
             continue
         for n, row in enumerate(rows, start=2):
             cid = (row.get(idcol) or "").strip()
-            inline = set(split_sources(row.get("source_id")))
-            if not cid or not inline:
+            if not cid:
                 continue
-            joined = by_claim.get((rel, cid), set())
+            inline = set(split_sources(row.get("source_id")))
+            joined = by_claim.pop((rel, cid), set())
+            # Compared even when the inline cell is empty. Skipping that case
+            # left the mirror one-directional: blanking a claim's source cell
+            # while the join still held its rows passed silently.
             if inline != joined:
                 fail(f"{rel}:{n}: claim {cid} cites {sorted(inline)} inline but the "
                      f"join register holds {sorted(joined)}; regenerate with "
                      f"04-AUDITS/build-claim-sources.py")
+
+    # Join rows whose claim exists in no register are orphans: a relation to
+    # something that is not there.
+    for (jrel, jcid), sids in sorted(by_claim.items()):
+        fail(f"03-REGISTERS/claim-sources.csv: {len(sids)} row(s) join {jcid} in "
+             f"{jrel}, which holds no such row")
 
 
 def check_dependency(ledger):
@@ -492,6 +638,19 @@ def check_release_eligibility(governed):
                      "migration that promoted nothing")
 
 
+def load_migration_waivers():
+    """Read the exact coordinates open holds cover. Must run before any check."""
+    if not HOLDSREG.exists():
+        return
+    for row in read_csv(HOLDSREG):
+        if (row.get("disposition") or "").strip().upper() != "OPEN":
+            continue
+        for coord in (row.get("waives_validation_at") or "").split(";"):
+            coord = coord.strip()
+            if coord:
+                waived_at[coord] = row["hold_id"]
+
+
 def check_migration_holds():
     """Every open migration hold is surfaced on every run.
 
@@ -517,13 +676,46 @@ def check_overrides():
         return active
     required = ("override_id", "reason", "actor", "raised_date", "expiry_date",
                 "affected_validation_failures")
-    today = date.today().isoformat()
+    today = date.today()
     for n, row in enumerate(read_csv(OVERRIDES), start=2):
         missing = [c for c in required if not (row.get(c) or "").strip()]
         if missing:
             fail(f"00-CONTROLLER/OVERRIDE-LOG.csv:{n}: override row missing {missing}")
             continue
-        if row["expiry_date"].strip() >= today:
+        # Parsed, not string-compared. "never" sorts after any ISO date, so a
+        # lexical comparison made it a permanent waiver.
+        try:
+            expiry = date.fromisoformat(row["expiry_date"].strip())
+        except ValueError:
+            fail(f"00-CONTROLLER/OVERRIDE-LOG.csv:{n}: expiry_date "
+                 f"{row['expiry_date'].strip()!r} is not an ISO date (YYYY-MM-DD); "
+                 f"an override without a real expiry never expires")
+            continue
+        try:
+            raised = date.fromisoformat(row["raised_date"].strip())
+        except ValueError:
+            fail(f"00-CONTROLLER/OVERRIDE-LOG.csv:{n}: raised_date "
+                 f"{row['raised_date'].strip()!r} is not an ISO date")
+            continue
+        if expiry < raised:
+            fail(f"00-CONTROLLER/OVERRIDE-LOG.csv:{n}: expiry_date precedes raised_date")
+            continue
+        if (expiry - raised).days > 90:
+            fail(f"00-CONTROLLER/OVERRIDE-LOG.csv:{n}: override runs "
+                 f"{(expiry - raised).days} days; an emergency waiver is bounded, "
+                 f"90 days at most, and is renewed by a new row that says why")
+            continue
+        # A short signature matches half the failure lines in the tree: every
+        # one contains a path, so "-" alone waives everything. A waiver names
+        # the failure it waives.
+        bad = [sig.strip() for sig in row["affected_validation_failures"].split(";")
+               if 0 < len(sig.strip()) < MIN_OVERRIDE_SIGNATURE]
+        if bad:
+            fail(f"00-CONTROLLER/OVERRIDE-LOG.csv:{n}: waiver signature(s) {bad} "
+                 f"shorter than {MIN_OVERRIDE_SIGNATURE} characters; a signature "
+                 f"this general waives failures nobody has read")
+            continue
+        if expiry >= today:
             active.append(row)
     return active
 
@@ -535,6 +727,7 @@ def main():
     ap.add_argument("--list-active-overrides", action="store_true")
     args = ap.parse_args()
 
+    load_migration_waivers()
     governed = load_governed()
     check_control_plane(governed)
     ledger = ledger_ids()
@@ -549,7 +742,9 @@ def main():
         if (ROOT / rel).is_file():
             check_file(rel, mode, prefix, ledger, known_ids)
 
+    check_identifier_namespaces(governed)
     check_join(governed, ledger)
+    check_independence(governed)
     check_dependency(ledger)
     check_cross_references(known_decisions)
     check_markdown_gated()

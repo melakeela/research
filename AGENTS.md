@@ -43,11 +43,19 @@ When reviewing a pull request, check:
 5. **Chronology and geography.** Do the dates and places hold.
 6. **Inherited material.** Nothing from `01-INHERITED/` may be cited
    as evidence. It is a claim inventory only.
-7. **One source per cell.** A claim resting on several sources is
-   recorded in `03-REGISTERS/claim-sources.csv`, never as a
-   semicolon-delimited list in one `source_id` cell. Check
-   `independence_group` there before accepting "multiple sources": two
-   join rows in one group are one independent observation.
+7. **Sources.** `03-REGISTERS/claim-sources.csv` is authoritative for
+   which sources a claim rests on; the inline `source_id` cell is a
+   projection the validator forces to agree with it. New rows should put
+   one identifier in one cell, but **1,195 existing cells hold several**
+   and were deliberately not rewritten (MH-009) — the join expands them.
+   Do not flag those as defects; they are recorded.
+
+   Do check `independence_group` before accepting "multiple sources":
+   two join rows in one group are one independent observation. **28
+   `VERIFIED` claims currently cite sources that collapse this way**, and
+   the data does not distinguish an assessed-and-cleared collapse from an
+   unassessed one. `RA-012` queues that reading; the validator lists the
+   28 on every run.
 8. **Status dimensions.** `evidence_status` is the only evidence gate.
    A row that is `APPROVED` editorially and `PROVISIONAL` evidentially
    is a `PROVISIONAL` claim. Flag any prose that reads otherwise.

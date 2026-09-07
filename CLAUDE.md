@@ -166,15 +166,25 @@ claim_id,claim,evidence_status,source_id,locator,retrieval_date,supports_page,no
 interpretive_status,editorial_status,publication_status,status_reason,superseded_by
 ```
 
-- `source_id` must resolve to a row in the access ledger. **One cell never
-  holds several identifiers.** A claim resting on more than one source is
-  recorded in `03-REGISTERS/claim-sources.csv`, the many-to-many join that
-  carries `evidence_role`, `locator` and `independence_group`; the inline
-  cell is a projection of it and the validator fails if the two disagree.
-  Do not duplicate a claim row to carry a second source.
+- `source_id` must resolve to a row in the access ledger.
+  `03-REGISTERS/claim-sources.csv` is **authoritative** for which sources a
+  claim rests on: a many-to-many join carrying `evidence_role`, `locator` and
+  `independence_group`. The inline cell is a projection of it, and the
+  validator fails if the two disagree in either direction. Do not duplicate a
+  claim row to carry a second source.
+- **In new rows, one cell holds one identifier.** The tree still contains
+  cells holding several, semicolon-delimited or as a range — 1,195 of them,
+  reproduce with the command in
+  `04-AUDITS/MIGRATION-REPORT-2026-09-07.md`. They were **not** rewritten,
+  because editing that many research rows to satisfy a schema is the thing
+  this repository refuses to do; the join expands them instead, and the
+  validator and the generator share one splitter so they cannot disagree
+  about what a cell says. Recorded as `MIGRATION-HOLDS.csv` MH-009.
 - `locator` must be specific enough to re-find: page, line, section or
-  catalogue number. "See the article" is not a locator, and the validator
-  rejects it.
+  catalogue number. "See the article" is not a locator. The validator rejects
+  a closed list of such phrases and checks that an identifier used as a
+  locator resolves; it cannot judge whether a locator is *specific enough*,
+  so "the relevant chapter" passes it. That judgement is the reviewer's.
 - `supports_page` ties the claim to the atlas entry or exhibit it is meant
   to feed. Evidence that supports nothing is not collected.
 - `status_reason` carries any qualification. Prose never goes in a status
