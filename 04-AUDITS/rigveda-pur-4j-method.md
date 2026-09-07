@@ -674,6 +674,36 @@ the gloss-scan exclusions behind the numeral and semantic-field inventories.
 
 ---
 
+## 7A. Reproduction, checked
+
+The four registers were regenerated in a clean directory from the pinned commit
+and the committed scripts, and **all four are byte-identical to the committed
+files**:
+
+```
+CL=/home/user/vedawebproject/vedaweb-data/rigveda      # clone @ d3eb8af
+
+python3 04-AUDITS/rv-token-extract.py       $CL/TEI            rv_tokens_vedaweb.tsv
+python3 04-AUDITS/rv-pur-passage-build.py   $CL  rv_tokens_vedaweb.tsv  rv_pur_passages.json
+python3 04-AUDITS/rv-pur-passages-csv.py    rv_pur_passages.json   03-REGISTERS/rigveda-pur-passages.csv
+python3 04-AUDITS/rv-pur-counts.py          rv_pur_passages.json   rv_pur_counts.tsv
+python3 04-AUDITS/rv-pur-counts-adjudicate.py  rv_pur_counts.tsv   03-REGISTERS/rigveda-pur-counts.csv
+python3 04-AUDITS/rv-pur-fields.py          rv_pur_passages.json  $CL  03-REGISTERS/rigveda-pur-fields.csv
+python3 04-AUDITS/rv-pur-typology.py        rv_pur_passages.json   03-REGISTERS/rigveda-pur-typology.csv
+```
+
+`rv_tokens_vedaweb.tsv` (30 MB) and `rv_pur_passages.json` (582 KB) are derived
+and not committed; both regenerate byte-for-byte from the commit SHA.
+
+**Note the argument orders, which differ between scripts** —
+`rv-pur-passage-build.py` takes the clone first and the token file second,
+while `rv-pur-fields.py` takes the passages file first and the clone second.
+Getting this wrong produces a `NotADirectoryError` rather than a wrong answer,
+so it fails loudly; it is recorded because the first reproduction attempt made
+exactly that mistake.
+
+---
+
 ## 8. The two adversarial tests
 
 Constitution §8. Both run before this unit was called finished.
