@@ -1,0 +1,446 @@
+{
+  "schema": 1,
+  "recorded_date": "2026-09-07",
+  "recorded_at_commit": "aa40d3a0c8241cab29efa247ef7eb0f900c11c5d",
+  "recorded_failure_count": 53,
+  "what_this_is": "The set of 04-AUDITS/validate-registers.py failures present in the tree when the push gate was changed from absolute to baseline. .claude/hooks/block-push-on-register-failure.sh blocks a push only for a failure that is NOT in this set. Every entry below is a failure the repository is currently carrying knowingly, with the reason it is being carried. This file excuses failures; it does not fix them, and nothing here is a finding.",
+  "how_a_failure_is_matched": "By the three-part key file -> row_id -> failure_type, plus an exact match on `detail`. row_id is the register's own identifier column, so a row keeps its excuse when other rows are inserted above it and line numbers move. `detail` is the specific offending value. A baselined key whose detail has changed is reported as a NEW failure and blocks, on the reasoning that a cell that has been edited since it was excused has not been looked at by the owner in its current form. That is deliberately the strict side of the line: it can block a push for an edit that is in fact harmless, and the remedy is to re-record the baseline and say so in the pull request.",
+  "how_to_re_record": "This file is written by hand, not generated on demand — regenerating it automatically before a push would make the gate self-excusing and worth nothing. To add an entry, run `python3 04-AUDITS/validate-registers.py --json`, take the failure's file / row_id / failure_type / detail, and write a why_excused that an owner could disagree with.",
+  "owner_can_disagree_with_any_of_this": "Deleting an entry restores the absolute gate for that row. Deleting the whole `entries` object restores it for the tree.",
+  "entries": {
+    "03-REGISTERS/domain-e-claims.csv": {
+      "DME-002": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022; SRC-023; SRC-047",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022, SRC-023, SRC-047); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 3
+        }
+      },
+      "DME-003": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022; SRC-023; SRC-047",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022, SRC-023, SRC-047); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 4
+        }
+      },
+      "DME-004": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022; SRC-023; SRC-047",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022, SRC-023, SRC-047); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 5
+        }
+      },
+      "DME-005": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022; SRC-023; SRC-047",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022, SRC-023, SRC-047); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 6
+        }
+      },
+      "DME-006": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022; SRC-023; SRC-047",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022, SRC-023, SRC-047); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 7
+        }
+      },
+      "DME-007": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022; SRC-023; SRC-047",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022, SRC-023, SRC-047); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 8
+        }
+      },
+      "DME-008": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022; SRC-023; SRC-047; SRC-026",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022, SRC-023, SRC-047, SRC-026); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 9
+        }
+      },
+      "DME-009": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022; SRC-023; SRC-047; SRC-026",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022, SRC-023, SRC-047, SRC-026); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 10
+        }
+      },
+      "DME-010": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022; SRC-023; SRC-047; SRC-026",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022, SRC-023, SRC-047, SRC-026); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 11
+        }
+      },
+      "DME-011": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022; SRC-023; SRC-047",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022, SRC-023, SRC-047); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 12
+        }
+      },
+      "DME-012": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022; SRC-023; SRC-047",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022, SRC-023, SRC-047); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 13
+        }
+      },
+      "DME-013": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022; SRC-023; SRC-047",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022, SRC-023, SRC-047); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 14
+        }
+      },
+      "DME-014": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022; SRC-023; SRC-047",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022, SRC-023, SRC-047); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 15
+        }
+      },
+      "DME-015": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022; SRC-023; SRC-047",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022, SRC-023, SRC-047); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 16
+        }
+      },
+      "DME-016": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022; SRC-023; SRC-047",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022, SRC-023, SRC-047); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 17
+        }
+      },
+      "DME-017": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022; SRC-023; SRC-047; SRC-026",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022, SRC-023, SRC-047, SRC-026); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 18
+        }
+      },
+      "DME-018": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022; SRC-023; SRC-047",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022, SRC-023, SRC-047); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 19
+        }
+      },
+      "DME-026": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-037; SRC-040; SRC-043; SRC-046",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-037, SRC-040, SRC-043, SRC-046); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 27
+        }
+      }
+    },
+    "03-REGISTERS/domain-e-hypothesis-eligibility.csv": {
+      "E-11": {
+        "status-not-in-vocabulary": {
+          "detail": "VERIFIED as a measurement; not a claim about origins",
+          "class": "reserved-for-owner",
+          "why_excused": "VALIDATOR-FINDINGS-2026-09-07.md reserves this row for the owner. The status cell carries a load-bearing qualification ('VERIFIED as a measurement; not a claim about origins') that keeps the 253-lemma residue from ever being cited as a count of borrowings — the constitution §4.E 'unknown is residual' guard. The qualification belongs in `reason`, not in `status`, but moving it is a change to a guard and is the owner's to make. Excused so the guard is not quietly loosened by a session that only wanted to push.",
+          "line_when_recorded": 12
+        }
+      }
+    },
+    "03-REGISTERS/domain-e-interpretations.csv": {
+      "DE-I-009": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-068; SRC-032; SRC-053",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-068, SRC-032, SRC-053); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 10
+        }
+      },
+      "DE-I-010": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-065; SRC-059",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-065, SRC-059); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 11
+        }
+      }
+    },
+    "03-REGISTERS/domain-e-measurements.csv": {
+      "DE-M-009": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-065; SRC-059; SRC-022",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-065, SRC-059, SRC-022); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 10
+        }
+      },
+      "DE-M-010": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-065; SRC-059",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-065, SRC-059); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 11
+        }
+      },
+      "DE-M-011": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-059; SRC-022",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-059, SRC-022); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 12
+        }
+      },
+      "DE-M-012": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-059; SRC-022; SRC-023",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-059, SRC-022, SRC-023); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 13
+        }
+      },
+      "DE-M-015": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-063; SRC-064",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-063, SRC-064); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 16
+        }
+      },
+      "DE-M-020": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-065; SRC-059; SRC-022",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-065, SRC-059, SRC-022); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 21
+        }
+      },
+      "DE-M-026": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-023; SRC-065; SRC-061; SRC-062; SRC-064; SRC-060",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-023, SRC-065, SRC-061, SRC-062, SRC-064, SRC-060); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 27
+        }
+      },
+      "DE-M-027": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-068; SRC-023",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-068, SRC-023); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 28
+        }
+      }
+    },
+    "03-REGISTERS/rigveda-pur-family.csv": {
+      "PUR-001": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 2
+        }
+      },
+      "PUR-002": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022; SRC-023",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022, SRC-023); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 3
+        }
+      },
+      "PUR-003": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 4
+        }
+      },
+      "PUR-004": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 5
+        }
+      },
+      "PUR-005": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 6
+        }
+      },
+      "PUR-006": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 7
+        }
+      },
+      "PUR-007": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 8
+        }
+      },
+      "PUR-008": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 9
+        }
+      },
+      "PUR-009": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-021; SRC-022",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-021, SRC-022); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 10
+        }
+      },
+      "PUR-010": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-021; SRC-022",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-021, SRC-022); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 11
+        }
+      },
+      "PUR-012": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-023",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-023); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 13
+        }
+      },
+      "PUR-013": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-024",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-024); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 14
+        }
+      },
+      "PUR-014": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022; SRC-023",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022, SRC-023); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 15
+        }
+      },
+      "PUR-015": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022; SRC-023",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022, SRC-023); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 16
+        }
+      },
+      "PUR-016": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022; SRC-023",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022, SRC-023); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 17
+        }
+      },
+      "PUR-017": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022; SRC-023",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022, SRC-023); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 18
+        }
+      },
+      "PUR-018": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022; SRC-023",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022, SRC-023); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 19
+        }
+      },
+      "PUR-019": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 20
+        }
+      },
+      "PUR-020": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 21
+        }
+      },
+      "PUR-021": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022; SRC-023",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022, SRC-023); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 22
+        }
+      },
+      "PUR-022": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 23
+        }
+      },
+      "PUR-023": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 24
+        }
+      },
+      "PUR-024": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 25
+        }
+      },
+      "PUR-025": {
+        "source-id-not-in-ledger": {
+          "detail": "SRC-019; SRC-022",
+          "class": "multi-valued-source-id",
+          "why_excused": "Every identifier in this cell resolves to a row in 02-SOURCES/access-ledger.csv (SRC-019, SRC-022); the cell fails only when the validator reads the whole cell as one identifier. The registers record every source a claim rests on, which for a corpus measurement is routinely three or four. Which rule gives way is D-044, open. Excused because the row is not evidentially defective — no unbacked VERIFIED claim is hiding behind it.",
+          "line_when_recorded": 26
+        }
+      }
+    }
+  }
+}

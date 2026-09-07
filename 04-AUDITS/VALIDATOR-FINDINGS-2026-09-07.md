@@ -150,3 +150,100 @@ validate-registers: 43 failure(s)
   03-REGISTERS/rigveda-pur-family.csv:25: source_id SRC-019; SRC-022 not in access ledger
   03-REGISTERS/rigveda-pur-family.csv:26: source_id SRC-019; SRC-022 not in access ledger
 ```
+
+---
+
+# Addendum, 2026-09-07 — the count is now 53, and the gate is a baseline gate
+
+## Re-run
+
+`python3 04-AUDITS/validate-registers.py` at commit `aa40d3a`: **exit 1, 53
+failures.** The body of this file recorded 43. Nothing was fixed and nothing
+regressed; ten failures arrived with two register files that did not exist when
+the 43 were counted — `03-REGISTERS/domain-e-measurements.csv` (8) and
+`03-REGISTERS/domain-e-interpretations.csv` (2), both added by the domain E
+units 2–6 work and merged since. Every one of the ten is the same Class 1
+multi-valued `source_id` cell. The class breakdown at 53:
+
+| Class | Count | Files |
+|---|---|---|
+| 1 — multi-valued `source_id` | 52 | `rigveda-pur-family.csv` 24, `domain-e-claims.csv` 18, `domain-e-measurements.csv` 8, `domain-e-interpretations.csv` 2 |
+| 2 — status cell carrying prose | 1 | `domain-e-hypothesis-eligibility.csv` row `E-11` |
+| 3 — unresolvable `D-` references | 0 | — |
+
+Class 1 has grown from 42 to 52 without anyone deciding anything. That is the
+argument for D-044 below: an undecided convention does not stay the same size.
+
+## What changed in the gate
+
+`.claude/hooks/block-push-on-register-failure.sh` was an **absolute** gate — any
+failure blocked any push. With 53 standing failures that no session introduced,
+the first push of every session hit it, and the documented
+`MELAKEELA_REGISTER_GATE=off` override became the normal way to push rather than
+the exception it was written to be. An override used on every push stops being a
+record of anything.
+
+It is now a **baseline** gate. `04-AUDITS/validator-baseline.json` records the
+53 failures as they stand. A push is blocked only by a failure that is not in
+that file.
+
+    a new defect blocks; the recorded set does not.
+
+Mechanics, and the places where a judgement was made:
+
+- **Keying.** A baselined failure is matched on `file → row_id → failure_type`,
+  where `row_id` is the register's own identifier column (`DME-002`, `E-11`,
+  `RVP-004`). Not on line number: inserting a row above a baselined one shifts
+  every line below it, and a line-keyed baseline would then excuse whichever
+  rows happened to slide into those numbers. `validate-registers.py` gained a
+  `--json` flag to emit those keys. It gained nothing else — no check changed,
+  no verdict changed, and its human output is byte-identical.
+- **`detail` is matched too, exactly.** A baselined row whose offending value
+  has since been edited is reported as new and blocks. The reasoning: a cell
+  edited after it was excused has not been seen by the owner in its current
+  form. This is deliberately the strict side, and it will sometimes block a
+  harmless edit — adding a fifth resolving `SRC-` to an already-excused cell
+  would do it. The remedy is to re-record that entry and say so in the pull
+  request, not to loosen the match.
+- **Fail closed.** If the baseline file is missing, unreadable or has no
+  `entries` object, the hook reverts to the absolute gate. Verified.
+- **The baseline is written by hand.** The hook never regenerates it. A gate
+  that re-records its own baseline before each push excuses everything.
+- **The override survives**, for a genuinely new failure that is known and
+  deliberately unfixed. It should now be rare, and reaching for it on a failure
+  the session itself introduced is the wrong move.
+
+## What the baseline excuses, and why
+
+**52 × `source-id-not-in-ledger`** — every multi-valued cell in the four files
+above. Excused on a check, not on a shrug: all 16 distinct cells were split on
+`;` and each component resolved against `02-SOURCES/access-ledger.csv`, which
+now holds 68 rows (`SRC-001`–`SRC-068`). **No component fails. No typo is
+hiding here.** The rows are not evidentially defective — no unbacked `VERIFIED`
+claim is behind any of them — so the failure is a disagreement about the format
+rule, and it is now on the owner's desk as **D-044** rather than living only in
+the prose of this file. Excusing them does not pick one of D-044's three
+options; it stops them blocking work while the owner decides.
+
+**1 × `status-not-in-vocabulary`, row `E-11`** — excused because the section
+above reserves it for the owner, and that reservation is honoured, not
+overridden. The status cell carries `VERIFIED as a measurement; not a claim
+about origins`, which is what keeps the 253-lemma residue from ever being cited
+as a count of borrowings: the constitution §4.E "unknown is residual" guard.
+The qualification does belong in `reason` rather than `status`. Moving it is
+still the owner's to make, and the point of the baseline is that a session
+which only wanted to push is no longer tempted to loosen a guard to get there.
+
+## What the baseline does not do
+
+It does not fix, downgrade or delete a single row; the registers are byte-identical.
+It does not narrow the validator — all 53 failures are still detected, still
+printed, still exit 1. It changes only what a *push* is blocked on. The
+absolute verdict remains available at any time by running the validator
+directly, which is the honest way to read the state of the registers, and this
+addendum does not supersede the "What the validator does not check" list above:
+every silence recorded there is still a silence.
+
+Deleting an entry from `validator-baseline.json` restores the absolute gate for
+that row. Deleting the `entries` object restores it for the whole tree. The
+owner can disagree with any excuse here by doing exactly that.

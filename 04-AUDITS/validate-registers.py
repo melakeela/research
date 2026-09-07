@@ -17,8 +17,23 @@ Checks:
 CSVs in this repository mix CRLF and LF and carry embedded newlines
 inside quoted cells. Everything here opens with newline='' and never
 rewrites a file.
+
+Output modes:
+  (default)  human-readable list, exit 1 if any failure
+  --json     the same failures as a JSON array of records, one per failure:
+             {file, row_id, failure_type, detail, line}. Exit code is
+             unchanged. This is what the push gate consumes, so that the
+             baseline in 04-AUDITS/validator-baseline.json can be keyed by
+             file, row identifier and failure type rather than by line
+             number — line numbers move whenever a row is inserted, and a
+             baseline that moved with them would excuse the wrong rows.
+
+Adding --json changed no check and no verdict. The human output below is
+byte-identical to what this script printed before the flag existed.
 """
+import argparse
 import csv
+import json
 import re
 import sys
 from pathlib import Path
@@ -37,11 +52,39 @@ STATUS_VOCAB = {
 REQUIRED_FOR_VERIFIED = ("source_id", "locator", "retrieval_date")
 SKIP_DIRS = {"01-INHERITED", ".git", "node_modules"}
 
+# Failure types. These are the second half of a baseline key, so they are
+# stable strings: renaming one silently un-excuses every row baselined
+# under the old name.
+F_LEDGER_MISSING = "ledger-missing"
+F_DECISIONS_MISSING = "decisions-register-missing"
+F_DUPLICATE_DECISION_ID = "duplicate-decision-id"
+F_DUPLICATE_ROW_ID = "duplicate-row-id"
+F_STATUS_NOT_IN_VOCAB = "status-not-in-vocabulary"
+F_VERIFIED_MISSING_FIELD = "verified-missing-field"
+F_SOURCE_ID_NOT_IN_LEDGER = "source-id-not-in-ledger"
+F_DECISION_REF_UNRESOLVED = "decision-ref-unresolved"
+
 failures = []
 
 
-def fail(msg):
-    failures.append(msg)
+def fail(message, *, file, row_id, failure_type, detail="", line=None):
+    """Record one failure.
+
+    `message` is the human line, unchanged from earlier versions of this
+    script. The keyed fields are what the push gate matches against the
+    baseline: `file` and `row_id` identify the row across edits that move
+    it, `failure_type` says which rule it broke, and `detail` is the
+    specific offending value — a baselined row whose detail has changed is
+    a different failure and is not excused.
+    """
+    failures.append({
+        "file": file,
+        "row_id": row_id,
+        "failure_type": failure_type,
+        "detail": detail,
+        "line": line,
+        "message": message,
+    })
 
 
 def read_csv(path):
@@ -51,7 +94,9 @@ def read_csv(path):
 
 def ledger_ids():
     if not LEDGER.exists():
-        fail(f"ledger missing: {LEDGER.relative_to(ROOT)}")
+        rel = str(LEDGER.relative_to(ROOT))
+        fail(f"ledger missing: {rel}",
+             file=rel, row_id="-", failure_type=F_LEDGER_MISSING)
         return set()
     ids = set()
     for row in read_csv(LEDGER):
@@ -63,7 +108,9 @@ def ledger_ids():
 
 def decision_ids():
     if not DECISIONS.exists():
-        fail(f"decisions register missing: {DECISIONS.relative_to(ROOT)}")
+        rel = str(DECISIONS.relative_to(ROOT))
+        fail(f"decisions register missing: {rel}",
+             file=rel, row_id="-", failure_type=F_DECISIONS_MISSING)
         return set(), {}
     counts = {}
     for row in read_csv(DECISIONS):
@@ -72,7 +119,9 @@ def decision_ids():
             counts[did] = counts.get(did, 0) + 1
     for did, n in counts.items():
         if n > 1:
-            fail(f"OWNER-DECISIONS.csv: {did} appears {n} times")
+            fail(f"OWNER-DECISIONS.csv: {did} appears {n} times",
+                 file=str(DECISIONS.relative_to(ROOT)), row_id=did,
+                 failure_type=F_DUPLICATE_DECISION_ID, detail=str(n))
     return set(counts), counts
 
 
@@ -86,23 +135,37 @@ def check_register(path, ledger):
     id_field = next((c for c in fields if c.endswith("_id") or c == "id"), None)
     seen = set()
     for n, row in enumerate(rows, start=2):
+        rid = (row.get(id_field) or "").strip() if id_field else ""
+        # A register with no identifier column, or a row with an empty one,
+        # can only be addressed by position. Say so in the key rather than
+        # silently keying an unidentifiable row as if it had an id.
+        key_id = rid or f"(row {n}, no id column)"
         if id_field:
-            rid = (row.get(id_field) or "").strip()
             if rid in seen:
-                fail(f"{rel}:{n}: duplicate {id_field} {rid}")
+                fail(f"{rel}:{n}: duplicate {id_field} {rid}",
+                     file=str(rel), row_id=rid or key_id,
+                     failure_type=F_DUPLICATE_ROW_ID, detail=id_field, line=n)
             seen.add(rid)
         if not has_status:
             continue
         status = (row.get("status") or "").strip()
         if status and status not in STATUS_VOCAB:
-            fail(f"{rel}:{n}: status '{status}' not in vocabulary")
+            fail(f"{rel}:{n}: status '{status}' not in vocabulary",
+                 file=str(rel), row_id=key_id,
+                 failure_type=F_STATUS_NOT_IN_VOCAB, detail=status, line=n)
         if status == "VERIFIED":
             for col in REQUIRED_FOR_VERIFIED:
                 if col in fields and not (row.get(col) or "").strip():
-                    fail(f"{rel}:{n}: VERIFIED row missing {col}")
+                    fail(f"{rel}:{n}: VERIFIED row missing {col}",
+                         file=str(rel), row_id=key_id,
+                         failure_type=F_VERIFIED_MISSING_FIELD,
+                         detail=col, line=n)
             sid = (row.get("source_id") or "").strip()
             if sid and ledger and sid not in ledger:
-                fail(f"{rel}:{n}: source_id {sid} not in access ledger")
+                fail(f"{rel}:{n}: source_id {sid} not in access ledger",
+                     file=str(rel), row_id=key_id,
+                     failure_type=F_SOURCE_ID_NOT_IN_LEDGER,
+                     detail=sid, line=n)
 
 
 def check_decision_refs(known):
@@ -116,12 +179,22 @@ def check_decision_refs(known):
             text = path.read_text(encoding="utf-8", errors="replace")
         except OSError:
             continue
+        rel = str(path.relative_to(ROOT))
         for ref in sorted(set(pat.findall(text))):
             if ref not in known:
-                fail(f"{path.relative_to(ROOT)}: reference {ref} has no OWNER-DECISIONS row")
+                fail(f"{rel}: reference {ref} has no OWNER-DECISIONS row",
+                     file=rel, row_id=ref,
+                     failure_type=F_DECISION_REF_UNRESOLVED, detail=ref)
 
 
 def main():
+    parser = argparse.ArgumentParser(add_help=True, description=__doc__)
+    parser.add_argument(
+        "--json", action="store_true", dest="as_json",
+        help="emit failures as JSON records keyed by file, row id and type",
+    )
+    args = parser.parse_args()
+
     ledger = ledger_ids()
     known, _ = decision_ids()
     if REGISTER_DIR.exists():
@@ -129,10 +202,15 @@ def main():
             check_register(path, ledger)
     check_decision_refs(known)
 
+    if args.as_json:
+        json.dump(failures, sys.stdout, indent=2, sort_keys=True)
+        sys.stdout.write("\n")
+        sys.exit(1 if failures else 0)
+
     if failures:
         print(f"validate-registers: {len(failures)} failure(s)")
         for f in failures:
-            print("  " + f)
+            print("  " + f["message"])
         sys.exit(1)
     print("validate-registers: all checks pass")
 
