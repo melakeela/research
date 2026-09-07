@@ -584,3 +584,122 @@ at RV 1.58.8 and 7.3.7), three are BOTH, one cannot be classified. The two
 exceptions are the only two enemy forts with a stated material — RV 2.20.8
 (metal) and RV 4.30.20 (stone). **Anyone reading fort materials as evidence for
 building technique is reading mostly figurative passages.**
+
+---
+
+## 7. Measurements against interpretations
+
+The constitution requires the two be separated, and they are separated by file,
+not by paragraph.
+
+| File | Contains | Statuses |
+|---|---|---|
+| `03-REGISTERS/rigveda-pur-passages.csv` | the passage index: address, family tokens with morphology, Arnold metre and stratum, addressee, poet group, Saṃhitā and padapāṭha text, which translations carry it | measurement |
+| `03-REGISTERS/rigveda-pur-counts.csv` | one row per numeral token, three instruments in their own columns, a verdict column, and an override column | measurement |
+| `03-REGISTERS/rigveda-pur-fields.csv` | §4J's semantic fields, each defined before it was filled | measurement |
+| `03-REGISTERS/rigveda-pur-typology.csv` | the five-way classification | reading — every row `PROVISIONAL` |
+| `03-REGISTERS/rigveda-pur-4j-claims.csv` | 27 claims | 23 `VERIFIED`, 4 `PROVISIONAL` |
+| `03-REGISTERS/rigveda-pur-4j-interpretations.csv` | 3 readings, each with evidence for, **evidence against**, what it does not establish, and falsifiers | all `PROVISIONAL` |
+
+Nothing in this unit is `VERIFIED` on the strength of an argument. Every
+`VERIFIED` row is a count, a form, a gloss, or a printed rendering, with a
+locator that re-finds it.
+
+**Every count in this unit carries its denominator.** 21 **of 103** passages
+state a count; 6 **of 21** state 99; 3 **of 83** simplex tokens are locative;
+10 **of 103** state a material; 55 **of 103** have a poet-naming heading. Where a count has exclusions, they are named at the point
+of use: §2.2 lists the four exclusions behind the 103, and §4.1 and §5.3 list
+the gloss-scan exclusions behind the numeral and semantic-field inventories.
+
+---
+
+## 8. The two adversarial tests
+
+Constitution §8. Both run before this unit was called finished.
+
+### 8.1 Prestige-bias challenge
+
+*Did this privilege a claim because it is canonical, Sanskritic, Brahmanical,
+Indo-European, European, colonial, institutionally prestigious, repeatedly
+cited or nationally useful?*
+
+**Caught, and corrected inside the unit.** Four instances.
+
+1. **Grassmann was about to be counted twice.** His *Wörterbuch* glosses fixed
+   the family boundary (`PUR-006`); his 1876–7 translation is one of the five
+   in the §7 tally; his gloss category `Dämon` sorts the opponent field. Three
+   apparently independent supports, one man. Logged as `DEP-021` **before** the
+   translations were used, not after. The §7 brief states it in the table where
+   the tally appears.
+2. **Arnold was about to be counted twice.** `stanza_properties.json` carries an
+   `arnold` column — Arnold 1897, the *Sketch*, on grammar. The register's
+   stratum column is Arnold 1905, on metre. Same author, eight years apart.
+   Logged as `DEP-022` before the file was opened. This is the trap that
+   produced correction `C-05`, and it was set again by a new data file.
+3. **The prestige of the machine over the reading.** The mechanical agreement
+   test is reproducible, scriptable and wrong about `navatí-`: it is a feminine
+   singular collective governing a plural, so a case/gender/number test drops
+   **five of the six** ninety-nine passages by construction. Deferring to the
+   instrument would have produced a tidy, reproducible, false result. Six rows
+   record the override, each naming the instrument it overrides.
+4. **The prestige of the standard translation.** Geldner is the reference
+   translation, and that is a fact about its reception, not its correctness —
+   the ledger row `SRC-072` says so. Where Geldner and Griffith disagree
+   (`āyasá-`, `nā́rmiṇī-`) the disagreement is recorded as an open crux and
+   neither is preferred.
+
+**One live risk not fully closed.** The whole unit rests on a single German
+philological line: Grassmann's lexicon, Grassmann's, Geldner's and Griffith's
+translations, Arnold's metre, Zürich's morphology. Elizarenkova and Renou sit
+inside the same tradition. **There is no non-European scholarly source anywhere
+in this unit**, and none was reachable (`SRC-080`–`SRC-083`). Sāyaṇa's
+commentary — the indigenous exegetical tradition, and the one Griffith leaned
+on — is not in the pinned corpus and was not retrieved. That is an archival
+asymmetry, not a neutral fact about what exists, and it is recorded here rather
+than in a caveat at the end. Queued as `RA-015`.
+
+### 8.2 Preferred-counter-narrative challenge
+
+*Did this accept a claim too easily because it is Dravidian, Indigenous,
+anti-colonial, anti-Brahmanical, subaltern, diffusionist or politically
+corrective?*
+
+**The available soft landing was named in advance and refused.** The
+reconciliation brief §7 identified it: *"declare 99 formulaic and be done — a
+conclusion that flatters a deflationary reading of Rigvedic conflict and costs
+nothing to assert."* The task restated it. Four controls were put in place:
+
+1. **The predictions were fixed before the evidence was read** (§4.6), and one
+   of them **failed for the formula reading**: the numbers sort by narrative
+   cycle — seven with Purukutsa and the Pūru in all four passages, near-verbatim
+   at 1.174.2b and 6.20.10c; 99 and 100 with Divodāsa and Śambara. That failure
+   is in the interpretation row's `evidence_against` column, not a footnote, and
+   it narrows the conclusion from "the numbers are meaningless" to "a formula
+   system with slots filled by cycle".
+2. **The typology was kept separate from the counts, and it contradicts the
+   easy version.** All six 99-passages are textual strongholds (§6.4). "The
+   number is a formula" and "the passage is a formula" are different claims and
+   this unit keeps them apart. Had the two been one register, the deflationary
+   reading would have propagated from the count to the passage for free.
+3. **`PUR4J-I-01` states what it does not establish**, in its own column: a
+   formulaic count says nothing about whether anything was besieged, and the
+   typology is assigned per passage and never inherited from that row.
+4. **`PUR4J-I-03` refuses the inverse error explicitly**: 60 of 103 passages
+   present a fort as an object, and this unit has no evidence bearing on
+   whether any of them stood anywhere. The plurality finding is about the
+   *form* of the answer, not its content.
+
+**And the opposite bias was checked.** Demoting 99 because it arrives in a page
+headline rather than a commit hash is the error the reconciliation brief warned
+against. 99 is now a `VERIFIED` count of six passages with locators, and it
+outranks the register's 106 on the question of how many forts a passage names
+(`PUR4J-I-02`). What is demoted is only its claim to be *the* number, and that
+demotion is a measurement: 8 passages to 6.
+
+### 8.3 Method failures logged
+
+Two rows in `04-AUDITS/BIAS-FAILURE-LOG.csv` — `BF-012` and `BF-013` — and four
+in `04-AUDITS/REAUDIT-QUEUE.csv` (`RA-012` to `RA-015`). Neither bias-log row
+is a failure of *this* unit's output; both are failure modes caught in flight,
+which §9 of the constitution asks be recorded with the control that now
+prevents them.
