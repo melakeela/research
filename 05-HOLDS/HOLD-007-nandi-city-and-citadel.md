@@ -40,6 +40,14 @@ preserves is the whole point:
 thesis, and can say exactly why. It is not a verdict that the thesis is false,
 and it must not be reported as one.**
 
+Adversarial review made that caution load-bearing rather than decorative.
+Three of the gate's six diagnostic verdicts were withdrawn, **all three moving
+toward the thesis**: `durgá-` is contested rather than failed (RV 5.34.7 is a
+fortification on all three cited translators), and the brick and city absences
+are inconclusive rather than failed, because Renou renders *"forteresses (en
+briques) crues"* and *"maître de la cité"* inside the same pinned corpus. The
+four-term list is itself on hold (`DJ-010B`). `BF-017`, `RA-020`.
+
 ## What was tried
 
 | Channel | Hosts | Result |
@@ -71,5 +79,15 @@ the two gate legs that **could not be run** — chronology and geography — be 
 at all. Those are the two legs the thesis most depends on, and no amount of
 corpus work supplies them. A pre-modern or non-European commentary reading
 `durgá-` or `vr̥trá-` as a fortification would move `DJ-010` and `DJ-011` off
-the single German lexicon they currently rest on (`DEP-021`, `DEP-022`,
-`RA-015`).
+the single gloss column they rest on (`DEP-024`, `DEP-025`, `DEP-026`,
+`RA-015`, `RA-020`) — and for `durgá-` a *European* translator has already done
+so at RV 5.34.7.
+
+**One correction to this hold's own account of the asymmetry.** It said, with
+the rest of the unit, that the gate used "one nineteenth-century German
+lexicon". `SRC-089` establishes that the gloss column is the Zürich
+lemma-meaning column, a modern composite citing Geldner, EWAia/Mayrhofer,
+Scarlata, Oldenberg, Lubotsky, Renou and Kuiper. Grassmann's *Wörterbuch* has
+never been retrieved here. The misattribution flattered the unit — it made the
+case against Nandi look more appropriately hedged than it was. `BF-017`,
+`DEP-026`, `RA-018`.

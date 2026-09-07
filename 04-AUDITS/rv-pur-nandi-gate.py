@@ -7,7 +7,8 @@ Constitution §4J names one prohibition — "Do not automatically translate pur
 into a Mature Harappan city" — and R. N. Nandi, "The City and the Citadel"
 (An Outline of the Aryan Civilization, ch. 4, Routledge 2017,
 DOI 10.4324/9781315101149-4) is that translation in its canonical published
-form. The chapter is NOT retrieved (SRC-088, EGRESS_BLOCKED on both channels).
+form. The chapter is NOT retrieved (SRC-086 identified-not-retrieved; SRC-087
+EGRESS_BLOCKED on both channels). SRC-088 is Semenenko, a different work.
 What is gated here is the thesis as its publisher's abstract states it, and
 the gate is over this corpus, not over Nandi's argument, which has not been
 read.
@@ -20,11 +21,16 @@ Sources (02-SOURCES/access-ledger.csv):
   SRC-069  clone @ d3eb8af7324338161520d2d35eae8f7e985a19a5
   SRC-020  aufrecht.csv        SRC-022 Zurich token layer
   SRC-072  geldner   SRC-073 griffith   SRC-074 grassmann
-  SRC-022  Zurich annotation layer, incl. info/matched_lemmata.json, the
-           Grassmann gloss. Per DEP-005 the lemmatisation and the gloss are
-           ONE source: a claim citing the lemma and a claim citing the meaning
-           are not two sources, and no gloss-based result below is independent
-           of Grassmann.
+  SRC-022  Zurich annotation layer, incl. info/matched_lemmata.json.
+  SRC-089  the TEI header, which establishes what that gloss field IS. It is
+           column V, LEMMA_ZÜRICH_BEDEUTUNG - the Zurich lemma-meaning column,
+           a modern composite citing Geldner, EWAia/Mayrhofer, Scarlata,
+           Oldenberg, Lubotsky, Renou and Kuiper, with Grassmann marked 'GM:'
+           where followed. It is NOT Grassmann's Worterbuch, which this
+           repository has never retrieved. Earlier versions of this script and
+           of every row built on it said "Grassmann"; that was wrong (BF-017,
+           DEP-026). Per DEP-005 the lemmatisation and the gloss are still ONE
+           source, so no gloss-based result below is independent of it.
   SRC-084  this session's re-clone and reproduction check
 
 Input:  rv_tokens_vedaweb.tsv, from 04-AUDITS/rv-token-extract.py
@@ -59,9 +65,11 @@ NUMERAL = {
     "sahásra-": 1000,
 }
 
-# German gloss probes. Grassmann wrote in German; an English probe returns
-# nothing and would read as an absence. Latin appears in a handful of glosses
-# and is not probed here — see the coverage figure the script prints.
+# German gloss probes. The Zurich gloss column is written in German; an English
+# probe returns nothing and would read as an absence. Exactly ONE gloss in the
+# corpus is Latin — śatábhuji- "centuplex" — and no German probe reaches it.
+# ("A handful are Latin" was asserted in an earlier version of this comment and
+# in DJ-008, from plausibility rather than from a count. BF-017.)
 GLOSS_PROBES = {
     "brick":              ["ziegel"],
     "city":               ["stadt", "städt"],

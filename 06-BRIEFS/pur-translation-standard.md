@@ -238,25 +238,38 @@ category is not audited by testing one Sanskrit word against it. The bracket
 "fort" is wide, and at least three other Rigvedic words move in and out of it
 depending on which century's lexicon is consulted.
 
-| Word | Grassmann's **Rigvedic** gloss | Tokens | What the English bracket does |
+| Word | The corpus's **Rigvedic** gloss (Zürich column, `SRC-089` — *not* Grassmann; `BF-017`) | Tokens | What the English bracket does |
 |---|---|---:|---|
 | `púr-` | Wall aus Steinen und Lehm, Verschanzung, Palisade | 83 | promotes an earthwork to a city |
 | `dehī́-` | Aufwurf, Damm, Wall | 2 | leaves a plastered earth wall out of the corpus entirely |
 | `durgá-` | unwegsamer, schwer begehbarer Ort, Gefahr | 21 | imports the *Classical* Sanskrit "fortress" into the Rigveda |
-| `grā́ma-` | Treck, Heerhaufen, Kriegerschar, wehrhafte Mannschaft einer Siedlung | 9 | converts a moving war-band into a settled village |
+| `grā́ma-` | Treck, Heerhaufen, Kriegerschar, wehrhafte Mannschaft einer Siedlung, **Dorfgemeinde, bewohnter Platz** | 9 | the gloss carries *both* senses and does not decide between them |
 
-**`durgá-` is the sharp case, and it is the one a fort corpus is most likely to
-get wrong.** In Classical Sanskrit `durga-` is unambiguously a fortress, and
+**`durgá-` is the sharp case, and this section got it wrong in its first
+version.** In Classical Sanskrit `durga-` is unambiguously a fortress, and
 Nandi's abstract lists it among the Rigveda's words for fortified settlements
-(`SRC-086`). In this corpus, on this lexicon, **all 21 tokens are neuter and
-every one means difficult ground, rough country or peril** — six of them the
-same refrain at RV 1.106.1–6, *"as a chariot from a difficult ravine"*. Not one
-`durgá-` is broken, besieged, entered or held. The recurrent construction is a
-prayer to be *carried across* one (`DJ-011`).
+(`SRC-086`, itself on hold at `DJ-010B`). All 21 Rigvedic tokens are neuter,
+and the *majority* mean difficult ground, rough country or peril — six of them
+the same refrain at RV 1.106.1–6, *"as a chariot from a difficult ravine"*, and
+the recurrent construction is a prayer to be *carried across* one.
 
-That is a later meaning read backwards, which is precisely the failure §7
-exists to catch, and it is not a hypothetical one: it is load-bearing in a
-published identification of the Rigvedic forts with Harappan citadels.
+**But the claim that none is ever held is false, and the falsifier fired at a
+passage this brief itself listed.** RV 5.34.7, `durgé caná dhriyate víśva ā́
+purú jáno`: Griffith *"not even in wide **stronghold** may all the folk **stand
+firm**"*; Geldner *"in einer **Bergfeste hält sich** … ein ganzer
+Volksstamm"*; Grassmann *"an **festverschlossnem Ort** … **hält nicht lange
+Stand**"*. A fortified place, and the verb is holding out. RV 5.54.4 splits the
+translators — Griffith "strongholds", Geldner "unwegsamen Gegenden", Grassmann
+"Wildniss" — and RV 4.28.3 and 7.25.2 are unresolved. The base is thinner than
+21 suggests: with the 1.106 refrain and the verbatim pair RV 7.60.12 = 7.61.7,
+there are at most **15 distinct formulations**.
+
+So the §7 point stands in a weaker and more interesting form. The danger is not
+that `durga-` "fortress" is simply a later meaning read backwards; it is that
+**the English bracket forces a choice the Rigvedic evidence does not make**,
+and translators inside one tradition split on the same line. `DJ-011` is
+`PROVISIONAL` and `RA-020` sends all 21 passages back to be read from an
+edition rather than through a translation index.
 
 **`dehī́-` is the case that costs a number.** RV 6.47.2 has Indra smash
 `navatíṁ náva ca dehyò` — **ninety-nine** of them — and they are **Śambara's**,
@@ -270,11 +283,18 @@ corpus* and false on the semantic one, where it is seven (`DJ-005`,
 reconciliation C-2, queued as `RA-016`).
 
 `dehī́-` derives from √*dih* "smear, plaster up" — a heaped and plastered earth
-wall. Set beside Grassmann's `púr-` as a wall "of stones and clay", the two
-Rigvedic wall-words converge on **earthwork**, and neither converges on
-masonry, brick or city. That is a lexical observation about one dictionary
-(`DEP-005`, `DEP-021`) and not an architectural finding; `DJ-009` and `DJ-I-02`
-say what it can and cannot bear.
+wall. Set beside the gloss column's `púr-` as a wall "of stones and clay", the
+two Rigvedic wall-words converge on **earthwork** in that column, and neither
+converges there on masonry, brick or city.
+
+**That is an observation about one gloss column and it is contradicted inside
+the same corpus.** Renou renders `púr-` *"forteresses (en briques) crues"* at
+RV 2.35.6 and *"maître de la cité"* at RV 1.173.10 (`DJ-013`); and the corpus
+carries `pakvá-` "gebacken" against `āmá-` "roh, ungekocht", putting the
+unfired term on a fort (`DJ-009`). An earthwork of plastered mud and an
+unfired-brick wall are not far apart, and nothing here decides between them.
+`DEP-005`, `DEP-024`, `DEP-026`; `DJ-I-02` says what this can and cannot
+bear.
 
 **The correction is not a new default gloss.** Replacing "fort" with
 "earthwork" across 103 passages would repeat §10's error in the other
