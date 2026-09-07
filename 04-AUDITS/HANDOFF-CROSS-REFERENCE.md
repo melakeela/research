@@ -88,7 +88,7 @@ The related Irula item is **not** a clean duplicate. `CG-188` adds that the
 Irula-proxy correction left residue in prose and SVGs and that the rejected
 premise must not return through labels, captions or accessible names.
 `IH-030`, `IH-081` and `IH-310` record the Irula question but no
-propagation failure. **Queued as `RA-007`** — with the recheck blocked on
+propagation failure. **Queued as `RA-013`** — with the recheck blocked on
 access to the current site build, which this repository does not hold.
 
 **A.3 — "Iranian-related" is not "from Iran".** `CG-191` and `IH-109`,
@@ -160,7 +160,7 @@ the owner rejected *poor execution* (`CG-081`), which is not a rejection of
 every underlying principle, and must not be used to erase prior assets.
 
 **Disposition:** owner's, and **not currently on the decisions register**.
-Raised as `D-036` by this pass.
+Raised as `D-044` by this pass.
 
 ### B.3 — What "58" was
 
@@ -208,7 +208,7 @@ So the Claude handoff's *correction* to an overreach reproduces the move
 `CG-117` forbids, inside the replacement text. The correction is not
 thereby wrong; the phrase carrying it is doing work the phrase cannot do.
 
-**Queued as `RA-006` in `04-AUDITS/REAUDIT-QUEUE.csv`.**
+**Queued as `RA-012` in `04-AUDITS/REAUDIT-QUEUE.csv`.**
 
 ### B.6 — Whether DMC eligibility is settled
 
@@ -340,7 +340,7 @@ load-bearing blocks:
 | `D-014` — commit the 89-item v2 backlog | `CG-063` is a second, independent record of the 89 IDs, plus 41 vision items and 23 `NOT FOUND`. See §C.4. |
 | `D-034` — authoritative page and atlas counts | `CG-174` adds 96, 105, 108, 133 and 139 to the page series and `CG-043` supplies the unit-conflation diagnosis. See §B.3 and §A.1. |
 
-**Raised by this pass:** `D-036`, the daylight/near-black hierarchy (§B.2).
+**Raised by this pass:** `D-044`, the daylight/near-black hierarchy (§B.2).
 
 ---
 
@@ -378,10 +378,10 @@ IDs. Every one of the 284 rows appended by this pass carries an **empty
 
 What it *did* add, beyond the 284 register rows and this document:
 
-- `RA-006` and `RA-007` in `04-AUDITS/REAUDIT-QUEUE.csv` — the two places
+- `RA-012` and `RA-013` in `04-AUDITS/REAUDIT-QUEUE.csv` — the two places
   where an inherited method item touches earlier registered work (§B.5,
   §A.2). Neither retracts anything; both name what to recheck.
-- `D-036` in `09-DECISIONS/OWNER-DECISIONS.csv` — the daylight/near-black
+- `D-044` in `09-DECISIONS/OWNER-DECISIONS.csv` — the daylight/near-black
   hierarchy (§B.2), the one disagreement in §B that was not already on the
   decisions register. It blocks nothing here, so it gets a CSV row and no
   prose section in `DECISIONS-NEEDED.md`.

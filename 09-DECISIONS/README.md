@@ -54,7 +54,7 @@ file it appeared in — because `D-004`, `D-005` and `D-006` each existed in
 both files and a bare reference to one of them in an older document is
 ambiguous without knowing which file was meant.
 
-The map is in two blocks. The first, 34 rows, is the `D-0NN` namespace: 31
+The map is in three blocks. The first, 34 rows, is the `D-0NN` namespace: 31
 rows carry `changed = no` and 3 carry `changed = yes` for the sections that
 became `D-032` to `D-034`.
 
@@ -76,6 +76,30 @@ through `01-INHERITED/`, and giving them rows in the authoritative register
 would promote them by clerical act — which the inheritance rule forbids. If
 the owner re-affirms one, it is allocated a fresh `D-` from this CSV then.
 
+The third block holds reassignments made **after** the 2026-09-07 merge, when
+a branch that allocated an identifier correctly against the register it
+branched from found that number taken by the time it merged. Ten rows so far,
+all dated 2026-09-07. Two come from `main`: `D-035` to `D-037`, for the branch
+that raised the `MELA-KEELA-WHO-MADE-THE-PAST.md` section-numbering
+discrepancy while `D-035` and `D-036` were being taken on `main`; and `D-037`
+to `D-036`, which is not a renumbering but a disambiguation — the
+identifier-normalisation brief names `D-037` as a number it declined, and that
+name now also belongs to a live row. Eight come from
+`claude/domain-e-research-queue-z83m9b` (PR #10), which was cut before the
+renumbering and then merged `main` twice: `D-015` to `D-043`, `D-016` to
+`D-038`, `D-017` to `D-039`, `D-018` to `D-040`, `D-019` to `D-041`, and
+`D-032` and `D-036` to `D-042`, with a further row carrying that branch's
+`D-037` to `D-043` after `main` took `D-037` on the second merge. Rows in this
+block chain: an identifier that moved twice keeps one row, whose `new_id` is
+where it landed, and a second row is added under the number it was holding
+when the collision happened, so that a reference written at either point
+resolves.
+
+This block will keep growing while branches run concurrently. Allocating from
+the register at branch time is still correct; what the block records is that
+the register moved underneath a branch, and which row a pre-merge reference
+resolves to. The old identifier is never freed and never reused.
+
 Two files keep the old `D-NN` spelling and are deliberately not edited:
 `01-INHERITED/claude-project-handoff.md` and
 `00-CONTROLLER/RESEARCH-CONSTITUTION.md`, which is a verbatim copy of the
@@ -84,4 +108,6 @@ their references.
 
 Rows are never removed. A `D-` reference in any file written before
 2026-09-07 is resolved through this map — three-digit against the first
-block, two-digit against the second.
+block, two-digit against the second. A three-digit reference in a file or a
+pull request written on a branch that predates its merge is resolved against
+the third.
