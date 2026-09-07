@@ -69,16 +69,25 @@ and §11 (packets R20–R21). Ordering below the first item is owner decision
 
 ## Blocked on inputs
 
-8. **Backlog reconciliation** — `06-BACKLOG/BACKLOG-COVERAGE.csv`, one row
-   per item 1–89 with a destination, deliverable, hold or reasoned
-   rejection. `RESEARCH HOLD`: the "MelaKeela.com v2 — Master Research,
-   Product & Institutional Backlog" is not in this repository and cannot be
-   reconstructed by inference. See `DECISIONS-NEEDED.md` D-014.
-9. **Packets R1–R19.** Named in the site review running list; their
-   definitions live in the prompt-pack (`MELA-KEELA-CLAUDE-FULL-SEQUENCE.md`,
-   `MELA-KEELA-LANGUAGE-RESEARCH-PROMPTS.md`,
-   `MELA-KEELA-CLAUDE-LIVE-SITE-AUDIT-PROMPT.md`), which is also absent.
-   `RESEARCH HOLD` on the same grounds.
+Items **8** and **9** are reserved for the prompt-pack intake and the
+`MELAKEELAWHOMADETHEPAST.md` register intake, which are on
+`claude/prompt-pack-inventory-reconcile-iz1phs` (PR #14) and are not on this
+branch. The reservation is deliberate: both branches were cut from the same
+base and both appended to this list, so the numbers were allocated once,
+across both, rather than twice from the same free position. Whichever merges
+first, the other's items keep the numbers stated here. The reassignment is
+recorded under "Item numbering" at the end of this file.
+
+10. **Backlog reconciliation** — `06-BACKLOG/BACKLOG-COVERAGE.csv`, one row
+    per item 1–89 with a destination, deliverable, hold or reasoned
+    rejection. `RESEARCH HOLD`: the "MelaKeela.com v2 — Master Research,
+    Product & Institutional Backlog" is not in this repository and cannot be
+    reconstructed by inference. See `DECISIONS-NEEDED.md` D-014.
+11. **Packets R1–R19.** Named in the site review running list; their
+    definitions live in the prompt-pack (`MELA-KEELA-CLAUDE-FULL-SEQUENCE.md`,
+    `MELA-KEELA-LANGUAGE-RESEARCH-PROMPTS.md`,
+    `MELA-KEELA-CLAUDE-LIVE-SITE-AUDIT-PROMPT.md`), which is also absent.
+    `RESEARCH HOLD` on the same grounds.
 
 ## Research domains — constitution §4
 
@@ -102,7 +111,7 @@ thing the investigation is most likely to get wrong.
 | J | The Rigvedic forts | Translating *pur* into a Mature Harappan city; one famous count standing for the corpus |
 | K | Indus writing and institutional discontinuity | Concluding that populations vanished because institutions and archives did |
 | L | Avestan writing | Reading a Sasanian-era alphabet as transparent evidence of Gāthic pronunciation |
-| M | Brahui, Kurukh and Malto | Medieval migration treated as documented fact; living people used as linguistic fossils — *geographic-measurement challenge answered 2026-09-07; North Dravidian measured on lexical data only and neither validated nor refuted; comparative half on `HOLD-004`* |
+| M | Brahui, Kurukh and Malto | Medieval migration treated as documented fact; living people used as linguistic fossils |
 | N | Grammatical ontologies | Typological similarity read as descent or contact without a mechanism |
 | O | Pāli, Prakrit and vernacular Indo-Aryan | Prakrit as corrupted Sanskrit; one pure language decaying |
 | P | South Asian linguistic convergence | Modern areal distribution converted automatically into prehistoric substrate |
@@ -169,3 +178,25 @@ or research holds. Constitution §11.
 - The language-movement Artifact Atlas specification (§13).
 - Page and exhibit briefs.
 - Anything touching `melakeela/site`.
+
+## Item numbering
+
+This list is append-only and its numbers are identifiers, not positions. Two
+branches cut from the same base each appended to it, so the free numbers were
+allocated once across both rather than twice from the same position. Old
+number to new, with the branch that holds the item:
+
+| Old | New | Item | Branch |
+|---|---|---|---|
+| — | 5 | Domain M, the Brahui geographic measurement | `main` (PR #16) |
+| 5 | 6 | Controller amendment | `main` (PR #6), moved from **Now** to **Done** by PR #10 |
+| — | 6 → 7 | Domain E, comparative half | `claude/domain-e-research-queue-z83m9b` (PR #10) |
+| — | 7 → 8 | Prompt-pack intake | `claude/prompt-pack-inventory-reconcile-iz1phs` (PR #14) |
+| — | 8 → 9 | Register intake for Who Made the Past | `claude/prompt-pack-inventory-reconcile-iz1phs` (PR #14) |
+| 6 → 7 | 10 | Backlog reconciliation | `main` |
+| 7 → 8 | 11 | Packets R1–R19 | `main` |
+
+The second column's arrows record the one further shift made on 2026-09-07
+when `main` merged PR #16, whose domain M unit took item 5 and moved the
+controller amendment to 6. `main` keeps the numbers it has published; the two
+branches' items move up behind them, once, across both.
