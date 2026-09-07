@@ -34,13 +34,16 @@ how a `D-` reference in a document written before that date is resolved.
 A second collision was cleared on 2026-09-07. `DECISIONS-NEEDED.md` briefly
 carried two `## D-032` sections: the `before-the-indus` question, which owns
 that identifier in the CSV, and a domain E egress ruling written in the same
-window as the renumbering. The egress section is now **D-036**. Five further
+window as the renumbering. The egress section is now **D-042**. Five further
 decisions raised on the domain E branch — two written up here as `D-015` and
 `D-016`, three carried only as CSV rows at `D-017` to `D-019` — had taken the
 highest number visible in the file being written rather than the next free one
 from the CSV; they are now **D-037** to **D-041**. Every move is in
 `09-DECISIONS/DECISION-ID-MAP.csv`, and the identifiers already on `main` did
-not move.
+not move. The egress section moved a third time when `main`
+merged PR #18 and allocated `D-042` to the mandated-registers question: it is
+now `D-042`, the next free identifier above `main`'s highest, and `main`'s
+`D-042` is untouched.
 
 A third series exists and is not part of this namespace. The inherited handoff
 numbered its own owner decisions `D-01` to `D-20`; those are now written
@@ -852,7 +855,7 @@ institution can keep current, at what latency, and who maintains them.
 
 ---
 
-## D-036 — Egress reach is not stable between sessions. Does domain E run under a GitHub-only policy?
+## D-042 — Egress reach is not stable between sessions. Does domain E run under a GitHub-only policy?
 
 **Raised by:** domain E source probe, 2026-09-07T02:19–02:21Z
 **Category:** institutional access required
