@@ -1,6 +1,6 @@
 # Domain E retrieval manifest — 2026-09-07
 
-Backing record for ledger rows `SRC-037` through `SRC-052`.
+Backing record for ledger rows `SRC-048` through `SRC-063`.
 
 ## 1. The egress regression this session
 
@@ -23,7 +23,7 @@ available to future units of work.
 The task for this unit named GRETIL, archive.org and TITUS specifically
 as places to look for a DEDR or other Dravidian etymological source.
 All three were probed. All three are blocked. That result is logged as
-`SRC-037`–`SRC-039` rather than passed over.
+`SRC-048`–`SRC-050` rather than passed over.
 
 Reachable in this session: `github.com` through the session git proxy's
 anonymous read lane, `raw.githubusercontent.com`, and

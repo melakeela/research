@@ -9,8 +9,8 @@ and the-northwest-cousin.html publishes figures computed from it, including
 Those figures come from a DIFFERENT digitization of the same dictionary.
 RERUN.md line 25 names the site's source as
 github.com/ArimeKannada/Dictionary (Files/Language.xlsx). This unit's DEDR
-came through JAMBU, which re-parses the DSAL digitization (SRC-045).
-Print is unreachable from either (SRC-040), so neither can be adjudicated.
+came through JAMBU, which re-parses the DSAL digitization (SRC-056).
+Print is unreachable from either (SRC-051), so neither can be adjudicated.
 
 This script measures how far apart they are. It is not an accusation that
 the site is wrong: the site's arithmetic reproduces exactly from its own

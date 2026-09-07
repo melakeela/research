@@ -1,8 +1,8 @@
-# HOLD-002 — the substrate literature itself is unretrieved
+# HOLD-004 — the substrate literature itself is unretrieved
 
 **Opened:** 2026-09-07
 **Domain:** E (Dravidian, Munda and unidentified substrate claims)
-**Ledger row:** `SRC-052`
+**Ledger row:** `SRC-063`
 **Blocks:** distinctions 8, 9 and 10 of constitution §4.E — Witzel's
 Para-Munda, the Kubhā-Vipāś prefixing-language fallback, and Masica's
 Language X.
@@ -16,20 +16,20 @@ Language X.
 | Witzel 2019 (the "keeps the question open" position) | the current standing of the proposal by its own author | reached in this programme only via Mukhopadhyay 2021 — see `IH-231` |
 | Kuiper, *Aryans in the Rigveda*, Rodopi 1991 | the foreign-word list that the site's substrate pages rest on | archive.org |
 | Masica, "Aryan and Non-Aryan Elements in North Indian Agriculture", 1979 | the Language X residue | archive.org; JSTOR |
-| Krishnamurti, *The Dravidian Languages*, CUP 2003 | the Proto-Dravidian reconstructions used at one remove as `SRC-046` | archive.org |
-| Rau 2019 (Proto-Munda) | the reconstructions used at one remove as `SRC-048` | — |
-| Shorto, *A Mon-Khmer Comparative Dictionary*, 2006 | the deeper-Austroasiatic comparanda carried inside `SRC-048` | — |
+| Krishnamurti, *The Dravidian Languages*, CUP 2003 | the Proto-Dravidian reconstructions used at one remove as `SRC-057` | archive.org |
+| Rau 2019 (Proto-Munda) | the reconstructions used at one remove as `SRC-059` | — |
+| Shorto, *A Mon-Khmer Comparative Dictionary*, 2006 | the deeper-Austroasiatic comparanda carried inside `SRC-059` | — |
 
 ## Why it is blocked
 
 Every plausible host is refused at the egress gateway in this session:
-`archive.org` (`SRC-037`), `www.jstor.org` (`SRC-032`),
-`www.ejvs.laurasianacademy.com`, `dsal.uchicago.edu` (`SRC-040`),
-`gretil.sub.uni-goettingen.de` (`SRC-038`),
-`titus.uni-frankfurt.de` (`SRC-039`). Both available channels — `curl`
+`archive.org` (`SRC-048`), `www.jstor.org` (`SRC-032`),
+`www.ejvs.laurasianacademy.com`, `dsal.uchicago.edu` (`SRC-051`),
+`gretil.sub.uni-goettingen.de` (`SRC-049`),
+`titus.uni-frankfurt.de` (`SRC-050`). Both available channels — `curl`
 through the container proxy and the `WebFetch` service — were tried.
 The one open retrieval channel, the git proxy's anonymous lane
-(`SRC-042`), serves public git repositories and nothing else.
+(`SRC-053`), serves public git repositories and nothing else.
 
 ## What this hold does and does not permit
 

@@ -1,204 +1,274 @@
-# Domain E — method, findings and the two adversarial tests
+# Domain E — Dravidian, Munda and unidentified substrate claims
 
 **Unit of work:** 2026-09-07
-**Domain:** E — Dravidian, Munda and unidentified substrate claims
-**Registers:** `03-REGISTERS/domain-e-measurements.csv` (30 rows),
-`03-REGISTERS/domain-e-interpretations.csv` (10),
-`03-REGISTERS/domain-e-evidence-mass.csv` (22),
-`03-REGISTERS/domain-e-cdial-loan-candidates.csv` (289),
-`03-REGISTERS/domain-e-geography.csv` (12),
-`03-REGISTERS/HYPOTHESIS-ELIGIBILITY.csv` (10),
-`03-REGISTERS/CROSS-DOMAIN-BRIDGES.csv` (8)
-**Audits:** `ARCHIVE-AND-POWER-AUDIT.csv`, `BIAS-FAILURE-LOG.csv`,
-`INTERNAL-CONTRADICTIONS.csv`, `REAUDIT-QUEUE.csv`
-**Hold:** `05-HOLDS/HOLD-002-substrate-literature.md`
-**Reproduce:** `rv-token-extract.py` → `domain-e-evidence-mass.py` →
-`domain-e-cdial-attributions.py` → `domain-e-geography.py` →
-`domain-e-dedr-digitisation-check.py`
+**Registers:** `03-REGISTERS/domain-e-claims.csv` (26 claims),
+`03-REGISTERS/domain-e-hypothesis-eligibility.csv` (11 rows),
+`03-REGISTERS/domain-e-retroflex-residue.csv` (253 lemmas),
+`03-REGISTERS/domain-e-hydronyms.csv` (469 occurrences)
+**Sources:** `SRC-019`–`SRC-024`, `SRC-026`, `SRC-037`–`SRC-047`
+**Holds:** `HOLD-002`, `HOLD-003`  **Decision raised:** `D-035`
+**Reproduce:** `04-AUDITS/rv-token-extract.py`, then
+`rv-retroflex-classify.py`, `rv-retroflex-aggregate.py`,
+`rv-hydronym-census.py`
 
 ---
 
-## 1. The shape of the problem
+## 1. What this unit is, and what it is not
 
-Domain E exists because the programme once presented Witzel's Para-Munda
-beside Dravidian as though they were rival answers of the same kind
-(`IH-033`). The constitution's fix is eleven distinctions that must never
-substitute for one another. The obvious way to honour that is to write
-carefully about all eleven. The better way, and the one taken here, is to
-find a separate source for each one that has a source, and to say
-plainly which ones have none.
+The constitution names the mishandling of Dravidian and "Para-Munda" as
+the failure the whole methodology exists to correct (§1). This unit was
+supposed to be the one that does that domain properly.
 
-That turned out to be possible for five and impossible for four.
+It could not be, in one half. Every etymological and comparative source
+was refused at the session's egress gateway — `dsal.uchicago.edu`
+(DEDR), `archive.org`, the Cologne dictionaries, EJVS, GRETIL, TITUS,
+fifteen hosts in all, on both the `curl` and the WebFetch channel.
+Ninety minutes earlier, in the previous session, four of those had
+answered HTTP 200 and are recorded as reachable at `SRC-025`, `SRC-028`,
+`SRC-029` and `SRC-033`. Neither record is wrong; the policy narrowed
+between them. That is `D-035`.
 
-| # | Distinction | Source used here |
+So the unit split in two:
+
+- **The comparative half** — items 1–3 and 5–8 and 10 of §4.E — is on
+  hold, with `HOLD-002` and `HOLD-003` naming exactly what is needed and
+  `03-REGISTERS/domain-e-hypothesis-eligibility.csv` carrying each row
+  gated as `NOT-ELIGIBLE-SOURCE-BLOCKED` rather than judged.
+- **The corpus-internal half** was run in full, because it does not
+  depend on the blocked sources. It measures the Old Indo-Aryan side of
+  the question: what the Rigveda's own phonology and geography constrain,
+  before any donor is named.
+
+Nothing here measures Dravidian, Munda or Para-Munda material. `DME-026`
+says so as a claim, so that it is auditable rather than implicit.
+
+## 2. The eleven distinctions, and why the register has eleven rows
+
+§4.E requires that eleven things never stand in for one another. The
+eligibility register gives each its own row and its own gate verdict.
+Three of the eleven are not hypotheses at all and are marked
+`NOT-A-HYPOTHESIS`: attested Dravidian (E-1), attested Munda (E-5), and
+the residue of genuinely unidentified vocabulary (E-11). Two more are
+reconstructions rather than attestations (E-2, E-6) and sit one step down
+the gradient. Only the remaining six are gateable propositions.
+
+The gate outcomes, from §5 step 7:
+
+| Row | Gate | Space allocated |
 |---|---|---|
-| 1 | attested Dravidian | `SRC-045` DEDR reflexes; `SRC-051` DravLex |
-| 2 | reconstructed Proto-Dravidian | `SRC-046`, a **separate table** — DEDR itself reconstructs nothing |
-| 3 | accepted OIA Dravidian loans | `SRC-049` CDIAL, Turner's own loan arrows |
-| 4 | proposed Dravidian substrate forms | **none retrieved** |
-| 5 | attested Munda | `SRC-047` |
-| 6 | reconstructed Proto-Munda | `SRC-048` Rau 2019, again a separate table |
-| 7 | deeper Austroasiatic | inside `SRC-048` only — Rau citing Shorto and Pinnow, never retrieved themselves |
-| 8 | Witzel's Para-Munda | **none retrieved** |
-| 9 | the Kubhā-Vipāś fallback | **none retrieved** |
-| 10 | Masica's Language X | **none retrieved** |
-| 11 | genuinely unidentified vocabulary | `SRC-049`, Turner's own residue — a floor, not an estimate |
+| E-4 Dravidian substrate forms | **ELIGIBLE** — chronology and geography both pass | none, for want of evidence, not for want of eligibility |
+| E-9 Kubhā–Vipāś unknown prefixing language | **ELIGIBLE** — and this unit advanced its geographical gate | small |
+| E-3 accepted OIA Dravidian loans | source-blocked | none |
+| E-7 deeper Austroasiatic | source-blocked | none |
+| E-8 Witzel's Para-Munda | source-blocked | none |
+| E-10 Masica's Language X | **gate failed on scope** — a claim about Hindi vocabulary and the Gangetic plain, not about the Rigvedic corpus | a concise exclusion |
 
-Distinctions 2 and 6 are the ones most often collapsed, and keeping them
-apart cost nothing here because the data arrived in separate files.
-Distinction 7 is the one this record is weakest on and says so: the
-Austroasiatic layer exists in the register only as Rau's citations.
+E-9 is the only row whose gate this unit actually moved, and it moved on
+evidence generated here: both ends of the named region are attested in
+the corpus, and the western end is attested inside the Archaic stratum
+(§4 below).
 
-## 2. What the retrieval channel decided
+E-8 is carried as *a named position whose content is not retrieved*. It
+is neither excluded for being wrong nor admitted for being famous.
+Writing out what the proposal says from recollection would manufacture
+precisely the evidentiary standing the inheritance rule withholds, and it
+would do it for the one hypothesis whose mishandling the constitution
+names in §1. That is `BF-003`.
 
-The three sources the task named — GRETIL, archive.org, TITUS — are all
-refused at the egress gateway in this session, on both available
-channels, as is `dsal.uchicago.edu`, which hosts DEDR. All four results
-are logged (`SRC-037`–`SRC-040`). Three of them were reachable earlier
-the same day from a different session; the manifest records both
-readings and supersedes neither.
+## 3. Measurement one — retroflexion
 
-The one open channel is the git proxy's anonymous lane, which serves
-arbitrary public repositories even where the REST API refuses them
-(`SRC-042`). Everything below came through it.
+### What was measured
 
-That channel has a shape, and the shape is the single most important
-methodological fact in this unit. Attested families and published
-reconstructions have machine-readable derivatives on GitHub. Proposals
-about unattested donors live in journal articles and monographs and do
-not. **The four distinctions with no source are exactly the four that
-exist only as arguments in the literature.**
+Every retroflex segment in all 10,031 Rigvedic lemma citation forms was
+classified by whether one of two regular Old Indo-Aryan rules derives it:
 
-So the empty cells are a property of the network policy. Writing
-"Dravidian: measurable; Para-Munda: nothing found" would convert an
-egress rule into a finding, and would be the programme's original error
-running backwards — parity refused in one direction, then refused in the
-other. `HOLD-002` states this, `BF-E-004` logs it as a failure that was
-available and declined, and every gate verdict for distinctions 8–10
-reads **CANNOT GATE**, never FAIL.
+- **RUKI** — `s > ṣ` immediately after `i ī u ū e o ai au r r̥ r̥̄ k`;
+- **nati** — `n > ṇ` when `r`, `r̥` or `ṣ` precedes in the same word with
+  no palatal, dental, retroflex stop, `l`, `s` or `ś` intervening, and
+  `ṇ` is followed by a vowel, `y v n m` or is word-final;
+- plus **cluster** conditioning for a retroflex stop after `ṣ` or after
+  another retroflex.
 
-## 3. What was measured
+| | segments | lemmas | tokens |
+|---|---:|---:|---:|
+| derived by the rules | 2,399 | 1,806 (18.0%) | 12,264 (7.4%) |
+| **not derived** | **267** | **253 (2.52%)** | **1,257 (0.76%)** |
+| no retroflex at all | — | 7,972 (79.5%) | 151,237 (91.8%) |
 
-### 3.1 Turner's attributions, and what a naive search does to them
+Every one of the 2,666 decisions is written out individually in
+`rv_retroflex-segments.tsv` so that any single one can be overturned
+without re-running the classification.
 
-CDIAL marks loans with an arrow and an abbreviation, so the attributions
-can be counted rather than recalled. Over 15,417 entries:
+### The word-initial result
 
-| | Dravidian | Munda |
-|---|---|---|
-| loan arrow into Indo-Aryan | **224** | **55** |
-| arrow out of Indo-Aryan | 9 | 1 |
-| mentioned at all | 283 | 99 |
-| of the arrows, hedged by Turner | 19 (8.5%) | 8 (14.5%) |
+No Old Indo-Aryan rule produces a word-initial retroflex. That position
+is therefore the sharpest diagnostic available, and in the Rigvedic lemma
+inventory it is **empty**: every word-initial retroflex is `ṣ-`, and all
+eight such lemmas are the numeral *ṣáṣ-* "six" or a compound of it —
+*ṣáṣ-, ṣaṣṭí-, ṣaḷakṣá-, ṣaṭtriṃśá-, ṣoḷhā́, ṣáḍvidhāna-, ṣáḷara-,
+ṣáḷaśva-*. There is no lemma beginning `ṭ ṭh ḍ ḍh ṇ ḷ ḷh`.
 
-Three search errors were caught by reading output rather than trusting
-it. All three are the failure correction `C-04` records, in new clothes.
+`DME-021` states what this does and does not weigh against. It weighs
+against a donor contributing retroflex-initial vocabulary unadapted. It
+does not weigh against contact-induced retroflexion, because borrowing
+routinely adapts a loan to the recipient's phonotactics and later
+Indo-Aryan does acquire initial retroflexes. The claim is scoped to
+lemmas, not to surface forms, because the lemma layer normalises sandhi
+away — `DEP-007`.
 
-**`MuṇḍUp.` is the Muṇḍaka Upaniṣad.** A search for the spelled-out
-family name returns 22 entries, ten of which are citations of a Sanskrit
-text and contain no reference to any language. Worse, Turner's actual
-abbreviation is `Mu.`, so the same search misses most of the real cases.
-Measured against the corrected search built from CDIAL's own
-abbreviation key: **precision 54.5%, recall 12.1%.**
+### Why 253 is an upper bound and not a residue
 
-**The first normaliser stripped macrons along with accents**, merging
-*kalā́* with *kālá*, *kúṭa* with *kū́ṭa*, *mā́lā* with *mála*, *śáva*
-with *sāvá*. It produced 24 Rigvedic matches where there are 19 — a 26%
-inflation, in the direction that flattered the hypothesis this unit's
-own gate had passed. Restricted to Vedic tone marks, then two purely
-orthographic conventions folded deliberately and separately (Turner's
-redundant macron on *e* and *o*; anusvāra overdot against underdot),
-which recovered one true match.
+The rules operate on a string. They cannot see a deleted conditioning
+segment. The two highest-frequency members of the "residue" are the
+proof:
 
-**Simplex, compound-member and derivative attestation were collapsed.**
-Turner writes "(RV. in cmpd.)" at *kuṇḍá* and "in cmpds. RV." at
-*mayū́ra*, and the Zurich layer bears him out exactly: no simplex for
-either, but `kuṇḍapā́yya-`, `mayū́raroman-`, `mayū́raśepya-`. A boolean
-would have called both unattested. Three columns now. Of the four
-matches the containment column raised, two are real and two
-(`*garda`→`gardabhá-`, `pōta`→`potár-`) are spelling coincidences, so
-the column is labelled string evidence needing case-by-case review.
+> *tváṣṭar-* (65 tokens) and *táṣṭar-* (7) are built on √*takṣ-*. RUKI
+> applies after `k`; the `k` is then lost in `kṣ + t > ṣṭ`. The rule sees
+> `ṣ` after `a` and reports it underived.
 
-### 3.2 The Rigvedic signal
+That is `DME-014`, recorded as a worked false positive rather than
+asserted to be rare. Several further internal sources are deliberately
+not implemented, because each needs an etymology per word rather than a
+rule over a string: `*-zdh- > -ḍh-` (*mīḍhá-* < `*mizdha-`), `*-lt-` and
+`*-ln-` clusters, seam assimilations, the PIE `*l`/`*r` merger, frozen
+sandhi in compounds.
 
-Of 279 loan attributions, 20 candidate rows have a Rigvedic simplex.
-Those collapse to **15 distinct lemmas** — CDIAL numbers *kūṭa* as four
-entries and *píṇḍa* carries both a Dravidian and a Munda attribution —
-totalling **21 tokens, 0.013% of the corpus**.
+A formal sub-typology marks the shapes where those are most likely, on
+string criteria alone and asserting no derivation:
 
-That is a floor produced by one dictionary and one matching rule, and it
-is small on any reading, including the reading this record's gate
-favours.
+| class | lemmas | tokens |
+|---|---:|---:|
+| F1 unconditioned `ṣ` before a retroflex stop | 39 | 158 |
+| F2 unconditioned aspirated retroflex `ḍh`/`ḷh` | 19 | 100 |
+| F4 word-initial `ṣ` | 8 | 30 |
+| F3 lemma begins `dū-` | 4 | 15 |
+| **F5 none of the above** | **183** | **953** |
 
-10 of the 21 tokens sit in a pāda Arnold assigns to the Popular stratum,
-against a corpus share of 13.9%. The binomial tail is small
-(2.2 × 10⁻⁴). The number is registered; the inference from it is not.
-`BR-E-002` refuses the step from stratum to date on three grounds: the
-strata are Arnold 1905 alone (`DEP-001`), Popular is not independent of
-book 10 (`DEP-004`), and 15 lemmas with tokens clustered inside them are
-not 21 independent draws.
+So the pool a substrate proposal has to explain is at most 183 lemmas,
+and probably fewer. Narrowing it further needs per-word etymologies, and
+every etymological source was refused (`HOLD-002`, `DME-025`). Under the
+negative-evidence standard that absence is typed **NOT ACCESSIBLE**: a
+fact about this session's network, with no bearing on the lexicon.
 
-### 3.3 Source genealogy
+## 4. Measurement two — the corpus geography
 
-**85% of Turner's 55 Munda arrows cite Kuiper or PMWS.** Fifty-five
-citations tracing to one author count as one, and Kuiper is unretrieved
-(`DEP-007`). His 224 Dravidian arrows spread across Mayrhofer (85),
-Burrow (81), Kuiper (18), Bloch (15).
+The Zurich/Grassmann layer carries no hydronym category, and it files
+several rivers under something else:
 
-And **every Munda attribution names an authority while 29 Dravidian ones
-name none.** On this measure Turner is more careful on the side with
-less evidence behind it.
-
-### 3.4 Geography, in kilometres
-
-| | nearest attested lect to the northwest |
+| surface | lemma it is filed under |
 |---|---|
-| Dravidian | **Brahui, 393 km** |
-| Munda | **Korku, 855 km** |
-| Dravidian **without Brahui** | **Kolami, 1,055 km** |
+| *sárasvatī* | *sárasvant-*, the masculine stem |
+| *asiknyā́* | *ásita-* "black" |
+| *páruṣṇīm* | *paruṣá-* "knotty" |
 
-Munda proper fails the geography gate: no attested Munda lect falls
-inside the northwestern envelope. The failure is scoped exactly as §4.E
-scopes it — it weakens a Munda-affiliated substrate explanation and does
-not transfer to any unattested prefixing language.
+A lemma-name search loses all three and would have supported the false
+statement that the corpus does not name them. That is `BF-002`, and it is
+inherited correction **C-04** running in the opposite direction: C-04 was
+a stem search over-counting, this was a lemma search under-counting. Both
+mistake an annotation layer for the text.
 
-And then the third row. **Dravidian's entire northwestern geographic
-position is one language.** Remove Brahui and Dravidian is farther from
-the northwest than Munda is. That makes Brahui load-bearing for a case
-this programme leans toward, and hands the question to domain M, where
-`IH-031` already records that the burden was once inverted.
+The census was therefore rebuilt over accent-stripped **surface** forms
+against an explicit name list, and every one of the 469 hits was typed by
+hand as `RIVER`, `AMBIGUOUS`, `DERIVATIVE`, `REGION-OR-EPITHET` or
+`NOT-RIVER`.
 
-## 4. Step 13 — checking MelaKeela
+**31 named rivers, 251 occurrences typed RIVER.** *síndhu-* takes 126 and
+feminine *sárasvant-* 70; the other 29 names share 55. *síndhu-* is both
+"river" and the Indus and the lemma layer does not separate the senses,
+so 126 is an upper bound on the hydronym reading.
 
-The site repository was attachable, so this step ran rather than being
-held. It found one real problem and two clean passes.
+**Nine of the 31 occur only inside RV 10.75**, one hymn: Asiknī, Gaṅgā,
+Mehatnū, Silamāvatī, Susartu, Tṛṣṭāmā, Vitastā, Ārjīkīyā, Śvetyā. Gaṅgā
+is attested **once** in the entire corpus, the vocative *gaṅge* at
+10.75.5. Yamunā three times.
 
-**`IC-E-001`/`IC-E-002`.** The site ships `dedr_roots.json`, built from a
-*third* DEDR digitization (`github.com/ArimeKannada/Dictionary`, per
-`RERUN.md` line 25). Across the 18 languages whose labels map one-to-one
-it disagrees with the DSAL-derived table used here on **10.3%** of
-entry-language assignments, and neither is a subset of the other. The
-page `the-northwest-cousin.html` publishes "counted directly from the
-Dravidian etymological dictionary, 191 of Brahui's 262 recorded roots
-have Tamil cognates". Its arithmetic is exactly right for its own data.
-The same computation over this unit's data gives **223 of 273 — 82%
-against 73%**.
+**The western tributaries are attested outside 10.75 and in Archaic-stratum
+pādas**: Kubhā and Krumu at 5.53.9, Gomatī at 8.24.30, Suvāstu at
+8.19.37. Vipāś at 3.33.1, 3.33.3 and 4.30.11.
 
-The site is not shown to be wrong. What is shown is that the number is
-less stable than "counted directly from the Dravidian etymological
-dictionary" implies, and that the raw count moves too, not only the
-percentage the page correctly warns about. Print is unreachable from
-either side (`SRC-040`), so neither can be adjudicated. Every
-DEDR-derived count in this unit inherits the same error bar.
+That is what gates E-9. Both ends of the Kubhā–Vipāś region are inside
+the corpus, and the western end is inside its older stratum. It is also
+what makes `DME-023` — the mismatch with the attested range of Munda
+proper — a statement about E-5 and about nothing else on the list.
 
-**`IC-E-003`, `IC-E-004`.** Two passes, recorded so step 13 has both.
-`caste-enforcement-mechanism.html` already keeps Para-Munda as a
-reconstruction, refuses Language X as a positive explanation, and calls
-the residue unidentified — which is what §4.E asks. And
-`the-northwest-cousin.html` already holds both Brahui hypotheses open
-with the Elfenbein dating named as the pivot.
+The identification of each ancient name with a modern river is
+Grassmann's, carried in the gloss, and is one dependent framework
+(`DEP-005`). The occurrence counts are `VERIFIED`; the map is
+`PROVISIONAL`.
 
-## 5. The two adversarial tests
+## 5. Chronology — and a null
+
+Does the residue accumulate through the Rigvedic period, as a
+"foreign vocabulary enters over time" claim predicts?
+
+**Type level**, the unit a vocabulary claim is actually about — each
+lemma assigned the stratum holding most of its tokens, 8,449 lemmas with
+a single majority stratum, 1,582 tied and excluded:
+
+| stratum | lemmas | residue | share | expected |
+|---|---:|---:|---:|---:|
+| Archaic | 1,796 | 42 | 2.34% | 43.2 |
+| Strophic | 1,648 | 36 | 2.18% | 39.6 |
+| Normal | 1,930 | 41 | 2.12% | 46.4 |
+| Cretic | 1,352 | 33 | 2.44% | 32.5 |
+| **Popular** | 1,723 | **51** | **2.96%** | 41.4 |
+
+χ² = 3.21 on 4 df, **p = 0.52**.
+
+**Token level**, reported because the standing rule after correction C-05
+is that both units are shown and neither is privileged silently:
+71.3 / 74.1 / 74.6 / 80.0 / 85.4 per 10,000 for A / S / N / C / P,
+χ² = 4.50 on 4 df, p = 0.34.
+
+**Second instrument**, book order: family books 2–7 at 78.4 per 10,000
+against 74.9 for books 1, 8, 9 and 10; χ² = 0.65 on 1 df, p = 0.42. Book
+3 is the high outlier at 111.5 and book 9 the low at 57.9.
+
+**Vocabulary renewal**, lemmas confined to one part of the corpus:
+only books 2–7, 2.72%; only book 10, 3.20%; only book 1, 2.72%; only
+books 8–9, 2.31%.
+
+**The direction, reported as part of the result and not buried.** A
+Cochran–Armitage trend test over the ordered strata gives z = **+1.28**,
+χ² = 1.64 on 1 df, p = 0.20. Popular against Archaic alone, with Yates
+correction, χ² = 1.09, p = 0.30. The point estimate rises monotonically,
+in the direction the accumulation claim predicts. The test does not
+separate that rise from noise. **Both halves of that sentence are the
+result**, and `DME-020` is capped at `PROVISIONAL` for three separate
+reasons: the proxy is one diagnostic and not a definition of foreignness;
+the chronological instrument is Arnold 1905 via `strata.json`, one source
+(`DEP-001`, `DEP-006`), and Arnold called his periods provisional; and a
+null is not a refutation, least of all at 253 lemmas.
+
+`BF-004` records that this was first written up as "the residue does not
+accumulate through the Rigveda," which is the corrective-sounding
+conclusion, and was corrected.
+
+## 6. Where the measurement/interpretation line falls
+
+**VERIFIED — 19 rows.** Every count: the 2,666 segment decisions, the
+253/1,806/7,972 lemma split, the eight word-initial lemmas, the five
+stratum tables and their χ², the 31 rivers and 251 occurrences, the nine
+rivers confined to 10.75, the three misfiled lemmatisations. Each has a
+locator that re-finds it and a script that regenerates it.
+
+**PROVISIONAL — 4 rows.** `DME-019` (that Rigvedic retroflexion is
+overwhelmingly rule-governed) is a reading of the classification, not a
+count, and inherits the rule formulations, which are one framework and
+are not independently sourced here. `DME-020` as above. `DME-021` and
+`DME-022` inherit, respectively, a single classification and a single
+gloss set.
+
+**HYPOTHESIS — 2 rows.** `DME-023`, the geographical mismatch with Munda
+proper, because its second half depends on the attested Munda range and
+no Munda source was retrievable. `DME-024`, that the F5 pool is what a
+substrate proposal must explain — explicitly not a claim that those 183
+lemmas are non-Indo-Aryan.
+
+**HOLD — 1 row.** `DME-025`: whether the residue can be narrowed is
+undecidable here.
+
+## 7. The two adversarial tests, §8
 
 ### Prestige-bias challenge
 
@@ -206,35 +276,28 @@ with the Elfenbein dating named as the pivot.
 Brahmanical, Indo-European, European, colonial, institutionally
 prestigious, repeatedly cited or nationally useful?*
 
-The instrument at the centre of this unit is CDIAL — a British
-comparative dictionary of the Indo-Aryan languages, compiled 1962–66,
-organised by Indo-Aryan headword. Three ways that could have skewed the
-result, and what was done about each.
+**One failure found and corrected: `BF-003`.** The gating table was about
+to record a specialist-standing verdict for Witzel's Para-Munda proposal
+and for the accepted-loan corpus, drawn from recollection rather than a
+retrieved statement — the assumption being that a famous position is well
+enough known that summarising it is not the same as sourcing it. Every
+such cell now reads "Not sourced here" and the rows are typed
+`NOT-ELIGIBLE-SOURCE-BLOCKED`.
 
-**It makes Indo-Aryan the frame.** Every loan candidate here is a word
-Turner listed because it is Indo-Aryan; Dravidian and Munda enter as
-donors to it. A Dravidian-headed instrument would ask a different
-question and could return a different set. This is a real limit on the
-0.013% and it is stated in `DE-I-003` rather than left implicit.
+**A structural risk that remains.** The whole evidentiary base of this
+unit is a Sanskrit corpus, annotated by a German lexicographical
+tradition (Grassmann 1873, via Zürich), periodised by an English
+metrician (Arnold 1905). Every measurement here is made *inside*
+Indo-European philology's own instruments. That is not neutral ground,
+and it is not corrected by anything in this unit — it is the reason
+`DME-019`, `DME-020` and `DME-022` are capped. It is recorded here rather
+than in the failure log because it is a property of what was reachable,
+not a decision that was made wrongly.
 
-**Its authority is colonial-era lexicography.** `APA-E-002` records that
-Turner could only be as good as the dictionaries available to him, that
-Munda lexicography was thinner than Dravidian in his window, and that
-this is a live untested alternative explanation for the 4.1-to-1 ratio.
-The ratio is therefore registered as a fact about Turner (`DE-I-004`),
-not about the Rigveda, and the alternative is queued as `RA-E-004`.
-
-**Citation count could have stood in for standing.** It does not:
-`DE-I-009` is a `VERIFIED` statement that current specialist standing
-could not be established at all, because the newest opinion reachable in
-this session is Turner's from 1966. Step 11 was run and returned a gap,
-which is recorded as a gap rather than filled with the loudest source.
-
-One more, less obvious. The Rigveda is the prestige corpus of this
-subject, and using it as the test bed risks treating what a liturgical
-text records as a measure of what happened. `APA-E-001` types that
-absence as `NOT PRODUCED` and caps the 0.013% as a floor on what a
-priestly genre wrote down.
+**Checked and not found:** the residue was not read as evidence for
+inheritance. `DME-004` is stated as an upper bound and `DME-014` supplies
+the false positives that shrink it; the unit does not conclude that
+because most retroflexion is rule-governed, all of it is.
 
 ### Preferred-counter-narrative challenge
 
@@ -242,59 +305,44 @@ priestly genre wrote down.
 anti-colonial, anti-Brahmanical, subaltern, diffusionist or politically
 corrective?*
 
-This is the more dangerous of the two here, because the Dravidian case
-is the one this programme leans toward and the one the data favoured.
+**One failure found and corrected: `BF-004`**, and it ran in the less
+obvious direction. The null result was first written as a refutation of
+Kuiper-style accumulation claims — the *anti*-substrate conclusion — on a
+weak proxy with limited power. Reporting a null as a refutation is the
+same methodological error as reporting a resemblance as a derivation, and
+being sceptical of a counter-narrative is not a defence against it. The
+trend statistic and its direction are now part of the result.
 
-**The strongest evidence against the leaning was measured and
-registered at full weight, not noted in prose.** `DE-M-025`: remove
-Brahui and Dravidian sits farther from the northwest than Munda. That is
-the single most uncomfortable number in this unit for the reading the
-platform prefers, and it is a register row with the same standing as the
-rows that help. `BF-E-005` records this as the test passing rather than
-as a failure.
+**Checked and not found:** no Dravidian claim was admitted at any status.
+E-4 clears its gate and receives no space, which is the correct outcome
+when the gate is cheap and the evidence is absent. E-9's gate was
+advanced on a measurement made here, not on the attractiveness of an
+unidentified-donor story, and the method doc says explicitly that being
+weaker than E-8 is a cost — E-9 predicts less.
 
-**The null explanation was entered first and made to compete.**
-`HYP-E-000` is Indo-Aryan-internal explanation with no donor at all. In
-a programme whose recorded failure was reaching for donors, the null
-cannot be an appendix.
+**The asymmetry the constitution insists on is real and is not pretended
+away.** Grassmann, Arnold and the Zürich annotation were reachable
+through a GitHub repository at zero cost. DEDR, the Munda comparative
+literature and EJVS were not reachable at all. That is not a fact about
+the quality of the scholarship. It is a fact about which traditions have
+been digitised, licensed openly and mirrored — and it is the exact
+mechanism by which an archive's institutional power becomes a research
+result. `D-035` puts it to the owner as a decision rather than absorbing
+it as a limitation.
 
-**The Munda geography failure was scoped, not spent.** It would have
-been convenient to let "no attested Munda in the northwest" do work
-against Para-Munda too. §4.E forbids exactly that, and `HYP-E-002`'s
-verdict says so in the row.
+## 8. Known limits
 
-**Unavailability was not scored as refutation.** The mirror failure —
-correcting the old Para-Munda parity error by treating unretrievable
-sources as unsupported claims — was available, is named in `BF-E-004`,
-and is refused. `CANNOT GATE`, never `FAIL`.
-
-**Where the data cut against Munda, the archive was checked before the
-conclusion.** `APA-E-005` records that the small Munda evidence base
-here is partly a fact about lexicography, and `APA-E-002` that Turner's
-preference may be too.
-
-**And the site was checked against, not for.** Step 13's finding
-qualifies a published MelaKeela number rather than confirming one.
-
-**What the tests did not catch, stated so it is not mistaken for
-absence.** Both challenges are run by the same reader who did the work.
-Neither test can establish that the 224 Dravidian etymologies are
-individually sound — `BR-E-001` says the bridge from Turner's bracket to
-a contact event is not crossed here — and neither can substitute for
-retrieving Witzel, Kuiper and Masica and gating them properly.
-
-## 6. What would change the conclusions
-
-- Retrieving Witzel 1999, Kuiper 1991 or Masica 1979 would populate four
-  empty distinctions and could move the balance in either direction.
-- Retrieving DEDR in print or through DSAL would adjudicate `IC-E-001`
-  and remove the ~10% error bar from every DEDR count in the record.
-- A larger loan-candidate list — from Kuiper's or Southworth's word
-  lists rather than Turner's arrows — could raise the 0.013% by an order
-  of magnitude, or could show the stratum skew dissolving.
-- Any evidence of Munda-family speech west of Korku at any period would
-  revive `HYP-E-002`.
-- Any Dravidian trace in the northwest independent of Brahui would stop
-  `HYP-E-001`'s geography resting on one language.
-- A post-1990 assessment of the substrate question would let step 11 run
-  at all.
+- The classification is over lemma citation forms, which are a modern
+  normalisation. `DME-007` is scoped to lemmas for that reason (`DEP-007`).
+- `√īḍ- ~ īḷ-` and similar variant pairs are one lemma and are segmented
+  from the first variant only.
+- One lemma string in the Zürich layer is the metalinguistic
+  "Vriddhiableitung von tanū́-" rather than a citation form. It carries no
+  retroflex and does not affect any count, but it is in the 10,031.
+- 1,582 lemmas have no single majority stratum and are excluded from the
+  type-level table. They are not excluded from the token-level one.
+- The `síndhu-` figure does not separate "the Indus" from "a river". No
+  instrument here can.
+- Six occurrences of *ásiknī-* and one of *śvetyā́-* are typed
+  `AMBIGUOUS` rather than assigned. They are in the register with that
+  type, not silently dropped.
