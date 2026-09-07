@@ -46,6 +46,15 @@ DENY = [
     ("positional expansion between them (S3)", 'git "$@" push'),
     ("parameter expansion between them (S3)", 'git ${GIT_OPTS-} push'),
     ("a flag before the subcommand (S3)", 'git --file push origin'),
+    ('read-only prefix, backgrounded (T7)', 'git status & git push'),
+    ('read-only prefix with flags (T7)', 'git log & git push origin main'),
+    ('read-only prefix, force push (T7)', 'git reflog & git push --force'),
+    ('read-only prefix after && (T7)', 'cd x && git status & git push'),
+    ('config prefix (T7)', 'git config --get remote.origin.url & git push'),
+    ('expansion default holds the verb (T8)', 'git ${x:-push}'),
+    ('expansion default with arguments (T8)', 'git ${undefined:-push} origin main'),
+    ('positional expansion default (T8)', 'git ${1:-push}'),
+    ('quoted expansion default (T8)', 'git "${x:-push}"'),
     ("removed marker no longer bypasses", 'MELAKEELA_REGISTER_GATE=off git push'),
     ("echo-marker trick", 'echo MELAKEELA_REGISTER_GATE=off; git push'),
 ]
@@ -57,6 +66,8 @@ ALLOW = [
     ("a commit about removing the bypass", 'git commit -m "remove the push bypass"'),
     # False positives the first repair introduced (S3).
     ("a log search for the word push", 'git log --oneline --grep=push'),
+    ("a combined-flag commit whose message says push (T9)",
+     'git commit -am "add push button"'),
     ("a grep for the word push", 'git grep push -- 03-REGISTERS'),
 ]
 

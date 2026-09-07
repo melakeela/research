@@ -5,9 +5,9 @@ a findings document written by hand goes stale and is then read as current,
 which is what happened to `VALIDATOR-FINDINGS-2026-09-07.md` (CR-012).
 Regenerated and diffed in CI, so it cannot fall behind the tree either.
 
-- Governed-file digest: `242840ef2fc8e64c`
+- Governed-file digest: `9dae8725fc40556a`
 - Failures: **0**
-- Warnings: **14** (each carries a MIGRATION-HOLDS row)
+- Warnings: **12** (each carries a MIGRATION-HOLDS row)
 
 ## Notes
 
@@ -47,12 +47,8 @@ Regenerated and diffed in CI, so it cannot fall behind the tree either.
 ## Warnings
 
 ```
-03-REGISTERS/HYPOTHESIS-ELIGIBILITY.csv:2: PROVISIONAL row in a register with no source_id, locator, retrieval_date column; the retrieval that would back it cannot be recorded here, so PROVISIONAL is untraceable in this file  [held unmigrated by MH-010]
-03-REGISTERS/HYPOTHESIS-ELIGIBILITY.csv:3: PROVISIONAL row in a register with no source_id, locator, retrieval_date column; the retrieval that would back it cannot be recorded here, so PROVISIONAL is untraceable in this file  [held unmigrated by MH-010]
-03-REGISTERS/HYPOTHESIS-ELIGIBILITY.csv:4: PROVISIONAL row in a register with no source_id, locator, retrieval_date column; the retrieval that would back it cannot be recorded here, so PROVISIONAL is untraceable in this file  [held unmigrated by MH-010]
-03-REGISTERS/domain-e-hypothesis-eligibility.csv:12: evidence_status 'VERIFIED as a measurement; not a claim about origins' not in its vocabulary  [held unmigrated by MH-008]
 MH-001: 03-REGISTERS/CROSS-DOMAIN-BRIDGES.csv, column verdict, 8 rows — not migrated; blocked on An owner or author decision on a bridge-verdict vocabulary. The register is marked REPORTE
-MH-002: 02-SOURCES/access-ledger.csv, column access_status (68 rows, of which 50 read VERIFIED) — not migrated; blocked on An owner decision on a retrieval vocabulary, and a per-row reading of probe_result. supers
+MH-002: 02-SOURCES/access-ledger.csv, column access_status. Row and value counts: python3 -c "import csv,collections; r=list(csv.DictReader(open('02-SOURCES/access-ledger.csv',newline=''))); print(len(r), collections.Counter(x['access_status'].split()[0] for x in r))" — not migrated; blocked on An owner decision on a retrieval vocabulary, and a per-row reading of probe_result. supers
 MH-003: 03-REGISTERS/HYPOTHESIS-ELIGIBILITY.csv and 03-REGISTERS/domain-e-hypothesis-eligibility.csv — not migrated; blocked on D-036 and D-039, which are the same decision asked twice and carry different statuses. CR-
 MH-004: 06-BACKLOG/BACKLOG-COVERAGE.csv, columns current_site_coverage and existing_route, 95 rows — not migrated; blocked on Cross-repository access, or a route inventory committed here. CR-001 and CR-017. The seven
 MH-005: 00-CONTROLLER/CONTROLLER-RECONCILIATION.md, identifiers C-1 to C-9 — not migrated; blocked on Owner approval, then a single mechanical commit updating every reference enumerated in PAT
@@ -61,6 +57,8 @@ MH-007: 13-PRODUCT-ARCHITECTURE/museum-framework.md — not migrated; blocked on
 MH-008: 03-REGISTERS/domain-e-hypothesis-eligibility.csv row 12 (E-11), column evidence_status — not migrated; blocked on An owner or author decision on what standing this row has. The underlying measurement is V
 MH-009: 1,195 inline source_id cells holding more than one identifier, across 03-REGISTERS/ and 04-AUDITS/. Reproduce the count with the command in 04-AUDITS/MIGRATION-REPORT-2026-09-07.md. — not migrated; blocked on Nothing, and it may never be worth doing. The defect the audit named - several identifiers
 MH-010: 03-REGISTERS/HYPOTHESIS-ELIGIBILITY.csv rows 2, 3 and 4 (HYP-E-000, HYP-E-001, HYP-E-002), column evidence_status. — not migrated; blocked on The same question as MH-008 and D-036 / D-039: whether an eligibility register carries an 
+MH-011: 03-REGISTERS/HYPOTHESIS-ELIGIBILITY.csv and 03-REGISTERS/domain-e-hypothesis-eligibility.csv, column source_dependencies. — not migrated; blocked on Either a source_id column on the eligibility registers, which is a schema change and belon
+MH-012: The VERIFIED claims whose cited sources the dependency register collapses into fewer independent observations. The validator prints the list and the count on every run. — not migrated; blocked on RA-012, a claim-by-claim reading of whether each collapse was assessed when the claim was 
 ```
 
 ## Failures

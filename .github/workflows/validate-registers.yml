@@ -32,7 +32,11 @@ jobs:
           python-version: "3.11"
 
       - name: Validate registers
-        run: python3 04-AUDITS/validate-registers.py
+        # --respect-overrides is the ONE way past a red gate, and it is the same
+        # call the pre-push hook makes, so CI and the hook cannot disagree about
+        # what is waived. Overridden failures are printed loudly and the
+        # OVERRIDE-LOG row that covers them is in the diff.
+        run: python3 04-AUDITS/validate-registers.py --respect-overrides
 
       - name: Prove the validator still catches defects
         run: python3 04-AUDITS/test-validate-registers.py
@@ -50,7 +54,7 @@ jobs:
           # regenerated it, so it sat one commit behind the branch head - in a
           # document whose own header says it exists because hand-written
           # findings go stale and are then read as current (CR-012).
-          python3 04-AUDITS/validate-registers.py --report 04-AUDITS/VALIDATION-REPORT.md
+          python3 04-AUDITS/validate-registers.py --report 04-AUDITS/VALIDATION-REPORT.md || true
           if ! git diff --quiet; then
             echo "A generated register does not match its generator:"
             git --no-pager diff --stat

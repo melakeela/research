@@ -45,9 +45,23 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import csvdialect  # noqa: E402
-import gatevocab  # noqa: E402
+
+# The exact prose-to-verdict mapping applied on 2026-09-07, written out rather
+# than recomputed, so that re-running the migration from aa40d3a reproduces the
+# committed column without re-introducing an inference rule.
+HISTORICAL_PARSE = {
+    "YES": "ELIGIBLE",
+    "NO": "NOT-ELIGIBLE",
+    "NO - FOR LACK OF SOURCES, NOT FOR LACK OF MERIT": "NOT-ELIGIBLE-SOURCE-BLOCKED",
+    "NO - FOR LACK OF SOURCES": "NOT-ELIGIBLE-SOURCE-BLOCKED",
+    "NO, pending sources": "NOT-ELIGIBLE-SOURCE-BLOCKED",
+    "YES, when the Brahui literature is retrievable": "NOT-ELIGIBLE-SOURCE-BLOCKED",
+    "DEFERRED - domain K and packet R20": "DEFERRED",
+}
 
 ROOT = Path(__file__).resolve().parents[1]
+
+NEEDS_A_SOURCE = ("VERIFIED", "PROVISIONAL")
 
 EVIDENCE_STATUS = {
     "VERIFIED", "PROVISIONAL", "HYPOTHESIS", "INHERITED-UNVERIFIED",
@@ -102,7 +116,10 @@ def decompose(cell):
     # VERIFIED row whose retrieval no check could ever reach. That is a
     # promotion in machine standing, and it is refused here. The caller records
     # a migration hold instead.
-    if term == "VERIFIED" and not REGISTER_CAN_CARRY_RETRIEVAL:
+    # Same predicate the validator gates on. Guarding only VERIFIED meant the
+    # script would recreate exactly the PROVISIONAL rows the validator now
+    # fails, and the self-test asserted that as correct.
+    if term in NEEDS_A_SOURCE and not REGISTER_CAN_CARRY_RETRIEVAL:
         return None
     interpretive = "UNASSIGNED"
     return term, interpretive
@@ -177,7 +194,12 @@ def migrate_gate_verdict(rel):
     )
     for n, row in enumerate(rows, start=2):
         cell = (row.get("eligible_for_extended_analysis") or "").strip()
-        verdict = gatevocab.parse(cell)     # shared with the validator
+        # The one-time parse that populated this column on 2026-09-07. It is
+        # NOT re-derived: gate_verdict is authored now, because inferring it
+        # from prose moved hypotheses across the gate by rewording. This branch
+        # is dead on a migrated tree and is kept so the migration is
+        # reproducible from aa40d3a.
+        verdict = HISTORICAL_PARSE.get(cell.strip(), "UNASSIGNED")
         if verdict == "UNASSIGNED" and cell:
             report["holds"].append(
                 f"{rel}:{n}: eligibility cell {cell[:60]!r} opens with no "
@@ -312,7 +334,8 @@ def selftest():
     cases = [
         (True, "VERIFIED as a measurement; not a claim about origins", ("VERIFIED", "UNASSIGNED")),
         (False, "VERIFIED as a measurement; not a claim about origins", None),
-        (False, "PROVISIONAL, on one source", ("PROVISIONAL", "UNASSIGNED")),
+        (False, "PROVISIONAL, on one source", None),
+        (True, "PROVISIONAL, on one source", ("PROVISIONAL", "UNASSIGNED")),
         (True, "not a status at all", None),
     ]
     for can_carry, cell, expected in cases:

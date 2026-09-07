@@ -96,7 +96,10 @@ EVIDENCE_ROLE = {"SOLE", "CONTRIBUTING", "UNASSIGNED"}
 # An override signature this short matches half the failure lines in the tree.
 # "-" appears in every path; a one-token waiver is a blanket waiver.
 MIN_OVERRIDE_SIGNATURE = 24
-MIN_WAIVER_SUBSTRING = 24
+# A signature matching more failures than an override row could plausibly have
+# been read and reasoned about is a blanket waiver, whatever its spelling.
+# Bounding by length alone was defeated by appending one colon to a file path.
+MAX_FAILURES_PER_SIGNATURE = 3
 
 DIMENSIONS = {
     "evidence_status": EVIDENCE_STATUS,
@@ -147,53 +150,8 @@ BARE_IDENTIFIER = re.compile(r"^[A-Z]{1,6}(-[A-Z]{1,3})?-\d{1,4}[A-Za-z-]*$")
 
 failures, warnings, notes = [], [], []
 
-# Waivers from MIGRATION-HOLDS.csv, as (path, substring, hold_id) triples.
-# A coordinate alone is NOT enough: keying on `path:line` waived every failure
-# of every kind on that line, so the hold covering one restored status cell
-# also covered a gate verdict and a publication status on the same row. A
-# waiver now has to name the defect it waives, sit inside a file the hold's
-# own `target` names, and carry a review date.
-waivers = []
-
-# Checks no migration hold may ever waive. These are the gate itself: the
-# retrieval requirement, the publication gate, the claim/source relation, and
-# identifier collisions. A row that cannot satisfy one of these is not a
-# migration problem, and a hold saying otherwise is a hold in the wrong place.
-UNWAIVABLE = (
-    "PUBLISHED but not release-eligible",
-    "the join register holds",
-    "which holds no such row",
-    "is also issued by",
-    "is not in the access ledger",
-    "gate_verdict",
-    "does not match",
-    "independence_group",
-)
-
 
 def fail(msg):
-    """Record a failure, unless an open migration hold names this exact defect.
-
-    A waiver is not a pass. It downgrades one named defect in one named file
-    to a warning printed on every run, and it can only be created by
-    committing a MIGRATION-HOLDS.csv row that says what could not be migrated,
-    what it is blocked on, and when it must be looked at again.
-
-    Four things bound it, because the first version was bounded by only one:
-      - the failure text must contain the substring the hold names, so a hold
-        covering a status cell does not also cover a publication status;
-      - the file must be one the hold's own `target` names;
-      - the hold must be OPEN and not past its `review_by` date;
-      - no waiver of any kind applies to a check in UNWAIVABLE.
-    """
-    if any(u in msg for u in UNWAIVABLE):
-        failures.append(msg)
-        return
-    path = msg.split(":", 1)[0]
-    for wpath, substring, hold_id in waivers:
-        if path == wpath and substring in msg:
-            warnings.append(f"{msg}  [held unmigrated by {hold_id}]")
-            return
     failures.append(msg)
 
 
@@ -241,15 +199,38 @@ def id_column(fields):
 
 
 # --------------------------------------------------------------------------
+VALIDATED_MODES = {"GATED", "REPORTED", "NOT-VALIDATED"}
+
+
 def load_governed():
     """Read CANONICAL-FILES.csv into {relpath: (mode, prefix, role)}."""
     if not CANONICAL.exists():
         fail("00-CONTROLLER/CANONICAL-FILES.csv is missing; nothing can be governed")
         return {}
     out = {}
-    for row in read_csv(CANONICAL):
-        out[row["path"]] = (row.get("validated", ""), row.get("id_prefix", ""),
-                            row.get("role", ""))
+    # The `target` column only, not the whole file. Matching anywhere in the
+    # register meant a passing mention in some other hold's prose satisfied the
+    # check - the same loose-substring mistake that defeated the waiver and the
+    # override signature. A hold covers a register when it says so in target.
+    hold_targets = ""
+    if HOLDSREG.exists():
+        hold_targets = "\n".join((r.get("target") or "")
+                                 for r in read_csv(HOLDSREG))
+    for n, row in enumerate(read_csv(CANONICAL), start=2):
+        mode = (row.get("validated") or "").strip()
+        # This column decides whether every other check fails or merely warns.
+        # It was itself unvalidated, so changing one cell from GATED to
+        # REPORTED - or misspelling it as `gated` - silently disarmed a whole
+        # register, with no hold row and no waiver.
+        if mode not in VALIDATED_MODES:
+            fail(f"00-CONTROLLER/CANONICAL-FILES.csv:{n}: validated {mode!r} is not "
+                 f"one of {sorted(VALIDATED_MODES)}; this column decides what the "
+                 f"validator enforces and cannot hold an unrecognised value")
+        if mode == "REPORTED" and row["path"] not in hold_targets:
+            fail(f"00-CONTROLLER/CANONICAL-FILES.csv:{n}: {row['path']} is REPORTED "
+                 f"but no MIGRATION-HOLDS.csv row names it; a downgraded register "
+                 f"carries a hold saying why, or it is GATED")
+        out[row["path"]] = (mode, row.get("id_prefix", ""), row.get("role", ""))
     return out
 
 
@@ -374,21 +355,16 @@ def check_file(rel, mode, prefix, ledger, known_ids):
             if v and v not in PRIORITY:
                 report(f"{rel}:{n}: priority '{v[:40]}' not in {sorted(PRIORITY)}")
 
-        # --- 3b. the parsed gate verdict must still agree with its prose
+        # --- 3b. gate_verdict is authored, not derived from the prose beside
+        # it. Deriving it moved hypotheses across the gate by rewording, in
+        # the merit-preserving direction; see 04-AUDITS/gatevocab.py. What is
+        # enforced is that a row with eligibility prose states a verdict.
         if "gate_verdict" in fields and "eligible_for_extended_analysis" in fields:
             declared = (row.get("gate_verdict") or "").strip()
-            derived = gatevocab.parse(row.get("eligible_for_extended_analysis"))
-            if declared != derived:
-                report(f"{rel}:{n}: gate_verdict {declared!r} does not match "
-                       f"{derived!r}, which is what its eligibility prose says; "
-                       f"the parse is not a one-time act")
             prose = (row.get("eligible_for_extended_analysis") or "").strip()
-            if prose and declared == "UNASSIGNED":
-                # Otherwise a hypothesis leaves the machine-readable gate by
-                # being reworded into prose the parser does not recognise.
-                report(f"{rel}:{n}: eligibility prose {prose[:40]!r} yields no "
-                       f"gate verdict; a hypothesis cannot leave the gate by "
-                       f"being reworded")
+            if prose and declared in ("", "UNASSIGNED"):
+                report(f"{rel}:{n}: the row has eligibility prose but no "
+                       f"gate_verdict; the verdict is written, not inferred")
 
         status = (row.get("evidence_status") or "").strip()
 
@@ -735,58 +711,6 @@ def check_release_eligibility(governed):
                      "migration that promoted nothing")
 
 
-def load_migration_waivers():
-    """Read what open holds waive. Must run before any check."""
-    if not HOLDSREG.exists():
-        return
-    today = date.today()
-    for n, row in enumerate(read_csv(HOLDSREG), start=2):
-        hid = (row.get("hold_id") or "").strip()
-        spec = (row.get("waives_failure_matching") or "").strip()
-        if not spec:
-            continue
-        if (row.get("disposition") or "").strip().upper() != "OPEN":
-            continue
-        review = (row.get("review_by") or "").strip()
-        try:
-            if date.fromisoformat(review) < today:
-                failures.append(
-                    f"00-CONTROLLER/MIGRATION-HOLDS.csv:{n}: {hid} waives validation "
-                    f"but its review_by date {review} has passed; a hold that waives "
-                    f"a check is re-read or it stops waiving")
-                continue
-        except ValueError:
-            failures.append(
-                f"00-CONTROLLER/MIGRATION-HOLDS.csv:{n}: {hid} waives validation "
-                f"with review_by {review!r}, which is not an ISO date")
-            continue
-        target = row.get("target") or ""
-        for entry in spec.split(";"):
-            entry = entry.strip()
-            if not entry:
-                continue
-            if "::" not in entry:
-                failures.append(
-                    f"00-CONTROLLER/MIGRATION-HOLDS.csv:{n}: {hid} waiver {entry!r} "
-                    f"is not of the form path::substring-of-the-failure")
-                continue
-            wpath, substring = entry.split("::", 1)
-            wpath, substring = wpath.strip(), substring.strip()
-            if len(substring) < MIN_WAIVER_SUBSTRING:
-                failures.append(
-                    f"00-CONTROLLER/MIGRATION-HOLDS.csv:{n}: {hid} waiver substring "
-                    f"{substring!r} is shorter than {MIN_WAIVER_SUBSTRING} characters; "
-                    f"a substring this general waives defects nobody has read")
-                continue
-            if wpath not in target:
-                failures.append(
-                    f"00-CONTROLLER/MIGRATION-HOLDS.csv:{n}: {hid} waives a failure in "
-                    f"{wpath}, which its own target does not name; a hold waives only "
-                    f"what it is about")
-                continue
-            waivers.append((wpath, substring, hid))
-
-
 def check_migration_holds():
     """Every open migration hold is surfaced on every run.
 
@@ -876,9 +800,13 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--report", help="write a markdown report to this path")
     ap.add_argument("--list-active-overrides", action="store_true")
+    ap.add_argument("--respect-overrides", action="store_true",
+                    help="downgrade failures covered by a committed, unexpired, "
+                         "specific OVERRIDE-LOG row; exit 0 only if every failure "
+                         "is covered. Used by CI and by the pre-push hook, so "
+                         "there is exactly one way past a red gate.")
     args = ap.parse_args()
 
-    load_migration_waivers()
     governed = load_governed()
     check_control_plane(governed)
     ledger = ledger_ids()
@@ -909,8 +837,18 @@ def main():
                   f"{row['affected_validation_failures']}")
         return
 
+    global failures
+    overridden = []
+    if args.respect_overrides and failures:
+        overridden, failures = apply_overrides(failures, active)
+
     for line in notes:
         print(line)
+    if overridden:
+        print(f"\nvalidate-registers: {len(overridden)} failure(s) OVERRIDDEN by a "
+              f"committed OVERRIDE-LOG row. These are not fixed.")
+        for o in overridden:
+            print("  " + o)
     if warnings:
         print(f"\nvalidate-registers: {len(warnings)} warning(s) "
               f"(REPORTED files; each carries a MIGRATION-HOLDS row)")
@@ -951,6 +889,34 @@ def governed_digest():
         h.update(rel.encode("utf-8"))
         h.update(p.read_bytes())
     return h.hexdigest()[:16]
+
+
+def apply_overrides(current, active):
+    """Split failures into (overridden, remaining) using OVERRIDE-LOG rows.
+
+    A signature may cover at most MAX_FAILURES_PER_SIGNATURE failures in this
+    run. That is the bound the previous version lacked: it tested whether a
+    signature *looked like* a path, and appending a single colon to a register
+    path passed the test while waiving every defect in the file.
+    """
+    remaining, overridden = [], []
+    for f in current:
+        hit = None
+        for row in active:
+            for sig in row["affected_validation_failures"].split(";"):
+                sig = sig.strip()
+                if not sig or sig not in f:
+                    continue
+                covers = [g for g in current if sig in g]
+                if len(covers) > MAX_FAILURES_PER_SIGNATURE:
+                    continue          # blanket signature; refuse to honour it
+                hit = row["override_id"]
+                break
+            if hit:
+                break
+        (overridden if hit else remaining).append(
+            f"{f}  [overridden by {hit}]" if hit else f)
+    return overridden, remaining
 
 
 def render_report(nfail, nwarn):

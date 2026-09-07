@@ -20,7 +20,14 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def run(clone):
-    p = subprocess.run([sys.executable, "04-AUDITS/validate-registers.py"],
+    # --respect-overrides, because that is the single channel the pre-push hook
+    # and CI both use. The tree carries four real failures that OVERRIDE-LOG
+    # OV-001 covers — rows that cannot be typed without an owner decision — so
+    # without the flag the baseline is red and no injected defect means
+    # anything. An injected defect produces a failure OV-001's signatures do
+    # not match, which is the property being tested.
+    p = subprocess.run([sys.executable, "04-AUDITS/validate-registers.py",
+                        "--respect-overrides"],
                        cwd=clone, capture_output=True, text=True)
     return p.returncode, p.stdout + p.stderr
 
@@ -128,10 +135,10 @@ CASES = [
            '"","","","","","","","UNASSIGNED","UNASSIGNED","UNASSIGNED","",""\n'),
      "is also issued by"),
 
-    ("a gate_verdict edited away from the prose it was parsed from (F7)",
+    ("a gate_verdict outside its vocabulary (F7)",
      lambda c: set_column(c, "03-REGISTERS/domain-e-hypothesis-eligibility.csv", "E-3",
-                          "gate_verdict", "ELIGIBLE", idcol="hypothesis_id"),
-     "does not match"),
+                          "gate_verdict", "PROBABLY", idcol="hypothesis_id"),
+     "gate_verdict 'PROBABLY' not in its vocabulary"),
 
     ("an override with a non-date expiry (F3)",
      lambda c: (c / "00-CONTROLLER/OVERRIDE-LOG.csv").write_text(
@@ -153,26 +160,8 @@ CASES = [
            '"03-REGISTERS/domain-e-claims.csv","one push","owner",""\n'),
      "name only a file path"),
 
-    ("a migration hold waiving a file its target does not name (S1)",
-     lambda c: set_column(c, "00-CONTROLLER/MIGRATION-HOLDS.csv", "MH-001",
-                          "waives_failure_matching",
-                          "03-REGISTERS/domain-e-claims.csv::inline but the join register holds",
-                          idcol="hold_id") or set_column(
-         c, "00-CONTROLLER/MIGRATION-HOLDS.csv", "MH-001", "review_by",
-         "2026-12-07", idcol="hold_id"),
-     "which its own target does not name"),
 
-    ("a migration hold whose waiver substring is too general (S1)",
-     lambda c: set_column(c, "00-CONTROLLER/MIGRATION-HOLDS.csv", "MH-008",
-                          "waives_failure_matching",
-                          "03-REGISTERS/domain-e-hypothesis-eligibility.csv::status",
-                          idcol="hold_id"),
-     "is shorter than 24 characters"),
 
-    ("a migration hold past its review date (S1)",
-     lambda c: set_column(c, "00-CONTROLLER/MIGRATION-HOLDS.csv", "MH-008",
-                          "review_by", "2026-01-01", idcol="hold_id"),
-     "review_by date 2026-01-01 has passed"),
 
     ("a hand-edited independence_group in the join (S6)",
      lambda c: set_column(c, "03-REGISTERS/claim-sources.csv", "CS-0001",
@@ -189,6 +178,24 @@ CASES = [
                           "evidence_status", "PROVISIONAL") or set_column(
          c, "03-REGISTERS/domain-e-claims.csv", "DME-019", "source_id", ""),
      "PROVISIONAL row missing source_id"),
+
+    ("a REPORTED register with no hold row naming it (T12)",
+     lambda c: set_column(c, "00-CONTROLLER/CANONICAL-FILES.csv",
+                          "03-REGISTERS/domain-e-claims.csv", "validated",
+                          "REPORTED", idcol="path"),
+     "is REPORTED but no MIGRATION-HOLDS.csv row names it"),
+
+    ("a misspelled validated mode (T12)",
+     lambda c: set_column(c, "00-CONTROLLER/CANONICAL-FILES.csv",
+                          "03-REGISTERS/domain-e-claims.csv", "validated",
+                          "gated", idcol="path"),
+     "is not one of ['GATED', 'NOT-VALIDATED', 'REPORTED']"),
+
+    ("a row with eligibility prose and no gate verdict (T10)",
+     lambda c: set_column(c, "03-REGISTERS/domain-e-hypothesis-eligibility.csv",
+                          "E-9", "gate_verdict", "UNASSIGNED",
+                          idcol="hypothesis_id"),
+     "eligibility prose but no gate_verdict"),
 
     ("a hold file nothing references",
      lambda c: track_new_file(c, "05-HOLDS/HOLD-099-orphan.md", "# HOLD-099\n\nnothing waits on this\n"),
@@ -279,7 +286,8 @@ def main():
 
         code, out = run(clone)
         if code != 0:
-            print("BASELINE FAILED — the clean tree must pass before defects mean anything")
+            print("BASELINE FAILED — the tree must pass (with OV-001 honoured) "
+                  "before injected defects mean anything")
             print(out)
             return 1
         print(f"baseline: clean tree passes ({len(CASES)} cases to run)\n")

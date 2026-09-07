@@ -76,7 +76,7 @@
 "CF-a3752385","Path migration generator","04-AUDITS/build-path-migration.py","CANONICAL","","self","director session","NOT-VALIDATED","","",""
 "CF-50c04a01","CSV dialect preservation","04-AUDITS/csvdialect.py","CANONICAL","","self","director session","NOT-VALIDATED","","","Reads and rewrites registers without reformatting them."
 "CF-d34de401","Measurement scripts","04-AUDITS/domain-e-cdial-attributions.py","CANONICAL","","PROGRAMME.md step 4","corpus-analyst","NOT-VALIDATED","","","Reproduce a measurement from a pinned corpus."
-"CF-fafbecfa","Measurement output","04-AUDITS/domain-e-dedr-digitisation-check.csv","CANONICAL","","PROGRAMME.md step 4","corpus-analyst","NOT-VALIDATED","","","Script output, not a register."
+"CF-fafbecfa","Measurement output","04-AUDITS/domain-e-dedr-digitisation-check.csv","CANONICAL","","PROGRAMME.md step 4","corpus-analyst","NOT-VALIDATED","","","Script output, not a register. Listed by name: a `04-AUDITS/*.csv` catch-all used to map any new CSV dropped here to NOT-VALIDATED, which excused a register from validation by filename."
 "CF-371873ce","Measurement scripts","04-AUDITS/domain-e-dedr-digitisation-check.py","CANONICAL","","PROGRAMME.md step 4","corpus-analyst","NOT-VALIDATED","","","Reproduce a measurement from a pinned corpus."
 "CF-22f11519","Measurement scripts","04-AUDITS/domain-e-evidence-mass.py","CANONICAL","","PROGRAMME.md step 4","corpus-analyst","NOT-VALIDATED","","","Reproduce a measurement from a pinned corpus."
 "CF-714438ce","Measurement scripts","04-AUDITS/domain-e-geography.py","CANONICAL","","PROGRAMME.md step 4","corpus-analyst","NOT-VALIDATED","","","Reproduce a measurement from a pinned corpus."

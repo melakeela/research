@@ -18,16 +18,13 @@
 #
 # WHAT STILL GETS THROUGH. A push whose verb only exists at runtime — read
 # from a file, computed, or held in a variable this hook cannot expand. A
-# regex in front of a shell cannot be complete, and two rounds of adversarial
-# review have each found spellings past it, twice caused by the previous
+# regex in front of a shell cannot be complete, and THREE rounds of adversarial
+# review have each found spellings past it, several caused by the previous
 # round's repair. That is the standing reason CI is the gate and this is not,
-# and it is why this header does not claim completeness.
-#
-# Caught after review: `(git push)`, `echo $(git push)`, `echo push | xargs
-# git`, `git pu"sh"`, `git "push"`, `gi\t push`, `git pus\h`, `\git push`,
-# backslash-newline continuations, `git "$@" push`, `git ${GIT_OPTS-} push`,
-# `git --file push origin`. Not denied, correctly: `git log --grep=push` and
-# `git grep push`.
+# and it is why this header does not claim completeness. Every spelling found
+# is a case in 04-AUDITS/test-push-gate.py; read that file for the current
+# list rather than trusting a prose list here, which is how this comment went
+# stale twice.
 #
 # NO ORDINARY BYPASS. The one-token MELAKEELA_REGISTER_GATE=off marker was
 # removed on 2026-09-07. It made the gate advisory by construction: the hook
@@ -36,7 +33,14 @@
 # disabled it as surely as the documented form did. A gate anyone can turn off
 # in passing is not a gate.
 #
-# EMERGENCY OVERRIDE. A push that fails validation requires a committed row in
+# EMERGENCY OVERRIDE. There is exactly ONE way past a red gate, and this hook
+# does not implement it — it calls `validate-registers.py --respect-overrides`
+# and honours the exit code, so the hook and CI cannot disagree about what is
+# waived. A second, weaker waiver channel had grown up beside this one in
+# MIGRATION-HOLDS.csv and adversarial review showed it could waive the
+# retrieval requirement across a whole register; it has been removed.
+#
+# A push that fails validation requires a committed row in
 # 00-CONTROLLER/OVERRIDE-LOG.csv carrying reason, actor, raised_date,
 # expiry_date and affected_validation_failures. The hook allows the push only
 # while an unexpired row waives EVERY failure the validator is currently
@@ -103,27 +107,47 @@ command = (payload.get("tool_input") or {}).get("command") or ""
 # multi-line commands also split a backslash-newline continuation. The order
 # below matters and each step says what it is for.
 #
+# 0. Remove heredoc bodies. Text inside `<<'EOF' ... EOF` is data being
+#    written to a file, not a command being run, and this hook edits its own
+#    test suite — whose fixtures are the very spellings it denies. An earlier
+#    version said explicitly that "the literal text appearing inside a quoted
+#    string, a heredoc body or a comment does not trip the gate"; stripping
+#    quotes to catch `git pu"sh"` lost that, and the hook promptly blocked a
+#    command that was only quoting it.
+COMMAND = re.sub(r"<<-?\s*['\"]?(\w+)['\"]?\n.*?\n\1\b", " ", command,
+                 flags=re.S)
 # 1. Remove backslash-newline line continuations entirely. The shell deletes
 #    them, so `git p\<newline>ush` is the single token `push`; replacing them
 #    with a space would split it back into two.
-COMMAND = re.sub(r"\\\n", "", command)
+COMMAND = re.sub(r"\\\n", "", COMMAND)
 # 2. Drop QUOTED commit-message arguments, so `git commit -m "add push
 #    button"` is not read as a push. Only quoted ones: stripping a bare word
 #    after the flag swallowed the subcommand in `git --file push origin`,
 #    which review found walked straight through. Done before quote removal,
 #    or the message content becomes bare words.
 COMMAND = re.sub(
-    r"""(?:-m|-F|--message|--file)\s*=?\s*(?:"[^"]*"|'[^']*')""", " ", COMMAND)
+    r"""(?:-[A-Za-z]*[mF]|--message|--file)\s*=?\s*(?:"[^"]*"|'[^']*')""",
+    " ", COMMAND)
 # 3. Remove parameter expansions rather than splitting on them: `git "$@" push`
 #    and `git ${GIT_OPTS-} push` are one command, not three fragments.
-COMMAND = re.sub(r"\$\{[^}]*\}|\$[A-Za-z_][A-Za-z0-9_]*|\$[@*#?$!0-9]", " ", COMMAND)
+#    An expansion whose DEFAULT is the verb - `git ${x:-push}` - has the verb
+#    in the literal command text, and deleting the expansion deleted the
+#    evidence. Keep the contents, drop the syntax.
+COMMAND = re.sub(r"\$\{[^}]*\}",
+                 lambda m: " " + re.sub(r"[^A-Za-z0-9_ ]", " ", m.group(0)[2:-1]) + " ",
+                 COMMAND)
+COMMAND = re.sub(r"\$[A-Za-z_][A-Za-z0-9_]*|\$[@*#?$!0-9]", " ", COMMAND)
 # 4. Unescape backslashes, so `gi\t push`, `git pus\h` and `\git push` cannot
 #    hide a token behind an escape that the shell removes anyway.
 COMMAND = re.sub(r"\\(.)", r"\1", COMMAND)
 # 5. Remove quotes, so `git pu"sh"` and `git "push"` cannot either.
 stripped = COMMAND.replace('"', "").replace("'", "")
 
-SEGMENT = re.compile(r"&&|\|\||;|\||\n|\(|\)|`")
+# `&` as well as `&&`: a bare ampersand backgrounds the first command and
+# starts a second, so `git status & git push` is two commands. Splitting only
+# on `&&` left it as one segment whose first git subcommand was `status`,
+# which the read-only allowlist then waved the whole segment through on.
+SEGMENT = re.compile(r"&&|&|\|\||;|\||\n|\(|\)|`")
 GIT_TOKEN = re.compile(r"(?:^|[\s/])git(?:\.exe)?(?![\w-])")
 PUSH_VERB = re.compile(r"(?<![\w-])push(?![\w-])")
 
@@ -158,7 +182,11 @@ for seg in segments:
         looks_like_push = True
         break
     if sub in READ_ONLY:
-        continue                       # a read-only command that merely says push
+        # A read-only command that merely mentions push, e.g.
+        # `git log --grep=push`. This skips only THIS segment's fallback;
+        # `&` now separates commands, so a read-only prefix cannot switch the
+        # parser off for a push that follows it.
+        continue
     if PUSH_VERB.search(seg):
         looks_like_push = True         # e.g. the verb arrives through an expansion
         break
@@ -178,53 +206,28 @@ if not os.path.exists(validator):
          f"registers. It fails closed — restore the validator.")
 
 try:
-    proc = subprocess.run([sys.executable, validator], cwd=os.environ["ROOT"],
-                          capture_output=True, text=True, timeout=100)
-except Exception as exc:                       # noqa: BLE001 - fail closed on anything
+    proc = subprocess.run([sys.executable, validator, "--respect-overrides"],
+                          cwd=os.environ["ROOT"], capture_output=True, text=True,
+                          timeout=100)
+except Exception as exc:                       # noqa: BLE001 - fail closed
     deny(f"Push gate: the validator could not be run ({exc}). It fails closed.")
 
 if proc.returncode == 0:
-    sys.exit(0)                                # registers clean: normal flow
+    sys.exit(0)                                # clean, or every failure overridden
 
-# Take only the failures section. The validator also prints notes and a
-# warnings block, both indented; treating those as failures would mean no
-# waiver could ever match them and every override would be refused.
-failures, in_failures = [], False
+# Take only the failures section. The validator also prints notes, warnings and
+# an overridden block, all indented; treating those as failures would deny a
+# push the override log has already covered.
+unwaived, in_failures = [], False
 for ln in proc.stdout.splitlines():
     if re.match(r"validate-registers: \d+ failure\(s\)", ln.strip()):
         in_failures = True
         continue
     if in_failures:
         if ln.startswith("  ") and ln.strip():
-            failures.append(ln.strip())
+            unwaived.append(ln.strip())
         elif ln.strip():
             in_failures = False
-
-# An unexpired OVERRIDE-LOG row may waive failures. Every current failure must
-# be waived by some active row, or the push is denied.
-active = []
-try:
-    listed = subprocess.run([sys.executable, validator, "--list-active-overrides"],
-                            cwd=os.environ["ROOT"], capture_output=True,
-                            text=True, timeout=100)
-    for line in listed.stdout.splitlines():
-        parts = line.split("\t")
-        if len(parts) >= 3:
-            active.append((parts[0], parts[2]))
-except Exception:                              # noqa: BLE001
-    active = []
-
-def waived(failure):
-    for _oid, signatures in active:
-        for sig in signatures.split(";"):
-            sig = sig.strip()
-            if sig and sig in failure:
-                return True
-    return False
-
-unwaived = [f for f in failures if not waived(f)]
-if failures and not unwaived:
-    sys.exit(0)                                # every failure carries a live waiver
 
 head, rest = unwaived[:20], unwaived[20:]
 detail = "\n".join(head) + (f"\n  ... and {len(rest)} more" if rest else "")

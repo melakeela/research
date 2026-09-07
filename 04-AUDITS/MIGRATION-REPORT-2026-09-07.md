@@ -76,14 +76,26 @@ retrieval behind it. The row also states a residue — *"Some Rigvedic
 vocabulary has no identified source of any kind"* — which constitution §6
 keeps out of the positive column.
 
-The cell is restored verbatim, the migration script now refuses to decompose
-a `VERIFIED` opening in a register that cannot record a retrieval, the
-validator fails on such a row, and MH-008 records what is blocked. The
-failure is downgraded to a warning by an exact-coordinate waiver
-(`path:line`, from an OPEN hold, no pattern or file-level form available) and
-printed on every run.
+The cell is restored verbatim, the migration script refuses to decompose a
+`VERIFIED` or `PROVISIONAL` opening in a register that cannot record a
+retrieval, and the validator fails on such a row. MH-008 records what is
+blocked.
 
-**So: zero cells changed meaning.**
+**The failure is not waived away.** Two waiver mechanisms were tried here and
+both were defeated by review: a `path:line` coordinate waiver covered every
+defect on the row, including its publication status, and a `path::substring`
+waiver covered a whole defect class across a whole file and could reach the
+retrieval requirement and the override log's own bounds. Both are gone.
+`MIGRATION-HOLDS.csv` records and waives nothing.
+
+There is now exactly one way past a red gate: a committed
+`00-CONTROLLER/OVERRIDE-LOG.csv` row with a reason, an actor, a 90-day
+expiry, and signatures each covering at most three failures. `OV-001` covers
+these four rows, and both the pre-push hook and CI reach it through the same
+`validate-registers.py --respect-overrides`, so they cannot disagree.
+Run the validator without that flag and it exits 1, which is the honest state.
+
+**So: zero cells changed meaning, and four rows are knowingly unresolved.**
 
 **Every original cell is byte-identical to its pre-migration value**, except
 status and priority tokens whose original text survives verbatim in
@@ -99,9 +111,8 @@ script's intent; it is a comparison of the two files.
 the leading term of `eligible_for_extended_analysis`, whose prose is
 untouched. The two registers were written in different vocabularies for the
 same column — one in `ELIGIBLE` / `NOT-ELIGIBLE-SOURCE-BLOCKED` terms, one
-answering the column heading `YES` / `NO` — and the synonym table that reads
-both into one is in the migration script, listed line by line, longest-prefix
-first so `NO - FOR LACK OF SOURCES` cannot be swallowed by bare `NO`. That
+answering the column heading `YES` / `NO` — and the mapping applied on the day is written out
+as a literal table in the migration script. That
 the two disagree is CR-006 and MH-003; parsing them is not merging them.
 
 Gate verdicts were previously admitted into the claim status vocabulary by
@@ -204,12 +215,12 @@ does not become "buried".
 
 | | Target | Why not migrated |
 |---|---|---|
-| MH-001 | `CROSS-DOMAIN-BRIDGES.csv` `verdict`, 8 rows | Eight different findings, not eight spellings of one. An enum would decide by clerical act whether a bridge was refused on principle or merely not established. |
-| MH-002 | `access-ledger.csv` `access_status`, 55 rows | `VERIFIED` labels the standing of the probe record, not a retrieval. SRC-002 is `VERIFIED` with `retrieval_capable: NO` — a verified record of a failure. Re-typing would assert 50 retrievals that did not happen. |
-| MH-003 | The two eligibility registers | 10 rows against 11, different namespaces, no crosswalk. Merging means choosing between two gate verdicts, which is analysis. |
-| MH-004 | `BACKLOG-COVERAGE.csv`, 95 rows × 2 columns | The route inventory is in `melakeela/site`. Filling from the frozen 96-page audit was already considered and rejected in `06-BACKLOG/README.md`. |
+| MH-001 | `CROSS-DOMAIN-BRIDGES.csv` `verdict` | Eight different findings, not eight spellings of one. An enum would decide by clerical act whether a bridge was refused on principle or merely not established. |
+| MH-002 | `access-ledger.csv` `access_status` | `VERIFIED` labels the standing of the probe record, not a retrieval. SRC-002 is `VERIFIED` with `retrieval_capable: NO` — a verified record of a failure. Re-typing would assert 50 retrievals that did not happen. |
+| MH-003 | The two eligibility registers | Different namespaces and different vocabularies, with no crosswalk. Merging means choosing between two gate verdicts, which is analysis. |
+| MH-004 | `BACKLOG-COVERAGE.csv` site-coverage columns | The route inventory is in `melakeela/site`. Filling from the frozen 96-page audit was already considered and rejected in `06-BACKLOG/README.md`. |
 | MH-005 | Reconciliation `C-1`–`C-9` | Renaming to `RCF-` is right but touches 14 files; a reference migration does not belong inside a schema migration. |
-| MH-006 | All 115 paths | 1,024 enumerated references. Path moves are a separate mechanical commit after this passes review. |
+| MH-006 | Every path in `00-CONTROLLER/PATH-MIGRATION.csv` | 1,024 enumerated references. Path moves are a separate mechanical commit after this passes review. |
 | MH-007 | `museum-framework.md` 96-page counts | Relabelling means re-reading each argument against a site this session cannot see. |
 | MH-008 | `E-11` `evidence_status` | Restored verbatim: no value in the vocabulary states what a residue's standing is, and `VERIFIED` here is untraceable by construction. |
 | MH-009 | 1,195 multi-identifier inline cells | The join expands them. Rewriting that many research rows to satisfy a schema is what this repository refuses to do. |
@@ -280,12 +291,23 @@ hypothesis written in different words would inherit the uncorrected
 behaviour, and a conditional `YES` would generally outrank a conditional
 `NO`.
 
-`04-AUDITS/gatevocab.py` now encodes the rule: an eligibility answer
-conditional on **obtaining sources** is `NOT-ELIGIBLE-SOURCE-BLOCKED`
-whichever word it opens with, and one conditional on anything else is
-`DEFERRED`. The committed verdicts are unchanged by the generalisation, which
-is the test that it describes what was already decided rather than redeciding
-it.
+That generalisation was then tried, and it was worse. Review showed that
+`NO - the hypothesis fails the chronology gate` parsed as `DEFERRED`, turning
+a gate failure into something that comes back, and that
+`NO - there is no evidence in the Brahui corpus` parsed as
+`NOT-ELIGIBLE-SOURCE-BLOCKED`, whose gloss in this register is *not for lack
+of merit* — a rejection on evidence promoted to a rejection on access, by
+wording, in the direction §8 exists to catch. Clause order also decided the
+verdict, because the match was a prefix test.
+
+**So the inference was removed.** `gate_verdict` is authored: a person writes
+one of the terms and the validator checks it is one of them. The prose beside
+it governs nothing. The cost is that the two can disagree without a machine
+noticing and a reviewer must read both; the benefit is that no hypothesis
+moves across the gate because of how its reason was phrased. The one-time
+parse that populated the column on 2026-09-07 is written out as a literal
+table in `migrate-status-dimensions.py` so the migration stays reproducible
+from `aa40d3a` without a live inference rule.
 
 ## What was not touched
 
