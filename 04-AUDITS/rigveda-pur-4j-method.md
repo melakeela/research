@@ -298,3 +298,161 @@ Two of the six 99-passages complete the count with an ordinal that modifies a
 **dwelling word** — `veśyà-`, `nivéśana-` — and not `púr-`. A search restricted
 to numerals attached to the fort word misses the completion that gives the 99
 its shape. This is noted as a limit of the extraction, not repaired by it.
+
+---
+
+## 5. The semantic fields — §4J's patron, poet lineage, opponent, description, material, water, cattle, treasure, mountain or river, geography
+
+`03-REGISTERS/rigveda-pur-fields.csv`, 103 rows. Built by
+`04-AUDITS/rv-pur-fields.py`, which states every definition in its own docstring
+**before** the field is filled.
+
+The reconciliation brief §6 said of water, cattle and treasure: *"Not
+retrievable until the semantic fields are stated. Undefined, they become places
+to put what the reader already believes."* That is the risk this section is
+built against, so each definition is a **rule over the corpus's own lexicon** —
+Grassmann's glosses for all 721 lemmas occurring in the 103 passages — rather
+than a word list chosen for what it would show.
+
+### 5.1 Description and material: agreement, at three scopes, both of which fail
+
+A descriptor is defined as a token agreeing with a `púr-` family token in
+**case, gender and number**. Agreement is the corpus's own marking of
+attribution; nothing is called a descriptor for sounding like one.
+
+**All three scopes are reported in separate columns, because each has a
+demonstrated failure and they fail in opposite directions.**
+
+| Scope | Passages | Its demonstrated failure |
+|---|---:|---|
+| same pāda | 43 | **Misses** `āyasá-` at RV 7.15.14 — a predicate nominative two pādas from its subject `pū́ḥ`, and the passage where the metal-fort image is clearest. Also misses `aśmanmáya-` at RV 4.30.20 across a pāda break. |
+| same hemistich | +22 | intermediate |
+| elsewhere in stanza | +23 | **Admits** `srúc-` "wooden sacrificial ladle" at RV 5.41.12, NOM.PL.F agreeing with `púraḥ` but in a different clause; and `ádri-` "rock" at RV 7.6.2, GEN.SG.M agreeing with `puraṃdarásya` but belonging to "they bring him from the mountain". |
+
+A single scope would have to choose which error to make. Three columns let the
+reader see the evidence. The two false positives are listed per row in
+`agreeing_but_excluded`, with the reason, rather than deleted.
+
+### 5.2 What the forts are made of
+
+**Three lemmas, ten passages of 103.**
+
+| Lemma | Gloss | Passages |
+|---|---|---:|
+| `āyasá-` | "eisern" — of metal | 8 |
+| `aśmanmáya-` | "steinern, aus Fels gemacht" | 1 |
+| `āmá-` | "roh, ungekocht" — raw, unbaked | 1 |
+
+93 of 103 state no material. **NOT PRODUCED**: a hymn celebrating the breaking
+of a fort had no occasion to say what it was built of, and the silence is not
+evidence that the poets did not know or that the forts were insubstantial.
+
+**The distribution of the metal forts is the finding.** Seven of the eight are
+protective, mythic or metaphorical, and only **one** is an enemy's:
+
+| | Passage | What the metal fort is |
+|---|---|---|
+| 1 | RV 1.58.8 | Agni asked to protect the singer **with** iron forts |
+| 2 | **RV 2.20.8** | **Indra casts down the Dasyus' iron forts — the only enemy fort** |
+| 3 | RV 4.27.1 | a hundred iron forts **confine** the speaking eagle |
+| 4 | RV 7.3.7 | Agni asked to protect us with a hundred iron forts |
+| 5 | RV 7.15.14 | `pū́r bhavā śatábhujiḥ` — Agni asked **to be** an iron *púr* |
+| 6 | RV 7.95.1 | `sárasvatī dharúṇam ā́yasī pū́ḥ` — **the river Sarasvatī is** an iron *púr* |
+| 7 | RV 8.100.8 | the falcon **escapes** the iron fort |
+| 8 | RV 10.101.8 | priests told to **make** iron forts, in a ritual exhortation |
+
+This is the measurement that bears hardest on §4J's *"Do not automatically
+translate pur into a Mature Harappan city."* The metal forts are overwhelmingly
+not enemy settlements, and in two passages the fort **is** a god or a river. A
+reading that takes `āyasá- púr-` as evidence for metal-using fortified
+settlements has to account for the seven, not only the one.
+
+The one stone fort (`aśmanmáya-`, RV 4.30.20) *is* an enemy's; the one unbaked
+fort (`āmá-`, RV 2.35.6) is a refuge. Two data points, recorded as two data
+points. With n=1 on each side no distribution follows.
+
+### 5.3 Water, cattle, treasure, mountain — and the two exclusions that changed the numbers
+
+| Field | Passages of 103 | Led by |
+|---|---:|---|
+| water | 17 | `áp-` 8, `síndhu-` 6 |
+| cattle | 13 | `gáv- ~ gó-` 5, `vrajá-` 3 |
+| treasure | 12 | `dhána-` 2, `rayí- ~ rāy-` 2 |
+| mountain | 7 | `ádri-` 3, `girí-` 2 |
+| named river | 6 | `síndhu-` in all six |
+
+Two exclusions were needed, and **both changed the result**:
+
+- **Bahuvrīhi "having X" epithets.** Without excluding glosses containing
+  *habend, besitzend, gewinnend, findend, enthaltend, spendend*, the treasure
+  field returns **56 lemmas**, most of them epithets of Indra —
+  `bhū́ridātra-` "gabenreich", `śatā́magha-` "hundertfache Fülle besitzend",
+  `sudákṣiṇa-` "schöne (freigebige) Rechte habend". It is the field most
+  exposed to the brief's warning, and the one most tightened.
+- **Owner words.** `páti-` "Herr, Gebieter, **Besitzer**" enters treasure in
+  five passages on the string *Besitz*. A word for the owner of a thing is not
+  the thing.
+
+A third filter removes Grassmann's **usage notes**: `ádhr̥ṣṭa-`
+"unwiderstehlich *(gesagt von Göttern, Felsen, Burgen etc.)*" is not a word for
+a mountain — the match is in the note, not in the sense.
+
+These are recorded because each is a place where an undefined field would have
+returned a larger and more impressive number.
+
+### 5.4 Patron and opponent: what the column is, and what it is not
+
+Names are identified by Grassmann's gloss marking a proper name, then split by
+**the role word in Grassmann's own gloss** — *Schützling, Günstling, König,
+Fürst, Sänger* to the patron side; *Dämon, Feind, Dasyu, bekämpft, getötet* to
+the opponent side. 22 passages carry a patron candidate, 26 an opponent
+candidate.
+
+The columns are headed `_candidates` for a reason, stated on every row:
+
+> Grassmann's classification of the **name**, not a reading of this passage's
+> syntax. A name can occur in a passage without holding or attacking anything
+> in it.
+
+`PUR-027` exists at `HYPOTHESIS` precisely so that the collocation profile is
+not mistaken for a claim about who held a fort, and nothing here promotes it.
+
+**And the field imports Grassmann's categories.** *Dämon* is one of them, and
+it is doing real work: it is what sorts Śambara, Pipru, Śuṣṇa, Namuci, Varcin,
+Vaṅgṛda, Kuyava, Cumuri and Dhuni onto the opponent side of this register.
+The constitution §7 list of inherited categories to audit before use — *race,
+tribe, slave, barbarian, fort, religion, caste, civilization, invasion,
+indigenous* — does not name **demon**, and on the evidence of this field it
+should. Logged in `04-AUDITS/REAUDIT-QUEUE.csv`.
+
+### 5.5 Poet lineage — filled at three removes, and held
+
+Geldner's per-hymn group heading names a poet for **55** of the 103 passages
+and a deity or a metre for the other **48** ("hymns to Indra" alone accounts for
+26). The 48 are **NOT PRODUCED**, not anonymous: the headings are an
+arrangement, and where Geldner arranged by deity he recorded no poet.
+
+The 55 that carry a name carry it at three removes — Geldner 1951 follows the
+Anukramaṇī tradition, and that tradition post-dates the text. `HOLD-006`
+records that no independent source was reachable: GRETIL, archive.org and TITUS
+each returned **403 at the proxy** (`SRC-080`–`SRC-083`), having each returned
+**200 earlier the same day** (`SRC-028`, `SRC-025`, `SRC-033`). The egress
+policy differs between sessions on this environment, which is `D-042`'s point
+with a worked instance attached.
+
+The standing tradition that books 2–7 are the family books of Gṛtsamada,
+Viśvāmitra, Vāmadeva, Atri, Bharadvāja and Vasiṣṭha would supply a lineage for
+much of the corpus from the book number alone. **It is asserted nowhere in this
+unit**, because no retrieval in this container establishes it and confidence
+does not promote a claim.
+
+### 5.6 Geography — not filled, and typed
+
+`info/rv_locations.tsv` is a citation-format conversion table (§1.1). **There is
+no geographic content in the pinned corpus.** The field carries
+`NOT FILLED — no source` on all 103 rows, with the reason in
+`geography_basis`. What the corpus supports is which hydronym lemmas occur —
+`síndhu-` in six passages — which is a textual fact. The step from a hydronym to
+a place on a map is a separate claim, and it is bounded by the research hold at
+Version 12 line 1175 against identifying the forts with one archaeological
+culture.
