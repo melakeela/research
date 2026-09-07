@@ -166,6 +166,44 @@ A current route inventory for the live site is a fourth input, needed for
 D-009 and for Step 13's self-contradiction check. The site lives in
 `melakeela/site`, which this session cannot read.
 
+### Update 2026-09-07 — site-review running list: delivery attempted, not received
+
+A task dated 2026-09-07 (branch `claude/site-review-reconciliation-a624jt`)
+instructed that **two versions of the site review running list** were attached,
+to be committed unchanged to `01-INHERITED/site-review/` under their distinct
+filenames, then reconciled against each other and mined for `LS-` and `COR-`
+items.
+
+**No files reached the session container.** Both attachment mount points
+(`/mnt/attach`, `/mnt/user-data/uploads`) were empty; a filesystem-wide search
+for `*MELAKEELA*`, `*RUNNINGLIST*` and `*RUNNING-LIST*` returned nothing; and
+`git log --all --diff-filter=A` shows no such file added on any branch. The
+files were named in the instruction but not transmitted with it.
+
+Nothing was committed to `01-INHERITED/site-review/`, no
+`RUNNING-LIST-RECONCILIATION.md` was written, and no `LS-`/`COR-` rows were
+added to `03-REGISTERS/inherited-claims.csv`, which stands at 369 rows
+(`IH-001`–`IH-369`). Reconstructing any of those three products from the
+document titles alone would have produced exactly the complete-looking,
+unsourced artefact this entry was opened to prevent.
+
+Two things are nonetheless now on the record:
+
+1. **The owner states the two site-review files are not the 89-item backlog.**
+   Committing them would therefore not have closed the gap this entry names.
+   `06-BACKLOG/BACKLOG-COVERAGE.csv` remains blocked, and owner decisions
+   D-008, D-009 and D-011 remain blocked with it.
+2. **The running list is intended for the repository**, at
+   `01-INHERITED/site-review/`, in two distinct versions rather than one. This
+   supersedes the singular `MELAKEELASITEREVIEWRUNNINGLIST.md` referred to in
+   the body of this entry above; the reconciliation between the two versions
+   is outstanding work, not a settled question.
+
+**Decision unchanged, with one addition:** re-attach the two site-review
+running-list versions so the delivery can be retried, *and* commit the four
+documents in the table above, or say they are superseded. The backlog gap and
+the running-list gap are separate; closing the second does not close the first.
+
 
 ## D-004 — `before-the-indus` is inside the MVP set and marked withhold-from-MVP
 
