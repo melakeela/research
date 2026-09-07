@@ -55,15 +55,19 @@ through, and the point is to stop the accident, not to defeat a determined
 session.
 
 **Override.** Where the failures are known, recorded and deliberately not being
-fixed:
+fixed, write the push with the marker in the command:
 
 ```
 MELAKEELA_REGISTER_GATE=off git push -u origin <branch>
 ```
 
-Per command, never exported into a profile, and every use stated in the pull
-request with the reason. Editing the validator to make failing rows pass is not
-an available move.
+The hook reads that marker out of the command text, not out of its own
+environment — a `PreToolUse` hook runs in Claude Code's environment, before the
+command does, so an exported variable would be invisible to it. Putting it in
+the command is the better record anyway: the override is visible in the
+transcript and in the tool call, one push at a time, and every use is stated in
+the pull request with the reason. Editing the validator to make failing rows
+pass is not an available move.
 
 **The gate is currently closed.** The validator reports 43 failures against the
 tree — see `04-AUDITS/VALIDATOR-FINDINGS-2026-09-07.md`, which lists them,

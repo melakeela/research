@@ -13,9 +13,15 @@
 # retrieval backs must not reach the branch, and the branch is the checkpoint.
 #
 # Override, for the case where the failures are known, recorded, and
-# deliberately not being fixed in the current session, set the environment
-# variable MELAKEELA_REGISTER_GATE to "off" on that one command. The override is
-# per-command, is never exported into a profile, and every use of it is stated
+# deliberately not being fixed in the current session: write the push as
+#
+#     MELAKEELA_REGISTER_GATE=off git push -u origin <branch>
+#
+# The marker is read out of the command text itself, not out of the hook's
+# environment — a PreToolUse hook runs in Claude Code's environment, before the
+# command does, so an exported variable would be invisible to it. Putting the
+# marker in the command is also the better record: the override is visible in
+# the transcript and in the tool call, per push, and every use of it is stated
 # in the pull request with the reason. Weakening the validator itself to get
 # past this gate is not an available move.
 set -uo pipefail
@@ -24,10 +30,6 @@ ROOT="${CLAUDE_PROJECT_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)}
 VALIDATOR="$ROOT/04-AUDITS/validate-registers.py"
 
 PAYLOAD="$(cat)"
-
-if [ "${MELAKEELA_REGISTER_GATE:-on}" = "off" ]; then
-  exit 0
-fi
 
 decision=$(ROOT="$ROOT" VALIDATOR="$VALIDATOR" python3 - "$PAYLOAD" <<'PY'
 import json, os, re, subprocess, sys
@@ -41,6 +43,10 @@ if payload.get("tool_name") != "Bash":
     sys.exit(0)
 
 command = (payload.get("tool_input") or {}).get("command") or ""
+
+# Declared override, read out of the command text. See the header.
+if re.search(r"(?<![\w-])MELAKEELA_REGISTER_GATE=off(?![\w-])", command):
+    sys.exit(0)
 
 # Match only a segment whose *leading token* is git (after optional inline
 # environment assignments), so that the literal text appearing inside a quoted
