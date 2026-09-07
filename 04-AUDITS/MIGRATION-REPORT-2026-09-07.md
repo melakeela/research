@@ -171,6 +171,46 @@ does not become "buried".
 | Validator catches defects | 17 injected defects, 17 caught (`test-validate-registers.py`) |
 | Push gate cannot be bypassed | Denies on the removed marker, the echo-marker trick, `env git push`, `/usr/bin/git push`, `sh -c 'git push'`, an unparseable payload and a missing validator; allows only on an unexpired override row matching the exact failure |
 
+## The two adversarial tests
+
+`CLAUDE.md` requires both before a unit is finished. This pass wrote no
+interpretation and changed no claim's evidentiary standing, so most of their
+surface does not apply. One place did, and it is the place to look.
+
+**Preferred-counter-narrative challenge.** The gate-verdict parse had to read
+`HYP-E-006` — *Brahui is a relict of an earlier and wider Dravidian
+distribution in the northwest* — whose eligibility cell reads `YES, when the
+Brahui literature is retrievable`, and `HYP-E-007`, the rival late-migration
+hypothesis, whose cell reads `NO, pending sources`.
+
+Taking the leading words at face value would have made the relict hypothesis
+`ELIGIBLE` and the migration hypothesis `NOT-ELIGIBLE`. That would have
+granted analytical space to the Dravidian-continuity reading over its rival
+on a difference of wording, in a machine-readable column, without any
+evidence changing — and the register's own `proportional_space` cells say the
+two are *held open beside each other, neither presented as the other's
+correction*.
+
+Both are parsed as `NOT-ELIGIBLE-SOURCE-BLOCKED`, which is what both cells
+actually say: neither can be gated until the Brahui literature is
+retrievable. The parse follows the register's stated symmetry rather than its
+surface grammar. `HOLD-004` is the retrieval this turns on.
+
+**Prestige-bias challenge.** The mirror case is `HYP-E-003`, Witzel's
+Para-Munda, whose cell reads `NO - FOR LACK OF SOURCES, NOT FOR LACK OF
+MERIT`. It is parsed to the same `NOT-ELIGIBLE-SOURCE-BLOCKED` as the two
+Brahui rows — a named proposal by a prominent scholar gets the identical
+machine-readable verdict as an unattested rival, because the reason is the
+same in all three cases and the reason is what the column records. The
+"not for lack of merit" clause is preserved verbatim in the prose column and
+carries no weight in the gate.
+
+No method failure was found, so no `04-AUDITS/BIAS-FAILURE-LOG.csv` row is
+added. The judgement above is recorded here so that it can be overturned:
+if a reviewer reads the `YES` in `HYP-E-006` as decisive, the fix is one
+line in the synonym table in `migrate-status-dimensions.py`, and the prose
+column that governs has not moved either way.
+
 ## What was not touched
 
 No file in `melakeela/site`. No production HTML, CSS or JavaScript. No
