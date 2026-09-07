@@ -1,0 +1,40 @@
+"Contradiction, consistency and duplication review",,,,
+"Clusters are review obligations. Similarity is computational triage, not proof that pages should merge.",,,,
+,,,,
+Cluster,Pages,Consistency / contradiction risk,Recommendation,Status
+Named enemies and forts,"the-killed, the-nine-enemies, the-names, the-forts","Counts, identities, etymologies, material descriptions and patron-payment language must use one shared ledger.",Merge nine-enemies into killed; retain names and forts as distinct analytical layers with shared data.,Open
+Criminalisation,"criminalised, criminalised-today","Substantial topical overlap; verify statute dates, jurisdictions and whether each ritual-to-law comparison is legally exact.",Merge into one historical-to-present exhibit with dated legal cards.,Open
+Astronomical chronology,"sky, dravidian-sky, kali-yuga, the-computed-dawn","Keep indigenous naming, transmitted zodiac history and retrocalculated epoch claims distinct; check dates across all four.",Merge computed-dawn into kali-yuga; cross-link two sky pages with a shared chronology.,Open
+Caste vocabulary corpus,"the-curve, the-later-count, the-words-of-caste, what-varna-meant, jatization, the-late-hymn","Corpus boundaries, lemma senses, totals and dating must reconcile; commentary contamination and synonym coverage must be identical everywhere.","Create one claims ledger and split overview, lexical evidence and social interpretation.",Open
+Genetics,"steppe, the-three-ancestries, the-genome-of-caste, endogamy-clock, gotra, academia-battlefield","Do not treat ancestry components as peoples, languages or moral categories; reconcile sample dates and lab-independence claims.",Shared genetics methods page plus page-specific claims; expert review required.,Open
+Textual interpolation,"the-edits, the-insertions, one-verse, the-late-hymn, the-womb-doctrine","Distinguish manuscript variation, philological interpolation, relative chronology and absence from parallel recensions.",Merge insertions into edits; preserve case studies with shared criteria.,Open
+Meluhha and Indus,"meluhha, meluhha-trade, the-water-city, before-the-indus","Separate Mesopotamian exonym, trade evidence, Indus urbanism and pre-Indus chronology; do not imply language identity.",Keep distinct but present as one curated exhibit sequence.,Open
+Language relationship,"sound-changes, two-classical-languages, elamite, the-deep-root, brahmi, one-script-many-kingdoms","Separate sound correspondence, contact borrowing, substrate inference, genetic relationship and script history.",Shared methods glossary and confidence labels; specialist linguistic review.,Open
+Institutional authority,"indology, coverage, who-writes-the-textbook, what-the-children-are-taught, the-archive, custody","Claims about bias, access and suppression must name institutions, dates, evidence and response; avoid treating absence as proof of intent.",Curated institutional-power exhibit with claim-level documents and right-of-reply field.,Open
+,,,,
+,,,,
+High-similarity page pairs,,,,
+Page A,Page B,Text similarity,Review action,Status
+the-killed,the-nine-enemies,0.568,"Review for duplicated claims, evidence and audience purpose.",Open
+criminalised-today,criminalised,0.341,"Review for duplicated claims, evidence and audience purpose.",Open
+the-killed,the-names,0.333,"Review for duplicated claims, evidence and audience purpose.",Open
+dravidian-sky,sky,0.331,"Review for duplicated claims, evidence and audience purpose.",Open
+what-the-children-are-taught,who-writes-the-textbook,0.309,"Review for duplicated claims, evidence and audience purpose.",Open
+the-languages-we-lost,the-vedda,0.301,"Review for duplicated claims, evidence and audience purpose.",Open
+the-late-hymn,the-words-of-caste,0.276,"Review for duplicated claims, evidence and audience purpose.",Open
+the-names,the-nine-enemies,0.272,"Review for duplicated claims, evidence and audience purpose.",Open
+paid-in-cattle,the-firms,0.271,"Review for duplicated claims, evidence and audience purpose.",Open
+attribution,the-unwritten,0.266,"Review for duplicated claims, evidence and audience purpose.",Open
+one-verse,the-insertions,0.262,"Review for duplicated claims, evidence and audience purpose.",Open
+criminalised,the-firms,0.261,"Review for duplicated claims, evidence and audience purpose.",Open
+count-it,paid-in-cattle,0.251,"Review for duplicated claims, evidence and audience purpose.",Open
+meluhha-trade,meluhha,0.251,"Review for duplicated claims, evidence and audience purpose.",Open
+jatization,the-later-count,0.243,"Review for duplicated claims, evidence and audience purpose.",Open
+custody,the-mechanism,0.228,"Review for duplicated claims, evidence and audience purpose.",Open
+one-verse,the-edits,0.228,"Review for duplicated claims, evidence and audience purpose.",Open
+the-forts,the-names,0.214,"Review for duplicated claims, evidence and audience purpose.",Open
+the-edits,the-insertions,0.21,"Review for duplicated claims, evidence and audience purpose.",Open
+kali-yuga,the-computed-dawn,0.202,"Review for duplicated claims, evidence and audience purpose.",Open
+the-forts,the-killed,0.202,"Review for duplicated claims, evidence and audience purpose.",Open
+the-forts,the-map-in-the-text,0.202,"Review for duplicated claims, evidence and audience purpose.",Open
+the-renaming,who-is-speaking,0.2,"Review for duplicated claims, evidence and audience purpose.",Open

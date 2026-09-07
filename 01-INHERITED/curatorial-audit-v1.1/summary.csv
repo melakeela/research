@@ -1,0 +1,20 @@
+Mela Keela — Curatorial Audit,,,,,,,
+Baseline: veli-site(3).zip · 96 HTML pages · triage is not final factual verification,,,,,,,
+,,,,,,,
+Measure,Value,,Release gates,,,,
+Pages,96,,"1. Claim-level citation review
+2. Cross-page consistency review
+3. Image rights and provenance
+4. Specialist/community review where relevant
+5. Browser, accessibility and mobile testing
+6. Prototype approval before migration
+7. Confirm production domain and deployment allowlist",,,,
+Keep,46,,,,,,
+Revise,20,,,,,,
+Hold,15,,,,,,
+Split,11,,,,,,
+Merge,4,,,,,,
+MVP candidates,15,,,,,,
+,,,,,,,
+Interpretation,,,,,,,
+“Keep” means the page has a defensible curatorial role and can proceed to normal review. “Revise” means the argument or source presentation needs work. “Hold” marks high-impact claims that should not enter the MVP before deeper verification. “Split” addresses pages that combine too many functions. “Merge” preserves unique evidence but consolidates overlapping public pages. None of these labels certifies historical truth.,,,,,,,
