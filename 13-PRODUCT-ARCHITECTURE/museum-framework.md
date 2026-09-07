@@ -304,7 +304,7 @@ backed by a register, not by an essay corpus.** Its surfaces are:
 | **Consent record** — for every living-community contribution: what was given, by whom, for what use, for how long, and how it is withdrawn | Consent Register | §11.4 |
 | **Withdrawal trail** — material withdrawn stays visibly withdrawn: the record that it existed and was withdrawn remains, the material does not | Consent Register + revision history | §11.4, §3.6 |
 | **Community authority statements** — where a community holds authority over an interpretation, that authority is named, not absorbed into the institutional voice | Community Authority Register | §11.2 |
-| **Correction ledger, public face** — every accepted correction challenge, its outcome and the claim it changed | Correction Register | §10.2 |
+| **Correction ledger, public face** — every accepted correction challenge, its outcome and the claim it changed | Correction Register | §11.6 |
 | **What has *not* been repaired** — refused requests, unanswered letters, unreturned objects, consultations not held | Obligations Register, negative rows | §11.1 |
 
 **The `Avoid` constraint is the governing rule of the whole environment.**
@@ -417,8 +417,8 @@ environments. The framework specifies five modes; the matrix records which are
 mandatory, available or forbidden in each posture.
 
 Modes: **Source Mode** (§1.6.1, §6, §7) · **Atlas Mode** (§8) · **Investigation
-Mode** (PROVE IT, §9) · **Field Mode** (children's investigation and Field Bag,
-§10 of this document's build list — specified in §10.4) · **Classroom Mode**
+Mode** (PROVE IT, §9) · **Field Mode** (children's investigation and Field Bag, §10.4) ·
+**Classroom Mode**
 (§10.5).
 
 | Posture | Source | Atlas | Investigation | Field | Classroom |
@@ -448,3 +448,208 @@ Three rules the matrix encodes:
   falsifiable rather than rhetorical — the direct product expression of
   constitution §2's requirement that the record stay capable of contradicting
   MelaKeela's own pages.
+
+---
+
+## 2. The Universal Evidence Object
+
+### 2.1 Identity — the scheme for the whole graph
+
+Stated here once and used by every object type in §2–§4 and §11.
+
+**Form.** `mk:<type>:<key>` for the object, `mk:<type>:<key>@r<n>` for a specific
+revision, `mk:<type>:<key>#<anchor>` for a sub-locator inside one (a stanza, a
+line, a region of an image, a column of a dataset).
+
+| Code | Object |
+|---|---|
+| `evd` | Universal Evidence Object |
+| `clm` | Claim Object |
+| `rel` | Relationship Object |
+| `abs` | Absence record |
+| `src` | Source — joins `02-SOURCES/access-ledger.csv.source_id` |
+| `agt` | Agent — person, community, institution, publisher, excavator, holder |
+| `plc` | Place |
+| `lex` | Word / lexeme |
+| `txt` | Text |
+| `qst` | Question |
+| `exh` | Exhibit — the publishable unit a visitor lands on |
+| `obl` | Institutional obligation |
+| `cns` | Consent record |
+| `cor` | Correction |
+| `dec` | Editorial decision |
+
+**Properties the scheme must have, and why.**
+
+- **Opaque keys.** The key carries no meaning — not a slug, not a date, not a
+  catalogue number. Meaningful identifiers become wrong when the meaning is
+  revised, and this institution expects revision. Recommended key: 10-character
+  Crockford base32 from a random 50-bit source, checksummed.
+- **Never reused, never deleted.** An identifier that has been published resolves
+  forever. A retracted object resolves to a tombstone stating that it was
+  retracted, when, by which correction (`mk:cor:…`) and what replaced it. This is
+  the product expression of `CLAUDE.md`'s *"Never delete a `REJECTED` row."*
+- **Revision-addressable.** A citation without `@r<n>` resolves to current; a
+  citation with it resolves to that exact revision, and the viewer states that a
+  newer revision exists. Every public claim display exposes both forms.
+- **Externally resolvable.** Each identifier has a stable URL of the form
+  `<institution-domain>/id/<type>/<key>`, content-negotiable to human page or
+  machine record (§5).
+- **Join-compatible with the existing evidence base.** `mk:src:*` must resolve to
+  a row in `02-SOURCES/access-ledger.csv`; `mk:clm:*` to a row in a
+  `03-REGISTERS/` register. The identifier scheme does not replace the CSV
+  registers; it addresses them. **Whether the register CSVs gain an
+  `object_id` column or a separate crosswalk file is maintained is unresolved —
+  D-019.**
+
+### 2.2 What the Universal Evidence Object is
+
+The UEO is the single record type for **anything that can be cited as evidence**,
+regardless of evidence class. One record type for a seal, a stanza, a
+radiocarbon determination, a genome sample, a survey transect, a photograph of an
+accession card and a nineteenth-century translator's preface.
+
+The reason for one type rather than nine is constitution Step 4: *"Inventory
+evidence classes separately — material, textual, epigraphic, linguistic, genetic,
+environmental, iconographic, oral/living, historiographical. One class cannot
+borrow certainty from another."* Separate record types would let each class carry
+its own conventions and quietly make some classes look more solid than others.
+One record type with an explicit `evidence_class` field and **class-specific
+required fields** keeps the classes visibly distinct while making them
+comparable, searchable and countable in one place.
+
+### 2.3 Core fields — required on every UEO
+
+| Field | Type | Notes |
+|---|---|---|
+| `id` | identifier | `mk:evd:<key>`, §2.1 |
+| `revision` | integer | append-only, §3.6 |
+| `label` | string | short human name; not an identifier |
+| `evidence_class` | enum(9) | material · textual · epigraphic · linguistic · genetic · environmental · iconographic · oral-living · historiographical |
+| `evidence_subclass` | controlled | e.g. `seal`, `stanza`, `radiocarbon-determination`, `aDNA-sample`, `pollen-core`, `accession-record`, `field-recording` |
+| `is_primary` | enum | `primary` · `edition` · `derivative` · `interpretation` — see §2.5 |
+| `attestation_mode` | enum | `attested` · `reconstructed` · `inferred` · `proposed` · `unidentified-residue` — see §2.6 |
+| `date_assertions` | array of Date Assertions | §2.7; **plural, always** |
+| `place_assertions` | array of Place Assertions | §2.8; **plural, always** |
+| `provenance_chain` | array of Custody Links | §3.4 |
+| `source_ids` | array of `mk:src:*` | must resolve in the access ledger |
+| `access_status` | enum | `open` · `restricted` · `by-permission` · `refused` · `unlocated` · `destroyed` · `unknown` |
+| `rights` | Rights Block | §11.8 |
+| `consent_ref` | `mk:cns:*` or null | **required and non-null when `evidence_class = oral-living`** |
+| `language_of_record` | BCP-47 + script | the language the *record* is in, not the language of the evidence |
+| `created`, `created_by`, `revised`, `revised_by` | metadata | |
+| `status_note` | string | free text; may not substitute for a claim status |
+
+**Deliberately absent: a truth field.** A UEO is not true or false. It exists,
+it is described, it is dated, it is located, it is held by someone. Truth
+predicates belong to Claim Objects (§3). This is the boundary the curatorial
+workbook could not draw — `SCHEMA.md` notes its `Risk` column is *"a scheduling
+variable"* and that *"none of these labels certifies historical truth"*, which is
+correct and is exactly why status must live one level up.
+
+### 2.4 Class-specific required fields
+
+A UEO is invalid if the required fields for its class are absent. Absence is
+recorded as an explicit `unknown` with a reason, never as an empty cell.
+
+| Class | Additionally required |
+|---|---|
+| **material** | material composition; dimensions; excavation or acquisition event; stratigraphic context or `context-lost`; holder; accession number or `unaccessioned` |
+| **textual** | work; recension; edition used (`mk:src:*`); manuscript witnesses or `edition-only`; **composition / attestation / copying / redaction / translation dates as separate Date Assertions** (constitution Step 2) |
+| **epigraphic** | support material; script; findspot; *in situ* or moved; estampage/photograph reference; published reading and reading variants |
+| **linguistic** | form in original script; transliteration; grammatical analysis; semantic range; textual context; edition and exact locator; translation used; alternative translations; interpretive consequence of choosing between them (constitution §7, in full — no reduced form is valid) |
+| **genetic** | sample id; site; skeletal element; laboratory; date of extraction; contamination controls; publication; dataset accession; **whether the individual's community descendants were consulted** (`consent_ref` or a typed refusal) |
+| **environmental** | proxy type; core/section id; sampling resolution; calibration curve where applicable; laboratory |
+| **iconographic** | medium; support; scene description separated from scene interpretation; iconographic parallels cited as Relationship Objects, not as description |
+| **oral-living** | speaker or community as `mk:agt:*`; recording circumstances; **`consent_ref`**; withdrawal terms; whether the speaker holds interpretive authority (§11.2) |
+| **historiographical** | author; institutional position; date of the *scholarship*; the account it was arguing against; whether a named living party is criticised (triggers §11.3) |
+
+### 2.5 The primary / edition / derivative / interpretation gradient
+
+`is_primary` is four-valued because "primary source" collapses distinctions the
+constitution requires:
+
+- **`primary`** — the object or utterance itself: the seal, the inscribed stone,
+  the recorded speaker, the sequenced sample, the sediment core.
+- **`edition`** — a scholarly presentation of a primary: a critical edition, a
+  published reading, a catalogue entry, a dataset release. **An edition is
+  evidence about a primary, not the primary.**
+- **`derivative`** — a reproduction: photograph, estampage, transliteration,
+  scan, digitisation. Digitisation produces derivatives; §1.6.2's rule
+  ("digitization is not restitution") is the ethical face of the same
+  distinction.
+- **`interpretation`** — scholarship: an argument, a translation choice, a
+  chronology, an attribution.
+
+The viewer (§6) must render the gradient. A visitor looking at a photograph of a
+seal in a museum catalogue is three steps from the seal, and the interface must
+say so rather than presenting the photograph as the object.
+
+### 2.6 The attestation gradient
+
+`attestation_mode` implements `CLAUDE.md`'s standing constraint and constitution
+§4E: *"An attested language, a reconstructed proto-language, an accepted loan, a
+proposed substrate form, a named historical proposal and an unidentified residue
+are six different things. Never treat a hypothetical donor as symmetrical with an
+attested, reconstructible body of evidence."*
+
+| `attestation_mode` | Display obligation |
+|---|---|
+| `attested` | may be shown as a form |
+| `reconstructed` | must carry the reconstruction marker and the method that produced it |
+| `inferred` | must name what it is inferred from and by what rule |
+| `proposed` | must name the proposer and the date of the proposal |
+| `unidentified-residue` | must be shown as residue — a gap with a shape, never a donor |
+
+**Enforcement rule.** Any display surface that places two UEOs side by side —
+the Atlas, evidence search, PROVE IT, a comparison table — must render
+`attestation_mode` on both. Symmetrical visual treatment of an attested form and
+a proposed substrate form is a violation, catchable in review, and is logged to
+`04-AUDITS/BIAS-FAILURE-LOG.csv` when it reaches a published surface.
+
+### 2.7 Date Assertions — why dates are plural
+
+A UEO has no single date. It has a set of Date Assertions, each with:
+
+`assertion_id` · `date_type` · `earliest` · `latest` · `calendar_or_scale` ·
+`basis` · `method` · `source_id` · `locator` · `confidence` · `contested_by[]`
+
+`date_type` is drawn from constitution Step 2's list, which is a product
+requirement and not merely a research one: **composition · attestation · copying ·
+redaction · translation · excavation · publication · modern interpretation** —
+plus, for material and environmental evidence, **manufacture · deposition ·
+scientific determination · calibration**.
+
+Three consequences:
+
+- Any surface showing "the date of X" must state *which* date type it is showing.
+  A default of "earliest attestation" is permitted; a silent default is not.
+- Where date types conflict, the conflict is a Relationship Object of type
+  `contradicts` (§4), not a resolution made in the display layer.
+- The Atlas time control (§8) reads Date Assertions and must expose the type it
+  is filtering on. Sliding a timeline that silently mixes composition dates with
+  publication dates is the mechanism by which chronology gates fail.
+
+### 2.8 Place Assertions — why places are plural and typed
+
+`assertion_id` · `place_type` · `place_ref` (`mk:plc:*`) · `certainty` ·
+`geometry` · `basis` · `source_id` · `locator`
+
+`place_type` ∈ **findspot · production · use · deposition · discovery ·
+current-holding · attributed-provenance · unlocated**.
+
+Rules:
+
+- `attributed-provenance` — a place asserted by a dealer, catalogue or tradition
+  without an excavation record — is a distinct type and must be displayed as
+  such. This is where looted material announces itself, and collapsing it into
+  `findspot` is how a collection launders provenance.
+- `current-holding` is always populated for material and iconographic evidence,
+  or explicitly `unlocated`. It is the join to Reconnection (§1.6.2).
+- Geometry carries its own uncertainty: a point, a polygon, a named region or
+  `zone-unknown`. **`zone-unknown` renders as unknown and never as empty** —
+  constitution §13's *"Unknown regions must remain visibly unknown"* is a
+  requirement on the object model, not only on the Atlas.
+- Imperial or political control is a Relationship Object about a Place, never a
+  Place Assertion on an object. Constitution Step 3: *"Imperial control does not
+  prove language use."*
