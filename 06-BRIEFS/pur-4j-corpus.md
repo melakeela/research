@@ -13,14 +13,20 @@ the argument over them.
 
 ## What was built
 
+**Every finding below carries its status.** Findings 1–4 are `VERIFIED`
+measurements. Finding 5 and the typology are `PROVISIONAL` readings, and are
+marked as such where they appear — the register/interpretation split exists to
+stop a reading inheriting a measurement's standing by sitting next to one, and a
+narrative document is where that leak happens.
+
 | Register | Rows | Kind |
 |---|---:|---|
 | `rigveda-pur-passages.csv` | 103 | the passage index |
 | `rigveda-pur-counts.csv` | 49 | every numeral token, with the attachment test |
 | `rigveda-pur-fields.csv` | 103 | §4J's semantic fields |
 | `rigveda-pur-typology.csv` | 103 | the five-way classification |
-| `rigveda-pur-4j-claims.csv` | 27 | measurements |
-| `rigveda-pur-4j-interpretations.csv` | 3 | readings, each with its counter-evidence |
+| `rigveda-pur-4j-claims.csv` | 32 | measurements — 22 `VERIFIED`, 10 `PROVISIONAL` |
+| `rigveda-pur-4j-interpretations.csv` | 3 | readings, all `PROVISIONAL`, each with its counter-evidence |
 
 The reconciliation brief scored the prior register at **1 of §4J's 15
 enumerated items delivered and 14 absent**, with the row basis partial and the
@@ -34,17 +40,16 @@ them.
 
 ## The five findings
 
-### 1. Ninety-nine is not the modal count. One hundred is.
+### 1. Ninety-nine is not the modal count. One hundred is. `VERIFIED`
 
 **21 of 103 passages state a cardinal count of forts; 82 state none.**
 
 | Count | Passages |
 |---|---:|
-| **100** | **8** |
+| **100** | **9** |
 | **99** | **6** |
 | 7 | 4 |
 | 90 | 2 |
-| "hundreds" (`śatā́ni`, plural) | 1 |
 
 The six that state 99 are RV 1.54.6, 2.19.6, 4.26.3, 7.19.5, 7.99.5, 8.93.2.
 The reading is secure — the padapāṭha analyses the words separately and
@@ -53,25 +58,39 @@ single numeral.** It is two words, `náva` "nine" and `navatí-` "ninety", joine
 by `ca` in three passages and separated by intervening words in four.
 
 The reconciliation brief left three options open: modal, maximal, or merely
-quotable. It is **not modal** (100 beats it 8 to 6) and **not maximal** (100,
-"hundreds" and 1000 are larger). It is the most quotable.
+quotable. It is **not modal** (100 beats it 9 to 6) and **not maximal** (100 and
+1000 are larger). It is the most quotable. §4J's "other counts" resolves to
+**seven**, and to nothing else.
 
-### 2. Śambara alone has every count the constitution enumerates
+### 2. Śambara's forts are counted two ways, not five `PROVISIONAL`
 
 | Passage | Śambara's forts |
 |---|---|
-| RV 1.130.7 | **90** |
 | RV 2.19.6 | **99** |
-| RV 4.26.3 | **99**, plus "the hundredth" |
-| RV 2.14.6 | **100** |
-| RV 6.31.4 | **"hundreds"** |
+| RV 4.26.3 | **99**, plus "the hundredth" completing it |
 | RV 7.99.5 | **99** |
+| RV 2.14.6 | **100** |
+| RV 6.31.4 | **100** |
 
-§4J enumerates *90; 99; 100; other counts*. All four attach to one opponent
-across six passages. **The count is not a stable property of the enemy it is
-most often attached to.**
+**This finding replaces a stronger one that was wrong.** It first read
+"Śambara alone has every count the constitution enumerates" — 90, 99, 100, the
+hundredth and hundreds across six passages — and it was the strongest evidence
+for finding 5. Three of the five were errors, all running toward finding 5's
+conclusion, and an independent reviewer found them:
 
-### 3. The same expression counts rivers
+- **RV 1.130.7's ninety are not Śambara's.** `bhinát púro navatím indra pūráve
+  / dívodāsāya` breaks them **for Pūru and Divodāsa**; Śambara is in a separate
+  clause with no genitive tying the forts to him. The claim rested on his
+  merely occurring in the stanza — the inference finding 3 exists to refute.
+- **"The hundredth"** is an ordinal completing the 99, not a sixth count.
+- **"Hundreds" at RV 6.31.4 is one hundred** — `śatā́ni` is the same form as
+  `śatā́` at RV 1.53.8, and three translators are unanimous.
+
+What survives is **99 three times and 100 twice**, which is nearly stable, and
+because the 99 and the hundredth are one schema it may be one value expressed
+two ways. `BF-014` logs the failure; `PUR4J-007` carries the restatement.
+
+### 3. The same expression counts rivers `VERIFIED`
 
 RV 10.104.8c: `navatíṁ srotyā́ náva ca srávantīr` — the identical
 `náva`+`navatí-` expression, in the identical construction, counting
@@ -85,44 +104,53 @@ case that defeats any stanza-level co-occurrence measure. The prior method note
 measured `navatí-` at 33.5× its corpus rate inside family stanzas and declined
 to read it; RV 10.104.8 is why that restraint was correct.
 
-### 4. Seven of the eight metal forts are not an enemy's
+### 4. Only one of the eight metal forts is a named adversary's `PROVISIONAL`
 
 Ten passages of 103 state a material: `āyasá-` "of metal" 8, `aśmanmáya-` "of
 stone" 1, `āmá-` "raw, unbaked" 1.
 
-Of the eight metal forts, **one** is an enemy's (RV 2.20.8, the Dasyus'). The
-other seven are protective, mythic or figurative — a god asked to protect *with*
-them (1.58.8, 7.3.7), a hundred of them confining a bird (4.27.1, 8.100.8),
-priests told to *make* them beside stitching armour (10.101.8), and twice the
-fort **is** something else: **Agni is asked to be one** (7.15.14) and **the
-river Sarasvatī is one** (7.95.1).
+Of the eight metal forts, **one** is the stronghold of a named adversary that
+is stormed (RV 2.20.8, the Dasyus'). Two more are an unnamed adversary's
+confinement of a bird in the Soma myth (4.27.1, 8.100.8) — arguably hostile, and
+counting them so makes it 3 of 8, which changes nothing below. The remaining
+five are the worshipper's, a god's, or nobody's: a god asked to protect *with*
+them (1.58.8, 7.3.7), priests told to *make* them beside stitching armour and
+building a cattle-pen (10.101.8), and twice the fort **is** something else —
+**Agni is asked to be one** (7.15.14) and **the river Sarasvatī is one**
+(7.95.1).
+
+Two axes are involved and they are not the same, which the first version of
+this finding ran together: *whose fort is it* and *is the passage figurative*.
+`PUR4J-013` now reports both.
 
 §4J says *"Do not automatically translate pur into a Mature Harappan city."*
 This is the measurement behind that instruction. A reading that takes
 `āyasá- púr-` as evidence for metal-using fortified settlements has to account
 for the seven, not only the one.
 
-### 5. The count is formulaic. The passages are not.
+### 5. The count is probably formulaic. The passages are not. `PROVISIONAL`
 
 This is the load-bearing distinction, and it is why counts and typology are
 separate registers.
 
-**The count.** Four predictions were fixed before the evidence was read. Three
-fail decisively for an enumeration reading — the count is unstable per opponent
-(finding 2), it migrates to another class of object (finding 3), and two of six
-99-passages complete it with "the hundredth", so 99 functions as
-one-short-of-a-hundred. A fourth holds: every count is 7, 90, 99, 100 or
-"hundreds", across 21 passages, ten books and every Arnold stratum — no 23, no
-41.
+**The count.** Four predictions were set for an enumeration reading. **Two fail
+decisively**: the expression migrates to another class of object (finding 3),
+and two of six 99-passages complete it with "the hundredth", so 99 functions as
+one-short-of-a-hundred. A third holds: every count is 7, 90, 99 or 100, across
+21 passages, ten books and every Arnold stratum — no 23, no 41. **The fourth,
+and strongest, is now INCONCLUSIVE**: it claimed the count is unstable per
+opponent, and finding 2 shows Śambara's forts are 99 three times and 100 twice,
+which an enumeration that rounds would also produce.
 
-**But one prediction fails for the formula reading too**, and it is in the
-register's `evidence_against` column, not a footnote: the numbers **sort by
+**And one prediction fails for the formula reading too**, in the register's
+`evidence_against` column rather than a footnote: the numbers **sort by
 narrative cycle**. Seven forts go with Purukutsa and the Pūru in all four of
 their passages, near-verbatim at RV 1.174.2b and 6.20.10c; 99 and 100 go with
-Divodāsa, Atithigva and Śambara. Ornament does not sort by story. So the
-supported reading is **a formula system with slots filled by cycle** — narrower
-than "the numbers are meaningless", which was the available and convenient
-answer.
+Divodāsa, Atithigva and Śambara. Ornament does not sort by story. So the reading
+rests on **two clear diagnostics of four**, and the supported version is **a
+formula system with slots filled by cycle** — narrower than "the numbers are
+meaningless", which was the available and convenient answer, and weaker than
+this brief first claimed.
 
 **The passages.** **All six passages stating ninety-nine are textual
 strongholds** — forts as objects, held and broken. So are both 90-passages and
@@ -134,18 +162,29 @@ separates them.
 
 ## The typology, and a structural result about it
 
-103 passages: **49 textual stronghold · 46 poetic formula · 3 both · 5 that
-cannot be classified from the text.** Poetic sub-kinds: 28 divine epithet, 8
-simile, 5 metaphor, 5 protective formula.
+All `PROVISIONAL`. 103 passages: **48 textual stronghold · 47 poetic formula · 3
+both · 5 that cannot be classified from the text**, and **54 · 47 · 0 · 2 on the
+rules alone, before any hand override**. Both columns are published and every
+row carries `type_before_override`. Poetic sub-kinds: 27 divine epithet, 9
+simile, 6 metaphor, 5 protective formula.
 
-The split is near-even, and it only became so after a correction. A stress test
-of the classifier found that the corpus builds the *fort-breaker* epithet
+The split is near-even, and it only became so after two corrections. A stress
+test of the classifier found that the corpus builds the *fort-breaker* epithet
 analytically as well as lexically — `purā́m bhindúr`, `púrāṁ dartaḥ`, `dartā́
 purā́m ási` — in **nine of the ten** genitive-plural passages, and those tokens
-are simplex `púr-` so the epithet rule could not see them. The correction moved
-11 passages and **changed none of the findings above**: every cell of both
-cross-tabulations is unchanged, because the eleven are exactly the passages
-that state no count and no material (`PUR4J-029`).
+are simplex `púr-` so the epithet rule could not see them. The reviewer then
+found a third metaphor missed the same way (RV 10.87.22, "we set thee, Agni,
+around us as a *púr*") and a defect by which an override did not carry its
+sub-kind. Neither correction touched a cross-tabulation cell that any finding
+above rests on (`PUR4J-029`).
+
+**Where the hand judgements do move a result, it is now stated.** Four of the
+nine overrides fall inside the ten material passages — against 0.9 expected
+under even allocation — and all four move away from `TEXTUAL-STRONGHOLD`. On the
+hand classification 8 of 10 material passages are not plain textual
+strongholds; on the rules alone it is 4 of 10. `PUR4J-027` publishes both and
+withdraws its first claim to have converged *independently* on finding 4, which
+it does not: it re-tabulates the same judgements over the same passages.
 
 **Three of §4J's five types are not properties of a passage at all.** Textual
 stronghold and poetic formula are properties of the text. *Inferred geography*,
@@ -210,14 +249,36 @@ settles it and nothing asserts either reading.
 
 ---
 
+## How this brief was corrected
+
+An independent adversarial review before the pull request found eleven
+problems. The three that changed a result are in findings 1, 2 and 5 above, and
+in the typology section: `PUR4J-007` was false in three of five parts with all
+three errors running toward finding 5; the numeral scan was not exhaustive and
+its script was uncommitted; and `PUR4J-027` reported only the figure the hand
+overrides produce. Five hand classifications were demoted from `VERIFIED` to
+`PROVISIONAL`. `BF-014` logs the first as a preferred-counter-narrative failure
+of this unit's own §8 test, which interrogated its conclusion instead of
+re-deriving its evidence.
+
+Nothing here is presented as though it had always read this way.
+
 ## What would change these findings
 
 - **Finding 1** falls if a passage stating a count of forts was missed. The
-  numeral inventory came from scanning Grassmann's gloss for all **721** lemmas
-  occurring in the 103 passages, not from the numbers §4J names, so a miss
-  would have to be a numeral Grassmann does not gloss as one.
+  first version of this brief said a miss "would have to be a numeral Grassmann
+  does not gloss as one" — and that is exactly what happened. The scan reached
+  only the 585 of 721 lemmas that carry a gloss, its word boundaries failed on
+  German compounds, and it read no Latin, so `śatábhuji-` glossed *centuplex*
+  was invisible. `04-AUDITS/rv-pur-numeral-scan.py` now exists, prints its own
+  coverage, and returns 26 candidates; four missed lemmas are adjudicated and
+  none is a fort count. The live risk is now narrower: `śatábhuji-` agrees in
+  full with the fort word at RV 7.15.14 and 1.166.8, and if it were read as
+  *a hundred forts* rather than *one hundredfold fort*, 100 would stand at 11
+  passages (`PUR4J-032`).
 - **Finding 3** weakens if RV 10.104.8 is shown to be a scribal or editorial
-  intrusion — though finding 2 would stand regardless.
+  intrusion. It now carries more weight than it did, because finding 2 no
+  longer supports finding 5 on its own.
 - **Finding 4** changes if the `āyasá-` crux resolves, and changes more if
   `HOLD-001` resolves: admitting `púraṃdhi-` would take the family from 106
   tokens to 156 and enlarge the passage corpus.

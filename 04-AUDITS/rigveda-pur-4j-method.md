@@ -174,11 +174,29 @@ passage. Built by `rv-pur-counts.py` (instruments) then
 
 ### 4.1 Finding the numerals without deciding in advance which ones matter
 
-The numeral inventory was **not** assembled from the numbers §4J names. Every
-one of the **721 distinct lemmas** occurring in the 103 passages was looked up
-in Grassmann's gloss (`info/matched_lemmata.json`) and scanned for a German
-number word. That returns **12 candidates** — small enough to adjudicate one by
-one, and derived from the corpus's own lexicon rather than from expectation.
+The numeral inventory was **not** assembled from the numbers §4J names.
+`04-AUDITS/rv-pur-numeral-scan.py` scans every one of the **721 distinct
+lemmas** occurring in the 103 passages and returns **26 candidates** — 11 from
+an unambiguous number word, 15 from an ambiguous one, 0 from a stem fallback —
+small enough to adjudicate one by one, and derived from the corpus's own
+lexicon rather than from expectation.
+
+**The first version of this scan was not exhaustive, and the claim that it was
+is withdrawn** (`PUR4J-031`). It matched German number words with hard word
+boundaries against glossed lemmas only, and leaked three ways:
+
+1. **Gloss coverage.** Only **585 of 721** lemmas carry a Grassmann gloss. The
+   scan reached 81% of the lexicon and the unit called it exhaustive.
+2. **Word boundaries.** `\bhundert\b` matches "hundert Kräfte" and fails on
+   "hundertfache", so `śatā́magha-` and `śatā́tman-` were never candidates.
+3. **German only.** Grassmann glosses `śatábhuji-` as **"centuplex"** — Latin.
+   No German number word appears in it at all.
+
+And the scan script was **not committed**: `rv-pur-counts.py` hard-coded the
+result, so the "12 candidates" figure could not be checked against anything.
+All four repairs are in place. The stem fallback returning **zero** now
+*demonstrates* that the 136 glossless lemmas cost nothing here, where before it
+was an assumption nobody had tested.
 
 Ten were kept: `śatá-` 100, `navatí-` 90, `náva- 1` 9, `sahásra-` 1000,
 `saptá-` 7, `pañcāśát-` 50, `trí-` 3, `śatatamá-` "hundredth", `éka-` 1,
@@ -238,15 +256,21 @@ of the passages that mention a fort at all do not say how many.
 
 | Count | Passages | Where |
 |---|---:|---|
-| **100** | **8** | 1.53.8 · 2.14.6 · 4.27.1 · 4.30.20 · 6.48.8 · 7.3.7 · 7.16.10 · 9.48.2 |
+| **100** | **9** | 1.53.8 · 2.14.6 · 4.27.1 · 4.30.20 · **6.31.4** · 6.48.8 · 7.3.7 · 7.16.10 · 9.48.2 |
 | **99** | **6** | 1.54.6 · 2.19.6 · 4.26.3 · 7.19.5 · 7.99.5 · 8.93.2 |
 | **7** | **4** | 1.63.7 · 1.174.2 · 6.20.10 · 7.18.13 |
 | **90** | **2** | 1.130.7 · 3.12.6 |
-| "hundreds" (`śatā́ni`, pl.) | 1 | 6.31.4 |
 | "the hundredth" (ordinal) | 2 | 4.26.3 · 7.19.5 — both inside the 99 set |
 
-§4J's "other counts" resolves to **seven** and to the unbounded plural
-**"hundreds"**.
+§4J's "other counts" resolves to **seven**, and to nothing else.
+
+**RV 6.31.4 was first read as "hundreds", an unbounded figure, and given its own
+category.** That was wrong twice: `śatā́ni` there is the same form as `śatā́` at
+RV 1.53.8 — ACC.N.PL of `śatá-` — which this register reads as "a hundred", so
+the rule was applied inconsistently *within* the register; and Griffith,
+Geldner and Grassmann are unanimous for "a hundred" at 6.31.4, a departure the
+row recorded no override for. Neuter plural of `śatá-` with a plural noun is the
+ordinary Vedic way of saying "a hundred X".
 
 ### 4.5 The three answers §4J and the reconciliation brief asked for
 
@@ -257,9 +281,8 @@ render 99 at all six — but **99 is never a single numeral**. It is two words,
 separated by intervening words in four. RV 1.54.6d splits them around the verb:
 `púro navatíṁ dambhayo náva`.
 
-**Is it modal?** **No. One hundred is**, 8 passages to 6 — 9 to 6 if the plural
-"hundreds" is counted with the hundreds. This answers the question the
-reconciliation brief left open at §2.6 item 2.
+**Is it modal?** **No. One hundred is, 9 passages to 6.** This answers the
+question the reconciliation brief left open at §2.6 item 2.
 
 **Is it maximal?** No. 100, "hundreds" and 1000 are all larger.
 
@@ -279,18 +302,20 @@ read, and the result is not unanimous.
 | not systematically completed by a round number | **FAILS.** Two of six 99-passages append "the hundredth" (RV 4.26.3c `śatatamáṁ veśyàm`, 7.19.5c `nivéśane śatatamā́`). The 99 is functioning as one-short-of-a-hundred. |
 | occasionally produces an irregular figure | **FAILS.** Every count is 7, 90, 99, 100 or "hundreds", across 21 passages, ten books and every Arnold stratum. No 23, no 41. |
 
-**And one prediction the formula reading fails.** The numbers are *not* freely
+**And two things cut the other way.** First, the numbers are *not* freely
 interchangeable ornament: they sort by narrative cycle. Seven forts go with
 Purukutsa and the Pūru in all four of their passages, in wording near-verbatim
 at 1.174.2b and 6.20.10c (`saptá … púraḥ śárma śā́radīḥ`); 99 and 100 go with
-Divodāsa, Atithigva and Śambara.
+Divodāsa, Atithigva and Śambara. Second, the strongest diagnostic is gone.
 
-So the supported reading is narrower than the convenient one: **a formula
-system with slots filled by cycle**, not "the numbers are meaningless".
-`PUR4J-I-01` holds it at `PROVISIONAL`, states its falsifiers, and states
-explicitly what it does not establish — that a formulaic count says nothing
-about whether anything was besieged, and that the five-way typology is assigned
-per passage and never inherited from this row.
+So the reading rests on **two clear diagnostics of four**, not three, and the
+supported version is narrower than the convenient one: **a formula system with
+slots filled by cycle**, not "the numbers are meaningless". `PUR4J-I-01` holds
+it at `PROVISIONAL`, carries the withdrawal in its own `evidence_against` cell,
+states its falsifiers, and states explicitly what it does not establish — that
+a formulaic count says nothing about whether anything was besieged, and that
+the five-way typology is assigned per passage and never inherited from this
+row.
 
 ### 4.7 One field this unit does not fill
 
@@ -560,15 +585,17 @@ the likelier type.
 
 ### 6.3 Result
 
-| | Passages |
-|---|---:|
-| TEXTUAL-STRONGHOLD | 49 |
-| POETIC-FORMULA | 46 |
-| BOTH | 3 |
-| CANNOT-CLASSIFY | 5 |
+| | With hand overrides | Rules alone |
+|---|---:|---:|
+| TEXTUAL-STRONGHOLD | **48** | 54 |
+| POETIC-FORMULA | **47** | 47 |
+| BOTH | 3 | 0 |
+| CANNOT-CLASSIFY | 5 | 2 |
 
-Poetic sub-kinds: `DIVINE-EPITHET` 28, `SIMILE` 8, `METAPHOR` 5,
-`PROTECTIVE-FORMULA` 5.
+Poetic sub-kinds: `DIVINE-EPITHET` 27, `SIMILE` 9, `METAPHOR` 6,
+`PROTECTIVE-FORMULA` 5. **Both columns are published**, and every row carries
+`type_before_override`, because nine hand judgements over 103 passages are
+enough to move a headline and §6.4 shows one they move.
 
 **These are the corrected figures, and the correction is worth its own
 paragraph.** The first run returned 60/35, and a stress test of rule R5 —
@@ -633,7 +660,7 @@ Grassmann individually.
 | **99** | **6 of 6 TEXTUAL-STRONGHOLD** |
 | 90 | 2 of 2 TEXTUAL-STRONGHOLD |
 | 7 | 4 of 4 TEXTUAL-STRONGHOLD |
-| 100 | 4 TEXTUAL-STRONGHOLD · 3 POETIC-FORMULA · 1 BOTH |
+| 100 | 5 TEXTUAL-STRONGHOLD · 3 POETIC-FORMULA · 1 BOTH |
 
 **Every passage that states ninety-nine forts presents forts as objects held
 and broken.** §4 of this note finds the *count* formulaic; this finds the
@@ -648,15 +675,25 @@ target.
 
 And from the other direction, converging with §5.2:
 
-| | Passages |
+| Material passages that are **not** plain textual strongholds | |
 |---|---:|
-| Material passages that are **not** plain textual strongholds | **8 of 10** |
+| on the hand classification | **8 of 10** |
+| on the rules alone | **4 of 10** |
 
-Four are poetic formulas (metaphor at RV 7.15.14 and 7.95.1, protective formula
-at RV 1.58.8 and 7.3.7), three are BOTH, one cannot be classified. The two
-exceptions are the only two enemy forts with a stated material — RV 2.20.8
-(metal) and RV 4.30.20 (stone). **Anyone reading fort materials as evidence for
-building technique is reading mostly figurative passages.**
+**This is the cross-tabulation the overrides move, and the first version of
+`PUR4J-027` overstated it.** Four of the register's nine hand overrides fall
+inside these ten passages — against 0.9 expected under even allocation — and all
+four move away from `TEXTUAL-STRONGHOLD`. They alone produce the 8. The row also
+described itself as converging *independently* on §5.2; it does not, since it
+re-tabulates the same hand judgements over the same ten passages. Both figures
+are now published.
+
+What survives without any override is the weaker and still substantive **4 of
+10** — the metaphors at RV 7.15.14 and 7.95.1, where the fort **is** Agni and
+**is** the river Sarasvatī, and the protective formulas at RV 1.58.8 and 7.3.7.
+No override touches those four. **Anyone reading fort materials as evidence for
+building technique is still reading a large minority of figurative passages, and
+on the hand reading a majority.**
 
 ---
 
@@ -671,12 +708,23 @@ not by paragraph.
 | `03-REGISTERS/rigveda-pur-counts.csv` | one row per numeral token, three instruments in their own columns, a verdict column, and an override column | measurement |
 | `03-REGISTERS/rigveda-pur-fields.csv` | §4J's semantic fields, each defined before it was filled | measurement |
 | `03-REGISTERS/rigveda-pur-typology.csv` | the five-way classification | reading — every row `PROVISIONAL` |
-| `03-REGISTERS/rigveda-pur-4j-claims.csv` | 27 claims | 24 `VERIFIED`, 3 `PROVISIONAL` |
+| `03-REGISTERS/rigveda-pur-4j-claims.csv` | 32 claims | 22 `VERIFIED`, 10 `PROVISIONAL` |
 | `03-REGISTERS/rigveda-pur-4j-interpretations.csv` | 3 readings, each with evidence for, **evidence against**, what it does not establish, and falsifiers | all `PROVISIONAL` |
 
 Nothing in this unit is `VERIFIED` on the strength of an argument. Every
 `VERIFIED` row is a count, a form, a gloss, or a printed rendering, with a
 locator that re-finds it.
+
+**Five rows failed that test and were demoted on review.** `PUR4J-007` (whose
+forts are whose), `PUR4J-010` (the count co-varies with the narrative cycle),
+`PUR4J-013` and `PUR4J-014` (what the material passages show) and `PUR4J-024`
+(what the typology's three unassignable types are) are hand classifications and
+readings, not counts, forms, glosses or renderings. `PUR4J-025`–`027`, which are
+the same kind of judgement, were already `PROVISIONAL`; these were not, and the
+inconsistency was the reviewer's finding. `PUR4J-024` also claimed the three
+types cannot be assigned *"in any state of knowledge"* — a modal claim about all
+possible evidence, on a locator that established only what the columns currently
+read. It now says what the locator supports.
 
 **Every count in this unit carries its denominator.** 21 **of 103** passages
 state a count; 6 **of 21** state 99; 3 **of 83** simplex tokens are locative;
@@ -695,6 +743,7 @@ files**:
 ```
 CL=/home/user/vedawebproject/vedaweb-data/rigveda      # clone @ d3eb8af
 
+python3 04-AUDITS/rv-pur-numeral-scan.py    $CL  rv_pur_passages.json   # candidate inventory
 python3 04-AUDITS/rv-token-extract.py       $CL/TEI            rv_tokens_vedaweb.tsv
 python3 04-AUDITS/rv-pur-passage-build.py   $CL  rv_tokens_vedaweb.tsv  rv_pur_passages.json
 python3 04-AUDITS/rv-pur-passages-csv.py    rv_pur_passages.json   03-REGISTERS/rigveda-pur-passages.csv
@@ -767,18 +816,42 @@ than in a caveat at the end. Queued as `RA-015`.
 anti-colonial, anti-Brahmanical, subaltern, diffusionist or politically
 corrective?*
 
-**The available soft landing was named in advance and refused.** The
-reconciliation brief §7 identified it: *"declare 99 formulaic and be done — a
-conclusion that flatters a deflationary reading of Rigvedic conflict and costs
-nothing to assert."* The task restated it. Four controls were put in place:
+**The available soft landing was named in advance, and the refusal was
+partly successful and partly not.** The reconciliation brief §7 identified it:
+*"declare 99 formulaic and be done — a conclusion that flatters a deflationary
+reading of Rigvedic conflict and costs nothing to assert."* The task restated
+it. Four controls were put in place, and **this test failed to catch the one
+place the landing was taken**.
 
-1. **The predictions were fixed before the evidence was read** (§4.6), and one
-   of them **failed for the formula reading**: the numbers sort by narrative
-   cycle — seven with Purukutsa and the Pūru in all four passages, near-verbatim
-   at 1.174.2b and 6.20.10c; 99 and 100 with Divodāsa and Śambara. That failure
-   is in the interpretation row's `evidence_against` column, not a footnote, and
-   it narrows the conclusion from "the numbers are meaningless" to "a formula
-   system with slots filled by cycle".
+**What it missed.** `PUR4J-007`, the strongest of the four diagnostics, was
+false in three of five parts, and all three errors ran toward the deflationary
+conclusion (§4.6). The independent reviewer found them. The reason this section
+did not is precise and worth stating: **it interrogated the conclusion instead
+of re-deriving the evidence.** It asked whether the formula reading had been
+adopted too readily, decided it had not because three controls were real, and
+never went back to the text to check that Śambara's forts really are counted
+five ways. That is the characteristic weakness of an adversarial test run by the
+author, and `BF-014` records it with the control that now stands against it: a
+claim of the form *value X attaches to entity Y* must cite the syntax that
+attaches them, never stanza co-occurrence — in a unit that has itself proved
+co-occurrence invalid.
+
+**Control 1 is withdrawn.** It read "the predictions were fixed before the
+evidence was read". That is unauditable: the four predictions first enter the
+repository in the same commit that creates
+`03-REGISTERS/rigveda-pur-counts.csv`, and nothing predating the counts records
+them. It is not disproven; it cannot be checked, and a control that cannot be
+checked is not a control. It is not counted.
+
+**The three that stand, and are checkable:**
+
+1. **One prediction failed for the formula reading and is recorded as such**:
+   the numbers sort by narrative cycle — seven with Purukutsa and the Pūru in
+   all four passages, near-verbatim at 1.174.2b and 6.20.10c; 99 and 100 with
+   Divodāsa and Śambara. That failure is in the interpretation row's
+   `evidence_against` column, not a footnote, and it narrows the conclusion from
+   "the numbers are meaningless" to "a formula system with slots filled by
+   cycle".
 2. **The typology was kept separate from the counts, and it contradicts the
    easy version.** All six 99-passages are textual strongholds (§6.4). "The
    number is a formula" and "the passage is a formula" are different claims and
@@ -797,12 +870,19 @@ headline rather than a commit hash is the error the reconciliation brief warned
 against. 99 is now a `VERIFIED` count of six passages with locators, and it
 outranks the register's 106 on the question of how many forts a passage names
 (`PUR4J-I-02`). What is demoted is only its claim to be *the* number, and that
-demotion is a measurement: 8 passages to 6.
+demotion is a measurement: 9 passages to 6.
+
+**One error ran the other way**, which is evidence the resistance was not
+wholly for show: rule R5's case test over-assigned `TEXTUAL-STRONGHOLD` by
+about eleven passages (§6.3), against the deflationary reading, and it was
+found and corrected before the reviewer reached it.
 
 ### 8.3 Method failures logged
 
-Two rows in `04-AUDITS/BIAS-FAILURE-LOG.csv` — `BF-012` and `BF-013` — and four
-in `04-AUDITS/REAUDIT-QUEUE.csv` (`RA-012` to `RA-015`). Neither bias-log row
-is a failure of *this* unit's output; both are failure modes caught in flight,
-which §9 of the constitution asks be recorded with the control that now
-prevents them.
+Three rows in `04-AUDITS/BIAS-FAILURE-LOG.csv` — `BF-012`, `BF-013` and
+`BF-014` — and four in `04-AUDITS/REAUDIT-QUEUE.csv` (`RA-012` to `RA-015`).
+
+`BF-012` and `BF-013` are failure modes caught in flight. **`BF-014` is not**:
+it is a failure that reached a `VERIFIED` register row, propagated into an
+interpretation, and was caught only by an independent reviewer. It is logged as
+what it is.
