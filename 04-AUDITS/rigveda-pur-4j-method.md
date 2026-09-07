@@ -433,8 +433,20 @@ common nouns for high ground plus one ambiguous hydronym.
 Names are identified by Grassmann's gloss marking a proper name, then split by
 **the role word in Grassmann's own gloss** — *Schützling, Günstling, König,
 Fürst, Sänger* to the patron side; *Dämon, Feind, Dasyu, bekämpft, getötet* to
-the opponent side. 22 passages carry a patron candidate, 26 an opponent
+the opponent side. 22 passages carry a patron candidate, 22 an opponent
 candidate.
+
+**A bug found by reading the output rather than the code.** The first run put
+`purukútsa-` and `trasádasyu-` on the **opponent** side. Both are glossed
+*Schützling* — protégé — and Purukutsa is a king; the match was the string
+*Dasyu* inside **Trasa**dasyu, and inside Purukutsa's own gloss "des
+Trasadasyu Vater". Since Purukutsa is the patron of the seven-fort cycle
+(`PUR4J-010`), the bug put the register in contradiction with this unit's own
+claim. Three corrections followed: word boundaries on the role words; an
+explicit protégé marker settles the side even when the gloss also names an
+adversary, because a king is often described by who he was protected against;
+and a deity filter, without which `váruṇa-` entered the **patron** column on
+the string *Götterkönig*. Opponent candidates fell from 26 passages to 22.
 
 The columns are headed `_candidates` for a reason, stated on every row:
 

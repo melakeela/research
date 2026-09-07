@@ -113,11 +113,24 @@ FIELD = {
                            r"Holz|hölzern|Lehm|Ton|Gold|golden|roh|ungekocht)\w*", re.I),
 }
 NAME = re.compile(r"(N\. pr\.|Eigenname|Name ein|Name des|Name der|Personenname)")
-PATRON_ROLE = re.compile(r"(Schützling|Günstling|König|Fürst|Sänger|Opferer|"
+PATRON_ROLE = re.compile(r"\b(Schützling|Günstling|König|Fürst|Sänger|Opferer|"
                          r"Stammeshelden|Volksstamm|Priestergeschlecht|Sängerfamilie|"
                          r"Dichter|R̥ṣi|Rṣi|guter Geber)", re.I)
-OPPONENT_ROLE = re.compile(r"(Dämon|Feind|Dasyu|bekämpft|getötet|überwundenen|"
+# \b matters here and is not decoration. Without it, "Dasyu" matches inside
+# TRASADASYU and PURUKUTSA's own gloss ("des Trasadasyu Vater"), and both — a
+# prince and a king, each glossed Schützling, protégé — were sorted onto the
+# OPPONENT side. Purukutsa is the patron of the seven-fort cycle (PUR4J-010),
+# so the bug put the register in contradiction with this unit's own claim.
+OPPONENT_ROLE = re.compile(r"\b(Dämon|Feind|Dasyu|bekämpft|getötet|überwundenen|"
                            r"indrafeindlich|überlisteten|Dāsa|feindselig)", re.I)
+# An explicit protégé marker settles the side even when the gloss also names an
+# adversary — a king is often described by who he was protected against.
+PATRON_DECISIVE = re.compile(r"\b(Schützling|Günstling|Zögling)", re.I)
+# §4J's "patron" is the human on whom the poet depends. A god glossed
+# "Götterkönig" is not one; without this, váruṇa- enters the patron column on
+# the string König.
+DEITY_ONLY = re.compile(r"\b(Name eines Gottes|Name einer Gottheit|"
+                        r"Bezeichnung der Götter)", re.I)
 HEM = {"a": 1, "b": 1, "c": 2, "d": 2, "e": 3, "f": 3, "g": 4, "h": 4}
 
 # Agreeing tokens that are NOT descriptors of a púr-, excluded by hand with the
@@ -215,9 +228,11 @@ def main():
         patron, opp = [], []
         for n in sorted(names):
             gs = " ".join(glosses(n))
-            if OPPONENT_ROLE.search(gs):
+            if PATRON_DECISIVE.search(gs):
+                patron.append(n)
+            elif OPPONENT_ROLE.search(gs):
                 opp.append(n)
-            elif PATRON_ROLE.search(gs):
+            elif PATRON_ROLE.search(gs) and not DEITY_ONLY.search(gs):
                 patron.append(n)
 
         head = r["poet_group"]
