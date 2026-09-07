@@ -15,6 +15,17 @@ and §11 (packets R20–R21). Ordering below the first item is owner decision
 2. **Inheritance intake** — `03-REGISTERS/inherited-claims.csv`, 369 rows,
    all at `INHERITED-UNVERIFIED`. Inventory only; nothing verified.
 
+4. **Domain E — Dravidian, Munda and unidentified substrate claims**,
+   corpus-internal half only. `03-REGISTERS/domain-e-claims.csv` (26
+   claims: 19 VERIFIED, 4 PROVISIONAL, 2 HYPOTHESIS, 1 HOLD),
+   `domain-e-hypothesis-eligibility.csv` (the eleven §4.E distinctions,
+   each gated), `domain-e-retroflex-residue.csv` (253 lemmas),
+   `domain-e-hydronyms.csv` (469 occurrences). Method and both
+   adversarial tests: `04-AUDITS/domain-e-method.md`. The comparative
+   half is on `HOLD-002` and `HOLD-003`: every Dravidian, Munda and
+   Austroasiatic source was refused at the egress gateway. Escalated as
+   `D-032`.
+
 ## Now
 
 3. **Controller amendment.** Install the methodology, reconcile it against
@@ -48,7 +59,7 @@ thing the investigation is most likely to get wrong.
 | B | Early Rigvedic, Old Avestan and Classical Sanskrit | Family-tree labels predetermining an anonymized comparison; unequal archives read as equal samples |
 | C | The Sanskrit sound system is historically composite | Projecting the later alphabet back as one pristine PIE design; reading the 5×5 grid as 25 inherited phonemes |
 | D | Proto-Dravidian and Tamil phonology | Treating either analytical system as an imperfect version of the other |
-| E | Dravidian, Munda and unidentified substrate claims | Symmetry between an attested family and a hypothetical donor; "unknown" used as positive evidence |
+| E | Dravidian, Munda and unidentified substrate claims | Symmetry between an attested family and a hypothetical donor; "unknown" used as positive evidence — *corpus-internal half run 2026-09-07; comparative half on HOLD-002/003* |
 | F | *kīnāśa* and agricultural vocabulary | Accepting the etymology, or dismissing it as resemblance, without the lemma work |
 | G | BMAC/Oxus and pre-split Indo-Iranian contact | Reading "Proto-Indo-Iranian" as pre-contact or purely inherited |
 | H | Rigvedic and Old Avestan social worlds | A violent-Indic versus peaceful-Iranian binary; genre mistaken for society |
