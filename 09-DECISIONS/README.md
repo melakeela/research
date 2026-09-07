@@ -38,8 +38,16 @@ raised_date,owner_answer,answer_date,notes,detail_ref
   `METHODOLOGY-CONSTITUTION.md` section where there is one; otherwise the
   document or rule that raised it.
 - `status` — `OPEN`, `BLOCKED` (cannot be answered until something else
-  lands), or `RESOLVED`. A resolved row is kept, never deleted: the reasoning
-  it records is why the resolution holds.
+  lands), `TAKEN-PENDING-REVIEW` (a branch proceeded on an answer the owner
+  has not confirmed), `RESOLVED`, or `SUPERSEDED` (pointing at the row that
+  replaced it). A resolved row is kept, never deleted: the reasoning it
+  records is why the resolution holds.
+
+  This list said three values until 2026-09-07 while the register carried
+  four, `TAKEN-PENDING-REVIEW` among them on three live rows. The register
+  governs, so the list was corrected rather than the rows. `SUPERSEDED` is
+  added for the duplicate-decision case below. The validator enforces this
+  vocabulary; a sixth value cannot be introduced by writing it into a cell.
 - `detail_ref` — the prose section, e.g. `DECISIONS-NEEDED.md D-014`. Empty
   means this row is the whole record.
 
@@ -111,3 +119,21 @@ Rows are never removed. A `D-` reference in any file written before
 block, two-digit against the second. A three-digit reference in a file or a
 pull request written on a branch that predates its merge is resolved against
 the third.
+
+`old_id` is deliberately **not** unique here: `D-004` appeared in two files
+and an identifier that moved twice keeps a row under each number it held.
+The row key is `old_id` + `old_file` + `new_id`, and the validator is told
+so; a duplicate-identifier failure on this file would be a false positive.
+
+## One decision, two identifiers
+
+`D-036` and `D-039` ask the same question — whether the mandated registers
+accumulate under their mandated names or are re-created per domain — and
+carry different statuses, `OPEN` and `TAKEN-PENDING-REVIEW`. Neither row is
+edited or deleted. The owner answers them together; whichever is chosen, the
+other becomes `SUPERSEDED` pointing at it. Recorded as
+`00-CONTROLLER/CONTRADICTION-REGISTER.csv` CR-010.
+
+Both rows are non-blocking, so neither gets a `DECISIONS-NEEDED.md` section,
+and **no third identifier is allocated for the duplication itself** — the
+answer to two identifiers for one decision is not a third one.

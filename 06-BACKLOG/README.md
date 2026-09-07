@@ -39,10 +39,19 @@ are not items 90–95 and do not extend the 1–89 numbering.
 
 ### `current_site_coverage` and `existing_route` could not be populated
 
-`06-BRIEFS/SITE-INVENTORY.md` **does not exist**, on this branch or any other,
-and no other route inventory is in this repository. Both columns therefore
-carry an explicit `NOT ESTABLISHED` marker rather than a blank, so that "we
-did not establish this" cannot later be misread as "no page exists".
+`06-BRIEFS/SITE-INVENTORY.md` **does not exist in this repository**, on this
+branch or any other, and no other route inventory is here. Both columns
+therefore carry an explicit `NOT ESTABLISHED` marker rather than a blank, so
+that "we did not establish this" cannot later be misread as "no page exists".
+
+**Corrected 2026-09-07.** A site inventory *does* exist — in `melakeela/site`,
+which this repository does not read and must not write to. The instruction
+that produced this column named a path inside this repository, and the
+sentinel was then written 95 times as though no inventory existed anywhere.
+It does; the coverage is establishable; it is not establishable from here.
+That is a different statement and it is the accurate one. See
+`00-CONTROLLER/CONTRADICTION-REGISTER.csv` CR-001 and CR-017, and
+`00-CONTROLLER/MIGRATION-HOLDS.csv` MH-004.
 
 Three artefacts were considered as substitutes and all three were rejected:
 

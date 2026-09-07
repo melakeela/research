@@ -10,7 +10,7 @@ and §11 (packets R20–R21), plus one domain that has no entry in either
 
 ## Done
 
-1. **Source access audit** — `02-SOURCES/access-ledger.csv`, 18 rows.
+1. **Source access audit** — `02-SOURCES/access-ledger.csv`, 68 rows.
    Egress and connector reach probed; blockers escalated as `D-001` and
    `D-003` in `DECISIONS-NEEDED.md`.
 2. **Inheritance intake** — `03-REGISTERS/inherited-claims.csv`, 369 rows,
