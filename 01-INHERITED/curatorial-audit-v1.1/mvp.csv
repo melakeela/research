@@ -1,0 +1,19 @@
+Prioritized MVP release set,,,,,,,
+"Fifteen pages that demonstrate the institution, atlas, evidence standards and range without pretending all 96 are ready.",,,,,,,
+,,,,,,,
+Rank,Slug,Title,Environment,Decision,Risk,Release dependency,Status
+1,index,Veli: A Digital Museum of Ancient South Asia,Nocturnal Veḷi,Revise,Medium,"Add claim-level citations, qualify scope and chronology, expose competing interpretations, and reduce unsupported certainty.",Not started
+2,enter,"Enter Veli: Explore, Exhibits, Evidence, Learn",Tamil Retrofuture,Revise,Medium,"Add claim-level citations, qualify scope and chronology, expose competing interpretations, and reduce unsupported certainty.",Not started
+3,artifact-atlas,Artifact Atlas: 175 Ancient South Asian Sites Mapped,Living Signal Field,Keep,Low,"Preserve the core argument; complete citation, image-rights, accessibility, and copy review before publication.",Not started
+4,veli,"Veli: The Open, and What Was Put Outside",Nocturnal Veḷi,Keep,Low,"Preserve the core argument; complete citation, image-rights, accessibility, and copy review before publication.",Not started
+5,tinai,Tinai: The Tamil Poetics of Five Landscapes,Living Tiṇai,Keep,Low,"Preserve the core argument; complete citation, image-rights, accessibility, and copy review before publication.",Not started
+6,the-ledger,The Source Ledger: Ranking Evidence and Checking Scholars,Reading Room,Keep,Low,"Preserve the core argument; complete citation, image-rights, accessibility, and copy review before publication.",Not started
+7,keeladi,Keeladi: A Literate Tamil City from 6th Century BCE,Living Tiṇai,Keep,Low,"Preserve the core argument; complete citation, image-rights, accessibility, and copy review before publication.",Not started
+8,before-the-indus,Before the Indus: Baghor Shrine and Mesolithic Sun Graves,Nocturnal Veḷi,Hold,Critical,Withhold from MVP until load-bearing claims receive claim-level citations and specialist/editorial review.,Not started
+9,the-water-city,"Indus Water Engineering: Drains, Wells and No Palaces",Living Tiṇai,Keep,Low,"Preserve the core argument; complete citation, image-rights, accessibility, and copy review before publication.",Not started
+10,kural,Tirukkural: Tamil Ethics Without Caste or Ritual,Tamil Retrofuture,Revise,Medium,"Add claim-level citations, qualify scope and chronology, expose competing interpretations, and reduce unsupported certainty.",Not started
+11,sound-changes,Sound Changes: Dravidian Phonemes Sanskrit Could Not Write,Living Signal Field,Revise,Medium,"Add claim-level citations, qualify scope and chronology, expose competing interpretations, and reduce unsupported certainty.",Not started
+12,the-languages-we-lost,"Language Isolates of South Asia: Burushaski, Kusunda, Nihali",Nocturnal Veḷi,Keep,Low,"Preserve the core argument; complete citation, image-rights, accessibility, and copy review before publication.",Not started
+13,the-other-laws,Law Beyond the Dharmasastra: Other Legal Traditions,Tamil Retrofuture,Split,Low,Split the argument or interactive/data layer from the long-form interpretation; preserve one canonical overview.,Not started
+14,custody,Manuscript Custody: Who Held the Texts and Who Was Kept Out,Extraction / Collection,Keep,Medium,"Preserve the core argument; complete citation, image-rights, accessibility, and copy review before publication.",Not started
+15,the-archive,"The Archive: What Survived, What Was Lost, and Why",Extraction / Collection,Revise,Medium,"Add claim-level citations, qualify scope and chronology, expose competing interpretations, and reduce unsupported certainty.",Not started
