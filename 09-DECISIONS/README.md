@@ -78,12 +78,22 @@ the owner re-affirms one, it is allocated a fresh `D-` from this CSV then.
 
 The third block holds reassignments made **after** the 2026-09-07 merge, when
 a branch that allocated an identifier correctly against the register it
-branched from found that number taken by the time it merged. Two rows so far,
-both dated 2026-09-07: `D-035` to `D-037`, for the branch that raised the
-`MELA-KEELA-WHO-MADE-THE-PAST.md` section-numbering discrepancy while `D-035`
-and `D-036` were being taken on `main`; and `D-037` to `D-036`, which is not a
-renumbering but a disambiguation — the identifier-normalisation brief names
-`D-037` as a number it declined, and that name now also belongs to a live row.
+branched from found that number taken by the time it merged. Ten rows so far,
+all dated 2026-09-07. Two come from `main`: `D-035` to `D-037`, for the branch
+that raised the `MELA-KEELA-WHO-MADE-THE-PAST.md` section-numbering
+discrepancy while `D-035` and `D-036` were being taken on `main`; and `D-037`
+to `D-036`, which is not a renumbering but a disambiguation — the
+identifier-normalisation brief names `D-037` as a number it declined, and that
+name now also belongs to a live row. Eight come from
+`claude/domain-e-research-queue-z83m9b` (PR #10), which was cut before the
+renumbering and then merged `main` twice: `D-015` to `D-043`, `D-016` to
+`D-038`, `D-017` to `D-039`, `D-018` to `D-040`, `D-019` to `D-041`, and
+`D-032` and `D-036` to `D-042`, with a further row carrying that branch's
+`D-037` to `D-043` after `main` took `D-037` on the second merge. Rows in this
+block chain: an identifier that moved twice keeps one row, whose `new_id` is
+where it landed, and a second row is added under the number it was holding
+when the collision happened, so that a reference written at either point
+resolves.
 
 This block will keep growing while branches run concurrently. Allocating from
 the register at branch time is still correct; what the block records is that

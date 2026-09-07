@@ -31,6 +31,29 @@ to D-032, D-033 and D-034; the CSV rows kept their numbers, because
 its replacement is recorded in `09-DECISIONS/DECISION-ID-MAP.csv`, which is
 how a `D-` reference in a document written before that date is resolved.
 
+A second collision was cleared on 2026-09-07. `DECISIONS-NEEDED.md` briefly
+carried two `## D-032` sections: the `before-the-indus` question, which owns
+that identifier in the CSV, and a domain E egress ruling written in the same
+window as the renumbering. The egress section is now **D-042**. Five further
+decisions raised on the domain E branch — two written up here as `D-015` and
+`D-016`, three carried only as CSV rows at `D-017` to `D-019` — had taken the
+highest number visible in the file being written rather than the next free one
+from the CSV; they are now **D-043** and **D-038** to **D-041**. Every move is
+in `09-DECISIONS/DECISION-ID-MAP.csv`, and the identifiers already on `main`
+did not move. The egress section moved a third time when `main`
+merged PR #18 and allocated `D-036` to the mandated-registers question: it is
+now **D-042**, the next free identifier above `main`'s highest, and `main`'s
+`D-036` is untouched.
+
+A third collision was cleared on 2026-09-07, when `main` merged PR #17 and
+allocated `D-037` to the question of which section of
+`MELA-KEELA-WHO-MADE-THE-PAST.md` carries the racialization-of-"Aryan"
+programme. The substrate-literature egress-allowlist section, which this
+branch held at `D-037`, is now **D-043**: `D-038` to `D-042` stand above
+`main`'s highest but are already held by this branch's own rows, so `D-043`
+is the next free identifier. `main`'s `D-037` is untouched, and the move is
+recorded in `09-DECISIONS/DECISION-ID-MAP.csv`, keyed by branch.
+
 A third series exists and is not part of this namespace. The inherited handoff
 numbered its own owner decisions `D-01` to `D-20`; those are now written
 `HD-01` to `HD-20`, they stay `INHERITED-UNVERIFIED`, and they are never
@@ -841,7 +864,7 @@ institution can keep current, at what latency, and who maintains them.
 
 ---
 
-## D-032 — Egress reach is not stable between sessions. Does domain E run under a GitHub-only policy?
+## D-042 — Egress reach is not stable between sessions. Does domain E run under a GitHub-only policy?
 
 **Raised by:** domain E source probe, 2026-09-07T02:19–02:21Z
 **Category:** institutional access required
@@ -883,3 +906,58 @@ This unit took the second option and says so in every affected row.
 
 **Decision:** allowlist the five domains and re-run domain E's comparative
 half, or accept the corpus-internal half as the domain's Release 1 state?
+
+---
+
+## D-043 — Egress allowlist: the substrate literature is unreachable
+
+**Raised:** 2026-09-07, domain E. **Category:** institutional access.
+**Blocks:** four of the eleven distinctions constitution §4.E requires.
+
+`05-HOLDS/HOLD-004-substrate-literature.md` records that Witzel 1999,
+Kuiper 1991, Masica 1979, Krishnamurti 2003, Rau 2019 and Shorto 2006
+cannot be retrieved from this session by any available channel. Every
+plausible host is refused at the egress gateway: `archive.org`,
+`dsal.uchicago.edu`, `www.jstor.org`, `gretil.sub.uni-goettingen.de`,
+`titus.uni-frankfurt.de`, `www.ejvs.laurasianacademy.com`.
+
+This is escalated rather than accumulated because the blockage is not
+neutral. Attested families have machine-readable derivatives on GitHub;
+proposals about unattested donors do not. So the network policy
+systematically disadvantages one side of the argument, and any register
+built under it will look like evidence for the side that happens to
+have datasets. `BF-008` logs this as a live failure mode.
+
+**Two of these would close most of it:** `archive.org` and
+`dsal.uchicago.edu`. Both were reachable in an earlier session on the
+same calendar date (`SRC-025`, and `SRC-028`/`SRC-033` for GRETIL and
+TITUS), so the policy narrowed between sessions rather than these being
+permanently out of reach.
+
+**Asked of the owner:** add `archive.org` and `dsal.uchicago.edu` to the
+environment egress allowlist, or supply the six works as files.
+
+## D-038 — Two DEDR digitizations disagree, and one is published
+
+**Raised:** 2026-09-07, domain E. **Category:** two consequential
+positions both viable. **Affects:** a live page.
+
+`IC-E-001` measures a 10.3% disagreement between the DEDR digitization
+MelaKeela ships (`dedr_roots.json`, from `ArimeKannada/Dictionary`) and
+the DSAL-derived one used in this unit, across the 18 languages whose
+labels correspond one-to-one. Neither is a subset of the other.
+
+`IC-E-002` is the consequence. `the-northwest-cousin.html` publishes
+"counted directly from the Dravidian etymological dictionary, 191 of
+Brahui's 262 recorded roots have Tamil cognates". The site's arithmetic
+is exactly right for its own data. The same computation over this
+unit's data gives 223 of 273 — 82% against 73%. The raw count moves as
+well as the percentage the page correctly warns readers about.
+
+Neither can be adjudicated while `dsal.uchicago.edu` is blocked, so
+this is downstream of D-043 but is escalated separately because it
+touches published copy.
+
+**Asked of the owner:** whether the page should name its digitization
+and carry the range in the interim. The change itself belongs in
+`melakeela/site`, not here. Queued as `RA-009`.

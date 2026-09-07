@@ -29,7 +29,7 @@ and §11 (packets R20–R21), plus one domain that has no entry in either
    adversarial tests: `04-AUDITS/domain-e-method.md`. The comparative
    half is on `HOLD-002` and `HOLD-003`: every Dravidian, Munda and
    Austroasiatic source was refused at the egress gateway. Escalated as
-   `D-032`.
+   `D-042`.
 5. **Domain M — the Brahui geographic measurement, challenged by the owner**
    (part of domain **M**) — `03-REGISTERS/domain-m-brahui-position.csv`
    (26 claims: 20 VERIFIED, 5 PROVISIONAL, 1 SUPERSEDED; the owner's two
@@ -43,25 +43,52 @@ and §11 (packets R20–R21), plus one domain that has no entry in either
    Krishnamurti 2003, the book every retrievable assertion of North
    Dravidian traces to, has never been read here. **None of the six §4.M
    models is closed by this unit and none was allowed to be.**
+6. **Controller amendment** — methodology installed, reconciled against
+   the controller, decisions register and this queue seeded. Merged as
+   PR #6.
 
 ## Now
 
-6. **Controller amendment.** Install the methodology, reconcile it against
-   the controller, seed the decisions register and this queue. *(This
-   change.)* No research begins until it is reviewed.
+7. **Domain E, comparative half — Dravidian, Munda and unidentified
+   substrate claims.** *(This change.)* The lexical and comparative
+   counterpart to item 4, run from CDIAL, DEDR and Munda data retrieved
+   through the git proxy lane. Registers, audits, hypothesis gate,
+   bridges, draft copy and `HOLD-005` are in place; both §8 adversarial
+   tests are logged in `04-AUDITS/domain-e-method-comparative.md` §5.
+
+   Five of §4.E's eleven distinctions were measurable from retrieved
+   sources and four were not, and the split follows the retrieval
+   channel rather than the evidence. Step 13 ran against
+   `melakeela/site` and returned one substantive finding (`IC-E-001`,
+   `IC-E-002`) and two passes.
+
+   Item 4 and this item are two separate runs of the same domain, from
+   different evidence classes and different sessions. Their method notes,
+   registers and holds are kept apart deliberately; `DEP-016` to
+   `DEP-020` record where their ledger rows are the same source probed
+   twice.
 
 ## Blocked on inputs
 
-7. **Backlog reconciliation** — `06-BACKLOG/BACKLOG-COVERAGE.csv`, one row
-   per item 1–89 with a destination, deliverable, hold or reasoned
-   rejection. `RESEARCH HOLD`: the "MelaKeela.com v2 — Master Research,
-   Product & Institutional Backlog" is not in this repository and cannot be
-   reconstructed by inference. See `DECISIONS-NEEDED.md` D-014.
-8. **Packets R1–R19.** Named in the site review running list; their
-   definitions live in the prompt-pack (`MELA-KEELA-CLAUDE-FULL-SEQUENCE.md`,
-   `MELA-KEELA-LANGUAGE-RESEARCH-PROMPTS.md`,
-   `MELA-KEELA-CLAUDE-LIVE-SITE-AUDIT-PROMPT.md`), which is also absent.
-   `RESEARCH HOLD` on the same grounds.
+Items **8** and **9** are reserved for the prompt-pack intake and the
+`MELAKEELAWHOMADETHEPAST.md` register intake, which are on
+`claude/prompt-pack-inventory-reconcile-iz1phs` (PR #14) and are not on this
+branch. The reservation is deliberate: both branches were cut from the same
+base and both appended to this list, so the numbers were allocated once,
+across both, rather than twice from the same free position. Whichever merges
+first, the other's items keep the numbers stated here. The reassignment is
+recorded under "Item numbering" at the end of this file.
+
+10. **Backlog reconciliation** — `06-BACKLOG/BACKLOG-COVERAGE.csv`, one row
+    per item 1–89 with a destination, deliverable, hold or reasoned
+    rejection. `RESEARCH HOLD`: the "MelaKeela.com v2 — Master Research,
+    Product & Institutional Backlog" is not in this repository and cannot be
+    reconstructed by inference. See `DECISIONS-NEEDED.md` D-014.
+11. **Packets R1–R19.** Named in the site review running list; their
+    definitions live in the prompt-pack (`MELA-KEELA-CLAUDE-FULL-SEQUENCE.md`,
+    `MELA-KEELA-LANGUAGE-RESEARCH-PROMPTS.md`,
+    `MELA-KEELA-CLAUDE-LIVE-SITE-AUDIT-PROMPT.md`), which is also absent.
+    `RESEARCH HOLD` on the same grounds.
 
 ## Research domains — constitution §4
 
@@ -77,7 +104,7 @@ thing the investigation is most likely to get wrong.
 | B | Early Rigvedic, Old Avestan and Classical Sanskrit | Family-tree labels predetermining an anonymized comparison; unequal archives read as equal samples |
 | C | The Sanskrit sound system is historically composite | Projecting the later alphabet back as one pristine PIE design; reading the 5×5 grid as 25 inherited phonemes |
 | D | Proto-Dravidian and Tamil phonology | Treating either analytical system as an imperfect version of the other |
-| E | Dravidian, Munda and unidentified substrate claims | Symmetry between an attested family and a hypothetical donor; "unknown" used as positive evidence — *corpus-internal half run 2026-09-07; comparative half on HOLD-002/003* |
+| E | Dravidian, Munda and unidentified substrate claims | Symmetry between an attested family and a hypothetical donor; "unknown" used as positive evidence — *both halves run 2026-09-07: corpus-internal (item 4) and comparative (item 6). Distinctions 4, 8, 9 and 10 remain on `HOLD-002`, `HOLD-003` and `HOLD-005`.*
 | F | *kīnāśa* and agricultural vocabulary | Accepting the etymology, or dismissing it as resemblance, without the lemma work |
 | G | BMAC/Oxus and pre-split Indo-Iranian contact | Reading "Proto-Indo-Iranian" as pre-contact or purely inherited |
 | H | Rigvedic and Old Avestan social worlds | A violent-Indic versus peaceful-Iranian binary; genre mistaken for society |
@@ -85,7 +112,7 @@ thing the investigation is most likely to get wrong.
 | J | The Rigvedic forts | Translating *pur* into a Mature Harappan city; one famous count standing for the corpus |
 | K | Indus writing and institutional discontinuity | Concluding that populations vanished because institutions and archives did |
 | L | Avestan writing | Reading a Sasanian-era alphabet as transparent evidence of Gāthic pronunciation |
-| M | Brahui, Kurukh and Malto | Medieval migration treated as documented fact; living people used as linguistic fossils — *geographic-measurement challenge answered 2026-09-07; North Dravidian measured on lexical data only and neither validated nor refuted; comparative half on `HOLD-004`* |
+| M | Brahui, Kurukh and Malto | Medieval migration treated as documented fact; living people used as linguistic fossils |
 | N | Grammatical ontologies | Typological similarity read as descent or contact without a mechanism |
 | O | Pāli, Prakrit and vernacular Indo-Aryan | Prakrit as corrupted Sanskrit; one pure language decaying |
 | P | South Asian linguistic convergence | Modern areal distribution converted automatically into prehistoric substrate |
@@ -200,6 +227,27 @@ A packet need not produce a page. It may produce corrections, extensions,
 shared datasets, a new investigation, Atlas layers, comparative instruments
 or research holds. Constitution §11.
 
+## Opened by domain E
+
+- **Retrieve the substrate literature.** `HOLD-005`. Witzel 1999,
+  Kuiper 1991, Masica 1979, Krishnamurti 2003, Rau 2019, Shorto 2006.
+  Four of the eleven distinctions in §4.E cannot be gated without them,
+  and the blockage is one-sided: it falls entirely on the hypotheses
+  with the least attested support.
+- **Adjudicate the DEDR digitizations.** `IC-E-001`. Two independent
+  digitizations of Burrow and Emeneau disagree on 10.3% of
+  entry-language assignments and neither can be checked against print
+  while `dsal.uchicago.edu` is blocked. Every DEDR-derived count on the
+  platform carries that error bar, including
+  `the-northwest-cousin.html`'s published Brahui figure.
+- **Domain M is now load-bearing.** `DE-M-025` shows Dravidian's whole
+  northwestern geographic position rests on Brahui. The Brahui dating
+  question stops being one domain's detail.
+- **Six re-audits** in `04-AUDITS/REAUDIT-QUEUE.csv`, of which
+  `RA-008` is programme-wide: every domain where one side of an
+  argument sits in retrievable data and the other in unretrievable
+  literature.
+
 ## Standing sequencing rules
 
 - One programme at a time. Do not open parallel programmes until one has
@@ -217,3 +265,25 @@ or research holds. Constitution §11.
 - The language-movement Artifact Atlas specification (§13).
 - Page and exhibit briefs.
 - Anything touching `melakeela/site`.
+
+## Item numbering
+
+This list is append-only and its numbers are identifiers, not positions. Two
+branches cut from the same base each appended to it, so the free numbers were
+allocated once across both rather than twice from the same position. Old
+number to new, with the branch that holds the item:
+
+| Old | New | Item | Branch |
+|---|---|---|---|
+| — | 5 | Domain M, the Brahui geographic measurement | `main` (PR #16) |
+| 5 | 6 | Controller amendment | `main` (PR #6), moved from **Now** to **Done** by PR #10 |
+| — | 6 → 7 | Domain E, comparative half | `claude/domain-e-research-queue-z83m9b` (PR #10) |
+| — | 7 → 8 | Prompt-pack intake | `claude/prompt-pack-inventory-reconcile-iz1phs` (PR #14) |
+| — | 8 → 9 | Register intake for Who Made the Past | `claude/prompt-pack-inventory-reconcile-iz1phs` (PR #14) |
+| 6 → 7 | 10 | Backlog reconciliation | `main` |
+| 7 → 8 | 11 | Packets R1–R19 | `main` |
+
+The second column's arrows record the one further shift made on 2026-09-07
+when `main` merged PR #16, whose domain M unit took item 5 and moved the
+controller amendment to 6. `main` keeps the numbers it has published; the two
+branches' items move up behind them, once, across both.
