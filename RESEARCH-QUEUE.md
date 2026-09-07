@@ -47,11 +47,8 @@ and §11 (packets R20–R21), plus one domain that has no entry in either
    the controller, decisions register and this queue seeded. Merged as
    PR #6.
 
-## Now
-
 7. **Domain E, comparative half — Dravidian, Munda and unidentified
-   substrate claims.** *(This change.)* The lexical and comparative
-   counterpart to item 4, run from CDIAL, DEDR and Munda data retrieved
+   substrate claims.** The lexical and comparative counterpart to item 4, run from CDIAL, DEDR and Munda data retrieved
    through the git proxy lane. Registers, audits, hypothesis gate,
    bridges, draft copy and `HOLD-005` are in place; both §8 adversarial
    tests are logged in `04-AUDITS/domain-e-method-comparative.md` §5.
@@ -68,9 +65,52 @@ and §11 (packets R20–R21), plus one domain that has no entry in either
    `DEP-020` record where their ledger rows are the same source probed
    twice.
 
+## Now
+
+12. **Domain A — Rigvedic chronology and transmission.** *(This change.)*
+    Commissioned to **examine** the programme's dependence on Arnold's
+    metrical strata rather than to use it. Registers:
+    `03-REGISTERS/domain-a-measurements.csv` (35 VERIFIED),
+    `domain-a-interpretations.csv` (11 PROVISIONAL),
+    `domain-a-arnold-dependency.csv` (22 rows, the central deliverable) and
+    `domain-a-hypothesis-eligibility.csv` (7 gated). Method and both §8
+    adversarial tests: `04-AUDITS/domain-a-method.md`. Scripts
+    `domain-a-build.py`, `domain-a-measure.py`, `domain-a-morphology.py`.
+
+    **The dependency, measured.** Book number and Arnold stratum share
+    Cramér's V = 0.463, a book-majority classifier gets 50.5% of pāda
+    strata against a 24.7% baseline, and five book-by-stratum cells are
+    exactly zero — books 3, 4 and 7 hold no Archaic pāda, book 6 no
+    Strophic, books 4 and 8 no Cretic, together 43.6% of the coded corpus
+    (`DA-M-005` to `DA-M-007`, `DEP-021`).
+
+    **Instruments independent of Arnold, retrieved.** Four files in the
+    pinned corpus that no earlier unit had opened. `stanza_properties.json`
+    carries five scholars' stanza markings; measured, they are three
+    instruments, not five — Oldenberg and Wüst are one set at φ = 0.904
+    (`DEP-022`) and Arnold 1897 and Arnold 1905 are one author at φ = 0.825
+    (`DEP-023`). The three that remain agree with Arnold's Popular stratum
+    at φ = +0.28 to +0.45, and two of the three published **before** Arnold.
+    The arrangement analysis is completely independent of him and dates
+    nothing by construction. `vnh.csv` measures the transmission directly.
+
+    **The answer to the commissioning question.** `DA-D-001`: **no claim
+    currently at `VERIFIED` in this repository changes status if Arnold's
+    strata are shown unreliable**, because every VERIFIED claim touching the
+    strata is a count of the codes. Fifteen rows would keep their truth and
+    lose their point.
+
+    Five holds opened (`HOLD-006` to `HOLD-010`), two owner decisions
+    (`D-044`, `D-045`), four bias failures (`BF-012` to `BF-015`), five
+    re-audits (`RA-012` to `RA-016`), two contradictions (`IC-A-001`,
+    `IC-A-002`), four bridges (`BR-A-001` to `BR-A-004`, three refused).
+    Five of §4.A's twelve sub-questions were reached, four touched at
+    abstract level only, three not reached.
+
 ## Blocked on inputs
 
-Items **8** and **9** are reserved for the prompt-pack intake and the
+Item **12** is domain A, above; items **10** and **11** below were allocated
+before it and keep their numbers. Items **8** and **9** are reserved for the prompt-pack intake and the
 `MELAKEELAWHOMADETHEPAST.md` register intake, which are on
 `claude/prompt-pack-inventory-reconcile-iz1phs` (PR #14) and are not on this
 branch. The reservation is deliberate: both branches were cut from the same
@@ -100,7 +140,7 @@ thing the investigation is most likely to get wrong.
 
 | # | Domain | The named trap |
 |---|---|---|
-| A | Rigvedic chronology and transmission | Neither "a perfect audio recording" nor "Pāṇini rewrote it" |
+| A | Rigvedic chronology and transmission | Neither "a perfect audio recording" nor "Pāṇini rewrote it" — *run 2026-09-07 as item 12, as an examination of the Arnold dependency rather than a use of it. Five of the twelve §4.A sub-questions reached; `HOLD-006` to `HOLD-010` open; `A-1`, Arnold's five periods, stays at `HYPOTHESIS`.*
 | B | Early Rigvedic, Old Avestan and Classical Sanskrit | Family-tree labels predetermining an anonymized comparison; unequal archives read as equal samples |
 | C | The Sanskrit sound system is historically composite | Projecting the later alphabet back as one pristine PIE design; reading the 5×5 grid as 25 inherited phonemes |
 | D | Proto-Dravidian and Tamil phonology | Treating either analytical system as an imperfect version of the other |
