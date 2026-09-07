@@ -9,6 +9,9 @@ and §11 (packets R20–R21). Ordering below the first item is owner decision
 
 ## Done
 
+0. **Controller amendment** — methodology installed, reconciled against
+   the controller, decisions register and this queue seeded. Merged as
+   PR #6.
 1. **Source access audit** — `02-SOURCES/access-ledger.csv`, 18 rows.
    Egress and connector reach probed; blockers escalated as `D-001` and
    `D-003` in `DECISIONS-NEEDED.md`.
@@ -17,9 +20,17 @@ and §11 (packets R20–R21). Ordering below the first item is owner decision
 
 ## Now
 
-3. **Controller amendment.** Install the methodology, reconcile it against
-   the controller, seed the decisions register and this queue. *(This
-   change.)* No research begins until it is reviewed.
+3. **Domain E — Dravidian, Munda and unidentified substrate claims.**
+   *(This change.)* The fourteen-step method run end to end on the first
+   research domain. Registers, audits, hypothesis gate, bridges, draft
+   copy and `HOLD-002` are in place; both §8 adversarial tests are
+   logged in `04-AUDITS/domain-e-method.md` §5.
+
+   Five of §4.E's eleven distinctions were measurable from retrieved
+   sources and four were not, and the split follows the retrieval
+   channel rather than the evidence. Step 13 ran against
+   `melakeela/site` and returned one substantive finding (`IC-E-001`,
+   `IC-E-002`) and two passes.
 
 ## Blocked on inputs
 
@@ -48,7 +59,7 @@ thing the investigation is most likely to get wrong.
 | B | Early Rigvedic, Old Avestan and Classical Sanskrit | Family-tree labels predetermining an anonymized comparison; unequal archives read as equal samples |
 | C | The Sanskrit sound system is historically composite | Projecting the later alphabet back as one pristine PIE design; reading the 5×5 grid as 25 inherited phonemes |
 | D | Proto-Dravidian and Tamil phonology | Treating either analytical system as an imperfect version of the other |
-| E | Dravidian, Munda and unidentified substrate claims | Symmetry between an attested family and a hypothetical donor; "unknown" used as positive evidence |
+| E | Dravidian, Munda and unidentified substrate claims | Symmetry between an attested family and a hypothetical donor; "unknown" used as positive evidence — **run 2026-09-07**; distinctions 4, 8, 9, 10 remain on `HOLD-002` |
 | F | *kīnāśa* and agricultural vocabulary | Accepting the etymology, or dismissing it as resemblance, without the lemma work |
 | G | BMAC/Oxus and pre-split Indo-Iranian contact | Reading "Proto-Indo-Iranian" as pre-contact or purely inherited |
 | H | Rigvedic and Old Avestan social worlds | A violent-Indic versus peaceful-Iranian binary; genre mistaken for society |
@@ -84,6 +95,27 @@ thing the investigation is most likely to get wrong.
 A packet need not produce a page. It may produce corrections, extensions,
 shared datasets, a new investigation, Atlas layers, comparative instruments
 or research holds. Constitution §11.
+
+## Opened by domain E
+
+- **Retrieve the substrate literature.** `HOLD-002`. Witzel 1999,
+  Kuiper 1991, Masica 1979, Krishnamurti 2003, Rau 2019, Shorto 2006.
+  Four of the eleven distinctions in §4.E cannot be gated without them,
+  and the blockage is one-sided: it falls entirely on the hypotheses
+  with the least attested support.
+- **Adjudicate the DEDR digitizations.** `IC-E-001`. Two independent
+  digitizations of Burrow and Emeneau disagree on 10.3% of
+  entry-language assignments and neither can be checked against print
+  while `dsal.uchicago.edu` is blocked. Every DEDR-derived count on the
+  platform carries that error bar, including
+  `the-northwest-cousin.html`'s published Brahui figure.
+- **Domain M is now load-bearing.** `DE-M-025` shows Dravidian's whole
+  northwestern geographic position rests on Brahui. The Brahui dating
+  question stops being one domain's detail.
+- **Six re-audits** in `04-AUDITS/REAUDIT-QUEUE.csv`, of which
+  `RA-E-003` is programme-wide: every domain where one side of an
+  argument sits in retrievable data and the other in unretrievable
+  literature.
 
 ## Standing sequencing rules
 

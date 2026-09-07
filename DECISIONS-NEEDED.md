@@ -251,3 +251,56 @@ file, or a seventh unreconciled value? And what is the atlas site count?
 The atlas number is load-bearing for a page ranked third in the launch
 set.
 
+
+## D-015 — Egress allowlist: the substrate literature is unreachable
+
+**Raised:** 2026-09-07, domain E. **Category:** institutional access.
+**Blocks:** four of the eleven distinctions constitution §4.E requires.
+
+`05-HOLDS/HOLD-002-substrate-literature.md` records that Witzel 1999,
+Kuiper 1991, Masica 1979, Krishnamurti 2003, Rau 2019 and Shorto 2006
+cannot be retrieved from this session by any available channel. Every
+plausible host is refused at the egress gateway: `archive.org`,
+`dsal.uchicago.edu`, `www.jstor.org`, `gretil.sub.uni-goettingen.de`,
+`titus.uni-frankfurt.de`, `www.ejvs.laurasianacademy.com`.
+
+This is escalated rather than accumulated because the blockage is not
+neutral. Attested families have machine-readable derivatives on GitHub;
+proposals about unattested donors do not. So the network policy
+systematically disadvantages one side of the argument, and any register
+built under it will look like evidence for the side that happens to
+have datasets. `BF-E-004` logs this as a live failure mode.
+
+**Two of these would close most of it:** `archive.org` and
+`dsal.uchicago.edu`. Both were reachable in an earlier session on the
+same calendar date (`SRC-025`, and `SRC-028`/`SRC-033` for GRETIL and
+TITUS), so the policy narrowed between sessions rather than these being
+permanently out of reach.
+
+**Asked of the owner:** add `archive.org` and `dsal.uchicago.edu` to the
+environment egress allowlist, or supply the six works as files.
+
+## D-016 — Two DEDR digitizations disagree, and one is published
+
+**Raised:** 2026-09-07, domain E. **Category:** two consequential
+positions both viable. **Affects:** a live page.
+
+`IC-E-001` measures a 10.3% disagreement between the DEDR digitization
+MelaKeela ships (`dedr_roots.json`, from `ArimeKannada/Dictionary`) and
+the DSAL-derived one used in this unit, across the 18 languages whose
+labels correspond one-to-one. Neither is a subset of the other.
+
+`IC-E-002` is the consequence. `the-northwest-cousin.html` publishes
+"counted directly from the Dravidian etymological dictionary, 191 of
+Brahui's 262 recorded roots have Tamil cognates". The site's arithmetic
+is exactly right for its own data. The same computation over this
+unit's data gives 223 of 273 — 82% against 73%. The raw count moves as
+well as the percentage the page correctly warns readers about.
+
+Neither can be adjudicated while `dsal.uchicago.edu` is blocked, so
+this is downstream of D-015 but is escalated separately because it
+touches published copy.
+
+**Asked of the owner:** whether the page should name its digitization
+and carry the range in the interim. The change itself belongs in
+`melakeela/site`, not here. Queued as `RA-E-006`.
