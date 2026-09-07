@@ -3,7 +3,7 @@
 pur-family search over the VedaWeb Zurich lemma layer, with Arnold strata.
 Input: rv_tokens_vedaweb.tsv (from 04-AUDITS/rv-token-extract.py)
 """
-import csv, collections, sys, json
+import csv, collections, sys, math
 
 FAMILY = {  # Grassmann lemma id -> (lemma, gloss, why it is in the family)
  'lemma_pur_5549':     ('púr-',         'Wall aus Steinen und Lehm, Verschanzung, Palisade', 'simplex'),
@@ -85,6 +85,67 @@ for lid,(lem,gloss) in FLAGGED.items():
     print('%-16s      strata: %s' % ('', dict(s)))
 print()
 
+print()
+print('=== H. dispersion tests ===')
+def chi2sf(x, k):          # survival function, k even
+    m = k // 2
+    return sum(math.exp(-x/2) * (x/2)**i / math.factorial(i) for i in range(m))
+
+tt = collections.Counter(r['stratum'].upper() for r in rows)
+ft = collections.Counter(r['stratum'].upper() for r in hits)
+chi = 0.0
+for c in 'ASNCP':
+    exp = len(hits) * tt[c] / len(rows)
+    chi += (ft[c] - exp) ** 2 / exp
+print('token level : chi-square (4 df) = %.2f, p = %.4g' % (chi, chi2sf(chi, 4)))
+
+# hymn level: each hymn takes its majority stratum code
+cnt = collections.defaultdict(collections.Counter)
+for r in rows:
+    cnt[(r['book'], r['hymn'])][r['stratum'].upper()] += 1
+hymaj = {k: c.most_common(1)[0][0] for k, c in cnt.items()}
+famhy = set((r['book'], r['hymn']) for r in hits)
+fo = collections.Counter(hymaj[k] for k in famhy)
+to = collections.Counter(hymaj.values())
+chi = 0.0
+for c in 'ASNCP':
+    exp = len(famhy) * to[c] / len(hymaj)
+    chi += (fo[c] - exp) ** 2 / exp
+print('hymn level  : chi-square (4 df) = %.2f, p = %.4g  (n=%d hymns of %d)'
+      % (chi, chi2sf(chi, 4), len(famhy), len(hymaj)))
+
+# book order, grouped family books (2-7) against the rest
+a = sum(1 for r in hits if 2 <= int(r['book']) <= 7)
+A = sum(1 for r in rows if 2 <= int(r['book']) <= 7)
+b, B = len(hits) - a, len(rows) - A
+ea, eb = len(hits) * A / len(rows), len(hits) * B / len(rows)
+chi = ((a-ea)**2/ea + (b-eb)**2/eb
+       + ((A-a)-(A-ea))**2/(A-ea) + ((B-b)-(B-eb))**2/(B-eb))
+print('books 2-7 %.2f per 10k vs books 1,8,9,10 %.2f per 10k'
+      % (10000*a/A, 10000*b/B))
+print('book order  : chi-square (1 df) = %.2f, p = %.3g'
+      % (chi, math.erfc(math.sqrt(chi/2))))
+
+# sensitivity: admit the puraṃdhi- group
+EXT = set(FAMILY) | set(FLAGGED) - {'lemma_purAsah_5564'}
+ext = [r for r in rows if r['lemma_id'] in EXT]
+eo = collections.Counter(r['stratum'].upper() for r in ext)
+chi = 0.0
+for c in 'ASNCP':
+    exp = len(ext) * tt[c] / len(rows)
+    chi += (eo[c] - exp) ** 2 / exp
+print('with puraṃdhi- admitted (n=%d): chi-square (4 df) = %.2f, p = %.4g'
+      % (len(ext), chi, chi2sf(chi, 4)))
+
+print()
+print('=== I. entanglement of the two instruments ===')
+P = [r for r in rows if r['stratum'].upper() == 'P']
+b10 = sum(1 for r in P if r['book'] == '10')
+t10 = sum(1 for r in rows if r['book'] == '10')
+print('%.1f%% of Popular-stratum tokens are in book 10; book 10 is %.1f%% Popular'
+      % (100*b10/len(P), 100*b10/t10))
+
+print()
 print('=== G. full occurrence list ===')
 print('\t'.join(['stanza','pada','tok','surface','lemma','morph','metre',
                  'stratum','stratum_name','certainty']))
