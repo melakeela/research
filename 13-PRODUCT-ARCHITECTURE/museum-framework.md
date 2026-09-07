@@ -1983,3 +1983,429 @@ claims, no separate evidence base.
 - **Everything is exportable and printable**, because a large share of the
   classrooms this material is for do not have reliable devices, and an
   institution that requires a live connection to be used has chosen its audience.
+
+---
+
+## 11. Governance, obligations, rights, access and language
+
+This section specifies the **institutional/ethical axis** that `SCHEMA.md` §7
+identifies as the one the curatorial workbook *"keeps noticing and never names"*,
+and which §1.6.2 identifies as the same gap as the empty Reconnection posture.
+It has four new registers and six standing requirements.
+
+### 11.1 The Institutional Obligations Register
+
+**Purpose.** To record every obligation the institution has toward a person,
+community or institution outside itself, and its state — including the ones it
+has not discharged.
+
+`03-REGISTERS/obligations.csv`, one row per obligation:
+
+`obligation_id` (`mk:obl:`) · `counterparty` (`mk:agt:`) · `obligation_type` ·
+`arising_from` (the exhibit, object, claim or event) · `raised_date` ·
+`raised_by` · `state` · `state_date` · `commitment` · `evidence` ·
+`public` (bool) · `notes`
+
+`obligation_type` ∈ **access-request · right-of-reply · consultation ·
+consent-required · attribution · credit · rights-clearance · correction ·
+repatriation-enquiry · community-review · notification**.
+
+`state` ∈ **raised · sent · acknowledged · in-progress · fulfilled · refused ·
+unanswered · withdrawn · lapsed**.
+
+**Rules.**
+
+- **Negative states are published.** `refused` and `unanswered` are the rows that
+  make the register honest, and they are the ones an institution is tempted to
+  keep private. An access request sent to a collection and unanswered for two
+  years is a fact about that collection and about this institution's record, and
+  it is displayed in the Reconnection posture (§1.6.2).
+- **`unanswered` requires a date and the interval is shown.** "Unanswered" with
+  no elapsed time is not information.
+- **A row is never closed by silence.** Only an event closes a row.
+- **Rows are objects with revision histories** (§3.6).
+- The register is the input to §11.7's independence disclosures where the
+  counterparty is also a funder.
+
+**One caution stated on the register's face.** Publishing a counterparty's
+non-response is itself an act with consequences for a relationship, and for a
+future access request. Whether refusals and non-responses are published
+individually, in aggregate, or only with the counterparty notified in advance is
+**D-025**.
+
+### 11.2 Community authority, and the asymmetry statement
+
+**The position.** On some material, a community holds interpretive authority that
+the institution does not. Where that is so, the institution's job is to **name
+the authority and carry the community's account as theirs**, not to absorb it
+into its own voice, and not to "balance" it against a scholarly account as though
+the two were rival hypotheses in the same game.
+
+`03-REGISTERS/community-authority.csv`:
+
+`authority_id` · `community` (`mk:agt:`, named as the community names itself) ·
+`scope` (the objects, places, practices, texts or claims) · `basis` ·
+`representative` and how they were identified · `statement_ref` ·
+`agreed_date` · `review_interval` · `state` · `withdrawal_terms`
+
+**Rules.**
+
+- **The Authority Block on a claim** (§3.1) names the holder. Where an authority
+  statement and the institution's claim differ, both are displayed, each in its
+  own voice, each attributed, and the institution does not adjudicate between a
+  community's account of its own practice and its own reading of a nineteenth
+  century survey as though these were symmetrical evidence.
+- **Self-identification governs naming.** Communities are named as they name
+  themselves, with colonial and administrative exonyms recorded as historical
+  terms with their dates and their coiners, never as neutral labels.
+- **Representation is recorded, including its limits.** "Who was consulted, how
+  they were identified, and who this does not speak for" is part of the row. An
+  institution that consults one organisation and reports "the community agreed"
+  has made a claim it cannot support.
+- **Authority can be withdrawn**, and withdrawal follows §11.4.
+
+**The asymmetry statement.** Required on the bias-test surface (§3.11), on every
+right-of-reply exchange (§11.3) and wherever the two adversarial tests are
+displayed together. It states, in the institution's voice, that the two failure
+modes the tests catch are symmetrical in form and asymmetrical in power: the
+archives, the excavation licences, the journals, the university chairs, the
+museum accessions and the school syllabi were not equally available to all the
+positions in question. `CLAUDE.md`: *"Correct both without pretending their
+archival and institutional power has been equal."*
+
+This statement is what stops the two tests from collapsing into false balance,
+and it is a claim about institutional history — so it is itself a `mk:clm:` with
+sources, a status and falsifiers, not a slogan.
+
+### 11.3 Right of reply
+
+**Trigger.** Any exhibit that names a living person, a currently operating
+institution, or an identifiable current scholarly position and criticises it. The
+`historiographical` UEO field (§2.4) flags this at the evidence layer, and the
+Overlap cluster on institutional authority already requires a *"right-of-reply
+field"* (`INHERITED-UNVERIFIED`).
+
+**Process.**
+
+1. Before publication, the named party is notified, given the specific passages,
+   the claims with their statuses and the evidence, and a stated period to
+   respond. The notification is an obligation row (§11.1).
+2. A reply is published **beside** the criticism, with its own identifier, in the
+   party's own words, unedited except for length limits stated in advance.
+3. The institution may respond to the reply. The exchange remains visible as an
+   exchange; the institution does not get the last word by construction, though
+   it may in fact reply last.
+4. **Non-response is published as non-response**, with the date of notification
+   and the period given. This is the fair form and it is also the only form that
+   does not let silence read as either agreement or as the institution's failure
+   to ask.
+5. A reply that identifies a factual error enters the correction pipeline
+   (§11.6) like any other challenge.
+
+**The constraint this serves** is the Extraction / Collection `Avoid`: *"no
+spectacle or unsupported allegation."* An allegation about a named institution's
+custody of an object is publishable when it is a statused claim with evidence and
+a right of reply attached. It is not publishable as atmosphere.
+
+### 11.4 Consent and withdrawal
+
+**Scope.** Every contribution from a living person or community: recordings,
+photographs, testimony, practice documentation, interpretive statements,
+pronunciation audio, and any use of a named individual's likeness, voice or
+words.
+
+`03-REGISTERS/consent.csv`:
+
+`consent_id` (`mk:cns:`) · `party` · `what_was_given` · `purposes_permitted` ·
+`purposes_excluded` · `surfaces_permitted` (exhibit, atlas, children's mode,
+classroom, export, third-party reuse — **each separately**) · `duration` ·
+`review_date` · `withdrawal_mechanism` · `language_of_consent` ·
+`interpreter` · `date` · `state` · `derivatives_position`
+
+**Rules.**
+
+- **Consent is per-purpose and per-surface.** Consent to be recorded for an
+  exhibit is not consent to appear in a children's investigation, in a downloadable
+  dataset, or under a reuse licence. The Asset Register's *"pronunciation audio
+  where licensed"* (`INHERITED-UNVERIFIED`) treats this as a licensing question;
+  it is not one, and the framework's production mapping (§1.6.3) routes
+  `oral-living` evidence to consent rather than to licence for exactly this
+  reason.
+- **Consent is in the party's language**, with the interpreter named where one was
+  used, and the consent record states what the party was told.
+- **Withdrawal is a stated mechanism, not a request to an inbox**, and it is
+  effective on the live surfaces without negotiation.
+- **On withdrawal:** the material is removed from all surfaces and from future
+  exports. The *record* that material was contributed, published and withdrawn on
+  a stated date under a stated term remains, because an institution that can make
+  its own history of a relationship disappear has no accountable record at all.
+  This is the single exception to the append-only rule (§3.6), and it is narrow
+  by construction: the exception covers the material, never the fact of it.
+- **Already-distributed exports cannot be recalled**, and the consent record must
+  say so plainly to the party *before* consent is given, alongside the licence
+  the export carries (§11.8). Consent given without that statement is not
+  informed.
+- **Derivatives:** whether reuse licences extend to consented material at all is
+  a per-record position, defaulting to *no*.
+- **Review dates are real.** A consent with a review date passes to `lapsed` on
+  that date and the material comes down until it is renewed.
+
+**Human remains and funerary material** are governed by §11.2 and this section
+jointly, and by a standing default of non-display absent an explicit
+community-authority position. Whether the institution displays human remains at
+all is **D-026**.
+
+### 11.5 The Editorial Register
+
+The register `SCHEMA.md` §7 finds missing: *"nothing in `03-REGISTERS/` records a
+publication decision, an environment assignment, or a duplication finding … no
+place a decision could be logged, revised, or reversed with a reason."*
+
+`03-REGISTERS/editorial-decisions.csv`:
+
+`decision_id` (`mk:dec:`) · `subject` (`mk:exh:` / `mk:clm:` / page slug) ·
+`decision_type` · `value` · `derived_value` · `override_reason` ·
+`derived_residual` (bool) · `rationale` · `decided_by` · `decided_date` ·
+`supersedes` · `state` · `notes`
+
+`decision_type` ∈ **publication** (keep · revise · hold · split · merge ·
+withdraw) · **posture-assignment** · **duplication-finding** ·
+**proportionality** · **exclusion-note** · **inclusion-in-release**.
+
+**Rules.**
+
+- The publication vocabulary is the workbook's, kept deliberately: it is the
+  project's existing editorial language and it works. **It does not map onto the
+  evidence-status vocabulary and must never be displayed as though it did** —
+  `SCHEMA.md`: the workbook's `Hold` means "withhold from launch pending review",
+  `CLAUDE.md`'s `HOLD` means "blocked on source access". Two different words that
+  happen to be spelled the same. In this register the editorial value is always
+  rendered as `publication:hold` to keep them apart in every surface and export.
+- **Every decision carries a rationale and a person.** The workbook's
+  `Owner/status = Unassigned` on 38/38 rows is the state this register exists to
+  end.
+- **Decisions are reversible and the reversal is a row**, superseding, not
+  replacing.
+- **`derived_residual = true`** marks a posture assigned by derivation rule 7
+  (§1.6.1), so the unclassified set stays countable instead of accumulating
+  invisibly inside Reading Room.
+- This register is what allows the workbook's judgements to be **promoted,
+  contested or superseded** rather than only re-inherited whole from a
+  spreadsheet — the concrete consequence `SCHEMA.md` §7 names.
+
+### 11.6 Correction challenges
+
+**Anyone may challenge any claim.** The challenge is against a specific claim at
+a specific revision, with the evidence the challenger relies on.
+
+`03-REGISTERS/corrections.csv`:
+
+`correction_id` (`mk:cor:`) · `challenged_object` + `revision` · `challenger` ·
+`challenger_affiliation_disclosed` · `submitted_date` · `channel`
+(PROVE IT run · direct · right-of-reply · community authority · internal
+re-audit) · `nature` · `evidence_offered` · `state` · `assessed_by` ·
+`assessed_date` · `outcome` · `resulting_revision` · `public_response`
+
+`nature` ∈ **factual-error · locator-error · translation-dispute ·
+source-independence · status-too-high · status-too-low · missing-alternative ·
+missing-absence · proportionality · bias-prestige · bias-counter-narrative ·
+consent · rights · attribution**.
+
+`state` ∈ **received · triaged · under-assessment · upheld · partly-upheld ·
+declined · superseded-by-other-change**.
+
+**Rules.**
+
+1. **A challenge is assessed on evidence, not on the challenger.** Affiliation is
+   disclosed where offered and recorded; it does not weight the assessment.
+2. **Declining requires a stated reason**, published with the challenge.
+3. **Upheld challenges produce a revision** (§3.6) whose `triggering_record` is
+   the correction id, permanently attaching the challenge to the claim's history.
+4. **The pipeline is public in aggregate**: challenges received, assessed,
+   upheld, declined, and median time to assessment — published, and updated
+   whether or not the numbers are flattering.
+5. **Challenges against the institution's preferred position are tracked
+   separately** and reported, because the failure this whole method guards
+   against is the institution being easier on itself. If upheld rates differ
+   sharply between challenges that support and challenges that undercut
+   MelaKeela's positions, that difference is a finding about the institution and
+   is published as one.
+6. **A challenge that is correct about a method failure, not only a fact,** is
+   routed to `04-AUDITS/BIAS-FAILURE-LOG.csv` and the affected earlier work to
+   `04-AUDITS/REAUDIT-QUEUE.csv`.
+7. **No challenge is closed for being inconvenient, off-topic in tone, or
+   politically unwelcome.** It is closed on evidence or on scope, with the reason
+   given.
+
+Whether challenges are published on receipt or only after assessment, and whether
+challengers may be anonymous, is **D-027**.
+
+### 11.7 Governance and funding independence
+
+**What §12 asks for is a stated structure, disclosed dependencies, and a rule
+that keeps the evidence base outside the reach of both.** The structure itself is
+the owner's to set (`OWNER-DECISIONS.csv` D-004, D-010); this specifies the
+properties it must have and what must be published.
+
+**Published, and kept current:**
+
+1. **Who decides what.** Named roles for: claim status (nobody — it is derived,
+   §3.2), publication decisions, posture assignment, correction outcomes,
+   community-authority agreements, consent, rights and takedowns. Each role's
+   holder, and the escalation route.
+2. **Funding.** Every funder, the amount band, the period, and any condition
+   attached. **Conditions are published verbatim or the funding is declined.**
+3. **Conflicts.** Where a funder, board member or partner is also a counterparty
+   in the Obligations Register (§11.1) — a collection the institution is
+   criticising or requesting access from — the overlap is declared on the
+   relevant exhibit, not only in a distant governance page.
+4. **The independence rule.** No funder, partner, government body or donor has
+   any route to alter a claim's status, remove a claim, block a correction, or
+   veto a right-of-reply publication. Because status is derived from evidence
+   and retrieval (§3.2), the rule is partly enforced by the data model rather
+   than by policy alone — which is the strongest form available to a small
+   institution.
+5. **What has been asked for and refused.** Attempts to influence content are
+   recorded as obligation rows and disclosed, with the same caution and open
+   decision as §11.1's negative states (**D-025**).
+6. **Sunset and succession.** What happens to the evidence base, the identifiers
+   and the consented material if the institution stops operating: identifier
+   resolution, archival deposit, and the consent positions that survive it.
+   Because §2.1 promises identifiers resolve forever, an institution with no
+   succession plan has made a promise it cannot keep. The plan is **D-028**.
+
+### 11.8 Rights
+
+#### 11.8.1 Rights Block
+
+On every UEO: `holder` · `rights_status` · `licence` · `licence_source` ·
+`credit_line` (as required by the holder) · `permitted_surfaces[]` ·
+`permitted_uses[]` · `expiry` · `clearance_evidence` (`mk:evd:`) ·
+`territorial_limits` · `notes`.
+
+`rights_status` ∈ **cleared · licensed · public-domain · fair-dealing-asserted ·
+holder-permission-pending · refused · unknown · consent-governed**.
+
+#### 11.8.2 Rules
+
+- **No media publishes at `unknown`.** The rights placeholder (§7.1, item 6) is
+  used instead, stating what exists, where, and why it is not shown.
+- **Clearance is evidenced, not asserted.** A clearance row points at the
+  correspondence or licence document.
+- **Public-domain claims are jurisdictional and are stated as such**, with the
+  reasoning and territory.
+- **`fair-dealing-asserted` is a legal position, is labelled as one, and names
+  the jurisdiction and the ground.** Whether the institution asserts it at all is
+  a decision with legal exposure and is **D-029**.
+- **Rights are per-surface.** Cleared for an exhibit is not cleared for a
+  downloadable export, a classroom pack or a third-party reuse licence.
+- **Credit is not optional and travels with the object** into exports.
+- **Consent-governed material is not rights-governed** and does not appear under
+  a reuse licence unless the consent record says so (§11.4).
+
+#### 11.8.3 Licence on the institution's own output
+
+Two separate licences, stated separately:
+
+- **The evidence base** — claims, relationships, statuses, locators, absences,
+  registers — under an open licence, because §5.1's whole argument is that people
+  who distrust the institution must be able to check it.
+- **Media** — commissioned photography, illustration, audio — under whatever
+  terms its rights and consent positions permit, per item.
+
+Which open licence the evidence base carries is **D-030**.
+
+### 11.9 Accessibility
+
+**Standard.** WCAG 2.2 AA as the floor across every surface, including the
+Atlas, PROVE IT, the children's investigation and classroom mode. AA is a floor,
+not a target: the requirements below exceed it where the institution's own
+content demands it.
+
+**Requirements specific to this institution:**
+
+1. **Every visual evidence display has a non-visual equivalent that carries the
+   same evidential content** — including status, attestation mode and
+   uncertainty. An Atlas view has an accessible alternative that is not "a list
+   of sites" but a structured, filterable, exportable table carrying what the map
+   encodes, including the exclusion set and the unknown zones. This is the
+   `Data/interactive` asset class's "accessible SVG/map, legend, mobile
+   alternative, downloadable table" (`INHERITED-UNVERIFIED`) restated as one
+   component built once, not fourteen assets — the correction `SCHEMA.md` §4
+   makes for that class.
+2. **Uncertainty is never encoded by colour alone**, and never by opacity alone.
+   Status, attestation mode and strength each carry a non-colour channel — shape,
+   pattern, label, or text. The most important information this institution
+   displays is exactly the information most often carried by a faint dotted line.
+3. **Alt text is evidential, not decorative.** For an evidence image, alt text
+   describes what is visible, separately from what it is interpreted to be, and
+   states the `is_primary` step (§2.5). This is a required asset-register field
+   already; here it is specified as *what it must contain*.
+4. **Original scripts are rendered as text, not images**, with correct language
+   and script attributes so screen readers and search reach them, and with a
+   stated font fallback. Where a script has no adequate digital support, that is
+   recorded as a limitation, not hidden by a picture of the text.
+5. **Motion.** Any Atlas animation (§8.5) honours reduced-motion preferences with
+   a full static equivalent that carries the same transitions. No content is
+   available only in motion.
+6. **Reading.** Long-argument surfaces meet the Reading Room's `Avoid` — *"no
+   visual fatigue"* — with genuine measure, spacing and contrast control, and a
+   plain-language summary on every exhibit that carries the same statuses as the
+   full text.
+7. **Low-bandwidth and offline.** Everything printable and exportable (§10.5.2);
+   the evidence tables usable without the interactive layer.
+8. **Accessibility is a release gate**, one of the seven the workbook's Summary
+   sheet already carries (`INHERITED-UNVERIFIED`), and failures are logged like
+   any other defect.
+
+### 11.10 Multilingual architecture
+
+#### 11.10.1 Three different language problems, not one
+
+The institution must not conflate them, and most museum software does:
+
+1. **Language of the interface** — the shell the visitor navigates in.
+2. **Language of the record** — the language the institution writes its claims,
+   assessments and notes in.
+3. **Language of the evidence** — the language and script of the source itself,
+   which is never translated away and never substituted.
+
+Each object carries its own language and script metadata for (2) and (3)
+separately (§2.3, `language_of_record`), and the interface language (1) never
+changes either.
+
+#### 11.10.2 Requirements
+
+- **Original script is primary; transliteration is an addition.** Never a
+  replacement, and the transliteration scheme is always named (§7.1). This holds
+  in search results, Atlas labels, exports and children's surfaces.
+- **Translations are attributed interpretations** with a translator and a date
+  (§6.5), and the Translation Block's alternatives are reachable wherever a
+  translated term does work (§3.8).
+- **The institution's own text is translated as *versions*, not as strings.** A
+  translated exhibit is a version with its own revision history and its own
+  translator, and a claim revised in one language is marked as
+  *translation-stale* in the others rather than silently diverging.
+- **A stale translation says it is stale** and offers the current version in the
+  source language. It is not silently served as current.
+- **Search reaches across script and transliteration** (§7.2) and states which
+  form it matched.
+- **Language is not a proxy for identity anywhere in the product.** Offering an
+  interface in a language makes no claim about who the visitor is, and no
+  surface may vary its historical content by interface language. Two visitors in
+  two interface languages see the same claims with the same statuses.
+
+#### 11.10.3 Which languages
+
+Tamil and English are the two the project's own material presupposes. Beyond
+those, the choice is the owner's and interacts with D-010 and Release 1 scope
+(`OWNER-DECISIONS.csv` D-008). Recorded as **D-031**.
+
+#### 11.10.4 The maintenance rule
+
+**The institution does not offer a language it cannot maintain.** A language
+version whose claims fall behind the source language is worse than no version,
+because it publishes superseded and rejected material under the institution's
+name to the readers least able to check it against the current record. Adding a
+language is a standing commitment, and the commitment — who maintains it and at
+what latency — is published with it.
