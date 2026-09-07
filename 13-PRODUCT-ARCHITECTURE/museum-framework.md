@@ -1441,3 +1441,211 @@ decisions.
    quality, recency of revision and structural centrality. It may **not** rank by
    status, strength or evidential weight, because a ranked list is read as an
    argument. Sorting by status is available as an explicit, labelled sort.
+
+---
+
+## 8. Artifact Atlas v2
+
+### 8.1 What v2 changes
+
+The audited v1 page is `artifact-atlas`, titled *"Artifact Atlas: 175 Ancient
+South Asian Sites Mapped"*, MVP rank 3, `Keep`, `Low` risk, with 88 estimated
+bibliography entries against 8 words of prose and no Claim Risk row — all
+`INHERITED-UNVERIFIED`. The schema assessment's collision A records that the site
+count 175 is one side of an open contradiction (`03-REGISTERS/inherited-claims.csv`
+`IH-250`, X-01: 140 / 150 / 158 / 167→175 / 194 / 199) *"adopted as settled fact,
+put in a page title, and rated low-risk"*.
+
+v2's first structural change follows directly:
+
+> **The Atlas has no headline count.** A count is a claim (`mk:clm:`) with a
+> status, a definition of what is being counted, an inclusion rule and a
+> falsifier. It is displayed as a claim, inside the Atlas, with its status
+> visible, or it is not displayed. The number of sites in view is a property of
+> the current filter and is always shown *with* the filter, never as a title.
+
+`DECISIONS-NEEDED.md` D-006 asks the owner what the atlas site count is. Under
+this specification the Atlas can be built and shipped before that is answered,
+because it never asserts a total in its own voice.
+
+The other changes from v1 to v2: every mapped thing is a UEO or a Relationship
+Object rather than a map pin; every pin carries status and attestation mode;
+unknown zones are drawn; the exclusion set is exportable; and the Atlas gains the
+language-movement mode (§8.3–§8.7).
+
+### 8.2 The Atlas as a view over the object graph
+
+The Atlas is not a dataset. It is a **projection of the object graph onto space
+and time**, and it may display nothing that is not an object with a status.
+
+- **Spatial input:** Place Assertions (§2.8), typed. The map must let the visitor
+  see and filter by place type; a findspot and an attributed provenance are never
+  the same marker.
+- **Temporal input:** Date Assertions (§2.7), typed. **The time control names the
+  date type it is filtering on** and refuses to mix types silently. Where an
+  object has several assertions of the chosen type, it appears across the union
+  of their spans with the uncertainty drawn.
+- **Edges:** Relationship Objects (§4), with §4.5's display rules and §4.4's
+  transitivity ban.
+- **Uncertainty is geometry.** Points, polygons, named regions and
+  `zone-unknown`. A precise-looking dot for an approximate location is a false
+  statement made in a visual grammar, and is a bias-log finding if published.
+- **Unknown is drawn.** Constitution §13: *"Unknown regions must remain visibly
+  unknown."* Unknown zones are a rendered layer, not the absence of a rendered
+  layer. Blank map is forbidden as a representation of unknown, because blank
+  reads as empty and empty reads as nobody.
+- **Coverage is drawable.** Excavation and survey coverage (§6.3) is available as
+  an overlay, so a visitor can see whether a cluster of finds is a cluster of
+  ancient activity or a cluster of modern digging. This overlay is what makes
+  every absence argument on the map checkable.
+- **The exclusion set is first-class.** Any filtered view can report and export
+  what it excluded and why (§5.2).
+
+### 8.3 The language-movement mode
+
+Constitution §13: *"The language feature must combine time and geography without
+turning artifacts into language labels."*
+
+That sentence is the mode's specification and its principal risk in one line. The
+mode exists because language history is a movement through time and space; it is
+dangerous because the visible objects in that space are pots, graves, seals and
+metals, and the easiest thing a map can do is colour a pot by a language. The
+architecture prevents this in three places: the four-state artifact response
+(§8.6), the ban on transitive bridges (§4.4), and the rule that no layer may
+recolour another layer's objects (§8.4).
+
+**Settings.** The visitor moves through seven settings, each a Place with its own
+geometry, uncertainty and dated relationships:
+
+1. steppe / Sintashta-related settings
+2. Oxus / BMAC
+3. Afghanistan and Helmand
+4. Balochistan and the Indus sphere
+5. Punjab
+6. Kuru regions
+7. Gangetic settings
+
+Two properties are required of the setting list. **It is not a route.** The
+settings are places the visitor can move through in any order, and the interface
+must not present them as an itinerary with an arrow, because the itinerary is
+itself the contested claim. And **the settings have fuzzy, dated, overlapping
+extents**: each is drawn with its uncertainty and its extent may differ by
+period, so "Punjab" at one date and at another are not the same polygon.
+
+Whether the mode nonetheless offers a *guided* sequence alongside free
+navigation, and if so what its default order is and what it is claiming, is an
+owner decision — **D-021**.
+
+### 8.4 The eleven layers
+
+Every layer is independently switchable, independently sourced, and independently
+statused. Constitution §13 lists them; this section specifies what each one *is*
+in terms of the object model, and what it may not do.
+
+| # | Layer | What it draws | Governing constraint |
+|---|---|---|---|
+| 1 | **SOUNDS** | Attested and reconstructed sound correspondences and changes, located and dated where the evidence permits | Every item carries `attestation_mode`. A reconstructed change is never drawn as an event with a place unless the localisation is itself a statused claim. |
+| 2 | **WORDS** | Lexemes (`mk:lex:`) with their attested occurrences, plotted at the place and date of the *attestation*, not of the supposed speaker | An occurrence is a fact about a text; the text has a findspot and a composition place, which may differ. Both are shown. |
+| 3 | **GRAMMAR** | Morphological and syntactic features, including areal features | Features are properties of attested varieties, never of populations. Convergence (`convergent-with`) is drawn distinctly from inheritance (`reconstructed-ancestor-of`). |
+| 4 | **NEIGHBOURS** | Who was adjacent to whom, when — the contact-possibility layer | This layer establishes *setting only*. Objects on it can never raise a linguistic claim above `PROVISIONAL` by themselves; it is the map form of the `contextualises` role (§3.3). |
+| 5 | **MATERIALS** | Material types, sources, techniques and their movement | **May not be recoloured by any linguistic layer.** A material distribution is a material distribution. |
+| 6 | **RITUALS** | Attested ritual practices, their evidence and their dates | Practice is a `culture`-domain object. Any link to language, ancestry or polity is a bridge (§4.4). |
+| 7 | **TEXTS** | Texts (`mk:txt:`) at their composition, attestation, redaction and manuscript-witness places, each as a separate typed assertion | A text plotted at one point is a lie about transmission; the layer draws the spread. |
+| 8 | **ANCESTRY** | Genetic samples and ancestry components, at sample sites, with dates and laboratories | **Components are not peoples, languages or moral categories** (Overlap cluster 5, `INHERITED-UNVERIFIED`). Component names appear with their defining publication and its date; the layer may not be coloured to match any language layer. |
+| 9 | **ARCHAEOLOGICAL CULTURES** | Named archaeological cultures with their defining assemblages, dates and the history of their naming | The naming history is part of the object: who named it, when, on what assemblage, and whether the name has since been contested. A culture is a typological construct, and the layer says so on its face. |
+| 10 | **POLITICAL CONTROL** | Dated control relationships over places | Constitution Step 3: *"Imperial control does not prove language use."* This layer may not be used as a proxy for any other layer, and the interface states this where the two are shown together. |
+| 11 | **UNKNOWN SPEECH ZONES** | Regions and periods for which there is no evidence of what was spoken | **Not a background. A drawn layer with its own sources** — the Absence records (§3.7) that establish why the zone is unknown, typed (`NOT EXCAVATED`, `NOT PRESERVED`, `NOT RECOGNISED`…). This is the layer that makes the other ten honest. |
+
+**Cross-layer rules.**
+
+- **No layer may recolour, reshape or relabel another layer's objects.** Layers
+  overlay; they do not modify. This is the technical statement of "without
+  turning artifacts into language labels."
+- **Any two layers shown together produce a *correlation*, and the interface says
+  so.** Where a visitor switches on ANCESTRY and WORDS, the surface states that
+  co-location is not a relationship and offers the statused bridges that do exist
+  between the two, with their mechanisms and rivals.
+- **Layer legends carry status distributions.** A layer whose contents are mostly
+  `HYPOTHESIS` looks different from one that is mostly `VERIFIED`, and the
+  difference is stated, not merely implied by a colour ramp.
+- **Layer 11 cannot be switched off** while any language layer (1, 2, 3) is on.
+  Turning off the unknown while displaying the known is how a language map
+  becomes a claim about a continent.
+
+Whether the eleven layers are grouped for the visitor (e.g. language / material /
+population / political) and what the default-on set is at first load are
+interface decisions with real interpretive weight, and are recorded as
+**D-022**.
+
+### 8.5 Transitions — the per-transition requirements of §13
+
+A **transition** is the mode's unit of assertion: a statused claim that some
+layer-state changed between settings, or within a setting across time. It is a
+`mk:clm:` with a `mk:rel:` spine, and the Atlas may not animate, draw or narrate
+any change that is not one.
+
+Constitution §13 requires every transition to identify ten things. Each is a
+required field; a transition with any of them empty cannot be displayed.
+
+| §13 requirement | Field | Specification |
+|---|---|---|
+| earliest evidence | `earliest_evidence` | `mk:evd:` + locator + Date Assertion. The *earliest* item, not a representative one, and if the earliest is contested, all contenders. |
+| evidence class | `evidence_classes[]` | from the nine (§2.3). Plural, because a transition supported by three classes is a different object from one supported by one, and the panel shows the breakdown. |
+| date range | `date_range` | earliest/latest with the **date type** named (§2.7) and the basis of each bound |
+| geography | `geography` | typed Place Assertions with geometry and certainty; `zone-unknown` permitted and drawn |
+| whether attested or reconstructed | `attestation_mode` | the five-value gradient (§2.6), not a binary — §13's phrasing is a floor, and a `proposed` donor is not a `reconstructed` proto-form |
+| possible mechanisms | `mechanisms[]` | each a named process — migration, trade, elite dominance, exogamy, prestige borrowing, areal convergence, inheritance, independent innovation — with the evidence that the mechanism was available in that place and period. **Non-empty.** |
+| alternative explanations | `alternatives[]` | rival transitions, each independently reconstructed (Step 8) and displayed at equal weight to the primary; **the null explanation is always among them** |
+| confidence | `confidence` | derived from the claim's status, independent-source count and evidence-class breadth; **displayed with its inputs**, never as a bare number or a bare word |
+| source | `sources[]` | `mk:src:` rows resolving in `02-SOURCES/access-ledger.csv`, with locators, retrieval dates and independence groups (§3.5) |
+| what would change the interpretation | `falsifiers[]` | §3.9. **Non-empty.** |
+
+**The transition panel.** Selecting a transition opens a panel that shows all ten,
+in this order, with alternatives adjacent to the primary rather than below a
+fold. Two additional requirements:
+
+- **The panel is the same object as the export.** What the panel shows is exactly
+  what §5.2 exports for that transition. There is no display-only prose.
+- **Animation is subordinate to the panel.** If the mode animates movement across
+  the map, the animation may only render transitions that pass the ten-field
+  check, and a transition whose `attestation_mode` is `proposed` or whose
+  `confidence` is low must be visually distinguishable while moving — not only
+  when clicked. Motion is persuasive; unlabelled motion is an argument the
+  institution has not made.
+
+Whether the mode animates at all, or presents transitions as static compared
+states, is **D-023**: it is a real interpretive choice, not a styling one.
+
+### 8.6 Clicking an artifact — the four states
+
+Constitution §13 requires that clicking an artifact state whether it supplies
+linguistic evidence, provides only a possible contact setting, demonstrates
+material movement, or provides no language evidence. This is specified as a
+**required, exhaustive, mutually exclusive four-value field on every artifact in
+the language-movement mode**, computed from the artifact's Evidence Links and
+checked editorially:
+
+| State | Condition | What the interface says and does |
+|---|---|---|
+| **Supplies linguistic evidence** | the UEO has an `attests` or `supports` link to a claim in the language domain — normally because it bears writing, or a form on it is linguistically analysable | Shows the linguistic claim, the reading, the edition, and the alternatives. The reading is itself a claim with a status; a disputed reading does not upgrade to evidence. |
+| **Provides only a possible contact setting** | its links to language claims are `contextualises` only | Says so in those words. Shows what contact it makes possible, and states explicitly that possibility of contact is not evidence of contact. Cannot contribute to a transition's `earliest_evidence`. |
+| **Demonstrates material movement** | it supports a `same-material-source-as`, `traded-along` or `made-at`≠`found-at` relationship | Shows the movement of the material and states that the movement of a thing is not the movement of a language or of a people. Offers the statused bridges, if any exist. |
+| **Provides no language evidence** | none of the above | Says so plainly, and stays on the map. **This state must be common and must be visible.** An Atlas in which every artifact turns out to be linguistically meaningful is an Atlas that has been curated into an argument. |
+
+The state is displayed on hover/selection, not hidden in a detail pane, and it is
+a search facet (§7.2).
+
+### 8.7 What the Atlas may never do
+
+A short list, because these are the failure modes the mode invites, and they
+correspond to the Living Signal Field's `Avoid` — *"no gaming HUD or arbitrary
+links"*:
+
+1. Colour an artifact, culture or region by a language.
+2. Draw an edge without a status and a strength legend.
+3. Animate a movement that is not a statused transition.
+4. Render an approximate location as a precise point.
+5. Render unknown as blank.
+6. Show a total in its own voice.
+7. Let a filter silently drop the weak evidence to produce a cleaner picture.
+8. Derive an A→C relationship across domains from A→B and B→C.
