@@ -166,43 +166,68 @@ A current route inventory for the live site is a fourth input, needed for
 D-009 and for Step 13's self-contradiction check. The site lives in
 `melakeela/site`, which this session cannot read.
 
-### Update 2026-09-07 — site-review running list: delivery attempted, not received
+### Update 2026-09-07 — the two site-review running lists are now committed; the backlog is not
 
-A task dated 2026-09-07 (branch `claude/site-review-reconciliation-a624jt`)
-instructed that **two versions of the site review running list** were attached,
-to be committed unchanged to `01-INHERITED/site-review/` under their distinct
-filenames, then reconciled against each other and mined for `LS-` and `COR-`
-items.
+Two versions of the site review running list are now in this repository at
+`01-INHERITED/site-review/`, committed byte-for-byte as supplied:
 
-**No files reached the session container.** Both attachment mount points
-(`/mnt/attach`, `/mnt/user-data/uploads`) were empty; a filesystem-wide search
-for `*MELAKEELA*`, `*RUNNINGLIST*` and `*RUNNING-LIST*` returned nothing; and
-`git log --all --diff-filter=A` shows no such file added on any branch. The
-files were named in the instruction but not transmitted with it.
+| File | Version | Lines | Standing |
+|---|---|---|---|
+| `MELAKEELASITEREVIEWRUNNINGLIST.md` | **12** | 1349 | current |
+| `MELAKEELASITEREVIEWRUNNINGLIST2.md` | **10** | 1116 | superseded |
 
-Nothing was committed to `01-INHERITED/site-review/`, no
-`RUNNING-LIST-RECONCILIATION.md` was written, and no `LS-`/`COR-` rows were
-added to `03-REGISTERS/inherited-claims.csv`, which stands at 369 rows
-(`IH-001`–`IH-369`). Reconstructing any of those three products from the
-document titles alone would have produced exactly the complete-looking,
-unsourced artefact this entry was opened to prevent.
+**The filename numbering is inverted: the file marked `2` is the earlier
+document.** Version established from each file's own change log. Version 12
+supersedes Version 10 — it contains it byte-for-byte through line 899, then
+adds sections 23 and 24 and rewrites five passages. They are not parallel
+records. `01-INHERITED/site-review/RUNNING-LIST-RECONCILIATION.md` gives the
+full comparison.
 
-Two things are nonetheless now on the record:
+Their coverage items are registered: `03-REGISTERS/inherited-claims.csv` rows
+`IH-370`–`IH-438`, being 51 `LS-` and 18 `COR-` items at
+`INHERITED-UNVERIFIED`. The register stands at 438 rows.
 
-1. **The owner states the two site-review files are not the 89-item backlog.**
-   Committing them would therefore not have closed the gap this entry names.
-   `06-BACKLOG/BACKLOG-COVERAGE.csv` remains blocked, and owner decisions
-   D-008, D-009 and D-011 remain blocked with it.
-2. **The running list is intended for the repository**, at
-   `01-INHERITED/site-review/`, in two distinct versions rather than one. This
-   supersedes the singular `MELAKEELASITEREVIEWRUNNINGLIST.md` referred to in
-   the body of this entry above; the reconciliation between the two versions
-   is outstanding work, not a settled question.
+**This does not close this entry.** Three things follow, and the first is the
+reason the entry stays open:
 
-**Decision unchanged, with one addition:** re-attach the two site-review
-running-list versions so the delivery can be retried, *and* commit the four
-documents in the table above, or say they are superseded. The backlog gap and
-the running-list gap are separate; closing the second does not close the first.
+1. **Neither file is the 89-item backlog.** The string `89` does not occur in
+   either document, and neither contains a section answering to "MelaKeela.com
+   v2 — Master Research, Product & Institutional Backlog". The owner states
+   this, and the documents confirm it. `06-BACKLOG/BACKLOG-COVERAGE.csv`
+   remains blocked in full, and owner decisions **D-008, D-009 and D-011 remain
+   blocked with it**. The 51 `LS-` and 18 `COR-` items are the running list's
+   own coverage series; they are not the 89 items, and coverage rows must not
+   be written from them.
+
+2. **The prompt-pack is still absent, and it is larger than the table above
+   records.** Version 12 names five companion files. Two are not in this
+   entry's request list and none is in this repository:
+
+   | Named in Version 12 | In the table above | Present |
+   |---|---|---|
+   | `MELA-KEELA-CLAUDE-FULL-SEQUENCE.md` | yes | no |
+   | `MELA-KEELA-LANGUAGE-RESEARCH-PROMPTS.md` | yes | no |
+   | `MELA-KEELA-CLAUDE-LIVE-SITE-AUDIT-PROMPT.md` | yes | no |
+   | `MELA-KEELA-CLAUDE-SAY-NEXT-RESEARCH-PROMPT.md` | **no — add** | no |
+   | `MELA-KEELA-WHO-MADE-THE-PAST.md` | **no — add** | no |
+
+   §16 of the constitution requires reading every file in the prompt-pack. Five
+   are named; none is readable.
+
+3. **The body of this entry above is now partly superseded.** It refers to
+   `MELAKEELASITEREVIEWRUNNINGLIST.md` in the singular as "the only related
+   material available". There are two, ten and twelve versions deep, and the
+   later one is present. The paragraph is left standing rather than edited,
+   under the rule that correction history stays visible.
+
+**Decision, restated:** supply the 89-item v2 backlog and the five companion
+prompt-pack files, or say they are superseded. The running-list gap is closed;
+the backlog gap is not, and closing the first did not close the second.
+
+A current route inventory for the live site remains outstanding. Version 12's
+§23.1 contains a preliminary public-site reconciliation, but it is a prior
+thread's reading, not a retrieval, and it enters as `INHERITED-UNVERIFIED` like
+everything else in the file.
 
 
 ## D-004 — `before-the-indus` is inside the MVP set and marked withhold-from-MVP
