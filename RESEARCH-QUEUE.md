@@ -22,15 +22,26 @@ R1–R19). Ordering below the first item is owner decision **D-008** in
 3. **Controller amendment.** Install the methodology, reconcile it against
    the controller, seed the decisions register and this queue. No research
    begins until it is reviewed.
-4. **Prompt-pack intake.** The five files at `00-CONTROLLER/prompt-pack/`,
+4. **Prompt-pack intake.** The six files at `00-CONTROLLER/prompt-pack/`,
    committed unchanged 2026-09-07, inventoried in `PROMPT-PACK-INVENTORY.md`,
    and reconciled into this queue. *(This change.)* R1–R19 below are now
-   defined rather than named. Nine conflicts with the controller are recorded
-   as `PP-1` to `PP-9`; `PP-1` is open as **D-035** and gates the packets.
+   defined rather than named. Conflicts with the controller are recorded as
+   `PP-1` to `PP-14`; `PP-1` is open as **D-035** and gates the packets,
+   `PP-10` as **D-039**. All five companions named in running-list Version 12
+   are now present.
+5. **Register intake for Who Made the Past.** `MELAKEELAWHOMADETHEPAST.md` is
+   the only file in the pack that makes historiographical assertions rather
+   than issuing instructions — roughly thirty cited sources, sixteen sections.
+   Its claims enter `03-REGISTERS/inherited-claims.csv` at
+   `INHERITED-UNVERIFIED`, and its dependent citations (publisher abstracts,
+   a review standing in for a debate, institutional self-descriptions, all
+   flagged as such by its own §15) enter `02-SOURCES/dependency.csv` when the
+   sources are opened. Not started. The register stands at 369 rows, all from
+   `01-INHERITED/claude-project-handoff.md`.
 
 ## Blocked on inputs
 
-5. **Backlog reconciliation** — `06-BACKLOG/BACKLOG-COVERAGE.csv`, one row
+6. **Backlog reconciliation** — `06-BACKLOG/BACKLOG-COVERAGE.csv`, one row
    per item 1–89 with a destination, deliverable, hold or reasoned
    rejection. **Partly unblocked 2026-09-07.**
    `00-CONTROLLER/prompt-pack/MELAKEELACLAUDECORRECTIVECONTROLLERv2.md`
@@ -41,7 +52,7 @@ R1–R19). Ordering below the first item is owner decision **D-008** in
    route inventory, and for `prior_research_available`, which needs the
    packets. Whether Part IV's list *is* the backlog or a digest of a longer
    document is the narrowed question at `DECISIONS-NEEDED.md` D-014.
-6. **Packets R1–R19.** No longer blocked for want of definitions — those
+7. **Packets R1–R19.** No longer blocked for want of definitions — those
    arrived on 2026-09-07 and are below. Now blocked on three things instead:
    **D-035**, whether a live public-site audit gates the first packet, since
    every packet is specified to receive an `R#-current-public-coverage.md`
@@ -158,6 +169,46 @@ direction, and the gaps are work, not bookkeeping.
   9 set. R9–R19 were added in running-list Versions 10–12 and their
   LS-22–LS-51, COR-01–COR-18 and RV-01/RV-02 assignments live in
   `01-INHERITED/site-review/MELAKEELASITEREVIEWRUNNINGLIST.md`, not in the pack.
+- **A subject with neither:** the **racialization of "Aryan"**.
+  `MELAKEELAWHOMADETHEPAST.md` §9 makes it a full programme — separating an
+  ancient self-designation, a philological classification, an ethnological
+  claim and a racial-political category, as "a branching history, not an
+  inevitable chain" — and §2 fixes the discipline in both directions: document
+  the racialization through specific actors and institutions, and reject an
+  inevitable Sanskrit-to-Holocaust chain. No domain, no packet. It also sets a
+  learning requirement the controller does not state anywhere: no interface
+  that asks children to sort human beings into racial types, awards points for
+  extremist categories, or turns persecution into an aesthetic spectacle.
+  Writing this trap statement is the most urgent of the five.
+
+### What Who Made the Past supplies
+
+It defines no packet, but it is a named input to **R8** — which is instructed
+to cross-link its contribution model "rather than creating a separate
+incompatible schema", an instruction that was not executable until 2026-09-07 —
+and it bears substantively on several others:
+
+| Packet | What it takes from `MELAKEELAWHOMADETHEPAST.md` |
+|---|---|
+| R8 | The contribution/transmission data model (§10); the attribution-history method (§8) |
+| R2, R6 | §6's Pāṇini against the *Technē Grammatikē* — compare intellectual tasks, not handbooks; formal structure is not civilizational superiority and Sanskrit was not a programming language |
+| R7, R15 | §6's *Yavanajātaka* and Babylonian-methods-in-Greek-astronomy cases: a confident transmission chronology resting on a fragile textual reconstruction |
+| R11 | §4's Indus resolution problem and Green's egalitarian argument, marked as an interpretation to examine rather than proof |
+| R13 | §10's custody-versus-transmission split and the museum coverage audit |
+| R5, R4 | §6's rule that every comparison declares whether it concerns genealogy, borrowing, institutional function or later classification |
+
+It is also the fullest statement of **domain V** anywhere in the material, and
+it carries most of constitution §12's product-specification subject list in
+usable form: F1–F8, the five collections, the eight-record data model, evidence
+roles, and a build sequence ordered by dependency rather than page count.
+
+Three of its rules are adopted here regardless of any decision, because they
+restate rules this repository already runs: **bridges are claims** (resemblance
+is not transmission, priority is not influence, shared vocabulary is not a
+shared institution, population affinity is not language or identity); the
+**evidence-role vocabulary** for the shared contract's undefined `evidence_role`
+field; and the prohibition on invented quantities — no visibility score, no
+survival funnel presented as data, no civilizational ownership percentage.
 
 ### Before the packets: the live-site audit question
 
@@ -221,6 +272,11 @@ or research holds. Constitution §11.
   pack's Stage 6–9 release and build workflow belongs here, minus the
   Claude Chat / Claude Code division of labour, which
   `00-CONTROLLER/CONTROLLER-RECONCILIATION.md` §4 has already retired.
+  `MELAKEELAWHOMADETHEPAST.md` §11–§14 supplies most of its content: F1–F8
+  with acceptance criteria, the five collections, the eight-record model, and
+  §14's research operations — case dossier before feature, review matched to
+  claim type, community authority with documented scope and no unlimited veto,
+  and payment for expertise and participation.
 - The language-movement Artifact Atlas specification (§13). R14 is its
   evidence layer and R12, R13, R15 and R18 supply its edges; none has run.
 - Page and exhibit briefs.

@@ -283,6 +283,38 @@ be run to that instruction without it.
 `MELA-KEELA-WHO-MADE-THE-PAST.md`, and the 89-item backlog document if Part IV
 is a digest.
 
+### Update 2026-09-07 — Who Made the Past arrived; item 3 closes
+
+`MELAKEELAWHOMADETHEPAST.md` was attached and is committed unchanged,
+md5-verified, at `00-CONTROLLER/prompt-pack/`. **All five companions named in
+running-list Version 12 are now present.** Item 3 above closes: R8's
+instruction to "cross-link the documented contribution model in Who Made the
+Past? rather than creating a separate incompatible schema" is executable.
+
+Three things follow that are worth recording here rather than only in the
+inventory.
+
+1. **It is not a prompt.** The other five files instruct an agent. This one
+   makes historical and historiographical assertions and cites roughly thirty
+   sources with live URLs, so its content enters
+   `03-REGISTERS/inherited-claims.csv` at `INHERITED-UNVERIFIED`, not merely
+   the controller. Its §15 source guide is unusually candid about its own
+   limits — it separates full texts from publisher abstracts and says museum
+   accounts "are not independent evaluations of institutional success" — but
+   candour is not retrieval, and nothing in it is promoted by being committed.
+   Register intake is queued, not done.
+2. **It opens a subject with neither packet nor domain.** §9 makes the
+   racialization of "Aryan" a full programme, insisting on a branching concept
+   history rather than "an inevitable Sanskrit-to-Holocaust chain".
+   Constitution §4 has no domain for it, no R packet covers it, and §9 sets a
+   learning requirement — against interfaces that ask children to sort human
+   beings into racial types or turn persecution into an aesthetic spectacle —
+   that nothing in the controller currently states.
+3. **It raises D-039**, on whether the register keeps one `status` column.
+
+**Status unchanged at `PARTIALLY-SATISFIED`.** Still needed: an answer on
+Part IV, and the 89-item backlog document if Part IV is a digest.
+
 ---
 
 # Decisions raised by the prompt-pack intake
@@ -343,6 +375,30 @@ Two things make this live rather than academic.
 
 This is not a question the record can settle. Reinstating the gate and
 ratifying its removal are both programme-ordering decisions.
+
+### Addendum 2026-09-07 — a third voice, which does not settle it
+
+`MELAKEELAWHOMADETHEPAST.md` §13 works from what it calls "a local audit
+snapshot" and refuses to treat it as authoritative:
+
+> It is not a verified inventory of the current production site or current
+> development branch. The following are integration candidates, not claims that
+> a route is currently missing or that an observed issue remains live.
+> ... Routes known from previous reports but absent from the local snapshot
+> require reconciliation against the actual branch and deployment. Do not
+> recreate them merely because they were not in one working folder.
+
+This cuts across the question rather than answering it. It agrees with
+`MELAKEELACLAUDELIVESITEAUDITPROMPT.md` that an uninspectable route is unknown
+rather than absent — the same rule under a different name — but it treats the
+**branch**, not the live site, as what a snapshot must be reconciled against,
+which is closer to Version 10's order than Version 11's. Read it as a third
+position: neither inventory settles anything alone, and the failure mode it
+names — recreating a page because one working folder lacked it — is the failure
+mode the audit prompt names from the other direction.
+
+It does not change the finding above. The constitution still has no audit of
+either kind.
 
 **Decision:** reinstate the audit-first gate, ratify the constitution's
 demotion of it to Step 13, or replace it with a repository-side route
@@ -431,6 +487,63 @@ work list, the pack's required inputs are complete but for
 **Decision:** confirm that running-list Version 12 is the master work list, or
 name and commit the separate document.
 
+
+---
+
+## D-039 — One status column, or four axes?
+
+**Raised by:** prompt-pack intake, 2026-09-07
+**Category:** two consequential positions both remaining viable
+**Blocks:** the `03-REGISTERS/` schema and every register built on it
+**Related:** D-019; `PROMPT-PACK-INVENTORY.md` PP-10, PP-11
+
+`CLAUDE.md` is categorical: "Every claim carries exactly one status. No claim
+is unstatused," over `VERIFIED · PROVISIONAL · HYPOTHESIS ·
+INHERITED-UNVERIFIED · REJECTED · SUPERSEDED · HOLD`.
+
+`MELAKEELAWHOMADETHEPAST.md` §10 argues against exactly that design:
+
+> Do not implement one flat scale reading "documented, inferred, plausible,
+> contested, speculative, unknown." A claim can be well documented and
+> contested. A document can exist while its interpretation is uncertain.
+> Record at least **evidence basis**, **assessment of the inference**,
+> **disagreement**, and **review status** separately; simplify their
+> presentation in context.
+
+**The objection has force.** The repository's seven values conflate at least
+three axes: `VERIFIED` and `PROVISIONAL` grade the evidence basis, `HYPOTHESIS`
+grades the inference, `HOLD` is a review state. None of them can say "well
+documented and contested" — which is the ordinary condition of most of what
+this evidence base will hold, and precisely the condition the governing
+principle exists to keep visible. An `INHERITED-UNVERIFIED` row whose source is
+known to be dependent has no way to record that in `status` either.
+
+**The single column is also load-bearing.** It is what makes the inheritance
+rule enforceable: one field decides whether a claim may be built on. A
+four-column scheme invites a row reading `documented / strong / disputed /
+unreviewed` that is thereby quietly promoted without a retrieval event ever
+being logged — which is the failure the rule exists to prevent, arriving
+through the schema instead of through argument.
+
+A third option exists: keep `status` as the gate and add the other three axes
+as columns beside it, so the gate stays single while the description gets
+richer. That costs a migration of the existing 369 rows and every register
+built since, and it is not obviously better than carrying them in `notes`.
+
+Two smaller things ride on this decision. §10's **evidence roles** (`supports ·
+contradicts · contextualizes · dates · localizes · identifies · cannot
+discriminate`) are adopted regardless — they type the evidence-to-claim
+relation, not the claim, and they fill a field the shared research contract
+requires but never defines. §14's **claim lifecycle** (`draft · checked ·
+reviewed · published · revised · withdrawn`) is an editorial workflow state
+that does not belong in `status`, and is a candidate for the review column a
+four-axis schema would need.
+
+Until this is answered the single `status` column stands, and the four axes are
+carried in `notes` where a row needs them.
+
+**Decision:** keep one `status` column, split into four separately recorded
+axes, or keep `status` as the gate and add the other three beside it.
 
 # Decisions raised by the curatorial audit v1.1 schema review
 
