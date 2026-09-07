@@ -59,7 +59,7 @@ hypotheses. It would be a methodological failure to let "we could
 measure Dravidian and could not measure Para-Munda" become "Dravidian is
 supported and Para-Munda is not". The measurement registers are
 therefore restricted to what was measured, and the hypothesis gate
-(`03-REGISTERS/domain-e-hypothesis-gate.csv`) records this hold as the
+(`03-REGISTERS/HYPOTHESIS-ELIGIBILITY.csv`) records this hold as the
 reason certain gate cells read `UNTESTED-HERE` rather than `FAIL`.
 
 ## Escalation
