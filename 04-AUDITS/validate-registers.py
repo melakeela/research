@@ -10,6 +10,11 @@ Checks:
   1. Every row's status is in the vocabulary.
   2. Every VERIFIED row has non-empty source_id, locator, retrieval_date.
   3. Every source_id resolves to a row in 02-SOURCES/access-ledger.csv.
+     A source_id cell may name several sources separated by ";" — the
+     source-independence rule requires a claim to cite every source behind
+     it — and EACH one must resolve. A cell was previously matched whole
+     against the ledger, so any multi-source cell failed no matter what it
+     contained; splitting makes the check do its job per component.
   4. Every claim_id is unique within its file.
   5. Every D- reference in the tree resolves to exactly one row in
      09-DECISIONS/OWNER-DECISIONS.csv.
@@ -101,8 +106,10 @@ def check_register(path, ledger):
                 if col in fields and not (row.get(col) or "").strip():
                     fail(f"{rel}:{n}: VERIFIED row missing {col}")
             sid = (row.get("source_id") or "").strip()
-            if sid and ledger and sid not in ledger:
-                fail(f"{rel}:{n}: source_id {sid} not in access ledger")
+            if sid and ledger:
+                for one in (p.strip() for p in sid.split(";")):
+                    if one and one not in ledger:
+                        fail(f"{rel}:{n}: source_id {one} not in access ledger")
 
 
 def check_decision_refs(known):
