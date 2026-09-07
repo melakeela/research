@@ -227,14 +227,24 @@ not interrupt for anything that can wait for a release gate.
 
 **One identifier namespace.** `09-DECISIONS/OWNER-DECISIONS.csv` is
 authoritative for `D-` identifiers and for each decision's `status`. Every
-owner decision has a row there, blocking or not. A decision that blocks also
-gets a prose section in `DECISIONS-NEEDED.md`, and its CSV row's `detail_ref`
+owner decision taken *in this repository* has a row there, blocking or not.
+A decision that blocks also gets a prose section in `DECISIONS-NEEDED.md`,
+and its CSV row's `detail_ref`
 points at that section; the CSV never duplicates the argument and
 `DECISIONS-NEEDED.md` never allocates an identifier of its own. Allocate the
 next free `D-` from the CSV, never from the highest number you happen to see
 in a document. Renumbering is recorded in `09-DECISIONS/DECISION-ID-MAP.csv`,
 old identifier to new, and rows are never removed from it — a `D-` reference
 in an older file is resolved through that map.
+
+The owner decisions the inherited handoff recorded in prior chat threads are
+**not** in this namespace. They are written `HD-01` to `HD-20`, they stay
+`INHERITED-UNVERIFIED` in `03-REGISTERS/inherited-claims.csv`, and they get no
+`OWNER-DECISIONS.csv` row — a register row is a promotion, and only retrieval
+promotes. If the owner re-affirms one, allocate it a fresh `D-` then. Files
+under `01-INHERITED/`, and `00-CONTROLLER/RESEARCH-CONSTITUTION.md` which
+copies one verbatim, still spell them `D-01` to `D-20`; that is inherited text
+and is not corrected in place.
 
 ## Layout
 

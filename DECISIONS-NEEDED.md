@@ -31,6 +31,11 @@ to D-032, D-033 and D-034; the CSV rows kept their numbers, because
 its replacement is recorded in `09-DECISIONS/DECISION-ID-MAP.csv`, which is
 how a `D-` reference in a document written before that date is resolved.
 
+A third series exists and is not part of this namespace. The inherited handoff
+numbered its own owner decisions `D-01` to `D-20`; those are now written
+`HD-01` to `HD-20`, they stay `INHERITED-UNVERIFIED`, and they are never
+escalated here. Nothing in this file is an `HD-` decision.
+
 ---
 
 ## D-001 — Widen the network egress allowlist
