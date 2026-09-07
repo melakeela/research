@@ -105,7 +105,7 @@ R1–R19). Ordering below the first item is owner decision **D-008** in
     every packet is specified to receive an `R#-current-public-coverage.md`
     from it; **D-009**, the route inventory that audit would produce, which
     this repository cannot presently generate; and, for R1 specifically,
-    **D-044**, the model-run budget its experiment requires. R1 is first in
+    **D-050**, the model-run budget its experiment requires. R1 is first in
     the run order, so the budget question is not deferrable behind the others.
 
 ## Research domains — constitution §4
@@ -127,7 +127,7 @@ thing the investigation is most likely to get wrong.
 | G | BMAC/Oxus and pre-split Indo-Iranian contact | Reading "Proto-Indo-Iranian" as pre-contact or purely inherited |
 | H | Rigvedic and Old Avestan social worlds | A violent-Indic versus peaceful-Iranian binary; genre mistaken for society |
 | I | Rigvedic society, patronage and canonization | Sanitizing patronage as timeless spirituality |
-| J | The Rigvedic forts | Translating *pur* into a Mature Harappan city; one famous count standing for the corpus |
+| J | The Rigvedic forts | Translating *pur* into a Mature Harappan city; one famous count standing for the corpus — *corpus built 2026-09-07 at the stanza unit, 103 passages, all fifteen enumerated items addressed and the five-way typology assigned. 99 is stated in 6 passages and is not the modal count; 100 is, in 8. Poet lineage rests on Geldner alone (`HOLD-006`); proposed geography is `NOT PRODUCED` — the pinned corpus carries no geographic content. See `06-BRIEFS/pur-4j-corpus.md`.* |
 | K | Indus writing and institutional discontinuity | Concluding that populations vanished because institutions and archives did |
 | L | Avestan writing | Reading a Sasanian-era alphabet as transparent evidence of Gāthic pronunciation |
 | M | Brahui, Kurukh and Malto | Medieval migration treated as documented fact; living people used as linguistic fossils |
@@ -284,7 +284,7 @@ R2 + R4 + R5 + R15 → R7
 ```
 
 R1 has no dependency and can run while historical sources are collected — but
-see D-044 on its budget.
+see D-050 on its budget.
 
 ### Where the two enumerations do not meet
 

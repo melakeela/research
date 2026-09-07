@@ -320,7 +320,7 @@ FULLSEQUENCE.md ──── names ────► LIVESITEAUDITPROMPT.md   (Sta
   │                               WHOMADETHEPAST.md          (standing input to
   │                                                           every stage; R8's
   │                                                           named schema)
-  └── also requires: the master work list (D-045)
+  └── also requires: the master work list (D-051)
 ```
 
 The fifth companion is not a stage. All three workflow files list it among the
@@ -858,7 +858,7 @@ the controller does, and the wording is worth keeping:
 |---|---|---|
 | The full "MelaKeela.com v2 — Master Research, Product & Institutional Backlog" document behind the 89 titles | the per-item detail `BACKLOG-COVERAGE.csv` columns need beyond a title | D-014, amended |
 | A live-site route inventory | `current_site_coverage`; the audit's coverage columns; Step 13 | D-009, D-014 |
-| The master work list itself, as distinct from the site-review running list | the five prompt files name it as a required attachment | D-045 |
+| The master work list itself, as distinct from the site-review running list | the five prompt files name it as a required attachment | D-051 |
 
 `MELA-KEELA-WHO-MADE-THE-PAST.md` was on this list until 2026-09-07 and has
 since arrived; see §1.2.
@@ -882,9 +882,9 @@ authoritative rows.
   to Step 13, or replace it with a repository-side route inventory.
 - **D-049 — R19's modern layer.** PP-7. Run it with a dated-expiry convention,
   or defer it and keep the ancient corridor.
-- **D-044 — R1's model-run budget.** PP-8. R1 is first in the run order and
+- **D-050 — R1's model-run budget.** PP-8. R1 is first in the run order and
   cannot be completed as specified without one.
-- **D-045 — Is running-list Version 12 the "master work list"?** §6. If it is,
+- **D-051 — Is running-list Version 12 the "master work list"?** §6. If it is,
   say so and the pack's required inputs are complete but for Who Made the Past.
 - **D-046 — Does the register keep one `status` column, or split into evidence
   basis, inference, disagreement and review?** `PP-10`. The same class of

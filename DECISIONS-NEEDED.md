@@ -60,8 +60,9 @@ substrate-literature allowlist. Both identifiers were held on
 `claude/prompt-pack-inventory-reconcile-iz1phs` for different decisions: the
 public-site audit gate and R19's modern layer. `main` keeps every identifier it
 has allocated, so those two sections are now **D-048** and **D-049** — `D-044`
-to `D-047` stand above `main`'s highest but are already held by this branch's
-own rows, so `D-048` is the next free one. `main`'s `D-042` and `D-043` are
+to `D-047` stood above `main`'s highest but were already held by this branch's
+own rows, so `D-048` was the next free one. (`D-044` and `D-045` have since
+moved too; see the fifth collision below.) `main`'s `D-042` and `D-043` are
 untouched and byte-identical to `main`. Both moves are recorded in
 `09-DECISIONS/DECISION-ID-MAP.csv`, keyed by branch, which is how a `D-042` or
 `D-043` reference written on this branch before the merge is resolved.
@@ -75,6 +76,17 @@ copy at `D-042`. `D-047`'s own row says the two are one decision and not two.
 Both are kept here because this merge dropped no row from either side, but the
 namespace now holds one decision under two identifiers, and which one survives
 is an owner ruling rather than a merge decision.
+
+A fifth collision was cleared on 2026-09-07, when `main` merged PR #24 and
+PR #26 while this branch's own merge was in flight. `main` allocated `D-044` to
+the section 4J passage-unit question and `D-045` to the forts-artefact naming
+question — both held here for different decisions. They move by the same rule:
+R1's model-run budget is now **D-050** and the running-list Version 12 question
+is now **D-051**, `D-046` to `D-049` being already held by this branch. `main`'s
+`D-044` and `D-045` are untouched and byte-identical to `main`, and both moves
+are in `09-DECISIONS/DECISION-ID-MAP.csv`, keyed by branch. The same round moved
+this branch's `DEP-021` to **`DEP-024`**, `main` having taken `DEP-021` to
+`DEP-023` for the Grassmann and Arnold dependencies.
 
 A third series exists and is not part of this namespace. The inherited handoff
 numbered its own owner decisions `D-01` to `D-20`; those are now written
@@ -491,7 +503,7 @@ context, and they reached this repository on separate branches — which is the
 only reason they briefly looked like two sources. Under CLAUDE.md's
 source-independence rule they count as **one**, and their agreement on
 ordering shows only that both were reconstructed from the same material. The
-dependency is recorded at `DEP-021` in `02-SOURCES/dependency.csv`.
+dependency is recorded at `DEP-024` in `02-SOURCES/dependency.csv`.
 
 Two of the disagreements are substantive rather than stylistic:
 
@@ -1120,7 +1132,7 @@ touches published copy.
 **Asked of the owner:** whether the page should name its digitization
 and carry the range in the interim. The change itself belongs in
 `melakeela/site`, not here. Queued as `RA-009`.
-## D-044 — What model-run budget does R1 have?
+## D-050 — What model-run budget does R1 have?
 
 **Raised by:** prompt-pack intake, 2026-09-07
 **Category:** payment or institutional access required
@@ -1144,7 +1156,7 @@ say so in the method, or defer R1 and start the run order at R9.
 
 ---
 
-## D-045 — Is running-list Version 12 the "current master work list"?
+## D-051 — Is running-list Version 12 the "current master work list"?
 
 **Raised by:** prompt-pack intake, 2026-09-07
 **Category:** two consequential positions both remaining viable

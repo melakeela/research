@@ -451,14 +451,15 @@ reassignment required.**
 | Series | `main` | PR #10 (open) | this branch | Collision |
 |---|---|---|---|---|
 | `SRC-` | ends `SRC-052` | adds `SRC-053`–`SRC-068` | cites only, allocates none | none |
-| `DEP-` | ends `DEP-009` | adds `DEP-010`–`DEP-020` | allocates `DEP-021` only | none |
+| `DEP-` | ends `DEP-009` | adds `DEP-010`–`DEP-020` | allocates one row, `DEP-021` then, `DEP-024` now | cleared, below |
 | `BF-` | ends `BF-006` | adds `BF-007`–`BF-011` | allocates none | none |
 | `RA-` | ends `RA-005` | adds `RA-006`–`RA-011` | allocates none | none |
 | `HOLD-` | ends `HOLD-004` | adds `HOLD-005` | allocates none | none |
 | `PP-` | absent | absent | `PP-1`–`PP-14` | none |
 | `DMB-` | PR #16's | inherited from main | none of its own | none |
 
-`DEP-021` was deliberately taken above PR #10's `DEP-020` rather than at the
+`DEP-024` (`DEP-021` when this was written) was deliberately taken above PR #10's
+`DEP-020` rather than at the
 first free number on this branch, which is the same discipline the `D-` shifts
 follow: the free numbers are allocated once across both open branches, not
 twice from the same base. Between the merge base and `main`, all five of those
@@ -476,7 +477,7 @@ cannot survive is `D-014`, which this branch amended twice; its text contains
 `main`'s in all twelve cells.
 
 `02-SOURCES/dependency.csv` was handled differently and deliberately so. It was
-first restored to `main`'s bytes when `DEP-021` was appended, then realigned to
+first restored to `main`'s bytes when the appended row was added, then realigned to
 PR #10's quoting on the ten rows the two branches share, so that when PR #10
 merges only the appended row can conflict. Its rows are therefore no longer
 byte-identical to `main`'s, but every one of `main`'s records survives
@@ -501,8 +502,9 @@ identifier it has allocated, so this branch's two moved:
 | `D-042` | Does a live public-site audit gate the first research programme? (`PP-1`) | **`D-048`** |
 | `D-043` | Does R19's modern current-affairs layer run, and under what expiry convention? (`PP-7`) | **`D-049`** |
 
-`D-044` to `D-047` did not move: they stand above `main`'s highest and `main`
-allocated nothing there. `D-048` is therefore the next *free* identifier after
+`D-044` to `D-047` did not move *at that point*: they stood above `main`'s
+highest and `main` had allocated nothing there. `D-044` and `D-045` moved in the
+second merge below. `D-048` is therefore the next *free* identifier after
 `main`'s highest rather than the next consecutive one, which is the same rule
 PR #10 applied when it took `D-043` over `D-038`. Both moves are in
 `09-DECISIONS/DECISION-ID-MAP.csv`, keyed by branch, along with rewritten keys
@@ -531,7 +533,7 @@ rows following the convention of the block they sit in. The single exception is
 the one already recorded above: `D-014`, which this branch amended and `main`
 did not touch. `02-SOURCES/dependency.csv` took `main`'s bytes on the ten
 shared rows, which is what the realignment recorded above was for, and only
-`DEP-021` was appended.
+`DEP-024` was appended.
 
 **Where `main`'s reading of a `D-` reference was preferred over this branch's.**
 `04-AUDITS/domain-e-method.md`, `04-AUDITS/REAUDIT-QUEUE.csv` and
@@ -540,3 +542,47 @@ the egress decision, which `main` renumbered `D-032`→`D-042` and this branch
 renumbered `D-032`→`D-047`. `main`'s bytes were taken in all three. No row was
 lost: `main`'s versions of those three files are supersets of this branch's, and
 the only divergence was the identifier.
+
+### Update 2026-09-07 — `main` merged a second time, after PR #24 and PR #26
+
+`main` moved again while the merge above was being pushed: PR #26 (the §4J
+`púr-` corpus extension) and PR #24 (the domain M adversarial review) landed.
+Three identifiers collided, in two series.
+
+| This branch held | Decision or record | Now |
+|---|---|---|
+| `D-044` | What model-run budget does R1 have? (`PP-8`) | **`D-050`** |
+| `D-045` | Is running-list Version 12 the master work list? (`PP-6`) | **`D-051`** |
+| `DEP-021` | The two v2-backlog recoveries are one source | **`DEP-024`** |
+
+`main` took `D-044` for the §4J passage-unit question and `D-045` for the
+forts-artefact naming question; it took `DEP-021` to `DEP-023` for the
+Grassmann translation/dictionary, Arnold grammar/metre and
+Geldner/Elizarenkova dependencies. The rule is the one applied throughout:
+`main` keeps every identifier it has allocated, and the branch takes the next
+*free* number above `main`'s highest — `D-050` and `D-051` because `D-046` to
+`D-049` are this branch's own, and `DEP-024` because `main` now ends at
+`DEP-023`. The `D-` moves are in `09-DECISIONS/DECISION-ID-MAP.csv`, keyed by
+branch and chained; the `DEP-` move is recorded in the `DEP-024` row itself,
+since the map is the `D-` namespace's and allocates nothing else.
+
+This is the second time `D-044` and `D-045` have been described here. The
+paragraph above was written when they had not moved; it is corrected in place
+to say "at that point" rather than rewritten, because the sequence is the
+record.
+
+**The `DEP-` row of the series table above is now out of date as history and is
+left standing.** It was written when `DEP-` collision was `none`; the
+collision has since happened and is cleared here. `SRC-`, `BF-`, `RA-`,
+`HOLD-`, `PP-` and `DMB-` were re-swept against this `main` and still do not
+collide: this branch allocates in none of them, and `main`'s `SRC-070` to
+`SRC-084` and `RA-012` sit above everything the branch cites.
+
+**`02-SOURCES/access-ledger.csv` took `main`'s bytes whole.** The branch's only
+edit to it was `SRC-045`'s closing pointer, which it had rewritten from `D-032`
+to `D-047`; `main`'s copy still reads `D-032`. `main`'s bytes were taken for
+consistency with the three files above, so that pointer is now `main`'s. It is
+a live defect but `main`'s, not this merge's: since `main`'s own renumbering,
+`D-032` names the `before-the-indus` question, not the egress ruling. Repairing
+it means choosing between `D-042` and `D-047`, which is the open owner ruling
+recorded above, so it is flagged rather than fixed here.

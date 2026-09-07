@@ -101,12 +101,22 @@ PR #17 and PR #20 — was merged into
 eighteen. Two are reassignments this merge forced: that branch's `D-042` to
 **`D-048`** and its `D-043` to **`D-049`**, after PR #10 landed `main`'s own
 `D-042` and `D-043` for the domain E egress ruling and the substrate-literature
-allowlist. `D-044` to `D-047` did not move, so `D-048` is the next *free*
-identifier above `main`'s highest rather than the next consecutive one. Each
+allowlist. `D-044` to `D-047` did not move at that point, so `D-048` was the next *free*
+identifier above `main`'s highest rather than the next consecutive one. `D-044`
+and `D-045` moved in the second merge recorded below. Each
 carries the chaining second row described above. The other six are that
 branch's earlier reassignments, rewritten to name the branch in `old_file`:
 unkeyed, they would have collided with `main`'s own rows for the same old
 identifier, which is the ambiguity this map exists to prevent.
+
+Two more were added the same day, bringing the block to twenty, when `main`
+merged PR #24 and PR #26 while that merge was in flight and took `D-044` for the
+section 4J passage-unit question and `D-045` for the forts-artefact naming
+question. That branch's `D-044` became **`D-050`** and its `D-045` became
+**`D-051`** — `D-046` to `D-049` being its own — each with the chaining second
+row. The same round moved that branch's `DEP-021` to `DEP-024`, which this map
+does not record: it is the `D-` namespace's map, and the `DEP-` reassignment is
+written into the `DEP-024` row in `02-SOURCES/dependency.csv` instead.
 
 One thing the map records but does not fix. That branch's `D-047` and `main`'s
 `D-042` are **the same decision**, reaching one tree by two routes; the `D-047`
