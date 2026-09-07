@@ -31,20 +31,42 @@ R1–R19). Ordering below the first item is owner decision **D-008** in
    half is on `HOLD-002` and `HOLD-003`: every Dravidian, Munda and
    Austroasiatic source was refused at the egress gateway. Escalated as
    `D-032`.
+5. **Domain M — the Brahui geographic measurement, challenged by the owner**
+   (part of domain **M**) — `03-REGISTERS/domain-m-brahui-position.csv`
+   (26 claims: 20 VERIFIED, 5 PROVISIONAL, 1 SUPERSEDED; the owner's two
+   objections are DMB-004 and DMB-005, recorded as raised). Method and
+   both adversarial tests:
+   `04-AUDITS/domain-m-method.md`; scripts `brahui-loo-geography.py` and
+   `north-dravidian-cognate-sharing.py`. Method failures `BF-005` and
+   `BF-006`; re-audits `RA-004`, `RA-005`; provenance question `D-035`.
+   The challenged measurement was **not in this repository** and had to be
+   reconstructed (`DMB-003`). The comparative half is on `HOLD-004`:
+   Krishnamurti 2003, the book every retrievable assertion of North
+   Dravidian traces to, has never been read here. **None of the six §4.M
+   models is closed by this unit and none was allowed to be.**
+
+6. **Controller amendment** — methodology installed, reconciled against
+   the controller, decisions register and this queue seeded. Merged as
+   PR #6.
 
 ## Now
 
-5. **Controller amendment.** Install the methodology, reconcile it against
-   the controller, seed the decisions register and this queue. No research
-   begins until it is reviewed.
-6. **Prompt-pack intake.** The six files at `00-CONTROLLER/prompt-pack/`,
+Item **7** is reserved for the domain E comparative half, which is on
+`claude/domain-e-research-queue-z83m9b` (PR #10) and is not on this branch.
+The reservation is deliberate: both branches were cut from the same base and
+both appended to this list, so the numbers were allocated once, across both,
+rather than twice from the same free position. Whichever merges first, the
+other's items keep the numbers stated here. The reassignment is recorded
+under "Item numbering" at the end of this file.
+
+8. **Prompt-pack intake.** The six files at `00-CONTROLLER/prompt-pack/`,
    committed unchanged 2026-09-07, inventoried in `PROMPT-PACK-INVENTORY.md`,
    and reconciled into this queue. *(This change.)* R1–R19 below are now
    defined rather than named. Conflicts with the controller are recorded as
-   `PP-1` to `PP-14`; `PP-1` is open as **D-041** and gates the packets,
-   `PP-10` as **D-045**. All five companions named in running-list Version 12
+   `PP-1` to `PP-14`; `PP-1` is open as **D-042** and gates the packets,
+   `PP-10` as **D-046**. All five companions named in running-list Version 12
    are now present.
-7. **Register intake for Who Made the Past.** `MELAKEELAWHOMADETHEPAST.md` is
+9. **Register intake for Who Made the Past.** `MELAKEELAWHOMADETHEPAST.md` is
    the only file in the pack that makes historiographical assertions rather
    than issuing instructions — roughly thirty cited sources, sixteen sections.
    Its claims enter `03-REGISTERS/inherited-claims.csv` at
@@ -56,25 +78,25 @@ R1–R19). Ordering below the first item is owner decision **D-008** in
 
 ## Blocked on inputs
 
-8. **Backlog reconciliation** — `06-BACKLOG/BACKLOG-COVERAGE.csv`, one row
-   per item 1–89 with a destination, deliverable, hold or reasoned
-   rejection. **Partly unblocked 2026-09-07.**
-   `00-CONTROLLER/prompt-pack/MELAKEELACLAUDECORRECTIVECONTROLLERv2.md`
-   Part IV enumerates all eighty-nine items, verified 1–89 with no gaps, so
-   `backlog_id` and `title` no longer have to be invented and the grouping
-   determines several dispositions outright. Still `RESEARCH HOLD` for
-   `current_site_coverage` and `existing_route`, which need a live-site
-   route inventory, and for `prior_research_available`, which needs the
-   packets. Whether Part IV's list *is* the backlog or a digest of a longer
-   document is the narrowed question at `DECISIONS-NEEDED.md` D-014.
-9. **Packets R1–R19.** No longer blocked for want of definitions — those
-   arrived on 2026-09-07 and are below. Now blocked on three things instead:
-   **D-041**, whether a live public-site audit gates the first packet, since
-   every packet is specified to receive an `R#-current-public-coverage.md`
-   from it; **D-009**, the route inventory that audit would produce, which
-   this repository cannot presently generate; and, for R1 specifically,
-   **D-043**, the model-run budget its experiment requires. R1 is first in
-   the run order, so the budget question is not deferrable behind the others.
+10. **Backlog reconciliation** — `06-BACKLOG/BACKLOG-COVERAGE.csv`, one row
+    per item 1–89 with a destination, deliverable, hold or reasoned
+    rejection. **Partly unblocked 2026-09-07.**
+    `00-CONTROLLER/prompt-pack/MELAKEELACLAUDECORRECTIVECONTROLLERv2.md`
+    Part IV enumerates all eighty-nine items, verified 1–89 with no gaps, so
+    `backlog_id` and `title` no longer have to be invented and the grouping
+    determines several dispositions outright. Still `RESEARCH HOLD` for
+    `current_site_coverage` and `existing_route`, which need a live-site
+    route inventory, and for `prior_research_available`, which needs the
+    packets. Whether Part IV's list *is* the backlog or a digest of a longer
+    document is the narrowed question at `DECISIONS-NEEDED.md` D-014.
+11. **Packets R1–R19.** No longer blocked for want of definitions — those
+    arrived on 2026-09-07 and are below. Now blocked on three things instead:
+    **D-042**, whether a live public-site audit gates the first packet, since
+    every packet is specified to receive an `R#-current-public-coverage.md`
+    from it; **D-009**, the route inventory that audit would produce, which
+    this repository cannot presently generate; and, for R1 specifically,
+    **D-044**, the model-run budget its experiment requires. R1 is first in
+    the run order, so the budget question is not deferrable behind the others.
 
 ## Research domains — constitution §4
 
@@ -98,7 +120,7 @@ thing the investigation is most likely to get wrong.
 | J | The Rigvedic forts | Translating *pur* into a Mature Harappan city; one famous count standing for the corpus |
 | K | Indus writing and institutional discontinuity | Concluding that populations vanished because institutions and archives did |
 | L | Avestan writing | Reading a Sasanian-era alphabet as transparent evidence of Gāthic pronunciation |
-| M | Brahui, Kurukh and Malto | Medieval migration treated as documented fact; living people used as linguistic fossils |
+| M | Brahui, Kurukh and Malto | Medieval migration treated as documented fact; living people used as linguistic fossils — *geographic-measurement challenge answered 2026-09-07; North Dravidian measured on lexical data only and neither validated nor refuted; comparative half on `HOLD-004`* |
 | N | Grammatical ontologies | Typological similarity read as descent or contact without a mechanism |
 | O | Pāli, Prakrit and vernacular Indo-Aryan | Prakrit as corrupted Sanskrit; one pure language decaying |
 | P | South Asian linguistic convergence | Modern areal distribution converted automatically into prehistoric substrate |
@@ -166,7 +188,7 @@ R2 + R4 + R5 + R15 → R7
 ```
 
 R1 has no dependency and can run while historical sources are collected — but
-see D-043 on its budget.
+see D-044 on its budget.
 
 ### Where the two enumerations do not meet
 
@@ -234,7 +256,7 @@ it. `METHODOLOGY-CONSTITUTION.md` has no such stage — the string
 `melakeela.com` does not occur in it — and keeps site-checking only as §5 Step
 13 inside each investigation.
 
-This queue does not settle it. No packet is scheduled until **D-041** is
+This queue does not settle it. No packet is scheduled until **D-042** is
 answered, and the audit is in any case not presently runnable from this
 repository (the site is in `melakeela/site`; see D-009). See
 `00-CONTROLLER/prompt-pack/PROMPT-PACK-INVENTORY.md` PP-1.
@@ -295,6 +317,29 @@ or research holds. Constitution §11.
 - The language-movement Artifact Atlas specification (§13). R14 is its
   evidence layer and R12, R13, R15 and R18 supply its edges; none has run.
 - Page and exhibit briefs.
-- R19's modern current-affairs layer — pending **D-042**. The ancient
+- R19's modern current-affairs layer — pending **D-043**. The ancient
   corridor is not blocked by it.
 - Anything touching `melakeela/site`.
+
+## Item numbering
+
+This list is append-only and its numbers are identifiers, not positions. Two
+branches cut from the same base each appended to it, so the free numbers were
+allocated once across both rather than twice from the same position. Old
+number to new, with the branch that holds the item:
+
+| Old | New | Item | Branch |
+|---|---|---|---|
+| — | 5 | Domain M, the Brahui geographic measurement | `main` (PR #16) |
+| 5 | 6 | Controller amendment | `main` (PR #6), moved from **Now** to **Done** |
+| — | 6 → 7 | Domain E, comparative half | `claude/domain-e-research-queue-z83m9b` (PR #10) |
+| — | 7 → 8 | Prompt-pack intake | `claude/prompt-pack-inventory-reconcile-iz1phs` (PR #14) |
+| — | 8 → 9 | Register intake for Who Made the Past | `claude/prompt-pack-inventory-reconcile-iz1phs` (PR #14) |
+| 6 → 7 | 10 | Backlog reconciliation | `main` |
+| 7 → 8 | 11 | Packets R1–R19 | `main` |
+
+The second column's arrows record the one further shift made on 2026-09-07
+when `main` merged PR #16, whose domain M unit took item 5 and moved the
+controller amendment to 6. `main` keeps the numbers it has published; the two
+branches' items move up behind them, once, across both. The same table is on
+PR #10's branch, which holds item 7.

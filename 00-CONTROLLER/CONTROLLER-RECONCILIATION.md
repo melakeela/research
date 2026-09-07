@@ -416,7 +416,7 @@ further points:
 - Its §10 argues against the single `status` column that `CLAUDE.md` mandates,
   on the ground that a claim can be well documented and contested. **C-1**
   settled which *vocabulary* governs one axis; this asks whether one axis is the
-  right shape, which C-1 does not reach. Open as **D-045**; the single column
+  right shape, which C-1 does not reach. Open as **D-046**; the single column
   stands until it is answered.
 - Its §10 also defines the evidence-role vocabulary the shared research contract
   requires and never specifies, and its "bridges are claims" paragraph is Step
@@ -431,8 +431,8 @@ the new sources; none of those resolutions is changed by the extension. `PP-11`,
 `PP-12` in particular confirms that constitution §6's eight absence types govern
 over the four coarser mechanisms in `MELAKEELAWHOMADETHEPAST.md` §5, since the
 four cannot express `ABSENT DESPITE ADEQUATE SEARCH`, the only type that
-licenses an argument from absence at all. `PP-10` is open as **D-045**, above.
-`PP-1` is not resolvable here and is open as **D-041**: this document does not mention the
+licenses an argument from absence at all. `PP-10` is open as **D-046**, above.
+`PP-1` is not resolvable here and is open as **D-042**: this document does not mention the
 live public-site audit anywhere, and the audit gate that running-list Version 11
 created has been dropped from the constitution rather than reversed. Recorded
 here because §4's retirement of the Claude Chat / Claude Code division of labour

@@ -320,7 +320,7 @@ FULLSEQUENCE.md ──── names ────► LIVESITEAUDITPROMPT.md   (Sta
   │                               WHOMADETHEPAST.md          (standing input to
   │                                                           every stage; R8's
   │                                                           named schema)
-  └── also requires: the master work list (D-044)
+  └── also requires: the master work list (D-045)
 ```
 
 The fifth companion is not a stage. All three workflow files list it among the
@@ -739,7 +739,7 @@ it true."
 
 **Not resolvable here.** Changing the register schema is the same class of
 decision as `D-019` (the `object_id` column) and belongs to the owner. Raised
-as **D-045**. The single `status` column stands until it is answered; the four
+as **D-046**. The single `status` column stands until it is answered; the four
 axes can be carried in `notes` in the meantime without a schema change.
 
 ### PP-11 — Two more vocabularies, one of which resolves PP-4
@@ -769,7 +769,7 @@ This is an editorial workflow state, not a claim status, and it presumes a
 review function this repository does not yet have — the pull request and Codex
 review are its current equivalent. **Resolution:** it does not enter `status`.
 It is a candidate for the review column a four-axis schema would need, and so
-rides on `D-045`.
+rides on `D-046`.
 
 ### PP-12 — Two absence taxonomies, one coarser than the other
 
@@ -811,7 +811,7 @@ refuses to treat it as authoritative:
 > require reconciliation against the actual branch and deployment. Do not
 > recreate them merely because they were not in one working folder.
 
-This bears on **D-041** and cuts across it rather than for either side. It
+This bears on **D-042** and cuts across it rather than for either side. It
 agrees with `LIVESITEAUDITPROMPT` that an uninspectable route is unknown rather
 than absent — the same rule under a different name — but it treats the
 *branch*, not the live site, as what a snapshot must be reconciled against,
@@ -820,7 +820,7 @@ a third position: neither inventory settles anything alone, and the failure
 mode it names — recreating a page because one working folder lacked it — is
 the same failure mode `LIVESITEAUDITPROMPT` names from the other direction.
 
-**Recorded on D-041**, which should be answered with this paragraph in view.
+**Recorded on D-042**, which should be answered with this paragraph in view.
 It does not change the finding at `PP-1`: the constitution still has no audit
 of either kind.
 
@@ -858,7 +858,7 @@ the controller does, and the wording is worth keeping:
 |---|---|---|
 | The full "MelaKeela.com v2 — Master Research, Product & Institutional Backlog" document behind the 89 titles | the per-item detail `BACKLOG-COVERAGE.csv` columns need beyond a title | D-014, amended |
 | A live-site route inventory | `current_site_coverage`; the audit's coverage columns; Step 13 | D-009, D-014 |
-| The master work list itself, as distinct from the site-review running list | the five prompt files name it as a required attachment | D-044 |
+| The master work list itself, as distinct from the site-review running list | the five prompt files name it as a required attachment | D-045 |
 
 `MELA-KEELA-WHO-MADE-THE-PAST.md` was on this list until 2026-09-07 and has
 since arrived; see §1.2.
@@ -877,21 +877,21 @@ name, but the pack never equates them and this inventory does not either.
 Allocated from `09-DECISIONS/OWNER-DECISIONS.csv`; see that file for the
 authoritative rows.
 
-- **D-041 — Does a live public-site audit gate the first research programme?**
+- **D-042 — Does a live public-site audit gate the first research programme?**
   PP-1. Reinstate the Version 11 gate, ratify the constitution's demotion of it
   to Step 13, or replace it with a repository-side route inventory.
-- **D-042 — R19's modern layer.** PP-7. Run it with a dated-expiry convention,
+- **D-043 — R19's modern layer.** PP-7. Run it with a dated-expiry convention,
   or defer it and keep the ancient corridor.
-- **D-043 — R1's model-run budget.** PP-8. R1 is first in the run order and
+- **D-044 — R1's model-run budget.** PP-8. R1 is first in the run order and
   cannot be completed as specified without one.
-- **D-044 — Is running-list Version 12 the "master work list"?** §6. If it is,
+- **D-045 — Is running-list Version 12 the "master work list"?** §6. If it is,
   say so and the pack's required inputs are complete but for Who Made the Past.
-- **D-045 — Does the register keep one `status` column, or split into evidence
+- **D-046 — Does the register keep one `status` column, or split into evidence
   basis, inference, disagreement and review?** `PP-10`. The same class of
   schema decision as D-019.
 - **D-014 — amended twice.** §6 and §8; see `DECISIONS-NEEDED.md`.
 
-`PP-13` adds material to **D-041** without changing it. `PP-11`, `PP-12` and
+`PP-13` adds material to **D-042** without changing it. `PP-11`, `PP-12` and
 `PP-14` are resolved here and need no decision.
 
 ## 8. What the pack closes
