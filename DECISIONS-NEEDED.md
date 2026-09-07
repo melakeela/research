@@ -41,6 +41,41 @@ Egress policy is set on the environment, not in this repository, so
 this cannot be changed from a session. See
 https://code.claude.com/docs/en/cloud-environments
 
+**Status update, 2026-09-07 — largely resolved by re-probe, not by action.**
+Every domain in the table above except JSTOR now answers through the
+proxy. Re-probed at 01:20 UTC and logged as `SRC-025`, `SRC-027`,
+`SRC-028`, `SRC-029`, `SRC-030`, `SRC-031`, `SRC-032`, `SRC-033`:
+
+| Domain | 2026-09-06 | 2026-09-07 |
+|---|---|---|
+| `archive.org` | blocked | **HTTP 200** — Arnold 1905 retrieved from it today |
+| `gretil.sub.uni-goettingen.de` | blocked | **HTTP 200**, full index page |
+| `indianculture.gov.in` | blocked | **HTTP 301**, host answers |
+| `doi.org` | blocked | **HTTP 302**, resolver answers |
+| `arxiv.org` | blocked | **HTTP 200** |
+| `en.wikipedia.org` | blocked | **HTTP 200** (still not citable here) |
+| `titus.uni-frankfurt.de` | not probed | **HTTP 200** |
+| `www.jstor.org` | blocked | still blocked, 403 to CONNECT |
+
+The earlier rows are marked `SUPERSEDED` rather than edited. The claim
+in this decision that "only `api.github.com` is reachable" no longer
+holds, and the cap it described — every claim in the programme stuck at
+`HYPOTHESIS` for want of a retrieval channel — is lifted for everything
+but the paywalled journal literature.
+
+**What remains for the owner.** Only these are still refused at the
+gateway, and only JSTOR is consequential:
+
+| Domain | Consequence | Ledger |
+|---|---|---|
+| `www.jstor.org` | journal literature unreachable; this is the real remaining gap | `SRC-032` |
+| `www.muktabodha.org` | Sanskrit e-text archive unreachable | `SRC-034` |
+| `vedaweb.uni-koeln.de` | not blocking — the same data is on GitHub | `SRC-035` |
+| `www.gutenberg.org` | not blocking — archive.org covers it | `SRC-036` |
+
+JSTOR would in any case need an institutional subscription, so
+allowlisting alone may not be enough; that part of the decision stands.
+
 ---
 
 ## D-002 — `CLAUDE.md`, `AGENTS.md` and `RESEARCH-QUEUE.md` do not exist
