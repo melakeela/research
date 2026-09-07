@@ -16,20 +16,35 @@ R1–R19). Ordering below the first item is owner decision **D-008** in
    `D-003` in `DECISIONS-NEEDED.md`.
 2. **Inheritance intake** — `03-REGISTERS/inherited-claims.csv`, 369 rows,
    all at `INHERITED-UNVERIFIED`. Inventory only; nothing verified.
+3. **The púr- family in the Rigveda** (part of domain **J**) —
+   `03-REGISTERS/rigveda-pur-family.csv` (28 claims) and
+   `rigveda-pur-family-occurrences.csv` (106 occurrences); method in
+   `04-AUDITS/rigveda-pur-family-method.md`. `HOLD-001` open on the
+   `púraṃdhi-` etymology.
+4. **Domain E — Dravidian, Munda and unidentified substrate claims**,
+   corpus-internal half only. `03-REGISTERS/domain-e-claims.csv` (26
+   claims: 19 VERIFIED, 4 PROVISIONAL, 2 HYPOTHESIS, 1 HOLD),
+   `domain-e-hypothesis-eligibility.csv` (the eleven §4.E distinctions,
+   each gated), `domain-e-retroflex-residue.csv` (253 lemmas),
+   `domain-e-hydronyms.csv` (469 occurrences). Method and both
+   adversarial tests: `04-AUDITS/domain-e-method.md`. The comparative
+   half is on `HOLD-002` and `HOLD-003`: every Dravidian, Munda and
+   Austroasiatic source was refused at the egress gateway. Escalated as
+   `D-032`.
 
 ## Now
 
-3. **Controller amendment.** Install the methodology, reconcile it against
+5. **Controller amendment.** Install the methodology, reconcile it against
    the controller, seed the decisions register and this queue. No research
    begins until it is reviewed.
-4. **Prompt-pack intake.** The six files at `00-CONTROLLER/prompt-pack/`,
+6. **Prompt-pack intake.** The six files at `00-CONTROLLER/prompt-pack/`,
    committed unchanged 2026-09-07, inventoried in `PROMPT-PACK-INVENTORY.md`,
    and reconciled into this queue. *(This change.)* R1–R19 below are now
    defined rather than named. Conflicts with the controller are recorded as
-   `PP-1` to `PP-14`; `PP-1` is open as **D-035** and gates the packets,
-   `PP-10` as **D-039**. All five companions named in running-list Version 12
+   `PP-1` to `PP-14`; `PP-1` is open as **D-041** and gates the packets,
+   `PP-10` as **D-045**. All five companions named in running-list Version 12
    are now present.
-5. **Register intake for Who Made the Past.** `MELAKEELAWHOMADETHEPAST.md` is
+7. **Register intake for Who Made the Past.** `MELAKEELAWHOMADETHEPAST.md` is
    the only file in the pack that makes historiographical assertions rather
    than issuing instructions — roughly thirty cited sources, sixteen sections.
    Its claims enter `03-REGISTERS/inherited-claims.csv` at
@@ -41,7 +56,7 @@ R1–R19). Ordering below the first item is owner decision **D-008** in
 
 ## Blocked on inputs
 
-6. **Backlog reconciliation** — `06-BACKLOG/BACKLOG-COVERAGE.csv`, one row
+8. **Backlog reconciliation** — `06-BACKLOG/BACKLOG-COVERAGE.csv`, one row
    per item 1–89 with a destination, deliverable, hold or reasoned
    rejection. **Partly unblocked 2026-09-07.**
    `00-CONTROLLER/prompt-pack/MELAKEELACLAUDECORRECTIVECONTROLLERv2.md`
@@ -52,13 +67,13 @@ R1–R19). Ordering below the first item is owner decision **D-008** in
    route inventory, and for `prior_research_available`, which needs the
    packets. Whether Part IV's list *is* the backlog or a digest of a longer
    document is the narrowed question at `DECISIONS-NEEDED.md` D-014.
-7. **Packets R1–R19.** No longer blocked for want of definitions — those
+9. **Packets R1–R19.** No longer blocked for want of definitions — those
    arrived on 2026-09-07 and are below. Now blocked on three things instead:
-   **D-035**, whether a live public-site audit gates the first packet, since
+   **D-041**, whether a live public-site audit gates the first packet, since
    every packet is specified to receive an `R#-current-public-coverage.md`
    from it; **D-009**, the route inventory that audit would produce, which
    this repository cannot presently generate; and, for R1 specifically,
-   **D-037**, the model-run budget its experiment requires. R1 is first in
+   **D-043**, the model-run budget its experiment requires. R1 is first in
    the run order, so the budget question is not deferrable behind the others.
 
 ## Research domains — constitution §4
@@ -75,7 +90,7 @@ thing the investigation is most likely to get wrong.
 | B | Early Rigvedic, Old Avestan and Classical Sanskrit | Family-tree labels predetermining an anonymized comparison; unequal archives read as equal samples |
 | C | The Sanskrit sound system is historically composite | Projecting the later alphabet back as one pristine PIE design; reading the 5×5 grid as 25 inherited phonemes |
 | D | Proto-Dravidian and Tamil phonology | Treating either analytical system as an imperfect version of the other |
-| E | Dravidian, Munda and unidentified substrate claims | Symmetry between an attested family and a hypothetical donor; "unknown" used as positive evidence |
+| E | Dravidian, Munda and unidentified substrate claims | Symmetry between an attested family and a hypothetical donor; "unknown" used as positive evidence — *corpus-internal half run 2026-09-07; comparative half on HOLD-002/003* |
 | F | *kīnāśa* and agricultural vocabulary | Accepting the etymology, or dismissing it as resemblance, without the lemma work |
 | G | BMAC/Oxus and pre-split Indo-Iranian contact | Reading "Proto-Indo-Iranian" as pre-contact or purely inherited |
 | H | Rigvedic and Old Avestan social worlds | A violent-Indic versus peaceful-Iranian binary; genre mistaken for society |
@@ -151,7 +166,7 @@ R2 + R4 + R5 + R15 → R7
 ```
 
 R1 has no dependency and can run while historical sources are collected — but
-see D-037 on its budget.
+see D-043 on its budget.
 
 ### Where the two enumerations do not meet
 
@@ -219,7 +234,7 @@ it. `METHODOLOGY-CONSTITUTION.md` has no such stage — the string
 `melakeela.com` does not occur in it — and keeps site-checking only as §5 Step
 13 inside each investigation.
 
-This queue does not settle it. No packet is scheduled until **D-035** is
+This queue does not settle it. No packet is scheduled until **D-041** is
 answered, and the audit is in any case not presently runnable from this
 repository (the site is in `melakeela/site`; see D-009). See
 `00-CONTROLLER/prompt-pack/PROMPT-PACK-INVENTORY.md` PP-1.
@@ -280,6 +295,6 @@ or research holds. Constitution §11.
 - The language-movement Artifact Atlas specification (§13). R14 is its
   evidence layer and R12, R13, R15 and R18 supply its edges; none has run.
 - Page and exhibit briefs.
-- R19's modern current-affairs layer — pending **D-036**. The ancient
+- R19's modern current-affairs layer — pending **D-042**. The ancient
   corridor is not blocked by it.
 - Anything touching `melakeela/site`.

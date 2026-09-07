@@ -31,6 +31,11 @@ to D-032, D-033 and D-034; the CSV rows kept their numbers, because
 its replacement is recorded in `09-DECISIONS/DECISION-ID-MAP.csv`, which is
 how a `D-` reference in a document written before that date is resolved.
 
+A third series exists and is not part of this namespace. The inherited handoff
+numbered its own owner decisions `D-01` to `D-20`; those are now written
+`HD-01` to `HD-20`, they stay `INHERITED-UNVERIFIED`, and they are never
+escalated here. Nothing in this file is an `HD-` decision.
+
 ---
 
 ## D-001 — Widen the network egress allowlist
@@ -310,7 +315,7 @@ inventory.
    learning requirement — against interfaces that ask children to sort human
    beings into racial types or turn persecution into an aesthetic spectacle —
    that nothing in the controller currently states.
-3. **It raises D-039**, on whether the register keeps one `status` column.
+3. **It raises D-045**, on whether the register keeps one `status` column.
 
 **Status unchanged at `PARTIALLY-SATISFIED`.** Still needed: an answer on
 Part IV, and the 89-item backlog document if Part IV is a digest.
@@ -326,7 +331,7 @@ D-014 above narrows. The nine conflicts the intake found are recorded as
 `PP-1` to `PP-9` in the inventory; `PP-2` to `PP-6` and `PP-9` are resolved
 there by extending existing `C-` resolutions and need no owner decision.
 
-## D-035 — Does a live public-site audit gate the first research programme?
+## D-041 — Does a live public-site audit gate the first research programme?
 
 **Raised by:** prompt-pack intake, 2026-09-07
 **Category:** two consequential positions both remaining viable
@@ -406,7 +411,7 @@ inventory — and if the gate stands, say how the audit is to be run.
 
 ---
 
-## D-036 — Does R19's modern layer run, and under what expiry convention?
+## D-042 — Does R19's modern layer run, and under what expiry convention?
 
 **Raised by:** prompt-pack intake, 2026-09-07
 **Category:** two consequential positions both remaining viable
@@ -436,7 +441,7 @@ reject it.
 
 ---
 
-## D-037 — What model-run budget does R1 have?
+## D-043 — What model-run budget does R1 have?
 
 **Raised by:** prompt-pack intake, 2026-09-07
 **Category:** payment or institutional access required
@@ -460,7 +465,7 @@ say so in the method, or defer R1 and start the run order at R9.
 
 ---
 
-## D-038 — Is running-list Version 12 the "current master work list"?
+## D-044 — Is running-list Version 12 the "current master work list"?
 
 **Raised by:** prompt-pack intake, 2026-09-07
 **Category:** two consequential positions both remaining viable
@@ -491,7 +496,7 @@ name and commit the separate document.
 
 ---
 
-## D-039 — One status column, or four axes?
+## D-045 — One status column, or four axes?
 
 **Raised by:** prompt-pack intake, 2026-09-07
 **Category:** two consequential positions both remaining viable
@@ -1052,3 +1057,48 @@ So the question is not which languages would be desirable. It is which the
 institution can keep current, at what latency, and who maintains them.
 
 **Decision:** which languages, with what maintenance commitment and whose?
+
+---
+
+## D-032 — Egress reach is not stable between sessions. Does domain E run under a GitHub-only policy?
+
+**Raised by:** domain E source probe, 2026-09-07T02:19–02:21Z
+**Category:** institutional access required
+**Related:** `02-SOURCES/access-ledger.csv` SRC-037 … SRC-047,
+`05-HOLDS/HOLD-002-dedr-unreachable.md`, `05-HOLDS/HOLD-003-para-munda-primary-statement.md`
+
+At 2026-09-07T00:45Z and 01:20Z this repository recorded `archive.org`,
+GRETIL, TITUS and Wikipedia as reachable, with byte counts (SRC-025,
+SRC-028, SRC-033, SRC-029). At 02:19Z, in the next session, every one of
+them answered 403 to CONNECT at the egress gateway, on both the `curl`
+and the WebFetch channel. Fifteen non-GitHub hosts were probed and all
+fifteen were refused; `github.com` over the git lane and
+`raw.githubusercontent.com` were the only reachable destinations.
+
+Nothing was withdrawn or changed by the sources. The session egress policy
+narrowed. Two consequences the owner has to rule on:
+
+1. **The ledger's meaning.** A row states reachability *at its probe
+   timestamp*. It is not a standing property of the domain, and the earlier
+   rows are not superseded — they were accurate. Every future unit that
+   cites reachability must re-probe rather than inherit. This is now written
+   into SRC-045; the owner should confirm it as the reading.
+
+2. **Whether domain E can be run at all under this policy.** The domain is
+   defined by the constitution as eleven distinctions among Dravidian, Munda
+   and unidentified material. Distinctions 1–4 need a Dravidian etymological
+   dictionary; distinctions 5–7 need Munda and Austroasiatic lexicography;
+   distinctions 8–9 need Witzel's own published statement. None is on
+   GitHub. Under a GitHub-only policy the domain's comparative half cannot
+   be evidenced at any status above `HYPOTHESIS`.
+
+| Option | Consequence |
+|---|---|
+| **Allowlist and re-run.** Add `dsal.uchicago.edu`, `archive.org`, `ejvs.laurasianacademy.com`, `sanskrit-lexicon.uni-koeln.de`, `titus.uni-frankfurt.de` | Domain E's comparative half becomes evidenceable. Cost: a second session on the same domain. |
+| **Run the corpus-internal half only, as this unit did** | Yields verified measurement of the Rigvedic side and honest holds on the comparative side. Cost: the register stays open, and nothing about Dravidian or Munda donors is settled. |
+| **Defer domain E entirely until access is granted** | Avoids a partial register. Cost: the corpus-internal measurements, which do not depend on the blocked sources, would be delayed for no evidentiary reason. |
+
+This unit took the second option and says so in every affected row.
+
+**Decision:** allowlist the five domains and re-run domain E's comparative
+half, or accept the corpus-internal half as the domain's Release 1 state?

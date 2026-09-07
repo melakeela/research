@@ -232,6 +232,27 @@ amendment's §14 bullets 1 to 8; the three colliding sections in
 replacement, which is how a `D-` reference in a document written before this
 date is resolved.
 
+**Further amended 2026-09-07 — a third series.** Closing that collision
+exposed another. §4 of the inherited handoff numbers its *own* owner
+decisions `D-01` to `D-20`, allocated in prior chat threads that knew nothing
+of this repository, and those identifiers were carried into
+`03-REGISTERS/inherited-claims.csv` and its extraction script unchanged. Only
+a leading zero separated the handoff's `D-13` (the INDUSVALLI deck is a
+starting point, not a source) from this repository's `D-013` (which
+dependency store is authoritative), and CLAUDE.md's rule that every owner
+decision has a row in `OWNER-DECISIONS.csv` read as though it covered twenty
+decisions that have no row and should not have one.
+
+**Resolution.** The inherited series is renamed `HD-01` to `HD-20` in the
+files this repository writes in its own voice, and is *not* merged into the
+`D-0NN` space. It gets no `OWNER-DECISIONS.csv` rows: those decisions are
+`INHERITED-UNVERIFIED`, and a register row would promote them without a
+retrieval event. `01-INHERITED/claude-project-handoff.md` and
+`RESEARCH-CONSTITUTION.md` keep the `D-NN` spelling because inherited material
+is copied, not corrected; `DECISION-ID-MAP.csv` carries the twenty rows that
+resolve them. After this pass `D-` in this repository denotes exactly one
+thing: an owner decision allocated in `09-DECISIONS/OWNER-DECISIONS.csv`.
+
 ### C-5 — Product specification against "output is evidence packages"
 
 `README.md` says output is evidence packages and page briefs. The amendment's
@@ -279,8 +300,9 @@ rules copied verbatim from §11 of the inherited handoff, and marked
 `INHERITED-UNVERIFIED` on its own first line. It is inherited material about
 method, not a controller, and several of its rules overlap the amendment's
 (C-06/C-38 on meta-commentary, C-16 on symmetry of skepticism, C-17 on
-attested versus unattested donors, D-10 on northern priority as an excavation
-artefact).
+attested versus unattested donors, HD-10 on northern priority as an excavation
+artefact — `HD-10` because that file writes it `D-10`, in the inherited
+handoff's own decision series and not this repository's; see C-4 below).
 
 **Resolution.** `METHODOLOGY-CONSTITUTION.md` is the methodology this
 repository runs under. `RESEARCH-CONSTITUTION.md` stays where it is and keeps
@@ -394,7 +416,7 @@ further points:
 - Its §10 argues against the single `status` column that `CLAUDE.md` mandates,
   on the ground that a claim can be well documented and contested. **C-1**
   settled which *vocabulary* governs one axis; this asks whether one axis is the
-  right shape, which C-1 does not reach. Open as **D-039**; the single column
+  right shape, which C-1 does not reach. Open as **D-045**; the single column
   stands until it is answered.
 - Its §10 also defines the evidence-role vocabulary the shared research contract
   requires and never specifies, and its "bridges are claims" paragraph is Step
@@ -409,8 +431,8 @@ the new sources; none of those resolutions is changed by the extension. `PP-11`,
 `PP-12` in particular confirms that constitution §6's eight absence types govern
 over the four coarser mechanisms in `MELAKEELAWHOMADETHEPAST.md` §5, since the
 four cannot express `ABSENT DESPITE ADEQUATE SEARCH`, the only type that
-licenses an argument from absence at all. `PP-10` is open as **D-039**, above.
-`PP-1` is not resolvable here and is open as **D-035**: this document does not mention the
+licenses an argument from absence at all. `PP-10` is open as **D-045**, above.
+`PP-1` is not resolvable here and is open as **D-041**: this document does not mention the
 live public-site audit anywhere, and the audit gate that running-list Version 11
 created has been dropped from the constitution rather than reversed. Recorded
 here because §4's retirement of the Claude Chat / Claude Code division of labour

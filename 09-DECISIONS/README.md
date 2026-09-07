@@ -52,8 +52,36 @@ old_id,old_file,new_id,changed,decision,note
 One row per identifier as it stood before the 2026-09-07 merge, keyed by the
 file it appeared in — because `D-004`, `D-005` and `D-006` each existed in
 both files and a bare reference to one of them in an older document is
-ambiguous without knowing which file was meant. `changed` is `yes` for the
-three that moved and `no` for the twenty-eight that did not.
+ambiguous without knowing which file was meant.
+
+The map is in two blocks. The first, 34 rows, is the `D-0NN` namespace: 31
+rows carry `changed = no` and 3 carry `changed = yes` for the sections that
+became `D-032` to `D-034`.
+
+The second block, 20 rows, is the **inherited handoff series**. That is a
+separate defect, found on 2026-09-07 and fixed in the same pass. Section 4 of
+`01-INHERITED/claude-project-handoff.md` numbers its own owner decisions
+`D-01` to `D-20`, allocated in prior chat threads with no knowledge of this
+repository. Two-digit `D-13` and three-digit `D-013` are different decisions —
+the deck being a starting point rather than a source, against the dependency
+store — and nothing in the text distinguished them.
+
+Those twenty are now written **`HD-01` to `HD-20`** wherever this repository
+speaks in its own voice: `03-REGISTERS/inherited-claims.csv` and
+`04-AUDITS/inherited-claims-extraction.py`, which generates it, and
+`00-CONTROLLER/CONTROLLER-RECONCILIATION.md`. They are *not* renumbered into
+the `D-0NN` space and they get no `OWNER-DECISIONS.csv` row: they are prior
+decisions of record, `INHERITED-UNVERIFIED` like everything else that came in
+through `01-INHERITED/`, and giving them rows in the authoritative register
+would promote them by clerical act — which the inheritance rule forbids. If
+the owner re-affirms one, it is allocated a fresh `D-` from this CSV then.
+
+Two files keep the old `D-NN` spelling and are deliberately not edited:
+`01-INHERITED/claude-project-handoff.md` and
+`00-CONTROLLER/RESEARCH-CONSTITUTION.md`, which is a verbatim copy of the
+handoff's §11. Inherited material is not rewritten; the map is what resolves
+their references.
 
 Rows are never removed. A `D-` reference in any file written before
-2026-09-07 is resolved through this map.
+2026-09-07 is resolved through this map — three-digit against the first
+block, two-digit against the second.
