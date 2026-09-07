@@ -232,6 +232,27 @@ amendment's §14 bullets 1 to 8; the three colliding sections in
 replacement, which is how a `D-` reference in a document written before this
 date is resolved.
 
+**Further amended 2026-09-07 — a third series.** Closing that collision
+exposed another. §4 of the inherited handoff numbers its *own* owner
+decisions `D-01` to `D-20`, allocated in prior chat threads that knew nothing
+of this repository, and those identifiers were carried into
+`03-REGISTERS/inherited-claims.csv` and its extraction script unchanged. Only
+a leading zero separated the handoff's `D-13` (the INDUSVALLI deck is a
+starting point, not a source) from this repository's `D-013` (which
+dependency store is authoritative), and CLAUDE.md's rule that every owner
+decision has a row in `OWNER-DECISIONS.csv` read as though it covered twenty
+decisions that have no row and should not have one.
+
+**Resolution.** The inherited series is renamed `HD-01` to `HD-20` in the
+files this repository writes in its own voice, and is *not* merged into the
+`D-0NN` space. It gets no `OWNER-DECISIONS.csv` rows: those decisions are
+`INHERITED-UNVERIFIED`, and a register row would promote them without a
+retrieval event. `01-INHERITED/claude-project-handoff.md` and
+`RESEARCH-CONSTITUTION.md` keep the `D-NN` spelling because inherited material
+is copied, not corrected; `DECISION-ID-MAP.csv` carries the twenty rows that
+resolve them. After this pass `D-` in this repository denotes exactly one
+thing: an owner decision allocated in `09-DECISIONS/OWNER-DECISIONS.csv`.
+
 ### C-5 — Product specification against "output is evidence packages"
 
 `README.md` says output is evidence packages and page briefs. The amendment's
@@ -279,8 +300,9 @@ rules copied verbatim from §11 of the inherited handoff, and marked
 `INHERITED-UNVERIFIED` on its own first line. It is inherited material about
 method, not a controller, and several of its rules overlap the amendment's
 (C-06/C-38 on meta-commentary, C-16 on symmetry of skepticism, C-17 on
-attested versus unattested donors, D-10 on northern priority as an excavation
-artefact).
+attested versus unattested donors, HD-10 on northern priority as an excavation
+artefact — `HD-10` because that file writes it `D-10`, in the inherited
+handoff's own decision series and not this repository's; see C-4 below).
 
 **Resolution.** `METHODOLOGY-CONSTITUTION.md` is the methodology this
 repository runs under. `RESEARCH-CONSTITUTION.md` stays where it is and keeps
