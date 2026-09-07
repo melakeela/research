@@ -379,7 +379,7 @@ points. With n=1 on each side no distribution follows.
 | cattle | 13 | `gáv- ~ gó-` 5, `vrajá-` 3 |
 | treasure | 12 | `dhána-` 2, `rayí- ~ rāy-` 2 |
 | mountain | 7 | `ádri-` 3, `girí-` 2 |
-| named river | 6 | `síndhu-` in all six |
+| river lemma present | 6 | `síndhu-` in all six — but see below |
 
 Two exclusions were needed, and **both changed the result**:
 
@@ -399,6 +399,23 @@ a mountain — the match is in the note, not in the sense.
 
 These are recorded because each is a place where an undefined field would have
 returned a larger and more impressive number.
+
+**And one correction this unit owes itself.** The river column was first headed
+*named river* and the claim first read "the Sindhu in all six". That is wrong.
+`síndhu-` is the only lemma in the 103 passages that can name a river — an
+independent scan of all 721 lemmas for a Grassmann gloss marking a river name
+returns it and nothing else — but Grassmann glosses it **"Fluss, Strom; der
+Indus"**, the common noun and the proper name at once, and the translators
+split: proper name at RV 1.103.8, 1.109.8 and 10.111.10; common noun at
+RV 7.95.1 and (plural) 10.89.7; **disputed** at RV 10.104.8, where Griffith has
+"the ocean" and Geldner "die Sindhu". The column is now `river_lemma_present`
+and carries the caveat on every row (`PUR4J-028`).
+
+This matters out of proportion to its size: a hydronym is the only thread in
+this corpus that could ever reach a geography, and the thread is thinner than a
+lemma count makes it look. A scan for a lemma glossed as the name of a
+**mountain** returns nothing at all, so §4J's *mountain or river* resolves to
+common nouns for high ground plus one ambiguous hydronym.
 
 ### 5.4 Patron and opponent: what the column is, and what it is not
 

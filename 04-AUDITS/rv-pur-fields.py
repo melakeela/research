@@ -43,9 +43,17 @@ DEFINITIONS
                    `Preis` covers both "prize" and "praise", so an unfiltered
                    treasure field silently collects the words for hymns.
 
-  river/       Named rivers and mountains present as lemmas. A hydronym in a
-  mountain     passage is a TEXTUAL fact. The step from it to a place on a map
-               is a separate claim and this register does not take it.
+  river        Lemmas that could name a river. Reported as
+               `river_lemma_present`, NOT as "named river": the only such lemma
+               in the 103 passages is síndhu-, and Grassmann glosses it
+               "Fluss, Strom; der Indus" — BOTH the common noun and the
+               proper name. Which one a passage needs is a reading, and the
+               translators split on it (PUR4J-028), so the column records
+               presence and the claim records the split.
+
+               A hydronym in a passage is in any case a TEXTUAL fact. The step
+               from it to a place on a map is a separate claim and this
+               register does not take it.
 
   patron       Lemmas whose Grassmann gloss marks a proper name (N. pr., Name
   opponent     eines …), split by the ROLE WORD IN GRASSMANN'S OWN GLOSS:
@@ -246,13 +254,18 @@ def main():
             "cattle": "; ".join(f["cattle"]) or "(none)",
             "treasure": "; ".join(f["treasure"]) or "(none)",
             "mountain": "; ".join(f["mountain"]) or "(none)",
-            "river_named": "; ".join(sorted(
+            "river_lemma_present": "; ".join(sorted(
                 l for l in lem if l in {"síndhu-", "sárasvatī-", "sárasvant-",
                                         "rasā́-", "vipā́ś-", "śutudrī́-",
                                         "yamúnā-", "gáṅgā-", "paruṣṇī́-",
                                         "asiknī́-", "gomatī́-", "kúbhā-",
                                         "krúmu-", "sarayú-", "suvā́stu-",
                                         "marudvŕ̥dhā-", "ārjīkī́ya-"})) or "(none)",
+            "river_lemma_note": (
+                "Presence of a lemma that CAN name a river, not a named river. "
+                "síndhu- is glossed by Grassmann as 'Fluss, Strom; der Indus' — "
+                "common noun and proper name at once — and Griffith and Geldner "
+                "read it differently across these passages. See PUR4J-028."),
             "proposed_geography": "NOT FILLED — no source",
             "geography_basis": ("The pinned corpus carries no geographic content: "
                                 "info/rv_locations.tsv is a citation-format "
@@ -278,7 +291,7 @@ def main():
     for k in ("poet_lineage", "patron_candidates", "opponent_candidates",
               "description_same_pada", "description_same_hemistich",
               "description_elsewhere_in_stanza", "agreeing_but_excluded", "material",
-              "water", "cattle", "treasure", "mountain", "river_named"):
+              "water", "cattle", "treasure", "mountain", "river_lemma_present"):
         print("  %-28s filled in %3d of %d" % (k, filled(k), len(rows)),
               file=sys.stderr)
     mat = collections.Counter()
