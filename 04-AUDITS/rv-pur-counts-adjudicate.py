@@ -11,6 +11,16 @@ with them and where it overrides them.
 VERDICTS
   COUNTS-PUR        the numeral counts the fort word
   COUNTS-OTHER      the numeral counts something else in the stanza
+  COUNTS-SERIES-COMPLETION
+                    the numeral completes the series the fort count belongs to
+                    but does NOT modify the fort word. Both instances are the
+                    ordinal śatatamá- "the hundredth", at RV 4.26.3c and
+                    7.19.5c, where it modifies a dwelling word (veśyà-,
+                    nivéśana-) in the pāda after a ninety-nine of forts.
+                    Given its own verdict because calling it COUNTS-PUR would
+                    assert an attachment the text does not have, and calling it
+                    COUNTS-OTHER would lose the fact that the 99 and the
+                    hundredth are one schema.
   CANNOT-DECIDE     the text does not settle it
 
 Every verdict carries its basis in the row. Where a verdict overrides an
@@ -82,11 +92,11 @@ A = {
    "c: 'śatám púro rurukṣáṇim'. Of Soma, not Indra: 'wishing to break a hundred forts'."),
 
  # ---- ordinals: the hundredth that completes a ninety-nine ------------------
- ("04.026.03","c","śatatamám"): ("COUNTS-PUR","100th","śatatamáṁ veśyàm",
+ ("04.026.03","c","śatatamám"): ("COUNTS-SERIES-COMPLETION","100th (completes the fort series; modifies a dwelling word, not púr-)","śatatamáṁ veśyàm",
    "c: 'śatatamáṁ veśyàṁ sarvátātā'. An ORDINAL completing the 99 of pāda a, and it is applied to "
    "veśyà- (dwelling/inhabitant), not to púr-. Recorded as a count because it is the 100th of the "
    "same series; the noun it modifies is not the fort word."),
- ("07.019.05","c","śatatamā́"): ("COUNTS-PUR","100th","nivéśane śatatamā́",
+ ("07.019.05","c","śatatamā́"): ("COUNTS-SERIES-COMPLETION","100th (completes the fort series; modifies a dwelling word, not púr-)","nivéśane śatatamā́",
    "c: 'nivéśane śatatamā́viveṣīr'. Same schema as 04.026.03c: 99 in pāda b, the hundredth in pāda c, "
    "again on a dwelling word (nivéśana-) rather than on púr-."),
 
@@ -152,7 +162,8 @@ def main():
             override = ("Verdict overrides the mechanical instruments: "
                         "agreement=%s, proximity=%s would place this numeral on the fort word."
                         % (r["agreement"], r["proximity"]))
-        if verdict == "COUNTS-PUR" and not mech_says_attached:
+        if verdict in ("COUNTS-PUR", "COUNTS-SERIES-COMPLETION") \
+                and not mech_says_attached:
             override = ("Verdict is reached against the instruments: agreement=%s, "
                         "proximity=%s. navatí- is a FEMININE SINGULAR collective ('a ninety') "
                         "governing a plural noun, so it agrees in case and gender but never in "
@@ -167,7 +178,8 @@ def main():
             "numeral_morph": r["numeral_morph"],
             "grassmann_gloss": r["grassmann_gloss"],
             "verdict": verdict,
-            "count_of_forts": of if verdict == "COUNTS-PUR" else "",
+            "count_of_forts": of if verdict in ("COUNTS-PUR",
+                                                "COUNTS-SERIES-COMPLETION") else "",
             "expression": expr,
             "nearest_pur_surface": r["pur_surface"],
             "nearest_pur_pada": r["pur_pada"],

@@ -36,7 +36,7 @@ them.
 
 ### 1. Ninety-nine is not the modal count. One hundred is.
 
-**21 of 103 passages state a count of forts; 82 state none.**
+**21 of 103 passages state a cardinal count of forts; 82 state none.**
 
 | Count | Passages |
 |---|---:|
