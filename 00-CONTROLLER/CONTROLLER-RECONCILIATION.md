@@ -378,15 +378,39 @@ dispositions outright. It still cannot be completed: `current_site_coverage` and
 needs the packets. Whether Part IV *is* the backlog or a digest of a longer
 document is the narrowed question at `DECISIONS-NEEDED.md` D-014.
 
-**One companion is still absent.** `MELA-KEELA-WHO-MADE-THE-PAST.md`, the fifth
-file named in running-list Version 12, did not arrive; R8 is instructed to
-cross-link its contribution model.
+**One companion was still absent** when the paragraphs above were written.
+`MELA-KEELA-WHO-MADE-THE-PAST.md` arrived later the same day and is committed as
+`prompt-pack/MELAKEELAWHOMADETHEPAST.md`. All five companions named in
+running-list Version 12 are present, and R8's instruction to cross-link its
+contribution model is executable.
 
-The intake also found nine conflicts between the pack and the controller,
-recorded as `PP-1` to `PP-9` in the inventory. `PP-2` to `PP-6` and `PP-9` are
-resolved there by extending **C-1**, **C-3**, **C-6** and §4 to cover the new
-sources; none of those resolutions is changed by the extension. `PP-1` is not
-resolvable here and is open as **D-035**: this document does not mention the
+That file bears on this document in a way the other five do not. It is a
+research foundation, not a prompt: its content enters
+`03-REGISTERS/inherited-claims.csv` at `INHERITED-UNVERIFIED` and its dependent
+citations enter `02-SOURCES/dependency.csv` when opened, so **C-1** and the
+inheritance rule apply to it directly rather than only to the controller. Two
+further points:
+
+- Its §10 argues against the single `status` column that `CLAUDE.md` mandates,
+  on the ground that a claim can be well documented and contested. **C-1**
+  settled which *vocabulary* governs one axis; this asks whether one axis is the
+  right shape, which C-1 does not reach. Open as **D-039**; the single column
+  stands until it is answered.
+- Its §10 also defines the evidence-role vocabulary the shared research contract
+  requires and never specifies, and its "bridges are claims" paragraph is Step
+  10 and the cross-domain boundary in four sentences. Both are adopted; neither
+  needs a decision.
+
+The intake found fourteen conflicts and convergences between the pack and the
+controller, recorded as `PP-1` to `PP-14` in the inventory. `PP-2` to `PP-6` and
+`PP-9` are resolved there by extending **C-1**, **C-3**, **C-6** and §4 to cover
+the new sources; none of those resolutions is changed by the extension. `PP-11`,
+`PP-12` and `PP-14` are likewise resolved there and change nothing here —
+`PP-12` in particular confirms that constitution §6's eight absence types govern
+over the four coarser mechanisms in `MELAKEELAWHOMADETHEPAST.md` §5, since the
+four cannot express `ABSENT DESPITE ADEQUATE SEARCH`, the only type that
+licenses an argument from absence at all. `PP-10` is open as **D-039**, above.
+`PP-1` is not resolvable here and is open as **D-035**: this document does not mention the
 live public-site audit anywhere, and the audit gate that running-list Version 11
 created has been dropped from the constitution rather than reversed. Recorded
 here because §4's retirement of the Claude Chat / Claude Code division of labour
