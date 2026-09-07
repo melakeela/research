@@ -10,6 +10,11 @@ Checks:
   1. Every row's status is in the vocabulary.
   2. Every VERIFIED row has non-empty source_id, locator, retrieval_date.
   3. Every source_id resolves to a row in 02-SOURCES/access-ledger.csv.
+     A source_id cell may carry several identifiers separated by ';'
+     — a corpus measurement routinely rests on the clone, the lemma
+     layer, the strata layer and the derived table, and recording all
+     four is right. Each is resolved separately; the cell passes only
+     if every identifier in it resolves.
   4. Every claim_id is unique within its file.
   5. Every D- reference in the tree resolves to exactly one row in
      09-DECISIONS/OWNER-DECISIONS.csv.
@@ -42,6 +47,16 @@ failures = []
 
 def fail(msg):
     failures.append(msg)
+
+
+def split_source_ids(cell):
+    """A source_id cell holds one or more identifiers separated by ';'.
+
+    Returns each identifier separately so a claim resting on four
+    sources records all four in one row and still resolves. Empty
+    cells and empty segments yield nothing.
+    """
+    return [part.strip() for part in (cell or "").split(";") if part.strip()]
 
 
 def read_csv(path):
@@ -100,9 +115,9 @@ def check_register(path, ledger):
             for col in REQUIRED_FOR_VERIFIED:
                 if col in fields and not (row.get(col) or "").strip():
                     fail(f"{rel}:{n}: VERIFIED row missing {col}")
-            sid = (row.get("source_id") or "").strip()
-            if sid and ledger and sid not in ledger:
-                fail(f"{rel}:{n}: source_id {sid} not in access ledger")
+            for sid in split_source_ids(row.get("source_id")):
+                if ledger and sid not in ledger:
+                    fail(f"{rel}:{n}: source_id {sid} not in access ledger")
 
 
 def check_decision_refs(known):
