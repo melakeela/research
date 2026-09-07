@@ -1948,7 +1948,7 @@ Three constraints on what a children's interface may do. Their source is
 `MELA-KEELA-WHO-MADE-THE-PAST.md` §9, as the owner stated it; that document is
 not in this repository, so their wording is `INHERITED-UNVERIFIED`
 (`RESEARCH-QUEUE.md`, `WMP-9`, records the provenance and the numbering
-discrepancy raised as `D-035`). Their standing as constraints does not depend on
+discrepancy raised as `D-037`). Their standing as constraints does not depend on
 that, because they are prohibitions on what the institution builds, not claims
 about the past. Rule S-1 is not in tension with them: nothing here is cited as
 evidence for anything.
