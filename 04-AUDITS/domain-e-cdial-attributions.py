@@ -251,6 +251,26 @@ all_true = [e for e in entries if e["munda_mention"]]
 counts["naive_munda_precision_pct"] = round(100.0 * len(naive_true) / max(1, len(naive_hits)), 1)
 counts["naive_munda_recall_pct"] = round(100.0 * len(naive_true) / max(1, len(all_true)), 1)
 
+# (c2) source genealogy, constitution step 5. Citation count is not
+# independent confirmation, and Turner names his authority in the bracket,
+# so the dependency can be counted rather than guessed at.
+AUTH = {
+    "kuiper": re.compile(r"Kuiper|PMWS"),
+    "burrow": re.compile(r"Burrow"),
+    "mayrhofer": re.compile(r"EWA|Mayrhofer"),
+    "bloch": re.compile(r"\bBloch\b"),
+    "przyluski": re.compile(r"Przyluski"),
+}
+ANY_AUTH = re.compile(r"Kuiper|PMWS|Burrow|EWA|Mayrhofer|Bloch|Przyluski|"
+                      r"Charpentier|Caldwell|DED")
+for fam in ("dravidian", "munda"):
+    arrows = [e for e in entries if e[f"{fam}_in"]]
+    counts[f"{fam}_in_total"] = len(arrows)
+    for name, rx in AUTH.items():
+        counts[f"{fam}_in_cites_{name}"] = sum(1 for e in arrows if rx.search(e["clean"]))
+    counts[f"{fam}_in_cites_no_authority"] = sum(
+        1 for e in arrows if not ANY_AUTH.search(e["clean"]))
+
 corpus_strata = collections.Counter()
 for lem, c in rv_lemma_strata.items():
     corpus_strata.update({k: v * 1 for k, v in c.items()})
