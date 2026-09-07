@@ -1,7 +1,7 @@
 # Decisions needed
 
-The only place that asks anything of the owner. One decision per
-section. Nothing here is actionable by an agent alone.
+The prose case for the owner decisions that **block work in progress**.
+One decision per section. Nothing here is actionable by an agent alone.
 
 Qualifying categories:
 - payment or institutional access required
@@ -9,6 +9,27 @@ Qualifying categories:
 - two consequential interpretive positions both remaining viable
 - living-community consent
 - publication approval
+
+## Identifiers
+
+`09-DECISIONS/OWNER-DECISIONS.csv` is **authoritative** for the decision-ID
+namespace and for each decision's `status`. Every `D-` identifier in this
+repository is allocated there, including every decision written up below;
+this file allocates none of its own. A new escalation takes the next free
+`D-` from the CSV, gets a row there with `detail_ref` pointing back at its
+section here, and is then written up.
+
+Where the two disagree on wording or status, the CSV governs. What the CSV
+cannot hold — the argument, the options table, the evidence a decision turns
+on — lives here and is not duplicated into the CSV.
+
+`DECISIONS-NEEDED.md` and `OWNER-DECISIONS.csv` shared IDs at D-004, D-005
+and D-006 until 2026-09-07. The three sections in this file were renumbered
+to D-032, D-033 and D-034; the CSV rows kept their numbers, because
+`OWNER-DECISIONS.csv` D-004 to D-011 map one-to-one onto
+`METHODOLOGY-CONSTITUTION.md` §14 bullets 1 to 8. Every old identifier and
+its replacement is recorded in `09-DECISIONS/DECISION-ID-MAP.csv`, which is
+how a `D-` reference in a document written before that date is resolved.
 
 ---
 
@@ -205,7 +226,18 @@ documents in the table above, or say they are superseded. The backlog gap and
 the running-list gap are separate; closing the second does not close the first.
 
 
-## D-004 — `before-the-indus` is inside the MVP set and marked withhold-from-MVP
+# Decisions raised by the curatorial audit v1.1 schema review
+
+`01-INHERITED/curatorial-audit-v1.1/`, 2026-09-07. These three sections were
+raised as D-004, D-005 and D-006 in this file and were renumbered on
+2026-09-07 to clear the collision with `09-DECISIONS/OWNER-DECISIONS.csv`.
+`09-DECISIONS/DECISION-ID-MAP.csv` carries the mapping.
+
+---
+
+## D-032 — `before-the-indus` is inside the MVP set and marked withhold-from-MVP
+
+**Renumbered from D-004** on 2026-09-07 (`09-DECISIONS/DECISION-ID-MAP.csv`).
 
 **Raised by:** curatorial audit v1.1 schema review, 2026-09-07
 **Category:** two consequential positions both remaining viable / publication approval
@@ -237,7 +269,9 @@ is answered.
 
 ---
 
-## D-005 — `rakhigarhi` is in the contradiction register but not in the audited build
+## D-033 — `rakhigarhi` is in the contradiction register but not in the audited build
+
+**Renumbered from D-005** on 2026-09-07 (`09-DECISIONS/DECISION-ID-MAP.csv`).
 
 **Raised by:** curatorial audit v1.1 schema review, 2026-09-07
 **Category:** two consequential positions both remaining viable
@@ -266,7 +300,9 @@ the workbook is scoped to a build no other artefact here references.
 
 ---
 
-## D-006 — The audit's "96 pages" is a seventh page count, not a resolution
+## D-034 — The audit's "96 pages" is a seventh page count, not a resolution
+
+**Renumbered from D-006** on 2026-09-07 (`09-DECISIONS/DECISION-ID-MAP.csv`).
 
 **Raised by:** curatorial audit v1.1 schema review, 2026-09-07
 **Category:** two consequential positions both remaining viable
@@ -299,10 +335,10 @@ where constitution §12 or §13 leaves a choice the owner has not made. The
 specification records them here rather than taking them, per the instruction
 governing that task.
 
-**Identifier-space note.** This file and `09-DECISIONS/OWNER-DECISIONS.csv`
-already share IDs at D-004 to D-006 — a pre-existing collision. It is not
-compounded here: these rows continue this file's own sequence from D-014.
-Where a row below refers to a decision in the CSV, the CSV is named explicitly.
+**Identifier-space note.** The D-004 to D-006 collision this block was written
+around was resolved on 2026-09-07: the three colliding sections in this file
+became D-032 to D-034 and `09-DECISIONS/OWNER-DECISIONS.csv` is now
+authoritative for the whole namespace. D-015 to D-031 were not renumbered.
 
 ---
 

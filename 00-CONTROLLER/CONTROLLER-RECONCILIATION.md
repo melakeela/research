@@ -219,6 +219,19 @@ Both exist; the sentence in `README.md` is now wrong and is corrected in the
 same pass as the rewritten controller. Where an item qualifies for both, it
 lives in `DECISIONS-NEEDED.md` and is cross-referenced from the CSV.
 
+**Amended 2026-09-07 — one identifier namespace.** Being two instruments did
+not make them two identifier spaces, and they were allocating `D-` numbers
+independently: both files used D-004, D-005 and D-006 for different decisions.
+`09-DECISIONS/OWNER-DECISIONS.csv` is now authoritative for the namespace and
+for `status`, and carries a row for every owner decision including the
+blocking ones; `DECISIONS-NEEDED.md` holds the argument and allocates nothing.
+The CSV rows kept their numbers because D-004 to D-011 map one-to-one onto the
+amendment's §14 bullets 1 to 8; the three colliding sections in
+`DECISIONS-NEEDED.md` became D-032 to D-034.
+`09-DECISIONS/DECISION-ID-MAP.csv` records every old identifier against its
+replacement, which is how a `D-` reference in a document written before this
+date is resolved.
+
 ### C-5 — Product specification against "output is evidence packages"
 
 `README.md` says output is evidence packages and page briefs. The amendment's

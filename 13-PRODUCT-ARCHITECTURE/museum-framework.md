@@ -30,11 +30,14 @@ From `CONTROLLER-RECONCILIATION.md` C-5. Everything this document takes from
 such at the point of use. A design that depends on a number is a design that
 depends on that number's status: the Atlas cannot ship a site count in a title
 while the count sits in a contradiction row (`03-REGISTERS/inherited-claims.csv`
-`IH-250`, X-01; `DECISIONS-NEEDED.md` D-006).
+`IH-250`, X-01; `DECISIONS-NEEDED.md` D-034, raised as D-006 before the
+2026-09-07 renumbering).
 
 **Rule S-2 — Where §12 or §13 leaves a choice the owner has not made, the choice
-is recorded, not taken.** New entries are written to `DECISIONS-NEEDED.md` as
-D-015 onward. This document proposes; it does not adopt. Where it recommends,
+is recorded, not taken.** New entries are written up in `DECISIONS-NEEDED.md`
+as D-015 onward, against rows allocated in `09-DECISIONS/OWNER-DECISIONS.csv`,
+which is authoritative for the identifier namespace. This document proposes; it
+does not adopt. Where it recommends,
 the recommendation is labelled as such and the alternative is stated at equal
 seriousness. Where §14 has already reserved a decision, the existing
 `09-DECISIONS/OWNER-DECISIONS.csv` row is cited rather than duplicated.
@@ -1464,7 +1467,7 @@ v2's first structural change follows directly:
 > visible, or it is not displayed. The number of sites in view is a property of
 > the current filter and is always shown *with* the filter, never as a title.
 
-`DECISIONS-NEEDED.md` D-006 asks the owner what the atlas site count is. Under
+`DECISIONS-NEEDED.md` D-034 asks the owner what the atlas site count is. Under
 this specification the Atlas can be built and shipped before that is answered,
 because it never asserts a total in its own voice.
 
@@ -2528,12 +2531,13 @@ set of things it has deliberately *not* specified, listed in §14.3.
 
 ### 14.1 Decisions raised by this document
 
-Written to `DECISIONS-NEEDED.md` as D-015 to D-031, per the instruction that
-governs this task. Note that `DECISIONS-NEEDED.md` and
-`09-DECISIONS/OWNER-DECISIONS.csv` currently share an identifier space at D-004
-to D-006 — a pre-existing collision, recorded here and not compounded: the new
-rows continue `DECISIONS-NEEDED.md`'s own sequence from its highest existing row,
-D-014.
+Written up in `DECISIONS-NEEDED.md` as D-015 to D-031, per the instruction that
+governs this task. The D-004 to D-006 collision between `DECISIONS-NEEDED.md` and
+`09-DECISIONS/OWNER-DECISIONS.csv`, recorded here when this document was written,
+was resolved on 2026-09-07: the CSV is now authoritative for the whole namespace,
+the three colliding sections in `DECISIONS-NEEDED.md` became D-032 to D-034, and
+`09-DECISIONS/DECISION-ID-MAP.csv` carries the mapping. D-015 to D-031 were not
+renumbered.
 
 | ID | Decision | Section |
 |---|---|---|
@@ -2564,12 +2568,13 @@ D-009 (which pages merge), D-010 (publishable institutional claims), D-011
 (deferred set), D-012 (where specification lives), D-013 (dependency store
 format).
 
-`DECISIONS-NEEDED.md` D-004 (`before-the-indus` in or out of the MVP set), D-005
-(which build is authoritative; is `rakhigarhi` live), D-006 (the page count and
-the atlas site count), D-014 (the missing backlog and prompt-pack).
+`DECISIONS-NEEDED.md` D-032 (`before-the-indus` in or out of the MVP set), D-033
+(which build is authoritative; is `rakhigarhi` live), D-034 (the page count and
+the atlas site count), D-014 (the missing backlog and prompt-pack). The first
+three were raised as D-004 to D-006 and renumbered on 2026-09-07.
 
 Two of these are load-bearing for what is specified above and are worth naming as
-such: **D-006 (atlas site count)** is neutralised but not answered by §8.1 — the
+such: **D-034 (atlas site count)** is neutralised but not answered by §8.1 — the
 Atlas can be built without it and cannot be titled without it. **D-011 (deferred
 set)** blocks §13.2.
 

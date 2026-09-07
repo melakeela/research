@@ -225,6 +225,17 @@ Those go in `DECISIONS-NEEDED.md`. Standing product, scope and institutional
 decisions that block nothing go in `09-DECISIONS/OWNER-DECISIONS.csv`. Do
 not interrupt for anything that can wait for a release gate.
 
+**One identifier namespace.** `09-DECISIONS/OWNER-DECISIONS.csv` is
+authoritative for `D-` identifiers and for each decision's `status`. Every
+owner decision has a row there, blocking or not. A decision that blocks also
+gets a prose section in `DECISIONS-NEEDED.md`, and its CSV row's `detail_ref`
+points at that section; the CSV never duplicates the argument and
+`DECISIONS-NEEDED.md` never allocates an identifier of its own. Allocate the
+next free `D-` from the CSV, never from the highest number you happen to see
+in a document. Renumbering is recorded in `09-DECISIONS/DECISION-ID-MAP.csv`,
+old identifier to new, and rows are never removed from it — a `D-` reference
+in an older file is resolved through that map.
+
 ## Layout
 
 ```
@@ -235,7 +246,7 @@ not interrupt for anything that can wait for a release gate.
 04-AUDITS/       bias-failure log, re-audit queue, power audit, contradictions
 05-HOLDS/        claims blocked on unavailable sources
 06-BACKLOG/      backlog coverage (awaiting the v2 backlog document)
-09-DECISIONS/    owner decisions register
+09-DECISIONS/    owner decisions register, decision-ID map
 ```
 
 Directories are created when the work that fills them begins, not in
