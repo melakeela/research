@@ -212,6 +212,41 @@ into the tree. The highest allocated decision is `D-035`.
   the programme with a live-site audit
   (`01-INHERITED/site-review/RUNNING-LIST-RECONCILIATION.md`).
 
+> **Correction note added 2026-09-07, on the register-consolidation pass.**
+> The three findings above are preserved as written and were accurate when
+> this document was reconciled. Two of their statements about the register
+> are no longer true, and are corrected here rather than edited above.
+>
+> - **"The highest allocated decision is `D-035`."** It is now `D-044`, and
+>   `09-DECISIONS/OWNER-DECISIONS.csv` holds 43 rows. Allocate the next free
+>   `D-` from that CSV, as the section above this one already says — noting
+>   that `D-039` is a folded identifier, a deliberate gap, and is never
+>   reused.
+> - **Register naming — "it needs a freshly allocated row".** That row now
+>   exists: **`D-036`**, `OPEN`, "do the twelve mandated registers accumulate
+>   under their mandated names, or does each domain get its own file?",
+>   argued in `04-AUDITS/identifier-normalisation-brief.md` §5 and pointed at
+>   by its `detail_ref`. `D-039` was raised for the same question on
+>   `claude/domain-e-research-queue-z83m9b` and folded into `D-036` on
+>   2026-09-07, both provenance notes kept; the fold is recorded in
+>   `09-DECISIONS/DECISION-ID-MAP.csv`. The question is therefore no longer
+>   "answered for now by `CONTROLLER-RECONCILIATION.md` C-3" — it is a live
+>   owner decision, and C-3 answers only where each file lives, not whether
+>   it accumulates.
+>
+> Two things above are **not** corrected, because they are still true.
+> `D-035` is still the Brahui leave-one-out question, so the live-site audit
+> finding still stands. And the status-dimensions question still has no row.
+>
+> One point sharpens rather than corrects. This section says no identifier is
+> quoted "because the identifiers the draft used do not exist and repeating
+> them would put unresolvable references back into the tree". Both numbers
+> have since been allocated to other decisions — `D-037` to the
+> `MELA-KEELA-WHO-MADE-THE-PAST.md` section-numbering question, and `D-039`
+> to the domain E mandated-files question now folded into `D-036`. So the
+> reason for not quoting them has strengthened: they would now resolve, and
+> resolve to the wrong rows. Leaving them unquoted was right.
+
 The draft also listed "daylight versus near-black visual doctrine" as a
 blocking decision. `HD-04` settles a dark ground with grey `#5f6f7a`
 meaning NO DATA always, `HD-11` says build the pages first and do not

@@ -1,3 +1,52 @@
+# HEADER NOTE, added 2026-09-07. Lines beginning with '#' before the column
+# header are commentary, not data; readers skip them.
+#
+# COMPANION REGISTER: 03-REGISTERS/HYPOTHESIS-ELIGIBILITY.csv, the file
+# standing under the mandated name. It carries the same 17 mandated columns
+# (METHODOLOGY-CONSTITUTION.md §9) and gates overlapping subject matter from
+# a different body of evidence. Neither file supersedes the other and
+# neither is a copy of the other.
+#
+# HOW THEY RELATE, on their face and by subject, not as a verified mapping:
+#   - This file holds 11 rows, E-1 to E-11: the eleven §4.E attestation-
+#     gradient distinctions — attested family, reconstructed proto-language,
+#     accepted loan, proposed substrate form, named historical proposal,
+#     unidentified residue — kept apart so they cannot collapse into one.
+#   - The companion holds 10 rows, HYP-E-000 to HYP-E-009: a null explanation
+#     and the substrate donor proposals that must beat it.
+#   - Four subjects pair cleanly: Dravidian lending into Old Indo-Aryan
+#     (E-3, E-4 ~ HYP-E-001), Witzel's Para-Munda (E-8 ~ HYP-E-003), the
+#     weaker unidentified prefixing language (E-9 ~ HYP-E-004), and Masica's
+#     Language X (E-10 ~ HYP-E-005).
+#   - The Munda material does NOT pair. The companion's HYP-E-002 gates
+#     "Munda proper as a northwestern donor" as a hypothesis; this register
+#     has no such row. E-5, E-6 and E-7 must NOT be offered as its
+#     counterpart, singly or bracketed together: E-5's `reason` says the
+#     DME-023 geographical mismatch is a mismatch with E-5 and "not with
+#     E-7 or E-8, which is exactly the substitution the constitution
+#     forbids", and E-7's says it is "the single most important row to keep
+#     separate from E-5". Collapsing them here would breach §4.E inside the
+#     register that exists to hold the attestation gradient apart.
+#   - Six rows here have no counterpart there: E-1 and E-2 (Dravidian
+#     attested, Proto-Dravidian reconstructed), E-5, E-6 and E-7 (the Munda
+#     attestation, reconstruction and deeper-contact rows), and E-11, the
+#     residue that is not a hypothesis at all.
+#   - Six rows there have no counterpart here: HYP-E-000, HYP-E-002 and
+#     HYP-E-006 to HYP-E-009.
+#   So the two are neither duplicates nor disjoint, and the overlap is a
+#   real duplication of gating work that the owner has not yet ruled on.
+#
+# DO NOT MERGE THESE FILES, and do not rename this one to the mandated name.
+# Whether the twelve mandated registers accumulate under their mandated
+# names or each domain gets its own file is owner decision D-036 in
+# 09-DECISIONS/OWNER-DECISIONS.csv, status OPEN, argued in
+# 04-AUDITS/identifier-normalisation-brief.md section 5. D-036 names this
+# exact pair as the case that does not resolve on the general rule, and its
+# blocks column turns specifically on whether this file moves to the
+# mandated name. Acting here would settle D-036 by act, which is the outcome
+# the decision exists to prevent.
+# (D-039 asked the same question and was folded into D-036 on 2026-09-07;
+# see 09-DECISIONS/DECISION-ID-MAP.csv.)
 hypothesis_id,exact_claim,attested_or_hypothetical,chronological_fit,geographical_fit,contact_mechanism,positive_evidence,contrary_evidence,independent_support,source_dependencies,current_specialist_standing,diagnostic_predictions,falsifier,eligible_for_extended_analysis,proportional_space,status,reason
 E-1,"The Dravidian language family is attested: some two dozen languages with continuous documentation, the oldest literary record being Tamil.",ATTESTED — a documented family of living and recorded languages,"Not applicable as a gate. The family is attested; the dates at issue are the dates of individual documents, which this unit did not retrieve.","Attested across peninsular South Asia, with Brahui in Baluchistan and Kurukh and Malto in the east-central belt. Distribution is a fact about the present and the recorded past, not about the Rigvedic period.",Not applicable.,The languages themselves. No retrieval of any Dravidian text or description was possible in this session.,None. Nothing in this unit bears on whether Dravidian languages exist or are related.,Not assessed here.,"None retrieved. SRC-037, SRC-040, SRC-041 all refused.",Uncontested.,Not applicable.,Not applicable.,NOT-A-HYPOTHESIS — an attested family,None in this unit. Its analysis belongs to domains D and M.,HOLD,"Listed so that the register cannot silently slide item 1 into item 4. Constitution §4.E requires the two to stay distinct, and the whole point of the distinction is that this row is attested and the substrate row is not. No Dravidian source was reachable (HOLD-002), so nothing about Dravidian is asserted here at any status."
 E-2,"Proto-Dravidian is a reconstruction: a hypothesis about a proto-language, supported by regular correspondences among the attested daughters.","RECONSTRUCTED — a hypothesis of a specific and testable kind, standing on attested daughters",The reconstruction is not itself dated by the comparative method. Any date assigned to it is a separate claim.,A reconstruction has no location. Assigning Proto-Dravidian a homeland is a further and separate claim.,Not applicable.,"Not retrieved. Assessing it requires the comparative material, i.e. DEDR or an equivalent.",Not assessed here.,Not assessed here.,None retrieved.,The reconstruction is standard; particular reconstructed segments are debated. Neither statement is sourced here.,Not applicable.,Not applicable.,"NOT-A-HYPOTHESIS in the sense this register gates — a reconstruction, one level below attestation on the gradient",None in this unit. Domain D.,HOLD,"Kept as its own row because a reconstructed proto-form and an attested word are different things, and the constitution forbids treating a reconstruction as if it were attested. Blocked on the same sources as E-1."

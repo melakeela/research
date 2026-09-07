@@ -76,6 +76,86 @@ once stood in repository files, and `D-037` never did.
 > reassignments of the branch's `D-036` to `D-042` and of its `D-037` to
 > `D-043` are recorded in the same map, keyed by branch.
 
+> **Correction note added 2026-09-07, on the register-consolidation pass.**
+> Everything above is preserved as written and was accurate against
+> `181ccf2`. Several of this brief's statements about the register are no
+> longer true of the tree. They are corrected here, not edited above: this
+> brief is dated evidence, not a live index.
+>
+> 1. **§1, third table row, and §3.3, table row 4 — superseded.**
+>    `HYPOTHESIS-ELIGIBILITY.csv` now **exists**, at the mandated name in
+>    `03-REGISTERS/`, holding 10 rows `HYP-E-000` to `HYP-E-009` with the 17
+>    mandated columns. "Only the second file exists", "a mandated name that no
+>    file yet occupies" and "there is one register" were true of the tree at
+>    `181ccf2` and are false now.
+>
+>    **"Has never existed on any branch" is different: it was already false
+>    when written, and this note originally mis-stated it as merely
+>    superseded.** That claim is scoped to all branches, not to one tree. The
+>    file was created by `6c09b73` at 2026-09-07T02:23:45Z, on
+>    `claude/domain-e-research-queue-z83m9b`; `181ccf2` is dated
+>    2026-09-07T03:31:16Z, 68 minutes later. `6c09b73` is not an ancestor of
+>    `181ccf2` — the two were concurrent — so the `git log --all -S` test
+>    behind the claim was run in a working copy that did not have that
+>    branch's refs. The test was sound; its `--all` was not as wide as it
+>    read. Recorded as a wrong claim, not a stale one.
+> 2. **But the commissioning premise is still not right, for a different
+>    reason.** The premise §1 rejected was "same eleven distinctions,
+>    different evidence". Two eligibility registers now exist, so the first
+>    half of §1's rebuttal is gone; the distinctions are still not the same
+>    eleven. `HYPOTHESIS-ELIGIBILITY.csv` holds ten rows — a null explanation
+>    and the donor proposals that must beat it —
+>    `domain-e-hypothesis-eligibility.csv` eleven, the §4.E attestation-
+>    gradient distinctions. Five subjects appear in both; five rows on each
+>    side have no counterpart on the other. Both files now carry header notes
+>    stating this and pointing at each other and at `D-036`.
+> 3. **§3.3, the twelve-file table and the paragraph under it — superseded.**
+>    "Five of the twelve exist ... Seven are absent" is now **nine exist,
+>    three absent**. `ARCHIVE-AND-POWER-AUDIT.csv`, `CROSS-DOMAIN-BRIDGES.csv`,
+>    `INTERNAL-CONTRADICTIONS.csv` and `HYPOTHESIS-ELIGIBILITY.csv` have since
+>    been created under their mandated names at their C-3 homes. Still absent:
+>    `RESEARCH-INHERITANCE.md`, `RESEARCH-QUESTION-REGISTER.csv` and
+>    `SOURCE-DEPENDENCY.json` (the last still pending `D-013`).
+> 4. **§3.3's central observation for `D-036` — no longer true as stated.**
+>    "Every file in `03-REGISTERS/` is domain-scoped — seven of seven" no
+>    longer holds: `03-REGISTERS/` now carries 16 CSVs, two of them under
+>    mandated names. The split no longer tracks directory. The observation
+>    the brief built on has been overtaken by the act it warned about — a
+>    convention being set by what the next unit happened to write — which
+>    strengthens rather than weakens the case for answering `D-036`.
+> 5. **§3.3, table row 10 — stale count.** `OWNER-DECISIONS.csv` held 35 rows
+>    at `181ccf2`. It now holds 43, and the highest allocated identifier is
+>    `D-044` — `D-044` being raised by this same pass, over the `CLAUDE.md`
+>    register-format wording the semicolon change left behind. §3.4's note that `D-035` alone carries a lowercase `status` is
+>    still true. The namespace also now has a **deliberate gap at `D-039`**,
+>    created by the fold recorded in item 7. §1 at the top of this brief makes
+>    "a gap left in the authoritative namespace" the named failure mode of the
+>    `D-004`/`D-005`/`D-006` collision, so the gap is called out here rather
+>    than left to be found: it differs from that failure in being recorded, in
+>    the map and in `09-DECISIONS/README.md`, and in never being reallocated.
+> 5a. **§1, table rows 1 and 2, and §3.3 table row 5 — stale counts.**
+>    `BF-001` to `BF-006` is now `BF-001` to `BF-011`
+>    (`04-AUDITS/BIAS-FAILURE-LOG.csv`, 11 rows) and `RA-001` to `RA-005` is
+>    now `RA-001` to `RA-012` (`04-AUDITS/REAUDIT-QUEUE.csv`, 12 rows — `RA-012`
+>    raised by this same pass, against the validator changes). Both
+>    are still single series in single files, so §1's conclusion stands; only
+>    the spans moved. `02-SOURCES/dependency.csv` holds **20** rows,
+>    `DEP-001` to `DEP-020`, not the 9 that §3.3 reports. That last one is
+>    more than a count: `HYP-E-001` cites `DEP-001`, `DEP-010`, `DEP-011`,
+>    `DEP-013` and `DEP-015` in its `source_dependencies`, so the dependency
+>    map has more than doubled while the brief still reports it at nine.
+> 6. **§4.1 — stale counts.** The "14 occurrences across 7 files" and the
+>    file list beside it were counted at `181ccf2` and have moved since.
+>    Recount with the commands in §8 before relying on them. The zero
+>    identifier-reference cost still holds: `E-1` to `E-11` remain unique.
+> 7. **`D-036` is still `OPEN` and still the live decision.** On 2026-09-07
+>    `D-039`, raised independently on `claude/domain-e-research-queue-z83m9b`
+>    for the same question, was folded into `D-036`; both provenance notes are
+>    carried in the merged row and the fold is recorded in
+>    `09-DECISIONS/DECISION-ID-MAP.csv`. Nothing about `D-036` is resolved by
+>    that fold, and nothing in this correction note answers it.
+
+
 ### 1.1 Why the two series are single, and what that already settles
 
 `BIAS-FAILURE-LOG.csv` and `REAUDIT-QUEUE.csv` are not accidentally single.
@@ -251,6 +331,14 @@ the convention is emergent, and it is emergent per directory.
 That is worth stating plainly because it means the question is not "which
 convention did the repository choose" — it chose neither — but "does the
 directory-shaped default get ratified or overridden".
+
+> **Correction note added 2026-09-07, on the register-consolidation pass.**
+> The table and paragraph above are preserved as written and were accurate
+> against `181ccf2`. They no longer describe the tree: nine of the twelve
+> exist rather than five, `HYPOTHESIS-ELIGIBILITY.csv` among them, and
+> `03-REGISTERS/` is no longer domain-scoped seven of seven. The full
+> correction is the note at the end of §1, items 3 to 5. `D-036` is still
+> `OPEN`.
 
 ### 3.4 Value-vocabulary drift from concurrent branches
 

@@ -9,6 +9,43 @@ what each failure means. Nothing below was repaired, downgraded or deleted.
 The failures fall into three classes, and the first two are disagreements about
 a rule rather than rows that are simply wrong.
 
+> **Correction note added 2026-09-07, on the register-consolidation pass.**
+> Everything in this document is preserved as written and was accurate when
+> recorded. Most of it is no longer true of the tree, and the change that
+> made it untrue is the one this document said it was declining to make.
+>
+> - **Class 1 is resolved. Option 1 was taken — on the owner's instruction,
+>   not by act.** This document said Option 1 "is not taken here because
+>   amending the validator to make current rows pass is exactly the move the
+>   repository forbids doing casually". The owner subsequently instructed the
+>   change in those terms ("accept semicolon-separated `source_id` values,
+>   resolving each individually — a measurement resting on four sources
+>   records all four"). `04-AUDITS/validate-registers.py` now splits on `;`
+>   and resolves each identifier; a cell passes only if every identifier in
+>   it resolves, and a cell that is non-empty but names no identifier (`";"`)
+>   fails. The 42 Class 1 failures are gone.
+> - **The headline counts are stale.** "exit 1, 43 failures" and "42 of 43"
+>   describe the tree before that change. The run after it reports **1**
+>   failure. The raw output block at the foot of this document is that older
+>   run and is kept as the record of it.
+> - **"access-ledger.csv, which has 52 rows" is wrong now: it has 68**,
+>   `SRC-001` to `SRC-068`. Every identifier this document listed as
+>   resolving still resolves.
+> - **Class 2 is unchanged and still open.** The `E-11` prose status is the
+>   one remaining failure, deliberately not fixed, for the reason this
+>   document gives. Its reported line moved from 12 to 61 — the register now
+>   carries a header comment block, and the validator reports true file
+>   lines.
+> - **Class 3 is unchanged.**
+> - **One thing Option 1 did not settle.** `CLAUDE.md`'s register format
+>   still says a row's `source_id` "must resolve to a row in the access
+>   ledger", singular. The multi-source convention is now enforced by the
+>   validator and written down nowhere else. Raised as **`D-044`**.
+> - **What this document says the validator does not check is still true**,
+>   with one subtraction: `D-` references are now resolved through
+>   `09-DECISIONS/DECISION-ID-MAP.csv` as well as `OWNER-DECISIONS.csv`.
+>   Queued for re-audit as `RA-012`.
+
 ---
 
 ## Class 1 — multi-valued `source_id` cells (42 of 43)

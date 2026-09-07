@@ -10,13 +10,38 @@ Checks:
   1. Every row's status is in the vocabulary.
   2. Every VERIFIED row has non-empty source_id, locator, retrieval_date.
   3. Every source_id resolves to a row in 02-SOURCES/access-ledger.csv.
+     A source_id cell may carry several identifiers separated by ';'
+     — a corpus measurement routinely rests on the clone, the lemma
+     layer, the strata layer and the derived table, and recording all
+     four is right. Each is resolved separately; the cell passes only
+     if every identifier in it resolves.
   4. Every claim_id is unique within its file.
   5. Every D- reference in the tree resolves to exactly one row in
-     09-DECISIONS/OWNER-DECISIONS.csv.
+     09-DECISIONS/OWNER-DECISIONS.csv, either directly or by following
+     09-DECISIONS/DECISION-ID-MAP.csv from an old identifier to the row
+     it landed on. CLAUDE.md: "a D- reference in an older file is
+     resolved through that map." Identifiers that were renumbered or
+     folded are never reused, so the map is the only thing that keeps
+     an older file's reference readable. Chains are followed to their
+     end; a map row pointing at a number with no register row still
+     fails, as does a reference in neither place.
 
 CSVs in this repository mix CRLF and LF and carry embedded newlines
 inside quoted cells. Everything here opens with newline='' and never
 rewrites a file.
+
+A CSV read here may carry a comment block above its column header:
+leading lines whose first character is '#'. They are commentary,
+skipped before the header is read. This applies to every file this
+script reads — the registers, the access ledger, OWNER-DECISIONS.csv
+and DECISION-ID-MAP.csv — not to registers alone. Only leading lines
+are skipped, so a '#' inside a data cell is untouched, and a file with
+no comment block parses exactly as before.
+
+Note that a comment block makes the file unreadable by a plain
+csv.DictReader. Only this script reads the two eligibility registers
+that carry one; anything else that learns to read them must skip the
+block too.
 """
 import csv
 import re
@@ -27,6 +52,7 @@ ROOT = Path(__file__).resolve().parents[1]
 REGISTER_DIR = ROOT / "03-REGISTERS"
 LEDGER = ROOT / "02-SOURCES" / "access-ledger.csv"
 DECISIONS = ROOT / "09-DECISIONS" / "OWNER-DECISIONS.csv"
+ID_MAP = ROOT / "09-DECISIONS" / "DECISION-ID-MAP.csv"
 
 STATUS_VOCAB = {
     "VERIFIED", "PROVISIONAL", "HYPOTHESIS", "INHERITED-UNVERIFIED",
@@ -44,9 +70,41 @@ def fail(msg):
     failures.append(msg)
 
 
+def split_source_ids(cell):
+    """A source_id cell holds one or more identifiers separated by ';'.
+
+    Returns each identifier separately so a claim resting on four
+    sources records all four in one row and still resolves. Empty
+    cells and empty segments yield nothing.
+    """
+    return [part.strip() for part in (cell or "").split(";") if part.strip()]
+
+
 def read_csv(path):
+    return [row for row, _line in read_csv_with_lines(path)]
+
+
+def read_csv_with_lines(path):
+    """Rows paired with the file line each record starts on.
+
+    A failure message is only useful if its line number re-finds the
+    row. Records can span lines (quoted cells carry newlines) and a
+    file may open with a '#' comment block, so the line is tracked
+    against the real file rather than inferred from row order.
+    """
     with open(path, newline="", encoding="utf-8") as f:
-        return list(csv.DictReader(f))
+        lines = f.readlines()
+    offset = 0
+    while offset < len(lines) and lines[offset].startswith("#"):
+        offset += 1
+    reader = csv.DictReader(lines[offset:])
+    out = []
+    prev_end = 1                      # the header occupies line 1 of the slice
+    for row in reader:
+        out.append((row, offset + prev_end + 1))
+        prev_end = reader.line_num
+    return out
+
 
 
 def ledger_ids():
@@ -78,14 +136,14 @@ def decision_ids():
 
 def check_register(path, ledger):
     rel = path.relative_to(ROOT)
-    rows = read_csv(path)
-    if not rows:
+    numbered = read_csv_with_lines(path)
+    if not numbered:
         return
-    fields = rows[0].keys()
+    fields = numbered[0][0].keys()
     has_status = "status" in fields
     id_field = next((c for c in fields if c.endswith("_id") or c == "id"), None)
     seen = set()
-    for n, row in enumerate(rows, start=2):
+    for row, n in numbered:
         if id_field:
             rid = (row.get(id_field) or "").strip()
             if rid in seen:
@@ -100,9 +158,52 @@ def check_register(path, ledger):
             for col in REQUIRED_FOR_VERIFIED:
                 if col in fields and not (row.get(col) or "").strip():
                     fail(f"{rel}:{n}: VERIFIED row missing {col}")
-            sid = (row.get("source_id") or "").strip()
-            if sid and ledger and sid not in ledger:
-                fail(f"{rel}:{n}: source_id {sid} not in access ledger")
+            raw_sid = (row.get("source_id") or "").strip()
+            sids = split_source_ids(raw_sid)
+            if raw_sid and not sids:
+                # e.g. ";" or " ; ; " — passes the non-empty test above but
+                # names no source. Before the split it failed as one bad
+                # identifier; it must not pass now.
+                fail(f"{rel}:{n}: source_id {raw_sid!r} names no identifier")
+            for sid in sids:
+                if ledger and sid not in ledger:
+                    fail(f"{rel}:{n}: source_id {sid} not in access ledger")
+
+
+def resolvable_ids(known):
+    """Identifiers a D- reference may legitimately name.
+
+    A register row resolves directly. An identifier that was renumbered
+    on merge, or folded into another row, resolves through
+    DECISION-ID-MAP.csv to the row it landed on — following the chain,
+    because the map records identifiers that moved more than once. An
+    old identifier is never freed and never reused, so this widens what
+    resolves without letting an unallocated number pass.
+    """
+    if not ID_MAP.exists():
+        return set(known)
+    edges = {}
+    for row in read_csv(ID_MAP):
+        old = (row.get("old_id") or "").strip()
+        new = (row.get("new_id") or "").strip()
+        if old and new and old != new:
+            edges.setdefault(old, set()).add(new)
+
+    resolvable = set(known)
+    for old in edges:
+        if old in resolvable:
+            continue
+        seen, frontier = {old}, set(edges[old])
+        while frontier:
+            nxt = frontier.pop()
+            if nxt in known:
+                resolvable.add(old)
+                break
+            if nxt in seen:
+                continue
+            seen.add(nxt)
+            frontier |= edges.get(nxt, set())
+    return resolvable
 
 
 def check_decision_refs(known):
@@ -118,12 +219,14 @@ def check_decision_refs(known):
             continue
         for ref in sorted(set(pat.findall(text))):
             if ref not in known:
-                fail(f"{path.relative_to(ROOT)}: reference {ref} has no OWNER-DECISIONS row")
+                fail(f"{path.relative_to(ROOT)}: reference {ref} has no OWNER-DECISIONS "
+                 f"row and no DECISION-ID-MAP path to one")
 
 
 def main():
     ledger = ledger_ids()
     known, _ = decision_ids()
+    known = resolvable_ids(known)
     if REGISTER_DIR.exists():
         for path in sorted(REGISTER_DIR.rglob("*.csv")):
             check_register(path, ledger)
