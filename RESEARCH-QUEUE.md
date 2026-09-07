@@ -81,6 +81,39 @@ and §11 (packets R20–R21), plus one domain that has no entry in either
    the controller, seed the decisions register and this queue. *(This
    change.)* No research begins until it is reviewed.
 
+## Next, once domain M has passed a Codex review
+
+**Domain J — the fort corpus.** The `púr-` family search (item 3) did the
+corpus-internal half: 106 occurrences, 28 claims, lemma-disambiguated, with
+`HOLD-001` open on whether `púraṃdhi-` belongs to the family at all. The
+fort corpus is the rest of it, and it is the half that crosses out of the
+text into the ground.
+
+What it has to bound at step 1: the full fortification vocabulary rather
+than `púr-` alone — `durga-`, `vrjána-`, `dṛḷhá-` and the `dṛṃh-` group,
+and `śámbara-`; who the forts belong to in the hymns and who destroys
+them; the Śambara cycle and the hundred-forts formula; and, separately and
+last, whether any of it can be tied to excavated structures.
+
+The constitution's named trap is two things at once, and the second is the
+one this repository is most likely to walk into: **translating *pur* into a
+Mature Harappan city**, and **letting one famous count stand for the
+corpus**. Item 3's register already guards the second — the counts are per
+lemma, per stratum, with the occurrence table underneath. The first is
+untouched, and the reachability probe at `SRC-078` shows that the
+literature making exactly that identification is now retrievable. That is
+a reason to run the unit carefully, not a reason to run it sooner.
+
+Four leads are logged at `SRC-078` and **nothing has been read, gated,
+registered or analysed**. The programme is not open: the standing
+sequencing rule is one programme at a time until a Codex review has
+passed, and the domain M six-models unit is awaiting that review.
+
+`HOLD-001` should be re-probed when it opens. It was raised when no
+etymological dictionary was reachable; the connector position has since
+changed, and Mayrhofer or Jamison & Brereton may now be within reach of a
+channel that did not exist when the hold was written.
+
 ## Blocked on inputs
 
 8. **Backlog reconciliation** — `06-BACKLOG/BACKLOG-COVERAGE.csv`, one row
