@@ -16,6 +16,11 @@ Checks:
      against the ledger, so any multi-source cell failed no matter what it
      contained; splitting makes the check do its job per component.
   4. Every claim_id is unique within its file.
+  4a. A VERIFIED row in a register that has no source_id, locator or
+     retrieval_date COLUMN is a failure. Checks 2 and 3 are guarded by
+     "if col in fields", so without this a register lacking those columns
+     passed both silently and its VERIFIED rows were unverifiable by
+     construction.
   5. Every D- reference in the tree resolves to exactly one row in
      09-DECISIONS/OWNER-DECISIONS.csv.
 
@@ -102,6 +107,15 @@ def check_register(path, ledger):
         if status and status not in STATUS_VOCAB:
             fail(f"{rel}:{n}: status '{status}' not in vocabulary")
         if status == "VERIFIED":
+            missing_cols = [c for c in REQUIRED_FOR_VERIFIED if c not in fields]
+            if missing_cols:
+                # A register with no source_id/locator/retrieval_date column at
+                # all used to pass silently: the per-column check below is
+                # guarded by "if col in fields", so checks 2 and 3 were no-ops
+                # on it and a VERIFIED row there was structurally uncheckable.
+                fail(f"{rel}:{n}: VERIFIED row in a register with no "
+                     f"{'/'.join(missing_cols)} column — the retrieval behind "
+                     f"it cannot be checked")
             for col in REQUIRED_FOR_VERIFIED:
                 if col in fields and not (row.get(col) or "").strip():
                     fail(f"{rel}:{n}: VERIFIED row missing {col}")

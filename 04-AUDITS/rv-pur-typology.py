@@ -117,6 +117,13 @@ METAPHOR = {
     "07.052.01": "pū́r devatrā́ vasavo martyatrā́ — a púr among gods and among mortals, "
                  "asked of the Ādityas and Vasus.",
     "08.080.07": "índra dŕ̥hyasva pū́r asi — 'Indra, be firm: thou ART a púr.'",
+    "10.087.22": "pári tvāgne púraṁ vayáṁ … dhīmahi — 'we set thee, Agni, "
+                 "around us as a púr'. Griffith 'We set thee round us as a "
+                 "fort'; Geldner 'Als einen Burgwall wollen wir dich … um "
+                 "(uns) legen'. The same figure as RV 7.15.14 and 1.189.2, and "
+                 "missed by the first run for the same reason those two nearly "
+                 "were: the fort word is an accusative predicate, so the case "
+                 "test in R5 claims it.",
 }
 # Instrumental púr in a request for protection: "guard us WITH a hundred forts".
 PROTECTIVE = {
@@ -175,7 +182,7 @@ OVERRIDE = {
         "derived adjective and never named. Whether the passage presents a "
         "stronghold or uses a stronghold-adjective for plunder is not "
         "decidable from it."),
-    "01.173.10": ("POETIC-FORMULA",
+    "01.173.10": ("POETIC-FORMULA", "SIMILE",
         "pū́rpati- 'lord of a púr' inside a simile: petitioners approach Indra "
         "as men approach a fort-lord. The office is the vehicle of the simile, "
         "not a fact asserted about a fort. Griffith's single 'city' in 103 "
@@ -223,17 +230,30 @@ def main():
             typ, rule = "CANNOT-CLASSIFY", \
                 "R6: no rule fired. Case set %s." % sorted(c for c in cases if c)
 
+        rule_typ = typ
         override = ""
         if s in OVERRIDE:
-            newtyp, why = OVERRIDE[s]
-            override = "Rule output %s overridden to %s. %s" % (typ, newtyp, why)
+            entry = OVERRIDE[s]
+            newsub = ""
+            if len(entry) == 3:
+                newtyp, newsub, why = entry
+            else:
+                newtyp, why = entry
+            override = "Rule output %s%s overridden to %s%s. %s" % (
+                typ, "/" + sub if sub else "", newtyp,
+                "/" + newsub if newsub else "", why)
             typ = newtyp
-            if newtyp != "POETIC-FORMULA":
-                sub = ""
+            # The sub-kind must follow the override, not survive it. Before this
+            # was fixed, the RV 1.173.10 override reclassified the passage as a
+            # SIMILE while poetic_subkind kept DIVINE-EPITHET from rule R1, so
+            # the override cell and the sub-kind cell said different things and
+            # the published sub-kind counts were off by one.
+            sub = newsub if newtyp == "POETIC-FORMULA" else ""
 
         rows.append({
             "passage_id": r["passage_id"], "stanza": s,
             "type": typ,
+            "type_before_override": rule_typ,
             "type_means": (
                 "TEXTUAL-STRONGHOLD means the TEXT presents a fort as an object "
                 "in its own narrative world. It is NOT a claim that any fort "
@@ -278,6 +298,8 @@ def main():
         x["poetic_subkind"] for x in rows if x["poetic_subkind"])), file=sys.stderr)
     print("  overrides applied: %d" % sum(1 for x in rows if x["override"]),
           file=sys.stderr)
+    print("  WITHOUT any hand override: %s" % dict(collections.Counter(
+        x["type_before_override"] for x in rows)), file=sys.stderr)
     print("  simile particle in a púr- pāda but NOT modifying the fort word, "
           "hand-excluded: 3 of 10 for ná, 2 of 3 for iva", file=sys.stderr)
     print("-> %s" % OUT, file=sys.stderr)

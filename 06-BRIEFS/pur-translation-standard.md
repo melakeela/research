@@ -10,8 +10,8 @@ invasion, indigenous* — and §4J, "Do not automatically translate *pur* into a
 Mature Harappan city."
 **Sources:** `SRC-069` (clone @ `d3eb8af`), `SRC-020` Aufrecht, `SRC-021`
 padapāṭha, `SRC-022` Zürich morphology, `SRC-026` Grassmann *Wörterbuch*,
-`SRC-072`–`SRC-077` translations, `SRC-078` van Nooten–Holland. Devanagari from
-`versions/eichler.csv` in the same clone.
+`SRC-072`–`SRC-077` translations, `SRC-078` van Nooten–Holland, `SRC-084`
+Eichler's Devanagari.
 
 §7 asks for ten things. They are taken in order.
 
@@ -95,13 +95,16 @@ consistent with an enclosure rather than a settlement: `āyasá-` "of metal" (8)
 ## 5. Textual context
 
 `púr-` is not evenly distributed across kinds of passage. Of the ten passages
-that state a material, **seven of the eight metal ones are protective, mythic
-or metaphorical** and only RV 2.20.8 is an enemy's (`PUR4J-013`). At RV 7.15.14
-Agni is asked **to be** a *púr*; at RV 7.95.1 the river Sarasvatī **is** one; at
-RV 4.27.1 and 8.100.8 a hundred metal *púr*s **confine** a bird; at RV 1.58.8,
-7.3.7 and 7.16.10 a god is asked to protect the singer **with** them; at
-RV 10.101.8 priests are told to **make** them, next to stitching armour and
-building a cattle-pen; at RV 8.6.23 a *púr* is a **simile** (`púraṁ ná`).
+that state a material, **only RV 2.20.8 has a metal fort as the stronghold of a
+named adversary that is stormed** (`PUR4J-013`). At RV 7.15.14 Agni is asked
+**to be** a *púr*; at RV 7.95.1 the river Sarasvatī **is** one; at RV 4.27.1 and
+8.100.8 a hundred metal *púr*s **confine** a bird — arguably hostile, and
+`PUR4J-013` records what counting them so would cost; at RV 1.58.8 and 7.3.7 a
+god is asked to protect the singer **with** them; at RV 10.101.8 priests are
+told to **make** them, next to stitching armour and building a cattle-pen. Off
+the metal list, at RV 7.16.10 a god is asked to protect with a hundred forts
+that are not said to be of metal, and at RV 8.6.23 a *púr* is a **simile**
+(`púraṁ ná`).
 
 ## 6. Edition and exact locator
 
