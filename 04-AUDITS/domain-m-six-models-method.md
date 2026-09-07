@@ -5,11 +5,12 @@ the measurements PR #16 left in the register.
 **Registers:** `03-REGISTERS/domain-m-measurements.csv` (DMM-001…022),
 `domain-m-interpretations.csv` (DMI-001…012),
 `domain-m-model-gates.csv` (DMG-1…6),
-`domain-m-balochi-chronology.csv` (DMC-001…006).
+`domain-m-balochi-chronology.csv` (DMC-001…005).
 **Script:** `04-AUDITS/domain-m-dedr-north-dravidian.py`.
 **Method failures:** `BF-007`, `BF-008`, `BF-009`.
 **Re-audits:** `RA-006`, `RA-007`, `RA-008`.
-**Holds:** `HOLD-005` opened; `HOLD-002` and `HOLD-004` narrowed, both still open.
+**Holds:** `HOLD-005` and `HOLD-006` opened; `HOLD-002` and `HOLD-004`
+narrowed, both still open.
 **Owner decisions:** `D-038`, `D-039`, `D-040`, `D-041`.
 
 ---
@@ -45,9 +46,9 @@ a rhetorical null: it is implemented, and §4 reports it.
 **Four histories, separated at the register level and not only in prose.**
 Language history, speaker ancestry, political and tribal identity, and
 loanword history. `DMM-015` dates a confederacy and says so; `DMM-020` is
-ancestry and says so; `DMC-002` and `DMC-006` carry a `which_of_the_four_histories`
-column because the chronology register is where they are most likely to be
-run together. `BF-008` is what happened when they were not kept apart.
+ancestry and says so; every row of the chronology register carries a
+`which_of_the_four_histories` column, because that register is where the four
+are most likely to be run together. `BF-008` is what happened when they were not kept apart.
 
 ---
 
@@ -56,7 +57,7 @@ run together. `BF-008` is what happened when they were not kept apart.
 The chronology of this domain is the problem, not the background. Every dated
 statement retrieved is in `03-REGISTERS/domain-m-balochi-chronology.csv`, with
 a column for what each one actually dates and a column for the hedge in the
-source. Six rows. The summary:
+source. Five rows, and a sixth withdrawn from it. The summary:
 
 - **One linguist-authored date frame**, and it is a 500-year window offered as
   what is "generally thought" — Balochi arriving from the northwest in waves
@@ -71,7 +72,11 @@ source. Six rows. The summary:
 - **One statement that the pre-modern record cannot support a chronology at
   all**, from authors working inside Baloch historiography (`DMC-005`).
 - **One community-authored, oral-historical migration date**, recent and
-  westward, held at `HOLD` pending the rights steward (`DMC-006`).
+  westward — **withdrawn from the register entirely** and held at `HOLD-006`
+  pending the rights steward. A self-audit found it had been written into the
+  chronology register at status `HOLD`, on the reasoning that `HOLD` means
+  "recorded but not used". That does not satisfy the rule, which is about the
+  register and not about the status.
 
 **Nothing retrieved dates Brahui.** Not its arrival, not its presence, in
 either direction, at any period. That single fact is why all six models read
@@ -96,7 +101,7 @@ caveat precisely so that it cannot be dropped when this is summarised.
 | morphological | Kobayashi & Tirkey 2019 at abstract (`SRC-063`) | the one statement of the lower node's morphology |
 | historical / textual | Spooner, Badalkhan, Ahmed et al. at abstract | the Balochi date frame and its own limits |
 | population-genetic | Singh et al. 2025; four HLA/mtDNA papers | speaker ancestry, and nothing else |
-| community-authored | three Al-Burz papers, one Makhz paper | held at ledger level pending `D-041` |
+| community-authored | three *Al-Burz* papers, one *Makhz* paper | **nothing** — held out of every register at `HOLD-006`, pending `D-041` |
 
 No class borrowed certainty from another. The one place that nearly happened
 is logged as `BF-008`.
@@ -242,9 +247,11 @@ diagnostic predictions and what would gate it.
   `DMG-3` and `DMG-5`. Highland refugia unexamined.
 - **`DMG-2` later long-distance migration.** §4.M forbids treating this as
   documented fact and nothing retrieved documents it; Elfenbein 1998 is still
-  unread. Its row explicitly refuses `DMC-006` as support: that migration is
-  westward, out of Pakistan, in the modern period — wrong direction, wrong
-  date. Its being the disfavoured model is not a reason to gate it out either.
+  unread. Its row explicitly refuses the one documented Brahui migration
+  retrieved (now held out of every register at `HOLD-006`) as support: that
+  movement is westward, out of Pakistan, in the modern period — wrong
+  direction, wrong century. Its being the disfavoured model is not a reason to
+  gate it out either.
 - **`DMG-3` broader ancient distribution then replacement.** Most exposed to
   the negative-evidence standard: it can only be argued from typed absences,
   and no absence here has been typed in its favour.
@@ -406,10 +413,10 @@ both are politically legible; neither measures the other's object.
 - `DMM-003` reports **seven** exclusive Brahui–Kurukh–Malto etymologies
   against a null of zero. That is a result *for* the upper node, in a unit
   whose other findings run against it, and it is stated first.
-- `DMC-006` — the one community-authored chronology retrieved — is at `HOLD`
-  and is explicitly refused as support for `DMG-2`, even though a documented
-  Brahui migration would be the most quotable thing in the unit. Wrong
-  direction, wrong century.
+- The one community-authored chronology retrieved is refused as support for
+  `DMG-2` — and has now been withdrawn from the register altogether
+  (`HOLD-006`) — even though a documented Brahui migration would be the most
+  quotable thing in the unit. Wrong direction, wrong century.
 - `DMM-020`, the genetic null, is the most misusable row here and its own
   notes say what it may not be used for.
 
@@ -436,5 +443,7 @@ be made.
 
 `HOLD-002` — **DEDR's prose**, narrowed to exactly that.
 
-`D-041` — the **community-authored material** sits at ledger level, unused,
-pending the rights steward.
+`HOLD-006` and `D-041` — the **community-authored material** is held out of
+every register, unused, pending the rights steward. `DMC-006` was withdrawn
+from the chronology register when a self-audit found that entering it at status
+`HOLD` did not satisfy a rule about registers.
