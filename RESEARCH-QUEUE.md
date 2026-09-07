@@ -4,8 +4,9 @@ The only backlog. One programme at a time, top down. Nothing here is a
 finding; every row is work not yet done.
 
 Seeded from `00-CONTROLLER/METHODOLOGY-CONSTITUTION.md` §4 (domains A–V)
-and §11 (packets R20–R21). Ordering below the first item is owner decision
-**D-008** in `09-DECISIONS/OWNER-DECISIONS.csv`.
+and §11 (packets R20–R21), plus one domain that has no entry in either
+(`WMP-9`, below). Ordering below the first item is owner decision **D-008** in
+`09-DECISIONS/OWNER-DECISIONS.csv`.
 
 ## Done
 
@@ -81,6 +82,92 @@ thing the investigation is most likely to get wrong.
 | T | Hormuz and modern comparison | "Modern ruler = Sargon"; undated contemporary claims |
 | U | Sacrifice, renunciation and appropriation | A peaceful-Indigenous versus violent-migrant race story |
 | V | Ancient subalterns and intellectual provenance | Preservation read as authorship; codification as invention; first attestation as origin |
+
+## A domain with no constitution §4 entry
+
+`MELA-KEELA-WHO-MADE-THE-PAST.md` §9 treats the racialization of *Aryan* as a
+research programme. It has no letter in constitution §4 and no packet in §11, so
+none of the rows above guards it. This one does. It is a guard and not a start:
+nothing here authorizes retrieval on the subject, no claim about it exists in
+any register, and no analytical space has been allocated to it.
+
+| # | Domain | The named trap |
+|---|---|---|
+| WMP-9 | The racialization of "Aryan" | Reading *ārya-* as though it already carried what nineteenth-century race science later made of it; running the transmission backwards, so that a racial category appears to have arrived in philology from outside rather than to have been built out of it; and scoring "Aryan invasion" against "no Aryan invasion" as two evidentiary hypotheses when each is a political position first |
+
+The identifier is `WMP-9`, not a letter: letters in the table above are
+constitution §4 domains and this is not one. It is named for its source
+document and section so that a later reconciliation can find it.
+
+**A Sanskrit self-designation is not a nineteenth-century racial category.**
+*ārya-* is a word in Sanskrit texts, with a textual range and a grammar, and
+its form here is cited unaccented because no edition has been opened for it.
+"Aryan" is a term of nineteenth-century European classification. The trap is
+treating either as a translation of the other: reading the Rigveda as though its
+self-designation already denoted a race, or reading the nineteenth-century
+category as a neutral technical term the texts licensed. Under the translation
+standard the word cannot cross into English without the full block — script,
+transliteration, grammatical form, semantic range, textual context, edition,
+exact locator, the translation used, the alternatives, and the interpretive
+consequence of choosing between them — and *race* is one of the inherited
+English categories that standard names for audit before use. Constitution §7.
+
+**The direction of transmission runs from philology into race science, and
+getting the direction backwards is the trap.** That direction is §9's framing,
+carried here as `INHERITED-UNVERIFIED`; it is a claim to be evidenced
+publication by publication, not something this row establishes. The trap it
+names is narrating the racial category as a political corruption that arrived
+from outside an otherwise clean discipline. The
+opposite move is the same failure inverted: treating the philology as nothing
+but race science, so that the linguistic results are discarded along with the
+ideology. Both are chronology failures before they are political ones, and
+chronology is answerable here — who published what, in what year, citing whom,
+with what institutional position — by the ordinary means of step 2. Every link
+between a linguistic result, a racial classification and a political
+institution is a separate claim and is tested as one; step 10.
+
+**Both invasion framings are political positions before they are evidentiary
+ones.** "Aryan invasion" and "no Aryan invasion" each have an institutional and
+national history, and each is argued for reasons that are not only evidentiary.
+The governing principle applies at full strength: weight explanations, do not
+balance narratives. Neither framing earns space by being the counterweight to
+the other, and the record stays capable of contradicting the colonial
+scholarship that built the first and the Hindu-nationalist and
+Tamil/Dravidian-nationalist accounts that turn on the second — as it stays
+capable of contradicting MelaKeela's own pages and the owner's preferred
+hypothesis. Constitution §2. Two consequences follow and are stated because
+they are what the trap catches: rejecting the racial category does not settle
+the migration question, and evidence bearing on migration does not rehabilitate
+the racial category. They are different claims with different evidence.
+
+**Provenance and standing.** `MELA-KEELA-WHO-MADE-THE-PAST.md` is not in this
+repository — `01-INHERITED/site-review/RUNNING-LIST-RECONCILIATION.md` records
+its absence and adds it to what `D-014` requests. §9 is therefore held here as
+the owner stated it in the instruction that commissioned this row, not as
+retrieved text, and it carries the standing everything unretrieved carries:
+`INHERITED-UNVERIFIED`. Nothing above is promoted by having been written down.
+The repository's own record numbers this material differently: the running list
+maps supplied section 9 to feature `AS-04` "Lives Without Names" and puts
+"Admired, Then Racialized" at sections 11 and 10
+(`01-INHERITED/site-review/MELAKEELASITEREVIEWRUNNINGLIST.md` L842–843,
+`INHERITED-UNVERIFIED`). Either the standalone document numbers its sections
+differently from the running list, or one of the two is wrong. Raised as `D-035`
+in `09-DECISIONS/OWNER-DECISIONS.csv`; it blocks nothing, because the trap is
+stated from content the owner supplied directly and does not depend on which
+number carries it.
+
+The nearest existing statement in this repository on the same programme is the
+running list's direction that the Aryan reception history requires branching,
+sourced connections through philology, racialization and political
+institutions, that Nazism is not presented as an inevitable consequence of
+discovering linguistic kinship, and that its documented racial ideology is not
+sanitized (same file, L856, `INHERITED-UNVERIFIED`). That is a neighbouring
+direction, not the trap statement, and it is cited rather than absorbed.
+
+§9's learning constraints — the three things a children's interface may not do —
+are recorded separately, at `13-PRODUCT-ARCHITECTURE/museum-framework.md`
+§10.4.7. They bind the product regardless of subject and are not scoped to this
+domain.
 
 ## New packets — constitution §11
 
