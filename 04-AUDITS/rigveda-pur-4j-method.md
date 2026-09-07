@@ -163,3 +163,138 @@ was, or what type it is. Those are later sections and separate registers.
   Müller, Otto and Oldenberg's translations are anthology selections. A missing
   Renou at a stanza is a fact about Renou's selection, **NOT PRODUCED**, and
   carries no information about the stanza.
+
+---
+
+## 4. The counts — §4J's "90; 99; 100; other counts"
+
+`03-REGISTERS/rigveda-pur-counts.csv`, 49 rows, one per numeral token in a
+passage. Built by `rv-pur-counts.py` (instruments) then
+`rv-pur-counts-adjudicate.py` (verdicts).
+
+### 4.1 Finding the numerals without deciding in advance which ones matter
+
+The numeral inventory was **not** assembled from the numbers §4J names. Every
+one of the **721 distinct lemmas** occurring in the 103 passages was looked up
+in Grassmann's gloss (`info/matched_lemmata.json`) and scanned for a German
+number word. That returns **12 candidates** — small enough to adjudicate one by
+one, and derived from the corpus's own lexicon rather than from expectation.
+
+Ten were kept: `śatá-` 100, `navatí-` 90, `náva- 1` 9, `sahásra-` 1000,
+`saptá-` 7, `pañcāśát-` 50, `trí-` 3, `śatatamá-` "hundredth", `éka-` 1,
+`ubhá-` "both". Two were excluded, with the reason recorded in the script
+rather than dropped silently:
+
+- **`śatákratu-`** "having a hundred powers" — an Indra epithet. The hundred is
+  a property of the god, never of a fort.
+- **`ā́rya-`** — a **false positive of the scan**, matching *drei* inside
+  Grassmann's gloss "Angehöriger der drei oberen Grosskasten". Not a numeral;
+  and the gloss is itself an artefact for the §7 category audit, since it
+  renders a Rigvedic word by the later caste system.
+
+Recording the false positive matters more than removing it: it is the measure
+of how noisy the instrument is, and one in twelve is the number.
+
+### 4.2 The attachment test — three instruments, reported separately
+
+`04-AUDITS/rigveda-pur-family-method.md` §7 measured that `navatí-` occurs in
+family stanzas at **33.5× its corpus rate** and `śatá-` at 10.7×, and declined
+to read the result: "a measurement of the profile and nothing more". §4J needs
+the thing that measurement is not — whether a numeral **governs** `púr-`.
+
+| Instrument | What it can show | Where it fails |
+|---|---|---|
+| **A. Agreement** — case, gender, number shared with the `púr-` token | strong when positive | **under-reports by construction.** `navatí-` is a feminine *singular* collective — "a ninety" — governing a plural `púraḥ`. It agrees in case and gender and never in number. A three-key agreement test drops **five of the six ninety-nine passages.** |
+| **B. Proximity** — same pāda / hemistich / stanza | cheap, and orders candidates | a stanza routinely holds two numerals counting different things (§4.3) |
+| **C. Translation** — how many of Griffith, Geldner, Grassmann and Elizarenkova render "N forts" | the only instrument reflecting someone who read the syntax | not independent of A and B; and Grassmann's translation is not independent of the Grassmann glosses that fixed the family (`DEP-021`) |
+
+The three are carried through into the register in their own columns, and the
+verdict is a separate column. **Six rows record the verdict overriding an
+instrument**, each naming which instrument and why. That is the audit trail: a
+reader can see exactly where the machine and the reading part company.
+
+### 4.3 Why a stanza-level co-occurrence count cannot answer this
+
+Three passages settle it, and the third is decisive.
+
+- **RV 2.14.6** carries *two* `śatám`. Pāda a's counts Śambara's forts; pāda c's
+  counts Varcin's men.
+- **RV 6.48.8** carries *two* `śatám`. Pāda c's counts forts; pāda d's counts
+  **winters** — a lifespan formula.
+- **RV 10.104.8** carries `navatíṁ … náva ca` and the fort-word epithet
+  `pūrbhít` in the same stanza. The ninety-nine counts **rivers**:
+  `navatíṁ srotyā́ náva ca srávantīr`. Griffith "nine-and-ninety flowing
+  streams"; Geldner "die neunundneunzig fließenden Ströme"; Grassmann "Die
+  neunundneunzig Flüsse". All three agree, and `pūrbhít` is nominative singular
+  masculine, an epithet of Indra, taking no numeral.
+
+A stanza-level measure scores all three as "numeral co-occurs with fort word".
+Two are wrong and the third is the control case for the whole unit.
+
+### 4.4 What the corpus states, with the denominator
+
+**21 of 103 passages state a count of the fort word. 82 state none** — 79.6%
+of the passages that mention a fort at all do not say how many.
+
+| Count | Passages | Where |
+|---|---:|---|
+| **100** | **8** | 1.53.8 · 2.14.6 · 4.27.1 · 4.30.20 · 6.48.8 · 7.3.7 · 7.16.10 · 9.48.2 |
+| **99** | **6** | 1.54.6 · 2.19.6 · 4.26.3 · 7.19.5 · 7.99.5 · 8.93.2 |
+| **7** | **4** | 1.63.7 · 1.174.2 · 6.20.10 · 7.18.13 |
+| **90** | **2** | 1.130.7 · 3.12.6 |
+| "hundreds" (`śatā́ni`, pl.) | 1 | 6.31.4 |
+| "the hundredth" (ordinal) | 2 | 4.26.3 · 7.19.5 — both inside the 99 set |
+
+§4J's "other counts" resolves to **seven** and to the unbounded plural
+**"hundreds"**.
+
+### 4.5 The three answers §4J and the reconciliation brief asked for
+
+**Which passages state 99.** The six above. The reading is secure — the
+padapāṭha analyses the words separately and Griffith, Geldner and Grassmann all
+render 99 at all six — but **99 is never a single numeral**. It is two words,
+`náva` "nine" and `navatí-` "ninety", joined by `ca` in three passages and
+separated by intervening words in four. RV 1.54.6d splits them around the verb:
+`púro navatíṁ dambhayo náva`.
+
+**Is it modal?** **No. One hundred is**, 8 passages to 6 — 9 to 6 if the plural
+"hundreds" is counted with the hundreds. This answers the question the
+reconciliation brief left open at §2.6 item 2.
+
+**Is it maximal?** No. 100, "hundreds" and 1000 are all larger.
+
+**Then it is the most quotable**, and that is the third of the brief's three
+options. `PUR4J-I-02` records what that does and does not establish.
+
+### 4.6 The formulaicity question, tested rather than assumed
+
+The task and the constitution both warn that "formulaic" is the convenient
+answer. Four diagnostic predictions were fixed **before** the evidence was
+read, and the result is not unanimous.
+
+| Prediction if the count is an enumeration | Outcome |
+|---|---|
+| stable per opponent | **FAILS.** Śambara's forts are counted at 90, 99, 100, "the hundredth" and "hundreds" across six passages — every value §4J enumerates, on one opponent. |
+| does not migrate to another class of object | **FAILS.** The identical `náva`+`navatí-` expression counts rivers at RV 10.104.8. |
+| not systematically completed by a round number | **FAILS.** Two of six 99-passages append "the hundredth" (RV 4.26.3c `śatatamáṁ veśyàm`, 7.19.5c `nivéśane śatatamā́`). The 99 is functioning as one-short-of-a-hundred. |
+| occasionally produces an irregular figure | **FAILS.** Every count is 7, 90, 99, 100 or "hundreds", across 21 passages, ten books and every Arnold stratum. No 23, no 41. |
+
+**And one prediction the formula reading fails.** The numbers are *not* freely
+interchangeable ornament: they sort by narrative cycle. Seven forts go with
+Purukutsa and the Pūru in all four of their passages, in wording near-verbatim
+at 1.174.2b and 6.20.10c (`saptá … púraḥ śárma śā́radīḥ`); 99 and 100 go with
+Divodāsa, Atithigva and Śambara.
+
+So the supported reading is narrower than the convenient one: **a formula
+system with slots filled by cycle**, not "the numbers are meaningless".
+`PUR4J-I-01` holds it at `PROVISIONAL`, states its falsifiers, and states
+explicitly what it does not establish — that a formulaic count says nothing
+about whether anything was besieged, and that the five-way typology is assigned
+per passage and never inherited from this row.
+
+### 4.7 One field this unit does not fill
+
+Two of the six 99-passages complete the count with an ordinal that modifies a
+**dwelling word** — `veśyà-`, `nivéśana-` — and not `púr-`. A search restricted
+to numerals attached to the fort word misses the completion that gives the 99
+its shape. This is noted as a limit of the extraction, not repaired by it.
