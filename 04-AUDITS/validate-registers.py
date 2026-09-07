@@ -42,7 +42,10 @@ Checks, in the order they run:
      resolves to a file in 05-HOLDS/.
  11  Release eligibility. Nothing may be publication_status PUBLISHED that
      is not release-eligible. The eligible set is reported either way.
- 12  Override log. Rows are well-formed, scoped and dated.
+ 12  Governed Markdown. Every hold in 05-HOLDS/ is referenced by something
+     outside it; every DECISIONS-NEEDED.md section is a register row whose
+     detail_ref points back at it.
+ 13  Override log. Rows are well-formed, scoped and dated.
 
 Weakening this file to make failing rows pass is not an available move. The
 repair for a failing row is the row, or a recorded owner decision.
@@ -411,6 +414,45 @@ def check_cross_references(known_decisions):
                 fail(f"{rel}: reference {ref} has no file in 05-HOLDS/")
 
 
+def check_markdown_gated():
+    """Real checks for the governed files that are not CSVs.
+
+    Marking a .md file GATED and then only reading CSVs would be an
+    overstatement of the same kind this pass exists to remove. These are the
+    two invariants those files actually carry.
+    """
+    # Every hold file is referenced by something. A hold nobody is waiting on
+    # is either finished or forgotten, and neither should sit silently.
+    if HOLDS_DIR.exists():
+        text = ""
+        for path in ROOT.rglob("*"):
+            if "05-HOLDS" in path.parts or ".git" in path.parts:
+                continue
+            if path.suffix in {".md", ".csv"} and path.is_file():
+                text += path.read_text(encoding="utf-8", errors="replace")
+        for hold in sorted(HOLDS_DIR.glob("HOLD-*.md")):
+            hid = "-".join(hold.name.split("-")[:2])
+            if hid not in text:
+                fail(f"05-HOLDS/{hold.name}: {hid} is referenced by nothing outside "
+                     f"05-HOLDS/; a hold nobody is waiting on is finished or forgotten")
+
+    # DECISIONS-NEEDED.md holds prose for blocking decisions and allocates no
+    # identifiers. Every section it heads must be a register row that points
+    # back at it, which is the CLAUDE.md routing rule made mechanical.
+    needed = ROOT / "DECISIONS-NEEDED.md"
+    if needed.exists() and DECISIONS.exists():
+        back = {(r.get("decision_id") or "").strip()
+                for r in read_csv(DECISIONS)
+                if (r.get("detail_ref") or "").startswith("DECISIONS-NEEDED.md")}
+        for m in re.finditer(r"^#{1,3}\s+(D-\d{3})\b", needed.read_text(encoding="utf-8"),
+                             re.M):
+            did = m.group(1)
+            if did not in back:
+                fail(f"DECISIONS-NEEDED.md: section {did} has no OWNER-DECISIONS row "
+                     f"whose detail_ref points back at it; the register is "
+                     f"authoritative and the prose allocates nothing")
+
+
 def check_release_eligibility(governed):
     """11. Nothing is published that has not earned it."""
     eligible = blocked = published = 0
@@ -510,6 +552,7 @@ def main():
     check_join(governed, ledger)
     check_dependency(ledger)
     check_cross_references(known_decisions)
+    check_markdown_gated()
     check_release_eligibility(governed)
     check_migration_holds()
     active = check_overrides()

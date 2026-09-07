@@ -104,6 +104,17 @@ CASES = [
                           "publication_status", "PUBLISHED"),
      "PUBLISHED but not release-eligible"),
 
+    ("a hold file nothing references",
+     lambda c: track_new_file(c, "05-HOLDS/HOLD-099-orphan.md", "# HOLD-099\n\nnothing waits on this\n"),
+     "HOLD-099 is referenced by nothing outside"),
+
+    ("a DECISIONS-NEEDED section with no register row pointing back",
+     lambda c: (c / "DECISIONS-NEEDED.md").write_text(
+         # D-004 is a real decision whose detail_ref is empty: it is
+         # non-blocking, so under the routing rule it gets no prose section.
+         (c / "DECISIONS-NEEDED.md").read_text() + "\n\n## D-004 — prose it should not have\n"),
+     "section D-004 has no OWNER-DECISIONS row whose detail_ref points back"),
+
     ("an override row with no expiry",
      lambda c: (c / "00-CONTROLLER/OVERRIDE-LOG.csv").write_text(
          (c / "00-CONTROLLER/OVERRIDE-LOG.csv").read_text()

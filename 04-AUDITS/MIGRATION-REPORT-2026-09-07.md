@@ -168,7 +168,7 @@ does not become "buried".
 | Migration is idempotent | Re-run on the migrated tree produces no diff |
 | Generators reproduce their output | `inherited-claims-extraction.py` reproduces the migrated register byte-for-byte; CI re-runs all four generators and fails on any diff |
 | CSV dialect preserved | Round-trip of all registers is byte-identical; the one exception was a stray LF line inside an otherwise-CRLF file |
-| Validator catches defects | 15 injected defects, 15 caught (`test-validate-registers.py`) |
+| Validator catches defects | 17 injected defects, 17 caught (`test-validate-registers.py`) |
 | Push gate cannot be bypassed | Denies on the removed marker, the echo-marker trick, `env git push`, `/usr/bin/git push`, `sh -c 'git push'`, an unparseable payload and a missing validator; allows only on an unexpired override row matching the exact failure |
 
 ## What was not touched
