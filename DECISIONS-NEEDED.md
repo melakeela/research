@@ -225,6 +225,212 @@ running-list versions so the delivery can be retried, *and* commit the four
 documents in the table above, or say they are superseded. The backlog gap and
 the running-list gap are separate; closing the second does not close the first.
 
+### Update 2026-09-07 — the prompt-pack arrived; the entry narrows
+
+Five files were attached and are committed unchanged, md5-verified, at
+`00-CONTROLLER/prompt-pack/`:
+
+```text
+MELAKEELACLAUDECORRECTIVECONTROLLERv2.md
+MELAKEELALANGUAGERESEARCHPROMPTS.md
+MELAKEELACLAUDEFULLSEQUENCE.md
+MELAKEELACLAUDELIVESITEAUDITPROMPT.md
+MELAKEELACLAUDESAYNEXTRESEARCHPROMPT.md
+```
+
+They are inventoried in `00-CONTROLLER/prompt-pack/PROMPT-PACK-INVENTORY.md`.
+Three things change here.
+
+**1. The R1–R19 half of this entry is closed.** All nineteen packets are
+defined in full in `MELAKEELALANGUAGERESEARCHPROMPTS.md`.
+`RESEARCH-QUEUE.md` now defines them rather than naming them, with the run
+order that three of the five files state identically and the binding
+dependency graph. `CONTROLLER-RECONCILIATION.md` §5's second outstanding input
+is satisfied.
+
+**2. The backlog half narrows but does not close.**
+`MELAKEELACLAUDECORRECTIVECONTROLLERv2.md` Part IV **enumerates all
+eighty-nine items**, verified 1–89 with no gaps, in nine groups. Constitution
+§10 requires a row per item but never listed them, and this entry was opened
+because writing eighty-nine rows would have meant inventing them. That is no
+longer true for `backlog_id` and `title`, and the grouping determines several
+dispositions outright — the "Do not build yet" block (76–89) carries its own,
+as do "Later" (66–75) and "Research first" (9–19).
+
+It remains true for `current_site_coverage` and `existing_route`, which need a
+live-site route inventory this repository cannot presently produce, and for
+`prior_research_available`, which needs the packets to have run.
+
+The question that remains is narrower than the one this entry opened with:
+
+> Is Part IV's list *the* "MelaKeela.com v2 — Master Research, Product &
+> Institutional Backlog", or a digest of a longer document that should still
+> be committed?
+
+If it is the backlog, `BACKLOG-COVERAGE.csv` can be started now against the
+columns that do not depend on the site inventory, and D-008, D-009 and D-011
+become answerable in part. If it is a digest, the longer document is still
+needed.
+
+**3. One companion file is still missing.**
+`MELA-KEELA-WHO-MADE-THE-PAST.md`, the fifth companion named in running-list
+Version 12, did not arrive. It is a required input at three points in the pack,
+and R8 is instructed to "cross-link the documented contribution model in Who
+Made the Past? rather than creating a separate incompatible schema." R8 cannot
+be run to that instruction without it.
+
+**Status:** `PARTIALLY-SATISFIED`. Still needed: an answer on Part IV,
+`MELA-KEELA-WHO-MADE-THE-PAST.md`, and the 89-item backlog document if Part IV
+is a digest.
+
+---
+
+# Decisions raised by the prompt-pack intake
+
+Five prompt-pack files were committed unchanged to
+`00-CONTROLLER/prompt-pack/` on 2026-09-07 and inventoried in
+`PROMPT-PACK-INVENTORY.md`. Four decisions follow from what they contain, and
+D-014 above narrows. The nine conflicts the intake found are recorded as
+`PP-1` to `PP-9` in the inventory; `PP-2` to `PP-6` and `PP-9` are resolved
+there by extending existing `C-` resolutions and need no owner decision.
+
+## D-035 — Does a live public-site audit gate the first research programme?
+
+**Raised by:** prompt-pack intake, 2026-09-07
+**Category:** two consequential positions both remaining viable
+**Blocks:** `RESEARCH-QUEUE.md` items 6 and R1–R19; every packet's
+`R#-current-public-coverage.md` input
+**Related:** D-009, D-014; `PROMPT-PACK-INVENTORY.md` PP-1
+
+`01-INHERITED/site-review/RUNNING-LIST-RECONCILIATION.md` records that
+running-list Version 11 reversed the programme's first step. Version 10 opened
+with a Claude Code repository inventory; Version 12 opens with a Claude Chat
+live public-site audit, and the reconciliation warns that "anything built on
+Version 10's step order is working from a superseded sequence."
+
+**The prompt-pack does not re-propose Version 10's order.** The four dated 5
+September files are the reversal's own instruments.
+`MELAKEELACLAUDEFULLSEQUENCE.md` states it outright — "that live audit can
+replace the earlier idea that Claude Code must inventory the repository before
+any research begins" — and puts repository reconciliation at Stage 7, after
+reviewed packets. On the direction of the reversal, pack and running list agree.
+
+**The conflict is with the constitution, and it is a deletion rather than a
+reversal.** `00-CONTROLLER/METHODOLOGY-CONSTITUTION.md` contains no live-site
+audit stage at all: the string `melakeela.com` occurs **zero times** in it, and
+§16's twelve immediate actions contain no audit step. Site-checking survives
+only as §5 Step 13, one step inside the fourteen applied to each individual
+investigation. `MELAKEELACLAUDECORRECTIVECONTROLLERv2.md`, which post-dates the
+pack and which the constitution expands, does the same.
+
+So the governing document takes neither side of the Version 11 decision. It
+drops the gate the decision produced and folds the check into per-investigation
+method — with no change-log entry, no reasoning, and no mention in
+`CONTROLLER-RECONCILIATION.md`.
+
+Two things make this live rather than academic.
+
+1. **The reversal was about which agent goes first, and there is now one
+   agent.** `CONTROLLER-RECONCILIATION.md` §4 rules the Claude Chat / Claude
+   Code split "obsolete as a division of labour here. This repository *is*
+   Claude Code, and it produces the research." Version 11 chose between two
+   agents that no longer exist as separate roles. With one agent the question
+   becomes whether a live public-site audit precedes the first research
+   programme at all — and nothing in this repository answers it.
+2. **The audit is not presently runnable here.**
+   `MELAKEELACLAUDELIVESITEAUDITPROMPT.md` requires browsing `melakeela.com`;
+   the site lives in `melakeela/site`, which this session cannot read.
+
+This is not a question the record can settle. Reinstating the gate and
+ratifying its removal are both programme-ordering decisions.
+
+**Decision:** reinstate the audit-first gate, ratify the constitution's
+demotion of it to Step 13, or replace it with a repository-side route
+inventory — and if the gate stands, say how the audit is to be run.
+
+---
+
+## D-036 — Does R19's modern layer run, and under what expiry convention?
+
+**Raised by:** prompt-pack intake, 2026-09-07
+**Category:** two consequential positions both remaining viable
+**Blocks:** R19's modern half; any register convention for expiring claims
+**Related:** `PROMPT-PACK-INVENTORY.md` PP-7
+
+R19 requires independent verification, "as of the research date," of
+contemporary claims about U.S.–Iran hostilities, blockade, oil flows,
+Venezuela, ownership stakes, Maduro, Puerto Rico and commodity shares, using
+primary government and legal records, with version-pinned percentages — and
+states that "the current-affairs layer expires unless refreshed."
+
+The registers have no expiring state. Every row is durable; `SUPERSEDED`
+requires a successor to point at; there is no "stale". A claim that is true on
+its retrieval date and silently false a quarter later is a category this
+evidence base has not had to hold before, and inventing the convention
+casually would weaken the ones that already work.
+
+Constitution §4 domain T keeps the subject, so deferring the layer is a
+scoping choice rather than a rejection. **The ancient corridor is not blocked
+by this** — R19's Bronze Age to imperial chronology runs under the ordinary
+rules whichever way this goes.
+
+**Decision:** run the modern layer with a dated-expiry convention (and say
+what refreshes it, and how often), defer it and keep the ancient corridor, or
+reject it.
+
+---
+
+## D-037 — What model-run budget does R1 have?
+
+**Raised by:** prompt-pack intake, 2026-09-07
+**Category:** payment or institutional access required
+**Blocks:** R1, first in the agreed run order
+**Related:** `PROMPT-PACK-INVENTORY.md` PP-8
+
+R1 specifies a reproducible experiment contrasting baseline, added context,
+modern linguistic annotation and a sourced tiṇai intervention, with held-out
+data, a length-matched irrelevant-context control, contamination checks,
+native or qualified review, and recorded model and tokenizer versions,
+settings, date and **spending cap**. It instructs directly: "Do not run paid
+APIs without an agreed budget." The pack's operating controls add per-case
+effort tracking with founder time separated from cash, and defer paid live
+comparisons "until a bounded pilot and budget justify them."
+
+R1 is first in the run order in all three files that state one. The question
+cannot be deferred behind the other packet questions without moving R1.
+
+**Decision:** set a spending cap, run R1 with free or local models only and
+say so in the method, or defer R1 and start the run order at R9.
+
+---
+
+## D-038 — Is running-list Version 12 the "current master work list"?
+
+**Raised by:** prompt-pack intake, 2026-09-07
+**Category:** two consequential positions both remaining viable
+**Blocks:** every packet's required input set; the LS/COR/RV cross-reference
+for R9–R19
+**Related:** D-014; `PROMPT-PACK-INVENTORY.md` §6
+
+All five pack files require "the current master work list" as an attachment,
+and `MELAKEELALANGUAGERESEARCHPROMPTS.md` describes itself as "Companion to
+master work list Version 12, sections 21–24."
+
+`01-INHERITED/site-review/MELAKEELASITEREVIEWRUNNINGLIST.md` is running-list
+Version 12, carries §§21–24, and carries the LS-, COR- and RV- series the pack
+refers to. It is most likely the same document under a different name. But no
+pack file equates them, `RUNNING-LIST-RECONCILIATION.md` does not, and this
+repository will not assert an identity between two titles on a resemblance —
+that is the move the evidence rules exist to prevent.
+
+This matters practically: R9–R19 carry no LS IDs in the pack, and their
+coverage items are traceable only through that document. If it is the master
+work list, the pack's required inputs are complete but for
+`MELA-KEELA-WHO-MADE-THE-PAST.md`.
+
+**Decision:** confirm that running-list Version 12 is the master work list, or
+name and commit the separate document.
+
 
 # Decisions raised by the curatorial audit v1.1 schema review
 

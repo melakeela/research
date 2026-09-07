@@ -26,7 +26,7 @@ R1–R19). Ordering below the first item is owner decision **D-008** in
    committed unchanged 2026-09-07, inventoried in `PROMPT-PACK-INVENTORY.md`,
    and reconciled into this queue. *(This change.)* R1–R19 below are now
    defined rather than named. Nine conflicts with the controller are recorded
-   as `PP-1` to `PP-9`; `PP-1` is open as **D-015** and gates the packets.
+   as `PP-1` to `PP-9`; `PP-1` is open as **D-035** and gates the packets.
 
 ## Blocked on inputs
 
@@ -43,11 +43,11 @@ R1–R19). Ordering below the first item is owner decision **D-008** in
    document is the narrowed question at `DECISIONS-NEEDED.md` D-014.
 6. **Packets R1–R19.** No longer blocked for want of definitions — those
    arrived on 2026-09-07 and are below. Now blocked on three things instead:
-   **D-015**, whether a live public-site audit gates the first packet, since
+   **D-035**, whether a live public-site audit gates the first packet, since
    every packet is specified to receive an `R#-current-public-coverage.md`
    from it; **D-009**, the route inventory that audit would produce, which
    this repository cannot presently generate; and, for R1 specifically,
-   **D-017**, the model-run budget its experiment requires. R1 is first in
+   **D-037**, the model-run budget its experiment requires. R1 is first in
    the run order, so the budget question is not deferrable behind the others.
 
 ## Research domains — constitution §4
@@ -140,7 +140,7 @@ R2 + R4 + R5 + R15 → R7
 ```
 
 R1 has no dependency and can run while historical sources are collected — but
-see D-017 on its budget.
+see D-037 on its budget.
 
 ### Where the two enumerations do not meet
 
@@ -168,7 +168,7 @@ it. `METHODOLOGY-CONSTITUTION.md` has no such stage — the string
 `melakeela.com` does not occur in it — and keeps site-checking only as §5 Step
 13 inside each investigation.
 
-This queue does not settle it. No packet is scheduled until **D-015** is
+This queue does not settle it. No packet is scheduled until **D-035** is
 answered, and the audit is in any case not presently runnable from this
 repository (the site is in `melakeela/site`; see D-009). See
 `00-CONTROLLER/prompt-pack/PROMPT-PACK-INVENTORY.md` PP-1.
@@ -224,6 +224,6 @@ or research holds. Constitution §11.
 - The language-movement Artifact Atlas specification (§13). R14 is its
   evidence layer and R12, R13, R15 and R18 supply its edges; none has run.
 - Page and exhibit briefs.
-- R19's modern current-affairs layer — pending **D-016**. The ancient
+- R19's modern current-affairs layer — pending **D-036**. The ancient
   corridor is not blocked by it.
 - Anything touching `melakeela/site`.

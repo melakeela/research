@@ -568,7 +568,7 @@ conflict with it:
 | `MELA-KEELA-WHO-MADE-THE-PAST.md` | R8's contribution model; Stage 2 Project Knowledge; the say-next governing set | D-014, amended |
 | The full "MelaKeela.com v2 — Master Research, Product & Institutional Backlog" document behind the 89 titles | the per-item detail `BACKLOG-COVERAGE.csv` columns need beyond a title | D-014, amended |
 | A live-site route inventory | `current_site_coverage`; the audit's coverage columns; Step 13 | D-009, D-014 |
-| The master work list itself, as distinct from the site-review running list | every file in the pack names it as a required attachment | new — D-018 |
+| The master work list itself, as distinct from the site-review running list | every file in the pack names it as a required attachment | new — D-038 |
 
 On the fourth: all five files require "the current master work list" as an
 input, and `LANGUAGERESEARCHPROMPTS` describes itself as "Companion to master
@@ -584,14 +584,14 @@ name, but the pack never equates them and this inventory does not either.
 Allocated from `09-DECISIONS/OWNER-DECISIONS.csv`; see that file for the
 authoritative rows.
 
-- **D-015 — Does a live public-site audit gate the first research programme?**
+- **D-035 — Does a live public-site audit gate the first research programme?**
   PP-1. Reinstate the Version 11 gate, ratify the constitution's demotion of it
   to Step 13, or replace it with a repository-side route inventory.
-- **D-016 — R19's modern layer.** PP-7. Run it with a dated-expiry convention,
+- **D-036 — R19's modern layer.** PP-7. Run it with a dated-expiry convention,
   or defer it and keep the ancient corridor.
-- **D-017 — R1's model-run budget.** PP-8. R1 is first in the run order and
+- **D-037 — R1's model-run budget.** PP-8. R1 is first in the run order and
   cannot be completed as specified without one.
-- **D-018 — Is running-list Version 12 the "master work list"?** §6. If it is,
+- **D-038 — Is running-list Version 12 the "master work list"?** §6. If it is,
   say so and the pack's required inputs are complete but for Who Made the Past.
 - **D-014 — amended.** §6 and §8; see `DECISIONS-NEEDED.md`.
 
