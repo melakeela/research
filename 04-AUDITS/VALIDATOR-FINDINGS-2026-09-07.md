@@ -150,3 +150,53 @@ validate-registers: 43 failure(s)
   03-REGISTERS/rigveda-pur-family.csv:25: source_id SRC-019; SRC-022 not in access ledger
   03-REGISTERS/rigveda-pur-family.csv:26: source_id SRC-019; SRC-022 not in access ledger
 ```
+
+---
+
+## Resolution, 2026-09-07 — owner answered `D-042`; both classes closed
+
+These findings were recorded and deliberately left for the owner. They then
+stopped being theoretical: the validator was wired as a push-blocking hook,
+so the 43 failures blocked every push rather than merely recording a
+disagreement, and the hook's own documented escape was unavailable in the
+session that hit it. Raised as `D-042`; the owner chose **findings option 1
+for class 1, plus the class 2 fix**, and both were made.
+
+**Class 1 — multi-valued `source_id` cells (42 failures).** `validate-registers.py`
+gains `source_ids()`, which splits a `source_id` cell on `;` and resolves each
+identifier separately.
+
+The module docstring now records why this is **stricter than what it replaced,
+not looser** — which is the objection the original findings raised against
+itself, and it does not survive inspection. Reading a four-identifier cell as
+one identifier made it fail *wholesale*, so the identifiers inside it were
+never checked at all. A negative test on a scratch tree makes the direction
+concrete:
+
+| row | cell | old | new |
+|---|---|---|---|
+| all four identifiers real | `SRC-001; SRC-002` | **fails** (uninformative) | passes |
+| one identifier invented | `SRC-001; SRC-999` | fails, names the whole cell | **fails, names `SRC-999`** |
+| single bad identifier | `SRC-404` | fails | fails |
+
+The old rule could not distinguish a cell of four good identifiers from a cell
+of three good and one invented. The new rule can. That is the whole of the
+change.
+
+**Class 2 — a status cell carrying prose (1 failure).**
+`03-REGISTERS/domain-e-hypothesis-eligibility.csv` row `E-11`: `status` is now
+`VERIFIED`, and the qualification it was carrying — *"as a measurement; not a
+claim about origins"* — moved to the **head** of the `reason` cell rather than
+being dropped. It is the constitution §4.E guard that stops the 253-lemma
+retroflex residue from being cited as a count of borrowings, and the original
+findings were right that changing this field carelessly is how a guard gets
+quietly loosened. It is stated more prominently now than it was before, not
+less. The row's `eligible_for_extended_analysis` cell already read
+`NOT-A-HYPOTHESIS — a residue, never a rival explanation` and is untouched.
+
+**Class 3** was already at zero.
+
+**Result:** `validate-registers.py` exits 0 on the whole tree. 43 failures to
+0, **none of them suppressed**. No register row was deleted, no status was
+promoted, no claim changed its evidentiary standing, and the validator was not
+weakened to get past its own gate.

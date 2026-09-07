@@ -9,10 +9,24 @@ VERIFIED row that no retrieval backs.
 Checks:
   1. Every row's status is in the vocabulary.
   2. Every VERIFIED row has non-empty source_id, locator, retrieval_date.
-  3. Every source_id resolves to a row in 02-SOURCES/access-ledger.csv.
+  3. Every identifier in a VERIFIED row's source_id resolves to a row in
+     02-SOURCES/access-ledger.csv.
   4. Every claim_id is unique within its file.
   5. Every D- reference in the tree resolves to exactly one row in
      09-DECISIONS/OWNER-DECISIONS.csv.
+
+On check 3 and multi-source cells. A claim that rests on four retrievals
+records four identifiers in one cell, semicolon-separated -- a corpus
+measurement routinely rests on the repository clone, the lemma layer, the
+strata layer and the derived token table at once, and splitting one claim
+across four rows would break the one-claim-per-row rule instead. Reading
+such a cell as a single identifier made it fail wholesale, which meant the
+identifiers inside it were never checked at all. Splitting on ';' and
+resolving each one is therefore STRICTER than what it replaces, not looser:
+every identifier is now resolved individually, and a cell containing one
+good identifier and one bad one now fails on the bad one instead of failing
+uninformatively on both. Owner decision D-042; the disagreement it settles
+is recorded at 04-AUDITS/VALIDATOR-FINDINGS-2026-09-07.md class 1.
 
 CSVs in this repository mix CRLF and LF and carry embedded newlines
 inside quoted cells. Everything here opens with newline='' and never
@@ -76,6 +90,17 @@ def decision_ids():
     return set(counts), counts
 
 
+def source_ids(cell):
+    """
+    Every identifier in a source_id cell.
+
+    One claim may rest on several retrievals; the registers record them in
+    one cell, semicolon-separated. Each is resolved separately. See the
+    module docstring for why this is stricter than reading the cell whole.
+    """
+    return [part.strip() for part in (cell or "").split(";") if part.strip()]
+
+
 def check_register(path, ledger):
     rel = path.relative_to(ROOT)
     rows = read_csv(path)
@@ -100,9 +125,9 @@ def check_register(path, ledger):
             for col in REQUIRED_FOR_VERIFIED:
                 if col in fields and not (row.get(col) or "").strip():
                     fail(f"{rel}:{n}: VERIFIED row missing {col}")
-            sid = (row.get("source_id") or "").strip()
-            if sid and ledger and sid not in ledger:
-                fail(f"{rel}:{n}: source_id {sid} not in access ledger")
+            for sid in source_ids(row.get("source_id")):
+                if ledger and sid not in ledger:
+                    fail(f"{rel}:{n}: source_id {sid} not in access ledger")
 
 
 def check_decision_refs(known):
