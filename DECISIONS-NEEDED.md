@@ -34,12 +34,23 @@ how a `D-` reference in a document written before that date is resolved.
 A second collision came in with `main` and is cleared here. `main` carries
 two `## D-032` sections: the `before-the-indus` question, which owns that
 identifier in the CSV, and a domain E egress ruling written in the same window
-as the renumbering and carrying no CSV row at all. The egress section is
-**D-036** below. Its row is on `claude/domain-e-research-queue-z83m9b`
-(PR #10), which allocated it along with `D-037` to `D-041`; those six are
-reserved and deliberately absent from `09-DECISIONS/OWNER-DECISIONS.csv` on
-this branch, which is why the numbering here runs D-035 then D-042. The two
-branches together are contiguous `D-001` to `D-046` with no duplicate.
+as the renumbering and carrying no CSV row at all. That egress section is
+**D-047** below, and it now carries a row of its own in
+`09-DECISIONS/OWNER-DECISIONS.csv`.
+
+It was renumbered here to `D-036` while `claude/domain-e-research-queue-z83m9b`
+(PR #10) was expected to bring the same decision in at `D-036`, alongside
+`D-037` to `D-041` for the rest of the domain E block. PR #10 has not merged,
+and on 2026-09-07 `main` merged PR #18, which allocated `D-036` to the
+twelve-mandated-registers question raised by
+`04-AUDITS/identifier-normalisation-brief.md`. That is now the only decision the
+identifier names. The egress section was therefore reassigned to `D-047`, the
+first identifier carrying no reference anywhere in the merged tree, and the
+reassignment is recorded in `09-DECISIONS/DECISION-ID-MAP.csv`. `D-037` to
+`D-041` are not reserved by this branch and name nothing here; PR #10's
+identifiers are not in this namespace until it merges, and it can no longer
+take `D-036`. `09-DECISIONS/OWNER-DECISIONS.csv` runs `D-001` to `D-036`, then
+`D-042` to `D-047`, with no duplicate.
 
 A third series exists and is not part of this namespace. The inherited handoff
 numbered its own owner decisions `D-01` to `D-20`; those are now written
@@ -1219,7 +1230,7 @@ institution can keep current, at what latency, and who maintains them.
 
 ---
 
-## D-036 — Egress reach is not stable between sessions. Does domain E run under a GitHub-only policy?
+## D-047 — Egress reach is not stable between sessions. Does domain E run under a GitHub-only policy?
 
 **Raised by:** domain E source probe, 2026-09-07T02:19–02:21Z
 **Category:** institutional access required

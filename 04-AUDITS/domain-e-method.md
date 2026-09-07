@@ -6,7 +6,7 @@
 `03-REGISTERS/domain-e-retroflex-residue.csv` (253 lemmas),
 `03-REGISTERS/domain-e-hydronyms.csv` (469 occurrences)
 **Sources:** `SRC-019`–`SRC-024`, `SRC-026`, `SRC-037`–`SRC-047`
-**Holds:** `HOLD-002`, `HOLD-003`  **Decision raised:** `D-036`
+**Holds:** `HOLD-002`, `HOLD-003`  **Decision raised:** `D-047`
 **Reproduce:** `04-AUDITS/rv-token-extract.py`, then
 `rv-retroflex-classify.py`, `rv-retroflex-aggregate.py`,
 `rv-hydronym-census.py`
@@ -26,7 +26,7 @@ fifteen hosts in all, on both the `curl` and the WebFetch channel.
 Ninety minutes earlier, in the previous session, four of those had
 answered HTTP 200 and are recorded as reachable at `SRC-025`, `SRC-028`,
 `SRC-029` and `SRC-033`. Neither record is wrong; the policy narrowed
-between them. That is `D-036`.
+between them. That is `D-047`.
 
 So the unit split in two:
 
@@ -327,7 +327,7 @@ literature and EJVS were not reachable at all. That is not a fact about
 the quality of the scholarship. It is a fact about which traditions have
 been digitised, licensed openly and mirrored — and it is the exact
 mechanism by which an archive's institutional power becomes a research
-result. `D-036` puts it to the owner as a decision rather than absorbing
+result. `D-047` puts it to the owner as a decision rather than absorbing
 it as a limitation.
 
 ## 8. Known limits
