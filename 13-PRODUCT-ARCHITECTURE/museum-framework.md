@@ -2409,3 +2409,195 @@ because it publishes superseded and rejected material under the institution's
 name to the readers least able to check it against the current record. Adding a
 language is a standing commitment, and the commitment — who maintains it and at
 what latency — is published with it.
+
+---
+
+## 12. The Field Reveals the Record — the visual handoff
+
+### 12.1 What the handoff is
+
+§12 names *"The Field Reveals the Record visual handoff"* as a deliverable of the
+specification stage. This section specifies it as a **contract between the
+evidence architecture and whoever designs the visual system** — not as a design.
+No palette is chosen here, no type is specified, no layout is drawn. That work
+belongs in `17-visual-system-handoff/` (constitution §15) and, if it produces
+code, in `melakeela/site`.
+
+The title states the contract's direction. **The field reveals the record:** what
+a visitor sees is a rendering of the record, and the visual system's job is to
+make the record's structure perceptible. It is not to make the record look
+finished.
+
+### 12.2 What the handoff hands over
+
+1. **The seven postures**, each with its function, its palette role and — most
+   importantly — its `Avoid`, as given in `environment-map.csv`
+   (`INHERITED-UNVERIFIED`), plus §1.6.1's split of Reading Room into a posture
+   and Source Mode, and §1.6.2's re-backing of Reconnection on registers.
+2. **The five modes** and the posture-to-mode matrix (§1.7).
+3. **The vocabularies that must be visually distinguishable**, which is the
+   substance of the contract:
+   - 7 statuses, with `INHERITED-UNVERIFIED` **not** on the same ladder as the
+     other six (§3.2)
+   - 5 attestation modes (§2.6)
+   - 4 `is_primary` steps (§2.5)
+   - 8 absence types, distinguishing `ABSENT DESPITE ADEQUATE SEARCH` from the
+     seven that are statements about the archive (§3.7)
+   - 4 relationship strengths and the predicate groups (§4.3)
+   - 8 place types, with `attributed-provenance` visibly distinct from
+     `findspot` (§2.8)
+   - 12 date types (§2.7)
+   - the 4 artifact states in the Atlas language mode (§8.6)
+   - geometry certainty, including `zone-unknown` (§8.2)
+4. **The exclusion set and the unknown layer** as things that must be *drawn*.
+5. **The accessibility constraints of §11.9**, in particular that none of the
+   above may be encoded by colour or opacity alone.
+6. **The scripts** the system must set well, with the multilingual requirements
+   of §11.10.
+
+### 12.3 The constraints the visual system must satisfy
+
+Stated as testable propositions, in the spirit of the `Avoid` column, which
+`SCHEMA.md` calls *"falsifiable design constraints: for any published page you can
+state whether it violated one."*
+
+| # | Constraint | How a violation is detected |
+|---|---|---|
+| V-1 | Uncertainty is legible at a glance and precise on inspection | Show a screen to someone unfamiliar; ask which items the institution is confident about. If they cannot tell, it fails. |
+| V-2 | Confidence is never conveyed by production value | A `HYPOTHESIS` rendered in the same finish as a `VERIFIED` claim fails, however beautiful. |
+| V-3 | Unknown is a mark, never an absence of marks | Any surface where "we don't know" is represented by blank space fails. |
+| V-4 | The source is always one interaction away | Any surface with no route to Source Mode fails (§1.7). |
+| V-5 | Nothing decorative is placed where evidence goes | Atmosphere assets are labelled as such and never occupy an evidence slot. Living Tiṇai's *"no generic landscape decoration"*. |
+| V-6 | The seven `Avoid` constraints hold per posture | Per-page review against the specific failure named for that posture. |
+| V-7 | Layers overlay and never modify | An Atlas rendering where one layer recolours another's objects fails (§8.4). |
+| V-8 | Equal visual weight is a claim, and is only made where the evidence is equal | Two rival explanations rendered identically when their evidence differs fails §3.10; a dominant account given more finish than a counter-account with equal evidence fails §3.11. |
+
+### 12.4 What the handoff explicitly does not authorise
+
+- No production HTML, CSS or JavaScript in this repository (`CLAUDE.md`;
+  constitution §12, §15).
+- No visual treatment that adds meaning the record does not carry.
+- No palette or motif that supplies an era, an ethnicity or a people to material
+  that the record does not attribute — the visual form of §6.7's cross-route
+  invariant.
+
+---
+
+## 13. Deferred and DO NOT BUILD
+
+### 13.1 The mechanism
+
+§12 requires coverage of *"all deferred and DO NOT BUILD items"*. The mechanism
+is a register; the contents are the owner's.
+
+`03-REGISTERS/deferred-and-do-not-build.csv`:
+
+`item_id` · `item` · `class` (`deferred` · `do-not-build`) · `origin`
+(backlog item, constitution section, audit finding, this specification) ·
+`reason` · `revisit_condition` · `decided_by` · `decided_date` · `state`
+
+**Rules.**
+
+1. **`do-not-build` is a decision with a reason, not a silence.** An item that is
+   simply never mentioned again is not a DO NOT BUILD item; it is an item that
+   was forgotten, and the two are indistinguishable in six months unless the
+   first is written down.
+2. **`deferred` carries a revisit condition.** "Later" is not a condition; "when
+   the consent framework in §11.4 is operating" is.
+3. **A DO NOT BUILD reason of "we could not do this well" is preferred to
+   silence**, and is published where a visitor might otherwise expect the
+   feature — most obviously anything the institution might be expected to say
+   about restitution (§1.6.2, D-017).
+4. **Rows are superseded, never deleted** (§3.6).
+
+### 13.2 Why the list is not enumerated here
+
+Constitution §14 reserves *"which future experiences remain deferred"* to the
+owner; it is `OWNER-DECISIONS.csv` D-011, whose state is `BLOCKED` because the
+89-item v2 backlog is not in this repository (`DECISIONS-NEEDED.md` D-014).
+Enumerating deferred and DO-NOT-BUILD items from a backlog that is not present
+would produce a complete-looking register with nothing behind it — the failure
+the constitution's §1 names and the one D-014 was raised to prevent.
+
+What this specification contributes to that list, when it can be written, is the
+set of things it has deliberately *not* specified, listed in §14.3.
+
+---
+
+## 14. What this specification leaves to the owner
+
+### 14.1 Decisions raised by this document
+
+Written to `DECISIONS-NEEDED.md` as D-015 to D-031, per the instruction that
+governs this task. Note that `DECISIONS-NEEDED.md` and
+`09-DECISIONS/OWNER-DECISIONS.csv` currently share an identifier space at D-004
+to D-006 — a pre-existing collision, recorded here and not compounded: the new
+rows continue `DECISIONS-NEEDED.md`'s own sequence from its highest existing row,
+D-014.
+
+| ID | Decision | Section |
+|---|---|---|
+| D-015 | Is Reading Room a seventh peer posture, or is it demoted to Source Mode leaving six? | §1.6.1 |
+| D-016 | May Reconnection surfaces publish before any community-led work or consultation exists? | §1.6.2 |
+| D-017 | Does the institution state a restitution position, and what is it? | §1.6.2 |
+| D-018 | Is the 29-value `Type` vocabulary retired, reduced to a genre facet, or kept? | §1.6.3 |
+| D-019 | Do the register CSVs gain an `object_id` column, or is a crosswalk maintained? | §2.1 |
+| D-020 | Does the institution register external persistent identifiers (DOI/ARK/Handle)? | §5.3 |
+| D-021 | Does the language mode offer a guided sequence through the seven settings, and what would it be claiming? | §8.3 |
+| D-022 | How are the eleven Atlas layers grouped, and which are on at first load? | §8.4 |
+| D-023 | Does the language mode animate transitions, or present them as static compared states? | §8.5 |
+| D-024 | Is PROVE IT the correction intake this specification takes it to be, or something else? | §9.1 |
+| D-025 | Are refused and unanswered obligations published individually, in aggregate, or only with prior notice? | §11.1, §11.7 |
+| D-026 | Does the institution display human remains at all? | §11.4 |
+| D-027 | Are challenges published on receipt or after assessment, and may challengers be anonymous? | §11.6 |
+| D-028 | What is the sunset and succession plan for identifier resolution and consented material? | §11.7 |
+| D-029 | Does the institution ever assert fair dealing, and in which jurisdiction? | §11.8.2 |
+| D-030 | Which open licence does the evidence base carry? | §11.8.3 |
+| D-031 | Which languages beyond Tamil and English does the institution commit to maintaining? | §11.10.3 |
+
+### 14.2 Decisions already reserved, cited but not re-raised
+
+`09-DECISIONS/OWNER-DECISIONS.csv` D-004 (what Veḷi principally is), D-005 (is
+WATER the first Living World), D-006 (Keezhadi or an inscription as the
+children's pilot), D-007 (the first three builds), D-008 (Release 1 programmes),
+D-009 (which pages merge), D-010 (publishable institutional claims), D-011
+(deferred set), D-012 (where specification lives), D-013 (dependency store
+format).
+
+`DECISIONS-NEEDED.md` D-004 (`before-the-indus` in or out of the MVP set), D-005
+(which build is authoritative; is `rakhigarhi` live), D-006 (the page count and
+the atlas site count), D-014 (the missing backlog and prompt-pack).
+
+Two of these are load-bearing for what is specified above and are worth naming as
+such: **D-006 (atlas site count)** is neutralised but not answered by §8.1 — the
+Atlas can be built without it and cannot be titled without it. **D-011 (deferred
+set)** blocks §13.2.
+
+### 14.3 What this specification deliberately did not specify
+
+Offered as input to the deferred register (§13.1) when it can be written:
+
+- Authentication, write access, federation, and any query language beyond export
+  filters (§5.3).
+- Visual design of any kind (§12).
+- The editorial CMS's interface, beyond the rule that it has no status dropdown
+  (§3.2).
+- Hosting, deployment, domains and the production allowlist — release gate 7 in
+  the workbook's Summary sheet (`INHERITED-UNVERIFIED`), outside this
+  repository.
+- Any migration plan for the 96 audited pages. Migration depends on the editorial
+  decisions this document deliberately does not take.
+- Cost, lead time and staffing for the 392 asset slots. `SCHEMA.md` §4 finding 4
+  records that the Asset Register *"cannot be scheduled from as it stands"*;
+  §1.6.3 changes how asset class is derived but supplies no estimates, and none
+  should be inferred from this document.
+
+### 14.4 Status of this document
+
+Every design proposition here is `HYPOTHESIS`. Every statement drawn from
+`01-INHERITED/curatorial-audit-v1.1/` is `INHERITED-UNVERIFIED` and is marked at
+the point of use. Nothing here has been retrieved, so no rows were added to
+`02-SOURCES/access-ledger.csv` and no domains were requested.
+
+This is a specification. Per constitution §15: it is not an implemented page, and
+must not be described as one.
