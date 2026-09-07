@@ -367,6 +367,17 @@ not enemy settlements, and in two passages the fort **is** a god or a river. A
 reading that takes `āyasá- púr-` as evidence for metal-using fortified
 settlements has to account for the seven, not only the one.
 
+**The challengeable case, anticipated.** RV 4.27.1 and 8.100.8 — a hundred
+metal forts confining the eagle in the Soma-theft myth — could be called
+hostile: something adversarial is holding the bird. They are counted among the
+seven because the claim is about a specific thing, *the stronghold of a named
+adversary, stormed*, and in those two the holder is unnamed, the setting is a
+myth of Soma's descent rather than a raid, and the action is escape rather than
+assault. Counting them as hostile makes it **3 of 8 rather than 1 of 8**, and
+does not disturb what the row is used for: on either count a majority of the
+metal forts are not enemy settlements, and RV 7.15.14 and 7.95.1 — where the
+fort *is* Agni and *is* the river Sarasvatī — are unaffected either way.
+
 The one stone fort (`aśmanmáya-`, RV 4.30.20) *is* an enemy's; the one unbaked
 fort (`āmá-`, RV 2.35.6) is a refuge. Two data points, recorded as two data
 points. With n=1 on each side no distribution follows.
