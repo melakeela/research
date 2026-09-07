@@ -14,21 +14,36 @@ and §11 (packets R20–R21). Ordering below the first item is owner decision
    `D-003` in `DECISIONS-NEEDED.md`.
 2. **Inheritance intake** — `03-REGISTERS/inherited-claims.csv`, 369 rows,
    all at `INHERITED-UNVERIFIED`. Inventory only; nothing verified.
+3. **The púr- family in the Rigveda** (part of domain **J**) —
+   `03-REGISTERS/rigveda-pur-family.csv` (28 claims) and
+   `rigveda-pur-family-occurrences.csv` (106 occurrences); method in
+   `04-AUDITS/rigveda-pur-family-method.md`. `HOLD-001` open on the
+   `púraṃdhi-` etymology.
+4. **Domain E — Dravidian, Munda and unidentified substrate claims**,
+   corpus-internal half only. `03-REGISTERS/domain-e-claims.csv` (26
+   claims: 19 VERIFIED, 4 PROVISIONAL, 2 HYPOTHESIS, 1 HOLD),
+   `domain-e-hypothesis-eligibility.csv` (the eleven §4.E distinctions,
+   each gated), `domain-e-retroflex-residue.csv` (253 lemmas),
+   `domain-e-hydronyms.csv` (469 occurrences). Method and both
+   adversarial tests: `04-AUDITS/domain-e-method.md`. The comparative
+   half is on `HOLD-002` and `HOLD-003`: every Dravidian, Munda and
+   Austroasiatic source was refused at the egress gateway. Escalated as
+   `D-032`.
 
 ## Now
 
-3. **Controller amendment.** Install the methodology, reconcile it against
+5. **Controller amendment.** Install the methodology, reconcile it against
    the controller, seed the decisions register and this queue. *(This
    change.)* No research begins until it is reviewed.
 
 ## Blocked on inputs
 
-4. **Backlog reconciliation** — `06-BACKLOG/BACKLOG-COVERAGE.csv`, one row
+6. **Backlog reconciliation** — `06-BACKLOG/BACKLOG-COVERAGE.csv`, one row
    per item 1–89 with a destination, deliverable, hold or reasoned
    rejection. `RESEARCH HOLD`: the "MelaKeela.com v2 — Master Research,
    Product & Institutional Backlog" is not in this repository and cannot be
    reconstructed by inference. See `DECISIONS-NEEDED.md` D-014.
-5. **Packets R1–R19.** Named in the site review running list; their
+7. **Packets R1–R19.** Named in the site review running list; their
    definitions live in the prompt-pack (`MELA-KEELA-CLAUDE-FULL-SEQUENCE.md`,
    `MELA-KEELA-LANGUAGE-RESEARCH-PROMPTS.md`,
    `MELA-KEELA-CLAUDE-LIVE-SITE-AUDIT-PROMPT.md`), which is also absent.
@@ -48,7 +63,7 @@ thing the investigation is most likely to get wrong.
 | B | Early Rigvedic, Old Avestan and Classical Sanskrit | Family-tree labels predetermining an anonymized comparison; unequal archives read as equal samples |
 | C | The Sanskrit sound system is historically composite | Projecting the later alphabet back as one pristine PIE design; reading the 5×5 grid as 25 inherited phonemes |
 | D | Proto-Dravidian and Tamil phonology | Treating either analytical system as an imperfect version of the other |
-| E | Dravidian, Munda and unidentified substrate claims | Symmetry between an attested family and a hypothetical donor; "unknown" used as positive evidence |
+| E | Dravidian, Munda and unidentified substrate claims | Symmetry between an attested family and a hypothetical donor; "unknown" used as positive evidence — *corpus-internal half run 2026-09-07; comparative half on HOLD-002/003* |
 | F | *kīnāśa* and agricultural vocabulary | Accepting the etymology, or dismissing it as resemblance, without the lemma work |
 | G | BMAC/Oxus and pre-split Indo-Iranian contact | Reading "Proto-Indo-Iranian" as pre-contact or purely inherited |
 | H | Rigvedic and Old Avestan social worlds | A violent-Indic versus peaceful-Iranian binary; genre mistaken for society |
