@@ -259,7 +259,24 @@ its eighty-nine rows, which would be exactly the failure the repository
 exists to prevent. The requirement stands; it is on `RESEARCH HOLD` pending
 the source documents. See §5 below for what is needed.
 
-### C-8 — Proportional space in a repository with no pages
+### C-8 — Two files named "constitution"
+
+`00-CONTROLLER/RESEARCH-CONSTITUTION.md` already existed: twenty-six standing
+rules copied verbatim from §11 of the inherited handoff, and marked
+`INHERITED-UNVERIFIED` on its own first line. It is inherited material about
+method, not a controller, and several of its rules overlap the amendment's
+(C-06/C-38 on meta-commentary, C-16 on symmetry of skepticism, C-17 on
+attested versus unattested donors, D-10 on northern priority as an excavation
+artefact).
+
+**Resolution.** `METHODOLOGY-CONSTITUTION.md` is the methodology this
+repository runs under. `RESEARCH-CONSTITUTION.md` stays where it is and keeps
+its inherited status: a claim inventory about method, to be tested against
+the amendment domain by domain, not a second source of authority. Its
+twenty-six rules are candidates for `RESEARCH-INHERITANCE.md` when that file
+is built. Nothing cites it as governing.
+
+### C-9 — Proportional space in a repository with no pages
 
 Steps 9 and 14 govern space allocation, map prominence, interface weight and
 public copy. This repository produces registers and briefs, not pages.
