@@ -8,3 +8,8 @@
 .DS_Store
 Thumbs.db
 .env
+
+# Python bytecode. rv-retroflex-aggregate.cpython-311.pyc predates this line
+# and is left alone; nothing new should join it.
+__pycache__/
+*.pyc
