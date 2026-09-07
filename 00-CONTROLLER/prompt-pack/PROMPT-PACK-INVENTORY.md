@@ -1,8 +1,9 @@
 # Prompt-pack inventory
 
 **Written:** 2026-09-07
-**Subjects:** the five files committed unchanged to `00-CONTROLLER/prompt-pack/`
-**Status of this document:** derived analysis of five `INHERITED-UNVERIFIED`
+**Subjects:** the six files committed unchanged to `00-CONTROLLER/prompt-pack/`
+**Revised:** 2026-09-07, on the arrival of `MELAKEELAWHOMADETHEPAST.md`
+**Status of this document:** derived analysis of six `INHERITED-UNVERIFIED`
 sources. It establishes what each file specifies, how the five relate to each
 other and to `00-CONTROLLER/METHODOLOGY-CONSTITUTION.md`, and where they
 conflict with the controller this repository currently runs under. It promotes
@@ -11,7 +12,11 @@ being inventoried here.
 
 ---
 
-## 1. The five files
+## 1. The six files
+
+Five arrived together; `MELAKEELAWHOMADETHEPAST.md` followed and is the fifth
+companion running-list Version 12 named. It is different in kind from the other
+five — see §1.3.
 
 | File | Dated | Lines | Kind | Governs |
 |---|---|---|---|---|
@@ -20,6 +25,7 @@ being inventoried here.
 | `MELAKEELACLAUDEFULLSEQUENCE.md` | 5 Sept 2026 | 332 | Workflow | The nine-stage audit → research → review → release → build sequence |
 | `MELAKEELACLAUDELIVESITEAUDITPROMPT.md` | 5 Sept 2026 | 96 | Single prompt | Prompt A, the live public-site audit that opens the programme |
 | `MELAKEELACLAUDESAYNEXTRESEARCHPROMPT.md` | 5 Sept 2026 | 152 | Single prompt | The stateful one-chat variant: stages S00–S22 |
+| `MELAKEELAWHOMADETHEPAST.md` | 5 Sept 2026 | 409 | **Research foundation** | Ancient subaltern history and intellectual provenance; the contribution/transmission data model; features F1–F8 |
 
 Committed byte-for-byte identical to the uploads (md5 verified at commit).
 
@@ -40,32 +46,58 @@ filenames, so the unhyphenated forms stand; the correspondence is:
 | `MELA-KEELA-LANGUAGE-RESEARCH-PROMPTS.md` | `MELAKEELALANGUAGERESEARCHPROMPTS.md` |
 | `MELA-KEELA-CLAUDE-LIVE-SITE-AUDIT-PROMPT.md` | `MELAKEELACLAUDELIVESITEAUDITPROMPT.md` |
 | `MELA-KEELA-CLAUDE-SAY-NEXT-RESEARCH-PROMPT.md` | `MELAKEELACLAUDESAYNEXTRESEARCHPROMPT.md` |
+| `MELA-KEELA-WHO-MADE-THE-PAST.md` | `MELAKEELAWHOMADETHEPAST.md` |
 | — (not named in the running list) | `MELAKEELACLAUDECORRECTIVECONTROLLERv2.md` |
 
 ### 1.2 Completeness against the running list
 
 `RUNNING-LIST-RECONCILIATION.md` §"Bearing on D-014" records five companion
-files named in running-list Version 12. Four have now arrived. One has not:
+files named in running-list Version 12. **All five are now present.**
 
-| Named in Version 12 | Present now |
+| Named in Version 12 | Present |
 |---|---|
-| `MELA-KEELA-CLAUDE-FULL-SEQUENCE.md` | **yes** |
-| `MELA-KEELA-LANGUAGE-RESEARCH-PROMPTS.md` | **yes** |
-| `MELA-KEELA-CLAUDE-LIVE-SITE-AUDIT-PROMPT.md` | **yes** |
-| `MELA-KEELA-CLAUDE-SAY-NEXT-RESEARCH-PROMPT.md` | **yes** |
-| `MELA-KEELA-WHO-MADE-THE-PAST.md` | **no** — still outstanding |
+| `MELA-KEELA-CLAUDE-FULL-SEQUENCE.md` | yes |
+| `MELA-KEELA-LANGUAGE-RESEARCH-PROMPTS.md` | yes |
+| `MELA-KEELA-CLAUDE-LIVE-SITE-AUDIT-PROMPT.md` | yes |
+| `MELA-KEELA-CLAUDE-SAY-NEXT-RESEARCH-PROMPT.md` | yes |
+| `MELA-KEELA-WHO-MADE-THE-PAST.md` | yes — arrived 2026-09-07 |
 
 `MELAKEELACLAUDECORRECTIVECONTROLLERv2.md` is a sixth file the running list does
-not name. It post-dates the other four: its own first lines are "Use after the
-previously supplied MelaKeela Claude prompt-pack ZIP" and "Do not begin the next
-original stage until this file has been processed."
+not name. It post-dates the other four dated files: its own first lines are "Use
+after the previously supplied MelaKeela Claude prompt-pack ZIP" and "Do not
+begin the next original stage until this file has been processed."
 
-The Who Made the Past foundation is a required input at three separate points —
+Who Made the Past is a required input at three points —
 `MELAKEELACLAUDEFULLSEQUENCE.md` "What you need" item 5, Stage 2 Project
 Knowledge, and the say-next prompt's governing-documents list — and R8 is
 instructed to "cross-link the documented contribution model in Who Made the
-Past? rather than creating a separate incompatible schema." R8 cannot be run to
-that instruction without it.
+Past? rather than creating a separate incompatible schema." That instruction is
+now executable.
+
+### 1.3 One of the six is not a prompt
+
+Five of the six are instructions to an agent. `MELAKEELAWHOMADETHEPAST.md` is a
+**research foundation**: it makes historical and historiographical assertions,
+cites roughly thirty sources with live URLs, and states its own access limits
+source group by source group in §15. That difference has consequences the other
+five do not carry.
+
+- **Its content enters the claim register, not only the controller.** Every
+  assertion in it is `INHERITED-UNVERIFIED` under the inheritance rule,
+  including the ones it presents as findings. Its §15 source guide is unusually
+  candid — it distinguishes "full text" from publisher abstracts and
+  institutional self-descriptions, and says outright that museum accounts "are
+  not independent evaluations of institutional success" — but candour is not
+  retrieval. Promotion still requires a logged access-ledger event.
+- **Several of its citations are dependent by its own admission.** Publisher
+  descriptions for Pollock, Trautmann and Soneji; a review standing in for the
+  Bronkhorst debate; an abstract for Morrison; institutional self-accounts for
+  Pitt Rivers and Wereldmuseum. These are `02-SOURCES/dependency.csv` entries
+  when the sources are opened, not independent confirmations.
+- **Register intake is separate work and has not been done.** As with the two
+  site-review running lists, the document is committed and analysed here;
+  writing its claim rows into `03-REGISTERS/inherited-claims.csv` (369 rows,
+  all from `01-INHERITED/claude-project-handoff.md`) is queued, not done.
 
 ---
 
@@ -200,9 +232,77 @@ mandatory method, its **own** eleven persistent records, the seven relationship
 types, thirteen programme-specific special controls, and the S22 deliverable
 tree.
 
+### 2.6 `MELAKEELAWHOMADETHEPAST.md`
+
+Sixteen sections developing a supplied sixteen-section proposal, with the
+institutional question "Who produced knowledge, who carried it, what survived,
+who could authorize it, and who eventually received credit?"
+
+- **§1–§3 the programme and its foundations.** Five governing commitments, and
+  the central distinction — **symmetry of method, not symmetry of
+  responsibility**: "A colonial institution's documented seizure and a
+  community's imperfect recollection are not equivalent because both require
+  scrutiny. Equally, sympathy for a marginalized claim does not establish its
+  chronology or transmission route." Guha, Spivak, Chakrabarty, Trouillot and
+  Hartman are used for particular methodological arguments, with Ambedkar and
+  Uma Chakravarti insisted on as a primary-text strand rather than precursors
+  in someone else's genealogy. It requires "a positive account of making" so
+  that subaltern people "must not appear only when they suffer, disappear or
+  are acted upon."
+- **§2 corrections to the supplied proposal.** A ten-row adopt/revise table.
+  Its strongest formulation: "Knowledge can be collectively made, unequally
+  preserved, creatively transformed and unfairly credited—all at once."
+- **§4 historical resolution.** Rejects "the further back we go, the less we
+  can see" as too categorical; replaces it with six dimensions (temporal,
+  spatial, material, linguistic, social, transmission) each carrying a display
+  rule, plus an **absence protocol**.
+- **§5 how survival compounds.** Four mechanisms — non-recording, non-survival,
+  exclusion from recognition, documented suppression or destruction — and the
+  rule against collapsing them: "Calling every absence destruction invents an
+  event. Calling documented destruction 'natural loss' conceals an event."
+  Vedic recitation is the counterexample to any oral-equals-marginal
+  assumption.
+- **§6 comparison without civilizations.** Every comparison must declare
+  whether it concerns linguistic genealogy, documented borrowing, institutional
+  function or later classification. Jones 1786, the *Yavanajātaka*, Pāṇini
+  against the *Technē Grammatikē*, Cicero, Babylonian methods in Greek
+  astronomy, Ḥunayn ibn Isḥāq.
+- **§7 two documentary pilots.** *Hortus Malabaricus* and the Florentine Codex,
+  chosen because contribution and transmission are inspectable in surviving
+  documents — proposed as validation of the provenance model "before a much
+  less resolvable ancient genealogy is attempted."
+- **§8 Sanskritic authority and empire.** Pollock, Srinivas's Sanskritization
+  used narrowly, Greater Magadha as an investigation candidate, Morrison on
+  colonial inheritances in South Asian archaeology, Trautmann on admiration
+  coexisting with racial hierarchy. A seven-axis comparative table.
+- **§9 Aryan racialization as a branching history, not an inevitable chain.**
+  Separates an ancient self-designation, a philological classification, an
+  ethnological claim and a racial-political category.
+- **§10 the shared data model.** Custody of a physical record and transmission
+  of an idea kept as two histories. Eight record types; evidence roles;
+  **"Bridges are claims"**; the argument against a single flat status scale
+  (§5, `PP-10`); and "Do not compute a civilizational ownership percentage."
+- **§11 eight priority features**, F1–F8, each with visitor question,
+  interaction, research dependency and acceptance criterion.
+- **§12–§13 coverage architecture and existing coverage.** The twenty-room wing
+  reduced to five collections; a supplied-section-to-treatment table; and
+  integration actions against a *local audit snapshot* that it explicitly
+  refuses to treat as a verified inventory (`PP-13`).
+- **§14 research operations.** Case dossier before feature; a claim lifecycle;
+  review matched to claim type; community authority with documented scope and
+  no unlimited veto; "Pay for expertise and participation." Pitt Rivers and
+  Wereldmuseum as precedents, "not proof that either institution has completed
+  decolonization."
+- **§15 source guide and seven research lanes still requiring original work.**
+
+Where it sits in the constitution: this is the fullest statement of **domain V**
+(ancient subalterns and intellectual provenance) anywhere in the material, and
+it carries most of §12's product-specification subject list in usable form. Its
+§9 belongs to no domain at all (§4.1).
+
 ---
 
-## 3. How the five relate
+## 3. How the six relate
 
 ### 3.1 To each other
 
@@ -217,9 +317,20 @@ tree.
 FULLSEQUENCE.md ──── names ────► LIVESITEAUDITPROMPT.md   (Stage 1 / Prompt A)
   │  the workflow                 LANGUAGERESEARCHPROMPTS.md (Stage 3 / R1–R19)
   │                               SAYNEXTRESEARCHPROMPT.md   (Stage 3 variant)
-  │
-  └── also requires: master work list; MELA-KEELA-WHO-MADE-THE-PAST.md (absent)
+  │                               WHOMADETHEPAST.md          (standing input to
+  │                                                           every stage; R8's
+  │                                                           named schema)
+  └── also requires: the master work list (D-038)
 ```
+
+The fifth companion is not a stage. All three workflow files list it among the
+governing documents held in Project Knowledge for the whole programme, not
+attached to one packet — and `LANGUAGERESEARCHPROMPTS.md` names ancient
+subaltern history and intellectual provenance as "core research programmes" in
+the shared contract every packet receives. It also supplies two things the pack
+asks for but does not define: the **evidence-role vocabulary** behind the
+shared contract's `evidence_role` field (`PP-4`), and the contribution model R8
+is told to cross-link rather than duplicate.
 
 - `FULLSEQUENCE` is the spine. It names the other three 5 September files as
   its inputs and states the order they run in.
@@ -282,6 +393,11 @@ All nineteen are defined, in full, in **`MELAKEELALANGUAGERESEARCHPROMPTS.md`**.
 `FULLSEQUENCE` and `SAYNEXT` give one-line purposes and the run order but no
 definitions; `LIVESITEAUDITPROMPT` supplies each packet's public-coverage input;
 `CORRECTIVECONTROLLERv2` defines none of R1–R19 and adds R20–R21.
+`WHOMADETHEPAST` defines none either, but is a named input to **R8** and bears
+substantively on **R2, R4, R5, R6, R7, R11 and R13** — §6 supplies the
+Pāṇini/*Technē* comparison and the Yavanajātaka and Babylonian–Greek
+transmission cases, §4 the Indus resolution problem, §10 the provenance model
+R13's museum audit needs.
 
 `Run` is the position in the agreed order. `LS` lists the work-list IDs the
 packet prompt itself names. `Domain` is a **proposed** mapping onto constitution
@@ -337,6 +453,19 @@ directions.
   therefore out of scope — running-list Version 12 carries them as LS items —
   but they have no domain-level trap statement, which is what §4 exists to
   supply. Writing those four traps is outstanding work.
+- **A subject with neither packet nor domain:** the **racialization of "Aryan"**.
+  `WHOMADETHEPAST` §9 makes it a full programme — an ancient self-designation, a
+  philological classification, an ethnological claim and a racial-political
+  category, kept apart as "a branching history, not an inevitable chain" — and
+  §2 states the discipline both ways: document the racialization "through
+  specific actors and institutions", and "reject an inevitable
+  Sanskrit-to-Holocaust chain." Constitution §4 has no domain for it and no
+  packet covers it. `CLAUDE.md`'s governing principle requires the record to
+  stay capable of contradicting colonial scholarship, which is adjacent but not
+  the same subject. This is a fifth missing trap statement, and the one whose
+  absence carries the most risk: §9 also sets a learning requirement against
+  interfaces that "ask children to sort human beings into racial types" or
+  "turn persecution into an aesthetic spectacle."
 - **LS mapping is incomplete.** Only R1–R8 name LS IDs, and only LS-01–LS-21 —
   the Version 9 set. R9–R19 were added in running-list Versions 10–12 and their
   LS-22–LS-51, COR-01–COR-18 and RV-01/RV-02 assignments live in the running
@@ -350,6 +479,10 @@ directions.
 Numbered `PP-`. Where `00-CONTROLLER/CONTROLLER-RECONCILIATION.md` has already
 resolved the same conflict arriving from the constitution, the existing
 `C-` resolution is cited and extended rather than re-argued.
+
+`PP-1` to `PP-9` come from the first five files. `PP-10` to `PP-14` come from
+`MELAKEELAWHOMADETHEPAST.md` and were added on 2026-09-07; `PP-14` records
+convergences rather than conflicts.
 
 ### PP-1 — The Version 11 step reversal: the audit gate is missing from the governing controller
 
@@ -558,17 +691,176 @@ conflict with it:
 3. **The ten claims that must not be published as settled** (`FULLSEQUENCE`
    closing section) — a ready-made watch list that overlaps but does not
    duplicate `CLAUDE.md`'s "positions already settled by the owner."
+4. **The evidence-role vocabulary** (`WHOMADETHEPAST` §10) — see `PP-11`.
+5. **"Bridges are claims"** (§10): "Resemblance is not automatically
+   transmission. Priority is not automatically influence. Shared vocabulary is
+   not automatically a shared institution. Population affinity is not
+   automatically language, religion or modern community identity." This is
+   `CLAUDE.md`'s Step 10 and the cross-domain boundary in four sentences, and
+   is the natural header for `CROSS-DOMAIN-BRIDGES.csv`.
+6. **The six resolution dimensions and their display rules** (§4) — temporal,
+   spatial, material, linguistic, social, transmission, each with a rule such
+   as "do not let one map pin represent" findspot, production place and later
+   repository. Directly usable in `04-AUDITS/` and in any object record.
 
----
+### PP-10 — One status column against a four-axis argument
+
+`WHOMADETHEPAST` §10 argues directly against the design this repository runs:
+
+> Do not implement one flat scale reading "documented, inferred, plausible,
+> contested, speculative, unknown." A claim can be well documented and
+> contested. A document can exist while its interpretation is uncertain.
+> Record at least **evidence basis**, **assessment of the inference**,
+> **disagreement**, and **review status** separately; simplify their
+> presentation in context.
+
+`CLAUDE.md` mandates exactly one flat scale — "Every claim carries exactly one
+status. No claim is unstatused" — over `VERIFIED · PROVISIONAL · HYPOTHESIS ·
+INHERITED-UNVERIFIED · REJECTED · SUPERSEDED · HOLD`.
+
+The objection has force, and it is not the same objection as `PP-3`. `PP-3` is
+about competing *vocabularies* for one axis; this is the claim that one axis is
+the wrong shape. The repository's seven values do conflate at least two things:
+`VERIFIED` and `PROVISIONAL` grade the evidence basis, `HYPOTHESIS` grades the
+inference, `HOLD` is a review state, and none of them can express "well
+documented and contested" — which is the ordinary condition of most of what
+this evidence base will hold. Several rows already strain against it: an
+`INHERITED-UNVERIFIED` claim whose source is known to be dependent has no way
+to say so in `status`.
+
+Against that: the single column is what makes the inheritance rule
+enforceable — one field decides whether a claim may be built on — and a
+four-column scheme invites a row that is `documented / strong / disputed /
+unreviewed` and is thereby quietly promoted without a retrieval event. §10 also
+supplies the answer to its own risk in the same breath: "The record is the unit
+of truth ... must not imply that entering a proposition into the ledger makes
+it true."
+
+**Not resolvable here.** Changing the register schema is the same class of
+decision as `D-019` (the `object_id` column) and belongs to the owner. Raised
+as **D-039**. The single `status` column stands until it is answered; the four
+axes can be carried in `notes` in the meantime without a schema change.
+
+### PP-11 — Two more vocabularies, one of which resolves PP-4
+
+`WHOMADETHEPAST` adds two, and they are different in kind from the four in
+`PP-3`.
+
+**Evidence roles** (§10): `supports · contradicts · contextualizes · dates ·
+localizes · identifies · cannot discriminate`, typing the *evidence-to-claim*
+relation, with the requirement that "each relation should explain the
+argumentative work performed."
+
+This is not a competitor. It **resolves a gap named in `PP-4`**: the shared
+research contract requires an `evidence_role` field in every packet claim
+ledger and never defines its values. They are defined here. Adopt as the
+vocabulary for that field, alongside the seven relationship types from `PP-9`,
+which type claim-to-claim edges. The two are complementary and neither touches
+`status`. Note especially `cannot discriminate` — a value the repository has no
+way to express at present, and the honest label for evidence consistent with
+two rival explanations.
+
+**Claim lifecycle** (§14): `draft · checked · reviewed · published · revised ·
+withdrawn`, with the rule that "the person who writes the public story should
+not be its only scholarly verifier."
+
+This is an editorial workflow state, not a claim status, and it presumes a
+review function this repository does not yet have — the pull request and Codex
+review are its current equivalent. **Resolution:** it does not enter `status`.
+It is a candidate for the review column a four-axis schema would need, and so
+rides on `D-039`.
+
+### PP-12 — Two absence taxonomies, one coarser than the other
+
+Constitution §6 types absence eight ways. `WHOMADETHEPAST` §5 types it four,
+and §4 adds a five-question absence protocol. They are compatible; the four are
+a coarser partition of the eight, and the mapping is clean but not total:
+
+| §5 mechanism | Constitution §6 types |
+|---|---|
+| Non-recording | `NOT PRODUCED` |
+| Non-survival | `NOT PRESERVED` |
+| Exclusion from recognition | `NOT EXCAVATED`, `NOT PUBLISHED`, `NOT ACCESSIBLE`, `NOT RECOGNIZED` |
+| Documented suppression or destruction | `DOCUMENTED DESTRUCTION` |
+| — | `ABSENT DESPITE ADEQUATE SEARCH` |
+
+**Resolution:** the constitution's eight govern; they are strictly more
+specific, and collapsing four excavation, publication, access and recognition
+failures into one "exclusion" is exactly the kind of blur the negative-evidence
+standard exists to prevent. The eighth has no §5 counterpart, and that is the
+important one — it is the only type that licenses an argument from absence at
+all, and §5's four have no way to say it.
+
+What §4's protocol adds and should be kept: it requires "plausible alternative
+explanations" alongside the typed absence, and it states the asymmetry the
+constitution implies but does not spell out — "An absent inscription in an
+unexcavated landscape has different force from a systematically absent feature
+in a well-specified, well-sampled corpus. Neither should become automatic proof
+of the preferred history."
+
+### PP-13 — A third voice on the audit question, and it does not settle it
+
+`WHOMADETHEPAST` §13 works from what it calls "a local audit snapshot" and
+refuses to treat it as authoritative:
+
+> It is not a verified inventory of the current production site or current
+> development branch. The following are integration candidates, not claims that
+> a route is currently missing or that an observed issue remains live.
+> ... Routes known from previous reports but absent from the local snapshot
+> require reconciliation against the actual branch and deployment. Do not
+> recreate them merely because they were not in one working folder.
+
+This bears on **D-035** and cuts across it rather than for either side. It
+agrees with `LIVESITEAUDITPROMPT` that an uninspectable route is unknown rather
+than absent — the same rule under a different name — but it treats the
+*branch*, not the live site, as what a snapshot must be reconciled against,
+which is closer to Version 10's order than to Version 11's. It is best read as
+a third position: neither inventory settles anything alone, and the failure
+mode it names — recreating a page because one working folder lacked it — is
+the same failure mode `LIVESITEAUDITPROMPT` names from the other direction.
+
+**Recorded on D-035**, which should be answered with this paragraph in view.
+It does not change the finding at `PP-1`: the constitution still has no audit
+of either kind.
+
+### PP-14 — Convergences worth recording
+
+Four places where `WHOMADETHEPAST` states an existing rule more sharply than
+the controller does, and the wording is worth keeping:
+
+1. **On the two adversarial tests.** `CLAUDE.md` says correct both biases
+   "without pretending their archival and institutional power has been equal."
+   §1 puts the same rule as **symmetry of method, not symmetry of
+   responsibility**, and gives it a worked case: a documented seizure and an
+   imperfect recollection "are not equivalent because both require scrutiny."
+2. **On source independence.** §5: "Ten modern accounts repeating one colonial
+   translation are not ten independent witnesses. The ledger should expose
+   shared source ancestry and distinguish independent observation from citation
+   multiplication." That is `02-SOURCES/dependency.csv`'s purpose, stated as a
+   display requirement rather than a bookkeeping one.
+3. **Against fabricated quantities.** Three separate prohibitions — no "72%
+   historical visibility" score (§4), the illustrative 100-to-1 survival funnel
+   "is not historical data and must never become a factual chart" (§2), and "do
+   not compute a civilizational ownership percentage" because "a denominator
+   such as 'all Sanskrit knowledge' is not established" (§10). The repository
+   has the principle; it does not have this list of the specific numbers that
+   tempt.
+4. **On the register's own standing.** §10: the record is "the unit that can be
+   inspected and corrected", and entering a proposition into the ledger does
+   not make it true. Worth quoting into any future statement of what
+   `03-REGISTERS/` is for.
+
 
 ## 6. What is still missing
 
 | Missing | Needed for | Recorded at |
 |---|---|---|
-| `MELA-KEELA-WHO-MADE-THE-PAST.md` | R8's contribution model; Stage 2 Project Knowledge; the say-next governing set | D-014, amended |
 | The full "MelaKeela.com v2 — Master Research, Product & Institutional Backlog" document behind the 89 titles | the per-item detail `BACKLOG-COVERAGE.csv` columns need beyond a title | D-014, amended |
 | A live-site route inventory | `current_site_coverage`; the audit's coverage columns; Step 13 | D-009, D-014 |
-| The master work list itself, as distinct from the site-review running list | every file in the pack names it as a required attachment | new — D-038 |
+| The master work list itself, as distinct from the site-review running list | every file in the pack names it as a required attachment | D-038 |
+
+`MELA-KEELA-WHO-MADE-THE-PAST.md` was on this list until 2026-09-07 and has
+since arrived; see §1.2.
 
 On the fourth: all five files require "the current master work list" as an
 input, and `LANGUAGERESEARCHPROMPTS` describes itself as "Companion to master
@@ -593,7 +885,13 @@ authoritative rows.
   cannot be completed as specified without one.
 - **D-038 — Is running-list Version 12 the "master work list"?** §6. If it is,
   say so and the pack's required inputs are complete but for Who Made the Past.
-- **D-014 — amended.** §6 and §8; see `DECISIONS-NEEDED.md`.
+- **D-039 — Does the register keep one `status` column, or split into evidence
+  basis, inference, disagreement and review?** `PP-10`. The same class of
+  schema decision as D-019.
+- **D-014 — amended twice.** §6 and §8; see `DECISIONS-NEEDED.md`.
+
+`PP-13` adds material to **D-035** without changing it. `PP-11`, `PP-12` and
+`PP-14` are resolved here and need no decision.
 
 ## 8. What the pack closes
 
@@ -611,3 +909,15 @@ the packets. **D-014 moves from blocked to partially satisfiable**, and the
 question it now puts to the owner is narrower: is Part IV's list the
 authoritative backlog, or a digest of a longer document that should still be
 committed?
+
+**`MELAKEELAWHOMADETHEPAST.md` closes the pack's other named gap.** All five
+companions running-list Version 12 identified are now committed. R8's
+instruction to cross-link a documented contribution model rather than invent a
+schema is executable; domain V has its fullest statement; the §12
+product-specification stage has F1–F8, the five collections and a data model to
+work from; and the shared contract's undefined `evidence_role` field has a
+vocabulary (`PP-11`).
+
+What it does not close: its own content is `INHERITED-UNVERIFIED` and its claim
+rows are not yet in `03-REGISTERS/` (§1.3), and its §9 opens a subject — the
+racialization of "Aryan" — that has neither a packet nor a domain (§4.1).
