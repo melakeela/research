@@ -217,9 +217,11 @@ into the tree. The highest allocated decision is `D-035`.
 > this document was reconciled. Two of their statements about the register
 > are no longer true, and are corrected here rather than edited above.
 >
-> - **"The highest allocated decision is `D-035`."** It is now `D-043`, and
->   `09-DECISIONS/OWNER-DECISIONS.csv` holds 42 rows. Allocate the next free
->   `D-` from that CSV, as the section above this one already says.
+> - **"The highest allocated decision is `D-035`."** It is now `D-044`, and
+>   `09-DECISIONS/OWNER-DECISIONS.csv` holds 43 rows. Allocate the next free
+>   `D-` from that CSV, as the section above this one already says — noting
+>   that `D-039` is a folded identifier, a deliberate gap, and is never
+>   reused.
 > - **Register naming — "it needs a freshly allocated row".** That row now
 >   exists: **`D-036`**, `OPEN`, "do the twelve mandated registers accumulate
 >   under their mandated names, or does each domain get its own file?",

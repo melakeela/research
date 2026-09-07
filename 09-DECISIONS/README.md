@@ -95,6 +95,10 @@ where it landed, and a second row is added under the number it was holding
 when the collision happened, so that a reference written at either point
 resolves.
 
+**Correction, 2026-09-07 (register-consolidation pass).** Three statements above are now out of date, and the fold that did it is described at the end of this section. The block holds **eleven** rows, not ten: `D-039` to `D-036` was added when those two rows were merged. The enumeration "`D-017` to `D-039`" still names the hop that happened, but `D-039` is now a folded identifier — following the map one hop further lands on `D-036`, which is where that decision actually lives. And the chaining rule stated just above — "an identifier that moved twice keeps one row, whose `new_id` is where it landed" — does **not** hold for the `D-017` row, whose `new_id` still reads `D-039`. That is deliberate: rows here are never removed, this README quotes that `new_id`, and rewriting it would edit a row recording a hop that really occurred. The invariant is therefore narrower than stated — it holds for renumberings, not for folds, where the chain is resolved by following the map transitively. `04-AUDITS/validate-registers.py` does follow it transitively, so a bare `D-039` still resolves.
+
+A fold is not a renumbering. Two rows asking one question are merged into the lower identifier; the higher one is not reallocated, is never reused, and leaves a deliberate gap in the register. `D-039` is the first such gap.
+
 This block will keep growing while branches run concurrently. Allocating from
 the register at branch time is still correct; what the block records is that
 the register moved underneath a branch, and which row a pre-merge reference

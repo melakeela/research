@@ -85,9 +85,20 @@ once stood in repository files, and `D-037` never did.
 > 1. **§1, third table row, and §3.3, table row 4 — superseded.**
 >    `HYPOTHESIS-ELIGIBILITY.csv` now **exists**, at the mandated name in
 >    `03-REGISTERS/`, holding 10 rows `HYP-E-000` to `HYP-E-009` with the 17
->    mandated columns. "Only the second file exists", "has never existed on
->    any branch", "a mandated name that no file yet occupies" and "there is
->    one register" were all true at `181ccf2` and are all false now.
+>    mandated columns. "Only the second file exists", "a mandated name that no
+>    file yet occupies" and "there is one register" were true of the tree at
+>    `181ccf2` and are false now.
+>
+>    **"Has never existed on any branch" is different: it was already false
+>    when written, and this note originally mis-stated it as merely
+>    superseded.** That claim is scoped to all branches, not to one tree. The
+>    file was created by `6c09b73` at 2026-09-07T02:23:45Z, on
+>    `claude/domain-e-research-queue-z83m9b`; `181ccf2` is dated
+>    2026-09-07T03:31:16Z, 68 minutes later. `6c09b73` is not an ancestor of
+>    `181ccf2` — the two were concurrent — so the `git log --all -S` test
+>    behind the claim was run in a working copy that did not have that
+>    branch's refs. The test was sound; its `--all` was not as wide as it
+>    read. Recorded as a wrong claim, not a stale one.
 > 2. **But the commissioning premise is still not right, for a different
 >    reason.** The premise §1 rejected was "same eleven distinctions,
 >    different evidence". Two eligibility registers now exist, so the first
@@ -113,9 +124,26 @@ once stood in repository files, and `D-037` never did.
 >    convention being set by what the next unit happened to write — which
 >    strengthens rather than weakens the case for answering `D-036`.
 > 5. **§3.3, table row 10 — stale count.** `OWNER-DECISIONS.csv` held 35 rows
->    at `181ccf2`. It now holds 42, and the highest allocated identifier is
->    `D-043`. §3.4's note that `D-035` alone carries a lowercase `status` is
->    still true.
+>    at `181ccf2`. It now holds 43, and the highest allocated identifier is
+>    `D-044` — `D-044` being raised by this same pass, over the `CLAUDE.md`
+>    register-format wording the semicolon change left behind. §3.4's note that `D-035` alone carries a lowercase `status` is
+>    still true. The namespace also now has a **deliberate gap at `D-039`**,
+>    created by the fold recorded in item 7. §1 at the top of this brief makes
+>    "a gap left in the authoritative namespace" the named failure mode of the
+>    `D-004`/`D-005`/`D-006` collision, so the gap is called out here rather
+>    than left to be found: it differs from that failure in being recorded, in
+>    the map and in `09-DECISIONS/README.md`, and in never being reallocated.
+> 5a. **§1, table rows 1 and 2, and §3.3 table row 5 — stale counts.**
+>    `BF-001` to `BF-006` is now `BF-001` to `BF-011`
+>    (`04-AUDITS/BIAS-FAILURE-LOG.csv`, 11 rows) and `RA-001` to `RA-005` is
+>    now `RA-001` to `RA-012` (`04-AUDITS/REAUDIT-QUEUE.csv`, 12 rows — `RA-012`
+>    raised by this same pass, against the validator changes). Both
+>    are still single series in single files, so §1's conclusion stands; only
+>    the spans moved. `02-SOURCES/dependency.csv` holds **20** rows,
+>    `DEP-001` to `DEP-020`, not the 9 that §3.3 reports. That last one is
+>    more than a count: `HYP-E-001` cites `DEP-001`, `DEP-010`, `DEP-011`,
+>    `DEP-013` and `DEP-015` in its `source_dependencies`, so the dependency
+>    map has more than doubled while the brief still reports it at nine.
 > 6. **§4.1 — stale counts.** The "14 occurrences across 7 files" and the
 >    file list beside it were counted at `181ccf2` and have moved since.
 >    Recount with the commands in §8 before relying on them. The zero

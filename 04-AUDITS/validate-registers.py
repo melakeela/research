@@ -30,11 +30,18 @@ CSVs in this repository mix CRLF and LF and carry embedded newlines
 inside quoted cells. Everything here opens with newline='' and never
 rewrites a file.
 
-A register may carry a comment block above its column header: leading
-lines whose first character is '#'. They are commentary, skipped here
-before the header is read. Only leading lines are skipped, so a '#'
-inside a data cell is untouched, and a file with no comment block
-parses exactly as before.
+A CSV read here may carry a comment block above its column header:
+leading lines whose first character is '#'. They are commentary,
+skipped before the header is read. This applies to every file this
+script reads — the registers, the access ledger, OWNER-DECISIONS.csv
+and DECISION-ID-MAP.csv — not to registers alone. Only leading lines
+are skipped, so a '#' inside a data cell is untouched, and a file with
+no comment block parses exactly as before.
+
+Note that a comment block makes the file unreadable by a plain
+csv.DictReader. Only this script reads the two eligibility registers
+that carry one; anything else that learns to read them must skip the
+block too.
 """
 import csv
 import re
@@ -74,24 +81,30 @@ def split_source_ids(cell):
 
 
 def read_csv(path):
-    with open(path, newline="", encoding="utf-8") as f:
-        return list(csv.DictReader(strip_leading_comments(f)))
+    return [row for row, _line in read_csv_with_lines(path)]
 
 
-def strip_leading_comments(lines):
-    """Yield a register's lines with any leading '#' comment block dropped.
+def read_csv_with_lines(path):
+    """Rows paired with the file line each record starts on.
 
-    Stops skipping at the first line that is not a comment — the column
-    header — so a '#' appearing later, inside a quoted cell, is data and
-    survives.
+    A failure message is only useful if its line number re-finds the
+    row. Records can span lines (quoted cells carry newlines) and a
+    file may open with a '#' comment block, so the line is tracked
+    against the real file rather than inferred from row order.
     """
-    header_seen = False
-    for line in lines:
-        if not header_seen:
-            if line.startswith("#"):
-                continue
-            header_seen = True
-        yield line
+    with open(path, newline="", encoding="utf-8") as f:
+        lines = f.readlines()
+    offset = 0
+    while offset < len(lines) and lines[offset].startswith("#"):
+        offset += 1
+    reader = csv.DictReader(lines[offset:])
+    out = []
+    prev_end = 1                      # the header occupies line 1 of the slice
+    for row in reader:
+        out.append((row, offset + prev_end + 1))
+        prev_end = reader.line_num
+    return out
+
 
 
 def ledger_ids():
@@ -123,14 +136,14 @@ def decision_ids():
 
 def check_register(path, ledger):
     rel = path.relative_to(ROOT)
-    rows = read_csv(path)
-    if not rows:
+    numbered = read_csv_with_lines(path)
+    if not numbered:
         return
-    fields = rows[0].keys()
+    fields = numbered[0][0].keys()
     has_status = "status" in fields
     id_field = next((c for c in fields if c.endswith("_id") or c == "id"), None)
     seen = set()
-    for n, row in enumerate(rows, start=2):
+    for row, n in numbered:
         if id_field:
             rid = (row.get(id_field) or "").strip()
             if rid in seen:
@@ -145,7 +158,14 @@ def check_register(path, ledger):
             for col in REQUIRED_FOR_VERIFIED:
                 if col in fields and not (row.get(col) or "").strip():
                     fail(f"{rel}:{n}: VERIFIED row missing {col}")
-            for sid in split_source_ids(row.get("source_id")):
+            raw_sid = (row.get("source_id") or "").strip()
+            sids = split_source_ids(raw_sid)
+            if raw_sid and not sids:
+                # e.g. ";" or " ; ; " — passes the non-empty test above but
+                # names no source. Before the split it failed as one bad
+                # identifier; it must not pass now.
+                fail(f"{rel}:{n}: source_id {raw_sid!r} names no identifier")
+            for sid in sids:
                 if ledger and sid not in ledger:
                     fail(f"{rel}:{n}: source_id {sid} not in access ledger")
 
