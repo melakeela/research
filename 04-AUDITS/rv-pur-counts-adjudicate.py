@@ -67,9 +67,14 @@ A = {
    "a-b: 'śatám aśmanmáyīnām / purā́m índro vy àsyat'. Genitive plural purā́m governed by śatám."),
  ("06.020.10","c","saptá"): ("COUNTS-PUR","7","saptá … púraḥ śā́radīḥ",
    "c: 'saptá yát púraḥ śárma śā́radīr dárd'. Near-identical wording to 01.174.02b."),
- ("06.031.04","a","śatā́ni"): ("COUNTS-PUR","100+","śatā́ni … śámbarasya púraḥ",
-   "a-b: 'tváṁ śatā́ny áva śámbarasya / púro jaghantha'. śatā́ni is PLURAL 'hundreds', "
-   "not 'a hundred' — the passage counts Śambara's forts in hundreds, an unbounded figure."),
+ ("06.031.04","a","śatā́ni"): ("COUNTS-PUR","100","śatā́ni … śámbarasya púraḥ",
+   "a-b: 'tváṁ śatā́ny áva śámbarasya / púro jaghantha'. CORRECTED. This row first read the "
+   "plural śatā́ni as 'hundreds', an unbounded figure. That was wrong twice over: śatā́ at "
+   "RV 1.53.8c is the SAME form — ACC.N.PL of śatá- — and is read there as 'a hundred', so the "
+   "rule was applied inconsistently within this register; and Griffith ('the hundred castles'), "
+   "Geldner ('Die hundert Burgen des Dasyu Śambara') and Grassmann ('des Dämons hundert Burgen') "
+   "are unanimous for 'a hundred', which this row departed from without recording an override. "
+   "Neuter plural of śatá- with a plural noun is the ordinary Vedic way of saying 'a hundred X'."),
  ("06.048.08","c","śatám"): ("COUNTS-PUR","100","śatám pūrbhíḥ",
    "c: 'śatám pūrbhír yaviṣṭha pāhy áṁhasaḥ'. Instrumental: Agni is asked to protect WITH a "
    "hundred forts. The forts are the worshipper's defence, not an enemy's."),

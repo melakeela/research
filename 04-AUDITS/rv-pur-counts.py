@@ -10,10 +10,19 @@ SHARING ITS STANZA.
 and nothing more", and PUR-027 exists so it is not mistaken for the first.
 This script goes after the first.
 
-Numerals were identified by scanning the Grassmann gloss of every lemma
-occurring in the 103 passages (721 distinct lemmas) for a German number word.
-That returns 12 candidates, small enough to adjudicate individually; the
-adjudication is in NUMERALS below, with a reason for each exclusion.
+Numerals are identified by 04-AUDITS/rv-pur-numeral-scan.py, which scans every
+lemma occurring in the 103 passages (721 distinct) and returns 26 candidates —
+11 from an unambiguous number word, 15 from an ambiguous one, 0 from the stem
+fallback. Each is adjudicated below, with a reason for every exclusion.
+
+THE SCAN THIS UNIT FIRST USED WAS NOT EXHAUSTIVE, and the claim that it was is
+withdrawn. It matched German number words with hard word boundaries against
+glossed lemmas only, and leaked three ways: it reached only the 585 of 721
+lemmas that carry a Grassmann gloss; \bhundert\b failed on the compound
+"hundertfache"; and it read no Latin, so śatábhuji- glossed "centuplex" was
+invisible. Four numeral-bearing lemmas were missed — see EXCLUDED. The scan
+script is now committed so the candidate list is reproducible rather than
+hard-coded here.
 
 The attachment test is three independent instruments, reported separately and
 never silently combined:
@@ -60,6 +69,32 @@ EXCLUDED = {
     "śatákratu-": "Indra epithet, 'having a hundred powers'. The hundred is a "
                   "property of the god, never of a fort. A compound numeral, "
                   "not a count.",
+    "śatábhuji-": "MISSED BY THE FIRST SCAN — Grassmann glosses it 'centuplex', "
+                  "Latin, with no German number word at all. It occurs twice, "
+                  "and in both places it agrees with the fort word in full: "
+                  "RV 7.15.14c 'pū́r bhavā śatábhujiḥ' (NOM.F.SG against "
+                  "NOM.F.SG) and RV 1.166.8a 'śatábhujibhis … pūrbhī́ḥ' "
+                  "(INS.F.PL against INS.F.PL). Excluded from the fort-count "
+                  "inventory nonetheless, because it does not say there are a "
+                  "hundred forts: it says ONE fort is hundredfold. Griffith "
+                  "'with hundred walls' and 'castles hundredfold', Geldner "
+                  "'mit hundert Ringen' and 'hundertfachen Burgen' — all four "
+                  "renderings are adjectival. It is recorded as a DESCRIPTOR "
+                  "in 03-REGISTERS/rigveda-pur-fields.csv and in "
+                  "06-BRIEFS/pur-translation-standard.md §4, which is where a "
+                  "hundred-word that qualifies a fort rather than counting "
+                  "forts belongs. The judgement is arguable and is recorded "
+                  "here so it can be argued.",
+    "śatā́magha-": "MISSED BY THE FIRST SCAN — 'hundertfache Fülle besitzend' "
+                  "contains hundert but not as a whole word. An Indra epithet "
+                  "at RV 8.33.5, a property of the god's giving, not of a "
+                  "fort.",
+    "śatā́tman-": "MISSED BY THE FIRST SCAN, same reason. 'hundertfaches Leben "
+                 "enthaltend', of Agni at RV 1.149.3c — the stanza whose fort "
+                 "word nā́rmiṇī- is itself disputed. A property of the god.",
+    "prathamá-": "MISSED BY THE FIRST SCAN — 'erster' has an adjectival ending, "
+                 "so \berste\b did not reach it. An ordinal at RV 3.15.4, of "
+                 "Agni as first leader of the sacrifice, not of any fort.",
     "ā́rya-":    "FALSE POSITIVE of the gloss scan. Matched on 'drei' inside "
                  "Grassmann's gloss 'Angehöriger der drei oberen Grosskasten' "
                  "— a nineteenth-century German rendering that imports the "
