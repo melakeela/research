@@ -7,7 +7,7 @@
 sources. It establishes what each file specifies, how the five relate to each
 other and to `00-CONTROLLER/METHODOLOGY-CONSTITUTION.md`, and where they
 conflict with the controller this repository currently runs under. It promotes
-nothing. No claim in any of the five files acquires evidentiary standing by
+nothing. No claim in any of the six files acquires evidentiary standing by
 being inventoried here.
 
 ---
@@ -634,7 +634,8 @@ no home yet and should get one when work fills them —
 
 ### PP-6 — ZIP deliverables
 
-Every one of the five files ends in an archive requirement:
+Every one of the first five files ends in an archive requirement (Who Made
+the Past, which is not a prompt, has none):
 `MK-live-site-audit-2026-09-05.zip`, `MK-R#-short-title-v1.zip`,
 `MK-R#-short-title-v2-reviewed.zip`, `MK-release-01-provisional`,
 `MK-research-checkpoint-S##.zip`, `MK-MELAKEELA-MASTER-RESEARCH-v1.zip`, plus
@@ -857,12 +858,12 @@ the controller does, and the wording is worth keeping:
 |---|---|---|
 | The full "MelaKeela.com v2 — Master Research, Product & Institutional Backlog" document behind the 89 titles | the per-item detail `BACKLOG-COVERAGE.csv` columns need beyond a title | D-014, amended |
 | A live-site route inventory | `current_site_coverage`; the audit's coverage columns; Step 13 | D-009, D-014 |
-| The master work list itself, as distinct from the site-review running list | every file in the pack names it as a required attachment | D-038 |
+| The master work list itself, as distinct from the site-review running list | the five prompt files name it as a required attachment | D-038 |
 
 `MELA-KEELA-WHO-MADE-THE-PAST.md` was on this list until 2026-09-07 and has
 since arrived; see §1.2.
 
-On the fourth: all five files require "the current master work list" as an
+On the third: the five prompt files require "the current master work list" as an
 input, and `LANGUAGERESEARCHPROMPTS` describes itself as "Companion to master
 work list Version 12, sections 21–24." Running-list Version 12 is committed at
 `01-INHERITED/site-review/MELAKEELASITEREVIEWRUNNINGLIST.md` and carries §§21–24

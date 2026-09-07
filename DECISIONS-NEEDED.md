@@ -468,7 +468,8 @@ say so in the method, or defer R1 and start the run order at R9.
 for R9–R19
 **Related:** D-014; `PROMPT-PACK-INVENTORY.md` §6
 
-All five pack files require "the current master work list" as an attachment,
+The five prompt files in the pack require "the current master work list" as an
+attachment,
 and `MELAKEELALANGUAGERESEARCHPROMPTS.md` describes itself as "Companion to
 master work list Version 12, sections 21–24."
 
