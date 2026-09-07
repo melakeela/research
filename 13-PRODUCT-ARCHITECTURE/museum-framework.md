@@ -239,7 +239,7 @@ Encoding them as one value forces a false choice and produces a residual bucket.
    rows, statuses, locators, retrieval dates, source genealogy (constitution
    Step 5), archive audit (Step 6), absences with their types, falsifiers
    (Step 12), and the revision history of every claim shown. Source Mode is the
-   primary-source viewer and evidence search (§6, §7) reached from wherever the
+   primary-source viewer and evidence search (§7) reached from wherever the
    visitor already is. It is the institution's stable shell — which is precisely
    what the Environment Map's thesis line claims: *"the institutional shell
    remains stable."*
@@ -416,7 +416,7 @@ Postures are environments. Modes are ways of looking, available across
 environments. The framework specifies five modes; the matrix records which are
 mandatory, available or forbidden in each posture.
 
-Modes: **Source Mode** (§1.6.1, §6, §7) · **Atlas Mode** (§8) · **Investigation
+Modes: **Source Mode** (§1.6.1, §7) · **Atlas Mode** (§8) · **Investigation
 Mode** (PROVE IT, §9) · **Field Mode** (children's investigation and Field Bag, §10.4) ·
 **Classroom Mode**
 (§10.5).
@@ -1188,3 +1188,256 @@ without writing a server:
 federation with other collections, persistent-identifier registration (DOI,
 ARK, Handle), and any query language beyond the export filters. Whether the
 institution registers external persistent identifiers is **D-020**.
+
+---
+
+## 6. Entry routes: object, place, word, text, question
+
+### 6.1 What an entry route is
+
+§12 names five: **object · place · word · text · question**. They are not five
+menus. They are five *kinds of thing a visitor already has in mind* when they
+arrive, and each is a first-class addressable node type (`mk:evd:`, `mk:plc:`,
+`mk:lex:`, `mk:txt:`, `mk:qst:`) with its own landing surface, its own default
+posture and its own way of leading into the same claim graph.
+
+The design constraint that makes them worth separating: **a visitor arriving by
+one route must not be silently handed the answers of another.** Someone who
+arrives at a word must not be shown a map of a people; someone who arrives at a
+place must not be shown a language label. Those are exactly the bridges §4.4
+governs, and the entry routes are where the temptation to cross them without a
+mechanism is strongest.
+
+Every route converges on the same objects. No route has private content.
+
+### 6.2 Object route
+
+**Node:** a UEO with `evidence_class` ∈ material, epigraphic, iconographic.
+**Default posture:** Living Tiṇai if it has a findspot and a material context;
+Extraction / Collection if its `access_status` is `restricted`, `by-permission`,
+`refused` or `unknown`, or its custody chain contains an `undocumented-gap`.
+
+The object landing states, in this order and before any interpretation:
+
+1. What it is, materially: composition, dimensions, technique.
+2. Where it is *now*, and who holds it, and on what terms it can be seen.
+3. Where it is *said* to be from, with the place type (§2.8) — and if that is
+   `attributed-provenance`, saying so in the same sentence.
+4. Its custody chain, gaps included (§3.4).
+5. Its dates, by type, with the basis of each (§2.7).
+6. Its provenance questions, from constitution §4V: who made it, supplied the
+   material, did the labour, spoke without being recorded, copied, translated,
+   classified, got the credit, was excluded, holds it now. **Unanswered questions
+   are displayed as unanswered, not omitted.**
+7. Only then: the claims it is evidence for, each with status and role.
+
+Rule: **an object page never opens with an interpretation.** The interpretation is
+a claim with a status and it appears in the claim list, attributed. This is the
+Extraction / Collection `Avoid` — *"no spectacle or unsupported allegation"* — as
+a page order rather than a tone note.
+
+### 6.3 Place route
+
+**Node:** `mk:plc:`. **Default posture:** Living Tiṇai.
+
+A Place carries: named forms across languages and periods, with the date each
+name is attested; geometry with its own certainty; environmental setting as
+evidence (`environmental` UEOs); excavation and survey history including **what
+has not been excavated and at what coverage**; the objects with assertions here,
+by place type; the routes and barriers connecting it (`on-route-between`,
+`separated-by-barrier`); political control as dated relationships; and its
+present-day setting, communities and holders.
+
+Rules:
+
+- **Excavation coverage is displayed on every place**, because it is the
+  denominator for every absence argument made about it (§3.7). A place with 2%
+  coverage and a place fully excavated do not produce the same silence.
+- **Political control never implies language.** Constitution Step 3. Control
+  relationships and linguistic relationships are drawn in visually distinct
+  registers and never merged into one "cultural" layer.
+- **Modern administrative boundaries are not evidence** and are shown, if at all,
+  as a separate reference layer that can be switched off, clearly labelled as
+  present-day.
+- A place whose location is uncertain renders as a region or as
+  `zone-unknown`, never as a point with a confident marker.
+
+### 6.4 Word route
+
+**Node:** `mk:lex:`. **Default posture:** Living Signal Field.
+
+A word landing is a Translation Block (§3.8) expanded into a surface, plus the
+attestation record. It carries: original script, transliteration, grammatical
+analysis, semantic range with the evidence for each sense, every attested
+occurrence with text, locator and edition, the reconstructions proposed and by
+whom, the relationships (`cognate-with`, `borrowed-from`, `substrate-of`,
+`sound-correspondence-with`, `unexplained-residue-in`) each statused and each
+with its mechanism, the alternative translations, and the **inherited-category
+audit** for the English word normally used.
+
+Rules:
+
+- **The attestation gradient is the page's spine** (§2.6). An attested form, a
+  reconstructed proto-form and a proposed substrate donor are rendered in three
+  visibly different registers, always, including in search results and in the
+  Atlas's WORDS layer.
+- **A word never carries a people.** The word route may not display an ethnic,
+  ancestral or modern-identity label as a property of a lexeme. Any such link is
+  a `bridge_type = language→modern-identity` relationship with §4.4's
+  requirements and §11.2's governance.
+- **Occurrence counts are shown with their corpus and search method**, because a
+  count without them is not a fact about a language. (The repository already
+  holds a worked instance of this discipline in
+  `03-REGISTERS/rigveda-pur-family-occurrences.csv` and
+  `04-AUDITS/rigveda-pur-family-method.md`.)
+- Where the institution's own pages have used the English category uncritically,
+  the audit says so and links the correction (§11.6).
+
+### 6.5 Text route
+
+**Node:** `mk:txt:`. **Default posture:** Reading Room.
+
+A Text carries the **five-date spine** as separate, individually sourced Date
+Assertions — composition, attestation, copying, redaction, translation — plus
+publication and modern interpretation where relevant; its recensions and
+witnesses; its transmission custody chain (§3.4); the editions available and
+which one each locator is valid in; who composed it, who preserved it, who
+copied it, who redacted it, who translated it, who was excluded from it
+(constitution §4V); and its passages as addressable sub-locators
+(`mk:txt:<key>#<stanza>`).
+
+Rules:
+
+- **No text displays a single date.** The interface shows the spine and requires
+  the visitor to see which date is being used for what.
+- **Editions are evidence, not transparency.** A passage is always shown as
+  "this edition's reading", with variants reachable.
+- **A translation is an interpretation** (`is_primary = interpretation`) and is
+  rendered as one, attributed to its translator with a date.
+- **Composition milieu is not authorship of the ideas.** §4V's
+  *"codification is not invention"* is a display rule here: the text route must
+  not let the compilers of a corpus absorb credit for what the corpus records.
+
+### 6.6 Question route
+
+**Node:** `mk:qst:`. **Default posture:** Nocturnal Veḷi.
+
+The question route is the constitution's Step 1 made public. A Question carries:
+the exact proposition under examination, its date range, its geography, the
+evidence classes it would take to answer it, the terms needing original-language
+work, **the viable explanations**, and **the null explanation** — all of which
+Step 1 already requires researchers to write down.
+
+It then shows, for each viable explanation: its gate results (Step 7 —
+chronological, geographical, mechanism, positive evidence, diagnostic
+predictions), its independent reconstruction (Step 8), its current standing
+(Step 11), and its falsifiers (Step 12). Gated-out explanations appear as
+Exclusion Notes (§3.10), not as sections.
+
+Rules:
+
+- **The null explanation is always listed and never last by default.**
+- **Open questions may outnumber answered ones and this is not a defect.** The
+  question route is the institution's honest surface; it is where Nocturnal
+  Veḷi's *"vastness without menace"* is earned by content rather than by palette.
+- **A question with no viable explanation still publishes**, with its absences
+  typed (§3.7) and its holds named (`05-HOLDS/`).
+- The Question route is the entry point for PROVE IT (§9) and for the children's
+  investigation (§10.4); both are structured walks over the same object.
+
+### 6.7 Cross-route invariants
+
+- Every route reaches Source Mode in one interaction (§1.7).
+- Every route shows the status of everything it displays.
+- No route may present a bridge as a property of its own node type: an object
+  does not "have" a language, a place does not "have" an ethnicity, a word does
+  not "have" a people, a text does not "have" a race. These are relationships
+  with mechanisms and rivals, or they are not displayed.
+- Every route offers export of what it shows (§5.2).
+
+---
+
+## 7. Source Mode: the primary-source viewer and evidence search
+
+### 7.1 The primary-source viewer
+
+The viewer's job is to let a visitor look at the thing the claim rests on, at the
+locator the claim cites, in the edition the claim cites, without leaving the
+argument.
+
+**Required behaviours.**
+
+1. **Deep-locator addressing.** The viewer opens at the cited locator — a stanza,
+   a line, a plate, a catalogue entry, a dataset row, a timecode — via
+   `mk:<type>:<key>#<anchor>`, and the anchor is stable across revisions or
+   redirects with a notice.
+2. **Facsimile beside transcription beside translation**, with each layer
+   labelled by `is_primary` (§2.5) so the visitor can see they are looking at a
+   photograph of a page of an edition of a text, and can count the steps.
+3. **Variants are first-class.** Where witnesses differ, differences are shown,
+   not silently normalised. Where the institution's cited reading is one of
+   several, the alternatives are present at the locator.
+4. **The quoted span is highlighted, and the quotation stored on the Evidence
+   Link is checked against it.** A drift between the two is a data error surfaced
+   in review, and it is the cheapest available guard against citation decay.
+5. **Original script always available**; transliteration is an addition, never a
+   replacement, and the transliteration scheme is named.
+6. **Provenance and rights ride along.** Every facsimile displays holder, licence,
+   credit and the terms under which it is reproduced (§11.8). A facsimile the
+   institution cannot show is represented by a **rights placeholder that states
+   what exists, where, and why it is not shown** — never by silence, which would
+   misrepresent the evidence base as thinner than it is.
+7. **Where the source cannot be reached at all**, the viewer shows the `HOLD`
+   record from `05-HOLDS/` and the access-ledger row, including
+   `EGRESS_BLOCKED` and paywall states. The institution's own access failures
+   are visible to visitors. This is Extraction / Collection applied to the
+   institution itself.
+8. **No viewer surface interprets.** Interpretation appears as claims beside the
+   viewer, attributed and statused.
+
+### 7.2 Evidence search
+
+Search over the object graph, not over page text. Full-text search of published
+prose exists too, and is a different, clearly-labelled control.
+
+**Searchable object types:** claims, relationships, evidence objects, absences,
+sources, places, words, texts, questions, obligations, corrections, editorial
+decisions.
+
+**Facets, all of which are record fields, none of which is a computed opinion:**
+
+- status (7) · inheritance disposition (7)
+- evidence class (9) · `is_primary` (5) · attestation mode (5)
+- date type and range (12 types) · place type (8) · geometry certainty
+- evidence role (11) · relationship predicate group · bridge type
+- independent-source count · strength · standing (7)
+- absence type (8)
+- posture (7) · exhibit
+- access status · rights state · consent state
+- language and script of the evidence, and of the record
+- revision date range · "changed since I last looked"
+
+**Search behaviours that the architecture requires:**
+
+1. **Status is never a hidden filter.** If a default excludes `REJECTED` and
+   `SUPERSEDED`, the result header says so and the control to include them is
+   visible, not buried. The institution's rejected reasoning is searchable by
+   design (§3.6).
+2. **Result rows carry status, attestation mode and independent-source count.**
+   A result list that looks like a bibliography is a failure of this surface.
+3. **Zero results are typed.** "No claims match" and "no evidence has been
+   collected in this area" and "this area is blocked on source access" are three
+   different answers, and the search must distinguish them by consulting
+   absences, holds and the access ledger. An empty result set that reads as
+   "nothing exists" is the negative-evidence failure §3.7 exists to prevent,
+   reproduced in a search box.
+4. **Query provenance.** Every result set is addressable, exportable (§5.2) and
+   carries the query, the facets, the date, and the base revision — so a visitor
+   can cite a search the way they cite a claim, and someone else can re-run it.
+5. **Search across languages and scripts.** A query in Tamil script, in
+   transliteration, or in English reaches the same objects (§11.10), and the
+   interface states which form it matched on.
+6. **No relevance ranking that encodes confidence.** Ranking may use match
+   quality, recency of revision and structural centrality. It may **not** rank by
+   status, strength or evidential weight, because a ranked list is read as an
+   argument. Sorting by status is available as an explicit, labelled sort.
