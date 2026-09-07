@@ -46,9 +46,51 @@ assert len(ids) == 1, f"expected one lemma id for {SIMPLEX}, got {ids}"
 lid = ids.pop()
 
 simplex = [r for r in rows if r["lemma_id"] == lid]
-# Compounds: any other lemma whose string contains the stem varṇa/varṇas.
-comp = [r for r in rows if r["lemma_id"] != lid
-        and ("varṇa" in r["lemma"] or "varṇas" in r["lemma"])]
+# Compounds. The first version of this selection was wrong in BOTH
+# directions and was corrected after adversarial review (BF-016).
+#
+#  (a) ACCENT. Lemma strings carry Vedic tone, so a literal "varṇa" test
+#      silently misses every -várṇa- compound; suvárṇa- was missed that
+#      way. BF-008's control - state exactly which marks a normaliser
+#      removes and why none is phonemic - applies. We strip the combining
+#      acute and grave ONLY. Vedic tone does not distinguish these stems;
+#      retroflex ṇ, vowel length and every other mark are kept.
+#
+#  (b) GLOSS DECIDES MEMBERSHIP, NOT THE STRING. Two unrelated stems are
+#      caught by any string test:
+#        -varṇas- is árṇas- "wave, flood" after a preceding -a-;
+#        svàrṇara- is svàr + nara-, and contains "varṇa" outright.
+#      So every candidate is adjudicated on Grassmann's gloss, exactly as
+#      04-AUDITS/rigveda-pur-family-method.md adjudicates the púr- family.
+#      The four exclusions are listed with the gloss that excludes them.
+ACCENTS = str.maketrans("", "", "\u0301\u0300")
+
+
+def defold(s):
+    import unicodedata
+    # NFD to expose the accents, drop them, NFC back so precomposed
+    # characters we are NOT stripping (ṇ, ā, ī) still compare equal.
+    return unicodedata.normalize(
+        "NFC", unicodedata.normalize("NFD", s).translate(ACCENTS))
+
+
+# Reached by the string test; NOT built on varṇa-. Gloss is the evidence.
+EXCLUDED = {
+    "svàrṇara-":   "unklar; GM: 'Himmelsmann, Glanzesherr'; N. pr. — svàr + nara-",
+    "svàrṇar- ?":  "no gloss; the same stem as svàrṇara-",
+    "mádhvarṇas-": "'süsse Wogen habend' — árṇas- 'wave', not varṇa-",
+    "dhánvarṇas-": "'das Gestade überflutend' — árṇas-, not varṇa-",
+}
+# Derivatives of the compound sávarṇa-, not compounds on varṇa- themselves.
+# Both are proper names in Grassmann. Reported, not counted.
+DERIVATIVES = {
+    "sā́varṇi-":  "N. pr., ursprünglich Geschlechtsname (zu sávarṇa)",
+    "sāvarṇyá-":  "N. pr., Abkömmling des sávarṇa",
+}
+
+cand = [r for r in rows if r["lemma_id"] != lid and "varṇa" in defold(r["lemma"])]
+comp = [r for r in cand if r["lemma"] not in EXCLUDED]
+deriv = [r for r in rows if r["lemma"] in DERIVATIVES]
 
 with open(OUT, "w", newline="", encoding="utf-8") as f:
     w = csv.writer(f, quoting=csv.QUOTE_ALL)
@@ -72,8 +114,17 @@ print(f"  strata: {dict(collections.Counter(r['stratum'].upper() for r in simple
 print(f"  books:  {dict(sorted(collections.Counter(int(r['book']) for r in simplex).items()))}")
 print(f"  stanzas {len({r['stanza'] for r in simplex})}, "
       f"hymns {len({(r['book'], r['hymn']) for r in simplex})}")
-print(f"compound tokens containing the stem: {len(comp)} "
+print(f"compounds built on varṇa-: {len(comp)} tokens "
       f"over {len({r['lemma'] for r in comp})} lemmas")
 for lem, n in collections.Counter(r["lemma"] for r in comp).most_common():
     print(f"    {n:>3}  {lem}")
+print(f"excluded, reached by the string test but not varṇa-: "
+      f"{len(cand) - len(comp)} tokens over {len(EXCLUDED)} lemmas")
+for lem, why in EXCLUDED.items():
+    n = sum(1 for r in cand if r["lemma"] == lem)
+    print(f"    {n:>3}  {lem:<16} {why}")
+print(f"derivatives of sávarṇa-, reported not counted: {len(deriv)} tokens")
+for lem, why in DERIVATIVES.items():
+    n = sum(1 for r in deriv if r["lemma"] == lem)
+    print(f"    {n:>3}  {lem:<16} {why}")
 print(f"\n-> {OUT}")

@@ -54,11 +54,36 @@ says what the register supports and where the published wording outruns it.
 
 ### 0.3 Inheritance
 
-Nothing in `01-INHERITED/` was read and nothing from it is cited as evidence.
-Rows in `03-REGISTERS/inherited-claims.csv` are cited in three places, always
-as **`INHERITED-UNVERIFIED`** and always for what they show about the *state of
-the record* — that a figure entered without a retrieval event — never as
-support for the figure.
+Nothing in `01-INHERITED/` was read. **This has two consequences that were
+initially mis-stated and are corrected here after adversarial review.**
+
+**Rows in `03-REGISTERS/inherited-claims.csv` are cited 13 times, across 8
+distinct rows** — `IH-086` ×4, `IH-105` ×2, `IH-287` ×2, and `IH-060`, `IH-149`,
+`IH-250`, `IH-329`, `IH-332` once each. An earlier draft of this section said
+"three places" and was simply wrong; inherited standing rule 14 requires counts
+in this project's own reports to be derived rather than estimated, and that one
+was estimated.
+
+**Two different uses, and only one of them is legitimate:**
+
+- **Briefs 1, 3 and 4 cite `IH-` rows for what they show about the *state of the
+  record*** — that a figure entered without a retrieval event, or that a piece of
+  work is recorded as owed. That is a claim about this repository and it is
+  sound. Brief 4 is the clean case: `IH-086`'s count was not quoted, it was
+  tested (`VAR-001`).
+- **Brief 2 does not.** Its arithmetic — 299 with 140, 315 with 194, 54 dated of
+  199 — *is* `IH-250`, `IH-060` and `IH-105`, and an earlier draft carried those
+  figures into proposed public copy. `CLAUDE.md` step 14 says public copy is
+  drafted **only from accepted claims**, and `INHERITED-UNVERIFIED` is not one.
+  The copy in §2.4 has been rewritten to say that our records disagree without
+  reciting unverified figures as fact, and every figure kept in the *analysis*
+  is now marked `INHERITED-UNVERIFIED` at the point of use. Brief 2 is
+  correspondingly the weakest of the four and says so.
+
+**And the exclusion of `01-INHERITED/` silently bounded a search.** See §2.1:
+a negative claim about "every tracked file" was made from a search that had
+excluded that directory, and the excluded directory contained the
+counter-evidence. Retracted there, logged as `BF-017`, queued as `RA-018`.
 
 ### 0.4 The step-14 slots this document fills
 
@@ -82,12 +107,17 @@ were otherwise going to hand back a plan:
 | `SRC-085` | VedaWeb `vedaweb-data` re-clone | HEAD `d3eb8af`, the pinned commit; `strata.json` sha256 identical to `SRC-023`; extraction reproduces `PUR-001`'s 164,758 tokens exactly |
 | `SRC-087` | JAMBU `moli-mandala/data` re-clone | HEAD `dbae310`, the pinned commit; `dedr.csv` sha256 identical to the value under `SRC-061` |
 | `SRC-086` | this repository searched as a source | self-audit for any per-passage sense assignment for *varṇa-*: none |
-| `SRC-088` | `ArimeKannada/Dictionary` | **NOT RETRIEVED**, not attempted; recorded so the gap is visible |
+| `SRC-088` | `ArimeKannada/Dictionary` | **`UNTESTED`** — not fetched, and **not blocked**: `github.com` is reachable on the channel that retrieved the other two. A scope decision, recorded so the gap is visible |
 
 New registers written: `03-REGISTERS/rigveda-varna.csv` (9 rows),
 `03-REGISTERS/rigveda-varna-occurrences.csv` (23 rows),
-`03-REGISTERS/dedr-digitisation-lineage.csv` (6 rows). Dependency rows
-`DEP-024` to `DEP-026`. Re-audit `RA-016`. The validator passes.
+`03-REGISTERS/dedr-digitisation-lineage.csv` (8 rows). Dependency rows `DEP-024`
+to `DEP-026`. Re-audits `RA-016` to `RA-018`. Contradiction `IC-P-001`.
+Method failures by this unit: `BF-015` to `BF-017` (§5.1). The validator passes.
+
+**This document was independently adversarially reviewed before the pull request
+was opened, per constitution §8, and substantially corrected as a result. §5.1
+lists every defect the review found and where each now stands.**
 
 ---
 
@@ -129,21 +159,53 @@ Measured this session, `03-REGISTERS/dedr-digitisation-lineage.csv`:
 
 **But two of those three are one source, not two.** `DEDR-L-002`, from JAMBU's
 own README lines 135 and 137: `dedr.csv` comes from a SQL database "scraped from
-the online version" in October 2013 and is marked **deprecated**; `dedr_new.csv`
-comes from `parse.py`, which at line 173 scrapes
-`dsal.uchicago.edu/cgi-bin/app/burrow_query.py` over 514 pages. One upstream,
-two scrapes, thirteen years apart. Under the source-independence rule they count
+the online version" and is marked **deprecated**; `dedr_new.csv` comes from
+`parse.py`, which at line 173 scrapes
+`dsal.uchicago.edu/cgi-bin/app/burrow_query.py` over 514 pages. One upstream, two
+scrapes. (The README gives no scrape *date* for the first; October 2013 is read
+off the filename `dedr_new_entry_oct2013_edited.sql`, so it is a **file-naming
+date, not an attested retrieval date** — step 2 wants the kind of date named, and
+an earlier draft hardened it to "thirteen years apart" in public copy.) Under the source-independence rule they count
 as **one**, recorded as `DEP-025`. Their agreement at 82% measures the stability
 of a website, not the accuracy of either against the printed dictionary, and it
 may not be weighed against the site's 73% as though it were two votes to one.
 
-**The disagreement is worse than `IC-E-001` states, not better.** `DEDR-L-003`:
-across the same 18 languages and by the same method, the two scrapes of the
-*identical* source pages disagree on **5.5%** of entry-language assignments,
-against the **10.3%** `IC-E-001` measures across lineages. Roughly half the
-"disagreement between two digitizations" is parse noise inside one of them.
-Per language the within-lineage rate runs 2.0% (Tamil) to 14.3% (Kolami);
-Kolami is the worst cell on both comparisons.
+**The instrument is noisier than `IC-E-001` implies.** `DEDR-L-003`: across the
+same 18 languages and by the same method, the two scrapes of the *identical*
+source pages disagree on **5.5%** of entry-language assignments, against the
+**10.3%** `IC-E-001` measures across lineages. Two parses of the same web pages
+differ that much.
+
+**Three qualifications, and the first cuts against this brief.** An earlier draft
+carried none of them and said "roughly half the disagreement is parse noise".
+
+1. **On Brahui — the one language the page's figure is about — the within-lineage
+   rate is 2.2%, against `IC-E-002`'s cross-lineage 8.2%** (`DEDR-L-007`). About
+   a quarter, not half. The parse-noise explanation is *weakest* precisely where
+   the published number lives. That figure was in this unit's own output file and
+   was left out of the first draft; the per-language range quoted above (2.0%
+   Tamil to 14.3% Kolami) is computed over the 18 aggregate languages, which
+   **exclude Brahui by construction**. Logged as `BF-015` under `BF-011`'s
+   control, and written up as its own register row rather than as prose.
+   It also cuts a second way: the site's 262 is further from both DSAL figures
+   (269, 273) than they are from each other, which is what a genuinely separate
+   lineage would look like — mild evidence *for* the independence `DEDR-L-005`
+   records as untested.
+2. **The 5.5% is directional.** Of the 1,414 disagreeing pairs, 465 are in
+   `dedr.csv` only and **949 in `dedr_new.csv` only**. Two thirds is material the
+   2026 re-parse has and the deprecated 2013 dump lacks — consistent with the old
+   table being less complete, not with the new one being noisy. Only
+   `dedr_new.csv` participates in the 10.3%.
+3. **5.5 and 10.3 are not subtractable.** They are computed over different pairs
+   of tables, and whether the disagreeing pairs are the *same* pairs in both
+   comparisons was not tested. The contrast supports a magnitude comparison and
+   nothing arithmetic.
+
+**And the 10.3% cannot be re-derived here at all** (`DEDR-L-008`): the site's
+`dedr_roots.json` is not in this repository, has no access-ledger row, and was
+not available this session. Every figure this brief quotes from `IC-E-001` and
+`IC-E-002` — the 10.3%, the 8.2%, the 191 and the 262 — is taken on the earlier
+unit's report and checked only for internal consistency.
 
 **And the thing the framing assumes has never been checked.** `DEDR-L-005`:
 whether `ArimeKannada/Dictionary` derives from print or is itself another DSAL
@@ -201,10 +263,12 @@ Two things the owner should know that `D-038` was raised without:
 > DEDR is unreachable from our research environment and we hold no copy.
 >
 > The two versions that agree on 82% are not two witnesses. Both are scrapes of
-> the same website, taken thirteen years apart, and even so they differ on 5.5%
-> of their entry-language assignments. Two parses of identical pages disagree
-> that much. That is the floor on precision for any count of this kind,
-> including ours.
+> the same website, one of them years older and since deprecated, and even so
+> they differ on 5.5% of their entry-language assignments across the languages we
+> could compare. Two parses of the same pages disagree that much — though for
+> Brahui itself they differ by only 2.2%, less than they differ from our own
+> figure. Precision on counts of this kind is limited in ways that no care in the
+> counting removes.
 >
 > Sharing an entry number is also not the same as sharing a word. A DEDR entry
 > groups forms an editor judged cognate; the count inherits every one of those
@@ -225,10 +289,14 @@ Two things the owner should know that `D-038` was raised without:
 > not need either — would tell us whether the 73% and the 82% are two readings
 > of a dictionary or one digitization's noise counted twice.
 
-**Deletion required either way:** the phrase *"counted directly from the
-Dravidian etymological dictionary"*. It is the specific claim the record
-contradicts, and it is untrue under any of the three `D-038` options. Queued
-as `RA-011`.
+**On the phrase itself.** *"Counted directly from the Dravidian etymological
+dictionary"* is the specific wording `IC-E-002` contradicts: it reads as a fact
+about Burrow and Emeneau and is a fact about one digitization of it. An earlier
+draft of this brief wrote "deletion required either way" — which quietly removes
+`D-038`'s second option, "keep the present wording", and is therefore proposing
+past the decision it says it is not proposing past. Corrected: if the owner
+selects option two, this repository records `RA-011` as unresolved and the phrase
+as contradicted by `IC-E-002`, and nothing is deleted.
 
 ---
 
@@ -245,11 +313,29 @@ titled:
 
 > Artifact Atlas: 175 Ancient South Asian Sites Mapped
 
-A full-text search of every tracked file returns **no record anywhere of a title
-containing 315**, and no record of 175 and 315 appearing together in any
-document, page, title or dataset. That is consistent with the instruction's own
-statement that "that pairing appears in no project record" — and this unit
-confirms it from the tree rather than assuming it.
+**A retraction.** An earlier draft of this brief stated that "a full-text search
+of every tracked file returns no record anywhere of a title containing 315", and
+built §2.2's argument on it. **That claim was false, and the way it was reached
+is worse than the claim.** The search excluded `01-INHERITED/` under this unit's
+scope instruction (§0.3) and then reported its result as covering every tracked
+file. Adversarial review found the pairing in the excluded directory: the
+site-review running list at line 210 associates the title's 175 with "evidence-window
+counts of 299 or 315", and at line 686 with "175 or 194 sites and 315 windows".
+
+Two consequences, and the second is the one that matters:
+
+1. The corrected statement is: **no record in the directories this unit
+   searched, which excluded `01-INHERITED/`.** An argument from absence must
+   state its coverage in the same breath (constitution §6), and this one did
+   not. Logged as `BF-017`, queued as `RA-018`.
+2. **The pairing has a provenance.** It is not an invention at the page; it is
+   a running-list formulation that put a title figure and a window figure side
+   by side. That does not make the pairing sound — the two still come from
+   records that disagree by 19 sites — but "no project record pairs them" is
+   not the finding, and §2.2 below has been rewritten accordingly.
+
+Those `01-INHERITED/` lines are cited here as **reported by the adversarial
+review**, not read by this unit and not relied on as evidence for any figure.
 
 So the correction has two parts, and the second is prior to the first: **which
 string is actually on the page** is not established here, and cannot be, because
@@ -272,21 +358,29 @@ the inheritance rule no argument promotes them — only a retrieval would.
 | 194 | VELI-02 §6; VELI-03 parsed records; VELI-13 |
 | 199 | site-class rows |
 
-**Two window counts are on file, and each is bound to a site count that is not
-175.** `IH-060`: the owner's visual-concept document gives **140 sites and 299
-windows**. `IH-105`: the atlas holds **194 site records and 315 class-windows**
-with 14 classes.
+**Two window counts are on file, and each is bound to a site count in its own
+record.** `IH-060` (`INHERITED-UNVERIFIED`): the owner's visual-concept document
+gives **140 sites and 299 windows**. `IH-105` (`INHERITED-UNVERIFIED`): the atlas
+holds **194 site records and 315 class-windows** with 14 classes.
 
-That is the whole of the arithmetic behind this brief. **299 travels with 140.
-315 travels with 194. 175 travels with no window count at all.** A title pairing
-175 with 315 would take its site count from one record and its window count from
-another that disagrees with the first by 19 sites — and would present the pair
-as though one dataset produced both.
+So: **299 was reported with 140, and 315 with 194.** A title pairing 175 with 315
+takes its site count from the record that says 175 and its window count from a
+record that says 194 — two figures that were never counted together, from records
+that disagree by 19 sites. The running list did put 175 and 315 in one sentence
+(§2.1), so the pairing has a provenance; what it does not have is a record in
+which one dataset produced both.
 
-**A further figure the title would inherit.** `IH-105` also records that of 199
-site-class rows, **54 are dated from excavation reports and 145 are marked
-assumed**. Roughly three-quarters of the atlas's dating is assumption. Any
-headline count carries that in silently.
+**A further figure the title would inherit.** `IH-105` (`INHERITED-UNVERIFIED`)
+also records that of 199 site-class rows, **54 are dated from excavation reports
+and 145 are marked assumed**. Roughly three-quarters of the atlas's dating is
+assumption. Any headline count carries that in silently.
+
+**Every figure in this section is `INHERITED-UNVERIFIED` and none of it is
+evidence.** It is the *state of the record*, which is what this brief is about:
+seven site counts and two window counts, no retrieval behind any of them. Under
+step 14 none of it may be drafted into public copy as fact, and §2.4 does not.
+That is why brief 2 is the weakest of the four — it can show the record
+disagrees with itself and can show nothing else.
 
 **The audit rated this low risk.** `museum-framework.md` §8.1 records the v1
 page as MVP rank 3, `Keep`, `Low` risk, 88 estimated bibliography entries
@@ -304,9 +398,13 @@ site count.** It explicitly blocks "the Artifact Atlas page title at MVP rank 3.
 **No number is proposed here.** Not 175, not 194, not a range, not "about 175".
 The owner has reserved the count and it stays reserved.
 
-What *is* already settled, and is therefore usable without pre-empting `D-034`:
-`museum-framework.md` §8.1 specifies for v2 that **the Atlas has no headline
-count** — a count is a claim with a status, an inclusion rule and a falsifier,
+**And `D-034` has already anticipated the move proposed below.** Its `notes`
+column says of `museum-framework.md` §8.1: *"Neutralised but not answered — the
+Atlas can be built without the number and **cannot be titled without it**."* The
+owner should weigh that against §8.1 directly; this brief quotes both rather than
+the half that suits it, having initially quoted only §8.1.
+
+What §8.1 does specify for v2 is that **the Atlas has no headline count** — a count is a claim with a status, an inclusion rule and a falsifier,
 displayed inside the Atlas with its status visible or not displayed; the number
 in view is a property of the current filter and is always shown with the filter,
 never as a title. §8.1 states outright that under this specification the Atlas
@@ -334,25 +432,32 @@ beside the filter per §8.1:
 > How many sites does this atlas hold?
 >
 > ### WHAT IS OBSERVED
-> Our own records disagree. Across the project's documents the atlas site count
-> has been stated as 140, 150, 158, 167, 175, 194 and 199, and the count of
-> dated object-windows as 299 in one document and 315 in another. The 299
-> belongs with 140; the 315 belongs with 194. No record pairs 315 with 175.
+> Our own records disagree with each other. Seven different site counts and two
+> different window counts have circulated across the project's working
+> documents, and the two window counts were each reported alongside a site count
+> that is not the one in this page's old title.
+>
+> None of those figures was produced from the atlas's data. They are figures
+> from working documents, and we have not verified any of them.
 >
 > ### WHAT THE EVIDENCE SUPPORTS
-> That the atlas holds somewhere in the region of a hundred and fifty to two
-> hundred sites, and that we cannot presently say which figure is the atlas's.
+> That we cannot presently say how many sites the atlas holds. None of the
+> figures above was generated from the atlas's own data, and we are not going to
+> pick one until they are.
+>
 > The number shown above the map is the number of sites matching your current
-> filter, and it changes when you change the filter.
+> filter. It changes when you change the filter, and it is the only site count
+> on this page.
 >
 > ### WHAT COMPLICATES IT
 > The figures are not seven counts of the same thing. Some count sites, one
-> counts site-class rows, and the window counts count dated object-windows —
-> different units that were reported as though comparable.
+> counts rows in a table, and the window counts count something different again
+> — units that were reported as though they were comparable.
 >
-> Of 199 site-class rows, 54 are dated from an excavation report and 145 are
-> marked assumed. A headline count would present three-quarters-assumed dating
-> as a settled inventory.
+> Our records also indicate that most of the atlas's dating is assumed rather
+> than taken from an excavation report. We have not verified that either, and it
+> is the reason a headline count would be misleading even if we had one: it
+> would present an inventory as settled that is mostly inference about dates.
 >
 > ### WHAT REMAINS UNKNOWN
 > Which figure is current, and what each of the seven was counting. None has
@@ -427,12 +532,24 @@ figure this register produces at any unit**:
 | pāda (`PUR-015`) | 104 | 31 | 32 | **63** (60.6%) |
 | stanza | 103 | 31 | 31 | **62** (60.2%) |
 | hymn | 86 | 23 | 26 | **49** (57.0%) |
-| token, certain codes only | 106 | 30 | 26 | **56** |
+| token, certain codes only | 92 | 30 | 26 | **56** |
 
-The figure for the unit the instruction names — 106, tokens — is **63**. Six
-tokens' worth of difference does not change any conclusion, and it is corrected
-here only so that a corrected page does not publish a number the register cannot
-reproduce. The substantive shape is unaffected: Archaic and Strophic together
+The figure for the unit the instruction names — 106, tokens — is **63**. Two
+tokens' worth of difference changes no conclusion, and it is corrected here only
+so that a corrected page does not publish a number the register cannot reproduce.
+
+(The last row's denominator is 92, not 106: 14 of the 106 tokens carry lowercase
+codes, which Arnold's legend marks as assigned on metrical variations alone. An
+earlier draft of this table wrote 106 there — a table correcting a misreported
+denominator, misreporting one.)
+
+**Where 61 might have come from is not established.** No sub-count returns it at
+any unit; the adversarial review on this brief tested all four units crossed
+against simplex-only, compounds-only and both certainty subsets — twenty
+combinations — and none yields 61. The nearest number in the register is
+`PUR-021`'s **61.3%**, the share of Popular-stratum tokens sitting in book 10,
+which is a different statistic about a different population. That is a guess at
+the provenance and is recorded as one, so the figure does not return. The substantive shape is unaffected: Archaic and Strophic together
 are about 60% of the family against about 43% of the corpus, and the whole
 result is elsewhere.
 
@@ -461,10 +578,15 @@ Measured this session against the pinned corpus, and matching
 - Its Arnold stratum code is **`N` — Normal**, uppercase, so `certain` rather
   than assigned on metrical variations alone (`PUR-011`).
 - **All five stanzas of RV 3.45 carry `N`.** The whole hymn is Normal.
-- Arnold's order as printed is A Archaic, S Strophic, N Normal, C Cretic,
-  P Popular (`PUR-011`, verified against Arnold 1905 Appendix IV §265 p. 269,
-  not inferred from the letters). **Normal is the middle of five.** Two strata
-  fall after it.
+- Arnold prints the periods A Archaic, S Strophic, N Normal, C Cretic,
+  P Popular. **`PUR-011` verifies the *mapping* — which letter denotes which
+  period, and the italic convention — against Arnold 1905 Appendix IV §265
+  p. 269.** It does not verify that the five are chronologically ordered in that
+  sequence. **That is `PUR-028`, a `HYPOTHESIS`**, and an earlier draft of this
+  brief borrowed `PUR-011`'s "not inferred from the letters" and attached it to
+  the ordering, letting a hypothesis inherit a verified status. On the sequence
+  Arnold proposes, Normal is the middle of five with two after it — and the
+  whole of the RV 3.45 argument rests on that proposal, not on a measurement.
 - `PUR-P-034`'s `stanza_properties_flags` reads `(none)`: **no stanza-level
   lateness flag from Grassmann, Oldenberg, Arnold 1897, Wüst or Witzel.** Under
   the negative-evidence standard that is typed **NOT PRODUCED** — none of the
@@ -474,7 +596,28 @@ Measured this session against the pinned corpus, and matching
 So on the two instruments the register holds, RV 3.45 is middle-stratum and
 unflagged. Neither instrument places it late.
 
-### 3.2.4 What caps all of this
+### 3.2.4 A word this repository has already audited and rejected
+
+`06-BRIEFS/pur-translation-standard.md` §10 opens: **"'Fort' fails the audit as
+a default gloss."** It is serviceable for the Śambara–Divodāsa passages, where
+something is besieged and broken, and *"actively misleading at RV 7.95.1 (a
+river), RV 7.15.14 (a god), RV 8.1.28 (a moving one), and RV 8.6.23 (a
+simile)."* `RA-013` is **OPEN** on exactly this, and its scope is "every
+occurrence of fort/forts/fortress in page copy". Constitution §7 lists *fort*
+among the ten inherited English categories to be audited before use.
+
+An earlier draft of §3.4 wrote "the Rigveda's fort vocabulary" and "fort
+language" unglossed across all 106 occurrences, and cited neither the standard
+nor `RA-013` — while brief 4 was applying §7 to *caste* with some emphasis. The
+asymmetry is the point: §7 was applied where it cut against a Victorian
+lexicographer and skipped where it complicated a MelaKeela page's own framing.
+That is a prestige-bias failure in this unit's own work, logged as `BF-017`, and
+this document's first prestige-bias test missed it (§5.1).
+
+§3.4 no longer uses "fort" as a default gloss. The page's *title* and slug are a
+separate question and are `RA-013`'s and `D-045`'s, not this brief's.
+
+### 3.2.5 What caps all of this
 
 Four caps, and they are load-bearing enough that a corrected page that dropped
 them would be worse than the current one:
@@ -488,9 +631,19 @@ them would be worse than the current one:
    himself calls the period names "provisional" (1905 §§60–61).
 3. **The strata are one source.** `PUR-013`: `strata.json` is a transcription of
    Arnold 1905. Citing VedaWeb and Arnold is citing one source twice (`DEP-001`).
-4. **The second instrument returns a null.** `PUR-020`: grouped as family books
-   (2–7) against the rest, 6.98 per 10,000 against 6.07, χ² = 0.50 on 1 df,
-   p = 0.48. And where the two instruments *do* agree they are entangled —
+4. **The second instrument does not confirm the first, and "null" overstates
+   what it did.** `PUR-020`: family books (2–7) against the rest, 6.98 per
+   10,000 against 6.07, χ² = 0.50 on 1 df, p = 0.48. Reported per `BF-004`'s
+   control — point estimate, direction and power limitation before it bears on
+   anything: the direction is the *same* as the metrical instrument's (family
+   books slightly higher), and at 106 tokens the test has too little power to
+   resolve an effect of the size the metrical instrument reports. **`RA-002` is
+   OPEN on precisely this**, asking whether "the two instruments do not agree"
+   should read "one is significant and the other cannot resolve an effect this
+   size". The second reading is the defensible one and §3.4 uses it. An earlier
+   draft of §3.4 stated the null as a flat disagreement with neither estimate
+   nor power — `BF-004`'s control, broken by a unit citing `BF-004`'s register.
+5. **And where the two instruments *do* point the same way they are entangled** —
    `PUR-021`: 61.3% of all Popular tokens are in book 10, so the Popular deficit
    and the low book-10 rate are largely one observation counted twice.
 
@@ -518,36 +671,51 @@ headline is a different claim on a different axis and is not touched here**
 (§3.2.1).
 
 > ### QUESTION
-> Is the Rigveda's fort vocabulary a late addition to the text?
+> Is the Rigveda's *púr-* vocabulary a late addition to the text?
 >
 > ### WHAT IS OBSERVED
-> The word *púr-* and the six compounds built on it occur 106 times in the
-> Rigveda. Sorted by Arnold's metrical periods, 63 of those 106 fall in his two
+> The word *púr-* and the six words built on it occur 106 times in the Rigveda.
+> Sorted by Arnold's metrical periods, 63 of those 106 fall in the two he places
 > earliest, Archaic and Strophic — about 60%, against about 43% of the corpus at
 > large.
 >
-> The sharpest figure is at the other end. Arnold's latest period, Popular,
-> holds 3 of the 106 where its share of the corpus predicts about 15.
+> The sharpest figure is at the other end. In Arnold's Popular period, the one he
+> places last, *púr-* occurs 3 times where the period's share of the corpus
+> predicts about 15.
 >
 > RV 3.45, sometimes cited as a late hymn, is not late on this measure: all five
-> of its stanzas carry Arnold's Normal code — the middle of his five periods,
-> with two after it — and none of the five scholars whose stanza judgements we
-> hold has flagged it.
+> of its stanzas carry Arnold's Normal code — the middle of the five, on the
+> sequence he proposes — and none of the five scholars whose stanza judgements
+> we hold has flagged it.
 >
 > ### WHAT THE EVIDENCE SUPPORTS
-> That fort language is not concentrated in the latest layer of the Rigveda. On
-> the one stratification we can apply, it is thinnest there.
+> That *púr-* is not concentrated in the latest layer of the Rigveda. On the one
+> stratification we can apply, it is thinnest there.
 >
 > ### WHAT COMPLICATES IT
-> All of it rests on one scholar. The period codes come from Arnold's *Vedic
-> Metre* of 1905 and from nowhere else, and Arnold called his own period names
-> provisional. That his five metrical periods are real stages of composition is
-> an assumption we are making, not something we have shown.
+> **We are not translating *púr-* on this page, and that is deliberate.**
+> Grassmann's dictionary gives "wall of stones and clay, entrenchment,
+> palisade" — not city, not town, not fortress. "Fort" is serviceable for the
+> passages where something is besieged and broken and actively misleading
+> elsewhere in the same corpus, where a *púr-* is a river, a god, something that
+> moves, or a simile. So this section counts a Sanskrit word and does not tell
+> you in English what it was.
 >
-> A second test disagrees. Ordering the text by the family books instead of by
-> metre returns no difference at all. And where metre and book order do agree,
-> they are not independent: most Popular-stratum material sits in book 10, so
-> the two are largely the same observation twice.
+> The chronology rests on one scholar. The period codes come from Arnold's
+> *Vedic Metre* of 1905 and from nowhere else, and Arnold called his own period
+> names provisional. That his five metrical periods are real stages of
+> composition, in that order, is an assumption we are making, not something we
+> have shown.
+>
+> A second test does not confirm the first. Ordering the text by the family
+> books instead of by metre gives 6.98 occurrences per ten thousand words in
+> books 2–7 against 6.07 in the rest — a difference in the same direction, far
+> too small to distinguish from chance (p = 0.48). With 106 occurrences that
+> test could not have detected an effect of the size the metrical one reports,
+> so it is better read as unable to resolve the question than as disagreeing.
+> And where the two do point the same way they are not independent: most
+> Popular-period material sits in book 10, so they are largely one observation
+> counted twice.
 >
 > That no scholar flagged RV 3.45 is not a judgement that the hymn is early. It
 > means none of them marked it, which can happen for reasons that have nothing
@@ -556,6 +724,8 @@ headline is a different claim on a different axis and is not touched here**
 > ### WHAT REMAINS UNKNOWN
 > When any of this was composed in calendar years. Arnold's periods are relative
 > and this page makes no absolute date claim from them.
+>
+> And what a *púr-* was. Counting the word is not describing the thing.
 >
 > ### MELAKEELA'S CURRENT INTERPRETATION
 > *(withheld — `D-044` and `D-045` open; see §3.3)*
@@ -688,8 +858,10 @@ promotion, and only retrieval promotes.
 
 **So brief 4 is the only one of the four that is not waiting on the owner.** It
 is waiting on a unit of work: reading all 23 passages against the nine
-translations bundled with the corpus (`SRC-070` to `SRC-077`) under the §7
-translation standard — original script, transliteration, grammatical form,
+translations bundled with the corpus (`SRC-072` to `SRC-077` — an earlier draft
+wrote `SRC-070` to `SRC-077`, but `SRC-070` is `addressees.json` and `SRC-071`
+is `stanza_properties.json`, neither a translation; `SRC-077` bundles the four
+partial ones) under the §7 translation standard — original script, transliteration, grammatical form,
 semantic range, textual context, edition, exact locator, translation used,
 alternatives, and the interpretive consequence of choosing between them. That is
 scoped in `VAR-009` and is not done here.
@@ -726,9 +898,11 @@ out until it is done.
 > class, party, human-kind, estate, caste — and does not say which applies
 > where.
 >
-> The eighth of those, "caste", is a nineteenth-century editor's category, not
-> something the Rigveda says. Sorting these 23 passages by that dictionary entry
-> would be letting the dictionary answer the question this page is asking.
+> The eighth of those, "caste", is a nineteenth-century editor's word for what
+> he took the Sanskrit to mean. Whether any of these 23 passages carries a social
+> sense is exactly what we have not established — so sorting them by that
+> dictionary entry would be letting a Victorian lexicographer answer the question
+> this page is asking.
 >
 > ### WHAT REMAINS UNKNOWN
 > How many of the 23 apply the word to people rather than to colour, and how
@@ -754,72 +928,123 @@ recorded it as owed since the inheritance was compiled.
 
 ## 5. Adversarial tests on this document
 
-Run per constitution §8, before this document was committed.
+Run per constitution §8. **The first run of these tests, written before
+independent review, passed this document. It should not have.** An independent
+adversarial review then found fourteen defects, three of them method failures in
+this unit's own work. Both runs are recorded below, because a self-test that
+cleared work an independent reviewer did not clear is itself the finding.
 
-### 5.1 Prestige-bias challenge
+### 5.1 What the independent review found
+
+Everything below was found by the adversarial reviewer, not by §5.2–§5.3, and is
+fixed in this document and its registers:
+
+| | Defect | Where it now stands |
+|---|---|---|
+| 1 | Brief 2's public copy proposed a site-count **range** — the one thing §2.3 reserves to `D-034` | sentence deleted; §2.4 says we cannot say |
+| 2 | Brief 2 claimed "a full-text search of **every tracked file**" for a search that had **excluded `01-INHERITED/`**, where the counter-evidence sits | retracted in §2.1; `BF-017`, `RA-018` |
+| 3 | `VAR-007` read 24 tokens / 13 lemmas and called it a floor; the true figure is **23 / 12** and 24 was an over-count | script rewritten to adjudicate on gloss; `BF-016`, `RA-017` |
+| 4 | Brief 3's copy used **"fort"** as an unglossed default, which `pur-translation-standard.md` §10 records as failing the §7 audit and `RA-013` is OPEN on | §3.2.4 added; copy rewritten; `BF-017` |
+| 5 | The **Brahui within-lineage cell (2.2% against 8.2%)** — the measurement that cuts against brief 1 — was in this unit's output file and in no register row | `DEDR-L-007`; `BF-015` under `BF-011`'s control |
+| 6 | `DEDR-L-005` was `VERIFIED` citing `SRC-088`, **a ledger row recording that nothing was retrieved** | re-sourced to `SRC-086` |
+| 7 | `SRC-085`–`SRC-087` carried **`00:00Z` placeholder retrieval times** in a retrieval ledger | corrected to the actual clone times |
+| 8 | Brief 1's "deletion required either way" **removed `D-038`'s second option** | restated in §1.4 |
+| 9 | **"NOT ATTEMPTED"** was invented as a ninth negative-evidence type | dropped; `SRC-088` is `UNTESTED`, and says why |
+| 10 | `VAR-002` performed a **half-promotion** of `IH-086` that the status vocabulary does not have, and never effected it | demoted to `PROVISIONAL`; `IH-086` explicitly left alone |
+| 11 | §0.3 said `IH-` rows were cited "in three places" (**13**) and "never as support for a figure" (**brief 2 did exactly that**) | §0.3 rewritten |
+| 12 | Five wrong numbers in `VERIFIED` rows: certain-only denominator 106→**92**; "three of five" cells below 6→**all five**; "four family books"→**three**; `VAR-001`'s surface-form parenthesis; translations `SRC-070`→**`SRC-072`** | all corrected |
+| 13 | `PUR-011` verifies the letter **mapping**; the brief attached "not inferred from the letters" to the **ordering**, which is `PUR-028`, a `HYPOTHESIS` | §3.2.3 and copy corrected |
+| 14 | The by-book **null** was stated without estimate, direction or power, breaking `BF-004`'s control; `RA-002` is OPEN on that sentence | §3.2.5 and copy corrected |
+
+Also from the review and folded in: `DEDR-L-008` (the 10.3% is not re-derivable
+from this repository — the site JSON has no ledger row); `IC-P-001` (`D-045`'s
+notes cite `PUR4J-003` at a superseded value, 8 against 9); the October 2013 date
+is read off a filename, not attested; and `DEP-025`'s two fields carry prose
+rather than resolvable ids, because `dedr.csv` has no ledger row of its own —
+recorded, not fixed, since `DEDR-L-001` implicitly argues for giving it one.
+
+**Three of the fourteen are method failures by this unit** and are logged in
+`04-AUDITS/BIAS-FAILURE-LOG.csv` as `BF-015`, `BF-016` and `BF-017`. An earlier
+version of §5.3 said no `BF-` row was owed "because nothing in this unit was
+found to be a method failure by an earlier unit" — which quietly reframes the
+log as a record of *other* units' failures. Constitution §9 logs them wherever
+they occur, including here.
+
+### 5.2 Prestige-bias challenge
 
 *Did this privilege a claim because it is canonical, Sanskritic, Brahmanical,
 Indo-European, European, colonial, institutionally prestigious, repeatedly cited
 or nationally useful?*
 
-- **Brief 3 is where the risk sits**, and it runs the other way. Arnold 1905 is
-  the canonical, repeatedly cited instrument, and the brief caps it four times
-  (§3.2.4) rather than resting on it. `PUR-026` is quoted as `PROVISIONAL` and
-  `PUR-028` as `HYPOTHESIS`, both in the draft copy, not only in the apparatus.
-- **Brief 4** refuses Grassmann's gloss as a sense assignment and names "Kaste"
-  as a nineteenth-century category rather than an attested sense. A version of
-  this brief that sorted the 23 by the dictionary would have been faster and
-  would have deferred to the prestigious instrument.
-- **Brief 1** does not treat the DSAL lineage as authoritative because it is the
-  academic host. `DEDR-L-002` demotes it to one source precisely to stop that.
+**It did, and the first run of this test missed it.** That run said "Brief 3 is
+where the risk sits, and it runs the other way" — it examined Arnold, found him
+capped four times, and stopped. It never asked the §7 question about *fort*,
+which is the inherited English category sitting in the page slug, in the draft
+copy and in the register's own `supports_page` value. §7 was applied hard to
+*caste* in brief 4, where it cuts against a Victorian lexicographer, and skipped
+on *fort* in brief 3, where it complicates MelaKeela's own framing. That is the
+failure, and it is `BF-017`.
 
-### 5.2 Preferred-counter-narrative challenge
+What survives the corrected run:
+
+- **Brief 3** caps Arnold four times (§3.2.5), quotes `PUR-026` as `PROVISIONAL`
+  and `PUR-028` as `HYPOTHESIS` in the draft copy rather than only in the
+  apparatus, and now refuses "fort" as a default gloss in that copy.
+- **Brief 1** does not treat the DSAL lineage as authoritative because it is the
+  academic host; `DEDR-L-002` demotes it to one source precisely to stop that.
+- **Brief 4** refuses Grassmann's gloss as a sense assignment.
+
+### 5.3 Preferred-counter-narrative challenge
 
 *Did this accept a claim too easily because it is Dravidian, Indigenous,
 anti-colonial, anti-Brahmanical, subaltern, diffusionist or politically
 corrective?*
 
-- **Brief 3 §3.2.1 is the direct catch.** The commissioning instruction invited
-  reading the *púr-* strata against "three centuries too late". Those are
-  different axes, `rv01-reconciliation.md` §5 had already recorded it as a false
-  conflict, and using the strata to correct the headline would have produced a
-  correction in the platform's own preferred direction from a category error.
-  It is refused explicitly and in the brief's own text.
-- **Brief 1** does not conclude that 82% is right and 73% wrong, which would
-  have raised the Brahui–Tamil figure and favoured the Dravidian-continuity
-  reading. Two of the three tables are one source (`DEP-025`) and the third is
-  unretrieved (`DEDR-L-005`), so `DEDR-L-006` records the whole comparison as a
-  `HYPOTHESIS`.
-- **Brief 4** names `R-03` explicitly (§4.2.5), the owner's own rejection of
-  leading with the colour sense, because a sense sort built from the lexicon
-  would reproduce it.
-- **Brief 2** proposes no site count in either direction and declines to prefer
-  175, 194 or a range.
+**It did, in brief 1, and the first run of this test missed that too.** Omitting
+the Brahui cell (§1.2 qualification 1) made the case against a published
+MelaKeela figure look stronger than this unit's own data supports — and the
+omitted number is the one that most directly weakens it. Direction: against the
+published page, in the platform's favour. `BF-015`.
 
-### 5.3 Where this document is weakest
+A second instance, smaller: an earlier draft of brief 4's copy wrote that "caste"
+is *"not something the Rigveda says"* — asserting a sense-negative in the
+project's preferred direction, in a brief whose whole argument is that no sense
+reading has been done. Corrected in §4.4.
 
-Stated rather than hidden:
+What survives:
 
-1. **No page was retrieved.** Four briefs about live pages, none of which has
-   been read. Every "what the page asserts" section says so, but the limit is
-   real and it caps all four: no brief can say a page is wrong.
-2. **Brief 2's premise is partly uncorroborated.** The repository records the
-   atlas title with 175 and no 315. The pairing is reported, not confirmed.
-3. **Brief 4's premise is entirely uncorroborated** as to wording. The finding
-   holds on the substance — the sense sort is registered as owed — but the
-   quoted string is not in this repository.
-4. **`SRC-088` was not attempted.** `ArimeKannada/Dictionary` is on GitHub and
-   reachable by the channel that retrieved JAMBU. It was left for `RA-016`
-   because this unit was a corrections brief and retrieving it opens a
-   re-analysis of `IC-E-001` rather than closing one. That is a defensible
-   scope line and it is also the largest thing left undone here.
-5. **No `04-AUDITS/BIAS-FAILURE-LOG.csv` row was written.** Nothing in this
-   unit was found to be a method failure by an earlier unit — §3.2.1 is a trap
-   the earlier unit *avoided* and recorded. The `IC-E-001` framing is corrected
-   in `DEDR-L-002` to `DEDR-L-006` as an incompleteness rather than a bias
-   failure, and queued as `RA-016`.
+- **§3.2.1 is the strongest thing in the document.** The commissioning
+  instruction invited reading the *púr-* strata against "three centuries too
+  late". Those are different axes, `rv01-reconciliation.md` §5 had already logged
+  it as a false conflict, and using the strata there would have produced a
+  correction in the platform's preferred direction out of a category error. It is
+  refused explicitly and in the brief's own text. The independent review checked
+  brief 3's copy for a smuggled route back and found none.
+- **Brief 1** does not conclude that 82% is right and 73% wrong, which would have
+  raised the Brahui–Tamil figure and favoured the Dravidian-continuity reading.
+- **Brief 2** proposes no site count in either direction.
 
----
+### 5.4 Where this document is weakest
+
+1. **No page was retrieved.** Four briefs about live pages, none read. No brief
+   can say a page is wrong — only where the published wording outruns the
+   register.
+2. **Brief 2 is the weakest of the four and rests entirely on
+   `INHERITED-UNVERIFIED` rows.** It can show the record disagrees with itself
+   and nothing else, its premise about the title is uncorroborated here, and one
+   of its negative claims has already had to be retracted (§2.1).
+3. **Brief 4's premise is uncorroborated as to wording.** The substance holds —
+   the sense sort is registered as owed — but the quoted string is not in this
+   repository.
+4. **`SRC-088` was not attempted**, and it is the cheapest thing bearing on
+   `D-038`. Left for `RA-016`.
+5. **`IC-E-001`'s 10.3% could not be checked** (`DEDR-L-008`). Its input is not
+   in this repository and has no ledger row, so every figure brief 1 quotes from
+   it is taken on report.
+6. **This document's own self-tests failed.** §5.2 and §5.3 both cleared work an
+   independent reviewer did not clear, in both directions the two tests exist to
+   catch. The tests are worth no more than the independence of whoever runs
+   them, and that is the general finding here.
 
 ## 6. Summary for approval
 
@@ -827,7 +1052,7 @@ Four independent decisions. Each can be taken without the others.
 
 | # | Page | Change | Blocked on |
 |---|---|---|---|
-| 1 | `the-northwest-cousin.html` | Delete "counted directly from the Dravidian etymological dictionary"; name the digitization; carry the range | **`D-038` OPEN** — three options on file, drafted for one |
+| 1 | `the-northwest-cousin.html` | Replace "counted directly from the Dravidian etymological dictionary"; name the digitization; carry the range | **`D-038` OPEN** — three options on file, drafted for one; option two ("keep the present wording") remains available |
 | 2 | `artifact-atlas.html` | Remove the count from the title; move it inside as a filter-bound claim | **`D-034` OPEN** — the live one; no number proposed |
 | 3 | `dasa-forts-rigveda.html` | 61 → 63 with the unit named; drop any late reading of RV 3.45; leave "three centuries too late" alone | `D-044`, `D-045` open but **non-blocking** |
 | 4 | `what-varna-meant.html` | Keep the 23 and the list; state the compound boundary; remove "sorted by sense" | **Nothing** — waiting on a unit of work, not a decision |
