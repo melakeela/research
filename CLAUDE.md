@@ -71,6 +71,13 @@ a WebSearch snippet as a substitute for the source. Collect blocked
 domains through the session and list them at the end of the PR
 under "Domains requested".
 
+## Committing
+
+Commit and push after every substantive unit of work, not only at
+the end of the task. Uncommitted work does not survive a session
+restart. If a task produces registers, ledger rows and notes, push
+each as it is finished rather than batching them into one final
+commit.
 
 ## Positions already settled by the owner
 
