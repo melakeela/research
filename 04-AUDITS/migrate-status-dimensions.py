@@ -300,7 +300,33 @@ def migrate_owner_decisions():
     return changed
 
 
+def selftest():
+    """Exercise the decomposition rules directly.
+
+    No row in the tree now reaches the refusal branch — E-11 is restored and
+    held — so without this the guard that stops a VERIFIED promotion is code
+    that nothing runs. Adversarial review made that point about the first
+    version of this repair and it is a fair one.
+    """
+    global REGISTER_CAN_CARRY_RETRIEVAL
+    cases = [
+        (True, "VERIFIED as a measurement; not a claim about origins", ("VERIFIED", "UNASSIGNED")),
+        (False, "VERIFIED as a measurement; not a claim about origins", None),
+        (False, "PROVISIONAL, on one source", ("PROVISIONAL", "UNASSIGNED")),
+        (True, "not a status at all", None),
+    ]
+    for can_carry, cell, expected in cases:
+        REGISTER_CAN_CARRY_RETRIEVAL = can_carry
+        got = decompose(cell)
+        assert got == expected, (can_carry, cell, got, expected)
+    REGISTER_CAN_CARRY_RETRIEVAL = True
+    print("selftest: decomposition rules hold "
+          f"({len(cases)} cases, including the refusal of a VERIFIED opening "
+          "in a register that cannot record a retrieval)")
+
+
 def main():
+    selftest()
     migrate_reaudit_queue()
     migrate_owner_decisions()
     for rel in CLAIM_REGISTERS:

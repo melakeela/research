@@ -23,6 +23,7 @@ The classification table below is the assertion. The script's job is to
 prove it is complete: every tracked path must appear exactly once, or the
 build fails. A file cannot enter this repository without an authority.
 """
+import hashlib
 import subprocess
 import sys
 from pathlib import Path
@@ -178,7 +179,7 @@ def main():
                                          text=True, check=True).stdout.split()
                if not p.endswith(".gitkeep")]
     rows, unclassified = [], []
-    for n, rel in enumerate(sorted(tracked), start=1):
+    for rel in sorted(tracked):
         hit = None
         for entry in TABLE:                      # first exact, then glob
             if entry[0] == rel:
@@ -194,7 +195,12 @@ def main():
             continue
         _, function, role, canon, authority, writer, validated, prefix, gate, notes = hit
         rows.append({
-            "file_id": "CF-%03d" % n, "function": function, "path": rel, "role": role,
+            # Derived from the path, not from position. A positional id
+            # renumbered 37 rows when two files were added, so CF-041 named a
+            # different file before and after a commit - an identifier that
+            # does not name one row is not an identifier.
+            "file_id": "CF-" + hashlib.sha256(rel.encode("utf-8")).hexdigest()[:8],
+            "function": function, "path": rel, "role": role,
             "canonical_for_function": canon, "authority": authority,
             "responsible_writer": writer, "validated": validated,
             "id_prefix": prefix, "evidence_gate_column": gate, "notes": notes,
