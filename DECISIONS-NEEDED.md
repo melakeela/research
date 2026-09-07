@@ -38,12 +38,21 @@ window as the renumbering. The egress section is now **D-042**. Five further
 decisions raised on the domain E branch — two written up here as `D-015` and
 `D-016`, three carried only as CSV rows at `D-017` to `D-019` — had taken the
 highest number visible in the file being written rather than the next free one
-from the CSV; they are now **D-037** to **D-041**. Every move is in
-`09-DECISIONS/DECISION-ID-MAP.csv`, and the identifiers already on `main` did
-not move. The egress section moved a third time when `main`
-merged PR #18 and allocated `D-042` to the mandated-registers question: it is
-now `D-042`, the next free identifier above `main`'s highest, and `main`'s
-`D-042` is untouched.
+from the CSV; they are now **D-043** and **D-038** to **D-041**. Every move is
+in `09-DECISIONS/DECISION-ID-MAP.csv`, and the identifiers already on `main`
+did not move. The egress section moved a third time when `main`
+merged PR #18 and allocated `D-036` to the mandated-registers question: it is
+now **D-042**, the next free identifier above `main`'s highest, and `main`'s
+`D-036` is untouched.
+
+A third collision was cleared on 2026-09-07, when `main` merged PR #17 and
+allocated `D-037` to the question of which section of
+`MELA-KEELA-WHO-MADE-THE-PAST.md` carries the racialization-of-"Aryan"
+programme. The substrate-literature egress-allowlist section, which this
+branch held at `D-037`, is now **D-043**: `D-038` to `D-042` stand above
+`main`'s highest but are already held by this branch's own rows, so `D-043`
+is the next free identifier. `main`'s `D-037` is untouched, and the move is
+recorded in `09-DECISIONS/DECISION-ID-MAP.csv`, keyed by branch.
 
 A third series exists and is not part of this namespace. The inherited handoff
 numbered its own owner decisions `D-01` to `D-20`; those are now written
@@ -900,7 +909,7 @@ half, or accept the corpus-internal half as the domain's Release 1 state?
 
 ---
 
-## D-037 — Egress allowlist: the substrate literature is unreachable
+## D-043 — Egress allowlist: the substrate literature is unreachable
 
 **Raised:** 2026-09-07, domain E. **Category:** institutional access.
 **Blocks:** four of the eleven distinctions constitution §4.E requires.
@@ -946,7 +955,7 @@ unit's data gives 223 of 273 — 82% against 73%. The raw count moves as
 well as the percentage the page correctly warns readers about.
 
 Neither can be adjudicated while `dsal.uchicago.edu` is blocked, so
-this is downstream of D-037 but is escalated separately because it
+this is downstream of D-043 but is escalated separately because it
 touches published copy.
 
 **Asked of the owner:** whether the page should name its digitization
