@@ -107,6 +107,66 @@ def load_glosses():
     return by_lemma
 
 
+# The cooked/raw pair. DJ-009 claims RV 2.35.6 is the only place either word is
+# applied to a structure. That is a claim about a CLOSED set of 36 tokens, so it
+# is checked by enumeration rather than disclosed as unsurveyed — the previous
+# two versions of DJ-009 were an unmeasured assertion and a wrong
+# characterisation, and this function exists so the third is neither.
+COOKED_RAW = {"pakvá-", "āmá-"}
+
+# Structures, to test the "only place" clause against something positive.
+STRUCTURE = {"púr-", "dehī́-", "paridhí-", "harmyá-", "gr̥há-", "dáma-",
+             "duroṇá-", "sádas-", "kṣáya-", "víś-"}
+
+
+def agreement_partners(toks_in_pada, tok):
+    """Nominal stems in the same pāda agreeing with tok in case/number.
+
+    Adjective-noun agreement is the only evidence available here that a word
+    modifies another; sharing a stanza is not, which is the mistake PUR-022's
+    collocation profile was written to avoid and DJ-009 v2 made anyway.
+    """
+    def feats(t):
+        d = dict(x.split("=", 1) for x in t["morph"].split("|") if "=" in x)
+        return d.get("case"), d.get("number")
+    c, n = feats(tok)
+    if not c:
+        return []
+    out = []
+    for o in toks_in_pada:
+        if o is tok or o["lemma"] in COOKED_RAW:
+            continue
+        oc, on = feats(o)
+        if oc == c and on == n:
+            out.append(o["lemma"])
+    return out
+
+
+def cooked_raw_scan(toks):
+    """Print every pakvá-/āmá- token with what it agrees with. DJ-009."""
+    by_pada = collections.defaultdict(list)
+    for t in toks:
+        by_pada[(t["stanza"], t["pada"])].append(t)
+    print("\n== THE COOKED/RAW PAIR, EVERY TOKEN, WITH ITS AGREEMENT PARTNERS ==")
+    hits_on_structure = []
+    for lem in ("pakvá-", "āmá-"):
+        rows = [t for t in toks if t["lemma"] == lem]
+        print("  %s — %d tokens" % (lem, len(rows)))
+        for t in rows:
+            partners = agreement_partners(by_pada[(t["stanza"], t["pada"])], t)
+            struct = [p for p in partners if p in STRUCTURE]
+            if struct:
+                hits_on_structure.append((t["stanza"], lem, struct))
+            print("      %s %s %-12s agrees with %s%s"
+                  % (t["stanza"], t["pada"], t["surface"],
+                     partners or "(nothing in this pāda)",
+                     "   <-- STRUCTURE" if struct else ""))
+    print("  tokens agreeing with a structure word: %d %s"
+          % (len(hits_on_structure), hits_on_structure))
+    print("  DJ-009's 'only place' clause holds iff that list is exactly"
+          " [('02.035.06', 'āmá-', ['púr-'])].")
+
+
 def main():
     toks = list(csv.DictReader(open(TOKENS, encoding="utf-8"), delimiter="\t"))
     by_stanza = collections.defaultdict(list)
@@ -200,6 +260,8 @@ def main():
         print("  stem %-8s %d lemmas" % (repr(stem), len(hits)))
         for c, l, m in hits[:4]:
             print("      %5d  %-16s %s" % (c, l, m[:88]))
+
+    cooked_raw_scan(toks)
 
     # durgá- is the term the gate turns on: every token, with its case.
     print("\n== EVERY durgá- TOKEN ==")

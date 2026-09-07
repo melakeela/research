@@ -142,9 +142,13 @@ finding:
 - **The legs that ran cut both ways, and after review they cut less sharply
   against the thesis than the unit first wrote.** Of six diagnostic
   predictions, three verdicts were withdrawn on review and **all three moved
-  toward the thesis**: the brick and city legs are `INCONCLUSIVE` rather than
-  failed, because Renou supplies both words at RV 2.35.6 and 1.173.10
-  (`DJ-013`) and the corpus carries the fired/unfired pair (`DJ-009`); and the
+  toward the thesis** — then two of them moved partly back at the second round,
+  which is recorded on the row. The brick leg (P1) **fails for the gloss column
+  and cannot be typed under §6 at all** from what is retrieved: the two items
+  that had moved it off `FAILS` both weakened, since Renou's "briques" is his
+  bracketed supplement and `pakvá-`/`āmá-` is culinary. The city leg (P2) is
+  `INCONCLUSIVE` and stays so, on Renou's unbracketed *"maître de la cité"*
+  (`DJ-013`); and the
   four-term leg is no longer "fails in two of four", because `durgá-` is
   contested rather than failed (`DJ-011`) and the term list itself is on `HOLD`
   (`DJ-010B`). One leg survives intact and tells against the thesis: the counts
@@ -196,9 +200,11 @@ section both recorded "one philological line" as an archival limitation.
 **Renou (`SRC-076`) and Elizarenkova (`SRC-075`) were ledgered, retrieved, and
 sitting in the same clone.** `rv-pur-nandi-gate.py` read three translators and
 disclosed the fourth and fifth as a limitation instead of opening them. Renou
-supplies *"forteresses (en briques) crues"* at RV 2.35.6 and *"maître de la
-cité"* at RV 1.173.10 — **brick and city, the two words the unit reported as
-absent, at the two locators where it matters most** (`DJ-013`). A disclosure is
+supplies *"maître de la cité"* at RV 1.173.10 — **a `púr-` read as a city, in
+his own voice, at one of the two locators where it matters most** (`DJ-013`).
+(This paragraph also claimed *brick* at RV 2.35.6 until the second round; that
+word is inside Renou's own supplement convention and is not in the Sanskrit.)
+A disclosure is
 not a correction, and where the check is free the disclosure is a substitute
 for work.
 
@@ -232,11 +238,13 @@ asserts.
 **What it missed, `BF-017`.** The correction it applied — typing the brick
 absence `NOT PRODUCED` on the ground that the corpus "nowhere describes
 construction technique for any structure" — was itself an unmeasured assertion,
-shipped at `VERIFIED`. Measured afterwards, it is wrong: the corpus carries
-`pakvá-` "gebacken" (25) against `āmá-` "roh, ungekocht" (11), which *is* the
-brick-technology opposition, and puts the unfired term on a fort. **The
-mechanism that rescued the unit from an unearned deflation was itself
-unearned.**
+shipped at `VERIFIED`. **The mechanism that rescued the unit from an unearned
+deflation was itself unearned** — and so, at the second round, was its first
+replacement. `pakvá-` "gebacken" (25) against `āmá-` "roh, ungekocht" (11) is
+a **culinary** pair, not "the brick-technology opposition" this note called it:
+every `pakvá-` agrees with a food word. What survives is narrower and is the
+whole finding — RV 2.35.6 applies the raw term to a *púr*, and across all 36
+tokens it is the only place either word touches a structure (`DJ-009`).
 
 **And it missed the load-bearing one.** `DJ-011` shipped at `VERIFIED` claiming
 no `durgá-` is ever "broken, besieged, entered or held" — the strongest single

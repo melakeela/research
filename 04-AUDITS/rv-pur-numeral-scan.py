@@ -9,7 +9,14 @@ reproduced from anything committed. That was the finding; this is the repair.
 
 WHAT THE FIRST SCAN DID, AND ITS THREE FAILURE MODES
 
-It scanned the Grassmann gloss of every lemma occurring in the 103 passages for
+ATTRIBUTION CORRECTED 2026-09-07: what this script calls "the Grassmann gloss"
+  is the Zurich lemma-meaning column (LEMMA_ZÜRICH_BEDEUTUNG), not Grassmann's
+  Worterbuch, which this repository has never retrieved. SRC-089, DEP-026,
+  BF-017, RA-018. Every measurement below is unaffected; only the source named
+  is wrong. The name is left in the prose below so the correction is legible
+  against what shipped.
+
+  It scanned the gloss of every lemma occurring in the 103 passages for
 a German number word, with word boundaries. All three parts of that leaked:
 
   1. GLOSS COVERAGE. Only 585 of the 721 distinct lemmas carry a Grassmann

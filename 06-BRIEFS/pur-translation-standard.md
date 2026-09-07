@@ -287,12 +287,17 @@ wall. Set beside the gloss column's `púr-` as a wall "of stones and clay", the
 two Rigvedic wall-words converge on **earthwork** in that column, and neither
 converges there on masonry, brick or city.
 
-**That is an observation about one gloss column and it is contradicted inside
-the same corpus.** Renou renders `púr-` *"forteresses (en briques) crues"* at
-RV 2.35.6 and *"maître de la cité"* at RV 1.173.10 (`DJ-013`); and the corpus
-carries `pakvá-` "gebacken" against `āmá-` "roh, ungekocht", putting the
-unfired term on a fort (`DJ-009`). An earthwork of plastered mud and an
-unfired-brick wall are not far apart, and nothing here decides between them.
+**That is an observation about one gloss column, and it is complicated inside
+the same corpus.** At RV 1.173.10 Renou renders `pū́rpati-` *"maître de la
+cité"* — unbracketed, a `púr-` read as a **city** by a translator in the pinned
+clone (`DJ-013`). At RV 2.35.6 he has *"forteresses (en briques) crues"*, but
+"en briques" is his own bracketed supplement — the Sanskrit `āmā́su pūrṣú` has
+no material word — so that is his inference, not the text's statement, and §7
+forbids quoting it as the latter. What the corpus itself supplies at that
+passage is only `āmá-` "raw, uncooked", the sole place its cooked/raw pair
+touches a structure (`DJ-009`). An earthwork of plastered mud and an
+unfired-brick wall are not far apart, and nothing retrieved here decides
+between them.
 `DEP-005`, `DEP-024`, `DEP-026`; `DJ-I-02` says what this can and cannot
 bear.
 

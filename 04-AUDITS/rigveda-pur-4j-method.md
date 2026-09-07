@@ -208,6 +208,14 @@ the thing that measurement is not — whether a numeral **governs** `púr-`.
 | **B. Proximity** — same pāda / hemistich / stanza | cheap, and orders candidates | a stanza routinely holds two numerals counting different things (§4.3) |
 | **C. Translation** — how many of Griffith, Geldner, Grassmann and Elizarenkova render "N forts" | the only instrument reflecting someone who read the syntax | not independent of A and B; and Grassmann's translation is not independent of the Grassmann glosses that fixed the family (`DEP-021`) |
 
+
+> **Attribution corrected 2026-09-07.** The gloss scanned here is the Zürich
+> lemma-meaning column (`LEMMA_ZÜRICH_BEDEUTUNG`), **not** Grassmann's
+> *Wörterbuch*, which this repository has never retrieved. `SRC-089`,
+> `DEP-026`, `BF-017`, `RA-018`. The measurement is unaffected; only the
+> source named is wrong.
+
+
 The three are carried through into the register in their own columns, and the
 verdict is a separate column. **Six rows record the verdict overriding an
 instrument**, each naming which instrument and why. That is the audit trail: a
@@ -260,6 +268,16 @@ separated by intervening words in four. RV 1.54.6d splits them around the verb:
 **Is it modal?** **No. One hundred is**, 8 passages to 6 — 9 to 6 if the plural
 "hundreds" is counted with the hundreds. This answers the question the
 reconciliation brief left open at §2.6 item 2.
+
+
+> **Figure corrected 2026-09-07.** The register gives **9** distinct
+> passages with a `śatá-` count of the fort word — seven singular `śatám`
+> and two plural (`śatā́` RV 1.53.8, `śatā́ni` RV 6.31.4) — against six for
+> ninety-nine. `PUR4J-002` and `PUR4J-003`, both `VERIFIED`, say 9 to 6 and
+> are right. "8 to 6 — 9 to 6 if the plural is counted" cannot hold, since
+> 7 + 2 = 9. The conclusion, that 99 is not modal, is unaffected on every
+> reading. `DJ-015`, `RA-019`.
+
 
 **Is it maximal?** No. 100, "hundreds" and 1000 are all larger.
 
@@ -798,6 +816,16 @@ against. 99 is now a `VERIFIED` count of six passages with locators, and it
 outranks the register's 106 on the question of how many forts a passage names
 (`PUR4J-I-02`). What is demoted is only its claim to be *the* number, and that
 demotion is a measurement: 8 passages to 6.
+
+
+> **Figure corrected 2026-09-07.** The register gives **9** distinct
+> passages with a `śatá-` count of the fort word — seven singular `śatám`
+> and two plural (`śatā́` RV 1.53.8, `śatā́ni` RV 6.31.4) — against six for
+> ninety-nine. `PUR4J-002` and `PUR4J-003`, both `VERIFIED`, say 9 to 6 and
+> are right. "8 to 6 — 9 to 6 if the plural is counted" cannot hold, since
+> 7 + 2 = 9. The conclusion, that 99 is not modal, is unaffected on every
+> reading. `DJ-015`, `RA-019`.
+
 
 ### 8.3 Method failures logged
 
