@@ -29,21 +29,34 @@ and §11 (packets R20–R21). Ordering below the first item is owner decision
    half is on `HOLD-002` and `HOLD-003`: every Dravidian, Munda and
    Austroasiatic source was refused at the egress gateway. Escalated as
    `D-032`.
+5. **Domain M — the Brahui geographic measurement, challenged by the owner**
+   (part of domain **M**) — `03-REGISTERS/domain-m-brahui-position.csv`
+   (26 claims: 20 VERIFIED, 5 PROVISIONAL, 1 SUPERSEDED; the owner's two
+   objections are DMB-004 and DMB-005, recorded as raised). Method and
+   both adversarial tests:
+   `04-AUDITS/domain-m-method.md`; scripts `brahui-loo-geography.py` and
+   `north-dravidian-cognate-sharing.py`. Method failures `BF-005` and
+   `BF-006`; re-audits `RA-004`, `RA-005`; provenance question `D-035`.
+   The challenged measurement was **not in this repository** and had to be
+   reconstructed (`DMB-003`). The comparative half is on `HOLD-004`:
+   Krishnamurti 2003, the book every retrievable assertion of North
+   Dravidian traces to, has never been read here. **None of the six §4.M
+   models is closed by this unit and none was allowed to be.**
 
 ## Now
 
-5. **Controller amendment.** Install the methodology, reconcile it against
+6. **Controller amendment.** Install the methodology, reconcile it against
    the controller, seed the decisions register and this queue. *(This
    change.)* No research begins until it is reviewed.
 
 ## Blocked on inputs
 
-6. **Backlog reconciliation** — `06-BACKLOG/BACKLOG-COVERAGE.csv`, one row
+7. **Backlog reconciliation** — `06-BACKLOG/BACKLOG-COVERAGE.csv`, one row
    per item 1–89 with a destination, deliverable, hold or reasoned
    rejection. `RESEARCH HOLD`: the "MelaKeela.com v2 — Master Research,
    Product & Institutional Backlog" is not in this repository and cannot be
    reconstructed by inference. See `DECISIONS-NEEDED.md` D-014.
-7. **Packets R1–R19.** Named in the site review running list; their
+8. **Packets R1–R19.** Named in the site review running list; their
    definitions live in the prompt-pack (`MELA-KEELA-CLAUDE-FULL-SEQUENCE.md`,
    `MELA-KEELA-LANGUAGE-RESEARCH-PROMPTS.md`,
    `MELA-KEELA-CLAUDE-LIVE-SITE-AUDIT-PROMPT.md`), which is also absent.
@@ -71,7 +84,7 @@ thing the investigation is most likely to get wrong.
 | J | The Rigvedic forts | Translating *pur* into a Mature Harappan city; one famous count standing for the corpus |
 | K | Indus writing and institutional discontinuity | Concluding that populations vanished because institutions and archives did |
 | L | Avestan writing | Reading a Sasanian-era alphabet as transparent evidence of Gāthic pronunciation |
-| M | Brahui, Kurukh and Malto | Medieval migration treated as documented fact; living people used as linguistic fossils |
+| M | Brahui, Kurukh and Malto | Medieval migration treated as documented fact; living people used as linguistic fossils — *geographic-measurement challenge answered 2026-09-07; North Dravidian measured on lexical data only and neither validated nor refuted; comparative half on `HOLD-004`* |
 | N | Grammatical ontologies | Typological similarity read as descent or contact without a mechanism |
 | O | Pāli, Prakrit and vernacular Indo-Aryan | Prakrit as corrupted Sanskrit; one pure language decaying |
 | P | South Asian linguistic convergence | Modern areal distribution converted automatically into prehistoric substrate |
