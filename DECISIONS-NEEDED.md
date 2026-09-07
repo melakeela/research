@@ -320,7 +320,73 @@ inventory.
 **Status unchanged at `PARTIALLY-SATISFIED`.** Still needed: an answer on
 Part IV, and the 89-item backlog document if Part IV is a digest.
 
----
+*(Reconciled 2026-09-07 with the backlog-recovery update below, which was
+written independently on `main`. Both narrowings stand. The CSV governs
+status, and `09-DECISIONS/OWNER-DECISIONS.csv` records this entry as `OPEN`
+for the reasons the next update sets out; read `PARTIALLY-SATISFIED` here as
+the description of how much of the entry the prompt-pack closed, not as the
+row's status.)*
+
+### Update 2026-09-07 — the backlog is recovered in title form; the text is not
+
+The 89 numbered item titles, their thirteen section headings and the six
+unnumbered programme names were recovered from a ChatGPT conversation and are
+committed unchanged at `06-BACKLOG/BACKLOG-v2-ITEMS.md`. They enter
+`INHERITED-UNVERIFIED`. `06-BACKLOG/BACKLOG-COVERAGE.csv` now exists, with 95
+rows on the column set §10 specifies — items 1–89 plus the six programmes,
+which the original leaves unnumbered between items 65 and 66 and which the CSV
+keeps in that position.
+
+**What is now closed:** the row-allocation half. Eighty-nine coverage rows can
+no longer be said to be unwritable for want of a list, and the body of this
+entry above — "eighty-nine coverage rows cannot be written from a document
+that is not present" — no longer describes the situation for `backlog_id` and
+`title`.
+
+**What is not closed, and why this entry stays OPEN:**
+
+1. **The full original text of every item is still outstanding.** What was
+   recovered is a title list. A title is not a specification. "WATER",
+   "OBJECT", "FIELD", "PROVE IT", "Revision history" and "Layered depth" do
+   not state their own scope, gate or deliverable. Seven columns of
+   `BACKLOG-COVERAGE.csv` — `research_required`, `product_spec_required`,
+   `technical_dependency`, `institutional_dependency`,
+   `proposed_destination`, `release`, `final_zip_location` — are empty for
+   that reason and cannot be filled by inference from a one-line title.
+
+2. **A second document arrived in the same recovery and is not that text.**
+   `06-BACKLOG/EXPANSION-PROMPT-2026-09-07.md` is a ChatGPT expansion and
+   execution prompt dated 7 September 2026. It carries per-item prose under
+   "Inherited work", "Build out" and "Gate", written from prior conversation
+   context with no retrieval. It is committed separately, not merged into the
+   items file, and its header says plainly that it is a model's
+   reconstruction. Reading it as the recovered original would be precisely
+   the substitution this entry was opened to prevent, and it is the more
+   dangerous version of that failure because it *looks* like the missing
+   text. Nothing in it promotes a claim, closes a decision or authorises
+   work. Its "Execution sequence" and "Required deliverables" sections are
+   proposals recovered from a chat, not instructions this repository has
+   accepted.
+
+3. **The route inventory is still missing, and now blocks two named
+   columns.** `06-BRIEFS/SITE-INVENTORY.md` does not exist on any branch, and
+   no other current route list is in the repository. `current_site_coverage`
+   and `existing_route` therefore carry an explicit `NOT ESTABLISHED` marker
+   in all 95 rows. Three substitutes were considered and rejected — the
+   frozen 2026-09-01 curatorial-audit baseline (D-033 leaves open whether it
+   describes the live build), the registers' `supports_page` values (almost
+   all marked *proposed*; the one live page named anywhere in them is
+   `the-killed.html`, which nothing maps to a backlog item), and the handoff
+   counts (`INHERITED-UNVERIFIED` and mutually contradictory, per `IH-104`,
+   `IH-250`, `IH-251`). The reasoning is in `06-BACKLOG/README.md`.
+
+**Decision, restated:** supply the **full original text** of the 89-item
+backlog, or declare the title list sufficient and the text superseded. Supply
+`06-BRIEFS/SITE-INVENTORY.md` or a current route list; that alone regenerates
+two of the four unpopulated column groups without touching anything else.
+D-008, D-009 and D-011 remain blocked, because a release cannot be scoped from
+titles alone.
+
 
 # Decisions raised by the prompt-pack intake
 
@@ -550,6 +616,8 @@ carried in `notes` where a row needs them.
 
 **Decision:** keep one `status` column, split into four separately recorded
 axes, or keep `status` as the gate and add the other three beside it.
+
+---
 
 # Decisions raised by the curatorial audit v1.1 schema review
 
