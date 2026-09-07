@@ -444,9 +444,12 @@ should. Logged in `04-AUDITS/REAUDIT-QUEUE.csv`.
 
 ### 5.5 Poet lineage — filled at three removes, and held
 
-Geldner's per-hymn group heading names a poet for **55** of the 103 passages
-and a deity or a metre for the other **48** ("hymns to Indra" alone accounts for
-26). The 48 are **NOT PRODUCED**, not anonymous: the headings are an
+Geldner's per-hymn group heading names a poet for **55** of the 103 passages.
+For the other **48** it names a deity (45 — "hymns to Indra" alone accounts for
+26), a metre (1), a collection (1), or a strophe-type that is also a poet's
+name (1: "the Pragātha group" at RV 9.107.10, counted as *not* a poet
+attribution, which is the conservative reading; the other way the split is
+56/47). The 48 are **NOT PRODUCED**, not anonymous: the headings are an
 arrangement, and where Geldner arranged by deity he recorded no poet.
 
 The 55 that carry a name carry it at three removes — Geldner 1951 follows the

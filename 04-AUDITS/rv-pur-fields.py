@@ -223,9 +223,23 @@ def main():
         head = r["poet_group"]
         if DEITY_HEADING.search(head):
             poet = ""
-            basis = ("NOT PRODUCED. Geldner's group heading for this hymn names a "
-                     "deity or a metre, not a poet: \"%s\". Not evidence that the "
-                     "hymn is anonymous. HOLD-006." % head)
+            if "hymns to " in head:
+                kind, extra = "a deity", ""
+            elif "Tristubh" in head:
+                kind, extra = "a metre", ""
+            elif "Valakhilya" in head:
+                kind, extra = "a collection", ""
+            else:
+                kind = "a strophe-type"
+                extra = (" This one is genuinely ambiguous: Pragātha is both a "
+                         "strophe-type and a poet's name, and the heading does "
+                         "not say which it means. Counted here as NOT a poet "
+                         "attribution, which is the conservative reading.")
+            basis = ("NOT PRODUCED. Geldner's group heading for this hymn names "
+                     "%s rather than a poet: \"%s\".%s Not evidence that the "
+                     "hymn is anonymous — the headings are an arrangement, and "
+                     "where Geldner arranged by something other than authorship "
+                     "he recorded no poet. HOLD-006." % (kind, head, extra))
         else:
             poet = head
             basis = ("Geldner's hymn-group heading (SRC-070), reproduced in "
