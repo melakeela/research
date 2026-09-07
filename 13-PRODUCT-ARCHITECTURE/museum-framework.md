@@ -1649,3 +1649,337 @@ links"*:
 6. Show a total in its own voice.
 7. Let a filter silently drop the weak evidence to produce a cleaner picture.
 8. Derive an A→C relationship across domains from A→B and B→C.
+
+---
+
+## 9. PROVE IT
+
+### 9.1 What it is
+
+PROVE IT is the institution's **investigation mode**: a structured walk in which
+a visitor tests a claim against the evidence the institution itself holds, using
+the institution's own falsifiers, and can reach a different conclusion from the
+institution's.
+
+§12 names it without defining it. This specification takes it to be the product
+expression of constitution §2's hardest requirement — that the record stay
+capable of contradicting *"MelaKeela's own pages, the owner's preferred
+hypothesis, and your own previous answer"* — because that requirement is
+otherwise a promise with no surface. If PROVE IT cannot produce the outcome "the
+institution is wrong here", it is a quiz, and a quiz that only confirms is
+publicity.
+
+Where this reading of PROVE IT is not what the owner intends, the specification
+below is the wrong one and should be replaced; see **D-024**.
+
+### 9.2 The structure of a run
+
+A run is anchored on a `mk:qst:` or a `mk:clm:` and proceeds in six stages,
+mirroring the fourteen-step method rather than a game loop:
+
+1. **The proposition.** Stated exactly, with its scope: date range, geography,
+   evidence classes required, terms needing original-language work — Step 1's
+   fields, shown as given.
+2. **The rivals.** Every viable explanation, plus the null explanation,
+   independently stated. Gated-out explanations appear as Exclusion Notes with
+   the gate they failed (§3.10), so the visitor sees what was ruled out *and
+   why*, not a shortlist presented as the whole field.
+3. **The evidence.** The Evidence Links, with roles, locators, editions,
+   retrieval dates and independence groups. The visitor can open each in the
+   primary-source viewer (§7.1). **The independence tree is shown** (§3.5): nine
+   citations resolving to one 1953 report is the single most instructive thing
+   this mode can teach.
+4. **The gates.** Chronology, geography, mechanism, positive evidence, diagnostic
+   predictions — each applied by the visitor, with the data needed to apply it
+   present on the surface. A gate the visitor fails differently from the
+   institution is recorded (§9.4).
+5. **The absences.** What should exist if the proposition were true, where,
+   whether it was likely produced, likely preserved, searched for, reachable,
+   recognisable — the Absence records (§3.7) with their types. This is the stage
+   most likely to change a visitor's mind and the one most museums omit.
+6. **The falsifier.** What would change the conclusion (§3.9), and whether it is
+   currently testable or blocked, and by what.
+
+### 9.3 Rules the mode runs under
+
+- **No score.** No points, no streak, no "correct". The mode has no right answer
+  to withhold, because several of the propositions in this institution do not
+  have one yet.
+- **The institution's own position is disclosed, and disclosed last.** After the
+  visitor has worked the evidence, the surface shows what MelaKeela currently
+  holds, with its status and its confidence inputs — the "MELAKEELA'S CURRENT
+  INTERPRETATION" element of the constitution's Step 14 public-copy shape.
+- **Disagreement is a first-class outcome.** The visitor can record that they
+  reach a different conclusion, and say which evidence, gate or absence drove it.
+- **Every run is exportable** (§5.2) as the claim, the evidence set, the gates and
+  the visitor's own reasoning. A run is citable.
+- **PROVE IT never runs on a `HOLD`** without showing the hold: a visitor must
+  not be asked to weigh evidence the institution has told them it could not
+  reach.
+- **The two adversarial tests are visible** (§3.11). A run on a claim that
+  contradicts a dominant account shows the preferred-counter-narrative test as
+  well as the prestige-bias test, with the asymmetry statement (§11.2). PROVE IT
+  is where the institution demonstrates that it applies the second test to
+  itself, and it is worthless if it applies only the first.
+
+### 9.4 The route from disagreement to correction
+
+A recorded disagreement is not a comment. It enters the correction pipeline
+(§11.6) as a **challenge candidate** with the run attached: the claim, the
+revision, the evidence the visitor relied on, the gate or absence they read
+differently, and what they say would settle it.
+
+Triage is explicit and public in aggregate: how many challenges were received on
+each claim, how many were assessed, how many changed a claim, and how many were
+declined with a reason. A challenge that succeeds produces a revision record
+(§3.6) with `triggering_record` pointing to the correction, so the visitor's
+challenge is permanently part of the claim's history.
+
+**Design consequence.** PROVE IT is therefore not a marketing feature bolted to
+an exhibit. It is the public intake for the correction process, and it is the
+reason the Reconnection posture has a correction ledger to display (§1.6.2).
+
+---
+
+## 10. Living Worlds, the Field Bag, the children's investigation, and classroom mode
+
+### 10.1 The Living World pattern
+
+A **Living World** is a themed traversal of the whole evidence base along a
+single material or ecological thread, crossing every posture rather than sitting
+in one. It is the format §14 refers to when it asks whether WATER is the first.
+
+Pattern requirements:
+
+- A Living World is **not a subject category**. It is a thread that reaches
+  objects, places, words, texts and questions that are already in the graph. It
+  creates no private content and no claim that does not exist outside it.
+- It must cross at least four postures, including at least one of Extraction /
+  Collection or Reconnection. A Living World that visits only the pleasant
+  postures is a brochure.
+- Its through-line is a **claim set**, listed and statused at the entrance, so a
+  visitor can see what the thread asserts before walking it.
+- It carries its own absences: what the thread cannot show, and why.
+- It is exportable as a claim set (§5.2).
+
+### 10.2 WATER
+
+WATER is the proposed first Living World. **Whether it is first is
+`OWNER-DECISIONS.csv` D-005 and is not decided here**; this section specifies
+what it would be if built, so that the decision is made against a real
+description rather than a title.
+
+**Thread:** water as evidence — its management, movement, absence, ritual,
+vocabulary, and the labour and authority attached to it.
+
+**What it reaches, by evidence class:**
+
+| Class | Examples of what the thread pulls in |
+|---|---|
+| environmental | palaeochannels, monsoon proxies, sediment and pollen cores, aridification sequences, with sampling resolution and calibration |
+| material | wells, drains, tanks, reservoirs, bunds, water-lifting devices, boats, port structures — each with findspot, technique and custody |
+| textual | hydrological and hydraulic vocabulary in every corpus available, with the five-date spine per text |
+| linguistic | water and irrigation lexemes across families, each with attestation mode; loans and residues kept distinct (§4.3) |
+| epigraphic | inscriptions recording tank construction, donation, maintenance obligations, and who was required to labour |
+| iconographic | depictions of water, vessels, riverine scenes — description separated from interpretation |
+| oral-living | living water practice, where and only where consent exists (§11.4) |
+| historiographical | how "hydraulic civilisation", "Aryan invasion and river drying", and "decline" narratives were constructed, by whom, when, and what they were arguing against |
+
+**Postures it must cross:** Living Tiṇai (place and material), Nocturnal Veḷi
+(what the palaeoclimate record cannot resolve), Reading Room (the decline
+debate), Extraction / Collection (who holds the excavated hydraulic material and
+who may see it), Reconnection (living water rights, present communities, and the
+institution's obligations to them).
+
+**Constraints specific to WATER:**
+
+1. **Present-day water politics is live.** Any bridge from ancient hydraulic
+   practice to a modern community, caste position or water dispute is a
+   `polity→modern-identity` or `culture→modern-identity` bridge under §4.4 and
+   §11.2's governance. The thread must reach the present — refusing to would be
+   its own distortion — and must do so through statused bridges, never through
+   adjacency.
+2. **Environmental determinism is the thread's prestige-bias failure mode.** A
+   climate proxy explains a climate; it does not explain a settlement pattern, a
+   migration, or a text, without a mechanism. Every environmental→culture link is
+   a bridge with §4.4's required mechanism and rivals.
+3. **Labour is a required question on every water work.** Constitution §4V: who
+   did the labour, who was excluded, who got the credit. A tank with a donor
+   inscription records a donor; it does not record a builder, and the absence of
+   the builder is typed (`NOT PRODUCED` or `NOT RECOGNISED`), not passed over.
+4. **The Living Tiṇai `Avoid` applies throughout:** *"no generic landscape
+   decoration."* Photography of rivers is not evidence of anything and does not
+   substitute for the environmental record.
+
+### 10.3 The Field Bag
+
+The Field Bag is shared infrastructure, not a children's feature. It is the
+visitor's own collection of objects gathered while moving through the
+institution — the mechanism by which a visit becomes something a person can take
+away, re-open, and check.
+
+**Contents.** Any addressable object: evidence, claims, relationships, absences,
+places, words, texts, questions, transitions, search result sets, PROVE IT runs.
+Each is stored **by identifier and revision** (§2.1), so a bag re-opened later
+shows what changed and how.
+
+**Required behaviours:**
+
+- **Everything in the bag keeps its status.** A claim collected as `HYPOTHESIS`
+  displays as `HYPOTHESIS` in the bag. The bag is not a scrapbook of facts.
+- **The bag is exportable** (§5.2) as a citable, dated, revision-pinned set.
+- **The bag shows changes.** On re-opening: what was revised, superseded,
+  rejected, released from hold, or withdrawn for consent since collection.
+- **The bag can hold a question the visitor wrote**, and that question can be
+  carried into PROVE IT or into classroom mode.
+- **Local by default.** The bag is stored on the visitor's own device and needs
+  no account. Any server-side bag is opt-in, and for under-16 visitors it does
+  not exist at all (§10.4.5).
+- **Nothing in the bag is a claim the visitor made unless they wrote it**, and
+  visitor-written text is never mixed with institutional text in export.
+
+### 10.4 The children's investigation
+
+#### 10.4.1 What it is and is not
+
+An investigation in which a child works with real evidence to reach a real
+conclusion, using the same objects the rest of the institution uses, at a
+different grain.
+
+**It is not a simplified museum.** Simplification here means fewer objects, more
+scaffolding on the reasoning, and plainer language — never a claim shown without
+its status, never a reconstruction shown as an attestation, never an unknown
+smoothed into a story. A child can be told "nobody knows and here is how we know
+that nobody knows." That is the Nocturnal Veḷi posture at a reading age, and it
+is more honest than most adult museum copy.
+
+#### 10.4.2 The pilot is not chosen here
+
+`OWNER-DECISIONS.csv` D-006 asks whether the pilot is Keezhadi or an inscription.
+Both are specifiable and they are different products:
+
+- **A site pilot (Keezhadi)** teaches stratigraphy, dating, coverage and
+  inference from material, and immediately raises a living-community relationship
+  and a present-day political context around the site. It cannot be built without
+  the consent and community-authority work of §11.2 and §11.4 being real first.
+- **An inscription pilot** teaches reading, script, language, editions, variant
+  readings and translation choice. Its rights position is usually cleaner and its
+  community relationship usually simpler, and it exercises the translation
+  standard (§3.8), which is the discipline this institution most needs to teach.
+
+The decision stays with the owner. What this specification adds is the
+consequence: **the site pilot has a consent precondition and the inscription
+pilot has a rights precondition**, and neither can be scheduled as though it were
+only a content task.
+
+#### 10.4.3 The investigation structure
+
+Five stages, each ending with the child recording something into the Field Bag:
+
+1. **Look.** One real object, in the primary-source viewer, at full quality.
+   What can you see? Observations recorded, no interpretation asked for yet.
+2. **Ask.** What would you need to know to say what it is, when it is, where it
+   is from? The child's questions are recorded and mapped onto the real
+   `mk:qst:` nodes.
+3. **Find out.** The evidence available: where it was found, what was near it,
+   what it is made of, what is written on it. Each item shown with where that
+   information came from.
+4. **Decide.** The child states what they think, and what they are unsure about.
+   Two or more real explanations are available; "we don't know" is offered and is
+   never scored as a failure.
+5. **Check.** What the institution currently thinks, with its status; what
+   evidence would change it; and — explicitly — where the child's reasoning
+   matched or differed. A difference is presented as interesting, not wrong.
+
+#### 10.4.4 Rules
+
+- **No fabricated evidence, ever.** No invented objects, no composite "typical"
+  artefacts, no illustrative reconstructions presented without the reconstruction
+  marker. If the institution would not show it to an adult as evidence, it is not
+  shown to a child as evidence.
+- **Reconstructions are labelled as reconstructions** in the child's own words,
+  and the child is shown what the reconstruction was based on.
+- **No ethnic or national identification of objects, people or remains.** This is
+  the single most-abused move in children's material about South Asian antiquity,
+  and it is a §4.4 bridge in every case.
+- **Human remains:** shown only where the community-authority position (§11.2)
+  and the consent position (§11.4) permit it, at the least sensational
+  presentation possible, and never as a puzzle to be solved. Where remains are
+  excluded, the exclusion is stated to the child as a decision the museum made
+  and why.
+- **No competition, no scoreboard, no time pressure.**
+
+#### 10.4.5 Safeguarding and data
+
+- **No account required and none offered to under-16 visitors.** The Field Bag is
+  local (§10.3).
+- **No behavioural analytics, no third-party trackers, no advertising, on any
+  surface, at any age.** Aggregate, non-identifying usage counts only, and the
+  measurement policy is published.
+- **No free-text publication.** A child's written text is never published, never
+  transmitted to the institution by default, and never enters the correction
+  pipeline as a public artefact. Where a classroom wants to submit a challenge
+  (§9.4), it is submitted by the teacher, from the teacher's account, as the
+  class's.
+- **No photographs of children, no user-uploaded images**, in any surface of this
+  mode.
+
+#### 10.4.6 Where the children's investigation may not go
+
+Per the mode matrix (§1.7), Field Mode is forbidden in the Extraction /
+Collection and Reconnection postures. A child may **read** a custody record —
+including "this object is in a museum four thousand miles from where it was made,
+and the record of how it got there has a gap" — because that is a fact about the
+present world and withholding it is its own distortion. A child may not be given
+"work out whether this was looted" as an investigation task, because the exercise
+format converts a live ethical and legal matter, involving real institutions and
+real communities, into a puzzle with a satisfying end. The distinction is between
+telling a child a true thing and assigning a child a verdict.
+
+### 10.5 Classroom mode
+
+#### 10.5.1 What it is
+
+A teacher-facing layer over the same objects: no separate content, no separate
+claims, no separate evidence base.
+
+**Components:**
+
+- **Selection.** A teacher assembles a set of objects, claims, questions and
+  investigations into a **classroom set**, which is a Field Bag with a teacher's
+  notes attached and its own identifier.
+- **Preparation.** For each item: what it is, its status, the disagreements
+  around it, what is unknown, what the common misconception is, and what the
+  institution's own uncertainty is. Written for a teacher who is not a specialist
+  and has an hour.
+- **Evidence packs.** The primary sources at classroom quality, with rights
+  cleared for classroom use stated explicitly per item (§11.8) — including where
+  they are *not* cleared, and what may be shown instead.
+- **The method, taught as the content.** The fourteen steps, the negative-evidence
+  types, the attestation gradient and the difference between citation count and
+  independent-source count are teachable objects in their own right, and they are
+  the most transferable thing this institution has.
+
+#### 10.5.2 Rules
+
+- **Curriculum-alignable, not curriculum-bound.** The institution may map its
+  material to a syllabus as a convenience layer. It may not alter a claim, a
+  status or an absence to fit one. Where the institution's record and a national
+  curriculum disagree, classroom mode **says that they disagree and shows the
+  evidence**, in both directions — this applies equally where the curriculum is
+  the one this project would prefer.
+- **Contested material is flagged for the teacher, with the contest described.**
+  Not removed, and not smoothed. A teacher entering a classroom where a topic is
+  politically live is owed an accurate description of what is live and why, and
+  that description names the positions without adjudicating between them beyond
+  what the evidence supports.
+- **No student accounts, no student data, no assessment scoring.** The
+  institution supplies material; it does not grade children.
+- **Teacher accounts are optional** and exist only to save and share classroom
+  sets.
+- **Translation and language.** Classroom sets carry their language and script;
+  the multilingual requirements of §11.10 apply in full, and the institution does
+  not offer a language it cannot maintain (§11.10.4).
+- **Everything is exportable and printable**, because a large share of the
+  classrooms this material is for do not have reliable devices, and an
+  institution that requires a live connection to be used has chosen its audience.
