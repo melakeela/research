@@ -77,11 +77,22 @@ revised 2020–2024, citing Geldner in 181 lemmas, Grassmann *marked off as
 1873 cannot cite Mayrhofer 2003. Grassmann's actual *Wörterbuch* has never been
 retrieved in this repository. `BF-017`, `DEP-026`, `RA-018`.
 
-**And the absence is no longer the whole story.** A measurement run after review
-found the corpus carries the fired/unfired opposition brick technology turns on
-— `pakvá-` "gebacken" at 25 tokens against `āmá-` "roh, ungekocht" at 11 — and
-puts the unfired term on a *púr* at RV 2.35.6, where Renou reads "forteresses
-**(en briques) crues**". `DJ-009`, `DJ-013`.
+**And a fourth limit, found only at the second review, bounds what may be
+probed here at all: the gloss column has ZERO coverage of verb roots** — 0 of
+700 root lemmas carry a meaning field, 32,025 tokens, **19.4% of the corpus**,
+including `√takṣ-` "hew, fashion" (78) and `√mā- 1` (90). A probe of this
+column for `bauen`, `errichten` or `zimmern` returns a guaranteed zero whatever
+the corpus contains. `DJ-008`'s own absences survive it — *brick* and *city*
+are nouns and the nominal lexicon is covered — but **no negative about an
+action or process is available from this source**, and `DJ-009`'s first repair
+reported exactly such a zero as a finding. `BF-018`, `RA-021`.
+
+**What the corpus does carry, correctly stated.** `pakvá-` "gekocht, gebacken"
+(25) against `āmá-` "roh, ungekocht" (11) is a **culinary** pair — all 25
+`pakvá-` are food, and 8 of the 11 `āmá-` are one raw-cow/cooked-milk formula.
+RV 2.35.6 extends the raw term to a *púr* **once**, and that once is the
+finding. Calling the pair "the fired/unfired opposition brick technology turns
+on" was an unmeasured leap and is withdrawn. `DJ-009`, `BF-018`.
 
 ---
 
@@ -240,6 +251,22 @@ unit's own script, found by ordinary sanity-checking — testing a zero against 
 known-positive case — not by an adversarial challenge. Its bias *direction* is
 still worth the row: the result it manufactured was a debunking of correct
 prior work, which flatters a session auditing someone else's register.
+
+### The second round, and why it matters more than the first
+
+An independent re-review of the repairs closed ten of seventeen findings and
+raised three new ones — **all in the repair commit itself, and all running the
+opposite way from the first round.** Written while correcting an over-deflation,
+they overstated the case *for* the gated thesis: a guaranteed-zero verb probe
+reported as an absence, a translator's bracketed supplement quoted as the text,
+and a culinary word-pair called construction vocabulary. `BF-018`.
+
+The first of those is the sharpest thing in this file. `BF-015` had already
+logged the guaranteed-zero failure mode and written its own control — *"any
+search returning zero is to be tested against a case known to be positive
+BEFORE the zero is reported."* That control was not obeyed, in the row written
+to repair `BF-016` and `BF-017`. **A `future_control` that is not checked makes
+the bias log decorative**, and this unit has now demonstrated it.
 
 ### What the tests did get right
 

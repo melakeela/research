@@ -55,10 +55,33 @@ toward Nandi**. `DJ-009` and `DJ-011` are demoted to `PROVISIONAL`; `DJ-010` is
 split and its term-list half put on `HOLD`; `DJ-013` and `DJ-014` are new and
 both cut against this unit.
 
-The shape is worth naming because it is not one slip: **three of the four
-failures were disclosures offered in place of checks that were free.** A
-limitation closable by reading a file already in the clone is not a limitation.
-It is unfinished work with a caveat on top.
+**A second review round then found three more, and they ran the other way.**
+Written while repairing the first round, in rows whose purpose was to correct
+an over-deflation, they overstated the case *for* the thesis:
+
+- `DJ-009`'s replacement claimed the corpus has "no lemma glossed for the act
+  of building". **The gloss column has zero verb coverage** — 0 of 700 root
+  lemmas, 19.4% of tokens — so that probe was a guaranteed zero. This is
+  `BF-015`'s own failure mode, in the row written to repair `BF-016` and
+  `BF-017`, against `BF-015`'s own stated control. `BF-018`, `RA-021`.
+- `DJ-013` reported Renou's *"forteresses (en briques) crues"* as brick "at the
+  one púr- passage that states a material". **"En briques" is inside Renou's
+  own bracket convention** — he uses parentheses in 93.6% of his rows for
+  supplied material, and the Sanskrit `āmā́su pūrṣú` has no material word. That
+  is §7's named prohibition, letting the translation decide the question. The
+  unbracketed *"maître de la cité"* stands.
+- `pakvá-`/`āmá-` was called "the fired/unfired opposition brick technology
+  turns on". **It is culinary**: all 25 `pakvá-` are food, and 8 of 11 `āmá-`
+  are one raw-cow/cooked-milk formula. RV 2.35.6 extends it to a *púr* once,
+  and that once is the finding.
+
+The shape is worth naming because it is not one slip and it is not one
+direction: **six of the seven failures were disclosures offered in place of
+checks that were free**, and the seventh was a search that could not have
+returned anything. A limitation closable by reading a file already in the clone
+is not a limitation — it is unfinished work with a caveat on top. And a repair
+commit is exactly where the discipline lapses: correcting an error in one
+direction is not a licence to stop checking in the other.
 
 ---
 
@@ -113,7 +136,8 @@ denominator. `DJ-I-01` is `PROVISIONAL` and says why.
 
 **RV 6.47.2 has Indra smash `navatíṁ náva ca dehyò` — ninety-nine of them — and
 they are Śambara's.** Same expression, same opponent as three of the six, a
-different noun: `dehī́-`, which Grassmann glosses "Aufwurf, Damm, Wall", an
+different noun: `dehī́-`, which the corpus's gloss column gives as "Aufwurf,
+Damm, Wall", an
 earth-heap, from √*dih* "smear, plaster up". Griffith renders "ramparts",
 Geldner "Mauern", Grassmann "Wälle", Elizarenkova "валы". All four render the
 wall and all four render the number (`DJ-005`).

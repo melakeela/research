@@ -68,8 +68,17 @@ NUMERAL = {
 # German gloss probes. The Zurich gloss column is written in German; an English
 # probe returns nothing and would read as an absence. Exactly ONE gloss in the
 # corpus is Latin — śatábhuji- "centuplex" — and no German probe reaches it.
+# Its two tokens are RV 7.15.14 and 1.166.8, both already inside the púr- corpus
+# and adjudicated at PUR4J-032, so the Latin gap has no live exposure here.
 # ("A handful are Latin" was asserted in an earlier version of this comment and
 # in DJ-008, from plausibility rather than from a count. BF-017.)
+#
+# AND A HARD LIMIT ON WHAT MAY BE PROBED AT ALL: this column has ZERO coverage
+# of verb roots — 0 of 700 root lemmas carry a meaning field, 19.4% of corpus
+# tokens. A probe here for bauen, errichten, zimmern or any other VERB returns a
+# guaranteed zero whatever the corpus contains, and reporting one as an absence
+# is BF-015's failure mode. Nominal probes (Ziegel, Stadt) are sound; verbal
+# ones are not available from this source. BF-018, RA-021.
 GLOSS_PROBES = {
     "brick":              ["ziegel"],
     "city":               ["stadt", "städt"],
@@ -113,7 +122,7 @@ def main():
     unglossed = [l for l in freq if l not in gloss]
     ung_tokens = sum(freq[l] for l in unglossed)
     print("\n== DENOMINATOR ==")
-    print("  lemmas with a Grassmann gloss : %d / %d (%.1f%%)"
+    print("  lemmas with a Zurich gloss    : %d / %d (%.1f%%)"
           % (len(freq) - len(unglossed), len(freq),
              100.0 * (len(freq) - len(unglossed)) / len(freq)))
     print("  tokens under a glossed lemma  : %.2f%%"

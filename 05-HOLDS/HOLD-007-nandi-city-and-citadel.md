@@ -79,9 +79,10 @@ the two gate legs that **could not be run** — chronology and geography — be 
 at all. Those are the two legs the thesis most depends on, and no amount of
 corpus work supplies them. A pre-modern or non-European commentary reading
 `durgá-` or `vr̥trá-` as a fortification would move `DJ-010` and `DJ-011` off
-the single gloss column they rest on (`DEP-024`, `DEP-025`, `DEP-026`,
-`RA-015`, `RA-020`) — and for `durgá-` a *European* translator has already done
-so at RV 5.34.7.
+the single **Zürich gloss column** they rest on (`DEP-024`, `DEP-025`,
+`DEP-026`, `RA-015`, `RA-020`) — and for `durgá-` a *European* translator has
+already done so at RV 5.34.7, so this correction never needed a non-European
+source. It needed the files already in the clone to be opened.
 
 **One correction to this hold's own account of the asymmetry.** It said, with
 the rest of the unit, that the gate used "one nineteenth-century German
