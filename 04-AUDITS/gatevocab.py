@@ -33,11 +33,25 @@ GATE_TERMS = [
 # swallowed by bare "NO". The reasoning behind the two Brahui rows and the
 # Para-Munda row is in 04-AUDITS/MIGRATION-REPORT-2026-09-07.md; both
 # adversarial tests were run against this table.
+# A YES or NO may carry a condition, and the condition decides the verdict.
+# This was a table of literal sentences until adversarial review pointed out
+# that only ONE sentence was encoded: "YES, when the Brahui literature is
+# retrievable" read SOURCE-BLOCKED, while "YES, when the Kurux literature is
+# retrievable" and "YES, pending sources" both read ELIGIBLE. The correction
+# the migration report claims - that a conditional answer follows the
+# register's stated symmetry rather than its surface grammar - was true of one
+# row and of no rule. It is a rule now.
+#
+# An answer conditional on OBTAINING SOURCES is not eligible today, whichever
+# word it opens with: that is what NOT-ELIGIBLE-SOURCE-BLOCKED means, and it
+# is why the two Brahui hypotheses land together instead of one being granted
+# analytical space over its rival on a difference of wording.
+SOURCE_CONDITION = re.compile(
+    r"\b(SOURCE|SOURCES|LITERATURE|RETRIEVABLE|RETRIEVAL|RETRIEVED|"
+    r"PUBLICATION|EDITION|CORPUS|ACCESS|ACCESSIBLE|DIGITISATION|DIGITIZATION)\b")
+CONDITIONAL = re.compile(r"^(YES|NO)\s*[,;:-]\s*(?P<rest>.+)$", re.S)
+
 GATE_SYNONYMS = [
-    ("NO - FOR LACK OF SOURCES, NOT FOR LACK OF MERIT", "NOT-ELIGIBLE-SOURCE-BLOCKED"),
-    ("NO - FOR LACK OF SOURCES", "NOT-ELIGIBLE-SOURCE-BLOCKED"),
-    ("NO, PENDING SOURCES", "NOT-ELIGIBLE-SOURCE-BLOCKED"),
-    ("YES, WHEN THE BRAHUI LITERATURE IS RETRIEVABLE", "NOT-ELIGIBLE-SOURCE-BLOCKED"),
     ("YES", "ELIGIBLE"),
     ("NO", "NOT-ELIGIBLE"),
 ]
@@ -53,7 +67,14 @@ def parse(cell):
     for term in GATE_TERMS:
         if upper.startswith(term):
             return term
+    m = CONDITIONAL.match(upper)
+    if m:
+        rest = m.group("rest")
+        if SOURCE_CONDITION.search(rest):
+            # Conditional on obtaining sources, whichever word it opens with.
+            return "NOT-ELIGIBLE-SOURCE-BLOCKED"
+        return "DEFERRED"          # conditional on something else
     for prose, term in GATE_SYNONYMS:
-        if upper.startswith(prose):
-            return term
+        if upper.startswith(prose) and upper.strip() == prose:
+            return term            # a bare YES or NO, with no condition
     return "UNASSIGNED"

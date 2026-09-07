@@ -40,12 +40,17 @@ jobs:
       - name: Prove the push gate still refuses what it claims to refuse
         run: python3 04-AUDITS/test-push-gate.py
 
-      - name: Prove the generated registers match their generators
+      - name: Prove the generated registers and report match their generators
         run: |
           python3 04-AUDITS/build-claim-sources.py   > /dev/null
           python3 04-AUDITS/build-canonical-files.py > /dev/null
           python3 04-AUDITS/build-path-migration.py  > /dev/null
           python3 04-AUDITS/inherited-claims-extraction.py > /dev/null
+          # VALIDATION-REPORT.md names the commit it describes. Nothing
+          # regenerated it, so it sat one commit behind the branch head - in a
+          # document whose own header says it exists because hand-written
+          # findings go stale and are then read as current (CR-012).
+          python3 04-AUDITS/validate-registers.py --report 04-AUDITS/VALIDATION-REPORT.md
           if ! git diff --quiet; then
             echo "A generated register does not match its generator:"
             git --no-pager diff --stat

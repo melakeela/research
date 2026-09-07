@@ -16,13 +16,18 @@
 # a repository setting only the owner can turn on. Do not describe this hook as
 # the gate.
 #
-# WHAT STILL GETS THROUGH. A push assembled entirely out of shell variables,
-# or one spelled in a way this parser has not seen. That is the standing
-# reason CI is the gate and this is not: a text matcher in front of a shell
-# cannot be complete, and claiming otherwise would be the same overstatement
-# this hook was rewritten to remove. `(git push)`, `echo $(git push)`,
-# `echo push | xargs git` and `git pu"sh"` were all found to walk past an
-# earlier version of this parser and are now caught.
+# WHAT STILL GETS THROUGH. A push whose verb only exists at runtime — read
+# from a file, computed, or held in a variable this hook cannot expand. A
+# regex in front of a shell cannot be complete, and two rounds of adversarial
+# review have each found spellings past it, twice caused by the previous
+# round's repair. That is the standing reason CI is the gate and this is not,
+# and it is why this header does not claim completeness.
+#
+# Caught after review: `(git push)`, `echo $(git push)`, `echo push | xargs
+# git`, `git pu"sh"`, `git "push"`, `gi\t push`, `git pus\h`, `\git push`,
+# backslash-newline continuations, `git "$@" push`, `git ${GIT_OPTS-} push`,
+# `git --file push origin`. Not denied, correctly: `git log --grep=push` and
+# `git grep push`.
 #
 # NO ORDINARY BYPASS. The one-token MELAKEELA_REGISTER_GATE=off marker was
 # removed on 2026-09-07. It made the gate advisory by construction: the hook
@@ -90,22 +95,73 @@ command = (payload.get("tool_input") or {}).get("command") or ""
 # `sh -c 'git push'` all walked past it. A push assembled entirely out of shell
 # variables still gets through; this is a guard rail, not a sandbox, and that
 # is why CI is the gate.
-# Commit-message arguments are removed BEFORE quotes are stripped, so that
-# `git commit -m "add push button"` is not read as a push. Then quotes go, so
-# that `git pu"sh"` and `git "push"` cannot hide the verb behind them. The
-# segment delimiters include the shell grouping characters: `(git push)` and
-# `echo $(git push)` both walked past a parser that required the segment to
-# open with a whitespace-or-slash-delimited `git`.
-MESSAGE_ARG = re.compile(
-    r"""(?:-m|-F|--message|--file)\s*=?\s*(?:"[^"]*"|'[^']*'|\S+)""")
-stripped = MESSAGE_ARG.sub(" ", command).replace('"', "").replace("'", "")
-SEGMENT = re.compile(r"&&|\|\||;|\||\n|\(|\)|`|\{|\}|\$")
+# Normalising a shell command with a regex is the wrong tool, and the honest
+# consequence is that this parser will always be incomplete. Adversarial
+# review found nine spellings past an earlier version, two of them created by
+# the previous repair: splitting segments on `$`, `{` and `}` to catch
+# `$(git push)` also split `git ${OPTS} push`, and splitting on `\n` to handle
+# multi-line commands also split a backslash-newline continuation. The order
+# below matters and each step says what it is for.
+#
+# 1. Remove backslash-newline line continuations entirely. The shell deletes
+#    them, so `git p\<newline>ush` is the single token `push`; replacing them
+#    with a space would split it back into two.
+COMMAND = re.sub(r"\\\n", "", command)
+# 2. Drop QUOTED commit-message arguments, so `git commit -m "add push
+#    button"` is not read as a push. Only quoted ones: stripping a bare word
+#    after the flag swallowed the subcommand in `git --file push origin`,
+#    which review found walked straight through. Done before quote removal,
+#    or the message content becomes bare words.
+COMMAND = re.sub(
+    r"""(?:-m|-F|--message|--file)\s*=?\s*(?:"[^"]*"|'[^']*')""", " ", COMMAND)
+# 3. Remove parameter expansions rather than splitting on them: `git "$@" push`
+#    and `git ${GIT_OPTS-} push` are one command, not three fragments.
+COMMAND = re.sub(r"\$\{[^}]*\}|\$[A-Za-z_][A-Za-z0-9_]*|\$[@*#?$!0-9]", " ", COMMAND)
+# 4. Unescape backslashes, so `gi\t push`, `git pus\h` and `\git push` cannot
+#    hide a token behind an escape that the shell removes anyway.
+COMMAND = re.sub(r"\\(.)", r"\1", COMMAND)
+# 5. Remove quotes, so `git pu"sh"` and `git "push"` cannot either.
+stripped = COMMAND.replace('"', "").replace("'", "")
+
+SEGMENT = re.compile(r"&&|\|\||;|\||\n|\(|\)|`")
 GIT_TOKEN = re.compile(r"(?:^|[\s/])git(?:\.exe)?(?![\w-])")
 PUSH_VERB = re.compile(r"(?<![\w-])push(?![\w-])")
 
+# Read-only porcelain. `git log --grep=push` and `git grep push` are not
+# pushes, and denying them was a false positive the earlier version had.
+READ_ONLY = {
+    "log", "grep", "show", "diff", "status", "cat-file", "rev-parse", "rev-list",
+    "ls-files", "ls-tree", "ls-remote", "config", "blame", "describe", "shortlog",
+    "reflog", "annotate", "whatchanged", "var", "help", "version", "count-objects",
+}
+
+
+def subcommand_after_git(segment):
+    """The first non-flag token after `git`, or None."""
+    m = GIT_TOKEN.search(segment)
+    if not m:
+        return None
+    for token in segment[m.end():].split():
+        if token.startswith("-"):
+            continue
+        return token
+    return None
+
+
+looks_like_push = False
 segments = SEGMENT.split(stripped)
-looks_like_push = any(GIT_TOKEN.search(seg) and PUSH_VERB.search(seg)
-                      for seg in segments)
+for seg in segments:
+    if not GIT_TOKEN.search(seg):
+        continue
+    sub = subcommand_after_git(seg)
+    if sub == "push":
+        looks_like_push = True
+        break
+    if sub in READ_ONLY:
+        continue                       # a read-only command that merely says push
+    if PUSH_VERB.search(seg):
+        looks_like_push = True         # e.g. the verb arrives through an expansion
+        break
 
 # A verb piped into git through xargs lands in a different segment from the
 # git token, so the per-segment test cannot see it.

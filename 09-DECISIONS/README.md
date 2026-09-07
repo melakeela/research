@@ -44,7 +44,7 @@ raised_date,owner_answer,answer_date,notes,detail_ref
   records is why the resolution holds.
 
   This list said three values until 2026-09-07 while the register carried
-  four, `TAKEN-PENDING-REVIEW` among them on three live rows. The register
+  four, `TAKEN-PENDING-REVIEW` among them on live rows. The register
   governs, so the list was corrected rather than the rows. `SUPERSEDED` is
   added for the duplicate-decision case below. The validator enforces this
   vocabulary; a sixth value cannot be introduced by writing it into a cell.

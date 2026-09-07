@@ -146,6 +146,50 @@ CASES = [
          + '"OV-902","because","someone","2026-09-07","2026-10-01","-","one push","owner",""\n'),
      "waives failures nobody has read"),
 
+    ("an override signature naming only a file path (S4)",
+     lambda c: (c / "00-CONTROLLER/OVERRIDE-LOG.csv").write_text(
+         (c / "00-CONTROLLER/OVERRIDE-LOG.csv").read_text()
+         + '"OV-903","because","someone","2026-09-07","2026-10-01",'
+           '"03-REGISTERS/domain-e-claims.csv","one push","owner",""\n'),
+     "name only a file path"),
+
+    ("a migration hold waiving a file its target does not name (S1)",
+     lambda c: set_column(c, "00-CONTROLLER/MIGRATION-HOLDS.csv", "MH-001",
+                          "waives_failure_matching",
+                          "03-REGISTERS/domain-e-claims.csv::inline but the join register holds",
+                          idcol="hold_id") or set_column(
+         c, "00-CONTROLLER/MIGRATION-HOLDS.csv", "MH-001", "review_by",
+         "2026-12-07", idcol="hold_id"),
+     "which its own target does not name"),
+
+    ("a migration hold whose waiver substring is too general (S1)",
+     lambda c: set_column(c, "00-CONTROLLER/MIGRATION-HOLDS.csv", "MH-008",
+                          "waives_failure_matching",
+                          "03-REGISTERS/domain-e-hypothesis-eligibility.csv::status",
+                          idcol="hold_id"),
+     "is shorter than 24 characters"),
+
+    ("a migration hold past its review date (S1)",
+     lambda c: set_column(c, "00-CONTROLLER/MIGRATION-HOLDS.csv", "MH-008",
+                          "review_by", "2026-01-01", idcol="hold_id"),
+     "review_by date 2026-01-01 has passed"),
+
+    ("a hand-edited independence_group in the join (S6)",
+     lambda c: set_column(c, "03-REGISTERS/claim-sources.csv", "CS-0001",
+                          "independence_group", "IG-SRC-999", idcol="join_id"),
+     "does not match"),
+
+    ("a duplicated join_id (S9)",
+     lambda c: set_column(c, "03-REGISTERS/claim-sources.csv", "CS-0002",
+                          "join_id", "CS-0001", idcol="join_id"),
+     "duplicate join_id CS-0001"),
+
+    ("a PROVISIONAL row with its source emptied (S2)",
+     lambda c: set_column(c, "03-REGISTERS/domain-e-claims.csv", "DME-019",
+                          "evidence_status", "PROVISIONAL") or set_column(
+         c, "03-REGISTERS/domain-e-claims.csv", "DME-019", "source_id", ""),
+     "PROVISIONAL row missing source_id"),
+
     ("a hold file nothing references",
      lambda c: track_new_file(c, "05-HOLDS/HOLD-099-orphan.md", "# HOLD-099\n\nnothing waits on this\n"),
      "HOLD-099 is referenced by nothing outside"),

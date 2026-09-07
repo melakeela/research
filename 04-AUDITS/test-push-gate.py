@@ -36,6 +36,16 @@ DENY = [
     ("xargs (F4)", 'echo push | xargs git'),
     ("quote-split verb (F4)", 'git pu"sh"'),
     ("fully quoted verb (F4)", 'git "push"'),
+    # Found by the second adversarial pass walking past the first repair (S3).
+    ("escaped tab in the token (S3)", 'gi\\t push'),
+    ("escaped char in the verb (S3)", 'git pus\\h'),
+    ("escaped leading slash (S3)", '\\git push'),
+    ("line continuation between token and verb (S3)", 'git \\\n push'),
+    ("line continuation inside the verb (S3)", 'git p\\\nush'),
+    ("continuation then a flag (S3)", 'git \\\npush --force'),
+    ("positional expansion between them (S3)", 'git "$@" push'),
+    ("parameter expansion between them (S3)", 'git ${GIT_OPTS-} push'),
+    ("a flag before the subcommand (S3)", 'git --file push origin'),
     ("removed marker no longer bypasses", 'MELAKEELA_REGISTER_GATE=off git push'),
     ("echo-marker trick", 'echo MELAKEELA_REGISTER_GATE=off; git push'),
 ]
@@ -45,6 +55,9 @@ ALLOW = [
     ("a read-only git command", 'git log --oneline'),
     ("a commit whose message says push", 'git commit -m "add push button"'),
     ("a commit about removing the bypass", 'git commit -m "remove the push bypass"'),
+    # False positives the first repair introduced (S3).
+    ("a log search for the word push", 'git log --oneline --grep=push'),
+    ("a grep for the word push", 'git grep push -- 03-REGISTERS'),
 ]
 
 # (name, override row appended to OVERRIDE-LOG.csv, should the push be allowed)
@@ -62,6 +75,9 @@ OVERRIDES = [
     ("a live waiver for a different failure",
      '"OV-905","because","someone","2026-09-07","2026-10-01",'
      '"some entirely unrelated failure text","one push","owner","non-matching"', False),
+    ("a waiver naming only a register path (S4)",
+     '"OV-907","because","someone","2026-09-07","2026-10-01",'
+     '"03-REGISTERS/domain-e-claims.csv","one push","owner","file-wide"', False),
     ("a bounded, specific, unexpired waiver",
      '"OV-906","genuine emergency","someone","2026-09-07","2026-10-01",'
      '"evidence_status \'CONFIRMED\' not in its vocabulary","one push","owner","valid"', True),

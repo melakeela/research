@@ -56,6 +56,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import csvdialect  # noqa: E402
+import independence  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "03-REGISTERS" / "claim-sources.csv"
@@ -97,46 +98,10 @@ def split_sources(cell):
     return out
 
 
-def independence_groups():
-    """Union-find over the dependency register.
-
-    Only pairs whose `effect_on_status` does NOT open with 'No effect' are
-    merged. A dependency row that explicitly records no effect on independence
-    (the same source probed twice, a layer cited alongside its container) is
-    a fact about retrieval, not a collapse of two observations into one.
-    """
-    parent = {}
-
-    def find(x):
-        parent.setdefault(x, x)
-        while parent[x] != x:
-            parent[x] = parent[parent[x]]
-            x = parent[x]
-        return x
-
-    def union(a, b):
-        ra, rb = find(a), find(b)
-        if ra != rb:
-            parent[max(ra, rb)] = min(ra, rb)
-
-    merged = []
-    if DEPENDENCY.exists():
-        _, rows = csvdialect.read(DEPENDENCY)
-        for row in rows:
-            a = (row.get("source_a") or "").strip()
-            b = (row.get("source_b") or "").strip()
-            effect = (row.get("effect_on_status") or "").strip()
-            if not a or not b or a == b:
-                continue
-            if effect.upper().startswith("NO EFFECT"):
-                continue
-            union(a, b)
-            merged.append((row.get("dependency_id"), a, b))
-    return parent, find, merged
 
 
 def main():
-    parent, find, merged = independence_groups()
+    find, merged = independence.groups()
 
     rows_out = []
     n = 0
@@ -161,7 +126,6 @@ def main():
                 locator = (row.get("locator") or "").strip()
                 for sid in sources:
                     n += 1
-                    root_id = find(sid)
                     rows_out.append({
                         "join_id": "CS-%04d" % n,
                         "claim_id": cid,
@@ -170,7 +134,7 @@ def main():
                         "source_id": sid,
                         "evidence_role": role,
                         "locator": locator,
-                        "independence_group": "IG-" + root_id,
+                        "independence_group": independence.group_of(find, sid),
                         # Left empty by construction. A note that is identical on
                         # every row is documentation, not data; it is in the
                         # docstring above. Row-specific notes go here.

@@ -45,7 +45,7 @@ Checks, in the order they run:
  12  Governed Markdown. Every hold in 05-HOLDS/ is referenced by something
      outside it; every DECISIONS-NEEDED.md section is a register row whose
      detail_ref points back at it.
- 13  Override log. Rows are well-formed, scoped and dated.
+ 13  Override log. Rows are well-formed, scoped, bounded and dated.
 
 Weakening this file to make failing rows pass is not an available move. The
 repair for a failing row is the row, or a recorded owner decision.
@@ -55,6 +55,7 @@ quoted cells. Everything here opens with newline='' and never rewrites a file.
 """
 import argparse
 import csv
+import hashlib
 import re
 import subprocess
 import sys
@@ -63,6 +64,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import gatevocab  # noqa: E402
+import independence  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTROLLER = ROOT / "00-CONTROLLER"
@@ -94,6 +96,7 @@ EVIDENCE_ROLE = {"SOLE", "CONTRIBUTING", "UNASSIGNED"}
 # An override signature this short matches half the failure lines in the tree.
 # "-" appears in every path; a one-token waiver is a blanket waiver.
 MIN_OVERRIDE_SIGNATURE = 24
+MIN_WAIVER_SUBSTRING = 24
 
 DIMENSIONS = {
     "evidence_status": EVIDENCE_STATUS,
@@ -111,6 +114,12 @@ FILE_STATUS_VOCAB = {
 
 REQUIRED_FOR_VERIFIED = ("source_id", "locator", "retrieval_date")
 
+# CLAUDE.md defines PROVISIONAL as "supported, but by a single source or by
+# dependent sources". That is a claim about sources, so it needs one. Gating
+# only VERIFIED left the other six statuses unguarded: a VERIFIED row could be
+# moved to PROVISIONAL with its source, locator and date emptied and pass.
+NEEDS_A_SOURCE = ("VERIFIED", "PROVISIONAL")
+
 # Registers whose row key is not the first *_id column alone. DECISION-ID-MAP
 # is keyed by (old_id, old_file) by design: D-004 existed in two files and a
 # bare reference to it is ambiguous without knowing which was meant. An
@@ -123,8 +132,12 @@ COMPOSITE_KEY = {
 # carry identifiers issued elsewhere, so repeating them is their function.
 ALIAS_REGISTERS = {
     "09-DECISIONS/DECISION-ID-MAP.csv",     # holds D- identifiers from the register
-    "03-REGISTERS/claim-sources.csv",       # its claim_id column names other files' rows
 }
+# claim-sources.csv is NOT exempt. Its `claim_id` column legitimately repeats
+# other registers' identifiers, but its own `join_id` must still be unique and
+# carry its declared prefix; exempting the whole file left CS- unenforced
+# anywhere, so 50 rows could share one join_id.
+JOIN_ID_COLUMN = "join_id"
 
 # A locator has to let a reader re-find the passage. These do not.
 VAGUE_LOCATOR = re.compile(
@@ -133,27 +146,55 @@ VAGUE_LOCATOR = re.compile(
 BARE_IDENTIFIER = re.compile(r"^[A-Z]{1,6}(-[A-Z]{1,3})?-\d{1,4}[A-Za-z-]*$")
 
 failures, warnings, notes = [], [], []
-# {"path:line": "MH-nnn"} — exact coordinates an open migration hold covers.
-# Narrow by construction: a whole-file or prefix waiver is not expressible.
-waived_at = {}
+
+# Waivers from MIGRATION-HOLDS.csv, as (path, substring, hold_id) triples.
+# A coordinate alone is NOT enough: keying on `path:line` waived every failure
+# of every kind on that line, so the hold covering one restored status cell
+# also covered a gate verdict and a publication status on the same row. A
+# waiver now has to name the defect it waives, sit inside a file the hold's
+# own `target` names, and carry a review date.
+waivers = []
+
+# Checks no migration hold may ever waive. These are the gate itself: the
+# retrieval requirement, the publication gate, the claim/source relation, and
+# identifier collisions. A row that cannot satisfy one of these is not a
+# migration problem, and a hold saying otherwise is a hold in the wrong place.
+UNWAIVABLE = (
+    "PUBLISHED but not release-eligible",
+    "the join register holds",
+    "which holds no such row",
+    "is also issued by",
+    "is not in the access ledger",
+    "gate_verdict",
+    "does not match",
+    "independence_group",
+)
 
 
 def fail(msg):
-    """Record a failure, unless an open migration hold names its exact row.
+    """Record a failure, unless an open migration hold names this exact defect.
 
-    A waiver here is not a pass. It downgrades one named coordinate to a
-    warning that prints the hold on every run, and it can only be created by
-    committing a row to MIGRATION-HOLDS.csv that says what could not be
-    migrated and what it is blocked on. There is no file-level or pattern
-    waiver: `path:line`, or nothing.
+    A waiver is not a pass. It downgrades one named defect in one named file
+    to a warning printed on every run, and it can only be created by
+    committing a MIGRATION-HOLDS.csv row that says what could not be migrated,
+    what it is blocked on, and when it must be looked at again.
+
+    Four things bound it, because the first version was bounded by only one:
+      - the failure text must contain the substring the hold names, so a hold
+        covering a status cell does not also cover a publication status;
+      - the file must be one the hold's own `target` names;
+      - the hold must be OPEN and not past its `review_by` date;
+      - no waiver of any kind applies to a check in UNWAIVABLE.
     """
-    coord = msg.split(":")[0:2]
-    key = ":".join(coord)
-    hold = waived_at.get(key)
-    if hold:
-        warnings.append(f"{msg}  [held unmigrated by {hold}]")
-    else:
+    if any(u in msg for u in UNWAIVABLE):
         failures.append(msg)
+        return
+    path = msg.split(":", 1)[0]
+    for wpath, substring, hold_id in waivers:
+        if path == wpath and substring in msg:
+            warnings.append(f"{msg}  [held unmigrated by {hold_id}]")
+            return
+    failures.append(msg)
 
 
 def warn(msg):
@@ -256,10 +297,15 @@ def decision_ids():
     return set(counts)
 
 
-def all_register_ids(governed):
+def all_register_ids(governed):  # noqa: C901
     """Every identifier issued anywhere, for resolving identifier-shaped locators."""
     ids = set()
-    for rel in governed:
+    for rel, (mode, _prefix, _role) in governed.items():
+        # A NOT-VALIDATED file's identifiers are not checked for uniqueness or
+        # vocabulary, so they must not be able to satisfy a locator or a
+        # superseded_by target either.
+        if mode == "NOT-VALIDATED":
+            continue
         p = ROOT / rel
         if p.suffix != ".csv" or not p.is_file():
             continue
@@ -301,6 +347,9 @@ def check_file(rel, mode, prefix, ledger, known_ids):
                 if key in seen:
                     report(f"{rel}:{n}: duplicate {'+'.join(keycols)} {'+'.join(key)}")
                 seen.add(key)
+        if idcol and not (row.get(idcol) or "").strip() and (row.get("source_id") or "").strip():
+            report(f"{rel}:{n}: row cites sources but has no {idcol}; an "
+                   f"unidentified row cannot be joined, superseded or reviewed")
         if idcol and prefixes:
             rid = (row.get(idcol) or "").strip()
             if rid and not rid.startswith(prefixes):
@@ -333,24 +382,33 @@ def check_file(rel, mode, prefix, ledger, known_ids):
                 report(f"{rel}:{n}: gate_verdict {declared!r} does not match "
                        f"{derived!r}, which is what its eligibility prose says; "
                        f"the parse is not a one-time act")
+            prose = (row.get("eligible_for_extended_analysis") or "").strip()
+            if prose and declared == "UNASSIGNED":
+                # Otherwise a hypothesis leaves the machine-readable gate by
+                # being reworded into prose the parser does not recognise.
+                report(f"{rel}:{n}: eligibility prose {prose[:40]!r} yields no "
+                       f"gate verdict; a hypothesis cannot leave the gate by "
+                       f"being reworded")
 
         status = (row.get("evidence_status") or "").strip()
 
         # --- 4. retrieval
-        if status == "VERIFIED":
+        if status in NEEDS_A_SOURCE:
             absent = [c for c in REQUIRED_FOR_VERIFIED if c not in fields]
             if absent:
                 # Without these columns the retrieval check is structurally
                 # unreachable: the row can claim VERIFIED and no check can
                 # ever trace it. A register that cannot carry a retrieval
                 # cannot carry a VERIFIED row.
-                report(f"{rel}:{n}: VERIFIED row in a register with no "
+                report(f"{rel}:{n}: {status} row in a register with no "
                        f"{', '.join(absent)} column; the retrieval that would "
-                       f"back it cannot be recorded here, so VERIFIED is "
+                       f"back it cannot be recorded here, so {status} is "
                        f"untraceable in this file")
-            for col in REQUIRED_FOR_VERIFIED:
+            required = (REQUIRED_FOR_VERIFIED if status == "VERIFIED"
+                        else ("source_id",))
+            for col in required:
                 if col in fields and not (row.get(col) or "").strip():
-                    report(f"{rel}:{n}: VERIFIED row missing {col}")
+                    report(f"{rel}:{n}: {status} row missing {col}")
 
         # --- 5. locator quality
         if "locator" in fields:
@@ -461,8 +519,25 @@ def check_join(governed, ledger):
              "has no authority")
         return
     join = read_csv(JOIN)
+    find, _merges = independence.groups()
+    seen_join_ids = set()
     by_claim = {}
     for n, r in enumerate(join, start=2):
+        # join_id uniqueness and prefix, which the alias exemption used to skip.
+        jid = (r.get(JOIN_ID_COLUMN) or "").strip()
+        if not jid:
+            fail(f"03-REGISTERS/claim-sources.csv:{n}: row has no {JOIN_ID_COLUMN}")
+        elif jid in seen_join_ids:
+            fail(f"03-REGISTERS/claim-sources.csv:{n}: duplicate {JOIN_ID_COLUMN} {jid}")
+        else:
+            seen_join_ids.add(jid)
+            if not jid.startswith("CS-"):
+                fail(f"03-REGISTERS/claim-sources.csv:{n}: {JOIN_ID_COLUMN} {jid} "
+                     f"does not use this register's declared prefix CS-")
+        rclass = (r.get("register_class") or "").strip()
+        if rclass not in {"CLAIM", "DATA"}:
+            fail(f"03-REGISTERS/claim-sources.csv:{n}: register_class {rclass!r} "
+                 f"is not CLAIM or DATA")
         sid = (r.get("source_id") or "").strip()
         role = (r.get("evidence_role") or "").strip()
         if role and role not in EVIDENCE_ROLE:
@@ -477,9 +552,20 @@ def check_join(governed, ledger):
                  f"than one identifier; the join exists to prevent exactly this")
         if ledger and sid and sid not in ledger:
             fail(f"03-REGISTERS/claim-sources.csv:{n}: source_id {sid} not in the ledger")
+        # independence_group is re-derived from 02-SOURCES/dependency.csv, not
+        # trusted. It was hand-editable in a generated file, and rewriting it
+        # erased every independence finding with the validator still passing.
+        if sid:
+            expected = independence.group_of(find, sid)
+            declared = (r.get("independence_group") or "").strip()
+            if declared != expected:
+                fail(f"03-REGISTERS/claim-sources.csv:{n}: independence_group "
+                     f"{declared!r} for {sid} does not match {expected!r} derived "
+                     f"from 02-SOURCES/dependency.csv")
         by_claim.setdefault((r.get("register"), (r.get("claim_id") or "").strip()),
                             set()).add(sid)
 
+    register_is_claim = {}
     for rel, (mode, _prefix, _role) in sorted(governed.items()):
         if mode == "NOT-VALIDATED" or not rel.endswith(".csv") or rel == "03-REGISTERS/claim-sources.csv":
             continue
@@ -492,6 +578,8 @@ def check_join(governed, ledger):
             continue
         if not rows or "source_id" not in rows[0].keys():
             continue
+        register_is_claim[rel] = ("CLAIM" if "evidence_status" in rows[0].keys()
+                                  else "DATA")
         idcol = id_column(rows[0].keys())
         if not idcol:
             continue
@@ -508,6 +596,15 @@ def check_join(governed, ledger):
                 fail(f"{rel}:{n}: claim {cid} cites {sorted(inline)} inline but the "
                      f"join register holds {sorted(joined)}; regenerate with "
                      f"04-AUDITS/build-claim-sources.py")
+
+    for r in join:
+        rel = r.get("register")
+        declared = (r.get("register_class") or "").strip()
+        if rel in register_is_claim and declared != register_is_claim[rel]:
+            fail(f"03-REGISTERS/claim-sources.csv: {rel} is joined as {declared} "
+                 f"but the register is {register_is_claim[rel]}; register_class "
+                 f"decides which rows count as claims")
+            break
 
     # Join rows whose claim exists in no register are orphans: a relation to
     # something that is not there.
@@ -639,16 +736,55 @@ def check_release_eligibility(governed):
 
 
 def load_migration_waivers():
-    """Read the exact coordinates open holds cover. Must run before any check."""
+    """Read what open holds waive. Must run before any check."""
     if not HOLDSREG.exists():
         return
-    for row in read_csv(HOLDSREG):
+    today = date.today()
+    for n, row in enumerate(read_csv(HOLDSREG), start=2):
+        hid = (row.get("hold_id") or "").strip()
+        spec = (row.get("waives_failure_matching") or "").strip()
+        if not spec:
+            continue
         if (row.get("disposition") or "").strip().upper() != "OPEN":
             continue
-        for coord in (row.get("waives_validation_at") or "").split(";"):
-            coord = coord.strip()
-            if coord:
-                waived_at[coord] = row["hold_id"]
+        review = (row.get("review_by") or "").strip()
+        try:
+            if date.fromisoformat(review) < today:
+                failures.append(
+                    f"00-CONTROLLER/MIGRATION-HOLDS.csv:{n}: {hid} waives validation "
+                    f"but its review_by date {review} has passed; a hold that waives "
+                    f"a check is re-read or it stops waiving")
+                continue
+        except ValueError:
+            failures.append(
+                f"00-CONTROLLER/MIGRATION-HOLDS.csv:{n}: {hid} waives validation "
+                f"with review_by {review!r}, which is not an ISO date")
+            continue
+        target = row.get("target") or ""
+        for entry in spec.split(";"):
+            entry = entry.strip()
+            if not entry:
+                continue
+            if "::" not in entry:
+                failures.append(
+                    f"00-CONTROLLER/MIGRATION-HOLDS.csv:{n}: {hid} waiver {entry!r} "
+                    f"is not of the form path::substring-of-the-failure")
+                continue
+            wpath, substring = entry.split("::", 1)
+            wpath, substring = wpath.strip(), substring.strip()
+            if len(substring) < MIN_WAIVER_SUBSTRING:
+                failures.append(
+                    f"00-CONTROLLER/MIGRATION-HOLDS.csv:{n}: {hid} waiver substring "
+                    f"{substring!r} is shorter than {MIN_WAIVER_SUBSTRING} characters; "
+                    f"a substring this general waives defects nobody has read")
+                continue
+            if wpath not in target:
+                failures.append(
+                    f"00-CONTROLLER/MIGRATION-HOLDS.csv:{n}: {hid} waives a failure in "
+                    f"{wpath}, which its own target does not name; a hold waives only "
+                    f"what it is about")
+                continue
+            waivers.append((wpath, substring, hid))
 
 
 def check_migration_holds():
@@ -668,9 +804,16 @@ def check_migration_holds():
                  f"blocked on {row['blocked_on'][:90]}")
 
 
+def tracked_paths_blob():
+    """One string of every tracked path, for spotting path-only waivers."""
+    return "\n".join(subprocess.run(["git", "ls-files"], cwd=ROOT,
+                                    capture_output=True, text=True).stdout.split())
+
+
 def check_overrides():
-    """12. Override rows are well-formed. Returns the currently active ones."""
+    """13. Override rows are well-formed. Returns the currently active ones."""
     active = []
+    tracked_paths_text = tracked_paths_blob()
     if not OVERRIDES.exists():
         fail("00-CONTROLLER/OVERRIDE-LOG.csv is missing; the gate has no waiver record")
         return active
@@ -705,15 +848,23 @@ def check_overrides():
                  f"{(expiry - raised).days} days; an emergency waiver is bounded, "
                  f"90 days at most, and is renewed by a new row that says why")
             continue
-        # A short signature matches half the failure lines in the tree: every
-        # one contains a path, so "-" alone waives everything. A waiver names
-        # the failure it waives.
-        bad = [sig.strip() for sig in row["affected_validation_failures"].split(";")
-               if 0 < len(sig.strip()) < MIN_OVERRIDE_SIGNATURE]
+        # A signature has to name the defect, not just the file. Length alone
+        # did not achieve that: repository paths are long, so
+        # "03-REGISTERS/domain-e-claims.csv" cleared a 24-character minimum
+        # and waived every defect class in a 26-row register at once.
+        sigs = [sig.strip() for sig in row["affected_validation_failures"].split(";")
+                if sig.strip()]
+        bad = [sig for sig in sigs if len(sig) < MIN_OVERRIDE_SIGNATURE]
         if bad:
             fail(f"00-CONTROLLER/OVERRIDE-LOG.csv:{n}: waiver signature(s) {bad} "
                  f"shorter than {MIN_OVERRIDE_SIGNATURE} characters; a signature "
                  f"this general waives failures nobody has read")
+            continue
+        pathlike = [sig for sig in sigs if sig in tracked_paths_text]
+        if pathlike:
+            fail(f"00-CONTROLLER/OVERRIDE-LOG.csv:{n}: waiver signature(s) "
+                 f"{pathlike} name only a file path; a signature must name the "
+                 f"defect it waives, or it waives every defect in that file")
             continue
         if expiry >= today:
             active.append(row)
@@ -778,18 +929,40 @@ def main():
     sys.exit(1 if failures else 0)
 
 
+def governed_digest():
+    """A content digest of every governed file, in path order.
+
+    NOT the commit sha. This report is generated before the commit that
+    contains it, so stamping HEAD would name the previous commit — and CI
+    regenerating it after checkout would then produce a different line every
+    time and the drift check would never pass. A digest of the inputs
+    identifies exactly what was validated and is reproducible by anyone
+    holding the same tree.
+    """
+    h = hashlib.sha256()
+    for rel in sorted(load_governed()):
+        # The report is itself a governed file; including it would make the
+        # digest depend on the previous run's output and never settle.
+        if rel == "04-AUDITS/VALIDATION-REPORT.md":
+            continue
+        p = ROOT / rel
+        if not p.is_file():
+            continue
+        h.update(rel.encode("utf-8"))
+        h.update(p.read_bytes())
+    return h.hexdigest()[:16]
+
+
 def render_report(nfail, nwarn):
-    head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT,
-                          capture_output=True, text=True).stdout.strip()
     lines = [
         "# Validation report", "",
         "Generated by `04-AUDITS/validate-registers.py --report`. Do not hand-edit:",
         "a findings document written by hand goes stale and is then read as current,",
-        "which is what happened to `VALIDATOR-FINDINGS-2026-09-07.md` (CR-012).", "",
-        f"- Commit: `{head}`",
-        f"- Date: {date.today().isoformat()}",
+        "which is what happened to `VALIDATOR-FINDINGS-2026-09-07.md` (CR-012).",
+        "Regenerated and diffed in CI, so it cannot fall behind the tree either.", "",
+        f"- Governed-file digest: `{governed_digest()}`",
         f"- Failures: **{nfail}**",
-        f"- Warnings: **{nwarn}** (REPORTED files; each carries a MIGRATION-HOLDS row)",
+        f"- Warnings: **{nwarn}** (each carries a MIGRATION-HOLDS row)",
         "",
     ]
     lines += ["## Notes", ""] + [f"- {n.strip()}" for n in notes] + [""]
