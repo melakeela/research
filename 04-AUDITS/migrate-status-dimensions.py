@@ -251,7 +251,86 @@ def migrate_access_ledger():
     return True
 
 
+SPLIT_QUALIFIER = re.compile(r"\s*[—–-]\s+")   # em dash, en dash, or ' - '
+
+
+def decompose_token(cell):
+    """Split 'OPEN - blocked on X' into ('OPEN', 'blocked on X').
+
+    The declared token is preserved exactly as written, only upper-cased.
+    A row that said OPEN still says OPEN: the qualifier moves to its own
+    column instead of being promoted into a different status.
+    """
+    cell = (cell or "").strip()
+    if not cell:
+        return "", ""
+    parts = SPLIT_QUALIFIER.split(cell, 1)
+    token = parts[0].strip().upper()
+    rest = parts[1].strip() if len(parts) > 1 else ""
+    return token, rest
+
+
+def migrate_reaudit_queue():
+    """Decompose REAUDIT-QUEUE.csv status and priority.
+
+    Both columns held a mixture of cases and composite values: OPEN, open,
+    'OPEN - blocked on HOLD-005', MEDIUM, medium, and 'HIGH — it affects how
+    every future unit plans its retrievals.' No mechanical filter over the
+    re-audit queue was possible. Case is normalised, the qualifier is moved
+    to blocked_by or priority_reason, and the declared token is unchanged.
+    """
+    rel = "04-AUDITS/REAUDIT-QUEUE.csv"
+    path = ROOT / rel
+    fields, rows = csvdialect.read(path)
+    if "blocked_by" in fields:
+        return False
+    out_fields = list(fields) + ["blocked_by", "priority_reason", "status_reason"]
+    for n, row in enumerate(rows, start=2):
+        original_status = (row.get("status") or "").strip()
+        token, rest = decompose_token(original_status)
+        row["status"] = token
+        # 'blocked on X' is a dependency; anything else is a qualification.
+        m = re.match(r"blocked on\s+(.*)$", rest, re.I)
+        row["blocked_by"] = m.group(1).strip() if m else ""
+        row["status_reason"] = original_status if rest else ""
+        if original_status != token:
+            report["decomposed"].append(
+                f"{rel}:{n}: status {original_status!r} -> {token}"
+                + (f", blocked_by={row['blocked_by']!r}" if row["blocked_by"] else "")
+                + (", original preserved in status_reason" if rest else " (case only)"))
+
+        original_priority = (row.get("priority") or "").strip()
+        ptoken, prest = decompose_token(original_priority)
+        row["priority"] = ptoken
+        row["priority_reason"] = prest
+        if original_priority != ptoken:
+            report["decomposed"].append(
+                f"{rel}:{n}: priority {original_priority[:40]!r} -> {ptoken}"
+                + (", qualification moved to priority_reason" if prest else " (case only)"))
+    csvdialect.write(path, out_fields, rows)
+    return True
+
+
+def migrate_owner_decisions():
+    """Normalise the one lower-case decision status. Case only; no re-typing."""
+    rel = "09-DECISIONS/OWNER-DECISIONS.csv"
+    path = ROOT / rel
+    fields, rows = csvdialect.read(path)
+    changed = False
+    for n, row in enumerate(rows, start=2):
+        v = (row.get("status") or "").strip()
+        if v and v != v.upper():
+            row["status"] = v.upper()
+            changed = True
+            report["decomposed"].append(f"{rel}:{n}: status {v!r} -> {v.upper()} (case only)")
+    if changed:
+        csvdialect.write(path, fields, rows)
+    return changed
+
+
 def main():
+    migrate_reaudit_queue()
+    migrate_owner_decisions()
     for rel in CLAIM_REGISTERS:
         migrate_claim_register(rel)
     for rel in ELIGIBILITY_REGISTERS:

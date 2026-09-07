@@ -1,0 +1,52 @@
+name: validate-registers
+
+# The enforceable half of the gate. The pre-push hook in .claude/ is local to
+# one tool in one client and cannot see a push made through the GitHub UI or
+# API, another Git client, or any other session. This can.
+#
+# Requiring this check before merge is branch protection, which is a repository
+# setting no session can make. Until the owner turns it on, this reports and
+# does not block. See 00-CONTROLLER/CONTRADICTION-REGISTER.csv CR-013.
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # check_control_plane compares CANONICAL-FILES.csv against git
+          # ls-files, so the checkout must be a real working tree.
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate registers
+        run: python3 04-AUDITS/validate-registers.py
+
+      - name: Prove the validator still catches defects
+        run: python3 04-AUDITS/test-validate-registers.py
+
+      - name: Prove the generated registers match their generators
+        run: |
+          python3 04-AUDITS/build-claim-sources.py   > /dev/null
+          python3 04-AUDITS/build-canonical-files.py > /dev/null
+          python3 04-AUDITS/build-path-migration.py  > /dev/null
+          python3 04-AUDITS/inherited-claims-extraction.py > /dev/null
+          if ! git diff --quiet; then
+            echo "A generated register does not match its generator:"
+            git --no-pager diff --stat
+            echo
+            echo "Re-run the build scripts from the repository root and commit the result."
+            exit 1
+          fi

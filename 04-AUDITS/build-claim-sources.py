@@ -69,9 +69,32 @@ FIELDS = ["join_id", "claim_id", "register", "register_class", "source_id",
 SEARCH_DIRS = ["03-REGISTERS", "04-AUDITS"]
 
 
+import re
+
+RANGE = re.compile(r"^(?P<prefix>[A-Z]+)-(?P<lo>\d+)\s*(?:to|-|–|—)\s*(?:(?P=prefix)-)?(?P<hi>\d+)$")
+NO_SOURCE = {"-", "--", "n/a", "na", "none", ""}
+
+
 def split_sources(cell):
-    """Split a source cell into identifiers. ';' is the delimiter in use."""
-    return [p.strip() for p in (cell or "").replace(",", ";").split(";") if p.strip()]
+    """Split a source cell into identifiers.
+
+    Must agree exactly with validate-registers.split_sources, which enforces
+    that this file and the inline cells say the same thing. A lone '-' means
+    no source; a range is expanded to its members.
+    """
+    out = []
+    for part in (cell or "").replace(",", ";").split(";"):
+        part = part.strip()
+        if part.lower() in NO_SOURCE:
+            continue
+        m = RANGE.match(part)
+        if m and int(m.group("hi")) > int(m.group("lo")):
+            width = len(m.group("lo"))
+            out += [f"{m.group('prefix')}-{i:0{width}d}"
+                    for i in range(int(m.group("lo")), int(m.group("hi")) + 1)]
+        else:
+            out.append(part)
+    return out
 
 
 def independence_groups():

@@ -8,15 +8,18 @@ a unit of work is finished. It adds no rule of its own: every gate
 below cites the document it comes from.
 
 The coordinating session — the one the owner starts — is the programme
-director. It does not do research. It routes work to the team, enforces
+director. It does not do research. It routes work to the roster, enforces
 the gates, and opens the PR. If the director finds itself writing a
 register row, it has stopped directing.
 
-## The team
+## The AI agent roster
 
-Eight agents in `.claude/agents/`. Each has one lane, one trap it
-guards against, and persistent memory. They are not personas. They are
-separations of concern that make the method mechanical.
+Eight Claude subagents in `.claude/agents/`. Each has one lane, one trap
+it guards against, and persistent memory. They are not personas and they
+are not people. They are separations of concern that make the method
+mechanical. `AI-AGENT-ROSTER.md` states the standing rule: an agent is a
+model, its output is model-generated, and no named scholar or historical
+intellectual in this repository is a collaborator.
 
 | Agent | Lane | Where the lane comes from | Produces |
 |---|---|---|---|
@@ -29,7 +32,7 @@ separations of concern that make the method mechanical.
 | museum-translator | Accepted claims → briefs, copy, children | Steps 9 and 14, at brief level (reconciliation C-9) | briefs, copy, visual requirements |
 | rights-steward | Rights, consent, custody, institutional claims | §12 specification subjects; §4.V custody; `CLAUDE.md` escalation categories | rights rows, consent records |
 
-Two rules about the team:
+Two rules about the roster:
 
 1. **The reviewer is never the author.** Whatever agent produced a
    register does not review it. The adversarial-reviewer reviews
