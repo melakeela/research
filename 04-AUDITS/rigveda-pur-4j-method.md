@@ -708,7 +708,7 @@ not by paragraph.
 | `03-REGISTERS/rigveda-pur-counts.csv` | one row per numeral token, three instruments in their own columns, a verdict column, and an override column | measurement |
 | `03-REGISTERS/rigveda-pur-fields.csv` | §4J's semantic fields, each defined before it was filled | measurement |
 | `03-REGISTERS/rigveda-pur-typology.csv` | the five-way classification | reading — every row `PROVISIONAL` |
-| `03-REGISTERS/rigveda-pur-4j-claims.csv` | 32 claims | 22 `VERIFIED`, 10 `PROVISIONAL` |
+| `03-REGISTERS/rigveda-pur-4j-claims.csv` | 32 claims | 23 `VERIFIED`, 9 `PROVISIONAL` |
 | `03-REGISTERS/rigveda-pur-4j-interpretations.csv` | 3 readings, each with evidence for, **evidence against**, what it does not establish, and falsifiers | all `PROVISIONAL` |
 
 Nothing in this unit is `VERIFIED` on the strength of an argument. Every
