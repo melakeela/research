@@ -54,6 +54,40 @@ branch held at `D-037`, is now **D-043**: `D-038` to `D-042` stand above
 is the next free identifier. `main`'s `D-037` is untouched, and the move is
 recorded in `09-DECISIONS/DECISION-ID-MAP.csv`, keyed by branch.
 
+A fourth collision was cleared on 2026-09-07, when `main` merged PR #10 and
+allocated `D-042` to the domain E egress ruling and `D-043` to the
+substrate-literature allowlist. Both identifiers were held on
+`claude/prompt-pack-inventory-reconcile-iz1phs` for different decisions: the
+public-site audit gate and R19's modern layer. `main` keeps every identifier it
+has allocated, so those two sections are now **D-048** and **D-049** — `D-044`
+to `D-047` stood above `main`'s highest but were already held by this branch's
+own rows, so `D-048` was the next free one. (`D-044` and `D-045` have since
+moved too; see the fifth collision below.) `main`'s `D-042` and `D-043` are
+untouched and byte-identical to `main`. Both moves are recorded in
+`09-DECISIONS/DECISION-ID-MAP.csv`, keyed by branch, which is how a `D-042` or
+`D-043` reference written on this branch before the merge is resolved.
+
+One consequence is not a numbering question and is left open for the owner.
+`D-047` below and `main`'s `D-042` are **the same decision** — the domain E
+egress ruling, raised from the same 2026-09-07T02:19-02:21Z probe, reaching
+this tree by two routes. This branch renumbered it to `D-047` on the
+expectation that PR #10 would not merge; PR #10 has merged, carrying its own
+copy at `D-042`. `D-047`'s own row says the two are one decision and not two.
+Both are kept here because this merge dropped no row from either side, but the
+namespace now holds one decision under two identifiers, and which one survives
+is an owner ruling rather than a merge decision.
+
+A fifth collision was cleared on 2026-09-07, when `main` merged PR #24 and
+PR #26 while this branch's own merge was in flight. `main` allocated `D-044` to
+the section 4J passage-unit question and `D-045` to the forts-artefact naming
+question — both held here for different decisions. They move by the same rule:
+R1's model-run budget is now **D-050** and the running-list Version 12 question
+is now **D-051**, `D-046` to `D-049` being already held by this branch. `main`'s
+`D-044` and `D-045` are untouched and byte-identical to `main`, and both moves
+are in `09-DECISIONS/DECISION-ID-MAP.csv`, keyed by branch. The same round moved
+this branch's `DEP-021` to **`DEP-024`**, `main` having taken `DEP-021` to
+`DEP-023` for the Grassmann and Arnold dependencies.
+
 A third series exists and is not part of this namespace. The inherited handoff
 numbered its own owner decisions `D-01` to `D-20`; those are now written
 `HD-01` to `HD-20`, they stay `INHERITED-UNVERIFIED`, and they are never
@@ -294,6 +328,103 @@ running-list versions so the delivery can be retried, *and* commit the four
 documents in the table above, or say they are superseded. The backlog gap and
 the running-list gap are separate; closing the second does not close the first.
 
+### Update 2026-09-07 — the prompt-pack arrived; the entry narrows
+
+Five files were attached and are committed unchanged, md5-verified, at
+`00-CONTROLLER/prompt-pack/`:
+
+```text
+MELAKEELACLAUDECORRECTIVECONTROLLERv2.md
+MELAKEELALANGUAGERESEARCHPROMPTS.md
+MELAKEELACLAUDEFULLSEQUENCE.md
+MELAKEELACLAUDELIVESITEAUDITPROMPT.md
+MELAKEELACLAUDESAYNEXTRESEARCHPROMPT.md
+```
+
+They are inventoried in `00-CONTROLLER/prompt-pack/PROMPT-PACK-INVENTORY.md`.
+Three things change here.
+
+**1. The R1–R19 half of this entry is closed.** All nineteen packets are
+defined in full in `MELAKEELALANGUAGERESEARCHPROMPTS.md`.
+`RESEARCH-QUEUE.md` now defines them rather than naming them, with the run
+order that three of the five files state identically and the binding
+dependency graph. `CONTROLLER-RECONCILIATION.md` §5's second outstanding input
+is satisfied.
+
+**2. The backlog half narrows but does not close.**
+`MELAKEELACLAUDECORRECTIVECONTROLLERv2.md` Part IV **enumerates all
+eighty-nine items**, verified 1–89 with no gaps, in nine groups. Constitution
+§10 requires a row per item but never listed them, and this entry was opened
+because writing eighty-nine rows would have meant inventing them. That is no
+longer true for `backlog_id` and `title`, and the grouping determines several
+dispositions outright — the "Do not build yet" block (76–89) carries its own,
+as do "Later" (66–75) and "Research first" (9–19).
+
+It remains true for `current_site_coverage` and `existing_route`, which need a
+live-site route inventory this repository cannot presently produce, and for
+`prior_research_available`, which needs the packets to have run.
+
+The question that remains is narrower than the one this entry opened with:
+
+> Is Part IV's list *the* "MelaKeela.com v2 — Master Research, Product &
+> Institutional Backlog", or a digest of a longer document that should still
+> be committed?
+
+If it is the backlog, `BACKLOG-COVERAGE.csv` can be started now against the
+columns that do not depend on the site inventory, and D-008, D-009 and D-011
+become answerable in part. If it is a digest, the longer document is still
+needed.
+
+**3. One companion file is still missing.**
+`MELA-KEELA-WHO-MADE-THE-PAST.md`, the fifth companion named in running-list
+Version 12, did not arrive. It is a required input at three points in the pack,
+and R8 is instructed to "cross-link the documented contribution model in Who
+Made the Past? rather than creating a separate incompatible schema." R8 cannot
+be run to that instruction without it.
+
+**Status:** `PARTIALLY-SATISFIED`. Still needed: an answer on Part IV,
+`MELA-KEELA-WHO-MADE-THE-PAST.md`, and the 89-item backlog document if Part IV
+is a digest.
+
+### Update 2026-09-07 — Who Made the Past arrived; item 3 closes
+
+`MELAKEELAWHOMADETHEPAST.md` was attached and is committed unchanged,
+md5-verified, at `00-CONTROLLER/prompt-pack/`. **All five companions named in
+running-list Version 12 are now present.** Item 3 above closes: R8's
+instruction to "cross-link the documented contribution model in Who Made the
+Past? rather than creating a separate incompatible schema" is executable.
+
+Three things follow that are worth recording here rather than only in the
+inventory.
+
+1. **It is not a prompt.** The other five files instruct an agent. This one
+   makes historical and historiographical assertions and cites roughly thirty
+   sources with live URLs, so its content enters
+   `03-REGISTERS/inherited-claims.csv` at `INHERITED-UNVERIFIED`, not merely
+   the controller. Its §15 source guide is unusually candid about its own
+   limits — it separates full texts from publisher abstracts and says museum
+   accounts "are not independent evaluations of institutional success" — but
+   candour is not retrieval, and nothing in it is promoted by being committed.
+   Register intake is queued, not done.
+2. **It opens a subject with neither packet nor domain.** §9 makes the
+   racialization of "Aryan" a full programme, insisting on a branching concept
+   history rather than "an inevitable Sanskrit-to-Holocaust chain".
+   Constitution §4 has no domain for it, no R packet covers it, and §9 sets a
+   learning requirement — against interfaces that ask children to sort human
+   beings into racial types or turn persecution into an aesthetic spectacle —
+   that nothing in the controller currently states.
+3. **It raises D-046**, on whether the register keeps one `status` column.
+
+**Status unchanged at `PARTIALLY-SATISFIED`.** Still needed: an answer on
+Part IV, and the 89-item backlog document if Part IV is a digest.
+
+*(Reconciled 2026-09-07 with the backlog-recovery update below, which was
+written independently on `main`. Both narrowings stand. The CSV governs
+status, and `09-DECISIONS/OWNER-DECISIONS.csv` records this entry as `OPEN`
+for the reasons the next update sets out; read `PARTIALLY-SATISFIED` here as
+the description of how much of the entry the prompt-pack closed, not as the
+row's status.)*
+
 ### Update 2026-09-07 — the backlog is recovered in title form; the text is not
 
 The 89 numbered item titles, their thirteen section headings and the six
@@ -355,14 +486,54 @@ D-008, D-009 and D-011 remain blocked, because a release cannot be scoped from
 titles alone.
 
 
-# Decisions raised by the curatorial audit v1.1 schema review
+### Update 2026-09-07 — the two recoveries compared; they are one source
 
-`01-INHERITED/curatorial-audit-v1.1/`, 2026-09-07. These three sections were
-raised as D-004, D-005 and D-006 in this file and were renumbered on
-2026-09-07 to clear the collision with `09-DECISIONS/OWNER-DECISIONS.csv`.
-`09-DECISIONS/DECISION-ID-MAP.csv` carries the mapping.
+The two amendments above were written independently, on different branches.
+This merge is the first time both recovered backlogs sit in one tree, so they
+were compared line by line.
+
+`06-BACKLOG/BACKLOG-v2-ITEMS.md` (recovered from a ChatGPT conversation) and
+`00-CONTROLLER/prompt-pack/MELAKEELACLAUDECORRECTIVECONTROLLERv2.md` Part IV
+agree on the count, the order and the subject of all eighty-nine items. They
+disagree on the wording of most of them.
+
+**This is not corroboration.** Both are model-mediated recoveries of the same
+absent document, produced in the same window from the same conversational
+context, and they reached this repository on separate branches — which is the
+only reason they briefly looked like two sources. Under CLAUDE.md's
+source-independence rule they count as **one**, and their agreement on
+ordering shows only that both were reconstructed from the same material. The
+dependency is recorded at `DEP-024` in `02-SOURCES/dependency.csv`.
+
+Two of the disagreements are substantive rather than stylistic:
+
+| # | Title-list wording | Part IV wording |
+|---|---|---|
+| 3 | "Establish one status vocabulary" | "Establish separate research, editorial and product status vocabularies" |
+| 53 | "Keep the four-door concept—for now" | "Test rather than automatically replace the current doors" |
+
+Item 3 is the sharper problem. The two recoveries give **opposite**
+instructions, and the question they disagree about is live in this repository
+as **D-046**. Nothing may be quoted as the backlog's wording on item 3, and
+`D-046` must not be answered by appealing to either recovery.
+
+**Consequence for this entry:** the row-allocation half stays closed — the
+item count and ordering are agreed and `BACKLOG-COVERAGE.csv` can carry its
+eighty-nine rows. The wording half is *less* settled than either amendment
+above implies on its own. The full original text is still outstanding, and
+until it arrives an item's wording is `INHERITED-UNVERIFIED` in two
+conflicting versions rather than one.
 
 ---
+
+# Decisions raised by the prompt-pack intake
+
+Five prompt-pack files were committed unchanged to
+`00-CONTROLLER/prompt-pack/` on 2026-09-07 and inventoried in
+`PROMPT-PACK-INVENTORY.md`. Four decisions follow from what they contain, and
+D-014 above narrows. The nine conflicts the intake found are recorded as
+`PP-1` to `PP-9` in the inventory; `PP-2` to `PP-6` and `PP-9` are resolved
+there by extending existing `C-` resolutions and need no owner decision.
 
 ## D-032 — `before-the-indus` is inside the MVP set and marked withhold-from-MVP
 
@@ -961,3 +1132,293 @@ touches published copy.
 **Asked of the owner:** whether the page should name its digitization
 and carry the range in the interim. The change itself belongs in
 `melakeela/site`, not here. Queued as `RA-009`.
+## D-050 — What model-run budget does R1 have?
+
+**Raised by:** prompt-pack intake, 2026-09-07
+**Category:** payment or institutional access required
+**Blocks:** R1, first in the agreed run order
+**Related:** `PROMPT-PACK-INVENTORY.md` PP-8
+
+R1 specifies a reproducible experiment contrasting baseline, added context,
+modern linguistic annotation and a sourced tiṇai intervention, with held-out
+data, a length-matched irrelevant-context control, contamination checks,
+native or qualified review, and recorded model and tokenizer versions,
+settings, date and **spending cap**. It instructs directly: "Do not run paid
+APIs without an agreed budget." The pack's operating controls add per-case
+effort tracking with founder time separated from cash, and defer paid live
+comparisons "until a bounded pilot and budget justify them."
+
+R1 is first in the run order in all three files that state one. The question
+cannot be deferred behind the other packet questions without moving R1.
+
+**Decision:** set a spending cap, run R1 with free or local models only and
+say so in the method, or defer R1 and start the run order at R9.
+
+---
+
+## D-051 — Is running-list Version 12 the "current master work list"?
+
+**Raised by:** prompt-pack intake, 2026-09-07
+**Category:** two consequential positions both remaining viable
+**Blocks:** every packet's required input set; the LS/COR/RV cross-reference
+for R9–R19
+**Related:** D-014; `PROMPT-PACK-INVENTORY.md` §6
+
+The five prompt files in the pack require "the current master work list" as an
+attachment,
+and `MELAKEELALANGUAGERESEARCHPROMPTS.md` describes itself as "Companion to
+master work list Version 12, sections 21–24."
+
+`01-INHERITED/site-review/MELAKEELASITEREVIEWRUNNINGLIST.md` is running-list
+Version 12, carries §§21–24, and carries the LS-, COR- and RV- series the pack
+refers to. It is most likely the same document under a different name. But no
+pack file equates them, `RUNNING-LIST-RECONCILIATION.md` does not, and this
+repository will not assert an identity between two titles on a resemblance —
+that is the move the evidence rules exist to prevent.
+
+This matters practically: R9–R19 carry no LS IDs in the pack, and their
+coverage items are traceable only through that document. If it is the master
+work list, the pack's required inputs are complete but for
+`MELA-KEELA-WHO-MADE-THE-PAST.md`.
+
+**Decision:** confirm that running-list Version 12 is the master work list, or
+name and commit the separate document.
+
+
+---
+
+## D-046 — One status column, or four axes?
+
+**Raised by:** prompt-pack intake, 2026-09-07
+**Category:** two consequential positions both remaining viable
+**Blocks:** the `03-REGISTERS/` schema and every register built on it
+**Related:** D-019; `PROMPT-PACK-INVENTORY.md` PP-10, PP-11
+
+`CLAUDE.md` is categorical: "Every claim carries exactly one status. No claim
+is unstatused," over `VERIFIED · PROVISIONAL · HYPOTHESIS ·
+INHERITED-UNVERIFIED · REJECTED · SUPERSEDED · HOLD`.
+
+`MELAKEELAWHOMADETHEPAST.md` §10 argues against exactly that design:
+
+> Do not implement one flat scale reading "documented, inferred, plausible,
+> contested, speculative, unknown." A claim can be well documented and
+> contested. A document can exist while its interpretation is uncertain.
+> Record at least **evidence basis**, **assessment of the inference**,
+> **disagreement**, and **review status** separately; simplify their
+> presentation in context.
+
+**The objection has force.** The repository's seven values conflate at least
+three axes: `VERIFIED` and `PROVISIONAL` grade the evidence basis, `HYPOTHESIS`
+grades the inference, `HOLD` is a review state. None of them can say "well
+documented and contested" — which is the ordinary condition of most of what
+this evidence base will hold, and precisely the condition the governing
+principle exists to keep visible. An `INHERITED-UNVERIFIED` row whose source is
+known to be dependent has no way to record that in `status` either.
+
+**The single column is also load-bearing.** It is what makes the inheritance
+rule enforceable: one field decides whether a claim may be built on. A
+four-column scheme invites a row reading `documented / strong / disputed /
+unreviewed` that is thereby quietly promoted without a retrieval event ever
+being logged — which is the failure the rule exists to prevent, arriving
+through the schema instead of through argument.
+
+A third option exists: keep `status` as the gate and add the other three axes
+as columns beside it, so the gate stays single while the description gets
+richer. That costs a migration of the existing 369 rows and every register
+built since, and it is not obviously better than carrying them in `notes`.
+
+Two smaller things ride on this decision. §10's **evidence roles** (`supports ·
+contradicts · contextualizes · dates · localizes · identifies · cannot
+discriminate`) are adopted regardless — they type the evidence-to-claim
+relation, not the claim, and they fill a field the shared research contract
+requires but never defines. §14's **claim lifecycle** (`draft · checked ·
+reviewed · published · revised · withdrawn`) is an editorial workflow state
+that does not belong in `status`, and is a candidate for the review column a
+four-axis schema would need.
+
+Until this is answered the single `status` column stands, and the four axes are
+carried in `notes` where a row needs them.
+
+**Decision:** keep one `status` column, split into four separately recorded
+axes, or keep `status` as the gate and add the other three beside it.
+
+---
+
+# Decisions raised by the curatorial audit v1.1 schema review
+
+`01-INHERITED/curatorial-audit-v1.1/`, 2026-09-07. These three sections were
+raised as D-004, D-005 and D-006 in this file and were renumbered on
+2026-09-07 to clear the collision with `09-DECISIONS/OWNER-DECISIONS.csv`.
+`09-DECISIONS/DECISION-ID-MAP.csv` carries the mapping.
+
+---
+
+## D-047 — Egress reach is not stable between sessions. Does domain E run under a GitHub-only policy?
+
+**Raised by:** domain E source probe, 2026-09-07T02:19–02:21Z
+**Category:** institutional access required
+**Related:** `02-SOURCES/access-ledger.csv` SRC-037 … SRC-047,
+`05-HOLDS/HOLD-002-dedr-unreachable.md`, `05-HOLDS/HOLD-003-para-munda-primary-statement.md`
+
+At 2026-09-07T00:45Z and 01:20Z this repository recorded `archive.org`,
+GRETIL, TITUS and Wikipedia as reachable, with byte counts (SRC-025,
+SRC-028, SRC-033, SRC-029). At 02:19Z, in the next session, every one of
+them answered 403 to CONNECT at the egress gateway, on both the `curl`
+and the WebFetch channel. Fifteen non-GitHub hosts were probed and all
+fifteen were refused; `github.com` over the git lane and
+`raw.githubusercontent.com` were the only reachable destinations.
+
+Nothing was withdrawn or changed by the sources. The session egress policy
+narrowed. Two consequences the owner has to rule on:
+
+1. **The ledger's meaning.** A row states reachability *at its probe
+   timestamp*. It is not a standing property of the domain, and the earlier
+   rows are not superseded — they were accurate. Every future unit that
+   cites reachability must re-probe rather than inherit. This is now written
+   into SRC-045; the owner should confirm it as the reading.
+
+2. **Whether domain E can be run at all under this policy.** The domain is
+   defined by the constitution as eleven distinctions among Dravidian, Munda
+   and unidentified material. Distinctions 1–4 need a Dravidian etymological
+   dictionary; distinctions 5–7 need Munda and Austroasiatic lexicography;
+   distinctions 8–9 need Witzel's own published statement. None is on
+   GitHub. Under a GitHub-only policy the domain's comparative half cannot
+   be evidenced at any status above `HYPOTHESIS`.
+
+| Option | Consequence |
+|---|---|
+| **Allowlist and re-run.** Add `dsal.uchicago.edu`, `archive.org`, `ejvs.laurasianacademy.com`, `sanskrit-lexicon.uni-koeln.de`, `titus.uni-frankfurt.de` | Domain E's comparative half becomes evidenceable. Cost: a second session on the same domain. |
+| **Run the corpus-internal half only, as this unit did** | Yields verified measurement of the Rigvedic side and honest holds on the comparative side. Cost: the register stays open, and nothing about Dravidian or Munda donors is settled. |
+| **Defer domain E entirely until access is granted** | Avoids a partial register. Cost: the corpus-internal measurements, which do not depend on the blocked sources, would be delayed for no evidentiary reason. |
+
+This unit took the second option and says so in every affected row.
+
+**Decision:** allowlist the five domains and re-run domain E's comparative
+half, or accept the corpus-internal half as the domain's Release 1 state?
+
+> **Identifier note.** `main` carries this same decision as `D-042`, brought in
+> by PR #10 from `claude/domain-e-research-queue-z83m9b` and raised from the same
+> probe. By this section's own reasoning the two are one decision and not two.
+> Both were kept when `main` was merged into this branch on 2026-09-07 because no
+> row from either side was dropped; which identifier survives is an owner ruling.
+
+## D-048 — Does a live public-site audit gate the first research programme?
+
+**Raised by:** prompt-pack intake, 2026-09-07
+**Category:** two consequential positions both remaining viable
+**Blocks:** `RESEARCH-QUEUE.md` items 6 and R1–R19; every packet's
+`R#-current-public-coverage.md` input
+**Related:** D-009, D-014; `PROMPT-PACK-INVENTORY.md` PP-1
+
+`01-INHERITED/site-review/RUNNING-LIST-RECONCILIATION.md` records that
+running-list Version 11 reversed the programme's first step. Version 10 opened
+with a Claude Code repository inventory; Version 12 opens with a Claude Chat
+live public-site audit, and the reconciliation warns that "anything built on
+Version 10's step order is working from a superseded sequence."
+
+**The prompt-pack does not re-propose Version 10's order.** The four dated 5
+September files are the reversal's own instruments.
+`MELAKEELACLAUDEFULLSEQUENCE.md` states it outright — "that live audit can
+replace the earlier idea that Claude Code must inventory the repository before
+any research begins" — and puts repository reconciliation at Stage 7, after
+reviewed packets. On the direction of the reversal, pack and running list agree.
+
+**The conflict is with the constitution, and it is a deletion rather than a
+reversal.** `00-CONTROLLER/METHODOLOGY-CONSTITUTION.md` contains no live-site
+audit stage at all: the string `melakeela.com` occurs **zero times** in it, and
+§16's twelve immediate actions contain no audit step. Site-checking survives
+only as §5 Step 13, one step inside the fourteen applied to each individual
+investigation. `MELAKEELACLAUDECORRECTIVECONTROLLERv2.md`, which post-dates the
+pack and which the constitution expands, does the same.
+
+So the governing document takes neither side of the Version 11 decision. It
+drops the gate the decision produced and folds the check into per-investigation
+method — with no change-log entry, no reasoning, and no mention in
+`CONTROLLER-RECONCILIATION.md`.
+
+Two things make this live rather than academic.
+
+1. **The reversal was about which agent goes first, and there is now one
+   agent.** `CONTROLLER-RECONCILIATION.md` §4 rules the Claude Chat / Claude
+   Code split "obsolete as a division of labour here. This repository *is*
+   Claude Code, and it produces the research." Version 11 chose between two
+   agents that no longer exist as separate roles. With one agent the question
+   becomes whether a live public-site audit precedes the first research
+   programme at all — and nothing in this repository answers it.
+2. **The audit is not presently runnable here.**
+   `MELAKEELACLAUDELIVESITEAUDITPROMPT.md` requires browsing `melakeela.com`;
+   the site lives in `melakeela/site`, which this session cannot read.
+
+This is not a question the record can settle. Reinstating the gate and
+ratifying its removal are both programme-ordering decisions.
+
+### Addendum 2026-09-07 — a third voice, which does not settle it
+
+`MELAKEELAWHOMADETHEPAST.md` §13 works from what it calls "a local audit
+snapshot" and refuses to treat it as authoritative:
+
+> It is not a verified inventory of the current production site or current
+> development branch. The following are integration candidates, not claims that
+> a route is currently missing or that an observed issue remains live.
+> ... Routes known from previous reports but absent from the local snapshot
+> require reconciliation against the actual branch and deployment. Do not
+> recreate them merely because they were not in one working folder.
+
+This cuts across the question rather than answering it. It agrees with
+`MELAKEELACLAUDELIVESITEAUDITPROMPT.md` that an uninspectable route is unknown
+rather than absent — the same rule under a different name — but it treats the
+**branch**, not the live site, as what a snapshot must be reconciled against,
+which is closer to Version 10's order than Version 11's. Read it as a third
+position: neither inventory settles anything alone, and the failure mode it
+names — recreating a page because one working folder lacked it — is the failure
+mode the audit prompt names from the other direction.
+
+It does not change the finding above. The constitution still has no audit of
+either kind.
+
+**Decision:** reinstate the audit-first gate, ratify the constitution's
+demotion of it to Step 13, or replace it with a repository-side route
+inventory — and if the gate stands, say how the audit is to be run.
+
+> **Identifier note.** Raised on this branch as `D-035`, renumbered to `D-042`,
+> and reassigned to **`D-048`** on 2026-09-07 when `main` merged PR #10 and took
+> `D-042` for the domain E egress ruling. See `09-DECISIONS/DECISION-ID-MAP.csv`,
+> keyed by branch.
+
+---
+
+## D-049 — Does R19's modern layer run, and under what expiry convention?
+
+**Raised by:** prompt-pack intake, 2026-09-07
+**Category:** two consequential positions both remaining viable
+**Blocks:** R19's modern half; any register convention for expiring claims
+**Related:** `PROMPT-PACK-INVENTORY.md` PP-7
+
+R19 requires independent verification, "as of the research date," of
+contemporary claims about U.S.–Iran hostilities, blockade, oil flows,
+Venezuela, ownership stakes, Maduro, Puerto Rico and commodity shares, using
+primary government and legal records, with version-pinned percentages — and
+states that "the current-affairs layer expires unless refreshed."
+
+The registers have no expiring state. Every row is durable; `SUPERSEDED`
+requires a successor to point at; there is no "stale". A claim that is true on
+its retrieval date and silently false a quarter later is a category this
+evidence base has not had to hold before, and inventing the convention
+casually would weaken the ones that already work.
+
+Constitution §4 domain T keeps the subject, so deferring the layer is a
+scoping choice rather than a rejection. **The ancient corridor is not blocked
+by this** — R19's Bronze Age to imperial chronology runs under the ordinary
+rules whichever way this goes.
+
+**Decision:** run the modern layer with a dated-expiry convention (and say
+what refreshes it, and how often), defer it and keep the ancient corridor, or
+reject it.
+
+> **Identifier note.** Raised on this branch as `D-036`, renumbered to `D-043`,
+> and reassigned to **`D-049`** on 2026-09-07 when `main` merged PR #10 and took
+> `D-043` for the substrate-literature allowlist. See
+> `09-DECISIONS/DECISION-ID-MAP.csv`, keyed by branch.
+
+---
+

@@ -374,3 +374,215 @@ work that depends on them cannot start:
 Both are recorded in `DECISIONS-NEEDED.md`. Neither is reconstructible by
 inference, and reconstructing them would produce a plausible document with
 nothing behind it — the specific failure mode named in §1.
+
+### Update 2026-09-07 — the prompt-pack arrived; §5.2 and C-7 narrow
+
+Five files were committed unchanged to `00-CONTROLLER/prompt-pack/` and
+inventoried in `prompt-pack/PROMPT-PACK-INVENTORY.md`. The paragraphs above
+stand as written on the date they were written; what they say is no longer
+current, in two respects.
+
+**Item 2 is satisfied.** R1–R19 are defined in full in
+`MELAKEELALANGUAGERESEARCHPROMPTS.md`. `RESEARCH-QUEUE.md` no longer names them
+by descriptions recovered from the running list; it defines them, with the run
+order that three of the five files state identically and the binding dependency
+graph. Note that the files are committed under the owner's upload filenames,
+which are unhyphenated; the hyphenated names used above and throughout the
+running list refer to the same documents. The correspondence is in the
+inventory §1.1.
+
+**Item 1 and C-7 narrow but do not close.**
+`MELAKEELACLAUDECORRECTIVECONTROLLERv2.md` Part IV enumerates all eighty-nine
+backlog items, verified 1–89 with no gaps. `BACKLOG-COVERAGE.csv` no longer has
+to invent `backlog_id` or `title`, and the grouping determines several
+dispositions outright. It still cannot be completed: `current_site_coverage` and
+`existing_route` need a live-site route inventory, and `prior_research_available`
+needs the packets. Whether Part IV *is* the backlog or a digest of a longer
+document is the narrowed question at `DECISIONS-NEEDED.md` D-014.
+
+**One companion was still absent** when the paragraphs above were written.
+`MELA-KEELA-WHO-MADE-THE-PAST.md` arrived later the same day and is committed as
+`prompt-pack/MELAKEELAWHOMADETHEPAST.md`. All five companions named in
+running-list Version 12 are present, and R8's instruction to cross-link its
+contribution model is executable.
+
+That file bears on this document in a way the other five do not. It is a
+research foundation, not a prompt: its content enters
+`03-REGISTERS/inherited-claims.csv` at `INHERITED-UNVERIFIED` and its dependent
+citations enter `02-SOURCES/dependency.csv` when opened, so **C-1** and the
+inheritance rule apply to it directly rather than only to the controller. Two
+further points:
+
+- Its §10 argues against the single `status` column that `CLAUDE.md` mandates,
+  on the ground that a claim can be well documented and contested. **C-1**
+  settled which *vocabulary* governs one axis; this asks whether one axis is the
+  right shape, which C-1 does not reach. Open as **D-046**; the single column
+  stands until it is answered.
+- Its §10 also defines the evidence-role vocabulary the shared research contract
+  requires and never specifies, and its "bridges are claims" paragraph is Step
+  10 and the cross-domain boundary in four sentences. Both are adopted; neither
+  needs a decision.
+
+The intake found fourteen conflicts and convergences between the pack and the
+controller, recorded as `PP-1` to `PP-14` in the inventory. `PP-2` to `PP-6` and
+`PP-9` are resolved there by extending **C-1**, **C-3**, **C-6** and §4 to cover
+the new sources; none of those resolutions is changed by the extension. `PP-11`,
+`PP-12` and `PP-14` are likewise resolved there and change nothing here —
+`PP-12` in particular confirms that constitution §6's eight absence types govern
+over the four coarser mechanisms in `MELAKEELAWHOMADETHEPAST.md` §5, since the
+four cannot express `ABSENT DESPITE ADEQUATE SEARCH`, the only type that
+licenses an argument from absence at all. `PP-10` is open as **D-046**, above.
+`PP-1` is not resolvable here and is open as **D-048**: this document does not mention the
+live public-site audit anywhere, and the audit gate that running-list Version 11
+created has been dropped from the constitution rather than reversed. Recorded
+here because §4's retirement of the Claude Chat / Claude Code division of labour
+is what removed the terms in which Version 11's decision was framed.
+
+### Update 2026-09-07 — identifier sweep beyond the `D-` namespace
+
+The domain E merge found `SRC-`, `DEP-` and `HOLD-` colliding silently, because
+the two sides wrote the same series into differently named files and neither
+merge surfaced it. The `D-` shifts above were caught; the rest of the namespace
+was swept explicitly, against **both** `main` and the open PR #10 branch
+`claude/domain-e-research-queue-z83m9b`, since that branch is where this one's
+identifiers most nearly collide. Result: **no collision outside `D-`, and no
+reassignment required.**
+
+| Series | `main` | PR #10 (open) | this branch | Collision |
+|---|---|---|---|---|
+| `SRC-` | ends `SRC-052` | adds `SRC-053`–`SRC-068` | cites only, allocates none | none |
+| `DEP-` | ends `DEP-009` | adds `DEP-010`–`DEP-020` | allocates one row, `DEP-021` then, `DEP-024` now | cleared, below |
+| `BF-` | ends `BF-006` | adds `BF-007`–`BF-011` | allocates none | none |
+| `RA-` | ends `RA-005` | adds `RA-006`–`RA-011` | allocates none | none |
+| `HOLD-` | ends `HOLD-004` | adds `HOLD-005` | allocates none | none |
+| `PP-` | absent | absent | `PP-1`–`PP-14` | none |
+| `DMB-` | PR #16's | inherited from main | none of its own | none |
+
+`DEP-024` (`DEP-021` when this was written) was deliberately taken above PR #10's
+`DEP-020` rather than at the
+first free number on this branch, which is the same discipline the `D-` shifts
+follow: the free numbers are allocated once across both open branches, not
+twice from the same base. Between the merge base and `main`, all five of those
+files were append-only — each base file is a byte-exact prefix of the `main`
+version — so no existing row changed meaning under either branch.
+
+**Byte handling.** `09-DECISIONS/OWNER-DECISIONS.csv` and
+`09-DECISIONS/DECISION-ID-MAP.csv` are CRLF files (the map mixed: CRLF for
+`D-001`–`D-031`, LF for the `HD-` block appended later). Earlier commits on
+this branch rewrote both LF-only, which turned every row into a diff and would
+have conflicted against every row PR #10 touches. Both are restored: every row
+`main` holds is byte-exact again, new rows follow the convention of the block
+they sit in, and no cell content was altered. The one row where `main`'s bytes
+cannot survive is `D-014`, which this branch amended twice; its text contains
+`main`'s in all twelve cells.
+
+`02-SOURCES/dependency.csv` was handled differently and deliberately so. It was
+first restored to `main`'s bytes when the appended row was added, then realigned to
+PR #10's quoting on the ten rows the two branches share, so that when PR #10
+merges only the appended row can conflict. Its rows are therefore no longer
+byte-identical to `main`'s, but every one of `main`'s records survives
+cell-for-cell — the change is quoting style, not content. The trade is
+recorded here because it runs the opposite way to the two files above, and the
+reason is the same in both cases: minimise what the *next* merge has to
+resolve.
+
+### Update 2026-09-07 — `main` merged again, after PR #10 landed
+
+PR #10 (`claude/domain-e-research-queue-z83m9b`) has merged, together with
+PR #17 and PR #20. The reservations recorded above were written while it was
+open; this is what became of them.
+
+**The `D-` shifts the merge forced.** `main` allocated `D-042` to the domain E
+egress ruling and `D-043` to the substrate-literature allowlist — both
+identifiers this branch was holding for different decisions. `main` keeps every
+identifier it has allocated, so this branch's two moved:
+
+| This branch held | Decision | Now |
+|---|---|---|
+| `D-042` | Does a live public-site audit gate the first research programme? (`PP-1`) | **`D-048`** |
+| `D-043` | Does R19's modern current-affairs layer run, and under what expiry convention? (`PP-7`) | **`D-049`** |
+
+`D-044` to `D-047` did not move *at that point*: they stood above `main`'s
+highest and `main` had allocated nothing there. `D-044` and `D-045` moved in the
+second merge below. `D-048` is therefore the next *free* identifier after
+`main`'s highest rather than the next consecutive one, which is the same rule
+PR #10 applied when it took `D-043` over `D-038`. Both moves are in
+`09-DECISIONS/DECISION-ID-MAP.csv`, keyed by branch, along with rewritten keys
+for this branch's five earlier reassignments — an unkeyed `old_file` would now
+collide with `main`'s own rows for the same old identifier.
+
+**One decision is now in the namespace twice, and it is not a numbering
+question.** `D-047` here and `main`'s `D-042` are the same decision — the
+domain E egress ruling, raised from the same 2026-09-07T02:19-02:21Z probe.
+This branch renumbered it to `D-047` on the stated expectation that PR #10
+would not merge; PR #10 merged and brought its own copy in at `D-042`. `D-047`'s
+own row already said the two are one decision and not two. Both rows were kept
+because this merge dropped no row from either side, so the collapse is left to
+the owner rather than made here. It is flagged in `DECISIONS-NEEDED.md` under
+"Identifiers", on the `D-047` section, and in the map.
+
+**Item numbering resolved as reserved.** `main` carried item 7 (domain E
+comparative half) and reserved items 8 and 9 for this branch; this branch
+carried 8 and 9 and reserved 7. Both reservation paragraphs are now spent and
+the list runs 1–11 with no gap. The `## Item numbering` table needed no change.
+
+**Byte handling held.** `09-DECISIONS/OWNER-DECISIONS.csv` and
+`09-DECISIONS/DECISION-ID-MAP.csv` came through with every `main` row
+byte-exact, the LF-only row at `D-036` and the LF `HD-` block intact, and new
+rows following the convention of the block they sit in. The single exception is
+the one already recorded above: `D-014`, which this branch amended and `main`
+did not touch. `02-SOURCES/dependency.csv` took `main`'s bytes on the ten
+shared rows, which is what the realignment recorded above was for, and only
+`DEP-024` was appended.
+
+**Where `main`'s reading of a `D-` reference was preferred over this branch's.**
+`04-AUDITS/domain-e-method.md`, `04-AUDITS/REAUDIT-QUEUE.csv` and
+`03-REGISTERS/domain-e-hypothesis-eligibility.csv` each carried one reference to
+the egress decision, which `main` renumbered `D-032`→`D-042` and this branch
+renumbered `D-032`→`D-047`. `main`'s bytes were taken in all three. No row was
+lost: `main`'s versions of those three files are supersets of this branch's, and
+the only divergence was the identifier.
+
+### Update 2026-09-07 — `main` merged a second time, after PR #24 and PR #26
+
+`main` moved again while the merge above was being pushed: PR #26 (the §4J
+`púr-` corpus extension) and PR #24 (the domain M adversarial review) landed.
+Three identifiers collided, in two series.
+
+| This branch held | Decision or record | Now |
+|---|---|---|
+| `D-044` | What model-run budget does R1 have? (`PP-8`) | **`D-050`** |
+| `D-045` | Is running-list Version 12 the master work list? (`PP-6`) | **`D-051`** |
+| `DEP-021` | The two v2-backlog recoveries are one source | **`DEP-024`** |
+
+`main` took `D-044` for the §4J passage-unit question and `D-045` for the
+forts-artefact naming question; it took `DEP-021` to `DEP-023` for the
+Grassmann translation/dictionary, Arnold grammar/metre and
+Geldner/Elizarenkova dependencies. The rule is the one applied throughout:
+`main` keeps every identifier it has allocated, and the branch takes the next
+*free* number above `main`'s highest — `D-050` and `D-051` because `D-046` to
+`D-049` are this branch's own, and `DEP-024` because `main` now ends at
+`DEP-023`. The `D-` moves are in `09-DECISIONS/DECISION-ID-MAP.csv`, keyed by
+branch and chained; the `DEP-` move is recorded in the `DEP-024` row itself,
+since the map is the `D-` namespace's and allocates nothing else.
+
+This is the second time `D-044` and `D-045` have been described here. The
+paragraph above was written when they had not moved; it is corrected in place
+to say "at that point" rather than rewritten, because the sequence is the
+record.
+
+**The `DEP-` row of the series table above is now out of date as history and is
+left standing.** It was written when `DEP-` collision was `none`; the
+collision has since happened and is cleared here. `SRC-`, `BF-`, `RA-`,
+`HOLD-`, `PP-` and `DMB-` were re-swept against this `main` and still do not
+collide: this branch allocates in none of them, and `main`'s `SRC-070` to
+`SRC-084` and `RA-012` sit above everything the branch cites.
+
+**`02-SOURCES/access-ledger.csv` took `main`'s bytes whole.** The branch's only
+edit to it was `SRC-045`'s closing pointer, which it had rewritten from `D-032`
+to `D-047`; `main`'s copy still reads `D-032`. `main`'s bytes were taken for
+consistency with the three files above, so that pointer is now `main`'s. It is
+a live defect but `main`'s, not this merge's: since `main`'s own renumbering,
+`D-032` names the `before-the-indus` question, not the egress ruling. Repairing
+it means choosing between `D-042` and `D-047`, which is the open owner ruling
+recorded above, so it is flagged rather than fixed here.

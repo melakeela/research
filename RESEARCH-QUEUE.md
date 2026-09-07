@@ -5,7 +5,9 @@ finding; every row is work not yet done.
 
 Seeded from `00-CONTROLLER/METHODOLOGY-CONSTITUTION.md` §4 (domains A–V)
 and §11 (packets R20–R21), plus one domain that has no entry in either
-(`WMP-9`, below). Ordering below the first item is owner decision **D-008** in
+(`WMP-9`, below), and from
+`00-CONTROLLER/prompt-pack/MELAKEELALANGUAGERESEARCHPROMPTS.md` (packets
+R1–R19). Ordering below the first item is owner decision **D-008** in
 `09-DECISIONS/OWNER-DECISIONS.csv`.
 
 ## Done
@@ -67,28 +69,44 @@ and §11 (packets R20–R21), plus one domain that has no entry in either
    registers and holds are kept apart deliberately; `DEP-016` to
    `DEP-020` record where their ledger rows are the same source probed
    twice.
+8. **Prompt-pack intake.** The six files at `00-CONTROLLER/prompt-pack/`,
+   committed unchanged 2026-09-07, inventoried in `PROMPT-PACK-INVENTORY.md`,
+   and reconciled into this queue. *(This change.)* R1–R19 below are now
+   defined rather than named. Conflicts with the controller are recorded as
+   `PP-1` to `PP-14`; `PP-1` is open as **D-048** and gates the packets,
+   `PP-10` as **D-046**. All five companions named in running-list Version 12
+   are now present.
+9. **Register intake for Who Made the Past.** `MELAKEELAWHOMADETHEPAST.md` is
+   the only file in the pack that makes historiographical assertions rather
+   than issuing instructions — roughly thirty cited sources, sixteen sections.
+   Its claims enter `03-REGISTERS/inherited-claims.csv` at
+   `INHERITED-UNVERIFIED`, and its dependent citations (publisher abstracts,
+   a review standing in for a debate, institutional self-descriptions, all
+   flagged as such by its own §15) enter `02-SOURCES/dependency.csv` when the
+   sources are opened. Not started. The register stands at 369 rows, all from
+   `01-INHERITED/claude-project-handoff.md`.
 
 ## Blocked on inputs
 
-Items **8** and **9** are reserved for the prompt-pack intake and the
-`MELAKEELAWHOMADETHEPAST.md` register intake, which are on
-`claude/prompt-pack-inventory-reconcile-iz1phs` (PR #14) and are not on this
-branch. The reservation is deliberate: both branches were cut from the same
-base and both appended to this list, so the numbers were allocated once,
-across both, rather than twice from the same free position. Whichever merges
-first, the other's items keep the numbers stated here. The reassignment is
-recorded under "Item numbering" at the end of this file.
-
 10. **Backlog reconciliation** — `06-BACKLOG/BACKLOG-COVERAGE.csv`, one row
     per item 1–89 with a destination, deliverable, hold or reasoned
-    rejection. `RESEARCH HOLD`: the "MelaKeela.com v2 — Master Research,
-    Product & Institutional Backlog" is not in this repository and cannot be
-    reconstructed by inference. See `DECISIONS-NEEDED.md` D-014.
-11. **Packets R1–R19.** Named in the site review running list; their
-    definitions live in the prompt-pack (`MELA-KEELA-CLAUDE-FULL-SEQUENCE.md`,
-    `MELA-KEELA-LANGUAGE-RESEARCH-PROMPTS.md`,
-    `MELA-KEELA-CLAUDE-LIVE-SITE-AUDIT-PROMPT.md`), which is also absent.
-    `RESEARCH HOLD` on the same grounds.
+    rejection. **Partly unblocked 2026-09-07.**
+    `00-CONTROLLER/prompt-pack/MELAKEELACLAUDECORRECTIVECONTROLLERv2.md`
+    Part IV enumerates all eighty-nine items, verified 1–89 with no gaps, so
+    `backlog_id` and `title` no longer have to be invented and the grouping
+    determines several dispositions outright. Still `RESEARCH HOLD` for
+    `current_site_coverage` and `existing_route`, which need a live-site
+    route inventory, and for `prior_research_available`, which needs the
+    packets. Whether Part IV's list *is* the backlog or a digest of a longer
+    document is the narrowed question at `DECISIONS-NEEDED.md` D-014.
+11. **Packets R1–R19.** No longer blocked for want of definitions — those
+    arrived on 2026-09-07 and are below. Now blocked on three things instead:
+    **D-048**, whether a live public-site audit gates the first packet, since
+    every packet is specified to receive an `R#-current-public-coverage.md`
+    from it; **D-009**, the route inventory that audit would produce, which
+    this repository cannot presently generate; and, for R1 specifically,
+    **D-050**, the model-run budget its experiment requires. R1 is first in
+    the run order, so the budget question is not deferrable behind the others.
 
 ## Research domains — constitution §4
 
@@ -209,6 +227,157 @@ are recorded separately, at `13-PRODUCT-ARCHITECTURE/museum-framework.md`
 §10.4.7. They bind the product regardless of subject and are not scoped to this
 domain.
 
+## Research packets — R1–R19
+
+Defined in full in `00-CONTROLLER/prompt-pack/MELAKEELALANGUAGERESEARCHPROMPTS.md`,
+committed 2026-09-07. Until that date this queue could only name them. Each
+row below states what the packet must establish and the control the prompt
+attaches to it; the prompt file is authoritative and none of this is a
+finding. `Run` is the order three files in the pack agree on
+(`MELAKEELALANGUAGERESEARCHPROMPTS.md` "Recommended order",
+`MELAKEELACLAUDEFULLSEQUENCE.md` Stage 3, `MELAKEELACLAUDESAYNEXTRESEARCHPROMPT.md`
+S01–S19); `Dom.` is the proposed mapping onto the §4 domains above, derived in
+`00-CONTROLLER/prompt-pack/PROMPT-PACK-INVENTORY.md` §4 and not stated by any
+source file.
+
+Every packet runs under the pack's **shared research contract**: four critical
+operations (decolonize, debrahminize, de-Indo-Europeanize, audit nationalist
+capture), an archive-power note and a narrative audit on every major
+conclusion, and a ten-part deliverable. A packet is not a page. It may produce
+corrections, extensions, a shared dataset, an Atlas layer, a comparative
+instrument or a research hold.
+
+| Run | # | Packet | What it must establish | The control | Dom. |
+|---|---|---|---|---|---|
+| 1 | **R1** | What Tamil Reveals About AI | Three separated questions: where named models actually fail on specified Tamil tasks, which linguistic interventions might help, and which improvements have been *demonstrated*. Start from the ILAKKANAM and TamilTok papers with datasets and evaluation details. Design a reproducible experiment contrasting baseline, added context, modern annotation and a sourced tiṇai intervention. | No cross-language ranking from a Tamil-only benchmark; no cultural-understanding claim from a tokenizer result; held-out data, a length-matched irrelevant-context control, contamination checks, native review, recorded model/tokenizer versions and a spending cap. Frozen results first; live model calls later. | — |
+| 2 | **R9** | What Is Inherited, Indic and South Asian in Rigvedic Sound? | Decompose the early Rigvedic sound system feature by feature into PIE inheritance, Indo-Iranian development, Indo-Aryan innovation, proposed areal influence and later grammatical classification. Vowels, stop contrasts, palatals, dental/retroflex, sibilants, nasals, liquids, accent, aspiration, sandhi, phoneme against conditioned phone. | Never label the whole table one layer. Test whether velar/palatal nasals are place-conditioned in other IE languages before calling them South Asian evidence. "South Asianized" must resolve into specific evidence. One sound feature does not establish the ancestry of Pāṇinian analysis or the identity of an Indus language. | B, C |
+| 3 | **R16** | Proto-Dravidian Sibilants, Tamil Script and Borrowed Sound | Whether standard Proto-Dravidian reconstruction lacks a native phonemic /s/ and any Sanskrit-style s/ś/ṣ series. Evidence for `*c`, its phonetic values and daughter outcomes. Old Tamil's own resources through Tamil-Brāhmī to the Grantha-derived ஜ ஷ ஸ ஹ, dated graph by graph. | Distinguish reconstruction symbol, phoneme, contextual phone, letter and transliteration. Tamil neither "lacks expressive capacity" nor "forgot s" nor was completed by Sanskrit; equally, a later sibilant spelling is not an unchanged ancient phoneme. | D |
+| 4 | **R3** | Did Later Rules Reshape Earlier Vedic Speech? | The owner's actual question: could later recitational or grammatical standardization have altered earlier transmitted sound patterns, particularly in RV 2–7. Compare Saṃhitā forms, Padapāṭha segmentation, metrical evidence, restorations, school-specific treatments and Pāṇinian rules on concrete cases. | Do not answer only that speech preceded grammar. Separate deliberate grammatical intervention, recitational change, natural change and modern editorial normalization. Mitanni answers only what its corpus can answer and is not negative evidence. A mixed or indeterminate answer is acceptable. | A |
+| 5 | **R10** | The Rigveda as a Layered Social and Ritual Archive | Internal stratification and institutional history: books 2–7, the distinct histories of 8 and 9, later material in 1 and 10. Poet-priest families, patrons, cattle and horses, praise, raids, ritual exchange, consolidation, canonization and later reuse. A full *pur* enumeration recording 90/99/100 **and other counts** with descriptors, enemy, patron, lineage and whether geography is textual, inferred or unknown. | No book is uniform. Establish what proportions the original-language corpus can actually support and what the hymns systematically underrepresent. Never place a passage at an archaeological site without a stated inference chain. Do not project later varṇa backward. | A, I, J |
+| 6 | **R12** | The Oxus Interface and Indo-Iranian Contact Before the Split | BMAC/Oxus as a contact environment in the formation of Proto-Indo-Iranian vocabulary, technology and ritual-poetic institutions. A dated geography of Sintashta/Andronovo, Oxus sites, the plateau, Elam, Helmand, Shortugai and Indus networks. Reproduce the proposed common Indo-Iranian non-IE loan lists, form by form. | "Iranian-related ancestry", "Proto-Iranian", BMAC material culture and an unknown BMAC language are not interchangeable; genetics cannot name the BMAC language. Distinguish the derivable name of the pressed substance from proposed substrate plant/offering/priest terms. A ritual loan layer is not "Vedic religion was BMAC religion". | G |
+| 7 | **R17** | The Same World, Two Responses | The proposed contrast between Rigvedic praise inside warrior-patron exchange and the Gāthās as reformist response within a society that also knew raiding and priestly competition. Named passages on both sides, including RV 6.31.4 and RV 1.130. At least four explanations for the divergence: genre/survivorship, a Zarathustrian break, different political ecologies, different contact histories. | No violent-Indian/peaceful-Iranian binary; two differently selected corpora are not two complete societies. Do not import later Zoroastrian doctrine into the Gāthās unlabelled. Cognate *deva/daēva* does not by itself establish an ideological inversion. The deliverable carries a genre-warning panel. | B, H |
+| 8 | **R2** | Before Pāṇini and Inside the Grammar | The Aṣṭādhyāyī through actual derivations. Verify pratyāhāras, the sound inventory, it/anubandha markers, anuvṛtti, rule conditions, ordering, exceptions and the interpretive traditions. An evidence-ranked account of named predecessors, Śākalya, Yāska, the recitational schools, Kātyāyana and Patañjali. | Not a sequence of programming metaphors; technical markers are not agglutinative morphology. Do not assume all Prātiśākhya material precedes Pāṇini. Compare Rajpopat's actual proposal with substantive responses; a news headline is not proof a long-standing problem was solved. Divine attribution belongs to R8. | C (part) |
+| 9 | **R4** | Before Tolkāppiyam and Meaning Has a Landscape | Tamil's intellectual architecture on its own sources: divisions, proposed layers, editions, commentary history, contested dating; eḻuttu, col, poruḷ, tiṇai, uḷḷuṟai and meyppāṭu through actual passages with edition locator, transliteration, gloss, translation and interpretive alternatives. | Not described chiefly as a response to Sanskrit. Separate traditions about Agattiyam/Agastya from recoverable predecessor texts. Do not imply Sanskrit or Greek lacks contextual meaning, and do not map one landscape mechanically to one emotion. | D |
+| 10 | **R11** | Substrate Vocabulary and Grammatical Ontologies | Proposed non-IE vocabulary in the Rigveda at lemma level — locator, meaning in context, morphology, proposed donor or unknown, competing etymologies, semantic field, stratum, assessment — with counted denominators for any clustering claim. *kīnāśa* at RV 4.57.8 gets a transparent candidate-etymology record testing inherited IA proposals, Tamil *kiṇṭu*, recipient remodeling, Munda/Central-Asian alternatives and accidental resemblance. Grammatical ontology compared through matched phenomena. | Do not reproduce headline totals before the list, criteria and denominator are available. Unknown does not mean Indus, Para-Munda or Dravidian. An unidentified donor does not outrank a testable Dravidian candidate by default, and semantic proximity is not proof. Shared dual number proves nothing; absent gender does not mean a society was "beyond gender". | E, F, N |
+| 11 | **R18** | Brahui, North Dravidian and the Languages Left on the Hills | Four separate histories — the language, the ancestry of present speakers, Brahui tribal/political identity, and successive contact layers. Build the strongest version of *both* models (northwestern continuity with contraction; first-millennium-CE migration) with what each explains, its assumptions, what it struggles with and its falsifier. Read the genetic literature at method level. A 500-year Balochistan language map, 3000 BCE–1500 CE, labelled `ATTESTED / INFERRED / POSSIBLE / UNKNOWN`. | Genetics cannot date a language; a linguistic migration model does not manufacture a recorded population movement. Establish Balochi expansion's own chronology before treating absent Old Iranian loans as a clock. Community accounts are evidence of identity and incorporation, not multi-millennial timestamps; no "tribal fossil" framing. The result may rank continuity plausible but must not present Brahui as proof of the Indus language. | M |
+| 12 | **R13** | Stones, Routes and the Political Economy of Exchange | Lapis and carnelian as physical tracers, c. 4000–1000 BCE, across Badakhshan, BMAC, the plateau, Elam/Susa, Marhaši, Helmand, Shortugai, the Indus, Gujarat/Kutch, Makran, Magan, Dilmun and Mesopotamia. A primary-text table for Meluhha, Magan, Dilmun and Marhaši. A coverage audit of what major museums explain about extraction, makers and provenance, and which communities go unnamed. | Separate geological source, manufacturing source, commercial source, findspot, laboratory method, textual label and modern museum attribution — a trade name need not identify a quarry. Do not collapse Marhaši into Meluhha. Trade, gift, tribute, taxation, raid and conquest are distinct; a commerce-to-coercion progression is tested commodity by commodity, not asserted. | R, S |
+| 13 | **R19** | Before Oil: Hormuz, Corridors and Coercive Control | A sourced chronology of the Gulf corridor from Dilmun–Magan–Meluhha through Achaemenid, Hellenistic, medieval Indian Ocean, Portuguese, British and modern energy eras, using R13's object records. Organized violence before states through current archaeology. A structurally comparative — not equating — modern layer. | Distinguish the Strait from the wider Gulf–Oman–Makran system; do not project a modern national map backward. Reopen the Sargon inscription in a critical edition; moored ships are not captured fleets without textual support. No single peace-to-war ladder. Modern claims independently verified at the research date and version-pinned; the ancient route must remain usable when the modern layer expires. | S, T |
+| 14 | **R14** | The Language That Changed as It Moved | A chronology-plus-geography model from Proto-Indo-Iranian through early and late Vedic, regulated Sanskrit and vernacular Old/Middle Indo-Aryan, built **only from accepted records** of R3, R9, R11, R12, R16 and R18. Selected features, not a whole language: retroflexion, sibilants, conditioned nasals, vocalic resonants, diphthongs, aspiration, pitch accent, subjunctive/injunctive, infinitives, dual, quotatives, non-finite chaining. Delivered as an Artifact Atlas mode with the full schema and a static accessible table first. | Old/Younger Avestan are comparisons, not stations on a Sanskrit line; Proto-Dravidian, Old Tamil and Munda candidates stay visible as contact fields, not descendants. Each state change typed inherited / internal / contact-supported / contact-possible / disputed / unknown, with separate symbols for attested text, reconstruction, ancestry movement and material exchange. No Prakrit-as-corrupted-Sanskrit; no invented 1000 BCE written vernacular. No animation outrunning the records. | B, O, P |
+| 15 | **R5** | Who Mapped the Mouth? Writing, Sound and Dates | Articulatory description, phonological classification, writing-system structure and archaeological dating kept apart. For priority claims, define the feature and the surviving source. For Brāhmī before Aśoka, a site-level table for Anurādhapura and peninsular finds: inscription identification, proposed language, layer, sample dated, laboratory locator, calibrated range, sample-to-sherd association, incision timing, stratigraphic concerns, alternative readings. | Trace handbook claims to the underlying excavation and dating reports. Similar encoding principles are not genealogy. Earliest known sample, earliest securely dated writing, distribution and place of invention are four things and none entails the next. A generated voice cannot certify historical pronunciation. | — |
+| 16 | **R6** | Multiple Sciences of Language | Mesopotamian scribal work, Egyptian language awareness, Sanskrit, Tamil, Greek, Latin, Chinese and Arabic traditions compared on a matrix of phonetics, word formation, syntax, meaning, poetics, pedagogy, notation, usage and institutional purpose. Greek/Latin category transfer through specific colonial grammars, original terminology and later critiques — including where categories clarified, where they distorted, and where local analysts supplied alternatives. | Compare traditions on their own questions. A single handbook is not a tradition. No whole-language complexity ranking; an "earliest" or "unusually systematic" claim must define corpus and criterion. Do not claim one uninterrupted Western line or one shared worldview. | N (part) |
+| 17 | **R8** | When Knowledge Becomes Sacred Authority | The akṣarasamāmnāya, Śiva/Māheśvara Sūtras and the divine-origin narrative traced through dated witnesses; the Agastya/Agattiyam traditions by the same method. What later attribution accomplishes institutionally. What can be established about canon formation, authority and named and unnamed predecessors. | A tradition's account is not evidence of an original author's belief. Separate the phonological strings from the later Kashmir Śaiva text of similar title. Do not assume every sacred attribution is deliberate theft. Do not conflate an adjective, a name, a deity and a later theological system. Bounded attribution history, not a rewrite of South Asian religion. | U, V (part) |
+| 18 | **R15** | Before Alexander: Contact Corridors and Intellectual Transmission | A chronology of Achaemenid, Gandhāran, Greek, Egyptian, West/Central Asian and South Asian contact before and after Alexander — administratively connected populations, travel, settlement, embassies, texts and testimonia with primary or specialist locators. The chronology of Indian and Greek phonetic analysis compared. Delivered as an Atlas layer with a claim ladder: impossible / possible / plausible / supported / demonstrated. | A corridor plus a resemblance is not a transmission chain. Separate an ordinary sound process, its pre-contact Greek evidence, its explicit Greek description, later systematization and any proposed Indian influence. State what would strengthen an influence claim. Unequal survival on both sides is recorded, not converted into positive evidence. | Q |
+| 19 | **R7** | Contact, Meaning and Directionality | The hardest directionality claims, last, once the chronologies exist. For Indo-Aryan/Dravidian/Munda contact, a few features tested against inheritance, internal change, convergence and borrowing. For Greek–Indian philosophy, Pyrrho-related hypotheses distinguished from claims about Stoicism, on a chronology of actual texts and testimonia including the date and distance of later reports. Bhartṛhari and sphoṭa through appropriate translations and specialist interpretation. | Treat retroflexion with phonological environments and competing explanations; a sound feature does not establish the origin of grammatical theory. Similar ideas plus possible contact do not establish direction. An ancient text is neither an anticipation of transformers nor evidence for events centuries earlier. The contribution/contact graph distinguishes supported from disputed edges. | P, Q |
+
+### Packet dependencies
+
+Stated in `MELAKEELACLAUDEFULLSEQUENCE.md` Stage 3. These are hard: a packet
+does not run before its inputs.
+
+```text
+R9 → R16 → R3 → R2
+R10 + R12 → R17
+R11 + R12 → R18
+R13 → R19
+R3 + R9 + R11 + R12 + R16 + R18 → R14
+R2 + R4 + R5 + R15 → R7
+```
+
+R1 has no dependency and can run while historical sources are collected — but
+see D-050 on its budget.
+
+### Where the two enumerations do not meet
+
+The nineteen packets and the twenty-two domains are not congruent in either
+direction, and the gaps are work, not bookkeeping.
+
+- **Domains with no R1–R19 packet:** **K** and **L** — both belong to R20;
+  **U** — R21, with R8 covering only its attribution half. This is why R20 and
+  R21 exist.
+- **Packets with no domain:** **R1**, **R5**, and largely **R2** and **R6**.
+  Constitution §4 A–V is an ancient-evidence inheritance and these four sit
+  outside it, so none of them has a domain-level trap statement — the thing §4
+  exists to supply. Writing those four traps is outstanding.
+- **LS coverage IDs:** only R1–R8 name them, and only LS-01–LS-21, the Version
+  9 set. R9–R19 were added in running-list Versions 10–12 and their
+  LS-22–LS-51, COR-01–COR-18 and RV-01/RV-02 assignments live in
+  `01-INHERITED/site-review/MELAKEELASITEREVIEWRUNNINGLIST.md`, not in the pack.
+- **A subject with neither:** the **racialization of "Aryan"**.
+  `MELAKEELAWHOMADETHEPAST.md` §9 makes it a full programme — separating an
+  ancient self-designation, a philological classification, an ethnological
+  claim and a racial-political category, as "a branching history, not an
+  inevitable chain" — and §2 fixes the discipline in both directions: document
+  the racialization through specific actors and institutions, and reject an
+  inevitable Sanskrit-to-Holocaust chain. No domain, no packet. It also sets a
+  learning requirement the controller does not state anywhere: no interface
+  that asks children to sort human beings into racial types, awards points for
+  extremist categories, or turns persecution into an aesthetic spectacle.
+  Writing this trap statement is the most urgent of the five.
+- **A domain running ahead of its packet:** **M**. Item 5 above is a completed
+  domain M unit — the Brahui geographic measurement, reconstructed and
+  measured, with `HOLD-004` open on the comparative half. **R18** is the packet
+  for the same subject; it is broader (four separate histories, both models
+  built at full strength, a 500-year Balochistan language map), and it has not
+  started. It sits at run position 11 behind `R11 + R12`, and behind **D-048**
+  with every other packet. The two enumerations are therefore not merely
+  non-congruent but out of phase: one has produced registers where the other
+  has not begun. Nothing here reconciles them. Item 5's registers are an input
+  to R18, not a discharge of it, and R18's controls are not weakened by the
+  fact that some of its ground is already measured — it must still build the
+  northwestern-continuity model at full strength, which item 5 explicitly did
+  not close (**none of the six §4.M models is closed**). Which enumeration
+  schedules the remainder of domain M is left open.
+- **These five gaps are recorded, not resolved.** They are findings about the
+  material, not bookkeeping to be tidied away. Neither enumeration is
+  subordinated to the other here, no packet is renumbered onto a domain, and no
+  domain is retired into a packet. The `Dom.` column of the packet table is a
+  proposed mapping derived in
+  `00-CONTROLLER/prompt-pack/PROMPT-PACK-INVENTORY.md` §4 and stated by no
+  source file; it is not authority for collapsing the two lists.
+
+### What Who Made the Past supplies
+
+It defines no packet, but it is a named input to **R8** — which is instructed
+to cross-link its contribution model "rather than creating a separate
+incompatible schema", an instruction that was not executable until 2026-09-07 —
+and it bears substantively on several others:
+
+| Packet | What it takes from `MELAKEELAWHOMADETHEPAST.md` |
+|---|---|
+| R8 | The contribution/transmission data model (§10); the attribution-history method (§8) |
+| R2, R6 | §6's Pāṇini against the *Technē Grammatikē* — compare intellectual tasks, not handbooks; formal structure is not civilizational superiority and Sanskrit was not a programming language |
+| R7, R15 | §6's *Yavanajātaka* and Babylonian-methods-in-Greek-astronomy cases: a confident transmission chronology resting on a fragile textual reconstruction |
+| R11 | §4's Indus resolution problem and Green's egalitarian argument, marked as an interpretation to examine rather than proof |
+| R13 | §10's custody-versus-transmission split and the museum coverage audit |
+| R5, R4 | §6's rule that every comparison declares whether it concerns genealogy, borrowing, institutional function or later classification |
+
+It is also the fullest statement of **domain V** anywhere in the material, and
+it carries most of constitution §12's product-specification subject list in
+usable form: F1–F8, the five collections, the eight-record data model, evidence
+roles, and a build sequence ordered by dependency rather than page count.
+
+Three of its rules are adopted here regardless of any decision, because they
+restate rules this repository already runs: **bridges are claims** (resemblance
+is not transmission, priority is not influence, shared vocabulary is not a
+shared institution, population affinity is not language or identity); the
+**evidence-role vocabulary** for the shared contract's undefined `evidence_role`
+field; and the prohibition on invented quantities — no visibility score, no
+survival funnel presented as data, no civilizational ownership percentage.
+
+### Before the packets: the live-site audit question
+
+`MELAKEELACLAUDEFULLSEQUENCE.md`, `MELAKEELACLAUDELIVESITEAUDITPROMPT.md` and
+`MELAKEELACLAUDESAYNEXTRESEARCHPROMPT.md` all place a live public-site audit
+*before* R1, and feed each packet an `R#-current-public-coverage.md` produced by
+it. `METHODOLOGY-CONSTITUTION.md` has no such stage — the string
+`melakeela.com` does not occur in it — and keeps site-checking only as §5 Step
+13 inside each investigation.
+
+This queue does not settle it. No packet is scheduled until **D-048** is
+answered, and the audit is in any case not presently runnable from this
+repository (the site is in `melakeela/site`; see D-009). See
+`00-CONTROLLER/prompt-pack/PROMPT-PACK-INVENTORY.md` PP-1.
+
 ## New packets — constitution §11
 
 - **R20 — THE MISSING RECORD.** Indus seals and writing, Rigvedic silence,
@@ -256,14 +425,38 @@ or research holds. Constitution §11.
 - Hypothesis gating (Step 7) before extended analysis, so that space is
   never allocated to a hypothesis that has not cleared the gate.
 - Both adversarial tests (§8) before a unit is called finished.
+- The packet dependency graph above is binding. A packet does not run before
+  its inputs, and R14 and R7 in particular synthesize **only accepted
+  records** from theirs — a held claim upstream stays held downstream rather
+  than being filled in.
+- The pack's run order and the domain list are two enumerations of
+  overlapping work, not two queues. Whichever is scheduled first, the other's
+  rows are satisfied by the same investigation where they coincide; the
+  mapping is in the packet table's `Dom.` column and its gaps are listed
+  under "Where the two enumerations do not meet".
+- The challenge prompt (`MELAKEELALANGUAGERESEARCHPROMPTS.md`, final section)
+  runs on every packet before it is consolidated. It is the pack's form of
+  §8 and does not replace either adversarial test.
 - The first programme previously queued — the Meluhha-to-Keezhadi spine —
-  is domain **S** plus part of **R**. It is not a separate item.
+  is domain **S** plus part of **R**, and is R13 plus part of R19. It is not
+  a separate item.
 
 ## Not yet
 
-- Product and institutional specification (§12) — pending **D-012**.
-- The language-movement Artifact Atlas specification (§13).
+- Product and institutional specification (§12) — pending **D-012**. The
+  pack's Stage 6–9 release and build workflow belongs here, minus the
+  Claude Chat / Claude Code division of labour, which
+  `00-CONTROLLER/CONTROLLER-RECONCILIATION.md` §4 has already retired.
+  `MELAKEELAWHOMADETHEPAST.md` §11–§14 supplies most of its content: F1–F8
+  with acceptance criteria, the five collections, the eight-record model, and
+  §14's research operations — case dossier before feature, review matched to
+  claim type, community authority with documented scope and no unlimited veto,
+  and payment for expertise and participation.
+- The language-movement Artifact Atlas specification (§13). R14 is its
+  evidence layer and R12, R13, R15 and R18 supply its edges; none has run.
 - Page and exhibit briefs.
+- R19's modern current-affairs layer — pending **D-049**. The ancient
+  corridor is not blocked by it.
 - Anything touching `melakeela/site`.
 
 ## Item numbering
