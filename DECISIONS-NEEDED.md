@@ -86,3 +86,89 @@ project so their coverage can be probed and added to the ledger; and
 confirm whether a Scholar Feed API key and a paid Scite tier are in
 scope. Whether to keep the two legal connectors enabled is a separate
 call — they cost tool surface and return nothing for this programme.
+
+---
+
+## D-004 — `before-the-indus` is inside the MVP set and marked withhold-from-MVP
+
+**Raised by:** curatorial audit v1.1 schema review, 2026-09-07
+**Category:** two consequential positions both remaining viable / publication approval
+
+In `01-INHERITED/curatorial-audit-v1.1/`, the page `before-the-indus`
+("Before the Indus: Baghor Shrine and Mesolithic Sun Graves") is
+simultaneously:
+
+- `MVP` sheet, **rank 8 of 15**
+- `page-audit.csv`, `MVP = Yes`
+- `asset-register.csv`, `Priority = MVP`
+- `page-audit.csv`, `Decision = Hold`, `Risk = Critical`
+- `MVP` sheet, `Release dependency` = *"Withhold from MVP until
+  load-bearing claims receive claim-level citations and
+  specialist/editorial review."*
+
+The row instructs the reader not to do what the sheet it appears on
+does. It is the only one of the fifteen in this state, and the only
+Critical-risk page in the launch set.
+
+This is not resolvable by an agent: either the page is in the launch
+and its Hold is overridden, or it is out and the MVP set is fourteen
+pages with a gap at rank 8. Both are defensible curatorial positions
+and the choice changes what launches.
+
+**Decision:** does `before-the-indus` launch, or does it come out of
+the MVP set? Nothing in this repository acts on the MVP set until this
+is answered.
+
+---
+
+## D-005 — `rakhigarhi` is in the contradiction register but not in the audited build
+
+**Raised by:** curatorial audit v1.1 schema review, 2026-09-07
+**Category:** two consequential positions both remaining viable
+
+`03-REGISTERS/inherited-claims.csv` row `IH-263` (contradiction X-14)
+concerns the live `rakhigarhi` page: it asserts there is no seafaring in
+the Rigveda while the site's own corpus file records `nau-` at n = 40.
+
+`rakhigarhi` is **not among the 96 pages** in the audited baseline
+`veli-site(3).zip` (supplied 2026-09-01). It appears nowhere in any
+sheet of the workbook.
+
+Three possibilities, and the repository cannot distinguish them without
+the owner:
+
+1. The frozen baseline predates the page.
+2. The page was removed between the register's sources and the baseline.
+3. The two artefacts describe different builds, in which case the
+   audit's coverage of the live site is unknown.
+
+This matters beyond one page: if (3), then "96 pages" does not describe
+the site the contradiction register is talking about, and every count in
+the workbook is scoped to a build no other artefact here references.
+
+**Decision:** which build is authoritative, and is `rakhigarhi` live?
+
+---
+
+## D-006 — The audit's "96 pages" is a seventh page count, not a resolution
+
+**Raised by:** curatorial audit v1.1 schema review, 2026-09-07
+**Category:** two consequential positions both remaining viable
+
+`03-REGISTERS/inherited-claims.csv` row `IH-251` (contradiction X-02)
+records six page counts in circulation: 58, 69, 85, 102, 127 and ~135.
+
+The workbook's baseline is **96**, which is not among them. The
+workbook does not cite the dispute or claim to settle it.
+
+Related, and with more exposure: `IH-250` (X-01) records the atlas site
+count as disputed across 140 / 150 / 158 / 167→175 / 194 / 199. The
+workbook adopts **175**, carries it in the page title *"Artifact Atlas:
+175 Ancient South Asian Sites Mapped"*, places that page at **MVP rank
+3**, and rates it `Keep` / `Low` risk with no Claim Risk row. A
+contested number is inside a launch page title, presented as settled.
+
+**Decision:** is 96 the authoritative page count, superseding the six on
+file, or a seventh unreconciled value? And what is the atlas site count?
+The atlas number is load-bearing for a page ranked third in the launch
+set.
