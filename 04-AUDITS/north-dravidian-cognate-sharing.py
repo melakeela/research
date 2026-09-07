@@ -31,10 +31,37 @@ WHAT THIS SCRIPT CANNOT SEE, per the BF-001 control:
 
 Source: SRC-049 (lexibank/dravlex at 37578075e5ccb09c43022f7f1282125e748de84d).
 """
-import csv, itertools, collections, os, sys
+import csv, itertools, collections, os, sys, hashlib, urllib.request, tempfile
 
-SP = os.environ.get("DRAVLEX_DIR",
-    "/tmp/claude-0/-home-user-research/348ca5d4-899f-5351-8f50-ffc1fb2ccd0c/scratchpad/dravlex")
+# DravLex pinned to the commit recorded in the ledger row SRC-049 and in
+# 02-SOURCES/dravlex-glottolog-manifest-2026-09-07.md. Set DRAVLEX_DIR to a
+# local checkout to skip the fetch; otherwise the two files are pulled from
+# that exact commit and their sha256 verified before anything is counted.
+PIN = "37578075e5ccb09c43022f7f1282125e748de84d"
+RAW = "https://raw.githubusercontent.com/lexibank/dravlex/" + PIN + "/cldf/"
+SHA = {
+    "forms.csv":    "c1b2c7f02cdddd6cfab67373d7eb50b6e27ddb592070b83de3a128899d055fde",
+    "cognates.csv": "1eb8b6ddc6d07106c509ba38e601a2e18a65a1779336e8b6d47fb0996aff4c48",
+}
+
+def dravlex_dir():
+    d = os.environ.get("DRAVLEX_DIR")
+    if d and all(os.path.exists(os.path.join(d, f)) for f in SHA):
+        return d
+    d = os.path.join(tempfile.gettempdir(), "dravlex-" + PIN[:12])
+    os.makedirs(d, exist_ok=True)
+    for f in SHA:
+        path = os.path.join(d, f)
+        if not os.path.exists(path):
+            sys.stderr.write("fetching %s from %s\n" % (f, PIN[:12]))
+            urllib.request.urlretrieve(RAW + f, path)
+        got = hashlib.sha256(open(path, "rb").read()).hexdigest()
+        if got != SHA[f]:
+            raise SystemExit("sha256 mismatch for %s: expected %s got %s"
+                             % (f, SHA[f], got))
+    return d
+
+SP = dravlex_dir()
 
 forms = list(csv.DictReader(open(os.path.join(SP, "forms.csv"), encoding="utf-8")))
 LANGS = sorted({f["Language_ID"] for f in forms})
