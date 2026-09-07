@@ -14,7 +14,11 @@ and §11 (packets R20–R21). Ordering below the first item is owner decision
    `D-003` in `DECISIONS-NEEDED.md`.
 2. **Inheritance intake** — `03-REGISTERS/inherited-claims.csv`, 369 rows,
    all at `INHERITED-UNVERIFIED`. Inventory only; nothing verified.
-
+3. **The púr- family in the Rigveda** (part of domain **J**) —
+   `03-REGISTERS/rigveda-pur-family.csv` (28 claims) and
+   `rigveda-pur-family-occurrences.csv` (106 occurrences); method in
+   `04-AUDITS/rigveda-pur-family-method.md`. `HOLD-001` open on the
+   `púraṃdhi-` etymology.
 4. **Domain E — Dravidian, Munda and unidentified substrate claims**,
    corpus-internal half only. `03-REGISTERS/domain-e-claims.csv` (26
    claims: 19 VERIFIED, 4 PROVISIONAL, 2 HYPOTHESIS, 1 HOLD),
@@ -28,18 +32,18 @@ and §11 (packets R20–R21). Ordering below the first item is owner decision
 
 ## Now
 
-3. **Controller amendment.** Install the methodology, reconcile it against
+5. **Controller amendment.** Install the methodology, reconcile it against
    the controller, seed the decisions register and this queue. *(This
    change.)* No research begins until it is reviewed.
 
 ## Blocked on inputs
 
-4. **Backlog reconciliation** — `06-BACKLOG/BACKLOG-COVERAGE.csv`, one row
+6. **Backlog reconciliation** — `06-BACKLOG/BACKLOG-COVERAGE.csv`, one row
    per item 1–89 with a destination, deliverable, hold or reasoned
    rejection. `RESEARCH HOLD`: the "MelaKeela.com v2 — Master Research,
    Product & Institutional Backlog" is not in this repository and cannot be
    reconstructed by inference. See `DECISIONS-NEEDED.md` D-014.
-5. **Packets R1–R19.** Named in the site review running list; their
+7. **Packets R1–R19.** Named in the site review running list; their
    definitions live in the prompt-pack (`MELA-KEELA-CLAUDE-FULL-SEQUENCE.md`,
    `MELA-KEELA-LANGUAGE-RESEARCH-PROMPTS.md`,
    `MELA-KEELA-CLAUDE-LIVE-SITE-AUDIT-PROMPT.md`), which is also absent.
