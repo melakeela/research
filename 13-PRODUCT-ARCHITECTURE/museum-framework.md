@@ -1911,6 +1911,9 @@ Five stages, each ending with the child recording something into the Field Bag:
   excluded, the exclusion is stated to the child as a decision the museum made
   and why.
 - **No competition, no scoreboard, no time pressure.**
+- **No sorting of human beings, no reward for extremist categories, no
+  persecution staged as an experience.** Stated in full at §10.4.7, which also
+  records what it means for the `COMPARE` step of the specified children's flow.
 
 #### 10.4.5 Safeguarding and data
 
@@ -1938,6 +1941,67 @@ present world and withholding it is its own distortion. A child may not be given
 format converts a live ethical and legal matter, involving real institutions and
 real communities, into a puzzle with a satisfying end. The distinction is between
 telling a child a true thing and assigning a child a verdict.
+
+#### 10.4.7 Racial types, extremist categories, and persecution as spectacle
+
+Three constraints on what a children's interface may do. Their source is
+`MELA-KEELA-WHO-MADE-THE-PAST.md` §9, as the owner stated it; that document is
+not in this repository, so their wording is `INHERITED-UNVERIFIED`
+(`RESEARCH-QUEUE.md`, `WMP-9`, records the provenance and the numbering
+discrepancy raised as `D-037`). Their standing as constraints does not depend on
+that, because they are prohibitions on what the institution builds, not claims
+about the past. Rule S-1 is not in tension with them: nothing here is cited as
+evidence for anything.
+
+- **No interface that asks a child to sort human beings into racial types.**
+  Not as a sorting game, a matching exercise, a drag-into-buckets, a quiz, or a
+  "which group does this person, name, skull or word belong to" task — and not
+  with the categories renamed, softened, or presented as historical labels the
+  child is asked to apply. §10.4.4 already forbids ethnic and national
+  identification of objects, people and remains; that rule stops the museum
+  making the identification, and this one stops the museum handing the
+  identification to the child to make.
+- **No points, scores, badges or progress awarded for extremist categories.**
+  §10.4.4 forbids competition, scoreboards and time pressure throughout the
+  mode. This is the specific case that survives any later relaxation of that
+  rule: no reward mechanic of any kind may attach to a racial,
+  racial-nationalist or other extremist classification, and it makes no
+  difference that the classification is being taught as false. A scoring
+  interface teaches that the categories are operable before it teaches anything
+  about them.
+- **No interface that turns persecution into spectacle.** Persecution may be
+  told to a child as a fact of the record, with its evidence and its status, in
+  the same way §10.4.6 permits a child to read a custody record with a gap in
+  it. It may not be staged, dramatized, role-played, simulated, scored, or
+  reconstructed as an experience the child moves through. §10.4.6's distinction
+  governs and extends: telling a child a true thing is not the same as assigning
+  a child a verdict, and neither is it the same as putting a child through an
+  ordeal for the sake of the lesson.
+
+**The specified children's flow would violate the first of these if applied to
+material in this area.** Backlog item 33 specifies the first children's vertical
+slice as `DIG IT → WHAT DID YOU FIND? → COMPARE → PROVE IT → FIELD BAG → WHAT DO
+YOU THINK?` (`06-BACKLOG/EXPANSION-PROMPT-2026-09-07.md` L247,
+`INHERITED-UNVERIFIED` — the item text is title-only in
+`06-BACKLOG/BACKLOG-COVERAGE.csv` and this is expansion prose, not the original).
+COMPARE is a sorting-and-matching step: the child sets one thing beside another
+and is asked what is alike and what differs. On pots, scripts, seeds, beads or
+strata that is the reasoning the mode exists to teach. On human beings, human
+remains, personal names or populations it is the sorting interface the first
+constraint forbids, and the flow supplies the buckets itself — DIG IT produces
+the items, COMPARE produces the categories, and PROVE IT then asks the child to
+defend the result. Framing the exercise as a debunking of racial classification
+does not lift the prohibition; the child still performs the sort.
+
+**The constraint binds the pattern, not the topic.** It is not scoped to
+material about "Aryan", to Indo-European material, to the nineteenth century, or
+to any subject area. COMPARE may not take people, remains, named individuals or
+populations as its terms anywhere in the children's mode, in any Living World,
+in any pilot. Where an investigation needs a child to understand that such
+classifications were made, the material is read, with its status and its date,
+not operated. This is an interface rule; a subject filter would not implement
+it, because the same interaction is the same interaction whatever is loaded into
+it.
 
 ### 10.5 Classroom mode
 

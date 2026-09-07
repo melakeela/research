@@ -51,6 +51,31 @@ from a different file. **`D-037` in the commissioning brief resolves to
 `09-DECISIONS/DECISION-ID-MAP.csv` for it: that map resolves identifiers that
 once stood in repository files, and `D-037` never did.
 
+> **Note added 2026-09-07, on merging `main` into
+> `claude/domain-e-research-queue-z83m9b` (PR #10).** The paragraph above and
+> the table row it follows are preserved as written and still describe
+> `181ccf2` correctly. They are no longer a description of the current tree.
+> That branch had independently allocated `D-036` to a domain E egress ruling
+> and `D-037` to `D-041` to five further decisions; on merge, its `D-036` was
+> reassigned to `D-042` — the next free identifier above `main`'s highest — and
+> `main`'s `D-036` is unchanged. On the second merge of `main`, dated the same
+> day, the branch's `D-037` moved in turn: `main` had merged PR #17, which
+> allocated `D-037` to the question of which section of
+> `MELA-KEELA-WHO-MADE-THE-PAST.md` carries the racialization-of-"Aryan"
+> programme. The egress-allowlist question is therefore now `D-043` —
+> `D-038` to `D-042` stand above `main`'s highest but are held by this
+> branch's own rows — and `main`'s `D-037` is unchanged.
+> `09-DECISIONS/OWNER-DECISIONS.csv` now runs `D-001` to `D-043`, and
+> **`D-037` is allocated**, to the section-numbering question on `main`.
+> Every `D-037` in this brief means the number as it stood in the
+> commissioning brief, which is an identifier outside this repository and is
+> still resolved by §1 as `D-036`; it does **not** refer to the register row
+> now at `D-037`. `main` has since added the `DECISION-ID-MAP.csv` row that
+> §1 said was unnecessary, keyed to this file, because the brief itself now
+> names the number: a bare `D-037` here resolves to `D-036`. The
+> reassignments of the branch's `D-036` to `D-042` and of its `D-037` to
+> `D-043` are recorded in the same map, keyed by branch.
+
 ### 1.1 Why the two series are single, and what that already settles
 
 `BIAS-FAILURE-LOG.csv` and `REAUDIT-QUEUE.csv` are not accidentally single.

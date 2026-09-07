@@ -432,7 +432,7 @@ the new sources; none of those resolutions is changed by the extension. `PP-11`,
 over the four coarser mechanisms in `MELAKEELAWHOMADETHEPAST.md` §5, since the
 four cannot express `ABSENT DESPITE ADEQUATE SEARCH`, the only type that
 licenses an argument from absence at all. `PP-10` is open as **D-046**, above.
-`PP-1` is not resolvable here and is open as **D-042**: this document does not mention the
+`PP-1` is not resolvable here and is open as **D-048**: this document does not mention the
 live public-site audit anywhere, and the audit gate that running-list Version 11
 created has been dropped from the constitution rather than reversed. Recorded
 here because §4's retirement of the Claude Chat / Claude Code division of labour
@@ -484,3 +484,59 @@ cell-for-cell — the change is quoting style, not content. The trade is
 recorded here because it runs the opposite way to the two files above, and the
 reason is the same in both cases: minimise what the *next* merge has to
 resolve.
+
+### Update 2026-09-07 — `main` merged again, after PR #10 landed
+
+PR #10 (`claude/domain-e-research-queue-z83m9b`) has merged, together with
+PR #17 and PR #20. The reservations recorded above were written while it was
+open; this is what became of them.
+
+**The `D-` shifts the merge forced.** `main` allocated `D-042` to the domain E
+egress ruling and `D-043` to the substrate-literature allowlist — both
+identifiers this branch was holding for different decisions. `main` keeps every
+identifier it has allocated, so this branch's two moved:
+
+| This branch held | Decision | Now |
+|---|---|---|
+| `D-042` | Does a live public-site audit gate the first research programme? (`PP-1`) | **`D-048`** |
+| `D-043` | Does R19's modern current-affairs layer run, and under what expiry convention? (`PP-7`) | **`D-049`** |
+
+`D-044` to `D-047` did not move: they stand above `main`'s highest and `main`
+allocated nothing there. `D-048` is therefore the next *free* identifier after
+`main`'s highest rather than the next consecutive one, which is the same rule
+PR #10 applied when it took `D-043` over `D-038`. Both moves are in
+`09-DECISIONS/DECISION-ID-MAP.csv`, keyed by branch, along with rewritten keys
+for this branch's five earlier reassignments — an unkeyed `old_file` would now
+collide with `main`'s own rows for the same old identifier.
+
+**One decision is now in the namespace twice, and it is not a numbering
+question.** `D-047` here and `main`'s `D-042` are the same decision — the
+domain E egress ruling, raised from the same 2026-09-07T02:19-02:21Z probe.
+This branch renumbered it to `D-047` on the stated expectation that PR #10
+would not merge; PR #10 merged and brought its own copy in at `D-042`. `D-047`'s
+own row already said the two are one decision and not two. Both rows were kept
+because this merge dropped no row from either side, so the collapse is left to
+the owner rather than made here. It is flagged in `DECISIONS-NEEDED.md` under
+"Identifiers", on the `D-047` section, and in the map.
+
+**Item numbering resolved as reserved.** `main` carried item 7 (domain E
+comparative half) and reserved items 8 and 9 for this branch; this branch
+carried 8 and 9 and reserved 7. Both reservation paragraphs are now spent and
+the list runs 1–11 with no gap. The `## Item numbering` table needed no change.
+
+**Byte handling held.** `09-DECISIONS/OWNER-DECISIONS.csv` and
+`09-DECISIONS/DECISION-ID-MAP.csv` came through with every `main` row
+byte-exact, the LF-only row at `D-036` and the LF `HD-` block intact, and new
+rows following the convention of the block they sit in. The single exception is
+the one already recorded above: `D-014`, which this branch amended and `main`
+did not touch. `02-SOURCES/dependency.csv` took `main`'s bytes on the ten
+shared rows, which is what the realignment recorded above was for, and only
+`DEP-021` was appended.
+
+**Where `main`'s reading of a `D-` reference was preferred over this branch's.**
+`04-AUDITS/domain-e-method.md`, `04-AUDITS/REAUDIT-QUEUE.csv` and
+`03-REGISTERS/domain-e-hypothesis-eligibility.csv` each carried one reference to
+the egress decision, which `main` renumbered `D-032`→`D-042` and this branch
+renumbered `D-032`→`D-047`. `main`'s bytes were taken in all three. No row was
+lost: `main`'s versions of those three files are supersets of this branch's, and
+the only divergence was the identifier.

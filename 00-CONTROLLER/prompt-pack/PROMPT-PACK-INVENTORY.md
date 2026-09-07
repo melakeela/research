@@ -811,7 +811,7 @@ refuses to treat it as authoritative:
 > require reconciliation against the actual branch and deployment. Do not
 > recreate them merely because they were not in one working folder.
 
-This bears on **D-042** and cuts across it rather than for either side. It
+This bears on **D-048** and cuts across it rather than for either side. It
 agrees with `LIVESITEAUDITPROMPT` that an uninspectable route is unknown rather
 than absent — the same rule under a different name — but it treats the
 *branch*, not the live site, as what a snapshot must be reconciled against,
@@ -820,7 +820,7 @@ a third position: neither inventory settles anything alone, and the failure
 mode it names — recreating a page because one working folder lacked it — is
 the same failure mode `LIVESITEAUDITPROMPT` names from the other direction.
 
-**Recorded on D-042**, which should be answered with this paragraph in view.
+**Recorded on D-048**, which should be answered with this paragraph in view.
 It does not change the finding at `PP-1`: the constitution still has no audit
 of either kind.
 
@@ -877,10 +877,10 @@ name, but the pack never equates them and this inventory does not either.
 Allocated from `09-DECISIONS/OWNER-DECISIONS.csv`; see that file for the
 authoritative rows.
 
-- **D-042 — Does a live public-site audit gate the first research programme?**
+- **D-048 — Does a live public-site audit gate the first research programme?**
   PP-1. Reinstate the Version 11 gate, ratify the constitution's demotion of it
   to Step 13, or replace it with a repository-side route inventory.
-- **D-043 — R19's modern layer.** PP-7. Run it with a dated-expiry convention,
+- **D-049 — R19's modern layer.** PP-7. Run it with a dated-expiry convention,
   or defer it and keep the ancient corridor.
 - **D-044 — R1's model-run budget.** PP-8. R1 is first in the run order and
   cannot be completed as specified without one.
@@ -891,7 +891,7 @@ authoritative rows.
   schema decision as D-019.
 - **D-014 — amended twice.** §6 and §8; see `DECISIONS-NEEDED.md`.
 
-`PP-13` adds material to **D-042** without changing it. `PP-11`, `PP-12` and
+`PP-13` adds material to **D-048** without changing it. `PP-11`, `PP-12` and
 `PP-14` are resolved here and need no decision.
 
 ## 8. What the pack closes
