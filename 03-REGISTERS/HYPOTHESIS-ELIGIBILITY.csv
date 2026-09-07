@@ -1,3 +1,39 @@
+# HEADER NOTE, added 2026-09-07. Lines beginning with '#' before the column
+# header are commentary, not data; readers skip them.
+#
+# COMPANION REGISTER: 03-REGISTERS/domain-e-hypothesis-eligibility.csv.
+# It carries the same 17 mandated columns (METHODOLOGY-CONSTITUTION.md §9)
+# and gates overlapping subject matter from a different body of evidence.
+# Neither file supersedes the other and neither is a copy of the other.
+#
+# HOW THEY RELATE, on their face and by subject, not as a verified mapping:
+#   - This file holds 10 rows, HYP-E-000 to HYP-E-009: a null explanation and
+#     the substrate donor proposals that must beat it.
+#   - The companion holds 11 rows, E-1 to E-11: the eleven §4.E attestation-
+#     gradient distinctions — attested family, reconstructed proto-language,
+#     accepted loan, proposed substrate form, named historical proposal,
+#     unidentified residue — kept apart so they cannot collapse into one.
+#   - Five subjects appear in both: Dravidian lending into Old Indo-Aryan
+#     (HYP-E-001 ~ E-3, E-4), Munda proper as a northwestern donor
+#     (HYP-E-002 ~ E-5, E-7), Witzel's Para-Munda (HYP-E-003 ~ E-8), the
+#     weaker unidentified prefixing language (HYP-E-004 ~ E-9), and Masica's
+#     Language X (HYP-E-005 ~ E-10).
+#   - Five rows here have no counterpart there: the null explanation
+#     (HYP-E-000), the two Brahui histories (HYP-E-006, HYP-E-007) and the
+#     two Indus-language proposals (HYP-E-008, HYP-E-009).
+#   - Five rows there have no counterpart here: E-1, E-2, E-5, E-6 and E-11.
+#   So the two are neither duplicates nor disjoint, and the overlap is a
+#   real duplication of gating work that the owner has not yet ruled on.
+#
+# DO NOT MERGE THESE FILES. Whether the twelve mandated registers accumulate
+# under their mandated names or each domain gets its own file is owner
+# decision D-036 in 09-DECISIONS/OWNER-DECISIONS.csv, status OPEN, argued in
+# 04-AUDITS/identifier-normalisation-brief.md section 5. D-036 names this
+# exact pair as the case that does not resolve on the general rule. Merging
+# them, renaming either, or reconciling the two id series would settle D-036
+# by act, which is the outcome the decision exists to prevent.
+# (D-039 asked the same question and was folded into D-036 on 2026-09-07;
+# see 09-DECISIONS/DECISION-ID-MAP.csv.)
 "hypothesis_id","exact_claim","attested_or_hypothetical","chronological_fit","geographical_fit","contact_mechanism","positive_evidence","contrary_evidence","independent_support","source_dependencies","current_specialist_standing","diagnostic_predictions","falsifier","eligible_for_extended_analysis","proportional_space","status","reason"
 "HYP-E-000","NULL EXPLANATION. The non-Indo-European-looking vocabulary of the Rigveda is accounted for by Indo-Aryan-internal processes - inherited but thinly attested roots, expressive and onomatopoeic formation, popular derivation, ordinary lexical replacement - with no substrate donor required.","mechanisms all independently attested within Indo-Aryan","PASS. Requires no dating beyond the corpus itself.","PASS. Requires no donor location.","PASS - none needed, which is the point.","PARTIAL. 29 of Turner's 224 Dravidian arrows name no authority (DE-M-029); 101 CDIAL entries are declared of unknown or obscure origin with no donor named (DE-M-018). Both mark space the null could occupy; neither is positive support for it.","The Popular-stratum clustering of loan candidates (DE-M-012) is not something the null predicts.","None retrieved.","SRC-065; SRC-059. Shares CDIAL with every rival, so it is not independent of them.","NOT ESTABLISHABLE HERE (DE-I-009).","Loan candidates should show ordinary Indo-Aryan derivational morphology; should NOT cluster in one metrical stratum; the residue should not be semantically coherent.","A large, semantically coherent, stratum-clustered residue with systematic non-Indo-Aryan phonotactics.","YES","Full. Carried through every comparison as the standing alternative.","PROVISIONAL","Step 1 requires the null to be named. This programme's recorded failure was reaching for donors, so the null is entered first and made to compete - not favoured, and not appended."
 "HYP-E-001","A Dravidian language was spoken in or adjacent to the northwest during the period of Rigvedic composition and lent vocabulary into Old Indo-Aryan.","ATTESTED family; the northwestern presence at that date is hypothetical","CANNOT BE RUN AT VERIFIED LEVEL. No absolute date is establishable from anything retrieved (DE-M-027). Relative chronology only, on Arnold's strata, single-sourced (DEP-001).","PASS, carried by one language. Nearest attested Dravidian lect to the northwest is Brahui at 393 km; without Brahui it is Kolami at 1,055 km (DE-M-023, DE-M-025).","PASS. Lexical borrowing under contact; Turner records the direction explicitly in 224 entries (DE-M-002).","224 CDIAL loan attributions, 15 with a Rigvedic simplex, 15 distinct lemmas, 21 tokens, 0.013% of the corpus (DE-M-009 to DE-M-011). Donor base: 76,303 DEDR reflex rows under 5,619 entries, 1,286 Proto-Dravidian starred forms, a 20-variety cognate-coded sample (DE-M-013, DE-M-014, DE-M-017).","The Rigvedic signal is small (DE-I-003). The geographic position depends on a single language whose own history is unsettled (DE-I-008). 29 of Turner's arrows cite no authority (DE-M-029).","NONE that qualifies. DEDR and CDIAL are not independent of each other (DEP-011); DravLex is basic vocabulary and corroborates no individual etymology.","SRC-065; SRC-061; SRC-062; SRC-067; SRC-060; SRC-059. DEP-010, DEP-011, DEP-013, DEP-015.","NOT ESTABLISHABLE HERE (DE-I-009). Newest reachable opinion is Turner 1966.","Loans concentrate in later strata; show recipient-language adaptation; cluster in identifiable semantic domains; Brahui behaves as a relict.","The stratum clustering dissolving on a larger candidate set; the loan etymologies being individually withdrawn in favour of Indo-Aryan-internal derivations; Brahui shown to be a late arrival with no northwestern Dravidian layer behind it.","YES","Full analysis.","PROVISIONAL","Passes on mechanism, geography and positive evidence. Does not pass on chronology at this record's standard, and the geographic pass is single-language. Both limits travel with the hypothesis rather than being dropped at the gate."

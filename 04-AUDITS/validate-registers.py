@@ -29,6 +29,12 @@ Checks:
 CSVs in this repository mix CRLF and LF and carry embedded newlines
 inside quoted cells. Everything here opens with newline='' and never
 rewrites a file.
+
+A register may carry a comment block above its column header: leading
+lines whose first character is '#'. They are commentary, skipped here
+before the header is read. Only leading lines are skipped, so a '#'
+inside a data cell is untouched, and a file with no comment block
+parses exactly as before.
 """
 import csv
 import re
@@ -69,7 +75,23 @@ def split_source_ids(cell):
 
 def read_csv(path):
     with open(path, newline="", encoding="utf-8") as f:
-        return list(csv.DictReader(f))
+        return list(csv.DictReader(strip_leading_comments(f)))
+
+
+def strip_leading_comments(lines):
+    """Yield a register's lines with any leading '#' comment block dropped.
+
+    Stops skipping at the first line that is not a comment — the column
+    header — so a '#' appearing later, inside a quoted cell, is data and
+    survives.
+    """
+    header_seen = False
+    for line in lines:
+        if not header_seen:
+            if line.startswith("#"):
+                continue
+            header_seen = True
+        yield line
 
 
 def ledger_ids():
