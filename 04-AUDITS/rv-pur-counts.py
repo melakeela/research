@@ -39,7 +39,7 @@ never silently combined:
 
 C is not independent of the philology behind A and B — the translators had the
 same text — and Grassmann's translation is not independent of the Grassmann
-glosses that fixed the family (DEP-021). It is reported because a numeral that
+gloss [W-002]es that fixed the family (DEP-021). It is reported because a numeral that
 every translator attaches to a fort and one that none does are different
 situations, and neither A nor B can tell them apart.
 

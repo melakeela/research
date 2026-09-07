@@ -9,70 +9,118 @@ the gap in terms — a byte-identity reproduction "cannot compare prose to
 register" — in the very commit that reintroduced the failure, and RA-019 asks
 for this check.
 
-The rule this enforces: a phrase listed in 04-AUDITS/WITHDRAWN-PHRASINGS.csv
-may appear ONLY where the surrounding text also names what withdrew it. A
-correction, a bias-log entry or a method note quoting the old wording is fine
-and is the point of keeping correction history visible (CLAUDE.md, standing
-constraints). An unqualified restatement is not.
+WHAT THE FIRST VERSION OF THIS FILE GOT WRONG, MEASURED
+-------------------------------------------------------
+Version 1 exonerated an occurrence if any "correction marker" appeared within
+700 characters. Its docstring claimed the window was "narrow enough that a
+marker three paragraphs away does not launder an unqualified assertion." That
+was asserted, not tested — the same failure this whole unit is a record of —
+and it is false. Run against commit a121e47, the exact tree an independent
+reviewer called a blocker, version 1 caught **1 of 9** real regressions.
 
-Exit 0 if clean, 1 with the offending file, line and phrase otherwise.
+Worse, it failed hardest where the risk is highest. In the old brief, the §4
+assertion "The Rigveda carries the fired/unfired opposition brick technology
+turns on" passed because the preceding sentence read "That was never measured,
+and it is wrong" — the correction of a DIFFERENT claim. The narration of
+correction A exonerated assertion B two sentences later, which is exactly the
+mechanism the reviewer had diagnosed in the prose ("§0a bought credibility the
+prose then spent"), reproduced inside the tool built to stop it.
 
-Deliberately dumb: substring matching over tracked text, a fixed context
-window, no parsing. A check that is easy to reason about gets run; a clever one
-gets skipped, and skipped is how BF-015's future_control failed.
+Tightening the markers to structured ids only does NOT fix it: still 1 of 9,
+because `DJ-009` and `RA-019` appear naturally wherever their own subject is
+discussed, which is precisely where the withdrawn phrase also sits. Proximity
+cannot distinguish "correcting this occurrence" from "discussing this topic".
+
+WHAT THIS VERSION DOES INSTEAD
+------------------------------
+Per-occurrence licensing. A withdrawn phrase may appear only if its own
+withdrawal id — `W-006`, and no other token — appears within LICENCE_WINDOW
+characters. `W-` ids occur nowhere in ordinary prose, so the author must place
+one deliberately at each quotation, naming WHICH withdrawal licenses THIS
+occurrence. Against a121e47 this catches 9 of 9.
+
+The cost is real and is the point: quoting a retracted claim now takes an
+explicit act. That is the correct price for text this repository has now
+mis-shipped four times.
+
+A GREEN CHECK IS NOT A SWEPT TREE. This enforces a list, and nothing enforces
+that the list is complete: a claim withdrawn without a W- row is invisible
+here. The list is maintained by hand, and a control whose invocation is
+discretionary is how BF-015's future_control failed.
+
+Matching is whitespace-insensitive, because markdown wraps and a substring
+search over raw text sees neither a wrapped quotation nor a wrapped assertion.
+
+Exit 0 if clean, 1 otherwise.
 """
 import csv
-import subprocess
+import re
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 REGISTER = ROOT / "04-AUDITS" / "WITHDRAWN-PHRASINGS.csv"
 
-# Characters either side of a hit in which an exonerating marker may appear.
-# Wide enough for a CSV notes cell, narrow enough that a marker three
-# paragraphs away does not launder an unqualified assertion.
-WINDOW = 700
+# Tight, because the licence is an explicit token rather than an inference.
+LICENCE_WINDOW = 400
 
-# Never scanned: inherited text is committed as the owner wrote it and is
-# never corrected in place (CLAUDE.md, the inheritance rule); the withdrawal
-# register itself quotes every phrase by construction; and the bias log and
-# re-audit queue exist precisely to hold retracted wording, so quoting it there
-# is their function rather than a lapse. Exempting those two whole files is a
-# real weakening and is stated here rather than hidden: an unqualified
-# restatement inside BIAS-FAILURE-LOG.csv would not be caught.
+# Inherited text is committed as the owner wrote it and is never corrected in
+# place (CLAUDE.md, the inheritance rule). The register quotes every phrase by
+# construction. NOTHING ELSE IS EXEMPT: version 1 excused BIAS-FAILURE-LOG.csv
+# and REAUDIT-QUEUE.csv, which bought one borderline hit and three that would
+# have passed anyway — a hole for no benefit, in exactly the files an author
+# edits while writing a correction, which is where this unit's discipline
+# lapsed every time.
 SKIP_DIRS = {"01-INHERITED", ".git", "node_modules", "__pycache__"}
-SKIP_FILES = {"WITHDRAWN-PHRASINGS.csv", "check-withdrawn-phrasings.py",
-              "BIAS-FAILURE-LOG.csv", "REAUDIT-QUEUE.csv"}
+SKIP_FILES = {"WITHDRAWN-PHRASINGS.csv", "check-withdrawn-phrasings.py"}
 SUFFIXES = {".md", ".csv", ".py"}
 
+# Ids the withdrawn_by column may name, so the list cannot point at nothing.
+WITHDRAWER = re.compile(r"^(BF|RA|DEP|D)-\d+$")
 
-def tracked_files():
-    out = subprocess.run(["git", "-C", str(ROOT), "ls-files"],
-                         capture_output=True, text=True, check=True).stdout
-    for line in out.splitlines():
-        p = ROOT / line
-        if p.suffix not in SUFFIXES:
+
+def scan_files():
+    """Walk the worktree, not `git ls-files`.
+
+    Version 1 read the index, so a new brief that had not been `git add`ed got
+    a free pass — the check would run clean on a tree containing the very file
+    it was meant to police.
+    """
+    for p in sorted(ROOT.rglob("*")):
+        if not p.is_file() or p.suffix not in SUFFIXES:
             continue
         if p.name in SKIP_FILES:
             continue
-        if any(part in SKIP_DIRS for part in p.parts):
+        if any(part in SKIP_DIRS for part in p.relative_to(ROOT).parts):
             continue
         yield p
 
 
-def markers(row):
-    """Tokens whose presence near a hit marks it as a correction, not a claim."""
-    out = {row["withdrawn_by"]}
-    out.update(x.strip() for x in row["superseded_by"].split(";") if x.strip())
-    out.update({row["withdrawal_id"], "WITHDRAWN", "withdrawn", "retracted",
-                "CORRECTED", "corrected", "no longer", "was wrong",
-                "is wrong", "false", "struck", "supplement",
-                # a register row narrating its own revision history
-                "Version 1", "Version 2", "failed re-review", "earlier version",
-                "this row earlier", "until the second review",
-                "until the third review", "quoted here as the error"})
-    return {m for m in out if m}
+def normalise(text):
+    """Collapse runs of whitespace, returning the flat text and an offset map.
+
+    Markdown wraps. "the act\n  of building" is the same claim as "the act of
+    building" and a substring search over the raw text sees neither — which
+    silently exempted a real quotation in this repository, and would equally
+    exempt a real assertion. Matching happens on the flattened text; the map
+    carries each flat offset back to its original position so line numbers and
+    the licence window stay honest.
+    """
+    out = []
+    idx = []
+    prev_space = False
+    for i, ch in enumerate(text):
+        if ch.isspace():
+            if prev_space:
+                continue
+            out.append(" ")
+            idx.append(i)
+            prev_space = True
+        else:
+            out.append(ch)
+            idx.append(i)
+            prev_space = False
+    return "".join(out), idx
 
 
 def main():
@@ -80,38 +128,71 @@ def main():
         print("check-withdrawn-phrasings: no register; nothing to enforce")
         return 0
     rules = list(csv.DictReader(open(REGISTER, newline="", encoding="utf-8")))
+
     failures = []
-    for path in tracked_files():
+
+    # The list must itself resolve: a W- row naming no real withdrawal is a
+    # rule nobody can satisfy and nobody can audit. This is FORWARD resolution
+    # only. The reverse — that every withdrawal has a W- row — is not
+    # mechanisable and is the standing hole this file's docstring names.
+    known = set()
+    for reg, col in ((ROOT / "04-AUDITS" / "BIAS-FAILURE-LOG.csv", "failure_id"),
+                     (ROOT / "04-AUDITS" / "REAUDIT-QUEUE.csv", "reaudit_id"),
+                     (ROOT / "02-SOURCES" / "dependency.csv", "dependency_id"),
+                     (ROOT / "09-DECISIONS" / "OWNER-DECISIONS.csv",
+                      "decision_id")):
+        if reg.exists():
+            with open(reg, newline="", encoding="utf-8") as f:
+                known.update(r[col] for r in csv.DictReader(f) if r.get(col))
+    for r in rules:
+        wb = r["withdrawn_by"].strip()
+        if not WITHDRAWER.match(wb):
+            failures.append("WITHDRAWN-PHRASINGS.csv: %s names withdrawn_by "
+                            "%r, which is not a BF-/RA-/DEP-/D- identifier"
+                            % (r["withdrawal_id"], wb))
+        elif wb not in known:
+            failures.append("WITHDRAWN-PHRASINGS.csv: %s names withdrawn_by "
+                            "%s, which resolves to no row in the bias log, "
+                            "re-audit queue, dependency or decisions register"
+                            % (r["withdrawal_id"], wb))
+
+    for path in scan_files():
         try:
             text = path.read_text(encoding="utf-8")
         except (UnicodeDecodeError, OSError):
             continue
-        lowered = text.lower()
+        flat, omap = normalise(text)
+        lowered = flat.lower()
         for rule in rules:
-            phrase = rule["phrase"]
-            needle = phrase.lower()
+            needle = " ".join(rule["phrase"].split()).lower()
+            wid = rule["withdrawal_id"]
             start = 0
             while True:
                 i = lowered.find(needle, start)
                 if i < 0:
                     break
                 start = i + len(needle)
-                ctx = text[max(0, i - WINDOW): i + len(needle) + WINDOW]
-                if not any(m in ctx for m in markers(rule)):
-                    line = text.count("\n", 0, i) + 1
+                ctx = flat[max(0, i - LICENCE_WINDOW):
+                           i + len(needle) + LICENCE_WINDOW]
+                if wid not in ctx:
+                    line = text.count("\n", 0, omap[i]) + 1
                     failures.append(
-                        "%s:%d  %s  — withdrawn by %s (%s), and nothing in "
-                        "context marks this as a correction"
-                        % (path.relative_to(ROOT), line, repr(phrase),
-                           rule["withdrawn_by"], rule["withdrawal_id"]))
+                        "%s:%d  %s\n        withdrawn by %s. To quote it here, "
+                        "put %s within %d characters of the phrase; otherwise "
+                        "remove it."
+                        % (path.relative_to(ROOT), line, repr(rule["phrase"]),
+                           rule["withdrawn_by"], wid, LICENCE_WINDOW))
+
     if failures:
-        print("check-withdrawn-phrasings: %d unqualified restatement(s)"
+        print("check-withdrawn-phrasings: %d unlicensed restatement(s)"
               % len(failures))
         for f in failures:
             print("  " + f)
         return 1
-    print("check-withdrawn-phrasings: all %d withdrawn phrasings appear only "
-          "in correcting context" % len(rules))
+    print("check-withdrawn-phrasings: %d withdrawn phrasings, every occurrence "
+          "licensed by its own W- id." % len(rules))
+    print("  A green check is not a swept tree: this enforces the list, and "
+          "nothing enforces that the list is complete.")
     return 0
 
 

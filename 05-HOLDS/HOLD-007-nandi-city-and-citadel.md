@@ -86,7 +86,7 @@ source. It needed the files already in the clone to be opened.
 
 **One correction to this hold's own account of the asymmetry.** It said, with
 the rest of the unit, that the gate used "one nineteenth-century German
-lexicon". `SRC-089` establishes that the gloss column is the Zürich
+lexicon [W-003]". `SRC-089` establishes that the gloss column is the Zürich
 lemma-meaning column, a modern composite citing Geldner, EWAia/Mayrhofer,
 Scarlata, Oldenberg, Lubotsky, Renou and Kuiper. Grassmann's *Wörterbuch* has
 never been retrieved here. The misattribution flattered the unit — it made the

@@ -45,9 +45,9 @@ direction, the one that favoured this unit's conclusions.**
 
 | What the unit wrote | What is true | Direction |
 |---|---|---|
-| Every gloss is "Grassmann 1873, one nineteenth-century German lexicon" | The gloss field is the **Zürich lemma-meaning column** (`SRC-089`), a modern composite citing Geldner, EWAia/Mayrhofer, Scarlata, Oldenberg, Lubotsky, Renou, Kuiper — with Grassmann marked `GM:` where followed. His *Wörterbuch* has never been retrieved here | A **self-criticism more flattering than the truth** |
+| Every gloss is "Grassmann 1873, one nineteenth-century German lexicon [W-003]" | The gloss field is the **Zürich lemma-meaning column** (`SRC-089`), a modern composite citing Geldner, EWAia/Mayrhofer, Scarlata, Oldenberg, Lubotsky, Renou, Kuiper — with Grassmann marked `GM:` where followed. His *Wörterbuch* has never been retrieved here | A **self-criticism more flattering than the truth** |
 | `DJ-011`, `VERIFIED`: no `durgá-` is ever "broken, besieged, entered or held" | **False at RV 5.34.7**, where Griffith, Geldner *and Grassmann* all render a fortified place people hold out in. The falsifier `DJ-I-03` set for itself had already fired | Removed the **load-bearing anti-Nandi result** |
-| `DJ-009`, `VERIFIED`: the corpus "nowhere describes construction technique" | Never measured. The corpus carries `pakvá-` "baked" (25) against `āmá-` "unbaked" (11) and puts the unfired term **on a fort** | The mechanism that rescued §4 was itself unearned |
+| `DJ-009`, `VERIFIED`: the corpus "nowhere describes construction technique [W-005]" | Never measured. The corpus carries `pakvá-` "baked" (25) against `āmá-` "unbaked" (11) and puts the unfired term **on a fort** | The mechanism that rescued §4 was itself unearned |
 | "One philological line" logged as an archival limitation | Renou and Elizarenkova were **retrieved, ledgered, and unread**. Renou has *"maître de la cité"* at RV 1.173.10, unbracketed — a *púr* read as a city by a translator inside the corpus. (This row first also claimed *brick* at RV 2.35.6; round two showed that word is Renou's bracketed supplement — see the second table below) | A **disclosure substituted for a free check** |
 
 Three of the gate's six diagnostic verdicts are withdrawn and **all three move
@@ -60,7 +60,7 @@ Written while repairing the first round, in rows whose purpose was to correct
 an over-deflation, they overstated the case *for* the thesis:
 
 - `DJ-009`'s replacement claimed the corpus has "no lemma glossed for the act
-  of building". **The gloss column has zero verb coverage** — 0 of 700 root
+  of building [W-008]". **The gloss column has zero verb coverage** — 0 of 700 root
   lemmas, 19.4% of tokens — so that probe was a guaranteed zero. This is
   `BF-015`'s own failure mode, in the row written to repair `BF-016` and
   `BF-017`, against `BF-015`'s own stated control. `BF-018`, `RA-021`.
@@ -70,8 +70,8 @@ an over-deflation, they overstated the case *for* the thesis:
   supplied material, and the Sanskrit `āmā́su pūrṣú` has no material word. That
   is §7's named prohibition, letting the translation decide the question. The
   unbracketed *"maître de la cité"* stands.
-- `pakvá-`/`āmá-` was called "the fired/unfired opposition brick technology
-  turns on". **It is culinary**: all 25 `pakvá-` are food, and 8 of 11 `āmá-`
+- `pakvá-`/`āmá-` was called "the fired/unfired opposition [W-007] brick technology
+  turns on [W-006]". **It is culinary**: all 25 `pakvá-` are food, and 8 of 11 `āmá-`
   are one raw-cow/cooked-milk formula. RV 2.35.6 extends it to a *púr* once,
   and that once is the finding.
 
@@ -81,7 +81,7 @@ of checks that were free** (the Grassmann attribution, the `durgá-` quantifier,
 Renou and Elizarenkova left unread, the `briques` brackets, the `pakvá-`/`āmá-`
 characterisation), **one search that could not have returned anything**
 (the building probe), and **one flat assertion that was never a disclosure at
-all** (`DJ-009` v1, "nowhere describes construction technique"). An earlier
+all** (`DJ-009` v1, "nowhere describes construction technique [W-005]"). An earlier
 version of this paragraph said six and one; the miscount is left visible
 because a unit that narrates its own failures had better be able to count
 them. A limitation closable by reading a file already in the clone
@@ -103,7 +103,7 @@ counts register, and the two derivations agree exactly (`DJ-002`).
 **Is it modal?** No. Nine passages state a `śatá-` count against six for 99 —
 seven with the singular "a hundred" and two with the plural "hundreds"
 (`DJ-015`). It is not maximal either. **It is the most quotable, and nothing
-more.** (This brief first said "8 passages to 6", inherited from
+more.** (This brief first said "8 passages to 6 [W-011]", inherited from
 `pur-4j-corpus.md`. Eight is neither the strict figure, 7, nor the inclusive
 one, 9; the register said 9 all along. `RA-019`.)
 
@@ -257,14 +257,14 @@ the passages the deflationary reading would cite. `BF-016`.
 
 *Second stop — the typing was fabricated.* The brief then typed the absence
 `NOT PRODUCED` on the ground that a liturgical corpus "nowhere describes
-construction technique for any structure". **That was never measured**, and the
+construction technique [W-005] for any structure". **That was never measured**, and the
 typing is withdrawn. What replaced it was withdrawn in turn: the corpus's
 `pakvá-` "gekocht, gebacken" (25) against `āmá-` "roh, ungekocht" (11) is a
 **culinary** pair — every `pakvá-` agrees with a food word, and eight of the
 eleven `āmá-` are one raw-cow/ripe-milk formula. **RV 2.35.6 applies the raw
 term to a *púr*, and it is the only place either word touches a structure**
 (`DJ-009`, all 36 tokens enumerated). That single extension is the finding;
-"the opposition brick technology turns on" was an unmeasured leap.
+"the opposition brick technology turns on [W-006]" was an unmeasured leap.
 
 *Third stop — a translator in the same clone reads a `púr-` as a city.* At RV
 1.173.10 Renou renders `pū́rpati-` *"maître de la **cité**"*, unbracketed and
@@ -280,7 +280,7 @@ this unit wrote "one philological line" as a disclosed limitation.
 
 **So: the gloss column carries no noun for brick or city; a translator inside
 the same corpus reads a `púr-` as a city at one locator and infers unfired
-brick at another; and the corpus applies its "raw" word to a fort exactly
+brick [W-009] at another; and the corpus applies its "raw" word to a fort exactly
 once.** The first is a fact about a lexicon, the second about a reading, the
 third about a single passage. None settles what a `púr-` was built of, the
 absence cannot be typed under §6 from anything retrieved here, and no argument

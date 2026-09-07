@@ -206,7 +206,7 @@ the thing that measurement is not — whether a numeral **governs** `púr-`.
 |---|---|---|
 | **A. Agreement** — case, gender, number shared with the `púr-` token | strong when positive | **under-reports by construction.** `navatí-` is a feminine *singular* collective — "a ninety" — governing a plural `púraḥ`. It agrees in case and gender and never in number. A three-key agreement test drops **five of the six ninety-nine passages.** |
 | **B. Proximity** — same pāda / hemistich / stanza | cheap, and orders candidates | a stanza routinely holds two numerals counting different things (§4.3) |
-| **C. Translation** — how many of Griffith, Geldner, Grassmann and Elizarenkova render "N forts" | the only instrument reflecting someone who read the syntax | not independent of A and B; and Grassmann's translation is not independent of the Grassmann glosses that fixed the family (`DEP-021`) |
+| **C. Translation** — how many of Griffith, Geldner, Grassmann and Elizarenkova render "N forts" | the only instrument reflecting someone who read the syntax | not independent of A and B; and Grassmann's translation is not independent of the Grassmann gloss [W-002]es that fixed the family (`DEP-021`) |
 
 
 > **Attribution corrected 2026-09-07.** The gloss scanned here is the Zürich
@@ -265,7 +265,7 @@ render 99 at all six — but **99 is never a single numeral**. It is two words,
 separated by intervening words in four. RV 1.54.6d splits them around the verb:
 `púro navatíṁ dambhayo náva`.
 
-**Is it modal?** **No. One hundred is**, 8 passages to 6 — 9 to 6 if the plural
+**Is it modal?** **No. One hundred is**, 8 passages to 6 [W-011] — 9 to 6 if the plural
 "hundreds" is counted with the hundreds. This answers the question the
 reconciliation brief left open at §2.6 item 2.
 
@@ -815,7 +815,7 @@ headline rather than a commit hash is the error the reconciliation brief warned
 against. 99 is now a `VERIFIED` count of six passages with locators, and it
 outranks the register's 106 on the question of how many forts a passage names
 (`PUR4J-I-02`). What is demoted is only its claim to be *the* number, and that
-demotion is a measurement: 8 passages to 6.
+demotion is a measurement: 8 passages to 6 [W-011].
 
 
 > **Figure corrected 2026-09-07.** The register gives **9** distinct

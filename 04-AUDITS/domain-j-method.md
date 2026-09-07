@@ -91,8 +91,8 @@ reported exactly such a zero as a finding. `BF-018`, `RA-021`.
 (25) against `āmá-` "roh, ungekocht" (11) is a **culinary** pair — all 25
 `pakvá-` are food, and 8 of the 11 `āmá-` are one raw-cow/cooked-milk formula.
 RV 2.35.6 extends the raw term to a *púr* **once**, and that once is the
-finding. Calling the pair "the fired/unfired opposition brick technology turns
-on" was an unmeasured leap and is withdrawn. `DJ-009`, `BF-018`.
+finding. Calling the pair "the fired/unfired opposition [W-007] brick technology turns
+on [W-006]" was an unmeasured leap and is withdrawn. `DJ-009`, `BF-018`.
 
 ---
 
@@ -190,7 +190,7 @@ where followed. Grassmann's *Wörterbuch* has never been retrieved here.
 
 The error is worth stating precisely because of its direction: **the unit
 performed a self-criticism that was more flattering than the truth.** "One
-nineteenth-century German lexicon" made the results against Nandi look
+nineteenth-century German lexicon [W-003]" made the results against Nandi look
 appropriately hedged while understating how much modern apparatus they lean on
 — and it substituted a confession for a retrieval. `BF-017`, `DEP-026`,
 `RA-018`.
@@ -237,7 +237,7 @@ asserts.
 
 **What it missed, `BF-017`.** The correction it applied — typing the brick
 absence `NOT PRODUCED` on the ground that the corpus "nowhere describes
-construction technique for any structure" — was itself an unmeasured assertion,
+construction technique [W-005] for any structure" — was itself an unmeasured assertion,
 shipped at `VERIFIED`. **The mechanism that rescued the unit from an unearned
 deflation was itself unearned** — and so, at the second round, was its first
 replacement. `pakvá-` "gebacken" (25) against `āmá-` "roh, ungekocht" (11) is

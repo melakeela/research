@@ -142,7 +142,7 @@ translator reaches for "city" is the one place a *political office* attached to
 a *púr* is named — precisely where the urban reading is most consequential.
 
 **Dependency, not corroboration.** Grassmann's translation and the Grassmann
-glosses that fixed this family are one man's judgement (`DEP-021`), and
+gloss [W-002]es that fixed this family are one man's judgement (`DEP-021`), and
 Elizarenkova worked with Geldner in view (`DEP-023`). Five columns in that table
 are not five witnesses.
 

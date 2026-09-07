@@ -115,8 +115,20 @@ def load_glosses():
 COOKED_RAW = {"pakvá-", "āmá-"}
 
 # Structures, to test the "only place" clause against something positive.
+#
+# THIS IS A HAND-WRITTEN CLOSED SET OF TEN LEMMAS, and DJ-009's phrase "applied
+# to a structure" reads as a semantic category rather than a list. The check
+# that licenses the word is the wider one below: STRUCTURE_WIDE derives ~346
+# lemmas from the gloss column itself, and cooked_raw_scan runs it at STANZA
+# scope as a negative control, because a modifier's head can sit in another
+# pāda — 8 of the 11 āmá- tokens have no agreement partner in their own pāda at
+# all, so same-pāda scope alone could not support a negative.
 STRUCTURE = {"púr-", "dehī́-", "paridhí-", "harmyá-", "gr̥há-", "dáma-",
              "duroṇá-", "sádas-", "kṣáya-", "víś-"}
+
+STRUCTURE_GLOSS_KEYS = ("haus", "wohn", "burg", "wall", "palisad", "verschanz",
+                        "siedl", "dorf", "stätte", "sitz", "mauer", "damm",
+                        "aufwurf", "behausung", "niederlassung", "ansiedl")
 
 
 def agreement_partners(toks_in_pada, tok):
@@ -165,6 +177,34 @@ def cooked_raw_scan(toks):
           % (len(hits_on_structure), hits_on_structure))
     print("  DJ-009's 'only place' clause holds iff that list is exactly"
           " [('02.035.06', 'āmá-', ['púr-'])].")
+
+    # Negative control: a structure vocabulary derived from the gloss column
+    # rather than hand-written, matched at STANZA scope rather than pāda.
+    gloss = load_glosses()
+    wide = {l for l in gloss
+            if any(k in m.lower() for m in gloss[l]
+                   for k in STRUCTURE_GLOSS_KEYS)}
+    by_stanza = collections.defaultdict(list)
+    for t in toks:
+        by_stanza[t["stanza"]].append(t)
+    print("  -- negative control: %d structure lemmas from the gloss column,"
+          " matched at stanza scope --" % len(wide))
+    for t in toks:
+        if t["lemma"] not in COOKED_RAW:
+            continue
+        def feats(x):
+            d = dict(y.split("=", 1) for y in x["morph"].split("|") if "=" in y)
+            return d.get("case"), d.get("number"), d.get("gender")
+        c, n, g = feats(t)
+        for o in by_stanza[t["stanza"]]:
+            if o["lemma"] not in wide:
+                continue
+            oc, on, og = feats(o)
+            if (oc, on) == (c, n):
+                strict = "STRICT" if og == g else "excluded on gender"
+                print("      %s %s ~ %s (%s) %s"
+                      % (t["stanza"], t["lemma"], o["lemma"], o["pada"],
+                         strict))
 
 
 def main():

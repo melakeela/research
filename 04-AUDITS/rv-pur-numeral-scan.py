@@ -9,7 +9,7 @@ reproduced from anything committed. That was the finding; this is the repair.
 
 WHAT THE FIRST SCAN DID, AND ITS THREE FAILURE MODES
 
-ATTRIBUTION CORRECTED 2026-09-07: what this script calls "the Grassmann gloss"
+ATTRIBUTION CORRECTED 2026-09-07: what this script calls "the Grassmann gloss [W-002]"
   is the Zurich lemma-meaning column (LEMMA_ZÜRICH_BEDEUTUNG), not Grassmann's
   Worterbuch, which this repository has never retrieved. SRC-089, DEP-026,
   BF-017, RA-018. Every measurement below is unaffected; only the source named
