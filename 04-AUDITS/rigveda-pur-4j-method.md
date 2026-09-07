@@ -456,3 +456,131 @@ no geographic content in the pinned corpus.** The field carries
 a place on a map is a separate claim, and it is bounded by the research hold at
 Version 12 line 1175 against identifying the forts with one archaeological
 culture.
+
+---
+
+## 6. The five-way typology
+
+`03-REGISTERS/rigveda-pur-typology.csv`, 103 rows, built by
+`04-AUDITS/rv-pur-typology.py`.
+
+### 6.1 The finding that decides the register's shape
+
+§4J asks that five things be distinguished:
+
+> textual stronghold · poetic formula · inferred geography ·
+> archaeological fortification · unsupported identification
+
+**They are not five values of one variable.** Two are properties of the text;
+three are verdicts on an argument someone else has to make first:
+
+| Type | What it is a property of |
+|---|---|
+| textual stronghold | the passage |
+| poetic formula | the passage |
+| inferred geography | *a placement somebody proposed* |
+| archaeological fortification | *a site match somebody proposed* |
+| unsupported identification | *an identification somebody proposed* |
+
+The last three cannot be read off a Rigvedic stanza **in any state of
+knowledge**, because none of them is about the stanza. This unit has no
+geographic source — the pinned corpus carries none (`PUR4J-018`) — and no
+archaeological source. So **no passage is assigned any of the three.** All 103
+rows read `NOT ASSIGNED` in those three columns, with the reason on the row
+rather than an unexplained blank.
+
+Assigning them anyway would be the exact failure the typology exists to
+prevent: it is how a textual stronghold silently becomes an archaeological one.
+The reconciliation brief's C-7 makes the same point from the other end — the
+typology is "the instrument that keeps a textual stronghold from becoming an
+archaeological one", and RV-01 dropped it.
+
+### 6.2 The two text-decidable types, and what they mean
+
+`TEXTUAL-STRONGHOLD` means **the text presents a fort as an object in its own
+narrative world** — held, broken, entered, or belonging to a named holder. It
+is **not** a claim that any fort existed, was fortified, or can be located.
+That would be the archaeological type, which is not assigned. This definition
+is carried on every row in a `type_means` column, because the term invites
+exactly the misreading it is trying to prevent.
+
+`POETIC-FORMULA` is recorded with one of four sub-kinds, so that "formulaic"
+never has to be taken on trust: `DIVINE-EPITHET`, `SIMILE`, `METAPHOR`,
+`PROTECTIVE-FORMULA`.
+
+`BOTH` is available, because §4J says *distinguish*, not *choose*. A stronghold
+described in formulaic language is both, and forcing one label would destroy
+the distinction the section asks for.
+
+`CANNOT-CLASSIFY` is used where the text does not decide — **not** resolved to
+the likelier type.
+
+### 6.3 Result
+
+| | Passages |
+|---|---:|
+| TEXTUAL-STRONGHOLD | 60 |
+| POETIC-FORMULA | 35 |
+| BOTH | 3 |
+| CANNOT-CLASSIFY | 5 |
+
+Poetic sub-kinds: `DIVINE-EPITHET` 20, `SIMILE` 7, `PROTECTIVE-FORMULA` 5,
+`METAPHOR` 3.
+
+**The five that cannot be classified**, each for a stated reason:
+
+- **RV 1.149.3** `púraṁ nā́rmiṇīm`. Proper name (Geldner, "die Burg Nārmiṇī" —
+  then the only named fort in the corpus) or adjective (Griffith, "the joyous
+  castle"). Grassmann's gloss declines to choose. The classification turns
+  entirely on a disputed word class.
+- **RV 2.35.6** `āmā́su pūrṣú`. A locative, so someone is in it — but the
+  subject is Apāṃ Napāt, and whether the *púr* is a place or a figure of
+  inaccessibility is undecided.
+- **RV 5.66.4** `dákṣasya pūrbhíḥ`. Geldner "mit den Burgen des Verstandes"
+  (metaphor); Grassmann renders the phrase with no fort word at all; Griffith's
+  line is garbled. Three translators, three different things, no majority to
+  lean on.
+- **RV 8.1.28** `púraṁ cariṣṇvàṁ … śúṣṇasya`. Śuṣṇa's **moving** fort.
+  `cariṣṇú-` is not compatible with a fixed fortification and the passage
+  supplies no replacement reading.
+- **RV 10.138.4** `vásu púryam`. `púrya-` is an adjective modifying "wealth";
+  a *púr* is implied by a derived form and never named.
+
+**Nine rule outputs were overridden by hand**, each with its reason on the row.
+The rule with the highest error rate is the simile rule: the particle `ná`
+stands in a `púr-` pāda in ten passages and modifies the fort word in only
+**seven**. At RV 4.16.13 the simile is "like a garment", at RV 6.20.7 it goes
+with `śávasā`, at RV 10.89.7 with `síndhūn`. All three were checked against
+Griffith, Geldner and Grassmann individually.
+
+### 6.4 The cross-tabulation, which is the sharpest result of the unit
+
+| Count stated | Typology of the passages stating it |
+|---|---|
+| **99** | **6 of 6 TEXTUAL-STRONGHOLD** |
+| 90 | 2 of 2 TEXTUAL-STRONGHOLD |
+| 7 | 4 of 4 TEXTUAL-STRONGHOLD |
+| 100 | 4 TEXTUAL-STRONGHOLD · 3 POETIC-FORMULA · 1 BOTH |
+
+**Every passage that states ninety-nine forts presents forts as objects held
+and broken.** §4 of this note finds the *count* formulaic; this finds the
+*passages* are not. "The number is a formula" and "the passage is a formula"
+are different claims, and the evidence separates them. That is why the counts
+and the typology are separate registers, and it is the single most important
+guard in this unit against the deflationary slide the task warned about.
+
+The three poetic hundreds are the protective passages — "guard us with a
+hundred forts" — where the count is on a defence being asked for, not on a
+target.
+
+And from the other direction, converging with §5.2:
+
+| | Passages |
+|---|---:|
+| Material passages that are **not** plain textual strongholds | **8 of 10** |
+
+Four are poetic formulas (metaphor at RV 7.15.14 and 7.95.1, protective formula
+at RV 1.58.8 and 7.3.7), three are BOTH, one cannot be classified. The two
+exceptions are the only two enemy forts with a stated material — RV 2.20.8
+(metal) and RV 4.30.20 (stone). **Anyone reading fort materials as evidence for
+building technique is reading mostly figurative passages.**
