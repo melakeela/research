@@ -734,7 +734,7 @@ nothing to assert."* The task restated it. Four controls were put in place:
 3. **`PUR4J-I-01` states what it does not establish**, in its own column: a
    formulaic count says nothing about whether anything was besieged, and the
    typology is assigned per passage and never inherited from that row.
-4. **`PUR4J-I-03` refuses the inverse error explicitly**: 60 of 103 passages
+4. **`PUR4J-I-03` refuses the inverse error explicitly**: 49 of 103 passages
    present a fort as an object, and this unit has no evidence bearing on
    whether any of them stood anywhere. The plurality finding is about the
    *form* of the answer, not its content.
