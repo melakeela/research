@@ -998,3 +998,193 @@ depicts is `INHERITED-UNVERIFIED` or `HOLD`.** This resolves `SCHEMA.md` §4's
 finding 3 — 50 claim-specific diagrams scheduled by MVP priority, which is driven
 by low risk, i.e. by the pages least examined. Under this rule the diagram
 schedule is a function of the verification schedule and cannot invert it.
+
+---
+
+## 4. The Relationship Object
+
+### 4.1 Why relationships are objects
+
+Because relationships are the claims that are hardest to see and easiest to
+smuggle. Constitution Step 10: *"Every link among language, ancestry, culture,
+artifact, religion, polity and modern identity is a separate claim."* If a
+relationship is an edge in a graph rather than a record with a status, a
+speculative link renders identically to an attested one, and the institution has
+argued by drawing a line. `environment-map.csv`'s `Avoid` for the Living Signal
+Field names this exactly: *"No gaming HUD or arbitrary links."*
+
+A Relationship Object is therefore a Claim Object's sibling, not a foreign key.
+It carries a status, evidence, falsifiers and a revision history of its own.
+
+### 4.2 Fields
+
+| Field | Notes |
+|---|---|
+| `id` | `mk:rel:<key>` |
+| `subject`, `object` | any two `mk:*` identifiers, including other relationships |
+| `predicate` | the controlled vocabulary, §4.3 |
+| `directionality` | `directed` · `symmetric` · `direction-unknown` |
+| `status` | the same seven-value vocabulary as claims — a relationship is unstatused only if it is unpublished |
+| `attestation_mode` | inherited semantics from §2.6 |
+| `date_assertions` | when the relationship held, typed as in §2.7 — **not** the dates of its endpoints |
+| `place_assertions` | where it held |
+| `mechanism` | the process by which it could have obtained — **required for any relationship implying transfer or descent** |
+| `alternatives` | array of `mk:rel:*`: the rival relationships that would explain the same observation |
+| `evidence_links` | as §3.3 |
+| `strength` | `decisive` · `substantial` · `weak` · `suggestive-only` |
+| `falsifiers` | as §3.9 |
+| `bridge_type` | null, or one of the seven-domain bridge kinds, §4.4 |
+| `display_weight` | derived, advisory; §4.5 |
+
+### 4.3 The predicate vocabulary
+
+Grouped by what kind of claim the predicate is. The grouping matters because the
+groups have different evidential requirements and must not be visually
+interchangeable.
+
+**Chronological** — `precedes` · `contemporary-with` · `postdates` ·
+`stratigraphically-above` · `stratigraphically-below`.
+
+**Spatial** — `found-at` · `made-at` · `used-at` · `deposited-at` ·
+`held-at` · `on-route-between` · `separated-by-barrier`.
+
+**Transmission** — `copied-from` · `redacted-from` · `translated-from` ·
+`transmits` · `derived-from` · `depicts`.
+
+**Linguistic** — `cognate-with` · `borrowed-from` · `substrate-of` ·
+`sound-correspondence-with` · `reconstructed-ancestor-of` ·
+`convergent-with` (areal) · `unexplained-residue-in`.
+These five-plus predicates are kept distinct because collapsing them is the
+specific conflation the audit's Overlap cluster 8 names
+(`INHERITED-UNVERIFIED`): *"separate sound correspondence, contact borrowing,
+substrate inference, genetic relationship and script history."*
+
+**Population-genetic** — `shares-ancestry-component-with` ·
+`descends-from-population` · `admixed-with`.
+Constrained by Overlap cluster 5's requirement (`INHERITED-UNVERIFIED`):
+*"do not treat ancestry components as peoples, languages or moral categories."*
+Enforced at §4.4.
+
+**Material** — `same-material-source-as` · `same-technique-as` ·
+`typologically-similar-to` · `traded-along`.
+
+**Social and institutional** — `patronised-by` · `composed-in-milieu-of` ·
+`ruled-by` · `classified-by` · `custody-transferred-to` · `criticises` ·
+`responds-to`.
+
+**Epistemic** — `supports` · `refutes` · `contradicts` · `supersedes` ·
+`depends-on` (source genealogy) · `re-reads`.
+
+### 4.4 Bridges — the seven-domain rule
+
+The constitution's seven domains: **language · ancestry · culture · artifact ·
+religion · polity · modern identity.** A relationship whose subject and object
+sit in different domains is a **bridge**, and bridges carry additional
+requirements:
+
+1. `mechanism` is required and may not be a restatement of the correlation.
+2. `alternatives` must be non-empty: at minimum, the null relationship (the two
+   things co-occur without a link) must be listed and its evidence given.
+3. `status` may not exceed `PROVISIONAL` on correlational evidence alone.
+4. The endpoints' domains are rendered on every display of the bridge. A visitor
+   must be able to see that a line runs from an *ancestry component* to a
+   *language*, which is not the same kind of object.
+5. **Bridges are never inherited by transitivity.** If A (artifact) bridges to B
+   (polity) and B bridges to C (language), the system must not derive or display
+   A→C. Transitive closure is disabled across domain boundaries. This is a
+   database-level rule because it is the mechanism by which a map of trade goods
+   silently becomes a map of languages.
+
+`bridge_type` records the ordered domain pair, e.g. `ancestry→language`,
+`artifact→religion`, `polity→modern-identity`. The last is subject to the extra
+governance of §11.2, because claims bridging antiquity to a present community are
+where the institution's output becomes politically usable.
+
+### 4.5 Display rules
+
+- **Every rendered edge carries status and attestation mode.** An unstatused edge
+  cannot be drawn.
+- **Strength maps to a visual variable and the mapping is stated in a legend on
+  every surface that draws edges.** No surface may encode strength without a
+  legend.
+- **`suggestive-only` and `direction-unknown` edges are off by default** in every
+  view, reachable by an explicit control labelled with what it turns on.
+- **Alternatives are one interaction away from every bridge.** Selecting a bridge
+  shows its rivals at the same visual weight as itself, per §3.10's refusal to
+  let layout settle a question.
+- **Density is a legibility problem, not an evidence problem.** Where a view
+  cannot draw everything, it drops by *display filter*, never by *strength* —
+  i.e. it never quietly drops weak edges to look cleaner, because that produces a
+  picture more confident than the evidence.
+
+---
+
+## 5. Data export and API readiness
+
+### 5.1 The principle
+
+The institution's evidence base must be usable by people who do not trust the
+institution. That is not a courtesy feature; it is the only form the standing
+"capable of contradicting" requirement (constitution §2) can take in a product.
+A visitor who cannot get the claim table out cannot check it independently.
+
+### 5.2 Export
+
+Every surface that displays evidence offers export of exactly what is displayed,
+plus what would be needed to check it.
+
+| Level | Formats | Contents |
+|---|---|---|
+| **Single claim** | CSV, JSON, BibTeX/CSL-JSON | claim, status, evidence links with locators and retrieval dates, sources, independence groups, falsifiers, revision id |
+| **Exhibit** | CSV bundle, JSON | all claims, relationships, absences, translation blocks, bias tests, editorial decisions, obligations |
+| **Atlas view** | CSV, GeoJSON, JSON | the exact filter state, every object in view with its assertions, every excluded object with the reason it was excluded |
+| **Search result set** | CSV, JSON | the query, the result set, the total, and the facets applied |
+| **Whole base** | JSON-LD + CSV snapshot, versioned, dated | the register files, the object graph, the access ledger, the dependency map |
+
+Requirements:
+
+- **Exports carry status.** No export produces a bare table of assertions. A
+  spreadsheet of claims with the status column stripped is the artefact this
+  whole architecture exists to prevent, and the export must make it awkward
+  rather than default.
+- **Exports carry the exclusion set** where a filter was applied. What a map
+  leaves out is part of what it says.
+- **Exports are revision-pinned and dated**, with the resolvable base URL for
+  every identifier.
+- **The register CSVs remain human-readable and diffable.** The columns in
+  `CLAUDE.md`'s register format —
+  `claim_id,claim,status,source_id,locator,retrieval_date,supports_page,notes` —
+  are the export's lowest common denominator and must round-trip.
+
+### 5.3 API readiness
+
+"Readiness", not "API": §12 asks for the property, and building the service is a
+later decision.
+
+The property is achieved when all of the following hold, and each is testable
+without writing a server:
+
+1. **Every object has a resolvable, revision-addressable identifier** (§2.1).
+2. **Every object serialises losslessly** to a documented JSON schema, including
+   its status, provenance and revision pointer.
+3. **The vocabularies are published as enumerations** with definitions and
+   stability guarantees: the 7 statuses, the 7 inheritance dispositions, the 9
+   evidence classes, the 5 `is_primary` values, the 5 attestation modes, the 8
+   absence types, the 11 evidence roles, the predicate vocabulary, the 12 date
+   types, the 8 place types, the 7 postures, the 11 Atlas layers.
+4. **Content negotiation** on the identifier URL returns human page or machine
+   record from one address.
+5. **No display-only fields exist.** Anything a page shows is in the record. If
+   a surface computes something (posture derivation, independent-source count,
+   evidential weight), the computation is specified and its inputs are exported.
+6. **A conformance fixture set** exists: a small number of real objects covering
+   every enum value and every required-field rule, used to test any future
+   service, export or import.
+7. **Rate, licence and attribution terms for reuse are stated** (§11.8), and the
+   licence on the *evidence base* is stated separately from the licence on
+   *media*, because they will differ (§11.8.3).
+
+**Deliberately deferred, not specified here:** authentication, write access,
+federation with other collections, persistent-identifier registration (DOI,
+ARK, Handle), and any query language beyond the export filters. Whether the
+institution registers external persistent identifiers is **D-020**.
