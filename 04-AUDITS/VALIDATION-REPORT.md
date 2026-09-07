@@ -5,9 +5,12 @@ a findings document written by hand goes stale and is then read as current,
 which is what happened to `VALIDATOR-FINDINGS-2026-09-07.md` (CR-012).
 Regenerated and diffed in CI, so it cannot fall behind the tree either.
 
-- Governed-file digest: `9dae8725fc40556a`
-- Failures: **0**
+- Governed-file digest: `d6099fea6e97be82`
+- Failures: **4**, of which **4** are covered by a committed OVERRIDE-LOG row
 - Warnings: **12** (each carries a MIGRATION-HOLDS row)
+
+A failure covered by an override is not fixed. `--respect-overrides`
+exits 0 when every failure is covered; the plain invocation exits 1.
 
 ## Notes
 
@@ -61,6 +64,17 @@ MH-011: 03-REGISTERS/HYPOTHESIS-ELIGIBILITY.csv and 03-REGISTERS/domain-e-hypoth
 MH-012: The VERIFIED claims whose cited sources the dependency register collapses into fewer independent observations. The validator prints the list and the count on every run. — not migrated; blocked on RA-012, a claim-by-claim reading of whether each collapse was assessed when the claim was 
 ```
 
-## Failures
+## Failures covered by an override
+
+These are real and unfixed. See `00-CONTROLLER/OVERRIDE-LOG.csv`.
+
+```
+03-REGISTERS/HYPOTHESIS-ELIGIBILITY.csv:2: PROVISIONAL row in a register with no source_id, locator, retrieval_date column; the retrieval that would back it cannot be recorded here, so PROVISIONAL is untraceable in this file  [overridden by OV-001]
+03-REGISTERS/HYPOTHESIS-ELIGIBILITY.csv:3: PROVISIONAL row in a register with no source_id, locator, retrieval_date column; the retrieval that would back it cannot be recorded here, so PROVISIONAL is untraceable in this file  [overridden by OV-001]
+03-REGISTERS/HYPOTHESIS-ELIGIBILITY.csv:4: PROVISIONAL row in a register with no source_id, locator, retrieval_date column; the retrieval that would back it cannot be recorded here, so PROVISIONAL is untraceable in this file  [overridden by OV-001]
+03-REGISTERS/domain-e-hypothesis-eligibility.csv:12: evidence_status 'VERIFIED as a measurement; not a claim about origins' not in its vocabulary  [overridden by OV-001]
+```
+
+## Failures not covered by an override
 
 None.
