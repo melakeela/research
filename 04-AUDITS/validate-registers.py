@@ -17,7 +17,14 @@ Checks:
      if every identifier in it resolves.
   4. Every claim_id is unique within its file.
   5. Every D- reference in the tree resolves to exactly one row in
-     09-DECISIONS/OWNER-DECISIONS.csv.
+     09-DECISIONS/OWNER-DECISIONS.csv, either directly or by following
+     09-DECISIONS/DECISION-ID-MAP.csv from an old identifier to the row
+     it landed on. CLAUDE.md: "a D- reference in an older file is
+     resolved through that map." Identifiers that were renumbered or
+     folded are never reused, so the map is the only thing that keeps
+     an older file's reference readable. Chains are followed to their
+     end; a map row pointing at a number with no register row still
+     fails, as does a reference in neither place.
 
 CSVs in this repository mix CRLF and LF and carry embedded newlines
 inside quoted cells. Everything here opens with newline='' and never
@@ -32,6 +39,7 @@ ROOT = Path(__file__).resolve().parents[1]
 REGISTER_DIR = ROOT / "03-REGISTERS"
 LEDGER = ROOT / "02-SOURCES" / "access-ledger.csv"
 DECISIONS = ROOT / "09-DECISIONS" / "OWNER-DECISIONS.csv"
+ID_MAP = ROOT / "09-DECISIONS" / "DECISION-ID-MAP.csv"
 
 STATUS_VOCAB = {
     "VERIFIED", "PROVISIONAL", "HYPOTHESIS", "INHERITED-UNVERIFIED",
@@ -120,6 +128,42 @@ def check_register(path, ledger):
                     fail(f"{rel}:{n}: source_id {sid} not in access ledger")
 
 
+def resolvable_ids(known):
+    """Identifiers a D- reference may legitimately name.
+
+    A register row resolves directly. An identifier that was renumbered
+    on merge, or folded into another row, resolves through
+    DECISION-ID-MAP.csv to the row it landed on — following the chain,
+    because the map records identifiers that moved more than once. An
+    old identifier is never freed and never reused, so this widens what
+    resolves without letting an unallocated number pass.
+    """
+    if not ID_MAP.exists():
+        return set(known)
+    edges = {}
+    for row in read_csv(ID_MAP):
+        old = (row.get("old_id") or "").strip()
+        new = (row.get("new_id") or "").strip()
+        if old and new and old != new:
+            edges.setdefault(old, set()).add(new)
+
+    resolvable = set(known)
+    for old in edges:
+        if old in resolvable:
+            continue
+        seen, frontier = {old}, set(edges[old])
+        while frontier:
+            nxt = frontier.pop()
+            if nxt in known:
+                resolvable.add(old)
+                break
+            if nxt in seen:
+                continue
+            seen.add(nxt)
+            frontier |= edges.get(nxt, set())
+    return resolvable
+
+
 def check_decision_refs(known):
     pat = re.compile(r"\bD-\d{3}\b")
     for path in ROOT.rglob("*"):
@@ -133,12 +177,14 @@ def check_decision_refs(known):
             continue
         for ref in sorted(set(pat.findall(text))):
             if ref not in known:
-                fail(f"{path.relative_to(ROOT)}: reference {ref} has no OWNER-DECISIONS row")
+                fail(f"{path.relative_to(ROOT)}: reference {ref} has no OWNER-DECISIONS "
+                 f"row and no DECISION-ID-MAP path to one")
 
 
 def main():
     ledger = ledger_ids()
     known, _ = decision_ids()
+    known = resolvable_ids(known)
     if REGISTER_DIR.exists():
         for path in sorted(REGISTER_DIR.rglob("*.csv")):
             check_register(path, ledger)
