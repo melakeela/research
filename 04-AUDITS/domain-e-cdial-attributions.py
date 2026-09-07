@@ -23,7 +23,7 @@ Three traps this script is built to avoid, all of them observed:
     Munda and is evidence against a substrate reading of that word, not
     for it. In and out are counted separately.
 
-Sources: SRC-060 (CDIAL), SRC-054 (VedaWeb), SRC-022/023 (Zurich, Arnold).
+Sources: SRC-065 (CDIAL), SRC-059 (VedaWeb), SRC-022/023 (Zurich, Arnold).
 Usage: domain-e-cdial-attributions.py [JAMBU_DATA] [RV_TOKENS_TSV] [OUTDIR]
 """
 import csv, sys, re, os, collections, unicodedata, importlib.util
@@ -241,7 +241,7 @@ with open(cand_path, "w", newline="") as f:
                     "; ".join(sorted(hits["compound"])[:8]),
                     " ".join(f"{b}:{c}" for b, c in sorted(books.items(), key=lambda x: int(x[0]))),
                     " ".join(f"{s or 'none'}:{c}" for s, c in sorted(strata.items())),
-                    br, "SRC-060; SRC-054; SRC-022; SRC-023", "2026-09-07"])
+                    br, "SRC-065; SRC-059; SRC-022; SRC-023", "2026-09-07"])
 
 # (c) the naive-versus-corrected search audit, and the corpus stratum baseline
 NAIVE = re.compile(r"\bMuṇḍ\w*|\bMunda\b")

@@ -21,7 +21,7 @@ the Kunar and Nuristan — Turner's and Glottolog's grouping, not ours.
 Proto-nodes are excluded from the attested figures: a reconstructed
 protolanguage has no location, only a hypothesis about one.
 
-Source: SRC-055 (JAMBU cldf/languages.csv).
+Source: SRC-060 (JAMBU cldf/languages.csv).
 Usage: domain-e-geography.py [JAMBU_CLDF_DIR] [OUT_CSV]
 """
 import csv, sys, math

@@ -28,18 +28,31 @@ and §11 (packets R20–R21). Ordering below the first item is owner decision
    adversarial tests: `04-AUDITS/domain-e-method.md`. The comparative
    half is on `HOLD-002` and `HOLD-003`: every Dravidian, Munda and
    Austroasiatic source was refused at the egress gateway. Escalated as
-   `D-035`.
-5. **Controller amendment** — methodology installed, reconciled against
+   `D-036`.
+5. **Domain M — the Brahui geographic measurement, challenged by the owner**
+   (part of domain **M**) — `03-REGISTERS/domain-m-brahui-position.csv`
+   (26 claims: 20 VERIFIED, 5 PROVISIONAL, 1 SUPERSEDED; the owner's two
+   objections are DMB-004 and DMB-005, recorded as raised). Method and
+   both adversarial tests:
+   `04-AUDITS/domain-m-method.md`; scripts `brahui-loo-geography.py` and
+   `north-dravidian-cognate-sharing.py`. Method failures `BF-005` and
+   `BF-006`; re-audits `RA-004`, `RA-005`; provenance question `D-035`.
+   The challenged measurement was **not in this repository** and had to be
+   reconstructed (`DMB-003`). The comparative half is on `HOLD-004`:
+   Krishnamurti 2003, the book every retrievable assertion of North
+   Dravidian traces to, has never been read here. **None of the six §4.M
+   models is closed by this unit and none was allowed to be.**
+6. **Controller amendment** — methodology installed, reconciled against
    the controller, decisions register and this queue seeded. Merged as
    PR #6.
 
 ## Now
 
-6. **Domain E, comparative half — Dravidian, Munda and unidentified
+7. **Domain E, comparative half — Dravidian, Munda and unidentified
    substrate claims.** *(This change.)* The lexical and comparative
    counterpart to item 4, run from CDIAL, DEDR and Munda data retrieved
    through the git proxy lane. Registers, audits, hypothesis gate,
-   bridges, draft copy and `HOLD-004` are in place; both §8 adversarial
+   bridges, draft copy and `HOLD-005` are in place; both §8 adversarial
    tests are logged in `04-AUDITS/domain-e-method-comparative.md` §5.
 
    Five of §4.E's eleven distinctions were measurable from retrieved
@@ -50,18 +63,18 @@ and §11 (packets R20–R21). Ordering below the first item is owner decision
 
    Item 4 and this item are two separate runs of the same domain, from
    different evidence classes and different sessions. Their method notes,
-   registers and holds are kept apart deliberately; `DEP-014` to
-   `DEP-018` record where their ledger rows are the same source probed
+   registers and holds are kept apart deliberately; `DEP-016` to
+   `DEP-020` record where their ledger rows are the same source probed
    twice.
 
 ## Blocked on inputs
 
-7. **Backlog reconciliation** — `06-BACKLOG/BACKLOG-COVERAGE.csv`, one row
+8. **Backlog reconciliation** — `06-BACKLOG/BACKLOG-COVERAGE.csv`, one row
    per item 1–89 with a destination, deliverable, hold or reasoned
    rejection. `RESEARCH HOLD`: the "MelaKeela.com v2 — Master Research,
    Product & Institutional Backlog" is not in this repository and cannot be
    reconstructed by inference. See `DECISIONS-NEEDED.md` D-014.
-8. **Packets R1–R19.** Named in the site review running list; their
+9. **Packets R1–R19.** Named in the site review running list; their
    definitions live in the prompt-pack (`MELA-KEELA-CLAUDE-FULL-SEQUENCE.md`,
    `MELA-KEELA-LANGUAGE-RESEARCH-PROMPTS.md`,
    `MELA-KEELA-CLAUDE-LIVE-SITE-AUDIT-PROMPT.md`), which is also absent.
@@ -81,7 +94,7 @@ thing the investigation is most likely to get wrong.
 | B | Early Rigvedic, Old Avestan and Classical Sanskrit | Family-tree labels predetermining an anonymized comparison; unequal archives read as equal samples |
 | C | The Sanskrit sound system is historically composite | Projecting the later alphabet back as one pristine PIE design; reading the 5×5 grid as 25 inherited phonemes |
 | D | Proto-Dravidian and Tamil phonology | Treating either analytical system as an imperfect version of the other |
-| E | Dravidian, Munda and unidentified substrate claims | Symmetry between an attested family and a hypothetical donor; "unknown" used as positive evidence — *both halves run 2026-09-07: corpus-internal (item 4) and comparative (item 6). Distinctions 4, 8, 9 and 10 remain on `HOLD-002`, `HOLD-003` and `HOLD-004`.*
+| E | Dravidian, Munda and unidentified substrate claims | Symmetry between an attested family and a hypothetical donor; "unknown" used as positive evidence — *both halves run 2026-09-07: corpus-internal (item 4) and comparative (item 6). Distinctions 4, 8, 9 and 10 remain on `HOLD-002`, `HOLD-003` and `HOLD-005`.*
 | F | *kīnāśa* and agricultural vocabulary | Accepting the etymology, or dismissing it as resemblance, without the lemma work |
 | G | BMAC/Oxus and pre-split Indo-Iranian contact | Reading "Proto-Indo-Iranian" as pre-contact or purely inherited |
 | H | Rigvedic and Old Avestan social worlds | A violent-Indic versus peaceful-Iranian binary; genre mistaken for society |
@@ -89,7 +102,7 @@ thing the investigation is most likely to get wrong.
 | J | The Rigvedic forts | Translating *pur* into a Mature Harappan city; one famous count standing for the corpus |
 | K | Indus writing and institutional discontinuity | Concluding that populations vanished because institutions and archives did |
 | L | Avestan writing | Reading a Sasanian-era alphabet as transparent evidence of Gāthic pronunciation |
-| M | Brahui, Kurukh and Malto | Medieval migration treated as documented fact; living people used as linguistic fossils |
+| M | Brahui, Kurukh and Malto | Medieval migration treated as documented fact; living people used as linguistic fossils — *geographic-measurement challenge answered 2026-09-07; North Dravidian measured on lexical data only and neither validated nor refuted; comparative half on `HOLD-004`* |
 | N | Grammatical ontologies | Typological similarity read as descent or contact without a mechanism |
 | O | Pāli, Prakrit and vernacular Indo-Aryan | Prakrit as corrupted Sanskrit; one pure language decaying |
 | P | South Asian linguistic convergence | Modern areal distribution converted automatically into prehistoric substrate |
@@ -120,7 +133,7 @@ or research holds. Constitution §11.
 
 ## Opened by domain E
 
-- **Retrieve the substrate literature.** `HOLD-004`. Witzel 1999,
+- **Retrieve the substrate literature.** `HOLD-005`. Witzel 1999,
   Kuiper 1991, Masica 1979, Krishnamurti 2003, Rau 2019, Shorto 2006.
   Four of the eleven distinctions in §4.E cannot be gated without them,
   and the blockage is one-sided: it falls entirely on the hypotheses
@@ -135,7 +148,7 @@ or research holds. Constitution §11.
   northwestern geographic position rests on Brahui. The Brahui dating
   question stops being one domain's detail.
 - **Six re-audits** in `04-AUDITS/REAUDIT-QUEUE.csv`, of which
-  `RA-006` is programme-wide: every domain where one side of an
+  `RA-008` is programme-wide: every domain where one side of an
   argument sits in retrievable data and the other in unretrievable
   literature.
 

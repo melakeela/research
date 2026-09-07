@@ -11,7 +11,7 @@
 `03-REGISTERS/CROSS-DOMAIN-BRIDGES.csv` (8)
 **Audits:** `ARCHIVE-AND-POWER-AUDIT.csv`, `BIAS-FAILURE-LOG.csv`,
 `INTERNAL-CONTRADICTIONS.csv`, `REAUDIT-QUEUE.csv`
-**Hold:** `05-HOLDS/HOLD-004-substrate-literature.md`
+**Hold:** `05-HOLDS/HOLD-005-substrate-literature.md`
 **Reproduce:** `rv-token-extract.py` → `domain-e-evidence-mass.py` →
 `domain-e-cdial-attributions.py` → `domain-e-geography.py` →
 `domain-e-dedr-digitisation-check.py`
@@ -32,17 +32,17 @@ That turned out to be possible for five and impossible for four.
 
 | # | Distinction | Source used here |
 |---|---|---|
-| 1 | attested Dravidian | `SRC-056` DEDR reflexes; `SRC-062` DravLex |
-| 2 | reconstructed Proto-Dravidian | `SRC-057`, a **separate table** — DEDR itself reconstructs nothing |
-| 3 | accepted OIA Dravidian loans | `SRC-060` CDIAL, Turner's own loan arrows |
+| 1 | attested Dravidian | `SRC-061` DEDR reflexes; `SRC-067` DravLex |
+| 2 | reconstructed Proto-Dravidian | `SRC-062`, a **separate table** — DEDR itself reconstructs nothing |
+| 3 | accepted OIA Dravidian loans | `SRC-065` CDIAL, Turner's own loan arrows |
 | 4 | proposed Dravidian substrate forms | **none retrieved** |
-| 5 | attested Munda | `SRC-058` |
-| 6 | reconstructed Proto-Munda | `SRC-059` Rau 2019, again a separate table |
-| 7 | deeper Austroasiatic | inside `SRC-059` only — Rau citing Shorto and Pinnow, never retrieved themselves |
+| 5 | attested Munda | `SRC-063` |
+| 6 | reconstructed Proto-Munda | `SRC-064` Rau 2019, again a separate table |
+| 7 | deeper Austroasiatic | inside `SRC-064` only — Rau citing Shorto and Pinnow, never retrieved themselves |
 | 8 | Witzel's Para-Munda | **none retrieved** |
 | 9 | the Kubhā-Vipāś fallback | **none retrieved** |
 | 10 | Masica's Language X | **none retrieved** |
-| 11 | genuinely unidentified vocabulary | `SRC-060`, Turner's own residue — a floor, not an estimate |
+| 11 | genuinely unidentified vocabulary | `SRC-065`, Turner's own residue — a floor, not an estimate |
 
 Distinctions 2 and 6 are the ones most often collapsed, and keeping them
 apart cost nothing here because the data arrived in separate files.
@@ -54,13 +54,13 @@ Austroasiatic layer exists in the register only as Rau's citations.
 The three sources the task named — GRETIL, archive.org, TITUS — are all
 refused at the egress gateway in this session, on both available
 channels, as is `dsal.uchicago.edu`, which hosts DEDR. All four results
-are logged (`SRC-048`–`SRC-051`). Three of them were reachable earlier
+are logged (`SRC-053`–`SRC-056`). Three of them were reachable earlier
 the same day from a different session; the manifest records both
 readings and supersedes neither.
 
 The one open channel is the git proxy's anonymous lane, which serves
 arbitrary public repositories even where the REST API refuses them
-(`SRC-053`). Everything below came through it.
+(`SRC-058`). Everything below came through it.
 
 That channel has a shape, and the shape is the single most important
 methodological fact in this unit. Attested families and published
@@ -73,7 +73,7 @@ So the empty cells are a property of the network policy. Writing
 "Dravidian: measurable; Para-Munda: nothing found" would convert an
 egress rule into a finding, and would be the programme's original error
 running backwards — parity refused in one direction, then refused in the
-other. `HOLD-004` states this, `BF-008` logs it as a failure that was
+other. `HOLD-005` states this, `BF-010` logs it as a failure that was
 available and declined, and every gate verdict for distinctions 8–10
 reads **CANNOT GATE**, never FAIL.
 
@@ -142,7 +142,7 @@ not 21 independent draws.
 
 **85% of Turner's 55 Munda arrows cite Kuiper or PMWS.** Fifty-five
 citations tracing to one author count as one, and Kuiper is unretrieved
-(`DEP-010`). His 224 Dravidian arrows spread across Mayrhofer (85),
+(`DEP-012`). His 224 Dravidian arrows spread across Mayrhofer (85),
 Burrow (81), Kuiper (18), Bloch (15).
 
 And **every Munda attribution names an authority while 29 Dravidian ones
@@ -188,7 +188,7 @@ The site is not shown to be wrong. What is shown is that the number is
 less stable than "counted directly from the Dravidian etymological
 dictionary" implies, and that the raw count moves too, not only the
 percentage the page correctly warns about. Print is unreachable from
-either side (`SRC-051`), so neither can be adjudicated. Every
+either side (`SRC-056`), so neither can be adjudicated. Every
 DEDR-derived count in this unit inherits the same error bar.
 
 **`IC-E-003`, `IC-E-004`.** Two passes, recorded so step 13 has both.
@@ -222,7 +222,7 @@ Turner could only be as good as the dictionaries available to him, that
 Munda lexicography was thinner than Dravidian in his window, and that
 this is a live untested alternative explanation for the 4.1-to-1 ratio.
 The ratio is therefore registered as a fact about Turner (`DE-I-004`),
-not about the Rigveda, and the alternative is queued as `RA-007`.
+not about the Rigveda, and the alternative is queued as `RA-009`.
 
 **Citation count could have stood in for standing.** It does not:
 `DE-I-009` is a `VERIFIED` statement that current specialist standing
@@ -250,7 +250,7 @@ registered at full weight, not noted in prose.** `DE-M-025`: remove
 Brahui and Dravidian sits farther from the northwest than Munda. That is
 the single most uncomfortable number in this unit for the reading the
 platform prefers, and it is a register row with the same standing as the
-rows that help. `BF-009` records this as the test passing rather than
+rows that help. `BF-011` records this as the test passing rather than
 as a failure.
 
 **The null explanation was entered first and made to compete.**
@@ -265,7 +265,7 @@ verdict says so in the row.
 
 **Unavailability was not scored as refutation.** The mirror failure —
 correcting the old Para-Munda parity error by treating unretrievable
-sources as unsupported claims — was available, is named in `BF-008`,
+sources as unsupported claims — was available, is named in `BF-010`,
 and is refused. `CANNOT GATE`, never `FAIL`.
 
 **Where the data cut against Munda, the archive was checked before the

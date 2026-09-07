@@ -34,11 +34,11 @@ how a `D-` reference in a document written before that date is resolved.
 A second collision was cleared on 2026-09-07. `DECISIONS-NEEDED.md` briefly
 carried two `## D-032` sections: the `before-the-indus` question, which owns
 that identifier in the CSV, and a domain E egress ruling written in the same
-window as the renumbering. The egress section is now **D-035**. Five further
+window as the renumbering. The egress section is now **D-036**. Five further
 decisions raised on the domain E branch — two written up here as `D-015` and
 `D-016`, three carried only as CSV rows at `D-017` to `D-019` — had taken the
 highest number visible in the file being written rather than the next free one
-from the CSV; they are now **D-036** to **D-040**. Every move is in
+from the CSV; they are now **D-037** to **D-041**. Every move is in
 `09-DECISIONS/DECISION-ID-MAP.csv`, and the identifiers already on `main` did
 not move.
 
@@ -112,6 +112,47 @@ gateway, and only JSTOR is consequential:
 
 JSTOR would in any case need an institutional subscription, so
 allowlisting alone may not be enough; that part of the decision stands.
+
+**Second status update, 2026-09-07T03:03–03:12Z — the reopening did not
+hold.** Re-probed during the domain M Brahui unit and logged as `SRC-052`.
+Every host below now returns 403 at CONNECT. Only `github.com` and
+`raw.githubusercontent.com` answer.
+
+| Domain | 02:19 UTC | 03:03 UTC | Consequence |
+|---|---|---|---|
+| `archive.org` | 200 | **403** | scans unreachable again |
+| `doi.org` | 302 | **403** | no citation verification |
+| `arxiv.org` | 200 | **403** | no preprint full text |
+| `glottolog.org` | not probed | **403** | reached via GitHub instead |
+| `dsal.uchicago.edu` | 403 | 403 | DEDR still unreachable, `HOLD-002` |
+| `api.github.com` | 200 | **403** | git over https still works |
+| `api.crossref.org` | not probed | **403** | no bibliographic verification |
+| `api.openalex.org` | not probed | **403** | " |
+| `api.semanticscholar.org` | not probed | **403** | " |
+| `zenodo.org` | not probed | **403** | dataset DOIs unresolvable |
+| `royalsocietypublishing.org` | not probed | **403** | source paper unreadable |
+| `pmc.ncbi.nlm.nih.gov`, `europepmc.org` | not probed | **403** | " |
+| `www.degruyter.com`, `benjamins.com` | not probed | **403** | linguistics presses |
+
+Three things follow, and the second is the one that matters for how this
+file is read.
+
+1. **The gap is wider than JSTOR.** The paragraph above says JSTOR is "the
+   real remaining gap." At 03:03 UTC that is no longer true: the whole
+   scholarly web is refused, and the domains added to the request are
+   Crossref, OpenAlex, Semantic Scholar, Zenodo, `glottolog.org`,
+   `royalsocietypublishing.org` and the PMC hosts.
+2. **Reachability rows in the ledger are perishable.** Egress state changed
+   twice in one day, in both directions. `RA-003` already queues `SRC-025`
+   and `SRC-027`–`SRC-036` for re-audit on these grounds; that queue entry
+   should be read as covering `SRC-045` and the first status update above
+   as well. No unit may cite a reachability row as evidence that a source is
+   *currently* obtainable without re-probing.
+3. **GitHub is doing real work.** The domain M unit was completed anyway,
+   because `lexibank/dravlex` and `glottolog/glottolog` are on GitHub
+   (`SRC-049`, `SRC-051`). That is a narrow escape and not a substitute:
+   what GitHub yields is datasets and bibliographic records, never a page
+   of a book. `HOLD-004` is the direct cost.
 
 ---
 
@@ -811,7 +852,7 @@ institution can keep current, at what latency, and who maintains them.
 
 ---
 
-## D-035 — Egress reach is not stable between sessions. Does domain E run under a GitHub-only policy?
+## D-036 — Egress reach is not stable between sessions. Does domain E run under a GitHub-only policy?
 
 **Raised by:** domain E source probe, 2026-09-07T02:19–02:21Z
 **Category:** institutional access required
@@ -856,7 +897,7 @@ half, or accept the corpus-internal half as the domain's Release 1 state?
 
 ---
 
-## D-036 — Egress allowlist: the substrate literature is unreachable
+## D-037 — Egress allowlist: the substrate literature is unreachable
 
 **Raised:** 2026-09-07, domain E. **Category:** institutional access.
 **Blocks:** four of the eleven distinctions constitution §4.E requires.
@@ -884,7 +925,7 @@ permanently out of reach.
 **Asked of the owner:** add `archive.org` and `dsal.uchicago.edu` to the
 environment egress allowlist, or supply the six works as files.
 
-## D-037 — Two DEDR digitizations disagree, and one is published
+## D-038 — Two DEDR digitizations disagree, and one is published
 
 **Raised:** 2026-09-07, domain E. **Category:** two consequential
 positions both viable. **Affects:** a live page.
@@ -902,7 +943,7 @@ unit's data gives 223 of 273 — 82% against 73%. The raw count moves as
 well as the percentage the page correctly warns readers about.
 
 Neither can be adjudicated while `dsal.uchicago.edu` is blocked, so
-this is downstream of D-036 but is escalated separately because it
+this is downstream of D-037 but is escalated separately because it
 touches published copy.
 
 **Asked of the owner:** whether the page should name its digitization
