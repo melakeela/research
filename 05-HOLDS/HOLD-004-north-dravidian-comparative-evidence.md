@@ -100,3 +100,66 @@ subgroup question becoming answerable at all. It would also convert
 `DEP-008` from a live circularity warning into a checkable claim: if
 Krishnamurti's innovations are phonological, DravLex's lexical coding is
 substantially independent of them after all, and `DMB-018` gets stronger.
+
+---
+
+## Update, 2026-09-07, domain M six-models unit
+
+Two of the six items moved. The hold stays open.
+
+**Item 6, DEDR — partially met, and only in one respect.** `SRC-059` reached
+a machine-readable re-encoding of DEDR inside the Jambu database on GitHub,
+GitHub being the one host that answers. 5,520 entries, 26 attested languages,
+68,808 form lines parsed with zero failures. This is the first time this
+project has read any Dravidian etymological dictionary, and it made the
+measurement at `DMM-001` to `DMM-005` possible — including a permutation test
+that `DravLex` was too small to support.
+
+It does **not** meet what this hold and `HOLD-002` actually asked for. The
+encoding carries form and gloss fields only: no headnotes, no etymological
+discussion, no loanword annotation. It is a derived copy, and `DEP-010`
+records that it is DEDR parsed rather than a second witness to it. What it
+answers is "how did Burrow and Emeneau distribute these forms across the
+family"; what it cannot answer is anything DEDR says in prose.
+
+**Item 2, Kobayashi and Tirkey — met at abstract level, not at the locator.**
+`SRC-063` returned the 2019 *Kurux* chapter's abstract, which states the
+morphological case for the lower node (shared past stem formation, agreement
+and case suffixes), that "there is no doubt that Kurux and Malto constitute a
+close subgroup", that "the position of Kurux-Malto in the Dravidian family
+has been much debated", and that the difficulty is that "few innovations
+shared with other subgroups are identified". Glottolog's locator — Kobayashi
+and Tirkey 2017, pp. 11–14 — is still unread, and an abstract carries no page.
+
+**Item 1, Krishnamurti 2003 — unchanged and still load-bearing.** Nothing
+reached it. Cambridge University Press is outside every reachable connector's
+corpus: `SRC-054` is Wiley-only, `SRC-053` is abstract-level, and every
+publisher host returns no connection (`SRC-058`). It remains the book that
+everything traces to and that this project has never read.
+
+**Items 3, 4 and 5 — Emeneau 1962, McAlpin 1980, Elfenbein 1998 — unread.**
+One thing did change around item 4. `SRC-065` reached the abstract of
+McAlpin's 2003 *Velars, Uvulars, and the North Dravidian Hypothesis*, which
+states that "no serious scholar has denied that a valid genetic connection
+exists between Brahui and the Dravidian languages" and that the paper
+"explore[s] the phonology which connects Brahui with Kurux and Malto". That
+settles the *direction* of `DMB-023` — the question posed in McAlpin 1980 is
+about the nature of the connection, not its existence — and settles nothing
+else. What McAlpin's "new solution" is remains unknown here. `SRC-066` adds
+that McAlpin was still arguing an Elamite descent for Brahui in 2022.
+
+**One item now answers itself in the negative.** `DMM-011`: Nair 2003 reports
+that the initial *v-/b-* change "cannot be considered as a valid phonological
+isogloss for sub grouping NDr", being areal rather than a shared innovation,
+and attributes the contact reading to Krishnamurti. So at least one named
+North Dravidian isogloss has been withdrawn in print. That sharpens item 1
+rather than replacing it: the question this hold asks is *which* innovations
+Krishnamurti states and how many of them rest on Brahui, and one withdrawal
+does not answer it.
+
+**What the hold now blocks.** `DMB-018`, `DMB-019`, `DMB-023`, `DMB-024`,
+`DMB-026` as before, plus `DMI-001` and `DMI-002` — which is to say, whether
+the seven exclusive Brahui–Kurux–Malto etymologies at `DMM-003` are
+inherited or areal, and whether the 176 Kurux–Malto sets at `DMM-002` are a
+clade or a neighbourhood. A lexical instrument cannot answer either, however
+large. `HOLD-005` is the companion hold for the contact-stratum half.

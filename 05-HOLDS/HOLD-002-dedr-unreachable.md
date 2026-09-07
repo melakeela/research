@@ -57,3 +57,30 @@ DEDR would let the loan-etymology half of domain E be evidenced at all. As
 it stands, every claim in this unit that would require a Dravidian etymon
 carries `HOLD` and is excluded from analysis, and the measurements that were
 made are corpus-internal and do not depend on it.
+
+---
+
+## Update, 2026-09-07: narrowed, not lifted
+
+`SRC-059` reached a machine-readable re-encoding of DEDR inside the Jambu
+database (`github.com/moli-mandala/data`, pinned at commit `dbae3102`), GitHub
+being the only host this session's proxy answers on. 5,520 entries, 26
+attested languages, 68,808 form lines, zero parse failures; three counts
+published from DEDR by other scholars were reproduced from it to within 6, 1
+and 2 (`DMM-006`).
+
+**What this lifts.** Cognate-set membership by language across the whole
+family is now measurable, which is what `DMM-001` to `DMM-005` and the
+permutation test rest on.
+
+**What it does not lift.** The encoding carries DEDR's form and gloss fields
+only — no headnotes, no etymological discussion, no loanword annotation, no
+sub-entry structure and no bibliography. A search for *baloch* or *baluch*
+across the whole encoding returns zero lines. Everything this hold was
+originally raised for that depends on DEDR's *prose* is untouched, and
+`HOLD-005` is now the specific hold for the loanword half.
+
+`dsal.uchicago.edu` returned no connection at 2026-09-07T04:27Z (`SRC-058`).
+The dictionary itself is still unreachable. `DEP-010` records that the
+re-encoding is DEDR parsed, not a second witness to it, so nothing measured
+from it counts as independently confirming anything DEDR says.
