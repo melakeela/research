@@ -217,6 +217,27 @@ direction, and the gaps are work, not bookkeeping.
   that asks children to sort human beings into racial types, awards points for
   extremist categories, or turns persecution into an aesthetic spectacle.
   Writing this trap statement is the most urgent of the five.
+- **A domain running ahead of its packet:** **M**. Item 5 above is a completed
+  domain M unit — the Brahui geographic measurement, reconstructed and
+  measured, with `HOLD-004` open on the comparative half. **R18** is the packet
+  for the same subject; it is broader (four separate histories, both models
+  built at full strength, a 500-year Balochistan language map), and it has not
+  started. It sits at run position 11 behind `R11 + R12`, and behind **D-042**
+  with every other packet. The two enumerations are therefore not merely
+  non-congruent but out of phase: one has produced registers where the other
+  has not begun. Nothing here reconciles them. Item 5's registers are an input
+  to R18, not a discharge of it, and R18's controls are not weakened by the
+  fact that some of its ground is already measured — it must still build the
+  northwestern-continuity model at full strength, which item 5 explicitly did
+  not close (**none of the six §4.M models is closed**). Which enumeration
+  schedules the remainder of domain M is left open.
+- **These five gaps are recorded, not resolved.** They are findings about the
+  material, not bookkeeping to be tidied away. Neither enumeration is
+  subordinated to the other here, no packet is renumbered onto a domain, and no
+  domain is retired into a packet. The `Dom.` column of the packet table is a
+  proposed mapping derived in
+  `00-CONTROLLER/prompt-pack/PROMPT-PACK-INVENTORY.md` §4 and stated by no
+  source file; it is not authority for collapsing the two lists.
 
 ### What Who Made the Past supplies
 

@@ -437,3 +437,50 @@ live public-site audit anywhere, and the audit gate that running-list Version 11
 created has been dropped from the constitution rather than reversed. Recorded
 here because §4's retirement of the Claude Chat / Claude Code division of labour
 is what removed the terms in which Version 11's decision was framed.
+
+### Update 2026-09-07 — identifier sweep beyond the `D-` namespace
+
+The domain E merge found `SRC-`, `DEP-` and `HOLD-` colliding silently, because
+the two sides wrote the same series into differently named files and neither
+merge surfaced it. The `D-` shifts above were caught; the rest of the namespace
+was swept explicitly, against **both** `main` and the open PR #10 branch
+`claude/domain-e-research-queue-z83m9b`, since that branch is where this one's
+identifiers most nearly collide. Result: **no collision outside `D-`, and no
+reassignment required.**
+
+| Series | `main` | PR #10 (open) | this branch | Collision |
+|---|---|---|---|---|
+| `SRC-` | ends `SRC-052` | adds `SRC-053`–`SRC-068` | cites only, allocates none | none |
+| `DEP-` | ends `DEP-009` | adds `DEP-010`–`DEP-020` | allocates `DEP-021` only | none |
+| `BF-` | ends `BF-006` | adds `BF-007`–`BF-011` | allocates none | none |
+| `RA-` | ends `RA-005` | adds `RA-006`–`RA-011` | allocates none | none |
+| `HOLD-` | ends `HOLD-004` | adds `HOLD-005` | allocates none | none |
+| `PP-` | absent | absent | `PP-1`–`PP-14` | none |
+| `DMB-` | PR #16's | inherited from main | none of its own | none |
+
+`DEP-021` was deliberately taken above PR #10's `DEP-020` rather than at the
+first free number on this branch, which is the same discipline the `D-` shifts
+follow: the free numbers are allocated once across both open branches, not
+twice from the same base. Between the merge base and `main`, all five of those
+files were append-only — each base file is a byte-exact prefix of the `main`
+version — so no existing row changed meaning under either branch.
+
+**Byte handling.** `09-DECISIONS/OWNER-DECISIONS.csv` and
+`09-DECISIONS/DECISION-ID-MAP.csv` are CRLF files (the map mixed: CRLF for
+`D-001`–`D-031`, LF for the `HD-` block appended later). Earlier commits on
+this branch rewrote both LF-only, which turned every row into a diff and would
+have conflicted against every row PR #10 touches. Both are restored: every row
+`main` holds is byte-exact again, new rows follow the convention of the block
+they sit in, and no cell content was altered. The one row where `main`'s bytes
+cannot survive is `D-014`, which this branch amended twice; its text contains
+`main`'s in all twelve cells.
+
+`02-SOURCES/dependency.csv` was handled differently and deliberately so. It was
+first restored to `main`'s bytes when `DEP-021` was appended, then realigned to
+PR #10's quoting on the ten rows the two branches share, so that when PR #10
+merges only the appended row can conflict. Its rows are therefore no longer
+byte-identical to `main`'s, but every one of `main`'s records survives
+cell-for-cell — the change is quoting style, not content. The trade is
+recorded here because it runs the opposite way to the two files above, and the
+reason is the same in both cases: minimise what the *next* merge has to
+resolve.
