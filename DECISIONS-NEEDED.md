@@ -65,6 +65,14 @@ repository where the evidence rules are defined.
 **Decision:** author `CLAUDE.md` and `RESEARCH-QUEUE.md` directly, or
 commission them as an explicit task with their intended content stated.
 
+**Resolved 2026-09-07.** The owner supplied the methodology directly. It is
+committed unchanged as `00-CONTROLLER/METHODOLOGY-CONSTITUTION.md`;
+`CLAUDE.md` was rewritten as the operating controller under it and
+`RESEARCH-QUEUE.md` reseeded from its §4 and §11. `AGENTS.md` already
+existed. The row is kept, not deleted, because the reasoning it records —
+that a controller must not be drafted from an agent's guess — is what the
+constitution now formalises.
+
 ---
 
 ## D-003 — Connector surface for this programme
@@ -86,3 +94,38 @@ project so their coverage can be probed and added to the ledger; and
 confirm whether a Scholar Feed API key and a paid Scite tier are in
 scope. Whether to keep the two legal connectors enabled is a separate
 call — they cost tool surface and return nothing for this programme.
+
+---
+
+## D-014 — The 89-item v2 backlog and the prompt-pack are not in the repository
+
+**Raised by:** controller amendment, 2026-09-07
+**Blocks:** `06-BACKLOG/BACKLOG-COVERAGE.csv` entirely; owner decisions
+D-008, D-009 and D-011; the R1–R19 half of the amended stage queue
+
+`00-CONTROLLER/METHODOLOGY-CONSTITUTION.md` §10 declares the 89-item
+"MelaKeela.com v2 — Master Research, Product & Institutional Backlog"
+binding and requires one coverage row per item. §16 requires reading "every
+file in the previously supplied prompt-pack ZIP". Neither document is in this
+repository, on any branch, and neither was attached to the task that
+installed the constitution. The only related material available is
+`MELAKEELASITEREVIEWRUNNINGLIST.md`, a site review document that *references*
+the prompt-pack by filename but does not contain it.
+
+Eighty-nine coverage rows cannot be written from a document that is not
+present. Reconstructing them from the running list's topic tables would
+produce a complete-looking CSV with nothing behind it — the exact failure the
+constitution's §1 names.
+
+**Decision:** commit the two documents, or say they are superseded.
+
+| Document | Needed for | Proposed location |
+|---|---|---|
+| MelaKeela.com v2 — Master Research, Product & Institutional Backlog (89 items) | §10, `BACKLOG-COVERAGE.csv`, D-008/D-009/D-011 | `06-BACKLOG/` |
+| `MELA-KEELA-CLAUDE-FULL-SEQUENCE.md` | R1–R19 sequencing | `00-CONTROLLER/` |
+| `MELA-KEELA-LANGUAGE-RESEARCH-PROMPTS.md` | R1–R19 packet definitions | `00-CONTROLLER/` |
+| `MELA-KEELA-CLAUDE-LIVE-SITE-AUDIT-PROMPT.md` | the live-site audit that precedes the packets | `00-CONTROLLER/` |
+
+A current route inventory for the live site is a fourth input, needed for
+D-009 and for Step 13's self-contradiction check. The site lives in
+`melakeela/site`, which this session cannot read.
