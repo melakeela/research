@@ -56,16 +56,25 @@ and §11 (packets R20–R21). Ordering below the first item is owner decision
 
 ## Blocked on inputs
 
-7. **Backlog reconciliation** — `06-BACKLOG/BACKLOG-COVERAGE.csv`, one row
+Items **7** and **8** are reserved for the prompt-pack intake and the
+`MELAKEELAWHOMADETHEPAST.md` register intake, which are on
+`claude/prompt-pack-inventory-reconcile-iz1phs` (PR #14) and are not on this
+branch. The reservation is deliberate: both branches were cut from the same
+base and both appended to this list, so the numbers were allocated once,
+across both, rather than twice from the same free position. Whichever merges
+first, the other's items keep the numbers stated here. The reassignment is
+recorded under "Item numbering" at the end of this file.
+
+9. **Backlog reconciliation** — `06-BACKLOG/BACKLOG-COVERAGE.csv`, one row
    per item 1–89 with a destination, deliverable, hold or reasoned
    rejection. `RESEARCH HOLD`: the "MelaKeela.com v2 — Master Research,
    Product & Institutional Backlog" is not in this repository and cannot be
    reconstructed by inference. See `DECISIONS-NEEDED.md` D-014.
-8. **Packets R1–R19.** Named in the site review running list; their
-   definitions live in the prompt-pack (`MELA-KEELA-CLAUDE-FULL-SEQUENCE.md`,
-   `MELA-KEELA-LANGUAGE-RESEARCH-PROMPTS.md`,
-   `MELA-KEELA-CLAUDE-LIVE-SITE-AUDIT-PROMPT.md`), which is also absent.
-   `RESEARCH HOLD` on the same grounds.
+10. **Packets R1–R19.** Named in the site review running list; their
+    definitions live in the prompt-pack (`MELA-KEELA-CLAUDE-FULL-SEQUENCE.md`,
+    `MELA-KEELA-LANGUAGE-RESEARCH-PROMPTS.md`,
+    `MELA-KEELA-CLAUDE-LIVE-SITE-AUDIT-PROMPT.md`), which is also absent.
+    `RESEARCH HOLD` on the same grounds.
 
 ## Research domains — constitution §4
 
@@ -156,3 +165,22 @@ or research holds. Constitution §11.
 - The language-movement Artifact Atlas specification (§13).
 - Page and exhibit briefs.
 - Anything touching `melakeela/site`.
+
+## Item numbering
+
+This list is append-only and its numbers are identifiers, not positions. Two
+branches cut from the same base each appended to it, so the free numbers were
+allocated once across both rather than twice from the same position. Old
+number to new, with the branch that holds the item:
+
+| Old | New | Item | Branch |
+|---|---|---|---|
+| 5 | 5 | Controller amendment | `main` (PR #6), moved from **Now** to **Done** by PR #10 |
+| — | 6 | Domain E, comparative half | `claude/domain-e-research-queue-z83m9b` (PR #10) |
+| — | 7 | Prompt-pack intake | `claude/prompt-pack-inventory-reconcile-iz1phs` (PR #14) |
+| — | 8 | Register intake for Who Made the Past | `claude/prompt-pack-inventory-reconcile-iz1phs` (PR #14) |
+| 6 | 9 | Backlog reconciliation | `main` |
+| 7 | 10 | Packets R1–R19 | `main` |
+
+A reference to a queue item number in a file written before 2026-09-07 is
+read through this table. No item was removed; nothing above item 5 moved.
