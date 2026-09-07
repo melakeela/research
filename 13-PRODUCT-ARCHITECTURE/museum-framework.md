@@ -653,3 +653,348 @@ Rules:
 - Imperial or political control is a Relationship Object about a Place, never a
   Place Assertion on an object. Constitution Step 3: *"Imperial control does not
   prove language use."*
+
+---
+
+## 3. The Claim Object
+
+### 3.1 What it is and what it is for
+
+The Claim Object is the institution's unit of assertion and its unit of
+accountability. Everything the museum says in its own voice is a Claim Object or
+is derived from one. `CLAUDE.md`: *"Every claim carries exactly one status. No
+claim is unstatused."* And: *"Evidence that supports nothing is not collected"* —
+the inverse rule, which makes the claim the organising centre rather than the
+evidence.
+
+Fields:
+
+| Field | Type | Notes |
+|---|---|---|
+| `id` | `mk:clm:<key>` | |
+| `revision` | integer | append-only |
+| `proposition` | string | one proposition, stated so it could be false |
+| `status` | enum(7) | `VERIFIED` · `PROVISIONAL` · `HYPOTHESIS` · `INHERITED-UNVERIFIED` · `REJECTED` · `SUPERSEDED` · `HOLD` |
+| `inheritance_disposition` | enum(7) or null | `CONFIRMED` · `SUPPORTED` · `PLAUSIBLE` · `REQUIRES VERIFICATION` · `REVISED` · `REJECTED` · `HELD` — recorded **alongside** a status, never in place of one, per `CLAUDE.md` and reconciliation C-1 |
+| `evidence_links` | array of Evidence Links | §3.3 — the citation-level join |
+| `scope` | Scope Block | proposition · date range · geography · evidence classes required · terms needing original-language work (constitution Step 1) |
+| `null_explanation` | string | the null hypothesis this claim is being tested against (Step 1) |
+| `rival_claims` | array of `mk:clm:*` | the viable alternatives, each independently reconstructed (Step 8) |
+| `bridges` | array of `mk:rel:*` | every language↔ancestry↔culture↔artifact↔religion↔polity↔identity link, each a separate testable claim (Step 10) |
+| `standing` | enum | `historically-influential` · `currently-supported` · `revised` · `disputed` · `citation-inertia` · `abandoned` · `rejected` (Step 11) |
+| `falsifiers` | array of Falsifier records | §3.9 — **required, non-empty, for any claim above `HYPOTHESIS`** |
+| `absences` | array of `mk:abs:*` | §3.7 |
+| `supports_exhibit` | array of `mk:exh:*` | the `supports_page` join, generalised |
+| `space_allocation` | Proportionality Block | §3.10 |
+| `bias_tests` | array of Bias Test records | §3.11 |
+| `hold_ref` | path or null | required when `status = HOLD`; points into `05-HOLDS/` |
+| `superseded_by` | `mk:clm:*` or null | **required when `status = SUPERSEDED`** |
+| `authority` | Authority Block or null | §11.2 — where a community, not the institution, holds interpretive authority |
+| `translation_apparatus` | Translation Block or null | **required when the claim turns on the meaning of an ancient word** — §3.8 |
+
+### 3.2 Status is a function of retrieval, not of argument
+
+`VERIFIED` requires a named source with a locator and a retrieval date, and the
+retrieval must exist as a row in `02-SOURCES/access-ledger.csv`. The product
+consequence is a hard interface rule:
+
+> **No user action, editorial or otherwise, can raise a claim's status. Status is
+> recomputed from the claim's Evidence Links and the ledger rows they resolve to.
+> An editor can add a link, log a retrieval, or record a rejection. An editor
+> cannot type `VERIFIED` into a field.**
+
+This is the product form of `CLAUDE.md`'s *"Argument does not promote a claim.
+Confidence does not promote a claim. Only retrieval does."* It also means the
+editorial CMS has no status dropdown, which is a deliberate and slightly
+uncomfortable design decision and the correct one.
+
+Derivation:
+
+| Condition | Status |
+|---|---|
+| ≥1 Evidence Link with role `supports`, an access-ledger retrieval, a specific locator, and ≥2 **independent** sources per `02-SOURCES/dependency.csv` | `VERIFIED` |
+| as above but sources resolve to one author, excavation, translation, dataset or attribution | `PROVISIONAL` |
+| links present, no retrieval logged | `HYPOTHESIS` |
+| origin is `01-INHERITED/`, no retrieval | `INHERITED-UNVERIFIED` |
+| ≥1 Evidence Link with role `refutes` that survives the challenge process (§11.6) | `REJECTED` |
+| a successor claim exists | `SUPERSEDED` |
+| a required source is unreachable and a `05-HOLDS/` record exists | `HOLD` |
+
+`INHERITED-UNVERIFIED` is not a weaker `PROVISIONAL`. It is a statement about
+*where the claim came from* — a prior model's summary of its own conversation —
+and it is unaffected by how confident that summary sounded. `CLAUDE.md`:
+inheritance enters as unverified *"including anything the handoff files label as
+verified or confirmed."* The interface must therefore never sort or colour
+`INHERITED-UNVERIFIED` between `PROVISIONAL` and `HYPOTHESIS` as though the
+statuses formed a single ladder. They do not: six of them describe evidential
+standing and one describes provenance of the assertion.
+
+### 3.3 Evidence roles — the claim-to-evidence link
+
+An Evidence Link is a first-class record, not a foreign key. It is where
+citation-level provenance lives (§3.4).
+
+| Field | Notes |
+|---|---|
+| `link_id` | `mk:rel:<key>` — Evidence Links are Relationship Objects with a claim on one end |
+| `claim_id`, `evidence_id` | |
+| `role` | the controlled vocabulary below |
+| `locator` | **required**, and specific enough to re-find: page, line, stanza, section, catalogue number, dataset column, timecode. `CLAUDE.md`: *"See the article" is not a locator.* |
+| `edition_id` | `mk:src:*` — which edition/printing/release the locator is valid in |
+| `retrieval_date`, `retrieval_channel`, `retrieval_agent` | joins the access ledger |
+| `quotation` | the exact words relied on, where the evidence is textual |
+| `strength` | `decisive` · `substantial` · `weak` · `suggestive-only` |
+| `independence_group` | the genealogy key (§3.5) |
+| `added_by`, `added_date`, `revision` | |
+
+**Evidence roles.** A role says *what the evidence does for the claim*. Roles are
+not opinions about strength; strength is a separate field.
+
+| Role | Meaning |
+|---|---|
+| `supports` | the evidence, read as cited, makes the proposition more likely |
+| `refutes` | it makes the proposition less likely |
+| `attests` | it *is* an instance of the thing claimed to exist (a form, an object type, a practice) |
+| `dates` | it constrains a Date Assertion the claim depends on |
+| `locates` | it constrains a Place Assertion the claim depends on |
+| `is-object-of` | the claim is *about* this evidence (a reading, an attribution, a translation) |
+| `comparandum` | it is the parallel the claim's analogy rests on |
+| `transmits` | it is a link in the copying/redaction/translation chain by which another piece of evidence reaches us |
+| `establishes-absence` | it is the survey, excavation report or corpus search that bounds a typed absence (§3.7) |
+| `contextualises` | it establishes the setting only, and **cannot on its own move status** |
+| `contests-reading` | it offers a different reading of the same primary |
+
+Two rules attached to the vocabulary:
+
+- **`contextualises` cannot promote.** A contact setting is not evidence of
+  contact. This is enforced in the derivation table (§3.2, which counts only
+  `supports`/`attests`) and it is the same rule §13 states for the Atlas: an
+  artifact may *"provide only a possible contact setting"* (§8.6).
+- **`comparandum` requires a stated tertium comparationis** — what makes the two
+  comparable — recorded in the link's `quotation`/notes. An unstated basis of
+  comparison is where prestige bias enters, and the prestige-bias challenge
+  (§3.11) tests for it.
+
+### 3.4 Citation-level provenance and the custody chain
+
+**Citation-level provenance** means: for any sentence the institution publishes,
+a visitor can reach the exact locator in the exact edition, the retrieval that
+put it in the record, and the chain by which the evidence reached that edition.
+Not a bibliography. `SCHEMA.md` records what the alternative looks like in
+practice: 78 of 96 audited pages with zero external links, 960 estimated
+bibliography entries and *"essentially none of its sourcing is checkable by a
+reader without manual re-derivation"* (`INHERITED-UNVERIFIED`). Citation-level
+provenance is the requirement that makes that state impossible to reproduce.
+
+The **provenance chain** on a UEO is an ordered array of Custody Links:
+
+`step_index` · `from_agent` (`mk:agt:*`) · `to_agent` · `event_type` · `date` ·
+`place` · `basis` (the document evidencing this step, as `mk:evd:*`) ·
+`documented` (`documented` · `asserted` · `undocumented-gap`) · `notes`
+
+`event_type` ∈ **excavation · surface-collection · purchase · gift · bequest ·
+seizure · exchange · loan · transfer · export · repatriation · digitisation ·
+publication · translation · copying · redaction · re-attribution · loss ·
+destruction**.
+
+Rules:
+
+- **Gaps are steps.** An `undocumented-gap` link is written explicitly, with the
+  span it covers. A chain that jumps from a nineteenth-century district to a
+  present accession number with nothing between is not a two-step chain; it is a
+  three-step chain whose middle step is a gap. Rendering it as two steps is the
+  laundering §1.6.2 exists to prevent.
+- **Every chain terminates in a present holder** or in `unlocated` / `destroyed`.
+- **The chain is public.** Custody is not editorial metadata; it is exhibit
+  content in the Extraction / Collection and Reconnection postures.
+- **Textual custody uses the same structure.** Composition → oral transmission →
+  first written witness → recension → critical edition → translation is a custody
+  chain, and `transmits` Evidence Links are its edges. Constitution §4V:
+  *"Preservation is not authorship; codification is not invention; first
+  attestation is not origin."* The chain is what makes that visible instead of
+  merely asserted.
+
+**Every published sentence resolves.** The rendering contract: any claim-bearing
+sentence on any surface exposes, without leaving the page, its `mk:clm:` id, its
+status, its Evidence Links with locators and retrieval dates, and a link into
+Source Mode. A sentence that cannot do this is not published in the institution's
+voice; it is published as editorial framing and marked as such (§6.4).
+
+### 3.5 Source genealogy and independence
+
+Constitution Step 5 and `CLAUDE.md`'s source-independence constraint: *"Two
+citations tracing to the same author, excavation report, dataset or museum
+attribution count as one."*
+
+Every Evidence Link carries an `independence_group`. Groups are formed on the
+shared root: the same author, the same excavation, the same translation, the same
+dataset release, the same museum attribution. Dependencies are recorded in
+`02-SOURCES/dependency.csv` (`dependency_id`, `source_a`, `source_b`,
+`relationship`, `effect_on_status`, `notes`).
+
+Product requirements:
+
+- The **independent-source count**, not the citation count, is what the interface
+  shows next to a claim. Where they differ the interface shows both: "9
+  citations, 2 independent."
+- Status derivation (§3.2) counts distinct `independence_group` values.
+- The viewer renders the genealogy as a tree: nine citations converging on one
+  1953 excavation report is a **shape the visitor should be able to see**, and it
+  is the single most effective display the institution can offer against citation
+  inertia.
+- `standing = citation-inertia` (§3.1) is proposable from this structure but is
+  never automatic: it is an editorial judgement, logged, with the genealogy as
+  its evidence.
+
+### 3.6 Revision history
+
+**Append-only. Nothing is edited in place. Nothing is deleted.**
+
+Every object in §2, §3, §4 and §11 carries a revision series. A revision record:
+
+`revision` · `object_id` · `timestamp` · `actor` (`mk:agt:*`) · `actor_role`
+(`researcher` · `editor` · `community-authority` · `challenger` · `system`) ·
+`change_type` · `diff` · `reason` · `triggering_record` (`mk:cor:*`, `mk:cns:*`,
+a re-audit queue row, a bias-failure row) · `status_before` · `status_after`
+
+`change_type` ∈ **created · evidence-added · evidence-removed · locator-corrected
+· status-recomputed · superseded · rejected · held · released-from-hold ·
+scope-narrowed · scope-widened · retracted-for-consent · translation-revised ·
+authority-assigned**.
+
+Rules:
+
+- **`REJECTED` rows persist and stay visible.** `CLAUDE.md`: *"Rejected reasoning
+  stays visible so it is not re-proposed. Never delete a `REJECTED` row."* The
+  product form: a rejected claim keeps its identifier, resolves, renders with its
+  rejection, its date, and the evidence that rejected it, and appears in evidence
+  search results (filtered out by default, one control away). The institution's
+  errors are part of its record.
+- **`SUPERSEDED` points forward and backward.** Both directions are navigable.
+- **Citations pin.** Any citation of the institution made from a published page
+  carries `@r<n>`; a later visitor following it sees what was cited plus a notice
+  that it has since changed and how.
+- **Consent withdrawal is the single exception to "nothing disappears", and it
+  is a narrow one.** Under `retracted-for-consent` the *material* is withdrawn;
+  the *record that material existed, was published, and was withdrawn on a stated
+  date under a stated consent term* remains. §11.4.
+- **A public "what changed" feed** is generated from revision records: the
+  institution's changes are themselves an exhibit, in the Reconnection and
+  Reading Room postures.
+
+### 3.7 Absence records
+
+Constitution §6 and `CLAUDE.md`'s negative-evidence standard, as an object.
+
+Before any surface argues from absence, an Absence record must exist:
+
+| Field | Notes |
+|---|---|
+| `id` | `mk:abs:<key>` |
+| `expected_evidence` | what should exist if the proposition were true |
+| `expected_where` | places, strata, corpora, archives |
+| `p_produced` | probability it was produced, with reasoning |
+| `p_survived` | probability it survived, with reasoning |
+| `search_coverage` | excavation/sampling/corpus coverage actually achieved, with sources |
+| `accessibility` | whether we could reach it if it existed |
+| `recognisability` | whether we would recognise it if we saw it |
+| `absence_type` | `NOT PRODUCED` · `NOT PRESERVED` · `NOT EXCAVATED` · `NOT PUBLISHED` · `NOT ACCESSIBLE` · `NOT RECOGNISED` · `DOCUMENTED DESTRUCTION` · `ABSENT DESPITE ADEQUATE SEARCH` |
+| `evidence_links` | `establishes-absence` links to the surveys and searches that bound it |
+
+Product rules:
+
+- **Only `ABSENT DESPITE ADEQUATE SEARCH` may function as evidence against a
+  proposition.** The other seven types are statements about the archive, and the
+  interface renders them in the archive's voice, not the past's.
+- **`unknown` is never a rival.** `CLAUDE.md`: *"'Unknown' is residual, never a
+  positive rival explanation."* The comparison interfaces — PROVE IT (§9), the
+  Atlas transition panel (§8.5) — must not list "unknown" as an option beside
+  named hypotheses.
+- **Silence in a curated record is not refutation.** Where an absence sits in an
+  archive whose creator had reason not to record the thing (constitution Step 6),
+  the Absence record must carry the archive audit, and the display must show it.
+
+### 3.8 The Translation Block
+
+Required whenever a claim turns on the meaning of a consequential ancient word.
+Constitution §7, in full — the block is invalid if any field is empty:
+
+`original_script` · `transliteration` · `grammatical_form` · `semantic_range` ·
+`textual_context` · `edition` (`mk:src:*`) · `exact_locator` ·
+`translation_used` · `alternative_translations[]` ·
+`interpretive_consequence` · `inherited_category_audit`
+
+`inherited_category_audit` is the audit of the English word being reached for:
+*race, tribe, slave, barbarian, fort, religion, caste, civilization, invasion,
+indigenous*. It records what the English term imports that the original does not.
+
+**Display contract.** Wherever a translated term appears in the institution's
+voice, the alternative translations and the interpretive consequence are one
+interaction away, on the same surface. `CLAUDE.md`: *"Do not let the translation
+decide the historical question."* A surface that shows one English word with no
+route to the others has let it.
+
+### 3.9 Falsifiers
+
+Constitution Step 12. A Falsifier record: `what_would_change_it` ·
+`evidence_class_required` · `where_it_would_come_from` · `direction`
+(`would-strengthen` · `would-weaken` · `would-reject`) · `currently_testable`
+(bool) · `blocked_by` (`mk:src:*` or a `05-HOLDS/` path).
+
+Non-empty falsifiers are required for any claim above `HYPOTHESIS`. They are
+public: they are what PROVE IT (§9) is built on, and they are the honest form of
+"what remains unknown" in the §14 public-copy shape.
+
+### 3.10 Proportionality
+
+Constitution Step 9 and `CLAUDE.md`: *"weight follows evidence. No rhetorical
+equality where evidence is unequal."*
+
+The Proportionality Block on a claim records `evidential_weight`
+(from independent-source count, evidence-class breadth and strength) and
+`allocated_space` (words, screen area, or navigation prominence on each exhibit
+it appears in). The two are compared at review; a large divergence is a review
+finding, not an automatic edit.
+
+This is deliberately **advisory, not enforced**. Automating space allocation from
+a computed weight would make the interface decide historical questions, which is
+the failure §7 forbids in the translation case. The metric exists so that the
+gap is visible and must be defended, not so a layout engine can settle it.
+
+**Where a gated-out hypothesis appears** (constitution Step 7 — failure of the
+chronological, geographical, mechanism, positive-evidence or diagnostic gates),
+it appears as *"a concise exclusion or historiographical note — not an equal
+section."* The product form is a distinct display component with a fixed small
+footprint, named **Exclusion Note**, which cannot be expanded into an exhibit
+without the gate result being overturned first.
+
+### 3.11 Bias Test records
+
+Constitution §8, `CLAUDE.md`'s two adversarial tests. Both run before any unit of
+work is called finished, and the result is logged whether or not it found
+anything.
+
+`test_type` ∈ `prestige-bias` · `preferred-counter-narrative`.
+Fields: `unit_tested` · `question_asked` · `finding` · `action_taken` ·
+`bias_failure_row` (into `04-AUDITS/BIAS-FAILURE-LOG.csv`) · `reaudit_rows`
+(into `04-AUDITS/REAUDIT-QUEUE.csv`) · `tester` · `date`.
+
+Both tests are required on every exhibit before publication, and the pair is
+required — running one is a failed test, because the two failure modes are
+symmetrical in form and asymmetrical in power. `CLAUDE.md`: *"Correct both
+without pretending their archival and institutional power has been equal."* The
+product consequence is that the bias-test surface must carry the asymmetry
+statement (§11.2) rather than presenting the two challenges as a balanced pair,
+which would itself be the false-equivalence failure.
+
+### 3.12 Derived assets
+
+A claim-specific diagram, map, chart or reconstruction is an **asset derived from
+a Claim Object**, addressed as `mk:evd:<key>` with `is_primary = derivative` and
+a `depicts` Relationship to the claim.
+
+Rule: **a derived asset may not be commissioned or published while the claim it
+depicts is `INHERITED-UNVERIFIED` or `HOLD`.** This resolves `SCHEMA.md` §4's
+finding 3 — 50 claim-specific diagrams scheduled by MVP priority, which is driven
+by low risk, i.e. by the pages least examined. Under this rule the diagram
+schedule is a function of the verification schedule and cannot invert it.
