@@ -224,3 +224,62 @@ false positive in the numeral scan (§4.1 of the method note).
 - The comparative Indo-European material usually cited for `púr-` is not
   discussed here and is **not** relied on anywhere in this unit, because no
   source for it was retrieved in this container. It would bear on §4.
+
+---
+
+## 12. The audit does not stop at *púr-*, because the English word does not
+
+*Added by the domain J unit, 2026-09-07. Register row: `DJ-I-03`;
+measurements `DJ-005`, `DJ-010`, `DJ-011`, `DJ-012`; script
+`04-AUDITS/rv-pur-nandi-gate.py`.*
+
+§10 audits **fort** against `púr-`. But §7 audits an *English category*, and a
+category is not audited by testing one Sanskrit word against it. The bracket
+"fort" is wide, and at least three other Rigvedic words move in and out of it
+depending on which century's lexicon is consulted.
+
+| Word | Grassmann's **Rigvedic** gloss | Tokens | What the English bracket does |
+|---|---|---:|---|
+| `púr-` | Wall aus Steinen und Lehm, Verschanzung, Palisade | 83 | promotes an earthwork to a city |
+| `dehī́-` | Aufwurf, Damm, Wall | 2 | leaves a plastered earth wall out of the corpus entirely |
+| `durgá-` | unwegsamer, schwer begehbarer Ort, Gefahr | 21 | imports the *Classical* Sanskrit "fortress" into the Rigveda |
+| `grā́ma-` | Treck, Heerhaufen, Kriegerschar, wehrhafte Mannschaft einer Siedlung | 9 | converts a moving war-band into a settled village |
+
+**`durgá-` is the sharp case, and it is the one a fort corpus is most likely to
+get wrong.** In Classical Sanskrit `durga-` is unambiguously a fortress, and
+Nandi's abstract lists it among the Rigveda's words for fortified settlements
+(`SRC-086`). In this corpus, on this lexicon, **all 21 tokens are neuter and
+every one means difficult ground, rough country or peril** — six of them the
+same refrain at RV 1.106.1–6, *"as a chariot from a difficult ravine"*. Not one
+`durgá-` is broken, besieged, entered or held. The recurrent construction is a
+prayer to be *carried across* one (`DJ-011`).
+
+That is a later meaning read backwards, which is precisely the failure §7
+exists to catch, and it is not a hypothetical one: it is load-bearing in a
+published identification of the Rigvedic forts with Harappan citadels.
+
+**`dehī́-` is the case that costs a number.** RV 6.47.2 has Indra smash
+`navatíṁ náva ca dehyò` — **ninety-nine** of them — and they are **Śambara's**,
+the same opponent as three of the six `púr-` passages that state ninety-nine,
+in the same expression. Griffith "ramparts", Geldner "Mauern", Grassmann
+"Wälle", Elizarenkova "валы": all four render both the wall and the number. The
+word is one of the six fort-adjacent lemmas `PUR-006` excludes **by design**,
+on an etymological membership test. So the sentence "six Rigvedic passages say
+ninety-nine forts" is true on the etymological reading of §4J's *complete
+corpus* and false on the semantic one, where it is seven (`DJ-005`,
+reconciliation C-2, queued as `RA-016`).
+
+`dehī́-` derives from √*dih* "smear, plaster up" — a heaped and plastered earth
+wall. Set beside Grassmann's `púr-` as a wall "of stones and clay", the two
+Rigvedic wall-words converge on **earthwork**, and neither converges on
+masonry, brick or city. That is a lexical observation about one dictionary
+(`DEP-005`, `DEP-021`) and not an architectural finding; `DJ-009` and `DJ-I-02`
+say what it can and cannot bear.
+
+**The correction is not a new default gloss.** Replacing "fort" with
+"earthwork" across 103 passages would repeat §10's error in the other
+direction — asserting a uniformity the corpus does not have, and doing it on a
+single nineteenth-century lexicon. What the audit yields is narrower and
+harder: the English bracket has to be dropped per passage, and each of these
+four words needs its own §7 block before it is translated. Only `púr-` has one,
+above.
