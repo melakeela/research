@@ -539,13 +539,42 @@ the likelier type.
 
 | | Passages |
 |---|---:|
-| TEXTUAL-STRONGHOLD | 60 |
-| POETIC-FORMULA | 35 |
+| TEXTUAL-STRONGHOLD | 49 |
+| POETIC-FORMULA | 46 |
 | BOTH | 3 |
 | CANNOT-CLASSIFY | 5 |
 
-Poetic sub-kinds: `DIVINE-EPITHET` 20, `SIMILE` 7, `PROTECTIVE-FORMULA` 5,
-`METAPHOR` 3.
+Poetic sub-kinds: `DIVINE-EPITHET` 28, `SIMILE` 8, `METAPHOR` 5,
+`PROTECTIVE-FORMULA` 5.
+
+**These are the corrected figures, and the correction is worth its own
+paragraph.** The first run returned 60/35, and a stress test of rule R5 —
+asking which `TEXTUAL-STRONGHOLD` passages have *neither* a breaking root *nor*
+a named opponent — exposed a systematic gap. The corpus builds the
+`puraṃdará-` epithet **analytically** as well as lexically: a genitive plural
+`purā́m` depending on an agent noun of breaking — `purā́m bhindúr` "breaker of
+forts" (RV 1.11.4), `púrāṁ dartaḥ` "O splitter of forts" (1.130.10),
+`bhettā́ purā́ṁ śáśvatīnām` "breaker of all forts" (8.17.14), `dartā́ purā́m
+ási` "thou art the splitter of forts" (8.98.6), and four more. Those tokens are
+simplex `púr-`, so rule R1, which keys on the lexicalised epithet lemmas, could
+not see them. **Nine of the ten genitive-plural passages are this.** The tenth,
+RV 4.30.20, is a genuine object, where `purā́m` is governed by `śatám` "a
+hundred".
+
+Two metaphors were missed for related reasons — RV 7.52.1 `pū́r devatrā́`
+"a *púr* among gods and among mortals" and RV 8.80.7 `índra dŕ̥hyasva pū́r
+asi` "Indra, be firm: thou **art** a *púr*" — and one simile, RV 6.2.7
+`raṇváḥ purī́va jū́ryaḥ`, where the particle is `iva` rather than `ná`. The
+`iva` rule has the same false-positive profile as the `ná` rule: of the three
+passages with `iva` in a *púr-* pāda, only this one modifies the fort word
+(RV 2.14.6 has `áśmaneva` "as with a stone", RV 10.138.4 `māséva` "like the
+moon").
+
+**The correction moved 11 passages and changed none of the unit's headline
+findings** (`PUR4J-029`). Every cell of both cross-tabulations in §6.4 is
+unchanged, because the eleven that moved are exactly the passages with no
+stated count and no stated material. Had even one ninety-nine passage moved out
+of `TEXTUAL-STRONGHOLD`, §6.4 would have needed rewriting.
 
 **The five that cannot be classified**, each for a stated reason:
 
@@ -567,11 +596,12 @@ Poetic sub-kinds: `DIVINE-EPITHET` 20, `SIMILE` 7, `PROTECTIVE-FORMULA` 5,
   a *púr* is implied by a derived form and never named.
 
 **Nine rule outputs were overridden by hand**, each with its reason on the row.
-The rule with the highest error rate is the simile rule: the particle `ná`
-stands in a `púr-` pāda in ten passages and modifies the fort word in only
-**seven**. At RV 4.16.13 the simile is "like a garment", at RV 6.20.7 it goes
-with `śávasā`, at RV 10.89.7 with `síndhūn`. All three were checked against
-Griffith, Geldner and Grassmann individually.
+The simile rules have the highest error rate and it is reported rather than
+smoothed: `ná` stands in a `púr-` pāda in ten passages and modifies the fort
+word in **seven** (at RV 4.16.13 the simile is "like a garment", at 6.20.7 it
+goes with `śávasā`, at 10.89.7 with `síndhūn`); `iva` stands in three and
+modifies it in **one**. All were checked against Griffith, Geldner and
+Grassmann individually.
 
 ### 6.4 The cross-tabulation, which is the sharpest result of the unit
 

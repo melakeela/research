@@ -134,9 +134,18 @@ separates them.
 
 ## The typology, and a structural result about it
 
-103 passages: **60 textual stronghold · 35 poetic formula · 3 both · 5 that
-cannot be classified from the text.** Poetic sub-kinds: 20 divine epithet, 7
-simile, 5 protective formula, 3 metaphor.
+103 passages: **49 textual stronghold · 46 poetic formula · 3 both · 5 that
+cannot be classified from the text.** Poetic sub-kinds: 28 divine epithet, 8
+simile, 5 metaphor, 5 protective formula.
+
+The split is near-even, and it only became so after a correction. A stress test
+of the classifier found that the corpus builds the *fort-breaker* epithet
+analytically as well as lexically — `purā́m bhindúr`, `púrāṁ dartaḥ`, `dartā́
+purā́m ási` — in **nine of the ten** genitive-plural passages, and those tokens
+are simplex `púr-` so the epithet rule could not see them. The correction moved
+11 passages and **changed none of the findings above**: every cell of both
+cross-tabulations is unchanged, because the eleven are exactly the passages
+that state no count and no material (`PUR4J-029`).
 
 **Three of §4J's five types are not properties of a passage at all.** Textual
 stronghold and poetic formula are properties of the text. *Inferred geography*,

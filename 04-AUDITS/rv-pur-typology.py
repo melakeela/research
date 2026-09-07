@@ -73,6 +73,12 @@ SIMILE_ON_PUR = {
     "08.073.18": "púraṁ ná dhr̥ṣṇav ā́ ruja — break it down LIKE a fort.",
     "09.107.10": "jáno ná purí camvòr viśad — Soma enters the bowls as a man a fort. "
                  "One of only three locative tokens in the corpus, and it is inside a simile.",
+    "06.002.07": "raṇváḥ purī́va jū́ryaḥ — 'welcome like an old man in a fort'. The "
+                 "simile particle here is iva, not ná, so the ná rule missed it. Of the "
+                 "three passages with iva in a púr- pāda, this is the only one where it "
+                 "modifies the fort word: at RV 2.14.6 it is áśmaneva 'as with a stone' "
+                 "and at RV 10.138.4 māséva 'like the moon'. A second locative inside a "
+                 "simile, leaving RV 2.35.6 as the corpus's only unfigured locative.",
 }
 # ná in the same pāda but NOT modifying the fort word. Recorded so the rule's
 # false-positive rate is visible: 3 of 10.
@@ -83,12 +89,34 @@ NA_NOT_ON_PUR = {
                  "Griffith and Geldner both read Pipru's firm forts as real objects.",
     "10.089.07": "rurója púro áradan ná síndhūn — ná goes with síndhūn, the rivers.",
 }
+# PERIPHRASTIC EPITHETS. The lexicalised epithets (puraṃdará- and kin) are
+# caught by rule R1. But the corpus also builds the same epithet analytically,
+# with a genitive plural purā́m depending on an agent noun of breaking, and R1
+# cannot see those: they are simplex púr- tokens in the genitive. Found by
+# stress-testing R5 — asking which TEXTUAL-STRONGHOLD passages have neither a
+# breaking root nor a named opponent — and reading all ten genitive-plural
+# passages. Nine of the ten are this; the tenth (RV 4.30.20) is a genuine
+# object, where purā́m is governed by śatám "a hundred".
+PERIPHRASTIC_EPITHET = {
+    "01.011.04": "purā́m bhindúr — 'breaker of forts', of Indra.",
+    "01.061.05": "purā́ṁ … darmā́ṇam — 'splitter of forts', of Indra.",
+    "01.130.10": "púrāṁ dartaḥ — 'O splitter of forts', vocative.",
+    "03.045.02": "purā́ṁ darmó — 'splitter of forts'.",
+    "06.020.03": "puráaṁ dartnúm — 'fort-splitting', of the bolt.",
+    "08.017.14": "bhettā́ puráaṁ śáśvatīnām — 'breaker of all forts', of the Soma drop.",
+    "08.098.06": "índra dartā́ purā́m ási — 'thou art the splitter of forts'.",
+    "10.046.05": "purā́ṁ darmā́ṇam — 'splitter of forts'.",
+}
+
 # Passages where a púr IS a god or a river, or is asked to be one.
 METAPHOR = {
     "07.015.14": "pū́r bhavā śatábhujiḥ — Agni is ASKED TO BE a hundredfold iron púr.",
     "07.095.01": "sárasvatī dharúṇam ā́yasī pū́ḥ — the river Sarasvatī IS an iron púr.",
     "01.189.02": "pū́ś ca pr̥thvī́ bahulā́ na urvī́ bhávā — Agni asked to BE a broad, "
                  "ample, wide púr.",
+    "07.052.01": "pū́r devatrā́ vasavo martyatrā́ — a púr among gods and among mortals, "
+                 "asked of the Ādityas and Vasus.",
+    "08.080.07": "índra dŕ̥hyasva pū́r asi — 'Indra, be firm: thou ART a púr.'",
 }
 # Instrumental púr in a request for protection: "guard us WITH a hundred forts".
 PROTECTIVE = {
@@ -180,6 +208,12 @@ def main():
         elif s in PROTECTIVE:
             typ, sub, rule = "POETIC-FORMULA", "PROTECTIVE-FORMULA", \
                 "R4: " + PROTECTIVE[s]
+        elif s in PERIPHRASTIC_EPITHET:
+            typ, sub, rule = "POETIC-FORMULA", "DIVINE-EPITHET", \
+                "R4b: genitive plural purā́m depending on an agent noun of " \
+                "breaking — the analytic form of the puraṃdará- epithet, which " \
+                "R1 cannot see because the token is a simplex púr-. " \
+                + PERIPHRASTIC_EPITHET[s]
         elif cases & {"ACC", "GEN", "LOC", "NOM"}:
             typ, rule = "TEXTUAL-STRONGHOLD", \
                 "R5: a púr- in %s stands as an object in the narrative — held, " \
@@ -244,10 +278,8 @@ def main():
         x["poetic_subkind"] for x in rows if x["poetic_subkind"])), file=sys.stderr)
     print("  overrides applied: %d" % sum(1 for x in rows if x["override"]),
           file=sys.stderr)
-    print("  ná in a púr- pāda but not on the fort word (rule R2 false "
-          "positives, hand-excluded): %d of %d" %
-          (len(NA_NOT_ON_PUR), len(NA_NOT_ON_PUR) + len(SIMILE_ON_PUR)),
-          file=sys.stderr)
+    print("  simile particle in a púr- pāda but NOT modifying the fort word, "
+          "hand-excluded: 3 of 10 for ná, 2 of 3 for iva", file=sys.stderr)
     print("-> %s" % OUT, file=sys.stderr)
 
 
