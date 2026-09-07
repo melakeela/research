@@ -352,3 +352,42 @@ work that depends on them cannot start:
 Both are recorded in `DECISIONS-NEEDED.md`. Neither is reconstructible by
 inference, and reconstructing them would produce a plausible document with
 nothing behind it — the specific failure mode named in §1.
+
+### Update 2026-09-07 — the prompt-pack arrived; §5.2 and C-7 narrow
+
+Five files were committed unchanged to `00-CONTROLLER/prompt-pack/` and
+inventoried in `prompt-pack/PROMPT-PACK-INVENTORY.md`. The paragraphs above
+stand as written on the date they were written; what they say is no longer
+current, in two respects.
+
+**Item 2 is satisfied.** R1–R19 are defined in full in
+`MELAKEELALANGUAGERESEARCHPROMPTS.md`. `RESEARCH-QUEUE.md` no longer names them
+by descriptions recovered from the running list; it defines them, with the run
+order that three of the five files state identically and the binding dependency
+graph. Note that the files are committed under the owner's upload filenames,
+which are unhyphenated; the hyphenated names used above and throughout the
+running list refer to the same documents. The correspondence is in the
+inventory §1.1.
+
+**Item 1 and C-7 narrow but do not close.**
+`MELAKEELACLAUDECORRECTIVECONTROLLERv2.md` Part IV enumerates all eighty-nine
+backlog items, verified 1–89 with no gaps. `BACKLOG-COVERAGE.csv` no longer has
+to invent `backlog_id` or `title`, and the grouping determines several
+dispositions outright. It still cannot be completed: `current_site_coverage` and
+`existing_route` need a live-site route inventory, and `prior_research_available`
+needs the packets. Whether Part IV *is* the backlog or a digest of a longer
+document is the narrowed question at `DECISIONS-NEEDED.md` D-014.
+
+**One companion is still absent.** `MELA-KEELA-WHO-MADE-THE-PAST.md`, the fifth
+file named in running-list Version 12, did not arrive; R8 is instructed to
+cross-link its contribution model.
+
+The intake also found nine conflicts between the pack and the controller,
+recorded as `PP-1` to `PP-9` in the inventory. `PP-2` to `PP-6` and `PP-9` are
+resolved there by extending **C-1**, **C-3**, **C-6** and §4 to cover the new
+sources; none of those resolutions is changed by the extension. `PP-1` is not
+resolvable here and is open as **D-035**: this document does not mention the
+live public-site audit anywhere, and the audit gate that running-list Version 11
+created has been dropped from the constitution rather than reversed. Recorded
+here because §4's retirement of the Claude Chat / Claude Code division of labour
+is what removed the terms in which Version 11's decision was framed.
