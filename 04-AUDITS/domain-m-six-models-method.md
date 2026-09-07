@@ -128,6 +128,15 @@ force?* 2,000 draws, 100,000 swaps per draw, seed 20260907.
 `0.0005` is `1/2001` and is the **floor** at 2,000 draws. It means *never
 reached*, not *exactly this probability*, and `DMI-004` says so on the record.
 
+**The randomisation was checked rather than assumed.** Re-running
+`curveball()` against the loaded matrix and comparing margins directly:
+the multiset of row sums is preserved exactly, every column sum is
+preserved exactly, and 5,418 of 5,520 rows differ from the original after
+50,000 swaps — so it is randomising and not merely shuffling within rows.
+Every headline count was also recomputed from the raw entry-to-language
+mapping by code written separately from the script, and agrees: 176, 7, 1,
+1, 193, and 269 Brahui entries of which 260 reach outside North Dravidian.
+
 Both halves are reported at equal weight, which is the discipline the numbers
 require rather than a gesture:
 
