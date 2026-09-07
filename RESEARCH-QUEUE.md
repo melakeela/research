@@ -30,7 +30,7 @@ R1–R19). Ordering below the first item is owner decision **D-008** in
    adversarial tests: `04-AUDITS/domain-e-method.md`. The comparative
    half is on `HOLD-002` and `HOLD-003`: every Dravidian, Munda and
    Austroasiatic source was refused at the egress gateway. Escalated as
-   `D-032`.
+   `D-036`.
 5. **Domain M — the Brahui geographic measurement, challenged by the owner**
    (part of domain **M**) — `03-REGISTERS/domain-m-brahui-position.csv`
    (26 claims: 20 VERIFIED, 5 PROVISIONAL, 1 SUPERSEDED; the owner's two

@@ -31,6 +31,16 @@ to D-032, D-033 and D-034; the CSV rows kept their numbers, because
 its replacement is recorded in `09-DECISIONS/DECISION-ID-MAP.csv`, which is
 how a `D-` reference in a document written before that date is resolved.
 
+A second collision came in with `main` and is cleared here. `main` carries
+two `## D-032` sections: the `before-the-indus` question, which owns that
+identifier in the CSV, and a domain E egress ruling written in the same window
+as the renumbering and carrying no CSV row at all. The egress section is
+**D-036** below. Its row is on `claude/domain-e-research-queue-z83m9b`
+(PR #10), which allocated it along with `D-037` to `D-041`; those six are
+reserved and deliberately absent from `09-DECISIONS/OWNER-DECISIONS.csv` on
+this branch, which is why the numbering here runs D-035 then D-042. The two
+branches together are contiguous `D-001` to `D-046` with no duplicate.
+
 A third series exists and is not part of this namespace. The inherited handoff
 numbered its own owner decisions `D-01` to `D-20`; those are now written
 `HD-01` to `HD-20`, they stay `INHERITED-UNVERIFIED`, and they are never
@@ -428,6 +438,46 @@ two of the four unpopulated column groups without touching anything else.
 D-008, D-009 and D-011 remain blocked, because a release cannot be scoped from
 titles alone.
 
+
+### Update 2026-09-07 — the two recoveries compared; they are one source
+
+The two amendments above were written independently, on different branches.
+This merge is the first time both recovered backlogs sit in one tree, so they
+were compared line by line.
+
+`06-BACKLOG/BACKLOG-v2-ITEMS.md` (recovered from a ChatGPT conversation) and
+`00-CONTROLLER/prompt-pack/MELAKEELACLAUDECORRECTIVECONTROLLERv2.md` Part IV
+agree on the count, the order and the subject of all eighty-nine items. They
+disagree on the wording of most of them.
+
+**This is not corroboration.** Both are model-mediated recoveries of the same
+absent document, produced in the same window from the same conversational
+context, and they reached this repository on separate branches — which is the
+only reason they briefly looked like two sources. Under CLAUDE.md's
+source-independence rule they count as **one**, and their agreement on
+ordering shows only that both were reconstructed from the same material. The
+dependency is recorded at `DEP-021` in `02-SOURCES/dependency.csv`.
+
+Two of the disagreements are substantive rather than stylistic:
+
+| # | Title-list wording | Part IV wording |
+|---|---|---|
+| 3 | "Establish one status vocabulary" | "Establish separate research, editorial and product status vocabularies" |
+| 53 | "Keep the four-door concept—for now" | "Test rather than automatically replace the current doors" |
+
+Item 3 is the sharper problem. The two recoveries give **opposite**
+instructions, and the question they disagree about is live in this repository
+as **D-046**. Nothing may be quoted as the backlog's wording on item 3, and
+`D-046` must not be answered by appealing to either recovery.
+
+**Consequence for this entry:** the row-allocation half stays closed — the
+item count and ordering are agreed and `BACKLOG-COVERAGE.csv` can carry its
+eighty-nine rows. The wording half is *less* settled than either amendment
+above implies on its own. The full original text is still outstanding, and
+until it arrives an item's wording is `INHERITED-UNVERIFIED` in two
+conflicting versions rather than one.
+
+---
 
 # Decisions raised by the prompt-pack intake
 
@@ -1169,7 +1219,7 @@ institution can keep current, at what latency, and who maintains them.
 
 ---
 
-## D-032 — Egress reach is not stable between sessions. Does domain E run under a GitHub-only policy?
+## D-036 — Egress reach is not stable between sessions. Does domain E run under a GitHub-only policy?
 
 **Raised by:** domain E source probe, 2026-09-07T02:19–02:21Z
 **Category:** institutional access required
