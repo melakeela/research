@@ -961,3 +961,97 @@ touches published copy.
 **Asked of the owner:** whether the page should name its digitization
 and carry the range in the interim. The change itself belongs in
 `melakeela/site`, not here. Queued as `RA-009`.
+
+## D-046 — Is a corpus investigation admissible as the children's pilot?
+
+**Raised:** 2026-09-08, by `06-BRIEFS/childrens-pilot/`.
+**Register row:** `09-DECISIONS/OWNER-DECISIONS.csv` D-046.
+**Blocks:** any build of `06-BRIEFS/childrens-pilot/`. The specification is
+complete; whether it may be built is not a question evidence answers.
+
+### What was asked, and what was produced
+
+The owner asked, in the session of 2026-09-08, for one complete children's
+investigation specified end to end on the fort material. It is specified:
+fourteen screens, every action, every piece of evidence, and what the child is
+asked to conclude, in `06-BRIEFS/childrens-pilot/`. It rests on 38 register rows
+and one hold, all named by identifier, and the lowest status among the claim rows
+is `HYPOTHESIS`.
+
+### Why this is not covered by D-006
+
+`OWNER-DECISIONS.csv` **D-006** asks whether the children's pilot is **Keezhadi**
+or **an inscription**. Museum framework §10.4.2 sets out what each teaches and
+what each costs: *"the site pilot has a consent precondition and the inscription
+pilot has a rights precondition, and neither can be scheduled as though it were
+only a content task."*
+
+**This is a third thing.** It is neither a site nor an inscription: it is a
+corpus — a body of text, its lemmas, its counts and its silences. What it teaches
+is different from both. It teaches that a text is a body of evidence you can
+count, and that counting it does not tell you what happened. Its precondition is
+different again: not consent, not a single object's rights, but eleven build
+gates enumerated at `04-rules-and-gates.md` §8.
+
+### The options
+
+- **(a) The pilot stays as D-006 frames it.** `06-BRIEFS/childrens-pilot/`
+  remains a specification for later. Nothing is lost; nothing is built.
+- **(b) A corpus pilot is admitted as a third option**, and the owner chooses
+  among three.
+- **(c) The corpus investigation is the pilot**, and D-006 is answered by
+  superseding it.
+
+### What the owner should weigh
+
+**For the corpus pilot.** It has no consent precondition — there is no living
+community whose authority governs the Rigvedic púr- corpus in the way §11.2 and
+§11.4 govern Keezhadi, and this unit makes no claim about any modern community.
+It has no object-custody question: the evidence is a published corpus with a
+recorded licence. It is the pilot that most directly exercises the translation
+standard, which §10.4.2 names as *"the discipline this institution most needs to
+teach"* — and it does so on a word the constitution itself lists for audit
+(*fort*, §7). Its evidence base is the deepest in the repository: 60 claim rows
+across two registers, four supporting registers, a method note and a
+reconciliation brief.
+
+**Against it.** Its central screen, S-10, is an **empty box** — the museum's
+admission that it holds no ground evidence at all (`HOLD-007`). That is the
+honest position and it is the investigation's whole point, but it means the pilot
+that goes out first would be the one where the institution has least to show. An
+eight-year-old distinguishing *"we haven't looked"* from *"there's nothing
+there"* is an empirical question this specification cannot settle; gate G-08 is
+where it gets tested, and a failure there is a redesign of S-10, not a relaxation
+of it.
+
+**A cost that is not obvious.** One screen (S-09) rests on `PUR-028`, a
+`HYPOTHESIS`, and is labelled MAYBE throughout with a banner that cannot be
+dismissed. It is the only screen where a child meets a real statistical result
+together with the reason not to trust it. It could be cut without losing a claim,
+and the investigation would then have no MAYBE screen — which would teach that
+the working vocabulary is three words rather than four.
+
+### The one gate that could stop it whatever the owner decides
+
+**G-09, rights.** The investigation quotes Griffith (1890) and Grassmann
+(1876–7), both long out of copyright on their publication dates, and also
+**Geldner (1951)**, Renou and Elizarenkova (1989–99), which are not obviously so.
+A children's product quoting them publicly needs an answered rights position, not
+an assumption in either direction. This unit takes no position and has no legal
+advice. Bears on **D-029** (does the institution assert fair dealing, in which
+jurisdiction, and on whose advice) and **D-030** (licence on the evidence base).
+
+If the rights answer is that the twentieth-century translations may not be
+quoted, the investigation survives: S-06's three-translator card loses Geldner,
+S-07's iron/bronze crux becomes Griffith against Grassmann, and S-10's
+named-fort dispute loses Geldner's reading and with it most of its force. It
+would be a weaker investigation and it would still be honest. **It should not be
+built to that shape by default.** The rights question is asked first.
+
+### What this unit did not do
+
+It did not clear D-032, which ends *"Nothing in this repository acts on the MVP
+set until this is answered."* It did not clear `RESEARCH-QUEUE.md`, which lists
+page and exhibit briefs under `## Not yet`. It performed no retrieval, added no
+ledger row, and moved no claim's status. The instruction it was produced under is
+not registered as an owner decision and is not allocated one here.
