@@ -1049,3 +1049,150 @@ surface where the institution's disagreement with a syllabus becomes visible
 to the person teaching it.
 
 **Decision:** which curricula, if any, are mapped?
+
+## D-048 — Does an individual's consent suffice where a community holds authority?
+
+**Raised by:** experience object model §13.3.3
+**Category:** living-community consent
+
+A `present-day-investigator` Character is a living person shown doing the
+work — an excavator, a translator, a conservator, a community member. §11.4
+requires a consent record from them, per purpose and per surface. §11.2
+separately records where a **community**, not the institution, holds
+interpretive authority over the material.
+
+When the person is a member of that community and the material is within
+that authority's scope, the two mechanisms meet and neither says which
+governs.
+
+The tension runs in both directions and neither side is safe.
+
+- **Requiring community sign-off** makes the institution the arbiter of who
+  counts as a representative — which §11.2 warns against in its own terms:
+  *"an institution that consults one organisation and reports 'the community
+  agreed' has made a claim it cannot support."* It also gives a community
+  body an effective veto over an individual member speaking about their own
+  practice.
+- **Not requiring it** lets the institution obtain one person's consent and
+  publish the result where a visitor will read it as the community's account.
+  §11.2's requirement that representation be recorded *"including its
+  limits"* — *"who was consulted, how they were identified, and who this does
+  not speak for"* — is a mitigation, not an answer.
+
+| Option | Consequence |
+|---|---|
+| **Individual consent suffices**, with the individual's own scope stated on the surface | The person speaks for themselves and is shown doing so. Cost: the distinction between "a member of this community says" and "this community says" rests entirely on a caption. |
+| **Community agreement additionally required** wherever an authority record covers the material | The community controls how it is represented on its own material. Cost: the institution has to decide whose agreement counts, which is the claim §11.2 says it cannot support. |
+| **Required only where the person is presented as speaking for the community** rather than for themselves | Follows the actual claim being made. Cost: the line is drawn by the institution's own framing, and framing drifts. |
+
+The model currently specifies the individual consent as required and the
+authority record as carried where one applies, without ruling on precedence.
+That is a deliberate gap, not an omission.
+
+**Decision:** which governs, and where is the line?
+
+## D-049 — May the method guide be personified for children?
+
+**Raised by:** experience object model §13.3.4
+**Category:** publication approval
+
+The `institutional-voice` Character is MelaKeela speaking as itself: the
+Step 14 interpretation register, and the guide that explains what a status
+is, what `NOT EXCAVATED` means, and why nine citations can be one source.
+The model specifies it unpersonified — no name, no biography, no
+personality, no relationship with the visitor.
+
+Whether that holds for children is the owner's.
+
+**The case for personification.** A guide is how most children's material
+makes an unfamiliar method approachable, and this institution is asking
+children to hold statuses, absence types and an attestation gradient — more
+apparatus than a children's museum usually carries, not less.
+
+**The case against.** A friendly guide is the standard vector for smoothing
+uncertainty. A character with warmth is read as reassuring, and reassurance
+is precisely what a `HYPOTHESIS` claim must not receive — museum framework
+§12.3, V-2: *"Confidence is never conveyed by production value."* A
+personified guide is also one step from a mascot, which §13.6 item 14
+forbids where it stands for a people, a place, a language or a period.
+
+If personification is permitted, the constraints that would have to hold are
+already in §13.3.4: no biography, no opinions beyond the institution's
+statused positions, speaks last on any question, and says *"we do not know"*,
+*"we were refused access"* and *"we were wrong"* as readily as it says
+anything else. A guide that cannot say those three things is not the
+institutional voice; it is a mascot with a clipboard.
+
+**Decision:** apparatus only, a personified guide with those constraints, or
+personification in the children's mode alone?
+
+## D-050 — Does the institution depict past people visually at all?
+
+**Raised by:** experience object model §13.5
+**Category:** publication approval
+**Related:** museum framework D-026 (human remains)
+
+Any depiction of a past person is an interpretation (`is_primary =
+interpretation`, §2.5) with a named maker and a date. It also supplies what
+the record does not: a face, a build, a skin, a dress, an age, a bearing.
+
+Each of those is an assertion, and several are identity attributions of the
+kind §13.6 item 4 forbids in text. **A drawn face makes an ancestry claim
+that a sentence would have had to status.** This is the specific reason the
+question is escalated rather than answered by the general rule about marked
+reconstructions: the marker travels with the image, but the inference the
+viewer draws does not wait for it.
+
+Against that: the total absence of depicted people leaves the past populated
+by objects and no one, which is its own distortion, and one this record has
+named repeatedly in the form of the §4V provenance questions.
+
+| Option | Consequence |
+|---|---|
+| **No depiction of past people** | No unstatused visual assertion is possible. Cost: the museum shows things and never people, which reads as a claim that the things made themselves. |
+| **Depiction as marked interpretation**, maker and date named, reconstruction marker carried | People are visible and the image is honest about being an image. Cost: every such image asserts appearance, and appearance is where ancestry claims enter without a mechanism. |
+| **Only where an attested ancient image exists** — a figurine, a relief, a painted scene — reproduced with description separated from interpretation (§2.4), and nothing commissioned | The institution shows how people were depicted *then*, which is evidence, rather than how they looked, which is not. Cost: coverage is uneven and follows what survives, which is itself an archive bias the surface would have to state. |
+
+Rights (§11.8) and evidential alt text (§11.9.3) apply to any depiction made.
+
+**Decision:** which, and under what marker?
+
+## D-051 — May attested words be voiced, or only quoted?
+
+**Raised by:** experience object model §13.3.2
+**Category:** two consequential positions both remaining viable
+
+A `documented-individual` Character presents words attested in a source at a
+locator. The model's default is `voice_rendering = quotation-only`: the words
+appear as quotation, with the Translation Block (§3.8) and the `is_primary`
+step (§2.5) beside them.
+
+Whether they may also be **read aloud** — as audio, a recorded reading, or a
+first-person presentation — is a real choice with costs on both sides.
+
+**Against voicing.** A reading adds tone, pace, emphasis, gender, age and
+emotion. The record carries none of these, and a listener attributes all of
+them to the speaker rather than to the reader. It also carries a translation
+choice past the visitor: §3.8's display contract requires the alternatives
+and the interpretive consequence *"one interaction away, on the same
+surface"*, which audio makes awkward. And it approaches, without crossing,
+the line §13.6 item 2 draws at interiority — a performance implies a state
+of mind.
+
+**For voicing.** Refusing it entirely leaves ancient words permanently inert
+and privileges silent reading of a script most visitors cannot read. That is
+an accessibility position as much as an editorial one, and §11.9 makes
+accessibility a release gate rather than a preference.
+
+| Option | Consequence |
+|---|---|
+| **Quotation only** (the model's default) | No performance, no implied state of mind, apparatus always adjacent. Cost: the words reach only readers of the script or of a translation. |
+| **Voicing permitted** with the apparatus reachable on the same surface | The words are audible. Cost: everything in the paragraph above, on every listen. |
+| **Voicing of attested original-language text only, never of a translation** | Voicing an original is closer to a facsimile than to a performance; voicing a translation is a performance *of an interpretation*, which is a different act. Cost: a visitor who does not know the language hears sound and reads apparatus, which may be exactly right or may be theatre. |
+
+§13.6 item 5's prohibition on voicing reconstructed forms stands under every
+option: no proto-language is ever spoken aloud, at any age, because no
+marker survives audio.
+
+**Decision:** quotation only, voicing with apparatus, or original-language
+voicing only?

@@ -1726,3 +1726,380 @@ teacher opens it and finds an abstraction.
    (§11.10.4). A stale objective is worse than none, for the same reason a stale
    translation is: it publishes superseded material under the institution's name
    to the readers least able to check it.
+
+---
+
+## 13. Character — `mk:chr:`
+
+### 13.1 Why this is the hardest object, and what makes it hard
+
+Every other object in this document is a container for evidence. A Character is
+a **person, or something shaped like one**, and the shape is the problem: the
+moment an institution puts a figure on a surface, a visitor supplies everything
+the record does not — a voice, a face, a motive, an interior. That supplying
+happens whether or not the institution intended it, and no disclaimer prevents
+it.
+
+Three specific hazards, in ascending order of how easily they are excused.
+
+**H-1. Invented dialogue.** The oldest device in museum interpretation and the
+one the record forbids outright. Museum framework §10.4.4: *"No fabricated
+evidence, ever. No invented objects, no composite 'typical' artefacts."* A
+sentence a historical person did not say is fabricated evidence in the most
+persuasive available form, because speech reads as testimony. It does not become
+permissible by being plausible, by being marked as imagined, or by being placed
+in a children's surface where the marking will not be read.
+
+**H-2. Fabricated interiority.** Harder to see, because it hides in the
+connective tissue rather than in quotation marks. "She would have watched the
+river rise." "He must have known what the seal meant." "They feared the drought."
+None of these is a quotation and each asserts a mental state for which there is
+no evidence and could not be. Constitution §4V asks who *"spoke without being
+recorded"*; attributing thought to that person is not answering the question,
+it is closing it.
+
+**H-3. Voicing the subaltern.** The hardest of the three because the impulse is
+generous and the failure is invisible to the person committing it. The record
+documents, repeatedly, who was not recorded: the builders behind a donor
+inscription (§10.2, constraint 3), the labour behind a tank, the people a
+nineteenth-century survey classified without asking. Having established that
+silence and typed it — `NOT PRODUCED`, `NOT RECOGNISED` — the institution then
+feels the pull to fill it, and filling it feels like restitution.
+
+It is the opposite. **A voiced subaltern character destroys the evidence of the
+silence.** The typed absence was the finding; the invented voice replaces a
+documented gap in the archive with a satisfying presence, and a visitor who meets
+the character does not learn that the archive is missing them — they learn a
+story, and they leave believing the record contains something it does not. The
+institution has taken the one piece of evidence it actually had about that
+person's erasure and covered it over, and it has done so in the register that
+feels most like repair.
+
+**Constitution §4V is the ruling here**: *"Preservation is not authorship;
+codification is not invention; first attestation is not origin."* The remedy for
+a silence is to name who is missing, type the absence, name the archive that
+produced it, and leave it visibly unfilled. Museum framework §6.2, item 6
+already specifies the display: the §4V provenance questions are shown on every
+object and *"unanswered questions are displayed as unanswered, not omitted."*
+
+### 13.2 What a Character therefore is
+
+**A Character is a presentational role bound to evidence, not a person the
+institution has invented.** It is a way of attributing something on a surface —
+words, a piece of work, a judgement, an act of holding or classifying — to
+whoever the record actually attributes it to.
+
+There are exactly four kinds. The enumeration is **exhaustive and mutually
+exclusive**, and it is closed: a Character that is not one of these four cannot
+be created, and a fifth kind requires a revision of this document rather than a
+field value.
+
+| `character_kind` | Is a person? | May speak? | Grounded in |
+|---|---|---|---|
+| `role` | No — a documented function, never an individual | No | claims establishing that the role existed, there and then |
+| `documented-individual` | Yes, a named historical person | Only their attested words, as quotation | sources attesting them, with locators |
+| `present-day-investigator` | Yes, a living person | Yes, their own words | their own statements as `oral-living` evidence + a consent record |
+| `institutional-voice` | No — the institution speaking as itself | Yes, in the institution's voice | the claim set it is speaking |
+
+### 13.3 The four kinds, specified
+
+#### 13.3.1 `role`
+
+**What it is.** A documented social, occupational or functional position: the
+person who fired this pot, the scribe who copied this recension, the surveyor who
+recorded this site in 1883, the labourers who cut this tank.
+
+**Requirements.**
+
+- The existence of the role in that place and period is itself a statused claim
+  in `grounding[]`. A role nobody has evidenced is an invention with an
+  occupational noun on it.
+- It is described only in terms the evidence supports: what the work involved,
+  what it required, what materials and techniques it used, what the record does
+  and does not say about who did it.
+- **It is never individuated.** No name, no biography, no single figure standing
+  for the role. "A potter" is a role; "a potter named Ila" is an invented person.
+- **It carries an explicit unrecorded register.** The §4V questions — who made
+  it, supplied the material, did the labour, spoke without being recorded, was
+  excluded — are on its face, and the unanswered ones are typed as Absence
+  records (§3.7), not written as pathos. "We do not know their name, whether they
+  were free, or what they thought, and here is why the record does not say" is
+  the correct output and is more informative than any characterisation.
+- **It carries no identity attributes.** No ethnicity, ancestry component,
+  caste, religion-as-identity or modern nationality (§5.2,
+  `identity_attribution = none`).
+
+**Why the role is the workhorse.** Almost everything an institution wants a
+Character for — showing that objects were made by people, that texts were copied
+by hands, that surveys were conducted by someone with an agenda — is available
+here without inventing anybody. The role is what makes it possible to obey H-1
+to H-3 and still have people in the museum.
+
+#### 13.3.2 `documented-individual`
+
+**What it is.** A named historical person attested in the record: a donor in an
+inscription, an author, a ruler, a translator, a colonial officer, a
+nineteenth-century scholar.
+
+**Requirements.**
+
+- Every utterance is `attested-in` a `mk:evd:` at a locator, in an edition, with
+  the `is_primary` step rendered (§2.5) so a visitor can count the steps between
+  the person and what they are reading.
+- **Words appear as quotation, never as dialogue.** Not converted to the present
+  tense, not addressed to the visitor, not paraphrased into first person, not
+  extended by a clause the source does not carry.
+- The Translation Block (§3.8) applies in full where the words are not in the
+  visitor's language: original script, transliteration, grammatical form,
+  semantic range, textual context, edition, exact locator, translation used,
+  alternative translations, interpretive consequence, inherited-category audit.
+  **A Character is exactly where a translation would otherwise decide a
+  historical question quietly**, because words in a person's mouth are read as
+  transparent.
+- **A reconstructed, emended or conjectural reading is displayed as one**
+  (§2.6). A Character may not speak an editor's conjecture as their own sentence.
+- **No interiority beyond their own attested statements**, and those are
+  presented as their statements rather than as their mind. A person who wrote "I
+  feared" is recorded as having written it; that is a fact about a text.
+- **An archive-position statement is required** — §13.4.
+
+#### 13.3.3 `present-day-investigator`
+
+**What it is.** A living person: an excavator, a conservator, an epigraphist, a
+translator, a curator, a community member, a technician. The person doing the
+work now, shown doing it.
+
+**Requirements.**
+
+- **A consent record is required and non-null** (`mk:cns:`, §11.4), covering
+  each surface separately — exhibit, atlas, children's mode, classroom, export,
+  third-party reuse. Consent to appear in an exhibit is not consent to appear in
+  a children's investigation or under a reuse licence.
+- **They speak for themselves.** Their words are `oral-living` evidence
+  (§2.4) with recording circumstances, withdrawal terms and whether they hold
+  interpretive authority. The institution does not write their lines, does not
+  edit them beyond length limits stated in advance (the §11.3 discipline
+  generalised), and does not summarise them into the institutional voice.
+- **Withdrawal is effective on the live surfaces without negotiation** (§11.4).
+  The material goes; the record that it was contributed, published and withdrawn
+  on a stated date under a stated term remains. `character-withdrawn` is a
+  `change_type` (§3.3) and the Characters they appeared in are suspended by it.
+- **Interest is disclosed** where they are also the author of a claim the
+  surface presents. A researcher explaining their own finding is not a neutral
+  guide to it, and the visitor is told which they are looking at.
+- **A community member with interpretive authority carries the authority record**
+  (§11.2): the community named as it names itself, the representative and how
+  they were identified, the scope, and *"who this does not speak for."* Their
+  account is carried as theirs, in their own voice, not absorbed into the
+  institution's and not "balanced" against a scholarly account as though the two
+  were rival hypotheses in the same game.
+- Whether an individual's consent suffices where the material is under a
+  community authority, or whether the community agreement is additionally
+  required, is **D-048**.
+
+#### 13.3.4 `institutional-voice`
+
+**What it is.** MelaKeela speaking as itself: the "MELAKEELA'S CURRENT
+INTERPRETATION" register of the Step 14 shape, and the method guide that explains
+what a status is, what `NOT EXCAVATED` means, why nine citations can be one
+source.
+
+**Requirements.**
+
+- **Grounded like everything else.** The institutional voice speaks a claim set
+  with statuses, and every sentence resolves (§3.4). It is not exempt from the
+  grounding rule by being the institution's; it is the object where the exemption
+  would be asked for and where §2.8 refuses it.
+- **Not a persona.** No name, no biography, no personality, no opinions beyond
+  the institution's statused positions, no relationship with the visitor.
+- **Speaks last on any question** (§9.3, §7.4). The institutional voice does not
+  introduce a Challenge or a Mission; it closes one.
+- **May say "we do not know", "we were refused access", "we were wrong"** —
+  and these are among the most useful things it says. The correction ledger and
+  the obligations register are its material as much as the claims are (§1.6.2).
+- Whether the method guide may be personified for children — given a name, a
+  drawn body, a voice — is **D-049**.
+
+### 13.4 The archive-position statement
+
+**Required on every `documented-individual` Character, and on any `role` whose
+evidence comes from a curated archive.**
+
+The set of individuals this record can name is not a sample of the people who
+were there. It is the set the archive recorded and preserved: the literate, the
+donors, the rulers, the officials, the colonial surveyors, the European
+philologists. A museum built out of documented individuals reproduces the
+archive's hierarchy exactly, and does so while appearing merely to be citing
+sources.
+
+The statement carries, for each such Character: **who recorded them, why that
+record was made, what preserved it, and who is absent from the same record and
+why** — constitution Step 6's archive audit, attached to the person rather than
+to the corpus.
+
+Two display rules follow:
+
+- **A surface may not present its documented individuals as the people who were
+  there.** Where named individuals appear, the roles and the typed absences that
+  surround them appear with them, at a weight the proportionality discipline
+  (§3.10) can be tested against.
+- **`CLAUDE.md`'s governing principle applies to the cast.** *"Do not balance
+  narratives. Weight explanations."* The corrective is not to invent a
+  counterweight of subaltern voices — that is H-3 — but to make the asymmetry
+  itself visible, with the asymmetry statement (§11.2) where the two adversarial
+  tests are shown.
+
+### 13.5 Fields
+
+| Field | Type | Notes |
+|---|---|---|
+| `id` | identifier | `mk:chr:<key>` |
+| `revision` | integer | append-only |
+| `character_kind` | enum(4) | §13.2. Exhaustive, mutually exclusive, closed. |
+| `label` | string | for `role`, the function; for `documented-individual`, the name as attested with its source; for `present-day-investigator`, the name as they give it or an agreed anonymisation; for `institutional-voice`, the institution |
+| `is_person` | derived bool | false for `role` and `institutional-voice` |
+| `grounding[]` | array of `mk:rel:` | `attested-in`, `speaks-for`, `exercises`. **Non-empty.** §13.7 |
+| `attested_utterances[]` | array | each: `mk:evd:` · locator · edition (`mk:src:`) · `is_primary` step · original script · Translation Block ref · reading status (`attested` · `emended` · `conjectural`) |
+| `interiority` | enum | `none`. The only permitted value. §13.6, item 2. |
+| `archive_position` | Block or null | **required for `documented-individual`**, §13.4 |
+| `role_absences[]` | array of `mk:abs:` | **required for `role`**: the typed absences that constitute what is not recorded about the people in it |
+| `consent_ref` | `mk:cns:` or null | **required and non-null for `present-day-investigator`** |
+| `authority_ref` | `mk:rel:` or null | the community-authority record where one applies (§11.2) |
+| `interest_disclosure` | string or null | required where a present-day investigator authored a claim on the same surface |
+| `identity_attribution` | enum | `none`. §5.2. |
+| `depictions[]` | array of `mk:evd:` | any image, illustration, model or audio. Each `is_primary = interpretation`, with maker, date and reconstruction marker. §13.6, item 8; subject to **D-050**. |
+| `voice_rendering` | enum | `quotation-only` (default) · as constrained by **D-051** |
+| `surfaces_permitted[]` | array | per consent and per rights, each surface separately (§11.4, §11.8) |
+| `withdrawal_state` | enum | `active` · `suspended` · `withdrawn` |
+| `age_bands[]` | array | declarative |
+| `constraint_block` | Constraint Block | §5.2 |
+
+### 13.6 What a Character may never be
+
+The list is long because each item names something that has been done in museums
+and would be done again by default. Each is refused by a field constraint, not
+only by this prose.
+
+1. **An invented historical person.** Named or unnamed, speaking or silent. No
+   composite, no "typical", no representative figure standing in for a
+   population — "a Harappan girl", "a Sangam-era merchant", "a village
+   ironworker". §10.4.4: no fabricated evidence, no composite artefacts. A
+   composite person is a composite artefact in the shape of a human being.
+2. **A source of interiority.** No thoughts, feelings, motives, beliefs, fears,
+   intentions or sensory experience attributed to any past person, including a
+   documented one, beyond what their own attested words state — and those are
+   presented as their statement, not as their mind. `interiority = none` has one
+   permitted value.
+3. **A voice for someone the archive did not record.** §13.1, H-3. Where the
+   record documents a silence, the silence is typed, named and left visible. The
+   institution does not fill a gap it has just proved exists.
+4. **A carrier of identity.** No ethnicity, race, ancestry component, caste,
+   religion-as-identity or modern nationality as a property of a Character. Every
+   such link is a §4.4 bridge with its mechanism, rivals and governance, or it is
+   not displayed (§6.7). §10.4.4 forbids ethnic and national identification of
+   objects, people and remains outright in the children's mode.
+5. **A speaker of a reconstructed language.** Voicing a reconstruction converts
+   `reconstructed` into `attested` in the visitor's ear (§2.6), and no marker
+   survives audio. No "how it sounded" for a proto-language at any age, and no
+   recorded performance of a reconstructed form without the reconstruction
+   marker, the method that produced it and the proposer.
+6. **A personified set of human remains.** No "meet the person from grave 4".
+   §10.4.4: remains are shown only where community authority and consent permit,
+   *"at the least sensational presentation possible, and never as a puzzle to be
+   solved"*, and whether they are displayed at all is museum framework D-026.
+7. **A named living person without consent, or after withdrawal** (§11.4).
+8. **A synthesised likeness or voice of a real person**, living or historical,
+   by any means. It is fabricated evidence (§10.4.4) whatever the technique, and
+   for a living person it is also a consent violation that consent could not
+   cure, because the person did not say the thing.
+9. **An avatar the visitor becomes in the past.** `role_play = none` or
+   `present-day-method` (§5.2): "do what a researcher does with this evidence
+   now" is available; "be a person in the past" is not, and being placed in any
+   position within a classification, in any period, at any age, is refused
+   absolutely (§10.4.7).
+10. **A figure in a staged persecution.** §10.4.7's third constraint. Persecution
+    is read as record, with its evidence and its status; it is never
+    dramatised, role-played, simulated, scored or reconstructed as an experience
+    the visitor moves through.
+11. **An opponent, an advocate or a guide with a position.** No Character argues
+    for an explanation in a Challenge, none opposes the visitor, and none
+    expresses confidence the record does not carry. A Character who says "I think
+    the evidence points this way" has published an unstatused claim in the most
+    persuasive available register.
+12. **A resolver of open questions in dialogue.** Where a Question is `open`, no
+    Character closes it; the institutional voice states the open state and the
+    absences.
+13. **A term in a COMPARE Activity.** §5.2's enumeration has no class for a
+    person, and a Character resolves to a person or to a role held by people.
+    Two Characters may not be set beside each other as things to be sorted.
+14. **A mascot for a people, a place, a language or a period.** That is identity
+    attribution (item 4) with a friendly face on it, and it is the form in which
+    it is hardest to object to.
+
+### 13.7 Grounding
+
+Every Character carries at least one direct Grounding Link. Composition
+transitivity (§2.5) does not apply: a Character is not grounded by the Exhibit it
+appears in.
+
+| Kind | Minimum grounding |
+|---|---|
+| `role` | ≥1 `exercises` link to a claim establishing the role in that place and period, **and** ≥1 Absence record in `role_absences[]` |
+| `documented-individual` | ≥1 `attested-in` link to evidence with a locator, **and** an `archive_position` block |
+| `present-day-investigator` | ≥1 `speaks-for` link to an `mk:agt:`, **and** a non-null `consent_ref` |
+| `institutional-voice` | ≥1 `exercises` link to the claim set being spoken |
+
+**This is the object §2.2's reason G-3 was written for.** An ungrounded Character
+is not a Character with a missing citation. A Character *is* the evidence it
+resolves to, plus a way of presenting it; remove the evidence and what remains is
+not an incomplete record but an invented person. The grounding rule is not a
+documentation requirement here. It is the entire difference between attribution
+and fabrication, and it is why the rule admits no waiver, no draft state and no
+editorial override.
+
+### 13.8 Decay
+
+- **A superseded or rejected grounding claim suspends a `role`.** A role
+  established by a claim that no longer holds is a role the record no longer
+  evidences.
+- **Withdrawn consent suspends a `present-day-investigator` immediately**, on
+  the live surfaces, without negotiation (§11.4). The record that they appeared
+  and withdrew remains; the material does not.
+- **A contested attestation degrades a `documented-individual` rather than
+  removing them.** If a reading that a person said something is challenged
+  (§11.6, `nature = translation-dispute` or `contests-reading`), the utterance is
+  shown with the dispute rather than quietly dropped — the same discipline §7.1
+  item 3 requires of the primary-source viewer, where *"variants are first-class"*
+  and differences are *"shown, not silently normalised."*
+- **A Character never survives its grounding.** `grounding-lost` (§3.3) suspends
+  the Character, and a suspended Character resolves to a record of what it was
+  and why it is suspended, in keeping with §2.1's tombstone rule.
+
+### 13.9 The Character that is deliberately not built
+
+The most important Character in a record like this one is the one the institution
+does not create: the person who made the object, did the labour, spoke without
+being recorded, and was classified without being asked.
+
+They are represented by **an Absence record and a role, never by a figure**.
+Concretely, where a donor inscription records a donor and not a builder
+(museum framework §10.2, constraint 3), the surface carries:
+
+- the donor as a `documented-individual`, with their archive position — who
+  recorded them, why, and what preserved it;
+- the builders as a `role`, described from the work itself, with no name, no
+  face and no voice;
+- an Absence record typed `NOT PRODUCED` or `NOT RECOGNISED`, with what should
+  have existed, where, the probability it was produced, whether we would
+  recognise it, and the archive audit that explains the shape of the gap;
+- the §4V provenance questions, with the unanswered ones displayed as unanswered.
+
+A visitor who leaves that surface knows something true and specific: that the
+record preserves donors and not builders, that this is a property of what
+inscriptions were for, and that the absence has been measured rather than
+regretted. A visitor who instead met an invented builder with a name and a
+feeling would leave with a story, and would not know that the record is missing
+him.
+
+**That is the whole argument of this section in one comparison, and it is why the
+Character object is specified as narrowly as it is.**
