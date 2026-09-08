@@ -961,3 +961,203 @@ touches published copy.
 **Asked of the owner:** whether the page should name its digitization
 and carry the range in the interim. The change itself belongs in
 `melakeela/site`, not here. Queued as `RA-009`.
+
+## D-046 — Is a corpus investigation admissible as the children's pilot?
+
+**Raised:** 2026-09-08, by `06-BRIEFS/childrens-pilot/`.
+**Register row:** `09-DECISIONS/OWNER-DECISIONS.csv` D-046.
+**Blocks:** any build of `06-BRIEFS/childrens-pilot/`. The specification is
+complete; whether it may be built is not a question evidence answers.
+
+### What was asked, and what was produced
+
+The owner asked, in the session of 2026-09-08, for one complete children's
+investigation specified end to end on the fort material. It is specified:
+fourteen screens, every action, every piece of evidence, and what the child is
+asked to conclude, in `06-BRIEFS/childrens-pilot/`. It rests on 38 register rows
+and one hold, all named by identifier, and the lowest status among the claim rows
+is `HYPOTHESIS`.
+
+### Why this is not covered by D-006
+
+`OWNER-DECISIONS.csv` **D-006** asks whether the children's pilot is **Keezhadi**
+or **an inscription**. Museum framework §10.4.2 sets out what each teaches and
+what each costs: *"the site pilot has a consent precondition and the inscription
+pilot has a rights precondition, and neither can be scheduled as though it were
+only a content task."*
+
+**This is a third thing.** It is neither a site nor an inscription: it is a
+corpus — a body of text, its lemmas, its counts and its silences. What it teaches
+is different from both. It teaches that a text is a body of evidence you can
+count, and that counting it does not tell you what happened. Its precondition is
+different again: not consent, not a single object's rights, but eleven build
+gates enumerated at `04-rules-and-gates.md` §8.
+
+### The options
+
+- **(a) The pilot stays as D-006 frames it.** `06-BRIEFS/childrens-pilot/`
+  remains a specification for later. Nothing is lost; nothing is built.
+- **(b) A corpus pilot is admitted as a third option**, and the owner chooses
+  among three.
+- **(c) The corpus investigation is the pilot**, and D-006 is answered by
+  superseding it.
+
+### What the owner should weigh
+
+**For the corpus pilot.** It has no consent precondition — there is no living
+community whose authority governs the Rigvedic púr- corpus in the way §11.2 and
+§11.4 govern Keezhadi, and this unit makes no claim about any modern community.
+It has no object-custody question: the evidence is a published corpus with a
+recorded licence. It is the pilot that most directly exercises the translation
+standard, which §10.4.2 names as *"the discipline this institution most needs to
+teach"* — and it does so on a word the constitution itself lists for audit
+(*fort*, §7). Its evidence base is the deepest in the repository: 60 claim rows
+across two registers, four supporting registers, a method note and a
+reconciliation brief.
+
+**Against it.** Its central screen, S-10, is an **empty box** — the museum's
+admission that it holds no ground evidence at all (`HOLD-007`). That is the
+honest position and it is the investigation's whole point, but it means the pilot
+that goes out first would be the one where the institution has least to show. An
+eight-year-old distinguishing *"we haven't looked"* from *"there's nothing
+there"* is an empirical question this specification cannot settle; gate G-08 is
+where it gets tested, and a failure there is a redesign of S-10, not a relaxation
+of it.
+
+**A cost that is not obvious.** One screen (S-09) rests on `PUR-028`, a
+`HYPOTHESIS`, and is labelled MAYBE throughout with a banner that cannot be
+dismissed. It is the only screen where a child meets a real statistical result
+together with the reason not to trust it. It could be cut without losing a claim,
+and the investigation would then have no MAYBE screen — which would teach that
+the working vocabulary is three words rather than four.
+
+### The one gate that could stop it whatever the owner decides
+
+**G-09, rights.** The investigation quotes Griffith (1890) and Grassmann
+(1876–7), both long out of copyright on their publication dates, and also
+**Geldner (1951)**, Renou and Elizarenkova (1989–99), which are not obviously so.
+A children's product quoting them publicly needs an answered rights position, not
+an assumption in either direction. This unit takes no position and has no legal
+advice. Bears on **D-029** (does the institution assert fair dealing, in which
+jurisdiction, and on whose advice) and **D-030** (licence on the evidence base).
+
+If the rights answer is that the twentieth-century translations may not be
+quoted, the investigation survives: S-06's three-translator card loses Geldner,
+S-07's iron/bronze crux becomes Griffith against Grassmann, and S-10's
+named-fort dispute loses Geldner's reading and with it most of its force. It
+would be a weaker investigation and it would still be honest. **It should not be
+built to that shape by default.** The rights question is asked first.
+
+### What changed under review, and what it does to this decision
+
+Three adversarial passes moved the posture position twice, both times away from
+"buildable", and D-046 is now deciding something different from what it was
+raised to decide.
+
+**As raised:** which pilot, given that a corpus investigation is a third option
+D-006 does not contain.
+
+**Now:** that, *plus* the fact that **the investigation's posture derivation
+gives Reading Room, where §1.7 forbids Field Mode.** Run in §1.5's stated
+precedence order, rules 1–6 all fail; rule 7's residual is Reading Room. So this
+pilot cannot be built on its derivation at all — only on an editorial override
+with a written reason, which is gate G-01.
+
+Two consequences the owner should see before choosing:
+
+1. **The override is not free.** §1.3's opening sentence — *"Posture is a display
+   and navigation axis. It has no evidentiary authority"* — bars posture being
+   used as a permissions instrument, which is what an override taken to unlock a
+   mode is. §1.5 requires a non-empty reason and has no test for whether a reason
+   is a reason. **`D-047`** is raised for that gap. This unit wrote three
+   candidate reasons and struck two of them itself as the desired outcome
+   restated; nothing in the framework would have caught them.
+2. **The strongest available argument reaches further than this pilot.**
+   §10.4.6 states the prohibition substantively — *"the distinction is between
+   telling a child a true thing and assigning a child a verdict"* — and this
+   investigation assigns no verdict. But if §1.7's forbidden cells are proxies
+   that can be argued past on their purpose, **every forbidden cell in the mode
+   matrix becomes negotiable.** That is a decision about the whole matrix,
+   arrived at from a children's pilot, and `IC-P-004` is rescoped to HIGH for it.
+
+**If the owner's answer to D-046 is (a) — the pilot stays Keezhadi or an
+inscription — none of this goes away.** Both of those are also exhibits whose
+posture must be derived, and the first of them to want Field Mode in a posture
+that forbids it will meet D-047 and `IC-P-004` in the same order.
+
+### What this unit did not do
+
+It did not clear D-032, which ends *"Nothing in this repository acts on the MVP
+set until this is answered."* It did not clear `RESEARCH-QUEUE.md`, which lists
+page and exhibit briefs under `## Not yet`. It performed no retrieval, added no
+ledger row, and moved no claim's status. The instruction it was produced under is
+not registered as an owner decision and is not allocated one here.
+
+
+## D-047 — Does a posture override need a test for whether its reason is a reason?
+
+**Raised:** 2026-09-08, by `06-BRIEFS/childrens-pilot/`, on the third adversarial
+review pass.
+**Register row:** `09-DECISIONS/OWNER-DECISIONS.csv` D-047.
+**Blocks:** gate G-01 of `06-BRIEFS/childrens-pilot/`, and every future exhibit
+whose derived posture forbids a mode it wants.
+
+### The gap
+
+Museum framework §1.5 makes the assigned posture editorial and provides for an
+override of the derived one, with a logged reason. Its only stated constraint:
+*"An override with an empty reason is invalid."*
+
+§1.3 constrains what posture may do. Its three bullets stop posture setting a
+claim's status, substituting for negative-evidence typing, or being inferred from
+tone. Above them stands the governing sentence: **"Posture is a display and
+navigation axis. It has no evidentiary authority."**
+
+Nothing in either section addresses posture used as a **permissions instrument** —
+an override taken not because the exhibit's relation to knowledge is other than
+derived, but because the derived posture forbids a mode the exhibit wants.
+
+### How the gap was found
+
+`06-BRIEFS/childrens-pilot/` needed such an override, wrote three candidate
+reasons, and on review found that **two of them were the desired outcome written
+into the reason field**: that a particular claim is checkable unaided by an
+eight-year-old (a reason the *investigation* makes a good pilot — D-046's
+question), and that its rights position is cleaner than the alternatives (a
+scheduling and legal matter, which also contradicted the unit's own gate G-09).
+Both were struck. One survived: that the exhibit's absences are few in number but
+dominant in weight, which is an argument about the posture.
+
+**Nothing in the framework would have caught the two struck reasons.** Both were
+non-empty.
+
+### The interim test, and why it is not enough
+
+The unit put this to whoever holds the Editorial Register: *would this posture be
+assigned if the mode were available in every posture?* If not, the reason is the
+outcome restated.
+
+That test is this unit's invention. It is not in the framework, it binds nobody,
+and a test that governs what may be built should not be minted by the unit that
+wants to build.
+
+### Options
+
+- **(a) §1.5 gains a reason-quality test.** An `override_reason` must be a
+  statement about the posture — the exhibit's relation to knowledge — and a
+  reason that would not be given if the mode matrix were empty is invalid.
+- **(b) §1.3's opening sentence is read to bar posture overrides taken to unlock
+  a mode.** Posture then never decides what may be built, and the mode question
+  is settled by a separate instrument. Cleanest, and it would largely settle
+  `IC-P-004` as well; it may also make some exhibits unbuildable in any mode
+  until that separate instrument exists.
+- **(c) Neither.** A non-empty reason is sufficient and the framework is as
+  intended.
+
+### Relation to `IC-P-004`
+
+`IC-P-004` asks the neighbouring question: whether §1.7's forbidden cells are
+binding rules or proxies for the substantive prohibitions stated at §10.4.6,
+since a cell reachable by override is advisory rather than binding. **Answering
+D-047 (b) would largely settle it; the reverse is not true.** Both are open, and
+`06-BRIEFS/childrens-pilot/` may not be built until they are.
