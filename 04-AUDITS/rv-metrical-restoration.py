@@ -209,3 +209,63 @@ w("r5-stratum-significance.tsv",
    "mean_rate"],
   [[c, t[0], t[1], len(g), "%.5f" % (sum(g) / len(g))]
    for c, t, g in zip(codes, table, groups)])
+
+# ------------------------------------ R6 the Padapatha against the Samhita
+# Constitution s.4.A names the Padapatha specifically. It is a fourth text,
+# stanza-keyed and word-separated by the tradition itself rather than by a
+# modern lexicographer.
+#   versions/padapatha.csv   GRETIL / Sansknet data entry, contributed by
+#                            Reinhold Gruenendahl, TEI markup by Maximilian
+#                            Mehner                                SRC-108
+import statistics
+pada_p = {}
+with open(os.path.join(VW, "versions/padapatha.csv"), newline="", encoding="utf-8") as f:
+    for row in csv.reader(f, delimiter="\t"):
+        if len(row) >= 2 and row[1].strip():
+            pada_p[row[0]] = row[1].strip()
+
+
+def pp_syllables(s):
+    """The Padapatha marks word and compound boundaries with | and -."""
+    return syllables(s.replace("|", " ").replace("-", " "))
+
+
+print()
+print("R6  the Padapatha against the Samhita, %d stanzas" % len(pada_p))
+shared = sorted(set(pada_p) & set(TA) & set(TV))
+delta = {s: pp_syllables(pada_p[s]) - TA[s] for s in shared}
+# 36 stanzas carry a defective Padapatha entry in this e-text - the cell
+# reads "iti" or "N/A" - and 29 more diverge implausibly far the other way.
+# They are reported, then excluded, rather than silently averaged in.
+short = [s for s, v in delta.items() if v < -5]
+longd = [s for s, v in delta.items() if v > 15]
+print("    stanzas with a defective or wildly divergent Padapatha cell:")
+print("      more than 5 syllables short: %d (e.g. %s reads %r)"
+      % (len(short), short[0] if short else "-",
+         pada_p[short[0]][:20] if short else ""))
+print("      more than 15 syllables long: %d" % len(longd))
+ok = {s: v for s, v in delta.items() if -5 <= v <= 15}
+sa_ok = sum(TA[s] for s in ok)
+sp_ok = sum(pp_syllables(pada_p[s]) for s in ok)
+sv_ok = sum(TV[s] for s in ok)
+print("    over the %d well-formed stanzas (%.1f%%):" % (len(ok), pct(len(ok), len(delta))))
+print("      transmitted Samhita   %8d syllables" % sa_ok)
+print("      Padapatha             %8d  (%+.2f%%)" % (sp_ok, 100.0*(sp_ok-sa_ok)/sa_ok))
+print("      metrically restored   %8d  (%+.2f%%)" % (sv_ok, 100.0*(sv_ok-sa_ok)/sa_ok))
+print("      The Padapatha resolves MORE than the metre asks for. It undoes")
+print("      every sandhi, including the ones the poets made themselves.")
+eq_a = sum(1 for s in ok if pp_syllables(pada_p[s]) == TA[s])
+eq_v = sum(1 for s in ok if pp_syllables(pada_p[s]) == TV[s])
+print("      Padapatha == Samhita  in %5d (%.1f%%)" % (eq_a, pct(eq_a, len(ok))))
+print("      Padapatha == restored in %5d (%.1f%%)" % (eq_v, pct(eq_v, len(ok))))
+w("r6-padapatha-vs-samhita.tsv",
+  ["measure", "value"],
+  [["stanzas_compared", len(ok)],
+   ["stanzas_excluded_defective", len(short) + len(longd)],
+   ["syllables_samhita", sa_ok], ["syllables_padapatha", sp_ok],
+   ["syllables_restored", sv_ok],
+   ["pct_padapatha_over_samhita", "%.2f" % (100.0*(sp_ok-sa_ok)/sa_ok)],
+   ["pct_restored_over_samhita", "%.2f" % (100.0*(sv_ok-sa_ok)/sa_ok)],
+   ["mean_syllables_added_per_stanza", "%.2f" % statistics.mean(ok.values())],
+   ["stanzas_padapatha_equals_samhita", eq_a],
+   ["stanzas_padapatha_equals_restored", eq_v]])

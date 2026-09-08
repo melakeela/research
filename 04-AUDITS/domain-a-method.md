@@ -45,7 +45,9 @@ retrieved can carry.
 Five classes were touched and none is allowed to borrow certainty from
 another:
 
-- **Textual**: three editions of the same poems (`RCT-001`).
+- **Textual**: four transmissions of the same poems — the Saṃhitā, the
+  Padapāṭha, Lubotsky's concordance and van Nooten and Holland's restored
+  text (`RCT-001`, `RCT-011`, `RCT-012`).
 - **Metrical**: Arnold's strata; van Nooten and Holland's restoration.
 - **Morphological**: the Zürich token layer (`RCT-006`, `RCT-007`).
 - **Grammatical-tradition**: Pāṇini's Vedic-scope rules (`RCT-008`).
