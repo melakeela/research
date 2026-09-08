@@ -1234,83 +1234,108 @@ scoring (§10.5.2).
 **Decision:** which of the three, and if the first, is §10.3 amended in the
 framework or left standing with this layer as its exception?
 
-## D-053 — The commissioning cost the asset register never carried, and who the museum's pictures come from
+## D-053 — What the asset register cannot cost, and who the museum's pictures come from
 
 **Raised by:** `06-BRIEFS/asset-sourcing-plan.md` §5 and §8
 **Category:** payment or institutional access required; living-community
 consent; publication approval
 **Register:** `03-REGISTERS/asset-sourcing.csv` `AS-015`, `AS-016`, `AS-017`,
-`AS-021`
+`AS-023`, `AS-024`, `AS-026`
 **Related:** `D-001` (egress allowlist, tracked in `HOLD-007`); `D-032`
 (whether `before-the-indus` leaves the MVP)
+**Revised 2026-09-08 after adversarial review.** The first version of this
+section asked the owner to budget against **38 slots that cannot be licensed
+from anyone**. That figure was wrong: 25 of those slots were typed impossible
+on evidence this survey elsewhere called unmeasured, and the error ran in the
+direction that made the finding dramatic. `BF-025`. The question below is the
+one that survives, and it is a harder question than the first one, not an
+easier one.
 
 The inherited asset register carries 392 slots under one uniform
-`Source / commission route = To research`, and that uniformity is what hid
-this. Sourcing survey: 238 of the 392 slots need no third party at all, 109
-need a licence and a route exists or may exist, and **32 cannot be licensed
-from anyone, because the thing they name does not exist.** Ten of those 32 are
-MVP slots.
+`Source / commission route = To research`. They decompose into four different
+economics (`AS-024`, derived by `04-AUDITS/asset-slot-decomposition.py`):
 
-Not "no open licence has been found." No licence is possible:
+| | Slots | MVP slots |
+|---|---:|---:|
+| The project makes it; no third party | 238 | 31 |
+| Someone else's work is needed | **140** | **27** |
+| Mixed | 7 | 2 |
+| Must be created; the record does not exist | 7 | 2 |
 
-- **Institutional correspondence and access-status evidence — 14 slots, 2 MVP
-  pages (`custody`, `the-archive`).** These are records of a transaction
-  between this project and a holding institution — a request made, an answer
-  given or withheld. Nobody publishes them because there is nothing to publish
-  until someone asks. Typed `NOT PRODUCED`. Cost: staff time, correspondence,
-  and where an FOI or RTI route is used, a statutory clock. And the outcome is
-  not ours to control: a refusal *is* the asset, and publishing one is where
-  the "no unsupported allegation" constraint stops being notional.
-- **Pronunciation audio for a reconstructed language stage — 6 slots, 2 MVP
-  pages.** A reconstruction has no speakers, so there is nothing to license.
-  The workbook's hedge *"pronunciation audio where licensed"* defers a
-  question with no licensing answer. Any such audio is a newly made
-  performance of a modern reconstruction: an attestation-gradient problem
-  first — a recording sounds like evidence in a way a starred form does not —
-  and a consent question if the speaker is a community member.
-- **Material macro and present-context imagery — 12 slots, 2 MVP pages
-  (`keeladi`, `the-water-city`).** No existing photograph is of Keeladi *as it
-  is now*, and material macro needs physical access to material. This is a
-  photographer commission in Tamil Nadu, with permissions from the excavating
-  authority and consent from people in frame. A further 6 site-photography
-  slots are counted separately, below, as unmeasured rather than impossible.
+**The decision is about the 140, and it is not a budget question yet.** Not one
+of those slots could be measured. Every archive, image repository and museum
+API that would say whether the material exists was unreachable (`SRC-089`).
+The register schedules them as though someone knew; nobody does.
 
-**A limit on the third item, stated so the owner is not asked to fund a
-commission against an absence this survey did not establish.** Whether openly
-licensed *archival* site photography exists is **unmeasured**, not absent.
-Wikimedia Commons, Flickr Commons, Openverse, the ASI and the Tamil Nadu
-department were all unreachable (`SRC-089`), so `AS-017` is typed
-`NOT ACCESSIBLE` and deliberately not `ABSENT DESPITE ADEQUATE SEARCH`.
-Commons plausibly holds usable Keeladi and Indus-site photography. The
-present-context half of the gap is real under any licence regime; the archival
-half may evaporate the moment the allowlist opens.
+### What is definitionally impossible — 7 slots, 2 of them MVP
+
+**Institutional correspondence** (`AS-015`), on `custody` and `the-archive`. A
+record of a transaction between this project and a holding institution: a
+request not yet made, an answer not yet given. Typed `NOT PRODUCED`. Cost is
+staff time, correspondence, and where an FOI or RTI route is used, a statutory
+clock — and the outcome is not ours to control, since a refusal *is* the
+asset, and publishing one is where the "no unsupported allegation" constraint
+stops being notional.
+
+Even this rests on reading an ambiguous workbook string as meaning *this*
+project's correspondence. On the reading where a published FOI disclosure log
+would serve, the number is zero.
+
+### What was wrongly called impossible, and is merely unmeasured — 25 slots
+
+- **Access-status evidence, 7.** Partly pre-exists in data already downloaded:
+  the Met's CC0 dataset carries `Gallery Number`, populated on 290 of the
+  1,005 records (28.9%) against a 10.2% museum baseline (`AS-023`). A page
+  about what an institution keeps out of sight can source part of that
+  argument from the institution's own open data today.
+- **Pronunciation audio, 6.** The workbook says "where licensed" and does not
+  say *reconstructed*; the first version of the brief added that word, which
+  made the slot impossible by construction. Burushaski, Kusunda and Nihali are
+  living or recently living languages and spoken-language archives hold
+  recordings. The archives were blocked (`AS-016`).
+- **Site photography, material macro, present-context imagery, 12.** All
+  `NOT ACCESSIBLE`. Material macro plausibly sits in the CC0 image corpora
+  `AS-009` records as unmeasured; a recent openly licensed photograph would
+  satisfy present-context (`AS-017`).
+
+Fieldwork and commissioning may still be right for all of these. The point is
+that today it cannot be *shown* to be necessary, and asking you to fund it on
+this evidence would be asking you to fund an absence this survey did not
+establish.
 
 ### The second question, which is not about money
 
 Every rights position this survey verified belongs to a Euro-American museum:
 the Met, Cleveland, Tate, the Art Institute, the Smithsonian. Indian and Tamil
 archives were in the probe set and were blocked, so the asymmetry is a channel
-artefact — but it points the same way as the history the custody pages are
-about. **A sourcing policy of "use what is openly licensed", followed
-mechanically, would illustrate ancient South Asia entirely out of the
-collections that removed it.**
+artefact. But **a sourcing policy of "use what is openly licensed", followed
+mechanically, would illustrate ancient South Asia entirely out of collections
+in Europe and North America.**
+
+How those objects got there is a provenance question this project has not
+investigated for a single object, and nothing here asserts an answer — an
+earlier draft wrote "the collections that removed it", which asserts one. What
+can be said without provenance research is that the distribution is itself the
+subject of the custody pages, and that arriving at it by default is a
+curatorial decision taken by accident.
 
 That may still be the right answer. A museum whose subject is custody has a
 defensible reason to show objects in the institutions that hold them, and to
-say so in every caption. What it cannot do is arrive there by default because
-the licence situation made it easy, and then present the result as neutral.
+say so in every caption. What it cannot do is arrive there because the licence
+situation made it easy, and then present the result as neutral.
 
-The one worked instance is already recorded: the Met's CC0 open data carries
-no findspot field outside Egyptian Art (`AS-022`), so a Met image can be
-captioned with a collection and its history and **not** with a site. The
-sourcing route and the caption limit come together.
+The one worked instance is recorded: the Met's CC0 data relates none of the
+1,005 records to a findspot, though it gives a region-level "made in"
+attribution for about one in twenty (`AS-022`). So a Met image can be captioned
+with a collection and its history, and not with a site. Route and caption limit
+arrive together.
 
 | Option | Consequence |
 |---|---|
-| **Cost and schedule all three gaps** as production line items | The register becomes schedulable and the MVP keeps all fifteen pages. Cost: a fieldwork commission, an access-request programme with an uncontrollable timeline, and an answer to the audio question before `sound-changes` and `veli` can ship complete. |
-| **Cut the affected slots**, pages carry marked placeholders into launch | Launch is unblocked and the placeholders are honest, since §6 of the plan requires them to be visibly placeholders and countable. Cost: `custody` and `the-archive` launch without the institutional evidence that is their whole argument. |
-| **Cut the affected pages from the MVP** | Removes `custody` (14), `the-archive` (15), `keeladi` (7), `the-water-city` (9). Cost: the MVP loses its two custody pages and both site pages, and with them most of what distinguishes this from a general-interest survey. |
-| **Defer until `D-001` is applied** and the Place/ecology gap is measured | Nothing is funded against an unmeasured absence, and the archival half of §5.3 may close for free. Cost: the 14 correspondence slots and the 6 audio slots do not move — no allowlist entry touches either — so this defers a third of the problem and none of the hardest part. |
+| **Fund the allowlist work first**, then decide (recommended) | `D-001` applied to the hosts in `HOLD-007` makes 133 of the 140 unmeasured slots decidable, at no acquisition cost. Nothing is commissioned against an absence nobody has established. Cost: it defers the 7 correspondence slots, which no allowlist touches, and both sit under MVP pages. |
+| **Start the access-request programme now**, in parallel | The 7 definitional slots have the longest and least controllable lead time, so starting them first is the one scheduling decision that is robust to whatever the allowlist reveals. Cost: staff time on a programme whose outcome is not ours to control. |
+| **Cost and schedule all 32 slots the first version named** as production line items | The register becomes schedulable and the MVP keeps all fifteen pages. Cost: funds a fieldwork commission and an audio programme that may be unnecessary — the objection that produced this revision. |
+| **Cut the affected pages from the MVP** | Removes `custody` (14), `the-archive` (15), `keeladi` (7), `the-water-city` (9). Cost: the MVP loses both custody pages and both site pages, and with them most of what distinguishes this from a general-interest survey. |
 
 **Decision:** which option, and separately, does the institution adopt a stated
 position on where its object imagery comes from — or does it accept the

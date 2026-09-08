@@ -41,10 +41,16 @@ SEARCH`: the search was not adequate, because the environment prevented it.
 Wikimedia Commons may hold usable photography of Keeladi and of Indus sites.
 It was not consulted, so nothing is known either way.
 
-The classes where the survey does assert that nothing openly licensed exists
-are the three where the gap is definitional rather than logistical, and those
-are recorded separately at `AS-015`, `AS-016` and `AS-019`. Opening the
-allowlist will not close those.
+There is exactly **one** slot type where the survey asserts that no licence
+route can exist, and it is definitional rather than logistical: institutional
+correspondence, 7 slots, `AS-015`. Opening the allowlist will not close that
+one. It closes, or at least makes decidable, every other gap in the register.
+
+An earlier version of this hold named three such classes (`AS-015`, `AS-016`
+and `AS-019`) and put 32 slots behind them. Two of those namings were wrong —
+`AS-019` is the diagram count, which §4 of the brief places among the
+self-sufficient 238, and `AS-016` was narrowed into impossibility by a word
+the workbook does not use. See `BF-025`.
 
 ## What would lift this hold
 
@@ -57,7 +63,10 @@ value for this programme:
    route to site photography that is not a fieldwork commission, and the only
    way to convert `AS-017` from `NOT ACCESSIBLE` into a measurement.
 3. `images.metmuseum.org` and `collectionapi.metmuseum.org` — the 1,005
-   object records censused at `AS-006` become 1,005 retrievable images.
+   object records censused at `AS-006` become checkable for images. How many
+   of them actually carry one is unknown: the CC0 dataset has no image column
+   (`AS-005`), so per-record image availability has not been measured and the
+   figure is an upper bound, not a count.
 4. `www.si.edu`, `edan.si.edu`, `smithsonian-open-access.s3-us-west-2.amazonaws.com`
    — promotes `AS-013` off `PROVISIONAL`.
 5. `asi.nic.in`, `www.tnarch.gov.in`, `data.gov.in` — promotes `AS-018` off

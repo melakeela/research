@@ -125,3 +125,88 @@ def excavation_scope(stream) -> None:
         if dept_filled[d]:
             print(f'  {d:38} {dept_filled[d]:6} of {n:6} ({100 * dept_filled[d] / n:.1f}%)')
     print('top values:', values.most_common(10))
+
+
+# Appended 2026-09-08T23:05Z after adversarial review (findings F1, F2).
+# Ledger SRC-100. Register AS-008, AS-022.
+#
+# excavation_scope() above answered "what does THIS column do elsewhere" and
+# stopped there. Two further questions had to be asked and were not:
+#   - what do the OTHER ten geography columns do on the same rows (F1)
+#   - what is the whole-file baseline for a field said to be a finding (F2)
+# A control that is only ever run on the column that prompted it is not a
+# control. Both are below, and the second is the one BF-024 mandates.
+
+GEOGRAPHY_COLUMNS = ('Geography Type', 'City', 'State', 'County', 'Country',
+                     'Region', 'Subregion', 'Locale', 'Locus', 'Excavation',
+                     'River')
+
+
+def subset_field_audit(stream) -> None:
+    """Geography coverage, and whole-file baselines, over the same subset.
+
+    Baseline first, subset second, always. A field populated on 99.9% of the
+    museum is a cataloguing convention; reporting its presence on a subset as
+    though it characterised that subset is the error BF-024 records.
+    """
+    import csv as _csv, collections as _c
+    reader = _csv.DictReader(stream)
+    total = 0
+    baseline = _c.Counter()
+    geo_type_all = _c.Counter()
+    subset = 0
+    subset_filled = _c.Counter()
+    subset_any_geo = 0
+    subset_geo_type = _c.Counter()
+    subset_excav_dept = _c.Counter()
+
+    for row in reader:
+        total += 1
+        for f in ('Credit Line', 'Gallery Number'):
+            if (row.get(f) or '').strip():
+                baseline[f] += 1
+        gt = (row.get('Geography Type') or '').strip()
+        if gt:
+            baseline['Geography Type'] += 1
+            geo_type_all[gt[:30]] += 1
+
+        blob = ' '.join((row.get(f) or '') for f in SEARCH_FIELDS).lower()
+        if not any(k in blob for k in KEYWORDS):
+            continue
+        if row.get('Is Public Domain', '') != 'True':
+            continue
+        try:
+            end = int(row.get('Object End Date') or 9999)
+        except ValueError:
+            end = 9999
+        if end > ANCIENT_CUTOFF_CE:
+            continue
+        subset += 1
+        for f in ('Credit Line', 'Gallery Number'):
+            if (row.get(f) or '').strip():
+                subset_filled[f] += 1
+        filled = [g for g in GEOGRAPHY_COLUMNS if (row.get(g) or '').strip()]
+        if filled:
+            subset_any_geo += 1
+        for g in filled:
+            subset_filled[g] += 1
+        if (row.get('Geography Type') or '').strip():
+            subset_geo_type[row['Geography Type'][:40]] += 1
+        if (row.get('Excavation') or '').strip():
+            subset_excav_dept[row.get('Department', '')] += 1
+
+    pct = lambda a, b: f'{100 * a / b:.1f}%' if b else 'n/a'
+    print(f'rows {total}; subset {subset}')
+    print('-- whole-file baselines --')
+    for f in ('Credit Line', 'Gallery Number', 'Geography Type'):
+        print(f'  {f:16} {baseline[f]:7} ({pct(baseline[f], total)})')
+    print(f'  Geography Type vocabulary: {geo_type_all.most_common(12)}')
+    print('-- the same fields on the subset --')
+    for f in ('Credit Line', 'Gallery Number'):
+        print(f'  {f:16} {subset_filled[f]:7} ({pct(subset_filled[f], subset)})')
+    print(f'  ANY geography column populated: {subset_any_geo} ({pct(subset_any_geo, subset)})')
+    for g in GEOGRAPHY_COLUMNS:
+        if subset_filled[g]:
+            print(f'    {g:16} {subset_filled[g]}')
+    print(f'  Geography Type values on the subset: {subset_geo_type.most_common()}')
+    print(f'  department of the Excavation-populated subset rows: {dict(subset_excav_dept)}')
