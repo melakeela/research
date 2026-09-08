@@ -279,6 +279,55 @@ an owner decision; they are research-programme scheduling.
   not a property — which is what D-042 asks — and any unit that relied on the
   2026-09-07 reading should be re-checked rather than assumed.
 
+## Opened by the dasa-forts pull-quote audit
+
+`04-AUDITS/dasa-forts-mohenjo-method.md`, 2026-09-08, raised by the owner.
+None of these is an owner decision. `DFO-001` and `DFO-002` were registered
+`INHERITED-UNVERIFIED` and **deliberately not resolved**; these are the
+retrievals that would let them be tested rather than argued.
+
+- **RQ-D-01 — bound and then test `DFO-001`.** *The region referred to
+  contained fortified sites.* Not testable as worded: region, period, what
+  counts as fortified, and how many are all unbounded, and the period is the
+  very thing `BF-027` finds unsettled. Bounding it is step 1 work and needs
+  no retrieval. Testing it then needs an excavation and survey lane this
+  repository does not have — there is no archaeological source in the ledger
+  at all. Note that the claim is **already asserted, unsourced, in published
+  copy** at `dasa-forts-rigveda.html:432` and in its candidate table, so this
+  is not a new proposition being entertained; it is an existing public claim
+  that has never had a retrieval behind it. Sequence after the `pur-`
+  translation audit, since "fortified" and *púr-* are the same question in
+  two languages (`BF-017`, `06-BRIEFS/pur-translation-standard.md`).
+- **RQ-D-02 — run a step-11 standing audit of the identification, to type
+  `DFO-002`.** *Institutionally dismissed rather than evidentially refuted.*
+  The §6 worksheet in the method note §4 shows why the claim is currently
+  unformed: search coverage is zero, so "no refutation was published" and "a
+  refutation was published and we have not read it" are indistinguishable
+  here. Trace each named proponent — Parpola first, whom
+  `dasa-forts-rigveda.html:441` already cites — and each objection, sorting
+  evidential objections from institutional ones. Expect the sort itself to be
+  contested; a footnote saying "no longer tenable on chronological grounds"
+  may be both. Blocked on literature access: `SRC-091` records Scite refusing
+  for quota, and `SRC-095` records `doi.org`, Crossref and OpenAlex refusing.
+- **RQ-D-03 — audit constitution §4A, the Rigveda's date.** The largest thing
+  this unit turned up and the one with the widest blast radius. **No register
+  in this repository asserts a date for the Rigveda at any status**, and the
+  published site differences that unstated date against Indus urbanism to
+  rule a candidate out. §4A is an unrun domain; until it is run, every "too
+  late", "too early" and "centuries before" in public copy rests on a figure
+  the evidence base does not hold. This is a domain, not an item, and it
+  should be scheduled as one.
+
+*Recorded against the "Not yet" entry below, not as an exception to it:* this
+unit read `melakeela/site` (`SRC-099`) while that list still reads *"Anything
+touching `melakeela/site`."* The reading is method **step 13**, checking
+MelaKeela itself, on the owner's explicit instruction, and it is a retrieval
+*of* the site as an object of audit — no site code was written, no page was
+changed, and nothing here schedules site work. The distinction between
+auditing the site and working on it is not written down anywhere, and this
+note is where that gap is recorded rather than assumed away. If the queue
+entry is meant to bar reading too, this unit should have held and said so.
+
 ## Standing sequencing rules
 
 - One programme at a time. Do not open parallel programmes until one has
