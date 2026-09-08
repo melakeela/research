@@ -86,7 +86,7 @@ coder would raise confidence in them; it would not raise their status. Two
 without promoting them. Where that is the answer, `02-claim-basis.csv` says so
 rather than inventing a retrieval that would not change anything.
 
-## The two things this unit found while specifying
+## What this unit found while specifying
 
 1. **The ground is not in this repository.** All 88 rows of
    `02-SOURCES/access-ledger.csv` were read: there is no excavation report, no
@@ -95,7 +95,14 @@ rather than inventing a retrieval that would not change anything.
    the corpus side. Raised as `05-HOLDS/HOLD-007`. This is **not** typed as an
    absence under constitution §6 — see `04-rules-and-gates.md` §5, which is the
    distinction the investigation exists to teach.
-2. **`PUR4J-I-02` carries a stale figure.** Its `evidence_for` reads "6 passages
+2. **`DEP-021` points at the wrong source.** Its `source_b` is `SRC-026`
+   (Arnold 1905, on metre) where its own prose describes Grassmann's
+   *Wörterbuch*, which has no ledger row — its glosses reach the registers
+   through `matched_lemmata.json` inside the pinned clone. The dependency it
+   records is correct and `PUR4J-022` and gate G-06 both rest on it; only the
+   pointer is wrong, so the row cannot be checked by following it. Logged as
+   `IC-P-003`.
+3. **`PUR4J-I-02` carries a stale figure.** Its `evidence_for` reads "6 passages
    against 8 for one hundred"; `PUR4J-002` and `PUR4J-003` were corrected to 9.
    Logged as `IC-P-002` in `04-AUDITS/INTERNAL-CONTRADICTIONS.csv`. The
    investigation quotes 9, from `PUR4J-002`.
