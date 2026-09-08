@@ -638,7 +638,16 @@ made accidentally by a layout engine balancing a grid.
 
 **Cost.** The most striking possible image in this world is prohibited unless
 the bridge exists. If the bridge exists at `PROVISIONAL`, the image ships with
-its rivals attached at equal weight (§4.5), which is less striking.
+its rivals attached, which is less striking.
+
+**Open dependency.** *At what weight* the rivals render is not settled.
+`04-AUDITS/INTERNAL-CONTRADICTIONS.csv` `IC-X-001` records that museum
+framework §4.5 (equal visual weight for a bridge's alternatives) and §12.3
+V-8 with `CLAUDE.md`'s no-false-equivalence rule (equal weight only where
+evidence is equal) have not been reconciled, and that the reconciliation is
+the framework author's. M-3's **prohibition** holds under either reading; only
+the licensed case differs. Recorded as `IC-W-002` so that a reader does not
+take the section reference for a settled rule.
 
 **Does not catch.** A single image that contains both — a modern photograph of
 an ancient structure still in use. That is one object, not a juxtaposition,
