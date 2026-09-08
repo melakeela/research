@@ -37,12 +37,24 @@ are not items 90–95 and do not extend the 1–89 numbering.
 | `status`, `owner_decision` | the owner's | left empty as instructed |
 | `research_required`, `product_spec_required`, `technical_dependency`, `institutional_dependency`, `proposed_destination`, `release`, `final_zip_location` | the full original item text | **left empty — see below** |
 
-### `current_site_coverage` and `existing_route` could not be populated
+### `current_site_coverage` and `existing_route` are still not established — but not for the reason first recorded
 
-`06-BRIEFS/SITE-INVENTORY.md` **does not exist**, on this branch or any other,
-and no other route inventory is in this repository. Both columns therefore
-carry an explicit `NOT ESTABLISHED` marker rather than a blank, so that "we
-did not establish this" cannot later be misread as "no page exists".
+**Corrected 2026-09-08.** The original wording said the route inventory did
+not exist. That was true of the path it was told to look at and false of the
+artefact. `06-BRIEFS/SITE-INVENTORY.md` does not exist in *this* repository,
+on this branch or any other. `SITE-INVENTORY.md` **does** exist, in
+`melakeela/site`: read on 2026-09-08 at commit `e6b6b67`, logged as `SRC-089`,
+listing 133 root HTML files, with a published evidence export covering 68 of
+them.
+
+What is still not established is the **mapping**: which of those 133 routes
+cover which of these 89 titles. Nothing in either repository states it, and
+assigning it now would be a new editorial taxonomy rather than an audit
+finding — the 2026-09-07 cross-repository audit says so in as many words. So
+both columns keep an explicit `NOT ESTABLISHED` marker, which now names where
+the inventory is and which decision the mapping waits on (`D-052`), rather
+than a blank, so that "we did not establish this" still cannot be misread as
+"no page exists". The hold is `MH-005`.
 
 Three artefacts were considered as substitutes and all three were rejected:
 
@@ -64,8 +76,10 @@ unsourced CSV that `DECISIONS-NEEDED.md` D-014 and constitution §1 exist to
 prevent. `METHODOLOGY-CONSTITUTION.md` §10 is explicit: *"Do not call an item
 covered merely because a related phrase appears in another packet."*
 
-**To finish these two columns:** supply `06-BRIEFS/SITE-INVENTORY.md`, or a
-current route list for the live site. The CSV is then regenerated, not rewritten.
+**To finish these two columns:** answer `D-052` — who owns the route-to-item
+mapping and whether ambiguous rows go to owner review rather than a forced
+primary category — and the CSV is regenerated against `SRC-089`, not
+rewritten. The route list is no longer the missing input; the mapping is.
 
 ### `prior_research_available`
 

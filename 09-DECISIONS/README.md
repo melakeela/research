@@ -37,9 +37,21 @@ raised_date,owner_answer,answer_date,notes,detail_ref
 - `constitution_ref` — where the decision comes from. A
   `METHODOLOGY-CONSTITUTION.md` section where there is one; otherwise the
   document or rule that raised it.
-- `status` — `OPEN`, `BLOCKED` (cannot be answered until something else
-  lands), or `RESOLVED`. A resolved row is kept, never deleted: the reasoning
-  it records is why the resolution holds.
+- `status` — one of five, and no other value or case:
+  - `OPEN` — asked, not answered.
+  - `BLOCKED` — cannot be answered until something else lands.
+  - `TAKEN-PENDING-REVIEW` — a working answer was adopted so that a unit
+    could finish, and it stands until the owner confirms or replaces it.
+    Declared here on 2026-09-08; three rows already used it (`CR-005`).
+  - `RESOLVED` — answered. A resolved row is kept, never deleted: the
+    reasoning it records is why the resolution holds.
+  - `SUPERSEDED` — replaced by another row, which the `notes` cell names.
+    Never used to retire a duplicate silently; the superseding row says what
+    it supersedes.
+
+  `04-AUDITS/validate-registers.py` enforces the set. Lowercase is not a
+  variant: `D-035` carried `open` until 2026-09-08 and it was a defect, not a
+  style.
 - `detail_ref` — the prose section, e.g. `DECISIONS-NEEDED.md D-014`. Empty
   means this row is the whole record.
 
