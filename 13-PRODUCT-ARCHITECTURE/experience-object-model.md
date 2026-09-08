@@ -1300,3 +1300,265 @@ can actually be computed rather than asserted.
    prompt, a hint, a framing sentence or a Character. Everything a Challenge
    asserts resolves to `targets`, `rivals[]`, `evidence_set[]` or
    `institution_position`.
+
+---
+
+## 10. Mission — `mk:msn:`
+
+### 10.1 What it is, and how it differs from a Journey
+
+**A Mission is an ordered sequence of Activities directed at exactly one
+Question, whose outcome is a record rather than a reward.**
+
+Mission and Journey are the two container objects and the distinction between
+them is not size:
+
+| | Mission | Journey |
+|---|---|---|
+| Organised around | one Question | a through-line across Exhibits |
+| Holds | Activities, and Challenges | Exhibits, and Missions |
+| Shape | a task with a stated end | a traversal with a stated extent |
+| Ends when | the visitor has recorded a decision, or leaves | the visitor has been everywhere, or leaves |
+| Asserts | nothing beyond its Activities | its through-line claim set, and its order where the order implies a sequence |
+
+A Mission is the object behind the children's five-stage investigation
+(museum framework §10.4.3) and behind any adult equivalent. It is deliberately
+small: **one question, one sitting, one thing carried away.**
+
+### 10.2 Fields
+
+| Field | Type | Notes |
+|---|---|---|
+| `id` | identifier | `mk:msn:<key>` |
+| `revision` | integer | append-only |
+| `question_ref` | `mk:qst:` | **exactly one, required.** A Mission with two questions is two Missions. |
+| `assembles[]` | ordered array of `mk:rel:` (`assembles`) | Activities and Challenges, in order. **Non-empty.** |
+| `order_is_claimed` | bool | see §10.4 |
+| `exhibit_context` | `mk:exh:` | the Exhibit the Mission runs within, from which posture and mode constraints derive |
+| `outcome_form` | enum | `field-bag-record` · `exported-run` · `none`. **Never a score, a badge, a completion percentage or a streak.** |
+| `abandon_state` | enum | `resumable` · `discarded`. A Mission may be left at any point; leaving is not failure and produces no prompt to return. |
+| `progress_storage` | enum | `local` · `none`. Never server-side for any visitor — §10.5 |
+| `age_bands[]` | array | declarative, §5.4 |
+| `objective_refs[]` | array of `mk:lob:` | via `prepares-for` |
+| `preconditions[]` | array | §8.7, aggregated from its Activities and its own |
+| `duration_estimate` | interval | advisory; §10.4.4 forbids time pressure and the estimate may not be displayed as a countdown |
+| `accessibility_equivalent` | reference | required; the whole sequence must be completable by the equivalents its Activities carry |
+| `constraint_block` | Constraint Block | §5.2 |
+
+### 10.3 Grounding
+
+A Mission grounds through composition (§2.5): its Activities are grounded, so it
+is. It additionally carries a direct link — `question_ref` — which is required
+independently, so a Mission is never grounded only transitively.
+
+**A Mission whose Activities are all removed or suspended becomes ungrounded at
+that moment and is unpublishable from that moment.** It does not retain grounding
+through Activities it no longer has. This is the case §2.5 exists for, and it is
+not hypothetical: an Activity suspends automatically when a consent lapses
+(§8.7), so a Mission can lose its grounding without anyone editing it.
+
+### 10.4 Order is sometimes a claim
+
+The children's five stages are ordered for a reason — observation before
+interpretation, evidence before decision, the institution's position last — and
+that order is a pedagogical position, not an assertion about the past.
+
+But an order can assert. A Mission whose steps run *"first this settlement, then
+this one, then this one"* has made a chronological claim in its navigation, and a
+Mission that ends where the institution's preferred explanation is has made an
+argument by sequence.
+
+Museum framework §8.3 has already met this and ruled on it for the Atlas's seven
+settings: *"It is not a route. The settings are places the visitor can move
+through in any order, and the interface must not present them as an itinerary
+with an arrow, because the itinerary is itself the contested claim."*
+
+The rule here is that finding generalised:
+
+> **`order_is_claimed = true` requires that the sequence be carried as a statused
+> claim in `exercises` on the Mission, with its own evidence and falsifiers.
+> Otherwise the order must be pedagogical only, and the Mission must state that
+> its order is a way of working and not a sequence in the world.**
+
+A pedagogical order is still fixed — LOOK before DECIDE is not negotiable — but
+it is fixed for a reason the visitor is told.
+
+### 10.5 Progress, and why none of it is kept on a server
+
+`progress_storage` has two values and neither is server-side.
+
+Museum framework §10.4.5 requires that no account is offered to under-16
+visitors and §10.3 makes the Field Bag local by default, with any server-side bag
+opt-in and *"for under-16 visitors it does not exist at all."* Because the
+institution has no age gate and must not build one (§5.4), a server-side progress
+store for adults is a store the institution cannot guarantee holds no child's
+data.
+
+The cost is real and is accepted: a visitor who changes device loses their place.
+The alternative is an institution that either builds an age gate it has ruled
+out, or holds children's behavioural records while stating that it does not.
+
+Classroom sets are the one place a stored, shareable container exists, and they
+are the teacher's, saved to the teacher's optional account, holding no student
+data and no assessment scoring (§10.5.2).
+
+### 10.6 Rules
+
+- **No completion mechanic.** No badge, no percentage, no streak, no
+  congratulation, no "you have finished". A Mission ends when the visitor has
+  recorded what they think, and the record is the outcome (§9.3, §10.4.4).
+- **"I don't know" completes a Mission.** §10.4.3 stage 4: *"'we don't know' is
+  offered and is never scored as a failure."* A Mission whose only recordable
+  outcomes are conclusions is a Mission that has scored the visitor.
+- **The institution's position comes last** (§10.4.3 stage 5, §9.3), and a
+  difference between the visitor's reasoning and the institution's is *"presented
+  as interesting, not wrong."*
+- **A Mission may not be built on `HOLD` material without disclosing the hold**
+  (§9.3), and may not be built on `INHERITED-UNVERIFIED` material at all where
+  it asks the visitor to conclude — the derived-asset rule of §3.12 applied to
+  experience: *"a derived asset may not be commissioned or published while the
+  claim it depicts is `INHERITED-UNVERIFIED` or `HOLD`."*
+- **Field-mode Missions do not exist in the Extraction / Collection or
+  Reconnection postures** (§1.7). An adult Investigation-mode Mission there is
+  mandatory rather than forbidden; the restriction is on Field Mode, not on
+  seriousness.
+- **The Constraint Block binds the Mission independently of its Activities.** A
+  sequence of individually permissible Activities can compose a forbidden one —
+  §8.5's buckets problem is exactly that — so the Mission declares its own
+  `compare_terms[]` aggregate and its own `sorting_of_persons = none`, and the
+  publication gate checks the sequence as well as the steps.
+
+---
+
+## 11. Journey — `mk:jny:`
+
+### 11.1 What it is
+
+**A Journey is a traversal of Exhibits along a stated through-line, whose
+through-line is itself a claim set.**
+
+Museum framework §10.1 specifies the Living World as *"a themed traversal of the
+whole evidence base along a single material or ecological thread, crossing every
+posture rather than sitting in one"*, with five pattern requirements. The Journey
+is the general object; **a Living World is a Journey with `living_world = true`
+and §10.1's requirements enforced.** WATER (§10.2) would be an instance, and
+whether it is the first is `OWNER-DECISIONS.csv` D-005 and is not decided here.
+
+Making Living World a subtype rather than a parallel object matters: it means
+the institution cannot build a "tour" or a "trail" or a "collection" that escapes
+§10.1's requirements by not being called a Living World.
+
+### 11.2 Fields
+
+| Field | Type | Notes |
+|---|---|---|
+| `id` | identifier | `mk:jny:<key>` |
+| `revision` | integer | append-only |
+| `through_line` | string | what the thread is |
+| `through_line_claims[]` | array of `mk:rel:` (`exercises`) | **the claim set the thread asserts, listed and statused at the entrance** (§10.1). Non-empty. This is what makes a Journey an assertion rather than a menu. |
+| `traverses[]` | array of `mk:rel:` (`traverses`) | the Exhibits, with `traversal_order`. **Non-empty; minimum two** — a Journey through one Exhibit is an Exhibit. |
+| `traversal_order` | enum | `free` · `suggested` · `fixed`. Constrained by §11.4. |
+| `order_is_claimed` | bool | as §10.4; a `fixed` order implying chronology or causation requires a statused claim |
+| `postures_crossed[]` | derived, enum(7) | from the assigned postures of its Exhibits |
+| `living_world` | bool | when true, §11.3's additional requirements are enforced |
+| `absences[]` | array of `mk:abs:` | **what the thread cannot show, and why** (§10.1), typed under §3.7 |
+| `missions[]` | array of `mk:msn:` | Missions available along the way |
+| `entry_points[]` | array of `mk:exh:` | where a visitor may join. A Journey with one entry point and a fixed order is a corridor, and must justify being one. |
+| `export_profile` | reference | exportable as a claim set (§10.1, §5.2) |
+| `age_bands[]` | array | declarative |
+| `preconditions[]` | array | §8.7, aggregated |
+| `constraint_block` | Constraint Block | §5.2 |
+
+### 11.3 Living World requirements, as constraints
+
+When `living_world = true`, museum framework §10.1's five requirements become
+validation rules:
+
+1. **It creates no private content.** Every Exhibit it traverses stands alone
+   and is reachable without it. `traverses` links may not point at an Exhibit
+   whose `release_state` is anything but `published`, and no Exhibit may exist
+   solely as a Journey stop. §10.1: *"It creates no private content and no claim
+   that does not exist outside it."*
+2. **It crosses at least four postures, including at least one of Extraction /
+   Collection or Reconnection.** Computed from `postures_crossed[]` and enforced.
+   §10.1: *"A Living World that visits only the pleasant postures is a
+   brochure."*
+3. **Its through-line claim set is listed and statused at the entrance**, before
+   the visitor walks it.
+4. **It carries its own absences**, typed.
+5. **It is exportable as a claim set.**
+
+Requirement 2 depends on the posture count, which museum framework **D-015**
+may reduce from seven to six. The rule is written as "at least four of the
+assigned postures, including at least one of Extraction / Collection and
+Reconnection" so that it survives either answer: neither of the two named
+postures is the one D-015 is about.
+
+### 11.4 Route is an assertion, and `fixed` is the exception
+
+Museum framework §8.3 on the language mode's seven settings: *"It is not a
+route … because the itinerary is itself the contested claim."* §8.7 lists
+*"animate a movement that is not a statused transition"* among the things the
+Atlas may never do.
+
+A Journey is an itinerary by construction, so the rule cannot be "no
+itineraries". It is:
+
+> **`traversal_order` defaults to `free`. `suggested` requires a stated reason
+> that is pedagogical, not historical. `fixed` requires either a stated
+> pedagogical necessity or, where the order implies a sequence in time, in
+> causation, in influence or in derivation, a statused claim in
+> `through_line_claims[]` carrying that sequence with its own evidence,
+> alternatives and falsifiers.**
+
+The test for whether an order asserts: **would a visitor who walked it in
+reverse learn something false?** If yes, the order is a claim. If they would only
+be confused, it is pedagogy.
+
+This is where a Journey most easily becomes an argument the institution has not
+made. A route from steppe to Punjab to the Ganges asserts a migration whether or
+not a sentence says so, and a route ending on MelaKeela's preferred explanation
+asserts that it is where the evidence leads. Both are claims with statuses or
+they are not routes.
+
+### 11.5 Grounding
+
+A Journey carries **both** a direct grounding (`through_line_claims[]`,
+non-empty) and composition grounding through its Exhibits.
+
+The direct link is required because the through-line is the one thing a Journey
+adds. Without it a Journey is a list of Exhibits — which is a legitimate object,
+but it is a search result set (§7.2), and search result sets are already
+addressable, exportable and citable. **A Journey that asserts no through-line is
+a saved search, and should be one.** This is not a demotion: a saved search is
+honest about being a filter, and the export at §5.2 carries the query, the
+facets, the date and the base revision.
+
+### 11.6 Rules
+
+- **Journeys add route, not content** (§7.5). An Exhibit shows the same claims
+  with the same statuses whether reached from a Journey, a search or an external
+  citation.
+- **The through-line claim set is shown before entry, with statuses.** A
+  visitor may decline to walk a thread made of hypotheses; that is a legitimate
+  response and the entrance must make it possible.
+- **Proportionality applies to the traversal** (§3.10). A Journey that spends
+  six Exhibits on the explanation the evidence supports weakly and one on the
+  explanation it supports strongly has allocated space against weight, and the
+  divergence is a review finding.
+- **Absences are part of the thread, not an appendix.** What the thread cannot
+  show is displayed within it, typed, at the point where a visitor would expect
+  to see the thing that is missing.
+- **Decay.** When an Exhibit in `traverses[]` is withdrawn, the Journey shows the
+  gap rather than closing over it — the same discipline §3.4 requires of a
+  custody chain, where *"gaps are steps"* and rendering a three-step chain as two
+  is laundering. A Journey that silently reroutes around a withdrawn Exhibit has
+  made its route look more complete than the record.
+- **A Journey may not be paced.** No timers, no "you are 40% through", no
+  sequence lock that withholds a later Exhibit until an earlier one is
+  completed. §10.4.4 forbids time pressure; a completion lock is time pressure
+  with the clock hidden.
+- **The Constraint Block binds the Journey as a whole**, as it binds the Mission
+  (§10.6): a sequence of permissible Exhibits can compose an impermissible
+  argument, most obviously by ordering material so that a classification appears
+  to be discovered.
