@@ -2103,3 +2103,181 @@ him.
 
 **That is the whole argument of this section in one comparison, and it is why the
 Character object is specified as narrowly as it is.**
+
+---
+
+## 14. Composition, modes and the publication gate
+
+### 14.1 How the eight objects compose
+
+```
+Journey ──traverses──▶ Exhibit ──presents──▶ Claim / Relationship / Absence
+   │                      │
+   │                      ├──activities──▶ Activity ──exercises──▶ Claim / Rel / Absence
+   │                      ├──characters──▶ Character ──attested-in / speaks-for──▶ Evidence / Agent
+   │                      └──question_refs──▶ Question ──bears-on──▶ Evidence / Claim / Absence
+   │
+   └──missions──▶ Mission ──question_ref──▶ Question
+                     └──assembles──▶ Activity, Challenge ──targets──▶ Claim@r<n>
+
+Learning Objective ──taught-on──▶ Claim / Absence / Evidence
+                   ◀──prepares-for── Activity, Mission
+```
+
+Every arrow into the right-hand column is a Grounding Link (§4). Every arrow
+within the experience layer is composition, which carries grounding only under
+§2.5 and asserts nothing about the past.
+
+### 14.2 The mode matrix needs no new row
+
+Museum framework §1.7 gives a posture-to-mode matrix over five modes: Source,
+Atlas, Investigation, Field, Classroom. The eight objects add no sixth mode.
+
+**Experience objects are realised *in* modes and inherit the matrix from the
+mode they run in.** An Activity has a `mode`; a Mission takes its constraints
+from its `exhibit_context`'s posture; a Journey's constraints are the union of
+its Exhibits'. Three consequences worth stating because they are load-bearing:
+
+- **Field-mode objects cannot exist in the Extraction / Collection or
+  Reconnection postures.** A posture reassignment that moves an Exhibit into one
+  of them suspends its Field Activities and the Missions built on them (§7.5,
+  §10.6). A child may read a custody record; a child may not be assigned a
+  verdict on one (§10.4.6).
+- **Investigation Mode is mandatory in Tamil Retrofuture, Reading Room and
+  Extraction / Collection**, which means every Exhibit in those three postures
+  carries at least one Challenge. That is the framework's own rule (§1.7) with a
+  countable consequence: an Exhibit in one of those postures with no `mk:chl:` is
+  incomplete, and the gate can say so.
+- **Source Mode is mandatory everywhere**, so every experience object is one
+  interaction from the claims, statuses and sources behind what it shows.
+
+### 14.3 The publication gate
+
+An experience object publishes when all of the following hold. Each is checkable
+without human judgement except where a named person is required, and those are
+named rather than implied.
+
+1. **Grounding resolves.** At least one Grounding Link, or composition members
+   that have one (§2.5); every link's target resolves; no target is retracted,
+   withdrawn or tombstoned.
+2. **Status ceilings hold.** No link's status exceeds its target's (§4.3). No
+   Learning Objective's `assertion_form` exceeds its `claim_status_ceiling`
+   (§12.4). No Activity has `has_right_answer` on a claim below `VERIFIED`
+   (§8.2).
+3. **The Constraint Block validates**, on resolved referents rather than
+   declared classes (§5.3), for the object and — for containers — for the
+   sequence (§10.6, §11.6).
+4. **Preconditions are in force**, not merely requested: consent records
+   unlapsed, rights not `unknown`, community-authority agreements current
+   (§8.7).
+5. **Accessibility equivalents exist** and carry the same evidential content
+   including status, attestation mode and uncertainty (§11.9.1–2).
+6. **Both adversarial tests have run** on the containing Exhibit, with the
+   asymmetry statement where they are shown together (§3.11, §11.2).
+7. **The Step 14 shape is complete** on the Exhibit, with no heading empty and
+   `copy_complicates` either populated or carrying an explicit `none-found` with
+   the bias-test rows that searched (§7.4).
+8. **A named person has signed the Constraint Block review** (§5.2). The block
+   is not self-certifying, and the workbook's `Owner/status = Unassigned` on
+   38 of 38 rows (`INHERITED-UNVERIFIED`) is the state this requirement exists to
+   end.
+9. **An editorial decision row exists** in `03-REGISTERS/editorial-decisions.csv`
+   with a rationale and a person, rendered `publication:*` so it can never be
+   read as an evidence status (§11.5).
+
+**Failing the gate is not a blocker to be waived.** Each of the nine names a
+specific missing thing, and the missing thing is the work.
+
+### 14.4 Export
+
+Every experience object exports under museum framework §5.2 with the same
+requirements: exports carry status, carry the exclusion set where a filter was
+applied, are revision-pinned and dated, and resolve every identifier.
+
+Two additions:
+
+- **An experience export carries its Grounding Links**, with roles and
+  `surface_role`. An export of a Mission that listed its Activities but not what
+  they exercise would be a table of prompts, which is the artefact §5.2's status
+  rule exists to prevent, in this layer's shape.
+- **A visitor's own outputs export separately from the institution's content**
+  and are never mixed with it (§10.3). Visitor text is the visitor's.
+
+---
+
+## 15. What this specification leaves to the owner
+
+### 15.1 Decisions raised by this document
+
+Written up in `DECISIONS-NEEDED.md`, against rows allocated in
+`09-DECISIONS/OWNER-DECISIONS.csv`, which is authoritative for the namespace.
+
+| ID | Decision | Section |
+|---|---|---|
+| D-046 | Do the §10.4.7 prohibitions bind the whole institution, the experience layer, or child-facing surfaces only? | §5.4 |
+| D-047 | Which school curricula, if any, do Learning Objectives map to? | §12.6 |
+| D-048 | Does an individual's consent suffice where a community holds authority over the material? | §13.3.3 |
+| D-049 | May the institutional method guide be personified for children? | §13.3.4 |
+| D-050 | Does the institution depict past people visually at all, and under what marker? | §13.5 |
+| D-051 | May attested words be voiced, or only quoted? | §13.3.2 |
+
+Four of the six are Character decisions. That is not an accident of drafting: it
+is what §13.1 predicts. Everything else in the experience layer can be settled by
+asking what the evidence supports; a Character asks additionally how a person may
+be presented, and that question is not fully answerable from the record.
+
+### 15.2 Decisions cited but not re-raised
+
+From `09-DECISIONS/OWNER-DECISIONS.csv`: D-005 (is WATER the first Living
+World — §11.1), D-006 (Keezhadi or an inscription as the children's pilot —
+§8.7), D-008 (Release 1 scope — §12.6), D-011 (the deferred set — §0.4).
+
+From the museum framework, via `DECISIONS-NEEDED.md`: D-015 (seven postures or
+six — §11.3 is written to survive either answer), D-024 (is PROVE IT the
+correction intake — §9.1, §9.6 fall away under a negative answer), D-026 (human
+remains — §13.6 item 6), D-031 (which languages are maintained — §12.8 item 5),
+D-034 (the atlas site count — §7.2's title rule).
+
+**Two are load-bearing.** D-024 determines whether §9.6 exists at all. D-015
+changes the posture count that §11.3's four-posture rule is stated against; the
+rule is written so that it does not.
+
+### 15.3 What this specification deliberately did not specify
+
+Offered as input to the deferred register (museum framework §13.1) when the v2
+backlog is available:
+
+- Any instance of any of the eight objects. No Question, Exhibit, Activity,
+  Challenge, Mission, Journey, Learning Objective or Character is created here.
+- The children's pilot's content, which waits on D-006 and on the consent or
+  rights precondition that pilot carries (§8.7).
+- WATER's Journey instance, which waits on D-005.
+- The editorial workflow by which experience objects are drafted and reviewed,
+  beyond §14.3's gate and the rule that the Constraint Block is signed by a
+  named person.
+- Any migration of the 96 audited pages into Exhibits. Migration depends on the
+  editorial decisions the museum framework deliberately does not take.
+- Cost, lead time and staffing. Nothing here supplies estimates and none should
+  be inferred.
+
+---
+
+## 16. Status of this document
+
+Every design proposition here is `HYPOTHESIS`.
+
+Every statement drawn from `01-INHERITED/curatorial-audit-v1.1/` or from
+`06-BACKLOG/EXPANSION-PROMPT-2026-09-07.md` is `INHERITED-UNVERIFIED` and is
+marked at the point of use. The three constraints at §5.1 are sourced to
+`MELA-KEELA-WHO-MADE-THE-PAST.md` §9, which is not in this repository; their
+wording is `INHERITED-UNVERIFIED` (`RESEARCH-QUEUE.md` `WMP-9`, numbering
+discrepancy at D-037), and their standing as constraints does not depend on that
+because they are prohibitions on what the institution builds, not claims about
+the past.
+
+Nothing here has been retrieved, so no rows were added to
+`02-SOURCES/access-ledger.csv` and no domains were requested.
+
+This is a specification. Per constitution §15 and museum framework Rule S-3: it
+is not an implemented page, no object described here exists, and it must not be
+described as one.
