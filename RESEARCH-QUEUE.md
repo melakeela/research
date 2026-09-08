@@ -109,7 +109,7 @@ thing the investigation is most likely to get wrong.
 | G | BMAC/Oxus and pre-split Indo-Iranian contact | Reading "Proto-Indo-Iranian" as pre-contact or purely inherited |
 | H | Rigvedic and Old Avestan social worlds | A violent-Indic versus peaceful-Iranian binary; genre mistaken for society |
 | I | Rigvedic society, patronage and canonization | Sanitizing patronage as timeless spirituality |
-| J | The Rigvedic forts | Translating *pur* into a Mature Harappan city; one famous count standing for the corpus — *corpus built 2026-09-07 at the stanza unit, 103 passages, all fifteen enumerated items addressed and the five-way typology assigned. 99 is stated in 6 passages and is not the modal count; 100 is, in 8. Poet lineage rests on Geldner alone (`HOLD-006`); proposed geography is `NOT PRODUCED` — the pinned corpus carries no geographic content. See `06-BRIEFS/pur-4j-corpus.md`.* |
+| J | The Rigvedic forts | Translating *pur* into a Mature Harappan city; one famous count standing for the corpus — *corpus built 2026-09-07 at the stanza unit, 103 passages, all fifteen enumerated items addressed and the five-way typology assigned. 99 is stated in 6 passages and is not the modal count; 100 is, in 9 (`IC-P-003`: this row read 8, the pre-correction figure, until 2026-09-08). Proposed geography is `NOT PRODUCED` **for constitution §4J's geography field** — `RA-021`: this row's earlier wording extended `PUR4J-018` past its scope, and the pinned corpus does carry hydronym lemmas, which `PUR4J-017` records and `03-REGISTERS/domain-e-hydronyms.csv` enumerates at 469 occurrences. Poet lineage rests on Geldner alone (`HOLD-006`). See `06-BRIEFS/pur-4j-corpus.md`.* |
 | K | Indus writing and institutional discontinuity | Concluding that populations vanished because institutions and archives did |
 | L | Avestan writing | Reading a Sasanian-era alphabet as transparent evidence of Gāthic pronunciation |
 | M | Brahui, Kurukh and Malto | Medieval migration treated as documented fact; living people used as linguistic fossils |
@@ -262,6 +262,22 @@ or research holds. Constitution §11.
 ## Not yet
 
 - Product and institutional specification (§12) — pending **D-012**.
+
+  *Recorded against this item, not as an exception to it:* a visitor-loop
+  specification was produced out of position on 2026-09-08, on the owner's
+  instruction, and is at `06-BRIEFS/visitor-loop.md`. **The placement is not
+  settled**, on the same terms as the page briefs below: no owner decision was
+  allocated for it and none is claimed, and `D-012` is still `OPEN`. It
+  schedules no launch, approves no page, orders no work and assumes no answer to
+  `D-012`, `D-032` or `D-034`. **Its first revision put the loop's arrival on
+  `index`, MVP rank 1, and specified that page's content; independent
+  adversarial review held that this crossed `D-032` and it was right.** Rev. 2
+  moved the arrival to the Question node's own landing surface, so no MVP page
+  appears in the loop; `06-BRIEFS/visitor-loop.md` §9 records what the move cost.
+  The specification's own standing, and the reading under which the unit should
+  have waited, are in its §0. It raised **D-046** and engages **D-021**. Review
+  findings are logged at `BF-023` to `BF-028`, `RA-020`, `RA-021`, `IC-P-004` and
+  `IC-P-005`.
 - The language-movement Artifact Atlas specification (§13).
 - Page and exhibit briefs.
 
@@ -278,6 +294,13 @@ or research holds. Constitution §11.
   be reverted, is written up in `06-BRIEFS/mvp-fifteen/README.md` §0. The other
   81 pages are untouched.
 - Anything touching `melakeela/site`.
+
+  *Recorded against that item:* the visitor-loop specification did **not** touch
+  it and could not. `SRC-086`'s blocking constraint — *"melakeela/site is not
+  accessible from this session"* — is displayed inside the loop as a limit on the
+  institution's own ignorance-claim rather than worked around. Constitution step
+  13 therefore did not run on `what-varna-meant.html`; `W-6` in that file is what
+  would let it.
 
 ## Item numbering
 
