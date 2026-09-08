@@ -1233,3 +1233,78 @@ scoring (§10.5.2).
 
 **Decision:** which of the three, and if the first, is §10.3 amended in the
 framework or left standing with this layer as its exception?
+
+---
+
+# Decisions raised by the Atlas v2 build specification
+
+`13-PRODUCT-ARCHITECTURE/atlas-v2-specification.md` raises three, allocated in
+`09-DECISIONS/OWNER-DECISIONS.csv`. Two of them block nothing and are recorded
+in the CSV only, per `CLAUDE.md`: **D-053** (do the eleven layers gain a twelfth
+for historiographical evidence, or does it stay in the panel — default built
+under: no twelfth layer) and **D-054** (does the Route get its own type code
+`mk:rte:`, or is it a Relationship Object with a waypoint extension — default
+built under: `rte` is allocated). The third blocks the content of the first
+Atlas build and is set out below.
+
+## D-055 — Does the Atlas ship a present-day language-distribution reference layer?
+
+**Raised by:** Atlas v2 build specification §9.2, §9.4, §12
+**Category:** two consequential interpretive positions both remaining viable
+**Related:** D-022 (layer grouping and first-load defaults), D-034 (the atlas
+site count, which §8.5 of the specification neutralises but does not answer)
+
+This is the only layer any registered claim could populate **on the map** today,
+and it is also the layer whose misreading the record explicitly refuses.
+
+**What exists.** The only place-anchored material in `03-REGISTERS/` above
+`INHERITED-UNVERIFIED` is present-day: 47 attested Dravidian lects and 20
+attested Munda lects with Glottolog coordinates (`DE-M-021`, `DE-M-022`,
+`VERIFIED`, `SRC-060`), and the 20 DravLex varieties that overlap them
+(`DMB-008`, `SRC-050`). Everything else the repository has measured — the 15
+Rigvedic loan-candidate lemmas and their 21 tokens, the 253-lemma retroflex upper
+bound, the 31 hydronyms over 251 occurrences, the 103-stanza `pur-` corpus, the
+23 tokens of `varṇa-` — has no place assertion at all, because the pinned corpus
+carries no geographic content of any kind (`PUR4J-018`, `VERIFIED`).
+
+**Two things about that dataset that narrow the question.** It is **one source,
+not three**: `DE-M-021`'s note reads *"Glottolog coordinates as carried by
+JAMBU"*, so `SRC-060` and `SRC-050` are one upstream (`DEP-027`), the counts do
+not add, and the layer would be single-sourced. And it carries **no date
+assertion at all** — `DMB-008`: *"Present-day or recent-survey locations only:
+nothing here dates anything"*; `SRC-050`: *"Point coordinates only. No polygon,
+no historical extent, no date"* — so it answers no setting of the Atlas time
+control and would reach the map only through an explicit undated control. The
+layer under discussion is therefore one undated, single-sourced, present-day
+dataset, which is a smaller thing than the first draft of this section described
+(corrected under `BF-026`).
+
+**Why it is not simply a free win.** `BR-E-003` records the bridge *attested
+modern distribution → prehistoric distribution* as **EXPLICITLY REFUSED**.
+`DMB-002` (`VERIFIED`) states the same limit on the derived distances: they
+support *"no statement about where Dravidian was spoken at any date: the
+statistic has no chronological term, the attested set is a survival sample rather
+than a sample of past distribution, and the reference point is a free parameter
+of the analyst's choosing"* — with `DMB-013` measuring that free parameter's
+effect at 0 to 1,453 km. `DMB-015` types the intervening absence rather than
+reading it as a fact about the past.
+
+So the question is not whether the data is good. It is good, and it is
+`VERIFIED`. The question is what putting it on an atlas of antiquity does, given
+that it will be the only thing drawn.
+
+| Option | Consequence |
+|---|---|
+| **Ship it, off at first load**, labelled present-day, switchable, excluded from evidence exports (the specification's default, labelled as a default and not an adoption) | The Atlas opens with an empty map and an honest one: the visitor sees the unknown layer, the unlocated tray and no marks, and reaches the modern distribution by choosing it. Museum framework §6.3 permits present-day reference material *"if at all"* on exactly these terms. Cost: an empty opening map is a hard thing to ship, and the layer a visitor has to find is a layer most will not find. |
+| **Ship it on at first load** as the Atlas's only populated map layer | The Atlas opens with something on it, and what it opens with is true. Cost: the first thing a visitor sees on a map of ancient South Asia is a modern language distribution, and the label is the only thing standing between that and the reading `BR-E-003` refuses. On the evidence of the v1 page — where a contested site count reached a page title (`IH-250`, `X-01`) — a label is not a strong enough guard. |
+| **Do not ship it** | The Atlas opens with no marks on the map and offers no route to the modern distribution at all. The refusal is complete and needs no label to hold. Cost: `VERIFIED` material with real interpretive value is withheld from a surface built to display evidence, and the withholding is itself an editorial judgement made in the visitor's place. |
+
+Under all three options the layer's objects, if drawn, carry the `contextualises`
+role and cannot move any language claim (museum framework §3.3), the coordinates
+render as approximate extents rather than points (specification §2.3), and their
+Date Assertions place them in the modern band of the time control with no
+interaction that moves them earlier.
+
+**Decision:** which of the three — and if the first, is "off at first load" the
+right default, or should the layer be reachable only from the panel that explains
+what `BR-E-003` refuses?
