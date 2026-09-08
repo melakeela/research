@@ -1233,3 +1233,85 @@ scoring (§10.5.2).
 
 **Decision:** which of the three, and if the first, is §10.3 amended in the
 framework or left standing with this layer as its exception?
+
+## D-053 — The commissioning cost the asset register never carried, and who the museum's pictures come from
+
+**Raised by:** `06-BRIEFS/asset-sourcing-plan.md` §5 and §8
+**Category:** payment or institutional access required; living-community
+consent; publication approval
+**Register:** `03-REGISTERS/asset-sourcing.csv` `AS-015`, `AS-016`, `AS-017`,
+`AS-021`
+**Related:** `D-001` (egress allowlist, tracked in `HOLD-007`); `D-032`
+(whether `before-the-indus` leaves the MVP)
+
+The inherited asset register carries 392 slots under one uniform
+`Source / commission route = To research`, and that uniformity is what hid
+this. Sourcing survey: 238 of the 392 slots need no third party at all, 109
+need a licence and a route exists or may exist, and **32 cannot be licensed
+from anyone, because the thing they name does not exist.** Ten of those 32 are
+MVP slots.
+
+Not "no open licence has been found." No licence is possible:
+
+- **Institutional correspondence and access-status evidence — 14 slots, 2 MVP
+  pages (`custody`, `the-archive`).** These are records of a transaction
+  between this project and a holding institution — a request made, an answer
+  given or withheld. Nobody publishes them because there is nothing to publish
+  until someone asks. Typed `NOT PRODUCED`. Cost: staff time, correspondence,
+  and where an FOI or RTI route is used, a statutory clock. And the outcome is
+  not ours to control: a refusal *is* the asset, and publishing one is where
+  the "no unsupported allegation" constraint stops being notional.
+- **Pronunciation audio for a reconstructed language stage — 6 slots, 2 MVP
+  pages.** A reconstruction has no speakers, so there is nothing to license.
+  The workbook's hedge *"pronunciation audio where licensed"* defers a
+  question with no licensing answer. Any such audio is a newly made
+  performance of a modern reconstruction: an attestation-gradient problem
+  first — a recording sounds like evidence in a way a starred form does not —
+  and a consent question if the speaker is a community member.
+- **Material macro and present-context imagery — 12 slots, 2 MVP pages
+  (`keeladi`, `the-water-city`).** No existing photograph is of Keeladi *as it
+  is now*, and material macro needs physical access to material. This is a
+  photographer commission in Tamil Nadu, with permissions from the excavating
+  authority and consent from people in frame. A further 6 site-photography
+  slots are counted separately, below, as unmeasured rather than impossible.
+
+**A limit on the third item, stated so the owner is not asked to fund a
+commission against an absence this survey did not establish.** Whether openly
+licensed *archival* site photography exists is **unmeasured**, not absent.
+Wikimedia Commons, Flickr Commons, Openverse, the ASI and the Tamil Nadu
+department were all unreachable (`SRC-089`), so `AS-017` is typed
+`NOT ACCESSIBLE` and deliberately not `ABSENT DESPITE ADEQUATE SEARCH`.
+Commons plausibly holds usable Keeladi and Indus-site photography. The
+present-context half of the gap is real under any licence regime; the archival
+half may evaporate the moment the allowlist opens.
+
+### The second question, which is not about money
+
+Every rights position this survey verified belongs to a Euro-American museum:
+the Met, Cleveland, Tate, the Art Institute, the Smithsonian. Indian and Tamil
+archives were in the probe set and were blocked, so the asymmetry is a channel
+artefact — but it points the same way as the history the custody pages are
+about. **A sourcing policy of "use what is openly licensed", followed
+mechanically, would illustrate ancient South Asia entirely out of the
+collections that removed it.**
+
+That may still be the right answer. A museum whose subject is custody has a
+defensible reason to show objects in the institutions that hold them, and to
+say so in every caption. What it cannot do is arrive there by default because
+the licence situation made it easy, and then present the result as neutral.
+
+The one worked instance is already recorded: the Met's CC0 open data carries
+no findspot field outside Egyptian Art (`AS-022`), so a Met image can be
+captioned with a collection and its history and **not** with a site. The
+sourcing route and the caption limit come together.
+
+| Option | Consequence |
+|---|---|
+| **Cost and schedule all three gaps** as production line items | The register becomes schedulable and the MVP keeps all fifteen pages. Cost: a fieldwork commission, an access-request programme with an uncontrollable timeline, and an answer to the audio question before `sound-changes` and `veli` can ship complete. |
+| **Cut the affected slots**, pages carry marked placeholders into launch | Launch is unblocked and the placeholders are honest, since §6 of the plan requires them to be visibly placeholders and countable. Cost: `custody` and `the-archive` launch without the institutional evidence that is their whole argument. |
+| **Cut the affected pages from the MVP** | Removes `custody` (14), `the-archive` (15), `keeladi` (7), `the-water-city` (9). Cost: the MVP loses its two custody pages and both site pages, and with them most of what distinguishes this from a general-interest survey. |
+| **Defer until `D-001` is applied** and the Place/ecology gap is measured | Nothing is funded against an unmeasured absence, and the archival half of §5.3 may close for free. Cost: the 14 correspondence slots and the 6 audio slots do not move — no allowlist entry touches either — so this defers a third of the problem and none of the hardest part. |
+
+**Decision:** which option, and separately, does the institution adopt a stated
+position on where its object imagery comes from — or does it accept the
+default that the reachable licences produce?
