@@ -84,12 +84,21 @@ match rules 1–6.
 
 **Assigned posture: Living Tiṇai, editorially, by the workbook.** That assignment is
 `INHERITED-UNVERIFIED` and carries no override reason, because the register that
-would hold one does not exist. `SCHEMA.md` §7: *"nothing in `03-REGISTERS/`
+would hold one does not exist. `SCHEMA.md` §7: *"Nothing in `03-REGISTERS/`
 records a publication decision, an environment assignment, or a duplication
-finding."* Creating the Editorial Register (§11.5) with `derived_posture`,
-`assigned_posture`, `override_reason`, `decided_by`, `decided_date` is a
-prerequisite for this page, not a nicety: an assignment with no derivation to
-disagree with cannot be audited.
+finding."* Creating the Editorial Register — specified at §11.5 as
+`03-REGISTERS/editorial-decisions.csv`, with `decision_type` including
+`posture-assignment`, and with `value`, `derived_value`, `override_reason` and
+`derived_residual` — is a prerequisite for this page, not a nicety: an
+assignment with no derivation to disagree with cannot be audited.
+
+*(Note for the framework's own re-audit: §1.5 names these fields
+`derived_posture` / `assigned_posture` / `override_reason`, and §11.5 names them
+`value` / `derived_value` / `override_reason` / `derived_residual`. The two
+sections of the specification do not agree on the field names for the same
+record. This brief follows §11.5, which is the section that defines the
+register. Recorded, not resolved — it is a defect in the specification, not in
+this page.)*
 
 **Secondary environment.** The workbook gives this page `Reading Room` as
 secondary — as it does for all 96. Framework §1.6.1 rules that a value constant
@@ -130,14 +139,14 @@ What exists instead is inherited material that **bears on** this page without be
 | claim_id | status | locator | what it bears on |
 |---|---|---|---|
 | `IH-138` | `INHERITED-UNVERIFIED` | `01-INHERITED/claude-project-handoff.md L273` | Hypothesis H-04: post-urban Indus settlement moved east tracking a weakening monsoon. For: correlation. Against: causation is undocumented and no single cause is settled for the decline. The handoff requires it be labelled an inference. Adjacent to this page rather than under it — it concerns the post-urban phase. |
-| `IH-029` | `INHERITED-UNVERIFIED` | `01-INHERITED/claude-project-handoff.md L88` | Rakhigarhi is not one individual: eleven Indus-Periphery outliers from Gonur and Shahr-i-Sokhta form a cline of which I6113 is part. Adjacent, and it comes with `DECISIONS-NEEDED.md` **D-033** — `rakhigarhi` is in the contradiction register but is not among the 96 pages of the audited build. |
+| `IH-029` | `INHERITED-UNVERIFIED` | `01-INHERITED/claude-project-handoff.md L88` | Correction C-16, **rejected as R-09**: Claude had written *'the sample is ONE individual, I6113'*, and the handoff records that **Claude's caution understated a well-supported finding** — eleven Indus-Periphery outliers from Gonur and Shahr-i-Sokhta form a cline of which I6113 is part. Adjacent to this page rather than under it, and cited here for the direction of the error: this is the one logged case in the inheritance where a correction ran *towards* the canonical finding rather than away from it. |
+| `IH-263` | `INHERITED-UNVERIFIED` | `01-INHERITED/claude-project-handoff.md L487` | Contradiction X-14, and the row `DECISIONS-NEEDED.md` **D-033** rests on: the live `rakhigarhi` page says there is no seafaring in the Rigveda while the site's corpus file records *nau-* at n = 40 — and `rakhigarhi` is not among the 96 pages of the audited build. |
 
 
 **Nothing in any register bears on the water engineering or on the absence of
 palaces.** The two rows above are the nearest Indus-related material in the
 inheritance and neither supports this page's claims; they are listed so that the
-gap is legible rather than implied. This page is one of four in the fifteen with
-no topical inherited claim at all behind its central assertion.
+gap is legible rather than implied.
 
 **The negative claim is the page's real work, and the standard for it is
 written.** `CLAUDE.md`'s negative-evidence standard requires, *before* arguing
@@ -168,9 +177,9 @@ as strong as the criterion by which one would be identified.
 **On "lowest status".** `INHERITED-UNVERIFIED` is not the bottom rung of a
 ladder. Framework §3.2: six of the seven statuses describe evidential standing
 and one describes *where the assertion came from* — a prior model's summary of
-its own conversation — so the interface *"must never sort or colour
-`INHERITED-UNVERIFIED` between `PROVISIONAL` and `HYPOTHESIS` as though the
-statuses formed a single ladder."* What can be said exactly is the operative
+its own conversation — so *"the interface must therefore never sort or
+colour `INHERITED-UNVERIFIED` between `PROVISIONAL` and `HYPOTHESIS` as though
+the statuses formed a single ladder."* What can be said exactly is the operative
 ceiling, and it is the same for all fifteen pages: **nothing bearing on this
 page stands above `INHERITED-UNVERIFIED`.** Where the handoff labelled a finding
 `VERIFIED` or `PROVISIONAL`, that label came in with it and did not survive
@@ -193,7 +202,7 @@ From `01-INHERITED/curatorial-audit-v1.1/asset-register.csv`, verbatim (`INHERIT
 | Status | `Needed` |
 
 
-**How this class should be derived instead.** Framework §1.6.3(a) replaces genre-driven asset classes with a mapping from the exhibit's **evidence-class composition** — the constitution's step 4 inventory. The workbook derived this row from the page's `Type`, a 29-value vocabulary with 17 singletons that `SCHEMA.md` §4 finds *"too sparse to do reliably"* the production-planning work it is doing. Under §1.6.3(a) a page with no recorded evidence classes yields **no** production class, which is the correct output and is this page's actual state.
+**How this class should be derived instead.** Framework §1.6.3(a) replaces genre-driven asset classes with a mapping from the exhibit's **evidence-class composition** — the constitution's step 4 inventory. The workbook derived this row from the page's `Type`, a 29-value vocabulary with 17 singletons that `SCHEMA.md` §3 finds *"too sparse to do reliably"* the production-planning work it is doing. Under §1.6.3(a) a page with no recorded evidence classes yields **no** production class, which is the correct output and is this page's actual state.
 
 
 `site/landscape photography` and `present-context image` need physical presence
@@ -215,9 +224,9 @@ are not repeated here. What follows is what this page needs **beyond** them.
 
 1. The absence claim is typed under constitution §6, with excavation coverage stated for the sites it generalises over. Untyped, it is not publishable in any posture.
 2. A recognition criterion for *palace* is stated: what material signature would count, and who proposed it. Without one, *'no palace'* reports a vocabulary, not a settlement pattern.
-3. The positive water-engineering claims are tied to named excavation reports with locators, and the source genealogy is mapped (method step 5) — Indus urban drainage is a literature where many publications trace to few excavations.
+3. The positive water-engineering claims are tied to named excavation reports with locators, and the source genealogy is mapped (method step 5). Whether this literature in fact concentrates on few excavations is what step 5 measures; this brief asserts no genealogy it has not mapped.
 4. The bridge between infrastructure and political organisation is tested separately (method step 10). *'No palace to control it'* joins a material observation to a claim about power; those are two claims.
-5. The `Meluhha and Indus` overlap cluster is addressed: the workbook recommends the four pages be presented as one curated sequence, and at most two of the four are in the release — one of them subject to D-032.
+5. The `Meluhha and Indus` overlap cluster is addressed: the workbook recommends the four pages be presented as one curated sequence, and two of the four are in the release — `the-water-city` and `before-the-indus`, the second subject to D-032; `meluhha` and `meluhha-trade` are `MVP = No`.
 
 
 ---
@@ -231,9 +240,10 @@ excavation; the identification criteria proposed for elite residences in Indus
 archaeology and by whom; then type the absence. In parallel, the positive
 half — a register of water features with site, context and report locator.
 
-**Blocked on egress for the excavation literature**, on the same evidence as
-MVP-U7: `SRC-052`, and `SRC-081` to `SRC-083`. A `05-HOLDS/` row is owed. What is
-*not* blocked is the criterion work: the recognition criterion for *palace* is an
+**Retrieval state as for MVP-U7**: general-web hosts refused (`SRC-081` to
+`SRC-083`), the excavation literature itself never probed, the git lane
+(`SRC-058`) untested for it. A `05-HOLDS/` row is owed once the search has been
+run and failed. What needs no retrieval at all is the criterion work: the recognition criterion for *palace* is an
 argument about categories and can be assembled from what is reachable, and it is
 the half of this unit that changes the page most.
 

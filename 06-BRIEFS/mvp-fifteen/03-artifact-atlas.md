@@ -90,12 +90,21 @@ match rules 1–6.
 
 **Assigned posture: Living Signal Field, editorially, by the workbook.** That assignment is
 `INHERITED-UNVERIFIED` and carries no override reason, because the register that
-would hold one does not exist. `SCHEMA.md` §7: *"nothing in `03-REGISTERS/`
+would hold one does not exist. `SCHEMA.md` §7: *"Nothing in `03-REGISTERS/`
 records a publication decision, an environment assignment, or a duplication
-finding."* Creating the Editorial Register (§11.5) with `derived_posture`,
-`assigned_posture`, `override_reason`, `decided_by`, `decided_date` is a
-prerequisite for this page, not a nicety: an assignment with no derivation to
-disagree with cannot be audited.
+finding."* Creating the Editorial Register — specified at §11.5 as
+`03-REGISTERS/editorial-decisions.csv`, with `decision_type` including
+`posture-assignment`, and with `value`, `derived_value`, `override_reason` and
+`derived_residual` — is a prerequisite for this page, not a nicety: an
+assignment with no derivation to disagree with cannot be audited.
+
+*(Note for the framework's own re-audit: §1.5 names these fields
+`derived_posture` / `assigned_posture` / `override_reason`, and §11.5 names them
+`value` / `derived_value` / `override_reason` / `derived_residual`. The two
+sections of the specification do not agree on the field names for the same
+record. This brief follows §11.5, which is the section that defines the
+register. Recorded, not resolved — it is a defect in the specification, not in
+this page.)*
 
 **Secondary environment.** The workbook gives this page `Reading Room` as
 secondary — as it does for all 96. Framework §1.6.1 rules that a value constant
@@ -106,15 +115,19 @@ state, not as a second posture.
 
 
 **Atlas Mode is mandatory** (§1.7), and §8.7 lists eight things the Atlas may
-never do. Four of them are directly at issue in the audited v1 page, and none can
-be checked here because the build has not been retrieved:
+never do. Four are at issue for this page, and only the first can be checked
+here, because the build has not been retrieved:
 
-1. *Show a total in its own voice* — the v1 title does exactly this.
-2. *Render an approximate location as a precise point* — 145 assumed rows make
-   this the default failure.
+1. *Show a total in its own voice* — the only one checkable from here, and it
+   fails: the title in `page-audit.csv` states a count.
+2. *Render an approximate location as a precise point* — the risk `IH-105`'s 145
+   assumed rows create. Whether v1 in fact renders them as precise points is not
+   knowable without the build.
 3. *Render unknown as blank* — constitution §13 requires unknown regions to stay
    visibly unknown; a blank map *"reads as empty and empty reads as nobody."*
+   Untestable from here.
 4. *Let a filter silently drop the weak evidence to produce a cleaner picture.*
+   Untestable from here.
 
 §8.1's resolution is the one that makes the page launchable at all: **the Atlas
 has no headline count.** A count is a claim with a status, an inclusion rule and
@@ -160,9 +173,9 @@ What exists instead is inherited material that **bears on** this page without be
 **On "lowest status".** `INHERITED-UNVERIFIED` is not the bottom rung of a
 ladder. Framework §3.2: six of the seven statuses describe evidential standing
 and one describes *where the assertion came from* — a prior model's summary of
-its own conversation — so the interface *"must never sort or colour
-`INHERITED-UNVERIFIED` between `PROVISIONAL` and `HYPOTHESIS` as though the
-statuses formed a single ladder."* What can be said exactly is the operative
+its own conversation — so *"the interface must therefore never sort or
+colour `INHERITED-UNVERIFIED` between `PROVISIONAL` and `HYPOTHESIS` as though
+the statuses formed a single ladder."* What can be said exactly is the operative
 ceiling, and it is the same for all fifteen pages: **nothing bearing on this
 page stands above `INHERITED-UNVERIFIED`.** Where the handoff labelled a finding
 `VERIFIED` or `PROVISIONAL`, that label came in with it and did not survive
@@ -185,7 +198,7 @@ From `01-INHERITED/curatorial-audit-v1.1/asset-register.csv`, verbatim (`INHERIT
 | Status | `Needed` |
 
 
-**How this class should be derived instead.** Framework §1.6.3(a) replaces genre-driven asset classes with a mapping from the exhibit's **evidence-class composition** — the constitution's step 4 inventory. The workbook derived this row from the page's `Type`, a 29-value vocabulary with 17 singletons that `SCHEMA.md` §4 finds *"too sparse to do reliably"* the production-planning work it is doing. Under §1.6.3(a) a page with no recorded evidence classes yields **no** production class, which is the correct output and is this page's actual state.
+**How this class should be derived instead.** Framework §1.6.3(a) replaces genre-driven asset classes with a mapping from the exhibit's **evidence-class composition** — the constitution's step 4 inventory. The workbook derived this row from the page's `Type`, a 29-value vocabulary with 17 singletons that `SCHEMA.md` §3 finds *"too sparse to do reliably"* the production-planning work it is doing. Under §1.6.3(a) a page with no recorded evidence classes yields **no** production class, which is the correct output and is this page's actual state.
 
 
 This is the one page of the fifteen whose asset set is not embargoed by §3.12 —

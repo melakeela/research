@@ -88,12 +88,21 @@ match rules 1–6.
 
 **Assigned posture: Tamil Retrofuture, editorially, by the workbook.** That assignment is
 `INHERITED-UNVERIFIED` and carries no override reason, because the register that
-would hold one does not exist. `SCHEMA.md` §7: *"nothing in `03-REGISTERS/`
+would hold one does not exist. `SCHEMA.md` §7: *"Nothing in `03-REGISTERS/`
 records a publication decision, an environment assignment, or a duplication
-finding."* Creating the Editorial Register (§11.5) with `derived_posture`,
-`assigned_posture`, `override_reason`, `decided_by`, `decided_date` is a
-prerequisite for this page, not a nicety: an assignment with no derivation to
-disagree with cannot be audited.
+finding."* Creating the Editorial Register — specified at §11.5 as
+`03-REGISTERS/editorial-decisions.csv`, with `decision_type` including
+`posture-assignment`, and with `value`, `derived_value`, `override_reason` and
+`derived_residual` — is a prerequisite for this page, not a nicety: an
+assignment with no derivation to disagree with cannot be audited.
+
+*(Note for the framework's own re-audit: §1.5 names these fields
+`derived_posture` / `assigned_posture` / `override_reason`, and §11.5 names them
+`value` / `derived_value` / `override_reason` / `derived_residual`. The two
+sections of the specification do not agree on the field names for the same
+record. This brief follows §11.5, which is the section that defines the
+register. Recorded, not resolved — it is a defect in the specification, not in
+this page.)*
 
 **Secondary environment.** The workbook gives this page `Reading Room` as
 secondary — as it does for all 96. Framework §1.6.1 rules that a value constant
@@ -145,11 +154,17 @@ evidence over about two thousand years:
 
 1. *Dozens of legal systems were operating* — a quantitative claim requiring an
    inventory, a definition of 'legal system', and an attestation type for each.
-2. *One was in a single volume* — a claim about textual form, and the one that
-   least survives contact with the dharmaśāstra corpus, which is not a single
-   volume.
-3. *That one became law* — a claim about the colonial codification process,
-   c. 1772 onward, with named actors.
+2. *One was in a single volume* — a claim about textual form. Which text or
+   compilation the H1 means by *a single volume* is not stated on the page as
+   the workbook records it, and this brief does not supply one. It is the claim
+   most exposed to the attestation gradient (constitution §4E): a text, a
+   recension, a commentary and a colonial digest are four different objects, and
+   *a single volume* could name any of them.
+3. *That one became law* — a claim about a codification process with a date
+   range and named actors, none of which the page's H1 states and none of which
+   this repository holds. Establishing that chronology from dated documents is
+   step 2 of the method and part of the unit in §6; this brief supplies no dates
+   of its own.
 4. The implied causal link between 2 and 3 — that textual convenience explains
    selection.
 
@@ -177,9 +192,9 @@ argument but to source it to Aktor, Davis and Olivelle directly — which is wha
 **On "lowest status".** `INHERITED-UNVERIFIED` is not the bottom rung of a
 ladder. Framework §3.2: six of the seven statuses describe evidential standing
 and one describes *where the assertion came from* — a prior model's summary of
-its own conversation — so the interface *"must never sort or colour
-`INHERITED-UNVERIFIED` between `PROVISIONAL` and `HYPOTHESIS` as though the
-statuses formed a single ladder."* What can be said exactly is the operative
+its own conversation — so *"the interface must therefore never sort or
+colour `INHERITED-UNVERIFIED` between `PROVISIONAL` and `HYPOTHESIS` as though
+the statuses formed a single ladder."* What can be said exactly is the operative
 ceiling, and it is the same for all fifteen pages: **nothing bearing on this
 page stands above `INHERITED-UNVERIFIED`.** Where the handoff labelled a finding
 `VERIFIED` or `PROVISIONAL`, that label came in with it and did not survive
@@ -202,7 +217,7 @@ From `01-INHERITED/curatorial-audit-v1.1/asset-register.csv`, verbatim (`INHERIT
 | Status | `Needed` |
 
 
-**How this class should be derived instead.** Framework §1.6.3(a) replaces genre-driven asset classes with a mapping from the exhibit's **evidence-class composition** — the constitution's step 4 inventory. The workbook derived this row from the page's `Type`, a 29-value vocabulary with 17 singletons that `SCHEMA.md` §4 finds *"too sparse to do reliably"* the production-planning work it is doing. Under §1.6.3(a) a page with no recorded evidence classes yields **no** production class, which is the correct output and is this page's actual state.
+**How this class should be derived instead.** Framework §1.6.3(a) replaces genre-driven asset classes with a mapping from the exhibit's **evidence-class composition** — the constitution's step 4 inventory. The workbook derived this row from the page's `Type`, a 29-value vocabulary with 17 singletons that `SCHEMA.md` §3 finds *"too sparse to do reliably"* the production-planning work it is doing. Under §1.6.3(a) a page with no recorded evidence classes yields **no** production class, which is the correct output and is this page's actual state.
 
 
 `translation excerpt rights` is again the unbounded dependency (§1.6.3(a)); the
@@ -248,10 +263,13 @@ reconstruction are four different things); establish the colonial codification
 chronology for claim 3 from dated documents; and read Aktor 2018 and Davis
 2020/2022/2024 directly rather than through the handoff's summary of them.
 
-**Blocked on egress for the secondary literature**, on the same evidence as the
-other blocked units (`SRC-052`; `SRC-081` to `SRC-083`): no reachable host serves
-these publications. A `05-HOLDS/` row is owed naming them and what each would
-settle. The decomposition itself needs no retrieval and should be done first — it
+**Retrieval state: untested for these specific publications.** The general-web
+hosts are recorded refused (`SRC-081` to `SRC-083`), but **no probe for Aktor
+2018 or Davis 2020/2022/2024 is recorded in the ledger**, and `SRC-058` records
+the git lane open to arbitrary public repositories. This brief therefore does
+not assert that no host serves them; running the search and typing the outcome
+is part of the unit, and a `05-HOLDS/` row is owed once it has been run and
+failed. The decomposition itself needs no retrieval and should be done first — it
 is what turns one unfalsifiable headline into four checkable claims, and it is
 also the analytical half of the `Split`.
 

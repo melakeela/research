@@ -85,12 +85,21 @@ match rules 1–6.
 
 **Assigned posture: Living Tiṇai, editorially, by the workbook.** That assignment is
 `INHERITED-UNVERIFIED` and carries no override reason, because the register that
-would hold one does not exist. `SCHEMA.md` §7: *"nothing in `03-REGISTERS/`
+would hold one does not exist. `SCHEMA.md` §7: *"Nothing in `03-REGISTERS/`
 records a publication decision, an environment assignment, or a duplication
-finding."* Creating the Editorial Register (§11.5) with `derived_posture`,
-`assigned_posture`, `override_reason`, `decided_by`, `decided_date` is a
-prerequisite for this page, not a nicety: an assignment with no derivation to
-disagree with cannot be audited.
+finding."* Creating the Editorial Register — specified at §11.5 as
+`03-REGISTERS/editorial-decisions.csv`, with `decision_type` including
+`posture-assignment`, and with `value`, `derived_value`, `override_reason` and
+`derived_residual` — is a prerequisite for this page, not a nicety: an
+assignment with no derivation to disagree with cannot be audited.
+
+*(Note for the framework's own re-audit: §1.5 names these fields
+`derived_posture` / `assigned_posture` / `override_reason`, and §11.5 names them
+`value` / `derived_value` / `override_reason` / `derived_residual`. The two
+sections of the specification do not agree on the field names for the same
+record. This brief follows §11.5, which is the section that defines the
+register. Recorded, not resolved — it is a defect in the specification, not in
+this page.)*
 
 **Secondary environment.** The workbook gives this page `Reading Room` as
 secondary — as it does for all 96. Framework §1.6.1 rules that a value constant
@@ -140,12 +149,16 @@ What exists instead is inherited material that **bears on** this page without be
 | `IH-248` | `INHERITED-UNVERIFIED` | `01-INHERITED/claude-project-handoff.md L462` | Section 8 HELD register: *Sangam, Tolkappiyam, Tevaram, the Pali canon, the Asokan edicts, the Saunaka Atharvaveda and a clean Chandogya* — recorded as a load-bearing source *'currently reached via NOT OBTAINED / NOT FOUND'*, carrying *'Everything Tamil, Pali and Prakrit that is not the Kural'*. Under the handoff's Rule 7 every claim resting on it is HELD. |
 
 
-`IH-248` is the operative row. The five-*tiṇai* scheme is set out in the
-Tolkāppiyam's *Poruḷatikāram* and exemplified across the Sangam anthologies.
-Those are precisely the texts the inheritance records as never obtained. The page
-therefore defines a framework from primary texts that no one in this project's
-record has read directly — which is a different and more serious position than
-having read them and cited them thinly.
+`IH-248` is the operative row. It names *Sangam* and *Tolkappiyam* among the
+sources recorded as NOT OBTAINED / NOT FOUND — and those are the sources a
+tiṇai page would have to rest on, since the page's own subject is a Tamil poetic
+scheme. **Where exactly the scheme is set out is not something this brief can
+state**: naming the chapter and the text that carries it would be a claim about
+the contents of documents the same row records as unread here, which is the
+error the page is suspected of. What can be said is the structural position: the
+page defines a framework from primary texts that no one in this project's record
+has read directly, which is a different and more serious position than having
+read them and cited them thinly.
 
 
 ### Lowest status among them
@@ -156,9 +169,9 @@ having read them and cited them thinly.
 **On "lowest status".** `INHERITED-UNVERIFIED` is not the bottom rung of a
 ladder. Framework §3.2: six of the seven statuses describe evidential standing
 and one describes *where the assertion came from* — a prior model's summary of
-its own conversation — so the interface *"must never sort or colour
-`INHERITED-UNVERIFIED` between `PROVISIONAL` and `HYPOTHESIS` as though the
-statuses formed a single ladder."* What can be said exactly is the operative
+its own conversation — so *"the interface must therefore never sort or
+colour `INHERITED-UNVERIFIED` between `PROVISIONAL` and `HYPOTHESIS` as though
+the statuses formed a single ladder."* What can be said exactly is the operative
 ceiling, and it is the same for all fifteen pages: **nothing bearing on this
 page stands above `INHERITED-UNVERIFIED`.** Where the handoff labelled a finding
 `VERIFIED` or `PROVISIONAL`, that label came in with it and did not survive
@@ -181,7 +194,7 @@ From `01-INHERITED/curatorial-audit-v1.1/asset-register.csv`, verbatim (`INHERIT
 | Status | `Needed` |
 
 
-**How this class should be derived instead.** Framework §1.6.3(a) replaces genre-driven asset classes with a mapping from the exhibit's **evidence-class composition** — the constitution's step 4 inventory. The workbook derived this row from the page's `Type`, a 29-value vocabulary with 17 singletons that `SCHEMA.md` §4 finds *"too sparse to do reliably"* the production-planning work it is doing. Under §1.6.3(a) a page with no recorded evidence classes yields **no** production class, which is the correct output and is this page's actual state.
+**How this class should be derived instead.** Framework §1.6.3(a) replaces genre-driven asset classes with a mapping from the exhibit's **evidence-class composition** — the constitution's step 4 inventory. The workbook derived this row from the page's `Type`, a 29-value vocabulary with 17 singletons that `SCHEMA.md` §3 finds *"too sparse to do reliably"* the production-planning work it is doing. Under §1.6.3(a) a page with no recorded evidence classes yields **no** production class, which is the correct output and is this page's actual state.
 
 
 `claim-specific diagram` — the obvious one being a five-landscape diagram — is
@@ -219,15 +232,14 @@ are not repeated here. What follows is what this page needs **beyond** them.
 Tolkāppiyam *Poruḷatikāram*, locate the tiṇai chapters, record the scheme with
 exact locators, and separate the text's own statements from the commentators'.
 
-**Blocked, and the block is documented rather than assumed.** No reachable host
-in this session serves the text: `SRC-083` records `sacred-texts.com` and
-`wisdomlib.org` blocked at 2026-09-07T15:10Z, `SRC-080` records GRETIL blocked,
-`SRC-081` the Internet Archive blocked, `SRC-082` TITUS blocked, and `SRC-052`
-characterises the lane as `github.com` and `raw.githubusercontent.com` only. A
-`05-HOLDS/` row is owed naming the Tolkāppiyam edition as the unreachable source
-and stating what it would settle. Whether a citable edition is served over the
-git lane is untested, and testing it is step 1 of the unit rather than an
-assumption in this brief.
+**Retrieval state: the likely hosts are refused, the git lane is untested.**
+`SRC-083` records `sacred-texts.com` and `wisdomlib.org` refused at
+2026-09-07T15:10Z, `SRC-080` GRETIL, `SRC-081` the Internet Archive, `SRC-082`
+TITUS. Whether a citable edition is served over the still-open git lane
+(`SRC-058`) is **untested**, and testing it is step 1 of the unit — so this
+brief does not state that the text is unreachable, only that every host probed
+so far has refused. A `05-HOLDS/` row is owed once that search has been run and
+failed, naming the edition and what it would settle.
 
 
 ---

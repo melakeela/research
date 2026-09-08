@@ -84,12 +84,21 @@ match rules 1–6.
 
 **Assigned posture: Tamil Retrofuture, editorially, by the workbook.** That assignment is
 `INHERITED-UNVERIFIED` and carries no override reason, because the register that
-would hold one does not exist. `SCHEMA.md` §7: *"nothing in `03-REGISTERS/`
+would hold one does not exist. `SCHEMA.md` §7: *"Nothing in `03-REGISTERS/`
 records a publication decision, an environment assignment, or a duplication
-finding."* Creating the Editorial Register (§11.5) with `derived_posture`,
-`assigned_posture`, `override_reason`, `decided_by`, `decided_date` is a
-prerequisite for this page, not a nicety: an assignment with no derivation to
-disagree with cannot be audited.
+finding."* Creating the Editorial Register — specified at §11.5 as
+`03-REGISTERS/editorial-decisions.csv`, with `decision_type` including
+`posture-assignment`, and with `value`, `derived_value`, `override_reason` and
+`derived_residual` — is a prerequisite for this page, not a nicety: an
+assignment with no derivation to disagree with cannot be audited.
+
+*(Note for the framework's own re-audit: §1.5 names these fields
+`derived_posture` / `assigned_posture` / `override_reason`, and §11.5 names them
+`value` / `derived_value` / `override_reason` / `derived_residual`. The two
+sections of the specification do not agree on the field names for the same
+record. This brief follows §11.5, which is the section that defines the
+register. Recorded, not resolved — it is a defect in the specification, not in
+this page.)*
 
 **Secondary environment.** The workbook gives this page `Reading Room` as
 secondary — as it does for all 96. Framework §1.6.1 rules that a value constant
@@ -132,17 +141,32 @@ What exists instead is inherited material that **bears on** this page without be
 
 | claim_id | status | locator | what it bears on |
 |---|---|---|---|
-| `IH-091` | `INHERITED-UNVERIFIED` | `01-INHERITED/claude-project-handoff.md L216` | The handoff's finding V-08, from `kural_ta.txt`, VELI-03 and MANIFEST — *'the first Tamil corpus'*: the Tirukkuṟaḷ has 1,330 couplets with **zero occurrences of *cāti* and zero of *vēṭam***. Entered here as `INHERITED-UNVERIFIED`; the handoff's own `VERIFIED` label did not survive intake. |
+| `IH-091` | `INHERITED-UNVERIFIED` | `01-INHERITED/claude-project-handoff.md L216` | The handoff's finding V-08, from `kural_ta.txt`, VELI-03 and MANIFEST — *'the first Tamil corpus'*: the Tirukkuṟaḷ has 1,330 couplets with **zero occurrences of *cati* and zero of *vetam***, in the register's own unmarked romanisation. Entered here as `INHERITED-UNVERIFIED`; the handoff's own `VERIFIED` label did not survive intake. |
 | `IH-248` | `INHERITED-UNVERIFIED` | `01-INHERITED/claude-project-handoff.md L462` | Section 8 HELD register: the Tamil, Pali and Prakrit corpus *other than the Kural* is recorded as NOT OBTAINED / NOT FOUND. The Kural is the exception — which is why this page exists — but the comparative material that would show what the Kural's silence means is not held. |
 | `IH-012` | `INHERITED-UNVERIFIED` | `01-INHERITED/claude-project-handoff.md L57` | The parallel case, and a correction: *'no caste word in the Vedas' is wrong* — *varṇa* occurs 23 times in the Rigveda and the correct finding is that *jāti* is absent from it. The same argument-form on the same subject has already been found overstated once in this project. |
 
 
-**The claim's form is the problem, and naming it costs no retrieval.** `IH-091`
-records zero occurrences of **two** Tamil words. The headline says *"the word for
+**The register's romanisation is unmarked, and one of the two words is
+ambiguous under it.** `IH-091` gives the forms as `cati` and `vetam`, without
+diacritics. Restored one way, *vetam* is *vēṭam* — guise, ritual garb; restored
+another, it is *vētam* — Veda. The page is titled *"Tamil Ethics Without Caste
+**or Ritual**"*, so which word was counted decides whether the title's second
+half is supported at all. This brief keeps the register's unmarked forms rather
+than choosing, because choosing is the interpretive act constitution §7 requires
+a Translation Block for, and neither form has one here. Resolving it is part of
+the unit in §6.
+
+**The claim's form is the second problem, and naming it costs no retrieval.**
+`IH-091` records zero occurrences of **two** Tamil words. The headline says *"the word for
 caste is not in any of them"* — the definite article doing work no census
-supports. Tamil has several candidates for what an English reader means by
-*caste*: *cāti*, *varṇam*, *kulam*, *kuṭi*, *piṟappu*, *marapu*. A census of two
-forms establishes the absence of two forms.
+supports. A census of two forms establishes the absence of two forms — and whether those
+two are the whole candidate set for what an English reader means by *caste* is
+itself a lexicographic question this repository has not answered. **This brief
+does not supply the candidate list**: enumerating Tamil terms for social rank
+from memory would be doing exactly what it objects to on the page, one level up.
+Establishing the search set from a Tamil lexicographic source is the first step
+of the unit in §6, and until it is done neither the page's claim nor this
+brief's objection to it is settled.
 
 This is `CLAUDE.md`'s translation standard operating exactly as specified — *caste*
 is on its list of inherited English categories to audit before use, and the rule
@@ -175,9 +199,9 @@ repository**, with no access-ledger row.
 **On "lowest status".** `INHERITED-UNVERIFIED` is not the bottom rung of a
 ladder. Framework §3.2: six of the seven statuses describe evidential standing
 and one describes *where the assertion came from* — a prior model's summary of
-its own conversation — so the interface *"must never sort or colour
-`INHERITED-UNVERIFIED` between `PROVISIONAL` and `HYPOTHESIS` as though the
-statuses formed a single ladder."* What can be said exactly is the operative
+its own conversation — so *"the interface must therefore never sort or
+colour `INHERITED-UNVERIFIED` between `PROVISIONAL` and `HYPOTHESIS` as though
+the statuses formed a single ladder."* What can be said exactly is the operative
 ceiling, and it is the same for all fifteen pages: **nothing bearing on this
 page stands above `INHERITED-UNVERIFIED`.** Where the handoff labelled a finding
 `VERIFIED` or `PROVISIONAL`, that label came in with it and did not survive
@@ -200,7 +224,7 @@ From `01-INHERITED/curatorial-audit-v1.1/asset-register.csv`, verbatim (`INHERIT
 | Status | `Needed` |
 
 
-**How this class should be derived instead.** Framework §1.6.3(a) replaces genre-driven asset classes with a mapping from the exhibit's **evidence-class composition** — the constitution's step 4 inventory. The workbook derived this row from the page's `Type`, a 29-value vocabulary with 17 singletons that `SCHEMA.md` §4 finds *"too sparse to do reliably"* the production-planning work it is doing. Under §1.6.3(a) a page with no recorded evidence classes yields **no** production class, which is the correct output and is this page's actual state.
+**How this class should be derived instead.** Framework §1.6.3(a) replaces genre-driven asset classes with a mapping from the exhibit's **evidence-class composition** — the constitution's step 4 inventory. The workbook derived this row from the page's `Type`, a 29-value vocabulary with 17 singletons that `SCHEMA.md` §3 finds *"too sparse to do reliably"* the production-planning work it is doing. Under §1.6.3(a) a page with no recorded evidence classes yields **no** production class, which is the correct output and is this page's actual state.
 
 
 **`translation excerpt rights` is an unbounded dependency.** §1.6.3(a) maps

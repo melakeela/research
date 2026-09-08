@@ -263,7 +263,14 @@ or research holds. Constitution §11.
 
 - Product and institutional specification (§12) — pending **D-012**.
 - The language-movement Artifact Atlas specification (§13).
-- Page and exhibit briefs.
+- Page and exhibit briefs, **except** the fifteen MVP briefs in
+  `06-BRIEFS/mvp-fifteen/`, produced 2026-09-08 on the owner's direct
+  instruction. They describe what each of the fifteen pages would need; they do
+  not act on the MVP set, schedule a launch, or assume an answer to **D-032**,
+  whose closing line is *"Nothing in this repository acts on the MVP set until
+  this is answered."* The remaining 81 pages stay here. The unit's standing is
+  written up in `06-BRIEFS/mvp-fifteen/README.md` §0, including the reading
+  under which it should have waited.
 - Anything touching `melakeela/site`.
 
 ## Item numbering

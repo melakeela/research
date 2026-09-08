@@ -88,12 +88,21 @@ match rules 1–6.
 
 **Assigned posture: Nocturnal Veḷi, editorially, by the workbook.** That assignment is
 `INHERITED-UNVERIFIED` and carries no override reason, because the register that
-would hold one does not exist. `SCHEMA.md` §7: *"nothing in `03-REGISTERS/`
+would hold one does not exist. `SCHEMA.md` §7: *"Nothing in `03-REGISTERS/`
 records a publication decision, an environment assignment, or a duplication
-finding."* Creating the Editorial Register (§11.5) with `derived_posture`,
-`assigned_posture`, `override_reason`, `decided_by`, `decided_date` is a
-prerequisite for this page, not a nicety: an assignment with no derivation to
-disagree with cannot be audited.
+finding."* Creating the Editorial Register — specified at §11.5 as
+`03-REGISTERS/editorial-decisions.csv`, with `decision_type` including
+`posture-assignment`, and with `value`, `derived_value`, `override_reason` and
+`derived_residual` — is a prerequisite for this page, not a nicety: an
+assignment with no derivation to disagree with cannot be audited.
+
+*(Note for the framework's own re-audit: §1.5 names these fields
+`derived_posture` / `assigned_posture` / `override_reason`, and §11.5 names them
+`value` / `derived_value` / `override_reason` / `derived_residual`. The two
+sections of the specification do not agree on the field names for the same
+record. This brief follows §11.5, which is the section that defines the
+register. Recorded, not resolved — it is a defect in the specification, not in
+this page.)*
 
 **Secondary environment.** The workbook gives this page `Reading Room` as
 secondary — as it does for all 96. Framework §1.6.1 rules that a value constant
@@ -115,8 +124,10 @@ return the posture it was assigned.
 bar. *"No relatives known"* must be typed per language and per proposal:
 `ABSENT DESPITE ADEQUATE SEARCH` where serious comparative work has been done and
 failed, `NOT RECOGNIZED` where the comparanda may exist unrecognised,
-`NOT PUBLISHED` where the work sits unpublished. Burushaski and Nihali are not in
-the same evidential position and must not be typed the same way.
+`NOT PUBLISHED` where the work sits unpublished. The four are unlikely to be in
+the same evidential position and must not be typed the same way by default —
+which of them differ, and how, is a finding of the unit in §6, not an assumption
+of this brief.
 
 The `Avoid` — *"no fantasy portal or occult styling"* — has a specific meaning on
 this page: language isolates attract mystification, and living speech communities
@@ -170,9 +181,9 @@ is owed saying so.
 **On "lowest status".** `INHERITED-UNVERIFIED` is not the bottom rung of a
 ladder. Framework §3.2: six of the seven statuses describe evidential standing
 and one describes *where the assertion came from* — a prior model's summary of
-its own conversation — so the interface *"must never sort or colour
-`INHERITED-UNVERIFIED` between `PROVISIONAL` and `HYPOTHESIS` as though the
-statuses formed a single ladder."* What can be said exactly is the operative
+its own conversation — so *"the interface must therefore never sort or
+colour `INHERITED-UNVERIFIED` between `PROVISIONAL` and `HYPOTHESIS` as though
+the statuses formed a single ladder."* What can be said exactly is the operative
 ceiling, and it is the same for all fifteen pages: **nothing bearing on this
 page stands above `INHERITED-UNVERIFIED`.** Where the handoff labelled a finding
 `VERIFIED` or `PROVISIONAL`, that label came in with it and did not survive
@@ -195,11 +206,14 @@ From `01-INHERITED/curatorial-audit-v1.1/asset-register.csv`, verbatim (`INHERIT
 | Status | `Needed` |
 
 
-**How this class should be derived instead.** Framework §1.6.3(a) replaces genre-driven asset classes with a mapping from the exhibit's **evidence-class composition** — the constitution's step 4 inventory. The workbook derived this row from the page's `Type`, a 29-value vocabulary with 17 singletons that `SCHEMA.md` §4 finds *"too sparse to do reliably"* the production-planning work it is doing. Under §1.6.3(a) a page with no recorded evidence classes yields **no** production class, which is the correct output and is this page's actual state.
+**How this class should be derived instead.** Framework §1.6.3(a) replaces genre-driven asset classes with a mapping from the exhibit's **evidence-class composition** — the constitution's step 4 inventory. The workbook derived this row from the page's `Type`, a 29-value vocabulary with 17 singletons that `SCHEMA.md` §3 finds *"too sparse to do reliably"* the production-planning work it is doing. Under §1.6.3(a) a page with no recorded evidence classes yields **no** production class, which is the correct output and is this page's actual state.
 
 
-**`pronunciation audio where licensed` is acute here, not incidental.** These are
-languages with living speakers, and Kusunda has very few. §1.6.3(a): `oral/living`
+**`pronunciation audio where licensed` is acute here, not incidental.** These
+are recorded as languages with living speakers — `IH-128` puts the Vedda
+language's loss *within living memory*, and the page's own H1 says four
+languages *still speak*. Speaker numbers for any of them are not held in this
+repository and this brief states none. §1.6.3(a): `oral/living`
 evidence requires **consent, not licence**, with a Consent Register row mandatory
 (§11.4) recording what was given, by whom, for what use, for how long and how it
 is withdrawn — plus the withdrawal trail (§1.6.2), so material withdrawn stays
@@ -227,7 +241,7 @@ five *Not completed* publication gates, and the ten framework gates F1–F10. Th
 are not repeated here. What follows is what this page needs **beyond** them.
 
 1. The title/H1 count is reconciled: three named or four named, with the fourth identified.
-2. Each isolate's status is typed as an absence under constitution §6, per language, with the comparative proposals that have been made and tested named — Burushaski alone has a long history of them.
+2. Each isolate's status is typed as an absence under constitution §6, per language, with the comparative proposals that have been made and tested named, per language. Which languages have attracted many proposals and which few is part of what the unit in §6 measures, not something this brief asserts.
 3. Speaker numbers carry a date and a source. A speaker count for an endangered language ages faster than any other figure on the site.
 4. Any recorded speech has a Consent Register row (§11.4). *'Where licensed'* is not an available route.
 5. The `the-vedda` overlap (0.301) is reviewed, per `overlap-tensions.csv`, and `IH-128`'s recorded *not supported* on the Vedda language classification is honoured wherever Vedda appears.

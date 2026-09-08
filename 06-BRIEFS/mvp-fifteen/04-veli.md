@@ -87,12 +87,21 @@ match rules 1–6.
 
 **Assigned posture: Nocturnal Veḷi, editorially, by the workbook.** That assignment is
 `INHERITED-UNVERIFIED` and carries no override reason, because the register that
-would hold one does not exist. `SCHEMA.md` §7: *"nothing in `03-REGISTERS/`
+would hold one does not exist. `SCHEMA.md` §7: *"Nothing in `03-REGISTERS/`
 records a publication decision, an environment assignment, or a duplication
-finding."* Creating the Editorial Register (§11.5) with `derived_posture`,
-`assigned_posture`, `override_reason`, `decided_by`, `decided_date` is a
-prerequisite for this page, not a nicety: an assignment with no derivation to
-disagree with cannot be audited.
+finding."* Creating the Editorial Register — specified at §11.5 as
+`03-REGISTERS/editorial-decisions.csv`, with `decision_type` including
+`posture-assignment`, and with `value`, `derived_value`, `override_reason` and
+`derived_residual` — is a prerequisite for this page, not a nicety: an
+assignment with no derivation to disagree with cannot be audited.
+
+*(Note for the framework's own re-audit: §1.5 names these fields
+`derived_posture` / `assigned_posture` / `override_reason`, and §11.5 names them
+`value` / `derived_value` / `override_reason` / `derived_residual`. The two
+sections of the specification do not agree on the field names for the same
+record. This brief follows §11.5, which is the section that defines the
+register. Recorded, not resolved — it is a defect in the specification, not in
+this page.)*
 
 **Secondary environment.** The workbook gives this page `Reading Room` as
 secondary — as it does for all 96. Framework §1.6.1 rules that a value constant
@@ -140,8 +149,11 @@ What exists instead is inherited material that **bears on** this page without be
 | `IH-258` | `INHERITED-UNVERIFIED` | `01-INHERITED/claude-project-handoff.md L482` | Contradiction X-09: the brand architecture is unresolved across four positions. This page is where that lands, since it is the page that explains the name. |
 
 
-**This is the one page of the fifteen with a genuinely open retrieval route.**
-The lexical evidence for a Dravidian etymon is in DEDR, and DEDR is reachable in
+**This is the page whose central claim has the most direct open retrieval
+route** — one of three units in the fifteen with a live route in this session
+(with `the-languages-we-lost` and the lexical half of `sound-changes`; README
+§3), and the only one where the route bears on the page's *central* claim rather
+than on a component of it. The lexical evidence for a Dravidian etymon is in DEDR, and DEDR is reachable in
 this session: `SRC-061` (DEDR, Burrow and Emeneau 1984, 2nd ed., as re-parsed in
 JAMBU `data/dedr/`), `SRC-060` (JAMBU CLDF database), `SRC-062` (Proto-Dravidian
 reconstructions after Krishnamurti), `SRC-067` (DravLex) — all `VERIFIED` in
@@ -166,9 +178,9 @@ this session is `PROVISIONAL`, and saying so in advance is part of the unit.
 **On "lowest status".** `INHERITED-UNVERIFIED` is not the bottom rung of a
 ladder. Framework §3.2: six of the seven statuses describe evidential standing
 and one describes *where the assertion came from* — a prior model's summary of
-its own conversation — so the interface *"must never sort or colour
-`INHERITED-UNVERIFIED` between `PROVISIONAL` and `HYPOTHESIS` as though the
-statuses formed a single ladder."* What can be said exactly is the operative
+its own conversation — so *"the interface must therefore never sort or
+colour `INHERITED-UNVERIFIED` between `PROVISIONAL` and `HYPOTHESIS` as though
+the statuses formed a single ladder."* What can be said exactly is the operative
 ceiling, and it is the same for all fifteen pages: **nothing bearing on this
 page stands above `INHERITED-UNVERIFIED`.** Where the handoff labelled a finding
 `VERIFIED` or `PROVISIONAL`, that label came in with it and did not survive
@@ -191,11 +203,11 @@ From `01-INHERITED/curatorial-audit-v1.1/asset-register.csv`, verbatim (`INHERIT
 | Status | `Needed` |
 
 
-**How this class should be derived instead.** Framework §1.6.3(a) replaces genre-driven asset classes with a mapping from the exhibit's **evidence-class composition** — the constitution's step 4 inventory. The workbook derived this row from the page's `Type`, a 29-value vocabulary with 17 singletons that `SCHEMA.md` §4 finds *"too sparse to do reliably"* the production-planning work it is doing. Under §1.6.3(a) a page with no recorded evidence classes yields **no** production class, which is the correct output and is this page's actual state.
+**How this class should be derived instead.** Framework §1.6.3(a) replaces genre-driven asset classes with a mapping from the exhibit's **evidence-class composition** — the constitution's step 4 inventory. The workbook derived this row from the page's `Type`, a 29-value vocabulary with 17 singletons that `SCHEMA.md` §3 finds *"too sparse to do reliably"* the production-planning work it is doing. Under §1.6.3(a) a page with no recorded evidence classes yields **no** production class, which is the correct output and is this page's actual state.
 
 
 **`pronunciation audio where licensed` is the framework's named failure case.**
-§1.6.3(a) singles this phrase out: the workbook *"treats a consent question as a
+§1.6.3(a) singles this phrase out: the workbook is *"treating a consent question as a
 licensing question"*, and under the evidence-class mapping, `oral/living` evidence
 requires **consent, not licence**, with a Consent Register row mandatory (§11.4).
 *"Where licensed"* is not an available route. Any recorded speaker of Tamil on

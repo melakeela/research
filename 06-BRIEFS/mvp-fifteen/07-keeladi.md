@@ -86,12 +86,21 @@ match rules 1–6.
 
 **Assigned posture: Living Tiṇai, editorially, by the workbook.** That assignment is
 `INHERITED-UNVERIFIED` and carries no override reason, because the register that
-would hold one does not exist. `SCHEMA.md` §7: *"nothing in `03-REGISTERS/`
+would hold one does not exist. `SCHEMA.md` §7: *"Nothing in `03-REGISTERS/`
 records a publication decision, an environment assignment, or a duplication
-finding."* Creating the Editorial Register (§11.5) with `derived_posture`,
-`assigned_posture`, `override_reason`, `decided_by`, `decided_date` is a
-prerequisite for this page, not a nicety: an assignment with no derivation to
-disagree with cannot be audited.
+finding."* Creating the Editorial Register — specified at §11.5 as
+`03-REGISTERS/editorial-decisions.csv`, with `decision_type` including
+`posture-assignment`, and with `value`, `derived_value`, `override_reason` and
+`derived_residual` — is a prerequisite for this page, not a nicety: an
+assignment with no derivation to disagree with cannot be audited.
+
+*(Note for the framework's own re-audit: §1.5 names these fields
+`derived_posture` / `assigned_posture` / `override_reason`, and §11.5 names them
+`value` / `derived_value` / `override_reason` / `derived_residual`. The two
+sections of the specification do not agree on the field names for the same
+record. This brief follows §11.5, which is the section that defines the
+register. Recorded, not resolved — it is a defect in the specification, not in
+this page.)*
 
 **Secondary environment.** The workbook gives this page `Reading Room` as
 secondary — as it does for all 96. Framework §1.6.1 rules that a value constant
@@ -149,6 +158,35 @@ cannot be looser. *"A literate Tamil city from 6th century BCE"* is a claim abou
 a date and a claim about literacy, and the second is carried by the inscribed
 material the rule points at.
 
+**The preferred-counter-narrative test, run on this page.** Keeladi carries the
+strongest Tamil-nationalist valence of the fifteen, and both halves of the page
+are congenial to a position this project holds: an early literate southern city,
+and a state that interfered with the excavation. That is a reason to press
+harder, not softer. Three specific pressures follow.
+
+*On the date.* An early date for southern literacy is the finding this project
+would most like to be true, which is exactly the condition under which a
+secondary-source chain gets accepted. `IH-113` is `PROVISIONAL` in the handoff
+and `INHERITED-UNVERIFIED` here, and the handoff's own instruction is *pin each
+step*. The correct posture is that the date is unestablished in this repository,
+not that it is established and awaiting citation.
+
+*On the interference narrative.* Five administrative events — a transfer, a
+report, a rework request, an evaluation — are consistent with interference and
+also consistent with ordinary bureaucratic process. `IH-113` supplies the
+sequence, not the motive, and the page's H1 supplies the motive. That gap is the
+page's largest unsupported step, and it is not a right-of-reply problem before it
+is an evidence problem: the right of reply governs how a supported allegation is
+published, not whether an unsupported one may be.
+
+*On the direction of correction.* The inheritance contains one logged case where
+a correction ran *towards* the canonical finding rather than away from it —
+`IH-029`/R-09, where the handoff records that *"Claude's caution understated a
+well-supported finding"*. It is cited here because the six-headline correction
+record (`IH-051`) otherwise reads as a one-directional story about this project
+overclaiming in its own favour, and a one-directional story about one's own bias
+is itself a congenial thing to believe.
+
 
 ### Lowest status among them
 
@@ -158,9 +196,9 @@ material the rule points at.
 **On "lowest status".** `INHERITED-UNVERIFIED` is not the bottom rung of a
 ladder. Framework §3.2: six of the seven statuses describe evidential standing
 and one describes *where the assertion came from* — a prior model's summary of
-its own conversation — so the interface *"must never sort or colour
-`INHERITED-UNVERIFIED` between `PROVISIONAL` and `HYPOTHESIS` as though the
-statuses formed a single ladder."* What can be said exactly is the operative
+its own conversation — so *"the interface must therefore never sort or
+colour `INHERITED-UNVERIFIED` between `PROVISIONAL` and `HYPOTHESIS` as though
+the statuses formed a single ladder."* What can be said exactly is the operative
 ceiling, and it is the same for all fifteen pages: **nothing bearing on this
 page stands above `INHERITED-UNVERIFIED`.** Where the handoff labelled a finding
 `VERIFIED` or `PROVISIONAL`, that label came in with it and did not survive
@@ -183,7 +221,7 @@ From `01-INHERITED/curatorial-audit-v1.1/asset-register.csv`, verbatim (`INHERIT
 | Status | `Needed` |
 
 
-**How this class should be derived instead.** Framework §1.6.3(a) replaces genre-driven asset classes with a mapping from the exhibit's **evidence-class composition** — the constitution's step 4 inventory. The workbook derived this row from the page's `Type`, a 29-value vocabulary with 17 singletons that `SCHEMA.md` §4 finds *"too sparse to do reliably"* the production-planning work it is doing. Under §1.6.3(a) a page with no recorded evidence classes yields **no** production class, which is the correct output and is this page's actual state.
+**How this class should be derived instead.** Framework §1.6.3(a) replaces genre-driven asset classes with a mapping from the exhibit's **evidence-class composition** — the constitution's step 4 inventory. The workbook derived this row from the page's `Type`, a 29-value vocabulary with 17 singletons that `SCHEMA.md` §3 finds *"too sparse to do reliably"* the production-planning work it is doing. Under §1.6.3(a) a page with no recorded evidence classes yields **no** production class, which is the correct output and is this page's actual state.
 
 
 **`site/landscape photography` and `present-context image` require physical
@@ -226,13 +264,18 @@ request, the 114-page evaluation. Separately, obtain the dating basis for the
 6th-century-BCE claim from the excavation reports rather than from press
 coverage.
 
-**Blocked on egress, and the block is documented.** ASI, TNSDA and Indian
-publisher hosts are not reachable: `SRC-052` records only `github.com` and
-`raw.githubusercontent.com` open; `SRC-081` to `SRC-083` record the general-web
-hosts blocked on re-probe at 2026-09-07T15:10Z. `indianculture.gov.in` was
-recorded reachable at `SRC-027` earlier the same day and the later
-characterisation supersedes that, so **re-probing it is step 1** of the unit
-rather than an assumption in this brief.
+**Retrieval state: `NOT ACCESSIBLE` for the hosts probed, untested for the
+rest — and the difference matters.** `SRC-081` to `SRC-083` record the
+general-web hosts refused on re-probe at 2026-09-07T15:10Z, and `SRC-052`'s
+`blocking_constraint` generalises from a sixteen-host probe list. **No probe of
+an ASI, TNSDA or Indian publisher host is recorded anywhere in the ledger**, so
+this brief does not assert that they are unreachable; the honest type for them
+is `NOT RECOGNIZED` in the sense the negative-evidence standard intends — we
+have not looked. `indianculture.gov.in` was recorded reachable at `SRC-027`
+earlier the same day, and `SRC-080`'s own note states the governing principle:
+*"A ledger row is a timestamped probe, not a standing property (D-042)."* The
+two rows are therefore not reconcilable from this brief. **Probing the specific
+hosts is step 1** of the unit, and its result is a ledger row either way.
 
 **And one part escalates rather than blocks.** `IH-215` names the single most
 important verification task in the inherited file as an outreach to a named

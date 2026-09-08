@@ -89,12 +89,21 @@ match rules 1–6.
 
 **Assigned posture: Nocturnal Veḷi, editorially, by the workbook.** That assignment is
 `INHERITED-UNVERIFIED` and carries no override reason, because the register that
-would hold one does not exist. `SCHEMA.md` §7: *"nothing in `03-REGISTERS/`
+would hold one does not exist. `SCHEMA.md` §7: *"Nothing in `03-REGISTERS/`
 records a publication decision, an environment assignment, or a duplication
-finding."* Creating the Editorial Register (§11.5) with `derived_posture`,
-`assigned_posture`, `override_reason`, `decided_by`, `decided_date` is a
-prerequisite for this page, not a nicety: an assignment with no derivation to
-disagree with cannot be audited.
+finding."* Creating the Editorial Register — specified at §11.5 as
+`03-REGISTERS/editorial-decisions.csv`, with `decision_type` including
+`posture-assignment`, and with `value`, `derived_value`, `override_reason` and
+`derived_residual` — is a prerequisite for this page, not a nicety: an
+assignment with no derivation to disagree with cannot be audited.
+
+*(Note for the framework's own re-audit: §1.5 names these fields
+`derived_posture` / `assigned_posture` / `override_reason`, and §11.5 names them
+`value` / `derived_value` / `override_reason` / `derived_residual`. The two
+sections of the specification do not agree on the field names for the same
+record. This brief follows §11.5, which is the section that defines the
+register. Recorded, not resolved — it is a defect in the specification, not in
+this page.)*
 
 **Secondary environment.** The workbook gives this page `Reading Room` as
 secondary — as it does for all 96. Framework §1.6.1 rules that a value constant
@@ -170,9 +179,9 @@ for this page.
 **On "lowest status".** `INHERITED-UNVERIFIED` is not the bottom rung of a
 ladder. Framework §3.2: six of the seven statuses describe evidential standing
 and one describes *where the assertion came from* — a prior model's summary of
-its own conversation — so the interface *"must never sort or colour
-`INHERITED-UNVERIFIED` between `PROVISIONAL` and `HYPOTHESIS` as though the
-statuses formed a single ladder."* What can be said exactly is the operative
+its own conversation — so *"the interface must therefore never sort or
+colour `INHERITED-UNVERIFIED` between `PROVISIONAL` and `HYPOTHESIS` as though
+the statuses formed a single ladder."* What can be said exactly is the operative
 ceiling, and it is the same for all fifteen pages: **nothing bearing on this
 page stands above `INHERITED-UNVERIFIED`.** Where the handoff labelled a finding
 `VERIFIED` or `PROVISIONAL`, that label came in with it and did not survive
@@ -195,16 +204,24 @@ From `01-INHERITED/curatorial-audit-v1.1/asset-register.csv`, verbatim (`INHERIT
 | Status | `Needed` |
 
 
-**How this class should be derived instead.** Framework §1.6.3(a) replaces genre-driven asset classes with a mapping from the exhibit's **evidence-class composition** — the constitution's step 4 inventory. The workbook derived this row from the page's `Type`, a 29-value vocabulary with 17 singletons that `SCHEMA.md` §4 finds *"too sparse to do reliably"* the production-planning work it is doing. Under §1.6.3(a) a page with no recorded evidence classes yields **no** production class, which is the correct output and is this page's actual state.
+**How this class should be derived instead.** Framework §1.6.3(a) replaces genre-driven asset classes with a mapping from the exhibit's **evidence-class composition** — the constitution's step 4 inventory. The workbook derived this row from the page's `Type`, a 29-value vocabulary with 17 singletons that `SCHEMA.md` §3 finds *"too sparse to do reliably"* the production-planning work it is doing. Under §1.6.3(a) a page with no recorded evidence classes yields **no** production class, which is the correct output and is this page's actual state.
 
 
-Every one of the four is blocked, and by the strictest rule in the set.
-`claim-specific diagram` and `source facsimile` are derived assets under §3.12,
-which forbids commissioning or publishing a derived asset *"while the claim it
-depicts is `INHERITED-UNVERIFIED` or `HOLD`"* — and this page's claims are at
-both. A reconstruction diagram of a proposed shrine with no directly datable
-material is the single most persuasive and least supportable asset in the whole
-release.
+`claim-specific diagram` is embargoed by the strictest rule in the set. §3.12
+defines a derived asset as *"a claim-specific diagram, map, chart or
+reconstruction"* derived from a Claim Object, and forbids commissioning or
+publishing one *"while the claim it depicts is `INHERITED-UNVERIFIED` or
+`HOLD`"* — and this page's claims are at both. A reconstruction diagram of a
+proposed shrine with no directly datable material is the single most persuasive
+and least supportable asset in the whole release.
+
+`source facsimile` is **not** a derived asset and is not embargoed by §3.12: a
+facsimile reproduces a source, it does not depict a claim. It is blocked here
+for a different and simpler reason — the two publications the page rests on have
+not been obtained, so there is nothing to reproduce. The distinction is worth
+keeping straight, because collapsing it would block this page harder than the
+rule actually does, and this is the page where over-blocking is the tempting
+error.
 
 The `Priority = MVP` on this page's asset-register row is one limb of the
 conflict recorded in §7.
@@ -231,18 +248,29 @@ are not repeated here. What follows is what this page needs **beyond** them.
 
 ## 6. What unit of work would verify it
 
-**MVP-U8 — read the two load-bearing sources directly.** Kenoyer, Clark, Pal and
-Sharma 1983 for Baghor I; Chattopadhyaya 1996 for Damdama and Mahadaha; then the
-absolute dating literature for the Ganges Mesolithic cemeteries. Closing `IH-243`
-is the single action that would move the most on this page, because every Baghor
-claim is HELD behind it.
+**MVP-U8 — read the two load-bearing sources directly.** The repository knows
+these two publications only as the registers record them — **Kenoyer et al.
+1983** and **Chattopadhyaya 1996** — with no fuller citation in
+`02-SOURCES/access-ledger.csv` or anywhere else here. Expanding either into a
+full author list or a title before it has been read would be supplying
+bibliography from memory, which is precisely what `IH-243` records as not having
+happened; the first act of this unit is therefore to obtain the full citation,
+not to assume it. Kenoyer et al. 1983 for Baghor I; Chattopadhyaya 1996 for
+Damdama and Mahadaha; then the absolute dating literature for the Ganges
+Mesolithic cemeteries. Closing `IH-243` is the single action that would move the
+most on this page, because every Baghor claim is HELD behind it.
 
-**Blocked on egress.** `SRC-081` records the Internet Archive blocked at
-2026-09-07T15:10Z; `SRC-082` TITUS; `SRC-083` sacred-texts and wisdomlib;
-`SRC-052` characterises the lane as `github.com` and `raw.githubusercontent.com`
-only. No reachable host in this session serves either publication. A `05-HOLDS/`
-row is owed for each, naming what it would settle — and `05-HOLDS/` already
-contains six such records, so the form is established.
+**Retrieval state: refused where probed, untested for these two publications.**
+`SRC-081` records the Internet Archive refused at 2026-09-07T15:10Z; `SRC-082`
+TITUS; `SRC-083` sacred-texts and wisdomlib. **Neither publication has itself
+been probed**, and `SRC-058` records the git lane open to arbitrary public
+repositories, so this brief does not assert that no host serves them — it
+records that the hosts most likely to has been refused and that the specific
+search has not been run. Type the absence before writing the verdict, per
+`04-AUDITS/BIAS-FAILURE-LOG.csv` `BF-010`'s standing control. A `05-HOLDS/` row
+is owed for each once the search has been run and failed, naming what each would
+settle; `05-HOLDS/` already contains six such records, so the form is
+established.
 
 
 ---
@@ -294,9 +322,9 @@ other purpose:
   `Priority = MVP` row is wrong and should be re-derived. `before-the-indus`
   moves to the verification queue, where MVP-U8 belongs regardless. The overlap
   cluster *Meluhha and Indus* — `meluhha`, `meluhha-trade`, `the-water-city`,
-  `before-the-indus`, recommended as *"one curated exhibit sequence"* — loses a
-  second of its four members from the release, `the-water-city` being the only
-  one left in.
+  `before-the-indus`, recommended as *"one curated exhibit sequence"* — goes from
+  two members in the release to one. `meluhha` and `meluhha-trade` are `MVP = No`
+  in `page-audit.csv` and were never in it.
 
 **What does not change under either arm**, and this is an observation about
 sequencing, not a resolution: the page cannot be published today under either

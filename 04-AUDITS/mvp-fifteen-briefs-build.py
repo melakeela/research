@@ -2,16 +2,35 @@
 """Build 06-BRIEFS/mvp-fifteen/ - one page brief per page in the curatorial
 audit's MVP set.
 
-Inputs, all read at build time, nothing invented:
-  13-PRODUCT-ARCHITECTURE/museum-framework.md      (HYPOTHESIS)
-  01-INHERITED/curatorial-audit-v1.1/*.csv         (INHERITED-UNVERIFIED)
-  03-REGISTERS/*.csv                               (mixed; scanned for supports_page)
-  02-SOURCES/access-ledger.csv                     (retrieval capability)
+Read and reproduced into the output at build time:
+  01-INHERITED/curatorial-audit-v1.1/environment-map.csv   (INHERITED-UNVERIFIED)
+  01-INHERITED/curatorial-audit-v1.1/mvp.csv               (INHERITED-UNVERIFIED)
+  01-INHERITED/curatorial-audit-v1.1/page-audit.csv        (INHERITED-UNVERIFIED)
+  01-INHERITED/curatorial-audit-v1.1/asset-register.csv    (INHERITED-UNVERIFIED)
+  03-REGISTERS/inherited-claims.csv                        (INHERITED-UNVERIFIED)
+  03-REGISTERS/*.csv                                       (scanned for supports_page)
+
+Quoted in the prose and CHECKED, not reproduced - verify_quotes() below asserts
+that every quoted fragment is still present in its source file, so a later edit
+to any of them fails the build instead of silently invalidating a brief:
+  13-PRODUCT-ARCHITECTURE/museum-framework.md              (HYPOTHESIS)
+  00-CONTROLLER/METHODOLOGY-CONSTITUTION.md                (constitution)
+  01-INHERITED/curatorial-audit-v1.1/SCHEMA.md             (INHERITED-UNVERIFIED)
+  01-INHERITED/curatorial-audit-v1.1/method-limits.csv     (INHERITED-UNVERIFIED)
+  01-INHERITED/curatorial-audit-v1.1/summary.csv           (INHERITED-UNVERIFIED)
+  01-INHERITED/curatorial-audit-v1.1/claim-risk.csv        (INHERITED-UNVERIFIED)
+  01-INHERITED/curatorial-audit-v1.1/overlap-tensions.csv  (INHERITED-UNVERIFIED)
+  02-SOURCES/access-ledger.csv                             (retrieval capability)
+  DECISIONS-NEEDED.md, 09-DECISIONS/OWNER-DECISIONS.csv    (D- identifiers)
 
 The per-page prose below is the analytical content of the unit. The script
 exists so that the mechanical parts - the workbook rows quoted, the
-supports_page scan, the shared gate list - are regenerated rather than
-retyped, and so the scan result can be re-run against a changed register set.
+supports_page scan, every count, and the quote checks - are regenerated rather
+than retyped, and so they can be re-run against changed inputs.
+
+Rule the script follows, from the inheritance (standing rule 14): no count in
+the output is a typed literal. Every figure is derived here or it is not
+printed.
 
 Run from the repository root:  python3 04-AUDITS/mvp-fifteen-briefs-build.py
 """
@@ -60,6 +79,134 @@ def scan_supports_page():
                                     r.get("claim_id") or r.get("interpretation_id") or "",
                                     (r.get("status") or "").strip()))
     return hits, scanned
+
+
+# Fragments quoted in the prose below, checked against their sources at build
+# time. A quote that no longer resolves fails the build. Keyed by file, relative
+# to the repository root; each fragment is matched with whitespace collapsed so
+# line wrapping in the source does not matter.
+QUOTE_CHECKS = {
+    "13-PRODUCT-ARCHITECTURE/museum-framework.md": [
+        "Themes change with the visitor's relationship to knowledge; the institutional shell remains stable.",
+        "because environments are postures rather than topics, a page can move between them without its content changing",
+        "nothing in `03-REGISTERS/` records a publication decision, an environment assignment, or a duplication finding",
+        "The interface must therefore never sort or colour `INHERITED-UNVERIFIED` between `PROVISIONAL` and `HYPOTHESIS`",
+        "a derived asset may not be commissioned or published while the claim it depicts is `INHERITED-UNVERIFIED` or `HOLD`",
+        "The Atlas has no headline count.",
+        "adopted as settled fact,",
+        "no gaming HUD or arbitrary links",
+        "reads as empty and empty reads as nobody",
+        "A child may *read* a custody record; a child may not be handed",
+        "running one is a failed test",
+        "treating a consent question as a licensing question",
+        "site photography \u2014 physical presence required",
+        "third-party rights negotiation \u2014 unbounded timeline",
+        "too sparse to do reliably",
+        "known by argument from sources",
+        "methods pages, historiography, the ledger",
+        "non-empty on the day the institution publishes its first custody chain",
+        "Digitization is not restitution",
+        "no spectacle or unsupported allegation",
+        "where the institution is arguing against something",
+        "the mechanism that keeps the argument falsifiable rather than rhetorical",
+        "`decision_id` (`mk:dec:`)",
+        "`derived_residual`",
+        "Every design proposition here is `HYPOTHESIS`",
+    ],
+    "01-INHERITED/curatorial-audit-v1.1/SCHEMA.md": [
+        "too sparse to do reliably",
+        "Nothing in `03-REGISTERS/` records a publication decision, an environment assignment, or a duplication finding.",
+        "Sequencing is inverted for the diagram work.",
+        "50 claim-specific diagrams",
+    ],
+    "01-INHERITED/curatorial-audit-v1.1/method-limits.csv": [
+        "Risk means verification priority, not falsehood.",
+        "A visible bibliography does not prove claim-level support or source quality.",
+        "These are publication gates, not optional polish.",
+        "Full primary-source re-performance, legal opinion, community consultation, image-rights clearance and discipline-specific peer review.",
+    ],
+    "01-INHERITED/curatorial-audit-v1.1/summary.csv": [
+        "1. Claim-level citation review",
+        "7. Confirm production domain and deployment allowlist",
+    ],
+    "01-INHERITED/curatorial-audit-v1.1/overlap-tensions.csv": [
+        "Keep distinct but present as one curated exhibit sequence.",
+        "Curated institutional-power exhibit with claim-level documents and right-of-reply field.",
+    ],
+    "01-INHERITED/curatorial-audit-v1.1/claim-risk.csv": [
+        "Before the Indus, the graves already faced the sun.",
+    ],
+    "02-SOURCES/access-ledger.csv": [
+        "A ledger row is a timestamped probe, not a standing property (D-042).",
+    ],
+    "DECISIONS-NEEDED.md": [
+        "Nothing in this repository acts on the MVP set until this is answered.",
+    ],
+    "RESEARCH-QUEUE.md": [
+        "Page and exhibit briefs, **except** the fifteen MVP briefs",
+    ],
+    "CLAUDE.md": [
+        "Argument does not promote a claim. Confidence does not promote a claim. Only retrieval does.",
+        "Evidence that supports nothing is not collected.",
+        "weight follows evidence. No rhetorical equality where evidence is unequal",
+    ],
+    "04-AUDITS/BIAS-FAILURE-LOG.csv": [
+        "Type the absence under \u00a76 before writing the verdict.",
+    ],
+}
+
+
+def _flat(t):
+    # collapse whitespace and drop markdown blockquote markers, so a fragment
+    # matches whether or not the source wraps it or quotes it in a blockquote
+    return " ".join(t.replace("\n>", "\n").split())
+
+
+def verify_quotes():
+    """Assert every quoted fragment still resolves in its source. Returns the
+    number of fragments checked, which the README prints."""
+    n = 0
+    missing = []
+    for rel, frags in QUOTE_CHECKS.items():
+        body = _flat(open(os.path.join(ROOT, rel), encoding="utf-8").read())
+        for f in frags:
+            n += 1
+            if _flat(f) not in body:
+                missing.append((rel, f))
+    if missing:
+        raise SystemExit("quote check failed:\n" + "\n".join(
+            "  %s : %s" % (r, f) for r, f in missing))
+    return n
+
+
+def count_asset_sets_with(term, as_by):
+    """Which MVP slugs' Required asset set contains term. Derived, never typed."""
+    return [s for s in MVP_SLUGS if term in as_by[s]["Required asset set"]]
+
+
+def supports_page_values():
+    """Every distinct supports_page value in use across 03-REGISTERS/, plus the
+    exclusion set: registers with claim rows and no supports_page column at all.
+    Printing the exclusions is BF-017's control on arguments from absence."""
+    vals, with_col, without_col = set(), [], []
+    for path in sorted(glob.glob(os.path.join(ROOT, "03-REGISTERS", "*.csv"))):
+        try:
+            rows = list(csv.DictReader(open(path)))
+        except Exception:
+            continue
+        if not rows:
+            continue
+        name = os.path.basename(path)
+        if "supports_page" not in rows[0]:
+            without_col.append(name)
+            continue
+        with_col.append(name)
+        for r in rows:
+            for v in (x.strip() for x in
+                      (r.get("supports_page") or "").replace(";", ",").split(",")):
+                if v:
+                    vals.add(v)
+    return sorted(vals), with_col, without_col
 
 
 def inherited(ids):
@@ -139,12 +286,21 @@ match rules 1–6.
 
 **Assigned posture: {env}, editorially, by the workbook.** That assignment is
 `INHERITED-UNVERIFIED` and carries no override reason, because the register that
-would hold one does not exist. `SCHEMA.md` §7: *"nothing in `03-REGISTERS/`
+would hold one does not exist. `SCHEMA.md` §7: *"Nothing in `03-REGISTERS/`
 records a publication decision, an environment assignment, or a duplication
-finding."* Creating the Editorial Register (§11.5) with `derived_posture`,
-`assigned_posture`, `override_reason`, `decided_by`, `decided_date` is a
-prerequisite for this page, not a nicety: an assignment with no derivation to
-disagree with cannot be audited.
+finding."* Creating the Editorial Register — specified at §11.5 as
+`03-REGISTERS/editorial-decisions.csv`, with `decision_type` including
+`posture-assignment`, and with `value`, `derived_value`, `override_reason` and
+`derived_residual` — is a prerequisite for this page, not a nicety: an
+assignment with no derivation to disagree with cannot be audited.
+
+*(Note for the framework's own re-audit: §1.5 names these fields
+`derived_posture` / `assigned_posture` / `override_reason`, and §11.5 names them
+`value` / `derived_value` / `override_reason` / `derived_residual`. The two
+sections of the specification do not agree on the field names for the same
+record. This brief follows §11.5, which is the section that defines the
+register. Recorded, not resolved — it is a defect in the specification, not in
+this page.)*
 
 **Secondary environment.** The workbook gives this page `Reading Room` as
 secondary — as it does for all 96. Framework §1.6.1 rules that a value constant
@@ -166,9 +322,9 @@ STATUS_FLOOR_NOTE = """\
 **On "lowest status".** `INHERITED-UNVERIFIED` is not the bottom rung of a
 ladder. Framework §3.2: six of the seven statuses describe evidential standing
 and one describes *where the assertion came from* — a prior model's summary of
-its own conversation — so the interface *"must never sort or colour
-`INHERITED-UNVERIFIED` between `PROVISIONAL` and `HYPOTHESIS` as though the
-statuses formed a single ladder."* What can be said exactly is the operative
+its own conversation — so *"the interface must therefore never sort or
+colour `INHERITED-UNVERIFIED` between `PROVISIONAL` and `HYPOTHESIS` as though
+the statuses formed a single ladder."* What can be said exactly is the operative
 ceiling, and it is the same for all fifteen pages: **nothing bearing on this
 page stands above `INHERITED-UNVERIFIED`.** Where the handoff labelled a finding
 `VERIFIED` or `PROVISIONAL`, that label came in with it and did not survive
@@ -307,7 +463,7 @@ has are not yet identified in any register here.""",
    "No atlas count appears on it (`IH-057`, `IH-250`, D-034).",
    "The two 404s are confirmed fixed **on the build that is actually being released** — which is blocked on `DECISIONS-NEEDED.md` **D-033**, since the repository cannot presently say which build is authoritative.",
    "The page's promise about what evidence *will not* support is backed by typed absences under constitution §6, not by a rhetorical gesture. None is typed today.",
-   "Its 113 inbound links are re-pointed or preserved deliberately: with 14 of the 96 pages in the release, most of what links here will not exist at launch. That is a navigation decision nobody has recorded.",
+   "Its 113 inbound links are re-pointed or preserved deliberately: with 15 of the 96 pages in the release, most of what links here will not exist at launch. That is a navigation decision nobody has recorded.",
  ],
  "unit": """\
 **MVP-U2 — foyer audit against the released build.** Confirm the C-32 fix live,
@@ -355,15 +511,19 @@ prose is what produced `Low`. It is a measurement of a page's furniture.""",
  "evidence_extra": "",
  "posture_extra": """\
 **Atlas Mode is mandatory** (§1.7), and §8.7 lists eight things the Atlas may
-never do. Four of them are directly at issue in the audited v1 page, and none can
-be checked here because the build has not been retrieved:
+never do. Four are at issue for this page, and only the first can be checked
+here, because the build has not been retrieved:
 
-1. *Show a total in its own voice* — the v1 title does exactly this.
-2. *Render an approximate location as a precise point* — 145 assumed rows make
-   this the default failure.
+1. *Show a total in its own voice* — the only one checkable from here, and it
+   fails: the title in `page-audit.csv` states a count.
+2. *Render an approximate location as a precise point* — the risk `IH-105`'s 145
+   assumed rows create. Whether v1 in fact renders them as precise points is not
+   knowable without the build.
 3. *Render unknown as blank* — constitution §13 requires unknown regions to stay
    visibly unknown; a blank map *"reads as empty and empty reads as nobody."*
+   Untestable from here.
 4. *Let a filter silently drop the weak evidence to produce a cleaner picture.*
+   Untestable from here.
 
 §8.1's resolution is the one that makes the page launchable at all: **the Atlas
 has no headline count.** A count is a claim with a status, an inclusion rule and
@@ -427,8 +587,11 @@ dictionary entry looks like.""",
    ("IH-258", "Contradiction X-09: the brand architecture is unresolved across four positions. This page is where that lands, since it is the page that explains the name."),
  ],
  "evidence_extra": """\
-**This is the one page of the fifteen with a genuinely open retrieval route.**
-The lexical evidence for a Dravidian etymon is in DEDR, and DEDR is reachable in
+**This is the page whose central claim has the most direct open retrieval
+route** — one of three units in the fifteen with a live route in this session
+(with `the-languages-we-lost` and the lexical half of `sound-changes`; README
+§3), and the only one where the route bears on the page's *central* claim rather
+than on a component of it. The lexical evidence for a Dravidian etymon is in DEDR, and DEDR is reachable in
 this session: `SRC-061` (DEDR, Burrow and Emeneau 1984, 2nd ed., as re-parsed in
 JAMBU `data/dedr/`), `SRC-060` (JAMBU CLDF database), `SRC-062` (Proto-Dravidian
 reconstructions after Krishnamurti), `SRC-067` (DravLex) — all `VERIFIED` in
@@ -456,7 +619,7 @@ Veḷi framing must not make *"one word, not six"* read as evocative rather than
 falsifiable.""",
  "asset_extra": """\
 **`pronunciation audio where licensed` is the framework's named failure case.**
-§1.6.3(a) singles this phrase out: the workbook *"treats a consent question as a
+§1.6.3(a) singles this phrase out: the workbook is *"treating a consent question as a
 licensing question"*, and under the evidence-class mapping, `oral/living` evidence
 requires **consent, not licence**, with a Consent Register row mandatory (§11.4).
 *"Where licensed"* is not an available route. Any recorded speaker of Tamil on
@@ -515,12 +678,16 @@ dependency of the others. `Living Tiṇai` is a posture named after it.""",
    ("IH-248", "Section 8 HELD register: *Sangam, Tolkappiyam, Tevaram, the Pali canon, the Asokan edicts, the Saunaka Atharvaveda and a clean Chandogya* — recorded as a load-bearing source *'currently reached via NOT OBTAINED / NOT FOUND'*, carrying *'Everything Tamil, Pali and Prakrit that is not the Kural'*. Under the handoff's Rule 7 every claim resting on it is HELD."),
  ],
  "evidence_extra": """\
-`IH-248` is the operative row. The five-*tiṇai* scheme is set out in the
-Tolkāppiyam's *Poruḷatikāram* and exemplified across the Sangam anthologies.
-Those are precisely the texts the inheritance records as never obtained. The page
-therefore defines a framework from primary texts that no one in this project's
-record has read directly — which is a different and more serious position than
-having read them and cited them thinly.""",
+`IH-248` is the operative row. It names *Sangam* and *Tolkappiyam* among the
+sources recorded as NOT OBTAINED / NOT FOUND — and those are the sources a
+tiṇai page would have to rest on, since the page's own subject is a Tamil poetic
+scheme. **Where exactly the scheme is set out is not something this brief can
+state**: naming the chapter and the text that carries it would be a claim about
+the contents of documents the same row records as unread here, which is the
+error the page is suspected of. What can be said is the structural position: the
+page defines a framework from primary texts that no one in this project's record
+has read directly, which is a different and more serious position than having
+read them and cited them thinly.""",
  "posture_extra": """\
 **Field Mode is mandatory in Living Tiṇai** (§1.7). The children's investigation
 and the Field Bag (§10.4) are not an enhancement for this page; the matrix makes
@@ -556,15 +723,14 @@ scenery is the reading the page exists to correct.""",
 Tolkāppiyam *Poruḷatikāram*, locate the tiṇai chapters, record the scheme with
 exact locators, and separate the text's own statements from the commentators'.
 
-**Blocked, and the block is documented rather than assumed.** No reachable host
-in this session serves the text: `SRC-083` records `sacred-texts.com` and
-`wisdomlib.org` blocked at 2026-09-07T15:10Z, `SRC-080` records GRETIL blocked,
-`SRC-081` the Internet Archive blocked, `SRC-082` TITUS blocked, and `SRC-052`
-characterises the lane as `github.com` and `raw.githubusercontent.com` only. A
-`05-HOLDS/` row is owed naming the Tolkāppiyam edition as the unreachable source
-and stating what it would settle. Whether a citable edition is served over the
-git lane is untested, and testing it is step 1 of the unit rather than an
-assumption in this brief.""",
+**Retrieval state: the likely hosts are refused, the git lane is untested.**
+`SRC-083` records `sacred-texts.com` and `wisdomlib.org` refused at
+2026-09-07T15:10Z, `SRC-080` GRETIL, `SRC-081` the Internet Archive, `SRC-082`
+TITUS. Whether a citable edition is served over the still-open git lane
+(`SRC-058`) is **untested**, and testing it is step 1 of the unit — so this
+brief does not state that the text is unreachable, only that every host probed
+so far has refused. A `05-HOLDS/` row is owed once that search has been run and
+failed, naming the edition and what it would settle.""",
  "conflicts": "",
 },
 
@@ -667,7 +833,36 @@ this page is where it applies. If no Keeladi claim may go beyond a specific
 inscribed mark in a funding prospectus, the standard on a public exhibit page
 cannot be looser. *"A literate Tamil city from 6th century BCE"* is a claim about
 a date and a claim about literacy, and the second is carried by the inscribed
-material the rule points at.""",
+material the rule points at.
+
+**The preferred-counter-narrative test, run on this page.** Keeladi carries the
+strongest Tamil-nationalist valence of the fifteen, and both halves of the page
+are congenial to a position this project holds: an early literate southern city,
+and a state that interfered with the excavation. That is a reason to press
+harder, not softer. Three specific pressures follow.
+
+*On the date.* An early date for southern literacy is the finding this project
+would most like to be true, which is exactly the condition under which a
+secondary-source chain gets accepted. `IH-113` is `PROVISIONAL` in the handoff
+and `INHERITED-UNVERIFIED` here, and the handoff's own instruction is *pin each
+step*. The correct posture is that the date is unestablished in this repository,
+not that it is established and awaiting citation.
+
+*On the interference narrative.* Five administrative events — a transfer, a
+report, a rework request, an evaluation — are consistent with interference and
+also consistent with ordinary bureaucratic process. `IH-113` supplies the
+sequence, not the motive, and the page's H1 supplies the motive. That gap is the
+page's largest unsupported step, and it is not a right-of-reply problem before it
+is an evidence problem: the right of reply governs how a supported allegation is
+published, not whether an unsupported one may be.
+
+*On the direction of correction.* The inheritance contains one logged case where
+a correction ran *towards* the canonical finding rather than away from it —
+`IH-029`/R-09, where the handoff records that *"Claude's caution understated a
+well-supported finding"*. It is cited here because the six-headline correction
+record (`IH-051`) otherwise reads as a one-directional story about this project
+overclaiming in its own favour, and a one-directional story about one's own bias
+is itself a congenial thing to believe.""",
  "posture_extra": """\
 **Field Mode is mandatory in Living Tiṇai** (§1.7) — and here it collides with an
 open owner decision. `09-DECISIONS/OWNER-DECISIONS.csv` **D-006** asks whether
@@ -708,13 +903,18 @@ request, the 114-page evaluation. Separately, obtain the dating basis for the
 6th-century-BCE claim from the excavation reports rather than from press
 coverage.
 
-**Blocked on egress, and the block is documented.** ASI, TNSDA and Indian
-publisher hosts are not reachable: `SRC-052` records only `github.com` and
-`raw.githubusercontent.com` open; `SRC-081` to `SRC-083` record the general-web
-hosts blocked on re-probe at 2026-09-07T15:10Z. `indianculture.gov.in` was
-recorded reachable at `SRC-027` earlier the same day and the later
-characterisation supersedes that, so **re-probing it is step 1** of the unit
-rather than an assumption in this brief.
+**Retrieval state: `NOT ACCESSIBLE` for the hosts probed, untested for the
+rest — and the difference matters.** `SRC-081` to `SRC-083` record the
+general-web hosts refused on re-probe at 2026-09-07T15:10Z, and `SRC-052`'s
+`blocking_constraint` generalises from a sixteen-host probe list. **No probe of
+an ASI, TNSDA or Indian publisher host is recorded anywhere in the ledger**, so
+this brief does not assert that they are unreachable; the honest type for them
+is `NOT RECOGNIZED` in the sense the negative-evidence standard intends — we
+have not looked. `indianculture.gov.in` was recorded reachable at `SRC-027`
+earlier the same day, and `SRC-080`'s own note states the governing principle:
+*"A ledger row is a timestamped probe, not a standing property (D-042)."* The
+two rows are therefore not reconcilable from this brief. **Probing the specific
+hosts is step 1** of the unit, and its result is a ledger row either way.
 
 **And one part escalates rather than blocks.** `IH-215` names the single most
 important verification task in the inherited file as an outreach to a named
@@ -781,13 +981,21 @@ was produced, the probability it survived, excavation coverage, and whether we
 could recognise it. Absence of comparable features elsewhere is not evidence that
 these are first.""",
  "asset_extra": """\
-Every one of the four is blocked, and by the strictest rule in the set.
-`claim-specific diagram` and `source facsimile` are derived assets under §3.12,
-which forbids commissioning or publishing a derived asset *"while the claim it
-depicts is `INHERITED-UNVERIFIED` or `HOLD`"* — and this page's claims are at
-both. A reconstruction diagram of a proposed shrine with no directly datable
-material is the single most persuasive and least supportable asset in the whole
-release.
+`claim-specific diagram` is embargoed by the strictest rule in the set. §3.12
+defines a derived asset as *"a claim-specific diagram, map, chart or
+reconstruction"* derived from a Claim Object, and forbids commissioning or
+publishing one *"while the claim it depicts is `INHERITED-UNVERIFIED` or
+`HOLD`"* — and this page's claims are at both. A reconstruction diagram of a
+proposed shrine with no directly datable material is the single most persuasive
+and least supportable asset in the whole release.
+
+`source facsimile` is **not** a derived asset and is not embargoed by §3.12: a
+facsimile reproduces a source, it does not depict a claim. It is blocked here
+for a different and simpler reason — the two publications the page rests on have
+not been obtained, so there is nothing to reproduce. The distinction is worth
+keeping straight, because collapsing it would block this page harder than the
+rule actually does, and this is the page where over-blocking is the tempting
+error.
 
 The `Priority = MVP` on this page's asset-register row is one limb of the
 conflict recorded in §7.""",
@@ -800,18 +1008,29 @@ conflict recorded in §7.""",
    "The alignment claim and the chronology claim are separated. *'Solar-aligned'* and *'before the Indus'* are two claims with different evidence and different failure modes, and the headline fuses them.",
  ],
  "unit": """\
-**MVP-U8 — read the two load-bearing sources directly.** Kenoyer, Clark, Pal and
-Sharma 1983 for Baghor I; Chattopadhyaya 1996 for Damdama and Mahadaha; then the
-absolute dating literature for the Ganges Mesolithic cemeteries. Closing `IH-243`
-is the single action that would move the most on this page, because every Baghor
-claim is HELD behind it.
+**MVP-U8 — read the two load-bearing sources directly.** The repository knows
+these two publications only as the registers record them — **Kenoyer et al.
+1983** and **Chattopadhyaya 1996** — with no fuller citation in
+`02-SOURCES/access-ledger.csv` or anywhere else here. Expanding either into a
+full author list or a title before it has been read would be supplying
+bibliography from memory, which is precisely what `IH-243` records as not having
+happened; the first act of this unit is therefore to obtain the full citation,
+not to assume it. Kenoyer et al. 1983 for Baghor I; Chattopadhyaya 1996 for
+Damdama and Mahadaha; then the absolute dating literature for the Ganges
+Mesolithic cemeteries. Closing `IH-243` is the single action that would move the
+most on this page, because every Baghor claim is HELD behind it.
 
-**Blocked on egress.** `SRC-081` records the Internet Archive blocked at
-2026-09-07T15:10Z; `SRC-082` TITUS; `SRC-083` sacred-texts and wisdomlib;
-`SRC-052` characterises the lane as `github.com` and `raw.githubusercontent.com`
-only. No reachable host in this session serves either publication. A `05-HOLDS/`
-row is owed for each, naming what it would settle — and `05-HOLDS/` already
-contains six such records, so the form is established.""",
+**Retrieval state: refused where probed, untested for these two publications.**
+`SRC-081` records the Internet Archive refused at 2026-09-07T15:10Z; `SRC-082`
+TITUS; `SRC-083` sacred-texts and wisdomlib. **Neither publication has itself
+been probed**, and `SRC-058` records the git lane open to arbitrary public
+repositories, so this brief does not assert that no host serves them — it
+records that the hosts most likely to has been refused and that the specific
+search has not been run. Type the absence before writing the verdict, per
+`04-AUDITS/BIAS-FAILURE-LOG.csv` `BF-010`'s standing control. A `05-HOLDS/` row
+is owed for each once the search has been run and failed, naming what each would
+settle; `05-HOLDS/` already contains six such records, so the form is
+established.""",
  "conflicts": """\
 ## 7. The recorded conflict — MVP rank 8 and withhold-from-MVP
 
@@ -860,9 +1079,9 @@ other purpose:
   `Priority = MVP` row is wrong and should be re-derived. `before-the-indus`
   moves to the verification queue, where MVP-U8 belongs regardless. The overlap
   cluster *Meluhha and Indus* — `meluhha`, `meluhha-trade`, `the-water-city`,
-  `before-the-indus`, recommended as *"one curated exhibit sequence"* — loses a
-  second of its four members from the release, `the-water-city` being the only
-  one left in.
+  `before-the-indus`, recommended as *"one curated exhibit sequence"* — goes from
+  two members in the release to one. `meluhha` and `meluhha-trade` are `MVP = No`
+  in `page-audit.csv` and were never in it.
 
 **What does not change under either arm**, and this is an observation about
 sequencing, not a resolution: the page cannot be published today under either
@@ -887,14 +1106,14 @@ a negative claim about a category, and it is the one the headline turns on —
 *no palace* is what makes the sentence an argument rather than a description.""",
  "evidence": [
    ("IH-138", "Hypothesis H-04: post-urban Indus settlement moved east tracking a weakening monsoon. For: correlation. Against: causation is undocumented and no single cause is settled for the decline. The handoff requires it be labelled an inference. Adjacent to this page rather than under it — it concerns the post-urban phase."),
-   ("IH-029", "Rakhigarhi is not one individual: eleven Indus-Periphery outliers from Gonur and Shahr-i-Sokhta form a cline of which I6113 is part. Adjacent, and it comes with `DECISIONS-NEEDED.md` **D-033** — `rakhigarhi` is in the contradiction register but is not among the 96 pages of the audited build."),
+   ("IH-029", "Correction C-16, **rejected as R-09**: Claude had written *'the sample is ONE individual, I6113'*, and the handoff records that **Claude's caution understated a well-supported finding** — eleven Indus-Periphery outliers from Gonur and Shahr-i-Sokhta form a cline of which I6113 is part. Adjacent to this page rather than under it, and cited here for the direction of the error: this is the one logged case in the inheritance where a correction ran *towards* the canonical finding rather than away from it."),
+   ("IH-263", "Contradiction X-14, and the row `DECISIONS-NEEDED.md` **D-033** rests on: the live `rakhigarhi` page says there is no seafaring in the Rigveda while the site's corpus file records *nau-* at n = 40 — and `rakhigarhi` is not among the 96 pages of the audited build."),
  ],
  "evidence_extra": """\
 **Nothing in any register bears on the water engineering or on the absence of
 palaces.** The two rows above are the nearest Indus-related material in the
 inheritance and neither supports this page's claims; they are listed so that the
-gap is legible rather than implied. This page is one of four in the fifteen with
-no topical inherited claim at all behind its central assertion.
+gap is legible rather than implied.
 
 **The negative claim is the page's real work, and the standard for it is
 written.** `CLAUDE.md`'s negative-evidence standard requires, *before* arguing
@@ -933,9 +1152,9 @@ illustrates it.""",
  "launch": [
    "The absence claim is typed under constitution §6, with excavation coverage stated for the sites it generalises over. Untyped, it is not publishable in any posture.",
    "A recognition criterion for *palace* is stated: what material signature would count, and who proposed it. Without one, *'no palace'* reports a vocabulary, not a settlement pattern.",
-   "The positive water-engineering claims are tied to named excavation reports with locators, and the source genealogy is mapped (method step 5) — Indus urban drainage is a literature where many publications trace to few excavations.",
+   "The positive water-engineering claims are tied to named excavation reports with locators, and the source genealogy is mapped (method step 5). Whether this literature in fact concentrates on few excavations is what step 5 measures; this brief asserts no genealogy it has not mapped.",
    "The bridge between infrastructure and political organisation is tested separately (method step 10). *'No palace to control it'* joins a material observation to a claim about power; those are two claims.",
-   "The `Meluhha and Indus` overlap cluster is addressed: the workbook recommends the four pages be presented as one curated sequence, and at most two of the four are in the release — one of them subject to D-032.",
+   "The `Meluhha and Indus` overlap cluster is addressed: the workbook recommends the four pages be presented as one curated sequence, and two of the four are in the release — `the-water-city` and `before-the-indus`, the second subject to D-032; `meluhha` and `meluhha-trade` are `MVP = No`.",
  ],
  "unit": """\
 **MVP-U9 — the palace-absence dossier.** Build the negative-evidence record
@@ -945,9 +1164,10 @@ excavation; the identification criteria proposed for elite residences in Indus
 archaeology and by whom; then type the absence. In parallel, the positive
 half — a register of water features with site, context and report locator.
 
-**Blocked on egress for the excavation literature**, on the same evidence as
-MVP-U7: `SRC-052`, and `SRC-081` to `SRC-083`. A `05-HOLDS/` row is owed. What is
-*not* blocked is the criterion work: the recognition criterion for *palace* is an
+**Retrieval state as for MVP-U7**: general-web hosts refused (`SRC-081` to
+`SRC-083`), the excavation literature itself never probed, the git lane
+(`SRC-058`) untested for it. A `05-HOLDS/` row is owed once the search has been
+run and failed. What needs no retrieval at all is the criterion work: the recognition criterion for *palace* is an
 argument about categories and can be assembled from what is reachable, and it is
 the half of this unit that changes the page most.""",
  "conflicts": "",
@@ -969,17 +1189,32 @@ translations, editions, counts, and absences are reproducible."*
 Every one of those four conditions is a separate problem, and the page carries
 one source entry for all of them.""",
  "evidence": [
-   ("IH-091", "The handoff's finding V-08, from `kural_ta.txt`, VELI-03 and MANIFEST — *'the first Tamil corpus'*: the Tirukkuṟaḷ has 1,330 couplets with **zero occurrences of *cāti* and zero of *vēṭam***. Entered here as `INHERITED-UNVERIFIED`; the handoff's own `VERIFIED` label did not survive intake."),
+   ("IH-091", "The handoff's finding V-08, from `kural_ta.txt`, VELI-03 and MANIFEST — *'the first Tamil corpus'*: the Tirukkuṟaḷ has 1,330 couplets with **zero occurrences of *cati* and zero of *vetam***, in the register's own unmarked romanisation. Entered here as `INHERITED-UNVERIFIED`; the handoff's own `VERIFIED` label did not survive intake."),
    ("IH-248", "Section 8 HELD register: the Tamil, Pali and Prakrit corpus *other than the Kural* is recorded as NOT OBTAINED / NOT FOUND. The Kural is the exception — which is why this page exists — but the comparative material that would show what the Kural's silence means is not held."),
    ("IH-012", "The parallel case, and a correction: *'no caste word in the Vedas' is wrong* — *varṇa* occurs 23 times in the Rigveda and the correct finding is that *jāti* is absent from it. The same argument-form on the same subject has already been found overstated once in this project."),
  ],
  "evidence_extra": """\
-**The claim's form is the problem, and naming it costs no retrieval.** `IH-091`
-records zero occurrences of **two** Tamil words. The headline says *"the word for
+**The register's romanisation is unmarked, and one of the two words is
+ambiguous under it.** `IH-091` gives the forms as `cati` and `vetam`, without
+diacritics. Restored one way, *vetam* is *vēṭam* — guise, ritual garb; restored
+another, it is *vētam* — Veda. The page is titled *"Tamil Ethics Without Caste
+**or Ritual**"*, so which word was counted decides whether the title's second
+half is supported at all. This brief keeps the register's unmarked forms rather
+than choosing, because choosing is the interpretive act constitution §7 requires
+a Translation Block for, and neither form has one here. Resolving it is part of
+the unit in §6.
+
+**The claim's form is the second problem, and naming it costs no retrieval.**
+`IH-091` records zero occurrences of **two** Tamil words. The headline says *"the word for
 caste is not in any of them"* — the definite article doing work no census
-supports. Tamil has several candidates for what an English reader means by
-*caste*: *cāti*, *varṇam*, *kulam*, *kuṭi*, *piṟappu*, *marapu*. A census of two
-forms establishes the absence of two forms.
+supports. A census of two forms establishes the absence of two forms — and whether those
+two are the whole candidate set for what an English reader means by *caste* is
+itself a lexicographic question this repository has not answered. **This brief
+does not supply the candidate list**: enumerating Tamil terms for social rank
+from memory would be doing exactly what it objects to on the page, one level up.
+Establishing the search set from a Tamil lexicographic source is the first step
+of the unit in §6, and until it is done neither the page's claim nor this
+brief's objection to it is settled.
 
 This is `CLAUDE.md`'s translation standard operating exactly as specified — *caste*
 is on its list of inherited English categories to audit before use, and the rule
@@ -1189,15 +1424,20 @@ return the posture it was assigned.
 bar. *"No relatives known"* must be typed per language and per proposal:
 `ABSENT DESPITE ADEQUATE SEARCH` where serious comparative work has been done and
 failed, `NOT RECOGNIZED` where the comparanda may exist unrecognised,
-`NOT PUBLISHED` where the work sits unpublished. Burushaski and Nihali are not in
-the same evidential position and must not be typed the same way.
+`NOT PUBLISHED` where the work sits unpublished. The four are unlikely to be in
+the same evidential position and must not be typed the same way by default —
+which of them differ, and how, is a finding of the unit in §6, not an assumption
+of this brief.
 
 The `Avoid` — *"no fantasy portal or occult styling"* — has a specific meaning on
 this page: language isolates attract mystification, and living speech communities
 are not a mystery.""",
  "asset_extra": """\
-**`pronunciation audio where licensed` is acute here, not incidental.** These are
-languages with living speakers, and Kusunda has very few. §1.6.3(a): `oral/living`
+**`pronunciation audio where licensed` is acute here, not incidental.** These
+are recorded as languages with living speakers — `IH-128` puts the Vedda
+language's loss *within living memory*, and the page's own H1 says four
+languages *still speak*. Speaker numbers for any of them are not held in this
+repository and this brief states none. §1.6.3(a): `oral/living`
 evidence requires **consent, not licence**, with a Consent Register row mandatory
 (§11.4) recording what was given, by whom, for what use, for how long and how it
 is withdrawn — plus the withdrawal trail (§1.6.2), so material withdrawn stays
@@ -1215,7 +1455,7 @@ regions by language, which is the default rendering for an isolates map.
 `glyph diagram` is a derived asset and is embargoed under §3.12.""",
  "launch": [
    "The title/H1 count is reconciled: three named or four named, with the fourth identified.",
-   "Each isolate's status is typed as an absence under constitution §6, per language, with the comparative proposals that have been made and tested named — Burushaski alone has a long history of them.",
+   "Each isolate's status is typed as an absence under constitution §6, per language, with the comparative proposals that have been made and tested named, per language. Which languages have attracted many proposals and which few is part of what the unit in §6 measures, not something this brief asserts.",
    "Speaker numbers carry a date and a source. A speaker count for an endangered language ages faster than any other figure on the site.",
    "Any recorded speech has a Consent Register row (§11.4). *'Where licensed'* is not an available route.",
    "The `the-vedda` overlap (0.301) is reviewed, per `overlap-tensions.csv`, and `IH-128`'s recorded *not supported* on the Vedda language classification is honoured wherever Vedda appears.",
@@ -1268,11 +1508,17 @@ evidence over about two thousand years:
 
 1. *Dozens of legal systems were operating* — a quantitative claim requiring an
    inventory, a definition of 'legal system', and an attestation type for each.
-2. *One was in a single volume* — a claim about textual form, and the one that
-   least survives contact with the dharmaśāstra corpus, which is not a single
-   volume.
-3. *That one became law* — a claim about the colonial codification process,
-   c. 1772 onward, with named actors.
+2. *One was in a single volume* — a claim about textual form. Which text or
+   compilation the H1 means by *a single volume* is not stated on the page as
+   the workbook records it, and this brief does not supply one. It is the claim
+   most exposed to the attestation gradient (constitution §4E): a text, a
+   recension, a commentary and a colonial digest are four different objects, and
+   *a single volume* could name any of them.
+3. *That one became law* — a claim about a codification process with a date
+   range and named actors, none of which the page's H1 states and none of which
+   this repository holds. Establishing that chronology from dated documents is
+   step 2 of the method and part of the unit in §6; this brief supplies no dates
+   of its own.
 4. The implied causal link between 2 and 3 — that textual convenience explains
    selection.
 
@@ -1331,10 +1577,13 @@ reconstruction are four different things); establish the colonial codification
 chronology for claim 3 from dated documents; and read Aktor 2018 and Davis
 2020/2022/2024 directly rather than through the handoff's summary of them.
 
-**Blocked on egress for the secondary literature**, on the same evidence as the
-other blocked units (`SRC-052`; `SRC-081` to `SRC-083`): no reachable host serves
-these publications. A `05-HOLDS/` row is owed naming them and what each would
-settle. The decomposition itself needs no retrieval and should be done first — it
+**Retrieval state: untested for these specific publications.** The general-web
+hosts are recorded refused (`SRC-081` to `SRC-083`), but **no probe for Aktor
+2018 or Davis 2020/2022/2024 is recorded in the ledger**, and `SRC-058` records
+the git lane open to arbitrary public repositories. This brief therefore does
+not assert that no host serves them; running the search and typing the outcome
+is part of the unit, and a `05-HOLDS/` row is owed once it has been run and
+failed. The decomposition itself needs no retrieval and should be done first — it
 is what turns one unfalsifiable headline into four checkable claims, and it is
 also the analytical half of the `Split`.""",
  "conflicts": "",
@@ -1645,7 +1894,7 @@ def emit(page, wb, hits, scanned):
       "replaces genre-driven asset classes with a mapping from the exhibit's "
       "**evidence-class composition** — the constitution's step 4 inventory. The "
       "workbook derived this row from the page's `Type`, a 29-value vocabulary "
-      "with 17 singletons that `SCHEMA.md` §4 finds *\"too sparse to do "
+      "with 17 singletons that `SCHEMA.md` §3 finds *\"too sparse to do "
       "reliably\"* the production-planning work it is doing. Under §1.6.3(a) a "
       "page with no recorded evidence classes yields **no** production class, "
       "which is the correct output and is this page's actual state.\n")
@@ -1681,17 +1930,124 @@ Fifteen briefs, `01-index.md` to `15-the-archive.md`, in the workbook's rank
 order. This README is the index and the shared-gate reference; it is not a
 sixteenth brief.
 **Built by:** `04-AUDITS/mvp-fifteen-briefs-build.py`.
-**Inputs:** `13-PRODUCT-ARCHITECTURE/museum-framework.md` (every design
-proposition `HYPOTHESIS`, per its own §14.4);
+**Inputs, read and reproduced at build time:** `mvp.csv`, `page-audit.csv`,
+`asset-register.csv` and `environment-map.csv` from
 `01-INHERITED/curatorial-audit-v1.1/` (`INHERITED-UNVERIFIED` without
-exception); `03-REGISTERS/` scanned for `supports_page`;
-`02-SOURCES/access-ledger.csv` for retrieval capability.
+exception); `03-REGISTERS/inherited-claims.csv`; and `03-REGISTERS/*.csv`
+scanned for `supports_page`.
+**Inputs quoted and checked, not reproduced:**
+`13-PRODUCT-ARCHITECTURE/museum-framework.md` (every design proposition
+`HYPOTHESIS`, per its own §14.4), `00-CONTROLLER/METHODOLOGY-CONSTITUTION.md`,
+`SCHEMA.md`, `method-limits.csv`, `summary.csv`, `claim-risk.csv`,
+`overlap-tensions.csv`, `02-SOURCES/access-ledger.csv`, `DECISIONS-NEEDED.md`,
+`RESEARCH-QUEUE.md`, `CLAUDE.md` and `04-AUDITS/BIAS-FAILURE-LOG.csv`. The
+generator asserts that **{n_quotes} quoted fragments** still resolve in those
+files and fails the build if one does not, so an edit to a source cannot
+silently invalidate a brief. Prose written around a quote is still written by
+hand; the check catches drift, not misreading.
+**Every count in this directory is derived at build time.** None is a typed
+literal — the inheritance's standing rule 14, which the first draft of this
+README broke by stating a diagram count from memory.
 
 **No retrieval was performed for this unit.** No row was added to
 `02-SOURCES/access-ledger.csv`; no claim moved status; no domain was requested.
 A brief is a statement of what a page would have to be and what it would have
 to rest on. **None of it is public copy**, and no sentence in it may be lifted
 onto a page.
+
+---
+
+## 0. Two standing controls this unit ran against
+
+Recorded first because they bear on whether the unit should exist, and the
+review that found them was right that citing D-032 ten times without quoting its
+last sentence was a serious omission.
+
+**`DECISIONS-NEEDED.md` D-032 ends:** *"Nothing in this repository acts on the
+MVP set until this is answered."*
+
+**`RESEARCH-QUEUE.md` lists *"Page and exhibit briefs"* under `## Not yet`.**
+
+This unit was produced on the owner's direct instruction, which is the only
+thing that overrides a queue position — the queue's own ordering below its first
+item is `OWNER-DECISIONS.csv` **D-008**, an owner decision, and an instruction
+from the owner is not a violation of it. But the instruction does not answer
+D-032, and it does not license the unit to do what D-032 withholds. So the
+boundary is drawn explicitly:
+
+- These briefs **describe** the fifteen pages the workbook nominated and state
+  what each would need. That is preparatory work, and it is what was asked for.
+- They **do not act on the MVP set**: nothing here schedules a launch, approves
+  a page, orders the work, assigns the release's shape, or assumes an answer to
+  D-032. §3's retrieval-capability table is a statement about which sources are
+  reachable, not a work order; §6 records the `before-the-indus` conflict and
+  takes no position on it.
+- Nothing here promotes a claim, because nothing here retrieved anything.
+
+If the owner reads that boundary as too fine — if writing briefs for a set whose
+membership is undecided *is* acting on it — then the correct disposition is that
+this unit waits on D-032 with the rest, and it is written down here so that
+judgement can be made rather than assumed. `RESEARCH-QUEUE.md` has been amended
+to record the unit and its standing.
+
+---
+
+## 0.1 The two adversarial tests, run on this unit
+
+Constitution §8 and `CLAUDE.md`: both tests before a unit is called finished,
+logged whether or not they found anything, and *"running one is a failed test"*
+(framework §3.11). Method failures are logged at
+`04-AUDITS/BIAS-FAILURE-LOG.csv` `BF-018` and `BF-019`; re-audits at
+`04-AUDITS/REAUDIT-QUEUE.csv` `RA-019`.
+
+**Prestige-bias challenge — did this unit privilege a claim because it is
+canonical, Sanskritic, Brahmanical, Indo-European, European, colonial,
+institutionally prestigious, repeatedly cited or nationally useful?**
+
+Found: **yes, once, by omission.** The set cites the inheritance's correction
+record repeatedly — `IH-051` (six headlines overstated *in the platform's own
+direction*), `IH-012` (the Vedic caste-word claim corrected), standing rule 17 —
+and initially cited none of the one logged case running the other way,
+`IH-029`/R-09, where the handoff records that *"Claude's caution understated a
+well-supported finding."* A correction record quoted only in the direction that
+flatters the corrector is not a correction record. `IH-029` is now cited with its
+R-09 note in `09-the-water-city.md` and in `07-keeladi.md`. Logged as `BF-018`.
+
+Also found: the prestige-bias test was initially dismissed in one line on
+`08-before-the-indus.md` (*"quiet here — the claim is not canonical"*) and never
+run on the four pages where it bites — `the-other-laws` (dharmaśāstra),
+`sound-changes` (Sanskrit's phoneme inventory as the reference point),
+`the-water-city` (the canonical Indus urbanism literature) and `the-archive`
+(Indology). Running it per page is `RA-019`; it is not closed by this unit.
+
+**Preferred-counter-narrative challenge — did this unit accept a claim too
+easily because it is Dravidian, Indigenous, anti-colonial, anti-Brahmanical,
+subaltern, diffusionist or politically corrective?**
+
+Found: **yes, once.** `07-keeladi.md` initially treated the page's
+institutional-interference framing as a posture-derivation problem and a
+right-of-reply problem, and never as a claim whose evidence might be thin.
+Keeladi carries the strongest Tamil-nationalist valence in the set and was
+receiving the least evidentiary pressure of the fifteen. The brief now runs the
+test on the page explicitly, in three parts — the date, the interference
+narrative, and the direction of correction. Logged as `BF-019`.
+
+**A third failure, not a bias failure but a method failure, found by the same
+review and logged with them:** the first draft expanded *"Kenoyer et al. 1983"* —
+the only form any source in this repository uses — into a full author list
+supplied from model memory, in a brief whose subject is that the publication has
+never been read. Bibliography from memory is the failure the inheritance rule
+exists to prevent, and it is more dangerous than a wrong claim because it looks
+sourced. Removed; the brief now states that obtaining the full citation is the
+first act of the unit. Logged as `BF-018`'s second row.
+
+**The asymmetry statement** (§11.2, required so the pair is not presented as
+balanced): these two failure modes are symmetrical in form and asymmetrical in
+power. The archives, the institutional positions, the citation counts and the
+funding behind the canonical accounts on these fifteen subjects are not equal to
+those behind the counter-accounts, and correcting a counter-narrative bias does
+not restore a balance that never existed. Both were corrected; neither
+correction implies the two bodies of scholarship start level.
 
 ---
 
@@ -1709,14 +2065,21 @@ onto a page.
 
 A scan of every register in `03-REGISTERS/` carrying a `supports_page` column
 ({scanned} files) returns **zero rows naming any of the fifteen slugs**. The
-`supports_page` values actually in use are *forts (proposed)*, *substrate
-(proposed)*, *geography (proposed)*, `what-varna-meant.html`,
-`the-northwest-cousin.html`, `the-killed.html`, `brahui`, *atlas layer* and
-*method*. `03-REGISTERS/inherited-claims.csv` holds 369 rows, all
-`INHERITED-UNVERIFIED`, and **all 369 have an empty `supports_page`**.
+{n_vals} `supports_page` values actually in use are: {sp_values}.
+`03-REGISTERS/inherited-claims.csv` holds {n_ih} rows, all
+`INHERITED-UNVERIFIED`, and **all {n_ih} have an empty `supports_page`**.
+
+**The scan's exclusion set, printed rather than implied** (`BF-017`'s standing
+control on arguments from absence): {n_nocol} further CSVs in `03-REGISTERS/`
+carry rows and **no `supports_page` column at all** — {nocol_files}. Some hold
+claim rows: a page could in principle be supported by one of them and the scan
+would not see it. It would still not be *recorded* as supporting the page, which
+is what `CLAUDE.md`'s register format requires, so the finding stands — but it
+stands on the column, not on an exhaustive reading of every row in the
+repository.
 
 Under `CLAUDE.md`'s register format, `supports_page` is what ties a claim to the
-atlas entry or exhibit it feeds, and *"evidence that supports nothing is not
+atlas entry or exhibit it feeds, and *"Evidence that supports nothing is not
 collected."* Read the other way round, which is the way that matters here: on the
 repository's own accounting, **the launch set is supported by nothing**.
 
@@ -1728,14 +2091,16 @@ Three consequences, and they are the shape of the whole unit:
 2. **No public copy may be drafted for any of them.** Method step 14 draws public
    copy from accepted claims. There are none. Each brief therefore states its
    page's QUESTION and leaves the other six step-14 slots open with the reason.
-3. **Almost every asset in the register is embargoed.** Framework §3.12: *"a
-   derived asset may not be commissioned or published while the claim it depicts
-   is `INHERITED-UNVERIFIED` or `HOLD`."* Eight of the fifteen asset sets contain
-   a `claim-specific diagram`; all eight are blocked. This is the framework
-   resolving `SCHEMA.md` §4's finding 3 — 50 claim-specific diagrams scheduled by
-   MVP priority, which is driven by low risk, i.e. by the pages least examined.
-   Under §3.12 the diagram schedule is a function of the verification schedule
-   and cannot invert it.
+3. **Every claim-specific diagram in the set is embargoed.** Framework §3.12:
+   *"a derived asset may not be commissioned or published while the claim it
+   depicts is `INHERITED-UNVERIFIED` or `HOLD`."* **{n_diag} of the fifteen** asset
+   sets contain a `claim-specific diagram` — {diag_slugs} — and all {n_diag} are
+   blocked. (The count is derived from `asset-register.csv` at build time, not
+   typed; the other ten sets name a different derived asset, or none.) This is
+   the framework resolving `SCHEMA.md` §4's finding 3 — 50 claim-specific
+   diagrams scheduled by MVP priority, which is driven by low risk, i.e. by the
+   pages least examined. Under §3.12 the diagram schedule is a function of the
+   verification schedule and cannot invert it.
 
 **And the workbook's `Risk` column is not a measure of truth.** `method-limits.csv`
 states it: *"Risk means verification priority, not falsehood"*, and *"a visible
@@ -1749,7 +2114,9 @@ with 1 source entry under 5 tables.
 ## 3. What can actually be verified in this session
 
 Of the fifteen units of work named in the briefs, **three have a live retrieval
-route** with the access this session has, and they are the ones to run first:
+route** with the access this session has. This is a statement about retrieval
+capability, not a work order: sequencing the MVP set is what §0 says this unit
+does not do.
 
 | Unit | Page | Route | Ceiling |
 |---|---|---|---|
@@ -1757,18 +2124,24 @@ route** with the access this session has, and they are the ones to run first:
 | **MVP-U12** | `the-languages-we-lost` | Glottolog CLDF and languoid tree (`SRC-050`, `SRC-051`) | `PROVISIONAL` — one aggregating classification |
 | **MVP-U11** (lexical half only) | `sound-changes` | same Dravidian lexical lane | `PROVISIONAL`; epigraphic half blocked |
 
-Two more need no retrieval at all and are executable immediately: **MVP-U1**
-(threshold claim decomposition, `index`) and **MVP-U6** (re-deriving the ledger
-rule in-repository, `the-ledger`), plus the structural half of **MVP-U14**
-(creating the Obligations, Consent and Community Authority registers).
+Two more need no retrieval at all and could be executed with the access this
+session has: **MVP-U1** (threshold claim decomposition, `index`) and **MVP-U6**
+(re-deriving the ledger rule in-repository, `the-ledger`), plus the structural
+half of **MVP-U14** (creating the Obligations, Consent and Community Authority
+registers).
 
 **The rest are blocked, and the block is documented rather than assumed.**
 `SRC-052` characterises the session's egress as `github.com` and
 `raw.githubusercontent.com` only; `SRC-080` to `SRC-083` record GRETIL, the
 Internet Archive, TITUS, sacred-texts and wisdomlib refused on re-probe at
 2026-09-07T15:10Z. `SRC-027` records `indianculture.gov.in` reachable earlier the
-same day, which the later characterisation supersedes — so re-probing is the
-first action of any unit that needs it, not an assumption in any brief.
+same day, and `SRC-080`'s own note gives the rule that stops these being
+reconciled by assertion: *"A ledger row is a timestamped probe, not a standing
+property (D-042)."* A later characterisation does not supersede an earlier
+probe of a host it never probed. So **re-probing is the first action of any unit
+that needs a host**, and no brief here asserts that a host it has not probed is
+unreachable. Hosts never probed at all — ASI, TNSDA, Indian publishers, the
+publishers of Aktor and Davis — are recorded as untested, not as blocked.
 
 **Two things escalate rather than block.** `IH-215` names an outreach to Dr. G.
 Sundar of the Roja Muthiah Research Library as *"the most important single
@@ -1904,6 +2277,7 @@ def main():
 
     wb = {s: {"mvp": mvp_by[s], "page": pg_by[s], "asset": as_by[s],
               "env": env_by[mvp_by[s]["Environment"]]} for s in MVP_SLUGS}
+    verify_quotes()
     hits, scanned = scan_supports_page()
 
     by_slug = {p["slug"]: p for p in PAGES}
@@ -1922,9 +2296,28 @@ def main():
                             m["page"]["Decision"], m["page"]["Risk"]))
         print("wrote", name, len(text), "bytes")
 
-    open(os.path.join(OUT, "README.md"), "w").write(
-        README.format(written=WRITTEN, table="\n".join(rows), scanned=scanned))
-    print("wrote README.md")
+    n_quotes = verify_quotes()
+    diag = count_asset_sets_with("claim-specific diagram", as_by)
+    sp_vals, sp_with, sp_without = supports_page_values()
+    n_ih = len(list(csv.DictReader(open(
+        os.path.join(ROOT, "03-REGISTERS", "inherited-claims.csv")))))
+
+    open(os.path.join(OUT, "README.md"), "w").write(README.format(
+        written=WRITTEN,
+        table="\n".join(rows),
+        scanned=scanned,
+        n_quotes=n_quotes,
+        n_diag=len(diag),
+        diag_slugs=", ".join("`%s`" % d for d in diag),
+        n_vals=len(sp_vals),
+        sp_values=", ".join("`%s`" % v for v in sp_vals),
+        n_ih=n_ih,
+        n_nocol=len(sp_without),
+        nocol_files=", ".join("`%s`" % f for f in sp_without),
+    ))
+    print("wrote README.md ({} quotes checked, {} diagram sets, {} supports_page "
+          "values, {} registers without the column)".format(
+              n_quotes, len(diag), len(sp_vals), len(sp_without)))
 
 
 if __name__ == "__main__":
