@@ -53,7 +53,18 @@ backlog item text.
 **Rule S-2 — Where a choice is the owner's and has not been made, the choice is
 recorded, not taken.** Recorded in `DECISIONS-NEEDED.md` against rows allocated
 in `09-DECISIONS/OWNER-DECISIONS.csv`, which is authoritative for the identifier
-namespace.
+namespace. The framework's two operative clauses hold here in full: *"This
+document proposes; it does not adopt. Where it recommends, the recommendation is
+labelled as such and the alternative is stated at equal seriousness."*
+
+**Where this document does adopt, it says so at the point of adoption, and names
+the framework rule it narrows.** There are three such places and they are listed
+here so a reader does not have to find them: §5.4 binds the Constraint Block at
+every age band within this layer, on the task's instruction and on an argument
+from the absence of an age gate; §7.4 sets a publication threshold for the
+"WHAT THE EVIDENCE SUPPORTS" register, subject to `OWNER-DECISIONS.csv` D-010;
+and §10.5 narrows §10.3's opt-in server-side store, escalated as D-052. Nothing
+else in this document adopts where the framework left a choice.
 
 **Rule S-3 — Specification does not promote.** Naming an object model does not
 create the objects. Nothing in this file is a finding, and no Character, Mission
@@ -66,6 +77,14 @@ an experience object shows a visitor is a rendering of an object in the evidence
 layer, or it is editorial framing marked as such under museum framework §3.4 and
 §6.4. There is no third category. The whole of §2 below is the argument for this
 rule and the mechanism that enforces it.
+
+### 0.3.1 How section references read
+
+A bare `§x.y` is a section of **`museum-framework.md`**, which is what most of
+them are. A reference to this document is written **"§x.y of this document"** or
+appears inside a sentence that names the object being specified. Where the two
+could be confused the source is named in full. Constitution references are
+written `constitution §x` or `Step n`.
 
 ### 0.4 What it deliberately does not do
 
@@ -107,11 +126,17 @@ The framework names these things repeatedly and specifies none of them as
 objects. PROVE IT is described as *"a structured walk"* in six stages (§9.2) with
 no record type for a stage. The children's investigation has five stages (§10.4.3)
 with no record type for a stage. The Living World is *"a themed traversal"*
-(§10.1) with no record type for a traversal. Classroom mode assembles *"a
-classroom set"* (§10.5.1) out of items that have identifiers, into a container
-that does not. `mk:qst:` and `mk:exh:` appear in the identifier table at §2.1 and
-in a dozen field definitions, and neither is given a field list anywhere in the
-document.
+(§10.1) with no record type for a traversal. `mk:qst:` and `mk:exh:` appear in the
+identifier table at §2.1 and in a dozen field definitions, and neither is given a
+field list: §6.6 describes in prose what a Question carries, and nothing anywhere
+describes an Exhibit.
+
+The classroom set is the exception that shows the shape of the gap. §10.5.1 gives
+it *"a Field Bag with a teacher's notes attached and its own identifier"* — a
+container that **is** addressed, precisely because the framework was specifying
+the Field Bag at the time. Everything the framework specified as a record got
+one; everything it described as a walk, a stage, a traversal or a set of stages
+did not.
 
 ### 1.3 Why the gap is not cosmetic
 
@@ -123,12 +148,18 @@ guarantee.
 Concretely, four failures follow from leaving it unmodelled, each of them a
 failure the framework closes off everywhere else:
 
-**F-1. The unresolvable sentence.** Museum framework §3.4: *"any claim-bearing
+**F-1. The unrouted sentence.** Museum framework §3.4: *"any claim-bearing
 sentence on any surface exposes, without leaving the page, its `mk:clm:` id, its
-status, its Evidence Links … A sentence that cannot do this is not published in
-the institution's voice."* An activity prompt, a mission briefing, a journey
-introduction and a character's line are all sentences on a surface. If they are
-not objects, they are the only sentences in the institution that no rule reaches.
+status, its Evidence Links with locators and retrieval dates, and a link into
+Source Mode. A sentence that cannot do this is not published in the institution's
+voice; it is published as editorial framing and marked as such."* That is a
+routing rule with two outputs, and both of them require an object: the first
+needs a claim to resolve to, the second needs a surface on which "marked as such"
+can be recorded and counted. An activity prompt, a mission briefing, a journey
+introduction and a character's line are sentences on a surface with neither. They
+are not forbidden by the framework — they are unrouted by it, which is worse,
+because a rule with no third branch and no way to reach one is a rule that will
+be resolved in practice by whoever is writing the prompt.
 
 **F-2. The status-free assertion.** Status is derived, never typed (§3.2). An
 object with no evidence links has no derivation, so it has no status, so it
@@ -174,12 +205,22 @@ already carry.** The experience layer arranges the record. It does not extend it
 > cannot be created, cannot be published, and cannot be exported. There is no
 > waiver, no draft state that exempts it, and no editorial override.**
 
-Formally: for every object of type `qst`, `exh`, `act`, `chl`, `msn`, `jny`,
-`lob` or `chr`, the set of Grounding Links (§4) whose subject is that object and
-whose object resolves to `mk:evd:`, `mk:clm:`, `mk:rel:`, `mk:abs:`, `mk:src:`,
-`mk:lex:`, `mk:txt:`, `mk:plc:`, `mk:agt:`, `mk:obl:`, `mk:cns:` or `mk:cor:`
-must be non-empty, either directly or through the composition path permitted in
-§2.5.
+Formally: for every object of type `qst`, `exh`, `act`, `chl`, `jny`, `lob` or
+`chr`, the set of Grounding Links (§4) whose subject is that object and whose
+object resolves to `mk:evd:`, `mk:clm:`, `mk:rel:`, `mk:abs:`, `mk:src:`,
+`mk:lex:`, `mk:txt:`, `mk:plc:`, `mk:agt:`, `mk:obl:`, `mk:cns:`, `mk:cor:` or
+`mk:dec:` must be non-empty.
+
+**`msn` is the single exception**, and it is the only one: a Mission is a pure
+container with no assertion of its own, and it grounds through the composition
+path at §2.5. Every other object in this layer, containers included, carries a
+direct link — the reason is at §2.5.
+
+Note what is *not* on the list: `qst`, `exh`, `act`, `chl`, `msn`, `jny`, `lob`
+and `chr`. **An experience object never grounds another experience object.** A
+Challenge pointed only at a Question, or a Mission pointed only at a Question, is
+ungrounded; each carries a separate evidence-layer link, specified at §9.4 and
+§10.3.
 
 ### 2.2 Why — six reasons, none of them stylistic
 
@@ -251,7 +292,7 @@ it does not raise anything.
 
 - An Activity grounded in a `HYPOTHESIS` claim is a legitimate Activity about a
   hypothesis. It may not present the hypothesis as settled, and the visitor sees
-  the status (§5.2).
+  the status on every surface that shows the claim (framework §7.2).
 - Grounding is not endorsement. An Activity may be grounded in a `REJECTED`
   claim — showing rejected reasoning is a stated purpose of the record (§3.6) —
   provided the rejection is what is shown.
@@ -262,20 +303,33 @@ it does not raise anything.
 ### 2.5 Composition, and the one permitted transitivity
 
 Experience objects compose: a Journey holds Exhibits, a Mission holds Activities.
-Requiring every container to repeat its members' grounding would be noise.
+The question is whether a container inherits its members' grounding.
 
-**Composition transitivity is permitted, within the experience layer only, and
-must terminate in a direct Grounding Link.** A Journey is grounded if the
-Exhibits it traverses are grounded. A Mission is grounded if its Activities are.
-A container whose every member is removed becomes ungrounded at that moment and
-is unpublishable from that moment — it does not retain grounding it once had
-through a member it no longer has.
+**The answer is no, except for the Mission.** The test is whether the container
+asserts anything of its own:
+
+- An **Exhibit** speaks in the institution's voice, so it resolves on its own
+  (§7.3). A **Journey** asserts a through-line, so it resolves on its own
+  (§11.5). A **Challenge** puts a specific claim at risk, so it resolves on its
+  own (§9.4).
+- A **Mission** asserts nothing its Activities do not. It is an ordering and a
+  scope. Requiring it to restate its members' grounding would add a row and no
+  information.
+
+**Composition transitivity is therefore permitted for the Mission only, within
+the experience layer only, and must terminate in a direct Grounding Link.** A
+Mission whose Activities are all removed or suspended becomes ungrounded at that
+moment and is unpublishable from that moment — it does not retain grounding it
+once had through a member it no longer has. This is not hypothetical: an Activity
+suspends automatically when a consent lapses (§8.7), so a Mission can lose its
+grounding with nobody editing it.
 
 **This is not in tension with museum framework §4.4's ban on transitive
 bridges, and the difference is worth stating because the two rules look
-contradictory.** §4.4 forbids deriving A→C from A→B and B→C *across evidence
-domains*, because each such edge is an assertion about the past and assertions do
-not chain. Composition asserts nothing about the past. "This Mission contains
+contradictory.** §4.4 forbids deriving A→C from A→B and B→C across the constitution's
+*seven domains* — language, ancestry, culture, artifact, religion, polity and
+modern identity — because each such edge is an assertion about the past and
+assertions do not chain. Composition asserts nothing about the past. "This Mission contains
 this Activity" is a fact about a product, verifiable by inspection, and it is the
 only kind of link that may be traversed for grounding purposes. **A Grounding
 Link may never be inherited through an evidence-layer relationship.** An Activity
@@ -291,8 +345,10 @@ do something, understand something, or attend to something in particular.
 It does not apply to the **shell**: navigation, search controls, the language
 switcher, the export dialogue, error states, the cookie and measurement policy,
 the accessibility controls. These carry no content about the past, make no
-assertion, and address no visitor about a subject. They are specified in museum
-framework §7, §11.9 and §11.10 and are not objects here.
+assertion, and address no visitor about a subject. They are specified across
+museum framework §5.2 (export), §7 (search and the viewer), §10.4.5 (the
+measurement policy), §11.9 (accessibility controls) and §11.10 (interface
+language), and are not objects here.
 
 The boundary is testable: **if removing it would remove something the visitor
 would otherwise learn or conclude about the past, the institution or the record,
@@ -311,8 +367,10 @@ is never the grounding of anything.
 Three checkpoints, because a rule checked once is checked at the wrong time.
 
 1. **At creation.** An object cannot be persisted without at least one Grounding
-   Link or one composition member that has one. This is a schema constraint, not
-   a workflow step.
+   Link — or, for a Mission alone, one composition member that has one. This is a
+   cardinality constraint across the object table and the link table, enforced at
+   commit rather than as a workflow step: it is not a field a form can leave
+   blank and come back to.
 2. **At publication.** The publication gate (§14) re-resolves every Grounding
    Link. A link to a retracted, withdrawn or non-resolving object fails the gate.
 3. **Continuously, after publication.** Grounding can be lost without anyone
@@ -367,6 +425,24 @@ Whether these six are folded into museum framework §2.1's table, or that table
 cites this document, is an editorial tidying decision and is not escalated: §2.1
 is a scheme, and this is an allocation under it.
 
+**The closed vocabularies this document adds**, which framework §5.3 requirement
+3 requires to be published as enumerations with definitions and stability
+guarantees, and which are therefore listed once here rather than left to be
+gathered: the 11 experience predicates (§4.2), the 5 `surface_role` values
+(§4.3), the 4 `decay_behaviour` values (§4.3), the 14 `compare_term_class`
+values (§5.2), the 19 `interaction_pattern` values (§8.2), the 7
+`challenge_form` values (§9.3), the 5 Challenge `outcome_forms` (§9.3), the 5
+`objective_type` values (§12.3), the 4 `assertion_form` values (§12.2), the 4
+`character_kind` values (§13.2), and the 3 `change_type` additions (§3.3).
+Framework §5.3's list is incomplete until these are added to it.
+
+**`surface_role` is not a second evidence-role vocabulary.** Framework §3.3's
+eleven roles say what a piece of evidence does *for a claim*; `surface_role` says
+what an object does *on a surface*. They meet at one point, stated at §2.3: a
+`surface_role` of `context` is the display counterpart of the `contextualises`
+role, and carries the same prohibition — it cannot on its own ground an object
+that asks the visitor to conclude something.
+
 ### 3.2 The `chl` / `cor` collision, declared
 
 **`mk:chl:` — a Challenge — is an experience object: a designed, bounded
@@ -404,12 +480,13 @@ Two additions specific to this layer:
   exported a Challenge run in March and returns in September is shown what they
   ran, plus what has changed in the claim since — the same behaviour §10.3
   specifies for collected claims, applied to the container.
-- **`change_type` gains four values** for this layer, alongside §3.6's list:
-  `grounding-added` · `grounding-lost` · `constraint-block-revised` ·
-  `character-withdrawn`. `grounding-lost` is the value that fires on §2.7's
-  continuous check, and it is a revision of the experience object even though
-  nobody edited it, because the object did change: what it resolves to is what
-  it is.
+- **`change_type` gains three values** for this layer, alongside §3.6's list:
+  `grounding-added` · `grounding-lost` · `constraint-block-revised`.
+  `grounding-lost` is the value that fires on §2.7's continuous check, and it is
+  a revision of the experience object even though nobody edited it, because the
+  object did change: what it resolves to is what it is. A Character suspended by
+  a consent withdrawal takes §3.6's existing `retracted-for-consent`; this layer
+  adds no synonym for it.
 
 ---
 
@@ -431,8 +508,20 @@ role asserts something about the evidence — that an Activity exercises a claim
 that a Character's words are attested in a source — is exactly such a
 relationship.
 
-Structural links that assert nothing (a Mission's ordered list of its own
-Activities) are ordinary typed fields, per §2.5.
+Structural links that assert nothing — a Mission's ordered list of its own
+Activities, a Journey's ordered list of Exhibits — are **ordinary typed fields
+holding identifiers, not `mk:rel:` records.** They are not Relationship Objects
+and do not carry §4.2's required fields: a `mechanism`, an `alternatives` set and
+a `falsifiers` array on a Mission-contains-Activity edge would be nonsense, and a
+`status` on it would be a status on a fact about a product rather than about the
+past. Where §10.2 and §11.2 name `assembles` and `traverses`, the predicate names
+the field's meaning; it does not make the field a record.
+
+One consequence, stated because it would otherwise be a silent hole: **§4.3's
+rule that a Grounding Link's status may never exceed its target's has no
+application to composition fields**, and no experience object carries a status of
+its own. Status lives in the evidence layer; the experience layer inherits
+display obligations from it and adds none.
 
 ### 4.2 The experience predicate group
 
@@ -537,13 +626,19 @@ Carried by every object in §6 to §13 without exception.
 | `compare_terms[]` | array of identifiers | The terms any comparison on this object takes. Empty where the object contains no comparison. |
 | `compare_term_class[]` | enum, parallel to `compare_terms[]` | `object` · `material` · `technique` · `script` · `word-form` · `text-passage` · `reading-variant` · `stratum` · `place` · `date-assertion` · `absence` · `source` · `claim` · `dataset-column`. **The enumeration has no value for a person, a group of people, human remains, a personal name, a population, an ancestry component, an archaeological culture read as a people, or a language used as a proxy for a people. A comparison whose term has no class here cannot be expressed.** |
 | `sorting_of_persons` | enum | `none`. The only permitted value. Any interface in which a visitor places people, remains, names, skulls, portraits, populations or ancestry components into categories — as a sort, a match, a drag, a quiz, a "which group does this belong to", or the same with the categories renamed, softened or presented as historical labels to apply — is refused here. |
-| `reward_mechanic` | enum | `none`. The only permitted value on any object that touches a racial, racial-nationalist or other extremist classification, and — per §10.4.4's ban on competition, scoreboards and time pressure — on every object in the children's mode. §10.4.7's second constraint survives any later relaxation of §10.4.4, so the field's permitted set does not widen with age band on classification material. |
+| `reward_mechanic` | enum | `none`. **The only permitted value, on every object, at every age band.** No points, scores, badges, streaks, completion percentages or congratulations. §10.4.4 bans competition, scoreboards and time pressure throughout the children's mode; §10.4.7's second constraint is the case that *"survives any later relaxation of that rule"* and does not widen with age band; §9.3 removes scoring from PROVE IT for all visitors. Since all three converge and §5.4 binds the block at every band, the enum has one value rather than an unstated remainder that no schema could be written from. |
 | `persecution_treatment` | enum | `not-present` · `read-as-record`. Never `staged`, `dramatised`, `role-played`, `simulated`, `scored` or `reconstructed-as-experience`. Those values do not exist. Persecution is told with its evidence and its status, as §10.4.6 permits a custody record to be read. |
 | `role_play` | enum | `none` · `present-day-method` — the second permitting only "do what a researcher does with this evidence now", never "be a person in the past". No role-play of a historical person, and no role-play of any position in a classification, in any period, at any age. |
 | `identity_attribution` | enum | `none`. No object may attribute an ethnicity, race, caste, ancestry component, religion-as-identity or modern nationality to a person, an object, a set of remains or a place as a property. Every such link is a museum framework §4.4 bridge with its mechanism, its rivals and its governance, or it is not displayed (§6.7). |
 | `age_bands[]` | array | The audiences the object is built for. **Declarative, not a gate** — see §5.4. |
 | `field_mode_postures_respected` | bool | Asserted true at publication by re-checking §1.7: no Field-Mode object exists in the Extraction / Collection or Reconnection postures. |
 | `constraint_reviewer`, `constraint_review_date` | metadata | A person and a date. The block is not self-certifying. |
+
+**The block is authoritative for the fields it holds.** `age_bands[]`,
+`compare_terms[]`, `compare_term_class[]` and `identity_attribution` appear again
+in the field tables of §6 to §13 for readability, because a field table a
+designer reads should be complete. Where the two differ, the block governs, and a
+generated schema takes these fields from the block once rather than eight times.
 
 ### 5.3 The COMPARE case, stated once for all eight objects
 
@@ -573,21 +668,37 @@ In this object model that finding becomes three mechanical facts:
 3. **The check is on the resolved referent, not on the label.** An entry whose
    identifier resolves to an `mk:agt:` of kind person or community, to a UEO
    whose `evidence_subclass` is in the human-remains set, to an ANCESTRY-layer
-   object (§8.4 layer 8), or to an archaeological culture being used as a stand-in
-   for a population, is refused whatever `compare_term_class` was declared for it.
+   object (framework §8.4, layer 8), or to an archaeological culture being used
+   as a stand-in for a population, is refused whatever `compare_term_class` was
+   declared for it.
    A rule that trusted the declaration would be defeated by a mislabelled row.
 
 ### 5.4 Age bands are declarative, and the constraints do not vary by them
 
-`age_bands[]` says who an object was built for. It is **not an age gate**, and
-nothing in this institution gates by age: museum framework §10.4.5 requires that
-no account is offered to under-16 visitors, so the institution does not know a
-visitor's age and must not pretend to.
+`age_bands[]` says who an object was built for. It is **not an age gate.**
 
-The consequence is unavoidable and is stated rather than worked around: **a child
-can reach every surface.** An experience layer whose protections activate only in
-a children's mode protects children only where the institution guessed right
-about who was looking.
+The reasoning is a derivation, not a restatement of the framework, and is set out
+so it can be disagreed with. Museum framework §10.4.5 requires that *"no account
+[is] required and none offered to under-16 visitors"*, and §10.4.5 forbids
+behavioural analytics and third-party trackers *"on any surface, at any age"*.
+An institution with no accounts and no tracking has no reliable knowledge of who
+is on a surface. It could ask — a self-declared birth date on entry — but a
+declaration is not knowledge, it is a gate that admits anyone who types a number,
+and building one would put an age claim about a visitor into the product where
+§10.4.5 has removed every other visitor datum.
+
+**So the working assumption is that a child can reach every surface**, and an
+experience layer whose protections activate only in a children's mode protects
+children only where the institution guessed right about who was looking.
+
+**What this does to two framework rules, stated rather than left implicit.**
+§10.3 says the Field Bag *"for under-16 visitors … does not exist at all"* as a
+server-side store, and §10.4.5 says no account is *offered* to them. Under this
+derivation neither is implementable as a check on a particular visitor; both are
+implementable as a property of the product — offer no accounts and no server-side
+store to anyone, which satisfies the under-16 rule by construction and is what
+§10.5 specifies. If the owner prefers a declared-age gate, the derivation fails
+and §5.4 and §10.5 both change; that possibility is part of D-046 and D-052.
 
 **Therefore, on the instruction of the task that produced this document, the
 Constraint Block binds all eight object types at every age band.** This extends
@@ -602,7 +713,25 @@ racial schema as its subject matter — is a wider question about the institutio
 self-description, with real costs on both sides, and it is the owner's.
 Recorded as **D-046**.
 
-### 5.5 The block does not soften anything else
+### 5.5 Fields every experience object carries
+
+Specified once here rather than eight times, and required on all eight object
+types. The publication gate (§14.3) checks them on whatever it is gating, so an
+object without them cannot pass it.
+
+| Field | Type | Notes |
+|---|---|---|
+| `release_state` | enum | `draft` · `in-review` · `published` · `withdrawn` · `superseded` |
+| `editorial_decision_ref` | `mk:dec:` | the row in `03-REGISTERS/editorial-decisions.csv` carrying the publication decision, its rationale and the person who took it, rendered `publication:*` so it can never be read as an evidence status (§11.5). Museum framework §11.5 exists because *"nothing in `03-REGISTERS/` records a publication decision"*; an experience object that publishes without one reproduces the gap in a new layer. |
+| `accessibility_equivalent` | reference | the non-visual equivalent carrying the same evidential content including status, attestation mode and uncertainty (§11.9.1–2). For a container, it is satisfied by its members' equivalents plus an equivalent for whatever the container itself adds — a Journey's through-line, a Mission's ordering. |
+| `preconditions[]` | array | the consent, obligation, rights and community-authority records that must be **in force**, not merely requested (§8.7). Aggregated upward by containers. |
+| `bias_test_context` | `mk:exh:` or Bias Test records | for an object inside an Exhibit, the Exhibit's tests (§3.11) satisfy this. **A Journey and a Learning Objective have no containing Exhibit and carry their own pair** — a Journey because its through-line is an assertion no single Exhibit makes, an objective because it can leave the institution on its own. |
+| `revision`, `created`, `created_by`, `revised`, `revised_by` | metadata | museum framework §3.6 requires an actor on every revision record; these are where it comes from. |
+
+Where §6 to §13 list one of these in their own field tables, the entry is
+repeated for readability and this section governs.
+
+### 5.6 The block does not soften anything else
 
 The Constraint Block sits alongside, and never in place of, museum framework
 §10.4.4's rules (no fabricated evidence; reconstructions labelled; no ethnic or
@@ -663,7 +792,7 @@ institution's work rather than about the world.
 | `exhibits[]` | array of `mk:exh:` | where it is displayed |
 | `challenges[]` | array of `mk:chl:` | the Challenges built on it |
 | `constraint_block` | Constraint Block | §5.2 |
-| `created`, `created_by`, `revised`, `revised_by` | metadata | |
+| *(common fields)* | §5.5 | `release_state`, `editorial_decision_ref`, `accessibility_equivalent`, `preconditions[]`, `bias_test_context`, revision metadata — carried by all eight object types and not repeated in the seven tables below |
 
 ### 6.3 Grounding
 
@@ -671,7 +800,10 @@ A Question is grounded by **at least one** of:
 
 1. a `bears-on` Grounding Link to evidence, a claim or a source;
 2. an Absence record typed under §3.7;
-3. a `05-HOLDS/` record naming what is blocked and what is needed.
+3. a `mk:src:` Grounding Link to the source that is blocked, whose access-ledger
+   row and `05-HOLDS/` record name what is needed. (The link is to the source,
+   not to the hold file: a filesystem path is not an identifier and cannot
+   satisfy §2.1.)
 
 The disjunction is not a loosening. It is the museum framework's own position
 made mechanical: §6.6 states that *"a question with no viable explanation still
@@ -782,7 +914,7 @@ the publishable unit is defined by its file — 96 pages carrying 29 `Type` valu
 |---|---|---|
 | `id` | identifier | `mk:exh:<key>` |
 | `revision` | integer | append-only |
-| `title` | string | **may not contain a count, a total or a superlative unless that number is itself a `presents` claim on this Exhibit** — §8.1's Atlas rule, generalised. The audited `"Artifact Atlas: 175 Ancient South Asian Sites Mapped"` is the case: a contested count (`IH-250`, X-01; D-034) in a title, rated low-risk. |
+| `title` | string | **may not contain a count, a total or a superlative unless that number is itself a `presents` claim on this Exhibit** — §8.1's Atlas rule, generalised. The audited `"Artifact Atlas: 175 Ancient South Asian Sites Mapped"` is the case: a contested count (`IH-250`, X-01; D-034) in a title, rated `Low` risk — all `INHERITED-UNVERIFIED`. |
 | `presents[]` | array of `mk:rel:` (`presents`) | the claims, relationships and absences shown in the institution's voice. **Non-empty. This is the Exhibit's grounding.** |
 | `question_refs[]` | array of `mk:qst:` | the questions this Exhibit is an attempt on |
 | `posture_assignment` | Posture Block | `derived_posture` · `assigned_posture` · `override_reason` · `derived_residual` · `decided_by` · `decided_date`, per §1.5. An override with an empty reason is invalid. Written to the Editorial Register (§11.5). |
@@ -832,11 +964,38 @@ constraint on what it may resolve to:
 |---|---|---|
 | QUESTION | `copy_question` | one or more `mk:qst:`, shown in `plain_form` |
 | WHAT IS OBSERVED | `copy_observed` | evidence objects, described separately from interpretation (§2.4's iconographic rule generalised) |
-| WHAT THE EVIDENCE SUPPORTS | `copy_supports` | claims at `VERIFIED` or `PROVISIONAL` only, with statuses shown. Step 14: *"Draft public copy only from accepted claims."* |
+| WHAT THE EVIDENCE SUPPORTS | `copy_supports` | claims at or above the **accepted threshold**, with statuses shown. Step 14: *"Draft public copy only from accepted claims."* §7.4.1. |
 | WHAT COMPLICATES IT | `copy_complicates` | rival claims, contradicting relationships, dependency findings, contested readings |
 | WHAT REMAINS UNKNOWN | `copy_unknown` | Absence records with their types, and `05-HOLDS/` rows. **Not prose about uncertainty** — typed absences, so a reader can tell `NOT EXCAVATED` from `ABSENT DESPITE ADEQUATE SEARCH` (§3.7). |
 | MELAKEELA'S CURRENT INTERPRETATION | `copy_interpretation` | a claim set with statuses, attributed to the institution, and **disclosed after the evidence, never before** — the same ordering §9.3 requires of PROVE IT |
-| WHAT WOULD CHANGE IT | `copy_falsifiers` | Falsifier records (§3.9), non-empty |
+| WHAT WOULD CHANGE IT | `copy_falsifiers` | Falsifier records (§3.9). Non-empty, **or** the explicit value `none-required-at-this-status` where every claim presented is at `HYPOTHESIS` or below — §3.1 requires falsifiers only *"for any claim above `HYPOTHESIS`"*, and an Exhibit presenting only hypotheses has no source of them. The escape carries the claim ids it applies to, so an Exhibit cannot use it while presenting one claim above `HYPOTHESIS`. |
+
+#### 7.4.1 The accepted threshold is the owner's, and this field does not set it
+
+Constitution Step 14 says public copy is drafted *"only from accepted claims"*
+and nowhere defines *accepted*. Whether `PROVISIONAL` — supported, but by a
+single source or by dependent sources — counts as accepted for the register
+headed WHAT THE EVIDENCE SUPPORTS is a publication threshold, and it is the
+substance of `OWNER-DECISIONS.csv` **D-010**, *"which institutional claims can
+presently be published"*, which is `OPEN`. Museum framework §0.3 lists D-010
+among the decisions it does not settle, and this document does not settle it
+either.
+
+`copy_supports` is therefore specified against a **named threshold parameter**
+rather than a fixed status list:
+
+- `accepted_threshold` is a property of the institution, set once by the answer
+  to D-010, and it is `VERIFIED` or `VERIFIED + PROVISIONAL`.
+- `copy_supports` admits claims at or above it. Everything below it that bears on
+  the exhibit appears under WHAT COMPLICATES IT or WHAT REMAINS UNKNOWN, which
+  are not lesser registers — they are the two headings this record most often
+  needs.
+- **Statuses are shown either way**, so the threshold changes what is asserted in
+  the institution's voice and never what a visitor can see.
+
+Until D-010 is answered the field cannot validate, and an Exhibit cannot publish
+under §14.3. That is the correct behaviour: an institution that has not decided
+what it may assert should not be asserting.
 
 Two rules on the shape:
 
@@ -969,7 +1128,8 @@ require a visitor to be right about something the institution has not verified.*
 | `exercises[]` | array of `mk:rel:` (`exercises`) | the claims, relationships and absences the reasoning is over. **Non-empty. This is the Activity's grounding.** |
 | `objects_used[]` | array of `mk:evd:`, `mk:plc:`, `mk:lex:`, `mk:txt:` | what is put in front of the visitor, each with `is_primary` and `attestation_mode` rendered (§2.5, §2.6) |
 | `has_right_answer` | bool | constrained by §8.2 |
-| `right_answer_ref` | `mk:clm:` or null | **required and `VERIFIED` when `has_right_answer` is true** |
+| `has_right_answer_kind` | enum or null | `verified-claim` · `record-property`. **Required when `has_right_answer` is true.** §8.2 permits a right answer on a mechanical property of the record — a locator, an edition, a chain step, a count with its corpus and method — and such a property is not a `mk:clm:`; without the discriminator the model could not express the right answer for `READ`, `LOCATE`, `DATE`, `TRACE` or `FOLLOW-THE-SOURCE`, which is most of the research set. |
+| `right_answer_ref` | `mk:clm:`, or a `mk:<type>:<key>#<anchor>` sub-locator, or null | **required when `has_right_answer` is true.** Where `has_right_answer_kind = verified-claim` it is a `mk:clm:` and its status must be `VERIFIED`. Where it is `record-property` it is the addressed anchor itself — the locator, the edition row, the chain step — and correctness is resolution, not status. |
 | `recorded_output` | enum | `observation` · `question` · `decision` · `note` · `selection` · `nothing`. What goes to the Field Bag. |
 | `output_is_private` | bool | **true for every free-text output at every age band.** §10.4.5: a child's written text is never published, never transmitted by default, never enters the correction pipeline as a public artefact. Specified at every band because §5.4's no-gate argument holds for adults' notes too and because a private note is the only kind a visitor can write honestly. |
 | `compare_terms[]`, `compare_term_class[]` | Constraint Block | §5.2, §8.4 |
@@ -998,18 +1158,39 @@ shape the Activity cannot be given:
 1. `compare_terms[]` is required and non-empty when `interaction_pattern =
    COMPARE`, and each term is an identifier, never a label.
 2. `compare_term_class[]` runs parallel to it and draws on the enumeration in
-   §5.2, which has thirteen values and **no value for a person, a group of
+   §5.2, which has fourteen values and **no value for a person, a group of
    people, human remains, a personal name, a population, an ancestry component,
    an archaeological culture used as a stand-in for a people, or a language used
    as a proxy for one.** A designer who wants a child — or an adult — to compare
    two skulls, two portraits, two names or two ancestry profiles finds there is
    no way to write it down.
 3. The validator checks the **resolved referent**, not the declared class
-   (§5.3): an identifier resolving to an `mk:agt:` of kind person or community,
-   to a UEO in the human-remains subclass set, or to an ANCESTRY-layer object
-   (§8.4 layer 8) is refused whatever class was declared for it.
+   (§5.3), and refuses an identifier resolving to an `mk:agt:` of kind person or
+   community, to a UEO in the human-remains subclass set, or to an ANCESTRY-layer
+   object (framework §8.4, layer 8 — the Atlas layer, not §8.4 of this
+   document), whatever class was declared for it.
 4. A COMPARE Activity has `has_right_answer = false` unconditionally. Comparison
    produces observations, not verdicts.
+
+**What the mechanism does not reach, stated plainly.** Three residues, because
+a mechanism oversold is worse than one honestly bounded:
+
+- **The human-remains subclass set does not yet exist.** Framework §2.3 gives
+  `evidence_subclass` as *"controlled"* with examples and no enumeration. Until
+  that set is published (framework §5.3 requirement 3), item 3's second test
+  cannot run and the check falls back on `mk:agt:` kind and layer membership.
+  Publishing it is a prerequisite of this rule, not an implementation detail.
+- **"An archaeological culture used as a stand-in for a population" is a
+  judgement, not a resolution.** It cannot be validated, for the same reason
+  §8.4 gives below for refusing the framing exemption: intent is not a field. It
+  is a review finding, listed here so it is reviewed rather than assumed
+  automated. The same holds for a language used as a proxy for a people.
+- **`claim` is a permitted class, and a claim can be about a population.** Two
+  claims about populations resolve to `mk:clm:` and pass every mechanical test.
+  This is the sort at one remove, it is real, and it is caught — if at all — by
+  the Constraint Block reviewer named at §5.2, not by the validator. A COMPARE
+  Activity whose terms are claims about populations is the case that most needs a
+  human to look, and the review signature exists for cases like it.
 
 **Why the framing exemption is refused.** §10.4.7: *"Framing the exercise as a
 debunking of racial classification does not lift the prohibition; the child still
@@ -1025,7 +1206,7 @@ expressible.
 **What COMPARE is for.** On pots, scripts, seeds, beads, strata, reading
 variants, date assertions, source trees and typed absences, it is *"the reasoning
 the mode exists to teach"* (§10.4.7). Nothing in this section narrows that. The
-thirteen permitted classes are the working range of comparative reasoning in this
+fourteen permitted classes are the working range of comparative reasoning in this
 record, and they are more than the flow ever needed.
 
 ### 8.5 DIG-IT, and the buckets problem
@@ -1135,7 +1316,7 @@ outcome.** It is the unit PROVE IT is made of.
 
 Museum framework §9.1 states what PROVE IT must be able to do: *"If PROVE IT
 cannot produce the outcome 'the institution is wrong here', it is a quiz, and a
-quiz that only confirms is publicity."* §9.2 gives it six stages and §9.3 four
+quiz that only confirms is publicity."* §9.2 gives it six stages and §9.3 six
 rules. Neither gives it an object, so a PROVE IT run is currently unaddressable,
 uncitable and unexportable, in a mode whose §9.3 rules require that *"every run
 is exportable … A run is citable."*
@@ -1168,10 +1349,10 @@ defect, exactly as an undifferentiated "hold" is (§11.5).
 |---|---|---|
 | `id` | identifier | `mk:chl:<key>` |
 | `revision` | integer | append-only |
-| `targets` | `mk:rel:` (`targets`) | **exactly one**, to a `mk:clm:@r<n>`, a `mk:qst:` or a `mk:rel:`. Revision-pinned: a Challenge is against a claim as it stood, and a visitor who returns is shown what has changed since. **This is the Challenge's grounding.** |
+| `targets` | `mk:rel:` (`targets`) | **exactly one**, to a `mk:clm:@r<n>`, a `mk:qst:` or a `mk:rel:`. Revision-pinned: a Challenge is against a claim as it stood, and a visitor who returns is shown what has changed since. §9.4. |
 | `challenge_form` | enum | `test-a-claim` · `weigh-rivals` · `find-the-dependency` · `type-the-absence` · `check-the-locator` · `read-the-variant` · `apply-a-gate` |
 | `activities[]` | ordered array of `mk:act:` | the run's stages as Activity objects (§8), so the interaction constraints apply here without restatement |
-| `evidence_set[]` | array of `mk:rel:` | the Evidence Links put before the visitor, with roles, locators, editions, retrieval dates and independence groups (§3.3) |
+| `evidence_set[]` | array of `mk:rel:` | the Evidence Links put before the visitor, with roles, locators, editions, retrieval dates and independence groups (§3.3). **Non-empty. This is the Challenge's grounding** — §9.4. |
 | `independence_tree_shown` | bool | **true.** §9.2 stage 3: *"nine citations resolving to one 1953 report is the single most instructive thing this mode can teach."* |
 | `rivals[]` | array of `mk:clm:` | every viable explanation **plus the null explanation**, independently stated (§9.2 stage 2) |
 | `exclusion_notes[]` | array of Gate Results | gated-out explanations with the gate they failed, in the fixed small footprint of §3.10 |
@@ -1187,13 +1368,26 @@ defect, exactly as an undifferentiated "hold" is (§11.5).
 | `preconditions[]` | array | as §8.7 |
 | `constraint_block` | Constraint Block | §5.2 |
 
-### 9.4 Grounding
+### 9.4 Grounding, and why it is not the target
 
-A Challenge grounds on its single `targets` link. The link is to a claim, a
-question or a relationship **at a named revision**, and it is required at
-creation.
+**A Challenge grounds on `evidence_set[]`, which is non-empty, not on
+`targets`.**
 
-The single-target rule is not a simplification. A Challenge with two targets
+That looks like the wrong choice and is the right one. `targets` may point at a
+`mk:qst:`, which is an experience object — and §2.1 is categorical that an
+experience object never grounds another. A Challenge on an open Question with no
+evidence set would then be a Challenge about nothing, which is exactly the object
+the grounding rule exists to refuse: an invitation to weigh evidence, with no
+evidence in it.
+
+Grounding on the evidence set also states the substantive rule. A Challenge is
+not made legitimate by naming a claim; it is made legitimate by putting the
+evidence in front of the visitor. **A Challenge with a target and no evidence set
+is a poll.**
+
+`targets` remains required, **exactly one**, and revision-pinned. That is a
+separate structural rule and the single-target part of it is not a
+simplification. A Challenge with two targets
 lets a visitor's disagreement land ambiguously, which makes the correction it
 emits unusable: §11.6 requires a challenge to be *"against a specific claim at a
 specific revision, with the evidence the challenger relies on."* An investigation
@@ -1207,7 +1401,9 @@ A **Challenge** is published, addressable and citable: `mk:chl:<key>@r<n>`.
 A **run** is one visitor's pass through it. Runs are:
 
 - **Local by default**, in the Field Bag, on the visitor's own device, with no
-  account (§10.3, §10.4.5).
+  account (§10.3, §10.4.5). Whether a server-side option exists at all is
+  **D-052**; under either answer the default is local and the option is never
+  the default.
 - **Exportable by the visitor** as the claim, the evidence set, the gates and
   their own reasoning (§9.3). The export is the citable artefact.
 - **Never transmitted by default.** A run reaches the institution only by the
@@ -1263,10 +1459,29 @@ can actually be computed rather than asserted.
 - **A Challenge never runs on a `HOLD` without showing the hold** (§9.3). A
   visitor must not be asked to weigh evidence the institution has told them it
   could not reach.
-- **Rivals are shown at equal visual weight to the primary and are one
-  interaction away** (§4.5), while **space allocation follows evidence** (§3.10).
-  These are not in conflict: the first is about reachability, the second about
-  extent. A rival is always reachable; it is not always as long.
+- **Rivals are always reachable at one interaction, and are weighted by
+  evidence.** This needs care, because two framework rules pull against each
+  other and this document may not settle their tension by quoting one of them.
+  §4.5 requires that selecting a bridge shows *"its rivals at the same visual
+  weight as itself"* — a rule about a bridge and its alternatives. §12.3, V-8
+  states the general rule the other way: *"Equal visual weight is a claim, and is
+  only made where the evidence is equal. Two rival explanations rendered
+  identically when their evidence differs fails §3.10."* `CLAUDE.md` is with V-8:
+  *"No false equivalence. A contested claim and an established one do not get
+  parallel presentation."*
+
+  **V-8 governs here**, because a Challenge's `rivals[]` is a set of explanations
+  with unequal evidence, not a bridge and its alternatives. What is equal is
+  **reachability**: every rival, including the null explanation, is one
+  interaction away, listed, and never behind a fold. What follows evidence is
+  **weight** — extent, prominence and finish. A Challenge that renders a
+  `HYPOTHESIS` rival with the finish of a `VERIFIED` one has made a claim it did
+  not state, in the direction the preferred-counter-narrative test exists to
+  catch.
+
+  The tension between §4.5 and V-8 is the framework's, not this document's, and
+  it is logged as `IC-X-001` in `04-AUDITS/INTERNAL-CONTRADICTIONS.csv` rather
+  than resolved here.
 - **`unknown` is never a rival** (§3.7). `insufficient-evidence` is an outcome
   the visitor may reach; it is not an explanation on the list.
 - **The Challenge may not be a Character's argument.** No Character advocates a
@@ -1292,8 +1507,10 @@ can actually be computed rather than asserted.
    assessed on evidence, not on counts (§11.6, rule 1).
 4. **An exercise on a live custody or restitution matter put to a child**
    (§10.4.6). Field Mode is forbidden in the Extraction / Collection and
-   Reconnection postures (§1.7); an adult Challenge there is mandatory, and a
-   child's is refused.
+   Reconnection postures (§1.7), so a child's Challenge cannot run in either.
+   Investigation Mode is *mandatory* in Extraction / Collection and *available*
+   in Reconnection, so an adult Challenge is expected in the first and permitted
+   in the second.
 5. **A sort, a scored classification or a staged persecution** (§5.2), by way of
    any Activity it contains.
 6. **A surface where a claim the institution has not made gets said** — by a
@@ -1331,13 +1548,13 @@ small: **one question, one sitting, one thing carried away.**
 |---|---|---|
 | `id` | identifier | `mk:msn:<key>` |
 | `revision` | integer | append-only |
-| `question_ref` | `mk:qst:` | **exactly one, required.** A Mission with two questions is two Missions. |
+| `question_ref` | `mk:qst:` | **exactly one, required.** A structural field, not a Grounding Link — a Question is an experience object and cannot ground one (§2.1, §10.3). A Mission with two questions is two Missions. |
 | `assembles[]` | ordered array of `mk:rel:` (`assembles`) | Activities and Challenges, in order. **Non-empty.** |
 | `order_is_claimed` | bool | see §10.4 |
 | `exhibit_context` | `mk:exh:` | the Exhibit the Mission runs within, from which posture and mode constraints derive |
 | `outcome_form` | enum | `field-bag-record` · `exported-run` · `none`. **Never a score, a badge, a completion percentage or a streak.** |
 | `abandon_state` | enum | `resumable` · `discarded`. A Mission may be left at any point; leaving is not failure and produces no prompt to return. |
-| `progress_storage` | enum | `local` · `none`. Never server-side for any visitor — §10.5 |
+| `progress_storage` | enum | `local` · `none` under the position §10.5 argues for; `opt-in-server-side` if the owner answers **D-052** the other way. §10.5. |
 | `age_bands[]` | array | declarative, §5.4 |
 | `objective_refs[]` | array of `mk:lob:` | via `prepares-for` |
 | `preconditions[]` | array | §8.7, aggregated from its Activities and its own |
@@ -1347,15 +1564,22 @@ small: **one question, one sitting, one thing carried away.**
 
 ### 10.3 Grounding
 
-A Mission grounds through composition (§2.5): its Activities are grounded, so it
-is. It additionally carries a direct link — `question_ref` — which is required
-independently, so a Mission is never grounded only transitively.
+**The Mission is the one object that grounds through composition** (§2.5), and it
+is the only one. Its Activities and Challenges are grounded, so it is.
 
-**A Mission whose Activities are all removed or suspended becomes ungrounded at
-that moment and is unpublishable from that moment.** It does not retain grounding
-through Activities it no longer has. This is the case §2.5 exists for, and it is
-not hypothetical: an Activity suspends automatically when a consent lapses
-(§8.7), so a Mission can lose its grounding without anyone editing it.
+`question_ref` does not ground it. A Question is an experience object, and §2.1
+forbids an experience object from grounding another — a Mission whose only link
+were to a Question would resolve to nothing in the evidence layer, however
+carefully the Question was written. `question_ref` is a required structural
+field, and the requirement is about scope: a Mission with no question is a
+sequence of exercises with no reason to be in that order.
+
+The consequence is that **a Mission whose Activities are all removed or suspended
+becomes ungrounded at that moment and is unpublishable from that moment.** It
+does not retain grounding through Activities it no longer has. This is the case
+§2.5 exists for and it is not hypothetical: an Activity suspends automatically
+when a consent lapses (§8.7), so a Mission can lose its grounding with nobody
+editing it.
 
 ### 10.4 Order is sometimes a claim
 
@@ -1383,20 +1607,36 @@ The rule here is that finding generalised:
 A pedagogical order is still fixed — LOOK before DECIDE is not negotiable — but
 it is fixed for a reason the visitor is told.
 
-### 10.5 Progress, and why none of it is kept on a server
+### 10.5 Progress, and the framework rule this narrows
 
-`progress_storage` has two values and neither is server-side.
+Museum framework §10.3 permits a server-side Field Bag: *"Local by default. The
+bag is stored on the visitor's own device and needs no account. Any server-side
+bag is opt-in, and for under-16 visitors it does not exist at all."*
 
-Museum framework §10.4.5 requires that no account is offered to under-16
-visitors and §10.3 makes the Field Bag local by default, with any server-side bag
-opt-in and *"for under-16 visitors it does not exist at all."* Because the
-institution has no age gate and must not build one (§5.4), a server-side progress
-store for adults is a store the institution cannot guarantee holds no child's
-data.
+**Under §5.4's derivation that argument does not survive contact with the
+architecture**, and the document says so rather than legislating around it. If
+the institution offers no accounts and cannot know a visitor's age, then a
+server-side store that "does not exist for under-16 visitors" is a store whose
+exclusion cannot be applied. An opt-in that a child can take is not an opt-in
+with an age condition on it; it is an opt-in.
 
-The cost is real and is accepted: a visitor who changes device loses their place.
-The alternative is an institution that either builds an age gate it has ruled
-out, or holds children's behavioural records while stating that it does not.
+Two coherent positions follow and the choice between them is the owner's,
+because it decides whether the institution holds visitor data at all:
+
+| Position | Consequence |
+|---|---|
+| **No server-side progress state**, `progress_storage` ∈ `local` · `none` | The institution holds no per-visitor record and the under-16 rule is satisfied by construction. Cost: a visitor who changes device loses their place, and the Field Bag §10.3 offers as opt-in is not offered here. |
+| **Keep §10.3's opt-in**, adding `opt-in-server-side` | The framework's rule stands unamended and adults who want continuity get it. Cost: the institution holds behavioural records it cannot show contain no child's data. |
+
+**This document does not decide it.** It specifies both values, writes every
+other rule so that either works, and escalates the choice as **D-052**. The
+narrower position is the one §10.2's field list is written against as a default,
+and the recommendation is labelled as such: it is a recommendation, not an
+adoption.
+
+Classroom sets are unaffected either way. They are the teacher's, saved to the
+teacher's optional account, holding no student data and no assessment scoring
+(§10.5.2).
 
 Classroom sets are the one place a stored, shareable container exists, and they
 are the teacher's, saved to the teacher's optional account, holding no student
@@ -1419,9 +1659,11 @@ data and no assessment scoring (§10.5.2).
   experience: *"a derived asset may not be commissioned or published while the
   claim it depicts is `INHERITED-UNVERIFIED` or `HOLD`."*
 - **Field-mode Missions do not exist in the Extraction / Collection or
-  Reconnection postures** (§1.7). An adult Investigation-mode Mission there is
-  mandatory rather than forbidden; the restriction is on Field Mode, not on
-  seriousness.
+  Reconnection postures** (§1.7). The restriction is on Field Mode, not on
+  seriousness: Investigation Mode is mandatory in Extraction / Collection and
+  available in Reconnection, so adult work runs in both. The matrix mandates a
+  *mode*, never an object instance — an Exhibit satisfies it by making the mode
+  available, not by containing a Mission.
 - **The Constraint Block binds the Mission independently of its Activities.** A
   sequence of individually permissible Activities can compose a forbidden one —
   §8.5's buckets problem is exactly that — so the Mission declares its own
@@ -1490,8 +1732,8 @@ validation rules:
 
 Requirement 2 depends on the posture count, which museum framework **D-015**
 may reduce from seven to six. The rule is written as "at least four of the
-assigned postures, including at least one of Extraction / Collection and
-Reconnection" so that it survives either answer: neither of the two named
+assigned postures, including at least one of Extraction / Collection or
+Reconnection" — the framework's own wording — so that it survives either answer: neither of the two named
 postures is the one D-015 is about.
 
 ### 11.4 Route is an assertion, and `fixed` is the exception
@@ -1631,15 +1873,26 @@ away holding its current answers as the thing they learned.
 | `VERIFIED` | any, including `knows-that` |
 | `PROVISIONAL` | `can-state-what-is-claimed`, `can-apply-the-method`, `can-identify` |
 | `HYPOTHESIS` | `can-state-what-is-claimed`, `can-apply-the-method` |
-| `INHERITED-UNVERIFIED` | `can-apply-the-method` only, and the objective must be about the inheritance, not the content |
+| `SUPERSEDED` | `can-state-what-is-claimed`, `can-apply-the-method` — and the objective must show the succession, since §3.6 makes it navigable in both directions |
+| `INHERITED-UNVERIFIED` | **not publishable** — §12.4.1 |
 | `REJECTED` | `can-state-what-is-claimed`, `can-apply-the-method` — teaching why it was rejected is legitimate and valuable |
-| `HOLD` | `can-apply-the-method` only, with the hold disclosed |
+| `HOLD` | **not publishable** — §12.4.1 |
 
-This is museum framework §3.2's derivation rule and §3.12's derived-asset rule
-in the same register: *"a derived asset may not be commissioned or published
+#### 12.4.1 Why two statuses are not publishable rather than merely capped
+
+This is museum framework §3.2's derivation rule and §3.12's derived-asset rule in
+the same register. §3.12: *"a derived asset may not be commissioned or published
 while the claim it depicts is `INHERITED-UNVERIFIED` or `HOLD`."* An objective is
-a derived asset of the claims it is taught on, and its scheduling is a function
-of the verification schedule.
+a derived asset of the claims it is taught on — it is commissioned from them, it
+depicts them, and it goes stale with them — so the rule applies to it whole, and
+it is a rule about publication, not about phrasing. An objective whose only
+worked cases are `INHERITED-UNVERIFIED` or `HOLD` does not publish at a reduced
+assertion form; it does not publish.
+
+An objective may still be *taught on* such a claim among others, provided at
+least one worked case sits above the bar, and the `HOLD` is disclosed. The
+scheduling consequence is the one §3.12 intends: **the objective schedule is a
+function of the verification schedule and cannot invert it.**
 
 **Decay follows automatically.** When a claim taught at `knows-that` is
 superseded or rejected, the objective's ceiling drops and the objective is
@@ -1812,7 +2065,7 @@ recorded this site in 1883, the labourers who cut this tank.
 **Requirements.**
 
 - The existence of the role in that place and period is itself a statused claim
-  in `grounding[]`. A role nobody has evidenced is an invention with an
+  in `exercises[]`. A role nobody has evidenced is an invention with an
   occupational noun on it.
 - It is described only in terms the evidence supports: what the work involved,
   what it required, what materials and techniques it used, what the record does
@@ -1882,8 +2135,8 @@ work now, shown doing it.
   generalised), and does not summarise them into the institutional voice.
 - **Withdrawal is effective on the live surfaces without negotiation** (§11.4).
   The material goes; the record that it was contributed, published and withdrawn
-  on a stated date under a stated term remains. `character-withdrawn` is a
-  `change_type` (§3.3) and the Characters they appeared in are suspended by it.
+  on a stated date under a stated term remains. The revision takes §3.6's `retracted-for-consent`, and every Character the
+  material appeared in is suspended by it.
 - **Interest is disclosed** where they are also the author of a claim the
   surface presents. A researcher explaining their own finding is not a neutral
   guide to it, and the visitor is told which they are looking at.
@@ -1958,7 +2211,7 @@ Two display rules follow:
 | `character_kind` | enum(4) | §13.2. Exhaustive, mutually exclusive, closed. |
 | `label` | string | for `role`, the function; for `documented-individual`, the name as attested with its source; for `present-day-investigator`, the name as they give it or an agreed anonymisation; for `institutional-voice`, the institution |
 | `is_person` | derived bool | false for `role` and `institutional-voice` |
-| `grounding[]` | array of `mk:rel:` | `attested-in`, `speaks-for`, `exercises`. **Non-empty.** §13.7 |
+| `attested_in[]`, `speaks_for[]`, `exercises[]` | arrays of `mk:rel:` | named by predicate, as on every other object, so §14.4's export needs no special case for Character. At least one is non-empty; which one is required depends on `character_kind` — §13.7. |
 | `attested_utterances[]` | array | each: `mk:evd:` · locator · edition (`mk:src:`) · `is_primary` step · original script · Translation Block ref · reading status (`attested` · `emended` · `conjectural`) |
 | `interiority` | enum | `none`. The only permitted value. §13.6, item 2. |
 | `archive_position` | Block or null | **required for `documented-individual`**, §13.4 |
@@ -1970,7 +2223,7 @@ Two display rules follow:
 | `depictions[]` | array of `mk:evd:` | any image, illustration, model or audio. Each `is_primary = interpretation`, with maker, date and reconstruction marker. §13.6, item 8; subject to **D-050**. |
 | `voice_rendering` | enum | `quotation-only` (default) · as constrained by **D-051** |
 | `surfaces_permitted[]` | array | per consent and per rights, each surface separately (§11.4, §11.8) |
-| `withdrawal_state` | enum | `active` · `suspended` · `withdrawn` |
+| `withdrawal_state` | enum | `active` · `suspended` · `withdrawn`. A withdrawal is recorded with §3.6's existing `retracted-for-consent`, not a new value. |
 | `age_bands[]` | array | declarative |
 | `constraint_block` | Constraint Block | §5.2 |
 
@@ -2066,9 +2319,11 @@ editorial override.
   the live surfaces, without negotiation (§11.4). The record that they appeared
   and withdrew remains; the material does not.
 - **A contested attestation degrades a `documented-individual` rather than
-  removing them.** If a reading that a person said something is challenged
-  (§11.6, `nature = translation-dispute` or `contests-reading`), the utterance is
-  shown with the dispute rather than quietly dropped — the same discipline §7.1
+  removing them.** If a reading that a person said something is challenged —
+  §11.6 `nature = translation-dispute` or `factual-error`, or an Evidence Link
+  with the `contests-reading` role (§3.3), which is an evidence role and not a
+  correction nature — the utterance is shown with the dispute rather than quietly
+  dropped — the same discipline §7.1
   item 3 requires of the primary-source viewer, where *"variants are first-class"*
   and differences are *"shown, not silently normalised."*
 - **A Character never survives its grounding.** `grounding-lost` (§3.3) suspends
@@ -2157,22 +2412,28 @@ An experience object publishes when all of the following hold. Each is checkable
 without human judgement except where a named person is required, and those are
 named rather than implied.
 
-1. **Grounding resolves.** At least one Grounding Link, or composition members
-   that have one (§2.5); every link's target resolves; no target is retracted,
-   withdrawn or tombstoned.
+1. **Grounding resolves.** At least one direct Grounding Link — or, for a
+   Mission alone, composition members that have one (§2.5); every link's target
+   resolves; no target is retracted, withdrawn or tombstoned; no link's target is
+   another experience object (§2.1).
 2. **Status ceilings hold.** No link's status exceeds its target's (§4.3). No
    Learning Objective's `assertion_form` exceeds its `claim_status_ceiling`
    (§12.4). No Activity has `has_right_answer` on a claim below `VERIFIED`
    (§8.2).
 3. **The Constraint Block validates**, on resolved referents rather than
    declared classes (§5.3), for the object and — for containers — for the
-   sequence (§10.6, §11.6).
+   sequence (§10.6, §11.6). `field_mode_postures_respected` is re-asserted
+   against the current posture assignment, not the one held at creation.
 4. **Preconditions are in force**, not merely requested: consent records
    unlapsed, rights not `unknown`, community-authority agreements current
    (§8.7).
-5. **Accessibility equivalents exist** and carry the same evidential content
-   including status, attestation mode and uncertainty (§11.9.1–2).
-6. **Both adversarial tests have run** on the containing Exhibit, with the
+5. **The common fields of §5.5 are present and resolve**: `release_state`,
+   `editorial_decision_ref`, `accessibility_equivalent`, `preconditions[]`,
+   `bias_test_context` and the revision metadata. An accessibility equivalent
+   carries the same evidential content including status, attestation mode and
+   uncertainty (§11.9.1–2).
+6. **Both adversarial tests have run** — on the containing Exhibit, or on the
+   object's own pair where it has no containing Exhibit (§5.5) — with the
    asymmetry statement where they are shown together (§3.11, §11.2).
 7. **The Step 14 shape is complete** on the Exhibit, with no heading empty and
    `copy_complicates` either populated or carrying an explicit `none-found` with
@@ -2184,8 +2445,23 @@ named rather than implied.
 9. **An editorial decision row exists** in `03-REGISTERS/editorial-decisions.csv`
    with a rationale and a person, rendered `publication:*` so it can never be
    read as an evidence status (§11.5).
+10. **The object-specific invariants hold**, each stated in its own section and
+   listed here so the gate is one place: a Journey's `traverses[]` has at least
+   two members and, where `living_world = true`, §11.3's five requirements pass;
+   a Challenge has `independence_tree_shown = true` and a non-empty
+   `evidence_set[]`; an Activity's free-text output has `output_is_private =
+   true`; an Exhibit in a posture where Investigation Mode is mandatory has that
+   mode enabled; a Learning Objective's `taught_on[]` does not consist wholly of
+   `INHERITED-UNVERIFIED` or `HOLD` claims (§12.4.1).
 
-**Failing the gate is not a blocker to be waived.** Each of the nine names a
+**Three of the ten need a person, and they say so.** Conditions 3, 6 and 7 are
+not machine-decidable: the Constraint Block's judgement residues are at §8.4,
+the adversarial tests are run by a tester under §3.11, and `copy_complicates`'s
+`none-found` value asserts that a search happened. The other seven are checkable
+mechanically. Claiming otherwise would be the same overselling §8.4 now warns
+against.
+
+**Failing the gate is not a blocker to be waived.** Each of the ten names a
 specific missing thing, and the missing thing is the work.
 
 ### 14.4 Export
@@ -2214,33 +2490,42 @@ Written up in `DECISIONS-NEEDED.md`, against rows allocated in
 
 | ID | Decision | Section |
 |---|---|---|
-| D-046 | Do the §10.4.7 prohibitions bind the whole institution, the experience layer, or child-facing surfaces only? | §5.4 |
+| D-046 | Do the §10.4.7 prohibitions bind surfaces outside the experience layer, or only child-facing and experience surfaces? | §5.4 |
 | D-047 | Which school curricula, if any, do Learning Objectives map to? | §12.6 |
 | D-048 | Does an individual's consent suffice where a community holds authority over the material? | §13.3.3 |
 | D-049 | May the institutional method guide be personified for children? | §13.3.4 |
 | D-050 | Does the institution depict past people visually at all, and under what marker? | §13.5 |
 | D-051 | May attested words be voiced, or only quoted? | §13.3.2 |
+| D-052 | Does any per-visitor progress state exist server-side, or is §10.3's opt-in Field Bag withdrawn? | §10.5 |
 
-Four of the six are Character decisions. That is not an accident of drafting: it
-is what §13.1 predicts. Everything else in the experience layer can be settled by
+Four of the seven are Character decisions. That is not an accident of drafting:
+it is what §13.1 predicts. Everything else in the experience layer can be settled by
 asking what the evidence supports; a Character asks additionally how a person may
 be presented, and that question is not fully answerable from the record.
 
 ### 15.2 Decisions cited but not re-raised
 
-From `09-DECISIONS/OWNER-DECISIONS.csv`: D-005 (is WATER the first Living
-World — §11.1), D-006 (Keezhadi or an inscription as the children's pilot —
-§8.7), D-008 (Release 1 scope — §12.6), D-011 (the deferred set — §0.4).
+All of these are rows in `09-DECISIONS/OWNER-DECISIONS.csv`, which `CLAUDE.md`
+makes authoritative for the whole namespace; where a row also has a prose section
+in `DECISIONS-NEEDED.md`, that is its `detail_ref` and not a second allocation.
 
-From the museum framework, via `DECISIONS-NEEDED.md`: D-015 (seven postures or
-six — §11.3 is written to survive either answer), D-024 (is PROVE IT the
-correction intake — §9.1, §9.6 fall away under a negative answer), D-026 (human
-remains — §13.6 item 6), D-031 (which languages are maintained — §12.8 item 5),
-D-034 (the atlas site count — §7.2's title rule).
+**Raised before the museum framework:** D-005 (is WATER the first Living World —
+§11.1 of this document), D-006 (Keezhadi or an inscription as the children's
+pilot — §8.7), D-008 (Release 1 scope — §12.6), D-010 (which institutional claims
+may presently be published — §7.4.1), D-011 (the deferred set — §0.4).
 
-**Two are load-bearing.** D-024 determines whether §9.6 exists at all. D-015
-changes the posture count that §11.3's four-posture rule is stated against; the
-rule is written so that it does not.
+**Raised by the museum framework:** D-015 (seven postures or six — §11.3), D-024
+(is PROVE IT the correction intake — §9.1, §9.6), D-026 (human remains — §13.6
+item 6), D-031 (which languages are maintained — §12.8 item 5).
+
+**Raised elsewhere and cited here:** D-034 (the page and atlas site counts —
+§7.2's title rule) and D-037 (the `MELA-KEELA-WHO-MADE-THE-PAST.md` section
+numbering — §5.1), neither of which the framework raised.
+
+**Three are load-bearing.** D-010 gates §7.4's `copy_supports`, and until it is
+answered no Exhibit passes the publication gate. D-024 determines whether §9.6
+exists at all. D-015 changes the posture count that §11.3's four-posture rule is
+stated against; the rule is written so that it does not depend on the answer.
 
 ### 15.3 What this specification deliberately did not specify
 
@@ -2274,6 +2559,12 @@ wording is `INHERITED-UNVERIFIED` (`RESEARCH-QUEUE.md` `WMP-9`, numbering
 discrepancy at D-037), and their standing as constraints does not depend on that
 because they are prohibitions on what the institution builds, not claims about
 the past.
+
+**Both adversarial tests were run on this document** before it was submitted, per
+`CLAUDE.md` §8, and the results are logged: `BF-X-001` and `BF-X-002` in
+`04-AUDITS/BIAS-FAILURE-LOG.csv`, with the earlier work they touch in
+`04-AUDITS/REAUDIT-QUEUE.csv`. The framework tension the second test surfaced is
+`IC-X-001` in `04-AUDITS/INTERNAL-CONTRADICTIONS.csv`.
 
 Nothing here has been retrieved, so no rows were added to
 `02-SOURCES/access-ledger.csv` and no domains were requested.

@@ -1196,3 +1196,40 @@ marker survives audio.
 
 **Decision:** quotation only, voicing with apparatus, or original-language
 voicing only?
+
+## D-052 — Does the institution hold per-visitor progress state?
+
+**Raised by:** experience object model §10.5
+**Category:** publication approval; two consequential positions both viable
+**Related:** D-046 (both turn on the same no-age-gate derivation)
+
+Museum framework §10.3 permits a server-side Field Bag: *"Local by default.
+The bag is stored on the visitor's own device and needs no account. Any
+server-side bag is opt-in, and for under-16 visitors it does not exist at
+all."*
+
+The experience layer needs a position on the same question for Mission and
+Journey progress, and taking one turns out to reopen the framework's rule
+rather than merely extend it.
+
+**The derivation.** §10.4.5 offers no account to under-16 visitors and
+forbids behavioural analytics *"on any surface, at any age"*. An institution
+with no accounts and no tracking cannot know who is on a surface. So a
+server-side store whose exclusion is "does not exist for under-16 visitors"
+has an exclusion it cannot apply. **An opt-in a child can take is not an
+opt-in with an age condition on it; it is an opt-in.**
+
+| Option | Consequence |
+|---|---|
+| **No server-side per-visitor state at all** (the model's recommendation, labelled as such) | The institution holds no per-visitor record, and the under-16 rule is satisfied by construction rather than by a check it cannot run. Cost: a visitor who changes device loses their place, and §10.3's opt-in bag is withdrawn — a real feature removed on an argument, not on a requirement. |
+| **Keep §10.3's opt-in**, and allow `opt-in-server-side` progress beside it | The framework's rule stands unamended and adults who want continuity across devices get it. Cost: the institution holds behavioural records it cannot show contain no child's data, while §10.4.5 states that it holds none. |
+| **A declared-age gate** | Rescues §10.3 and §10.4.5 as written, since the under-16 exclusion becomes operable. Cost: it puts an age claim about a visitor into a product from which §10.4.5 has removed every other visitor datum, and a self-declared birth date admits anyone who types a number. |
+
+The experience object model specifies both storage values, writes every
+other rule so that either works, and does not choose. Classroom sets are
+unaffected under all three options: they are the teacher's, saved to the
+teacher's optional account, holding no student data and no assessment
+scoring (§10.5.2).
+
+**Decision:** which of the three, and if the first, is §10.3 amended in the
+framework or left standing with this layer as its exception?
