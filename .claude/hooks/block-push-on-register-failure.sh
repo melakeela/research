@@ -28,6 +28,14 @@
 # and must be stated in the pull request. Editing the validator to make failing
 # rows pass is not an available move.
 #
+# ONE CONSEQUENCE OF BEING A PreToolUse HOOK. It runs BEFORE the command, on
+# the state as it stands. A single tool call that repairs something and then
+# pushes -- `python3 build.py && git push` -- is judged on the state before the
+# repair and is denied, even though the push would have passed. Run the repair
+# and the push as separate calls. This is the same property that surfaced the
+# original compound-command bug: a blocked push means the commit in the same
+# command never happened either.
+#
 # Contract (Claude Code hooks reference):
 #   - stdin carries the hook payload as JSON, including tool_name and tool_input
 #   - exit 0 with no stdout  -> no decision; normal permission flow applies
