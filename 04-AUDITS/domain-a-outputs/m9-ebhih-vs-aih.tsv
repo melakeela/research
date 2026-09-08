@@ -1,18 +1,18 @@
 grouping	value	ebhih	aih	n	pct_ebhih
-book	1	123	141	264	46.6
-book	2	25	32	57	43.9
-book	3	47	56	103	45.6
+book	1	109	139	248	44.0
+book	2	23	32	55	41.8
+book	3	42	55	97	43.3
 book	4	20	48	68	29.4
 book	5	30	53	83	36.1
-book	6	55	71	126	43.7
-book	7	50	67	117	42.7
-book	8	77	66	143	53.8
-book	9	28	24	52	53.8
-book	10	91	122	213	42.7
-stratum	A	127	166	293	43.3
-stratum	C	118	119	237	49.8
-stratum	N	131	173	304	43.1
-stratum	P	40	57	97	41.2
-stratum	S	130	165	295	44.1
-position	not final	494	366	860	57.4
-position	pada-final	52	314	366	14.2
+book	6	52	69	121	43.0
+book	7	47	67	114	41.2
+book	8	66	64	130	50.8
+book	9	23	23	46	50.0
+book	10	70	121	191	36.6
+stratum	A	115	162	277	41.5
+stratum	C	105	117	222	47.3
+stratum	N	114	171	285	40.0
+stratum	P	32	57	89	36.0
+stratum	S	116	164	280	41.4
+position	not final	430	361	791	54.4
+position	pada-final	52	310	362	14.4

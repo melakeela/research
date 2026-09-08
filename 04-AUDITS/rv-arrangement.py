@@ -18,6 +18,7 @@ that rule represent the youngest layer.
 Inputs as in rv-chronology-instruments.py. Reads only.
 """
 import csv, json, os, random, sys, collections
+import math
 from scipy.stats import fisher_exact, chi2_contingency
 
 VW  = sys.argv[1] if len(sys.argv) > 1 else "/home/user/vedaweb-data/rigveda"
@@ -76,6 +77,48 @@ w("m2-book-by-stratum.tsv",
   ["book", "stanzas"] + ["n_" + c for c in codes] + ["pct_" + c for c in codes],
   rows)
 
+# Finding D of the 2026-09-07 adversarial review: these figures were quoted
+# in a register row whose locator named this script, and this script did not
+# compute them. It does now.
+M = [[sum(1 for s in allss if int(s.split(".")[0]) == b and stratum[s] == c)
+      for c in codes] for b in range(1, 11)]
+n_tot = sum(sum(r) for r in M)
+chi2, p, dof, _ = chi2_contingency(M)
+V = math.sqrt(chi2 / (n_tot * (min(len(M), len(codes)) - 1)))
+base = max(sum(r[j] for r in M) for j in range(len(codes)))
+byrow = sum(max(r) for r in M)
+print()
+print("M2b how far is Arnold's stratum a relabelling of book identity?")
+print("    chi-square %.0f on %d df, p = %.3g, n = %d" % (chi2, dof, p, n_tot))
+print("    Cramer's V                     : %.3f" % V)
+print("    majority-class baseline        : %.1f%%" % pct(base, n_tot))
+print("    predict stratum from book alone: %.1f%%" % pct(byrow, n_tot))
+# the mechanism: Arnold classified hymns, not stanzas. Two definitions are
+# reported because they differ and the register must say which it means.
+by_hymn_stanza = collections.defaultdict(set)
+by_hymn_pada = collections.defaultdict(set)
+for sid, ps in strata.items():
+    h = hymn(sid)
+    if sid in stratum:
+        by_hymn_stanza[h].add(stratum[sid])
+    for pd in ps:
+        if pd[2]:
+            by_hymn_pada[h].add(pd[2].upper())
+hs = sum(1 for v in by_hymn_stanza.values() if len(v) == 1)
+hp = sum(1 for v in by_hymn_pada.values() if len(v) == 1)
+print("    hymns with one stratum code, counting stanza codes: %d of %d (%.1f%%)"
+      % (hs, len(by_hymn_stanza), pct(hs, len(by_hymn_stanza))))
+print("    hymns with one stratum code, counting pada codes  : %d of %d (%.1f%%)"
+      % (hp, len(by_hymn_pada), pct(hp, len(by_hymn_pada))))
+w("m2b-book-stratum-association.tsv", ["measure", "value"],
+  [["chi_square", "%.1f" % chi2], ["df", dof], ["p", "%.3g" % p],
+   ["n", n_tot], ["cramers_v", "%.3f" % V],
+   ["majority_baseline_pct", "%.1f" % pct(base, n_tot)],
+   ["predict_from_book_pct", "%.1f" % pct(byrow, n_tot)],
+   ["hymns_single_code_by_stanza", hs],
+   ["hymns_single_code_by_pada", hp],
+   ["hymns_total", len(by_hymn_stanza)]])
+
 # ------------------------------- M6 the book-10 control on M5
 # For each instrument, a 2x2 of marked/unmarked against Popular/not,
 # computed over the whole corpus and then inside restricted domains. If
@@ -110,6 +153,57 @@ for dom, universe in DOMAINS.items():
         print("       %-10s marked %4d of which P %4d (%4.1f%%) | "
               "unmarked P %5.1f%% | OR %5.2f  p=%.2g"
               % (sc, a + b, a, pct(a, a + b), pct(c, c + d), orat, p))
+# Finding G of the 2026-09-07 adversarial review. Deleting book 10 does not
+# control for book identity; M2b shows stratum is entangled with book in
+# general, not only through book 10. The control that matches the confound
+# is stratification BY book, pooled with Mantel-Haenszel, plus the per-book
+# odds ratios so that a pooled figure cannot hide heterogeneity.
+print()
+print("M6b the control that matches the confound: stratified by book")
+mh_rows, per_rows = [], []
+for sc in SCHOLARS:
+    num = den = 0.0
+    per = []
+    for b in range(1, 11):
+        u = [s for s in strata if s in stratum and book(s) == b]
+        a = sum(1 for s in u if s in marks[sc] and stratum[s] == "P")
+        bb = sum(1 for s in u if s in marks[sc] and stratum[s] != "P")
+        c = sum(1 for s in u if s not in marks[sc] and stratum[s] == "P")
+        d = sum(1 for s in u if s not in marks[sc] and stratum[s] != "P")
+        n = a + bb + c + d
+        if n and (a + bb) and (c + d):
+            num += a * d / n
+            den += bb * c / n
+        orb = ((a + 0.5) * (d + 0.5)) / ((bb + 0.5) * (c + 0.5))
+        per.append((b, a + bb, a, orb))
+        per_rows.append([sc, b, a, bb, c, d, "%.1f" % orb])
+    mh = num / den if den else float("inf")
+    pooled = None
+    u = [s for s in strata if s in stratum and book(s) != 10]
+    a = sum(1 for s in u if s in marks[sc] and stratum[s] == "P")
+    bb = sum(1 for s in u if s in marks[sc] and stratum[s] != "P")
+    c = sum(1 for s in u if s not in marks[sc] and stratum[s] == "P")
+    d = sum(1 for s in u if s not in marks[sc] and stratum[s] != "P")
+    pooled = fisher_exact([[a, bb], [c, d]], alternative="greater")[0]
+    live = [o for (_, nn, _, o) in per if nn >= 10]
+    mh_rows.append([sc, "%.1f" % pooled, "%.1f" % mh,
+                    "%.1f" % min(live) if live else "",
+                    "%.1f" % max(live) if live else "", len(live)])
+    print("    %-10s books 1-9 pooled OR %7.1f | within-book MH OR %7.1f | "
+          "per-book range %.1f to %.1f over %d books"
+          % (sc, pooled, mh, min(live) if live else 0,
+             max(live) if live else 0, len(live)))
+print("    Grassmann is the instrument that does not survive this control.")
+print("    Its association with the Popular stratum is largely BETWEEN books,")
+print("    not within them - which matters because Grassmann is the one")
+print("    instrument RCI-011 and RCI-012 lean on as non-circular.")
+w("m6b-mantel-haenszel-by-book.tsv",
+  ["scholar", "books_1_9_pooled_or", "within_book_mh_or", "min_per_book_or",
+   "max_per_book_or", "books_with_10plus_marks"], mh_rows)
+w("m6c-per-book-odds-ratios.tsv",
+  ["scholar", "book", "marked_P", "marked_notP", "unmarked_P",
+   "unmarked_notP", "odds_ratio_haldane"], per_rows)
+
 w("m6-popular-enrichment-controlled.tsv",
   ["domain", "scholar", "marked_P", "marked_notP", "unmarked_P",
    "unmarked_notP", "odds_ratio", "fisher_p_onesided",
@@ -172,7 +266,33 @@ def monte_carlo(seq, reps=20000, seed=SEED):
 
 print()
 print("M8  Oldenberg's arrangement rule tested on the text")
-print("    within deity groups, is hymn length non-increasing?")
+print("    Finding I of the 2026-09-07 adversarial review: the rule as its")
+print("    cited source states it is PER BOOK, not within groups. Hellwig")
+print("    2020 s.5.4: 'the hymns in each book of the RV are arranged")
+print("    according to the numbers of their stanzas'. The whole-book test")
+print("    is therefore the one the locator covers and is reported first.")
+print("    The two grouped segmentations follow as finer-grained variants;")
+print("    note that addr[k][1] is a POET or collection heading, not a")
+print("    deity group, which the earlier version of this script called it.")
+rows = []
+# the rule as stated: per whole book, no grouping at all
+print("    -- segmentation: whole book, as the source states the rule")
+tot_a = tot_d = tot_e = 0
+for b in range(1, 11):
+    ks = [k for k in sorted(addr) if k.startswith("%02d." % b)]
+    seq = [(None, ["%d.%d" % (b, int(k.split(".")[1])) for k in ks])]
+    a, d, e = count_ascents(seq)
+    tot_a += a; tot_d += d; tot_e += e
+    obs, pv = monte_carlo(seq)
+    rows.append(["whole book", b, 1, a, d, e, "%.4f" % pv])
+    print("       book %-3d  ascents %3d  descents %3d  ties %3d  MC p=%.4f"
+          % (b, a, d, e, pv))
+print("       ALL BOOKS  ascents %3d  descents %3d  ties %3d"
+      % (tot_a, tot_d, tot_e))
+print("       10 tests; the finer segmentations below add 20 more. No")
+print("       multiplicity adjustment is applied to the printed p-values;")
+print("       the register row states the smallest one and its book.")
+
 rows = []
 for use_labels, tag in ((True, "VedaWeb group labels"), (False, "addressee runs")):
     print("    -- segmentation: %s" % tag)
@@ -194,22 +314,36 @@ w("m8-arrangement-runs.tsv",
 # Are the hymns that break the rule the ones the scholars call late?
 print()
 print("M8b are rule-breaking hymns the ones marked as late additions?")
-violators, compliant = set(), set()
-for b in range(1, 11):
-    for _, hs in group_seq(b, True):
-        for x, y in zip(hs, hs[1:]):
-            (violators if size[y] > size[x] else compliant).add(y)
-compliant -= violators
+# Finding I: the earlier version computed violators only under the group
+# labels, the segmentation the method note itself calls "not innocent of the
+# theory being tested". Both are computed; the label-free one is reported
+# first because it is the one the register carries.
 rows = []
-for sc in SCHOLARS:
-    mh = {hymn(s) for s in marks[sc]}
-    a = len(violators & mh); b_ = len(violators - mh)
-    c = len(compliant & mh); d = len(compliant - mh)
-    orat, p = fisher_exact([[a, b_], [c, d]], alternative="greater")
-    rows.append([sc, a, b_, c, d, "%.2f" % orat, "%.3g" % p])
-    print("    %-10s violating hymns marked %3d/%3d (%.1f%%)  "
-          "compliant marked %3d/%3d (%.1f%%)  OR %.2f  p=%.3g"
-          % (sc, a, a + b_, pct(a, a + b_), c, c + d, pct(c, c + d), orat, p))
+for use_labels, tag in ((False, "addressee runs (label-free)"),
+                        (True, "VedaWeb group labels")):
+    violators, compliant = set(), set()
+    for b in range(1, 11):
+        for _, hs in group_seq(b, use_labels):
+            for x, y in zip(hs, hs[1:]):
+                (violators if size[y] > size[x] else compliant).add(y)
+    compliant -= violators
+    print("    -- segmentation: %s  (%d violating, %d compliant hymns)"
+          % (tag, len(violators), len(compliant)))
+    for sc in SCHOLARS:
+        mh = {hymn(s) for s in marks[sc]}
+        a = len(violators & mh); b_ = len(violators - mh)
+        c = len(compliant & mh); d = len(compliant - mh)
+        orat, p = fisher_exact([[a, b_], [c, d]], alternative="greater")
+        rows.append([tag, sc, a, b_, c, d, "%.2f" % orat, "%.3g" % p])
+        print("       %-10s violating marked %3d/%3d (%4.1f%%)  "
+              "compliant marked %3d/%3d (%4.1f%%)  OR %6.2f  p=%.3g"
+              % (sc, a, a + b_, pct(a, a + b_), c, c + d, pct(c, c + d),
+                 orat, p))
+print("    Oldenberg's own odds ratio on this table is definitionally")
+print("    inflated: violating the rule is how he identified appendices.")
+print("    Grassmann 1876-7 is the figure that carries the claim, and only")
+print("    the label-free row of it.")
 w("m8b-violators-vs-marks.tsv",
-  ["scholar", "violator_marked", "violator_unmarked", "compliant_marked",
-   "compliant_unmarked", "odds_ratio", "fisher_p_onesided"], rows)
+  ["segmentation", "scholar", "violator_marked", "violator_unmarked",
+   "compliant_marked", "compliant_unmarked", "odds_ratio",
+   "fisher_p_onesided"], rows)

@@ -1,0 +1,11 @@
+measure	value
+chi_square	9357.4
+df	36
+p	0
+n	10550
+cramers_v	0.471
+majority_baseline_pct	25.5
+predict_from_book_pct	51.2
+hymns_single_code_by_stanza	958
+hymns_single_code_by_pada	957
+hymns_total	1028

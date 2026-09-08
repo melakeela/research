@@ -1,6 +1,11 @@
-scholar	violator_marked	violator_unmarked	compliant_marked	compliant_unmarked	odds_ratio	fisher_p_onesided
-grassmann	73	80	154	613	3.63	6.48e-12
-oldenberg	55	98	27	740	15.38	1.47e-27
-arnold	47	106	92	675	3.25	4.06e-08
-wuest	57	96	30	737	14.59	7.9e-28
-witzel	51	102	17	750	22.06	3.32e-29
+segmentation	scholar	violator_marked	violator_unmarked	compliant_marked	compliant_unmarked	odds_ratio	fisher_p_onesided
+addressee runs (label-free)	grassmann	23	33	81	416	3.58	3.48e-05
+addressee runs (label-free)	oldenberg	15	41	9	488	19.84	1.24e-10
+addressee runs (label-free)	arnold	7	49	10	487	6.96	0.000659
+addressee runs (label-free)	wuest	16	40	11	486	17.67	8.26e-11
+addressee runs (label-free)	witzel	21	35	11	486	26.51	1.61e-15
+VedaWeb group labels	grassmann	73	80	154	613	3.63	6.48e-12
+VedaWeb group labels	oldenberg	55	98	27	740	15.38	1.47e-27
+VedaWeb group labels	arnold	47	106	92	675	3.25	4.06e-08
+VedaWeb group labels	wuest	57	96	30	737	14.59	7.9e-28
+VedaWeb group labels	witzel	51	102	17	750	22.06	3.32e-29
