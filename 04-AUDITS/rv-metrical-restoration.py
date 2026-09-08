@@ -174,15 +174,46 @@ print("    canonical pada length far less often (R3).")
 # so writes sandhi across the junction, while vNH never does. The delta
 # therefore decomposes into a segmentation part and a metrical part, and
 # only the second is what R1's sentence is about.
+# Two bugs in the first version of this block, both found by the second
+# adversarial review and both understating the confound:
+#   (a) it counted EVERY adjacent pada pair (29,139). Aufrecht joins a+b and
+#       c+d, not b+c - its line labels are a and c - so the line-internal
+#       junctions are 18,228, and only those can carry junction sandhi.
+#   (b) it tested for a vowel with `ta[-1] in "aāiīuūeoṛṝ"` on a string that
+#       uses combining marks. A pada ending in an accented vowel has U+0301
+#       as its last character, and vocalic r is written r + U+0325, never ṛ,
+#       so ṛ and ṝ never match anything in these files at all.
+LINE_INTERNAL = {("a", "b"), ("c", "d"), ("e", "f"), ("g", "h")}
+VOWELS = set("aiueo")
+
+
+def _ends_in_vowel(t):
+    d = unicodedata.normalize("NFD", t)
+    for ch in reversed(d):
+        if unicodedata.category(ch)[0] == "M":
+            continue
+        return ch in VOWELS or ch in "rl"       # vocalic r and l are nuclei
+    return False
+
+
+def _starts_with_vowel(t):
+    return unicodedata.normalize("NFD", t)[:1].lower() in VOWELS
+
+
+by_stanza = collections.defaultdict(list)
+for (s2, l) in vnh:
+    by_stanza[s2].append(l)
 junctions = vowel_junctions = 0
 for sid in common:
-    letters = sorted(l for (s2, l) in vnh if s2 == sid)
+    letters = sorted(by_stanza.get(sid, []))
     for a_, b_ in zip(letters, letters[1:]):
+        if (a_, b_) not in LINE_INTERNAL:
+            continue
         ta, tb = vnh[(sid, a_)], vnh[(sid, b_)]
         if not ta or not tb:
             continue
         junctions += 1
-        if ta[-1] in "aāiīuūeoṛṝ" and tb[0] in "aāiīuūeoṛṝ":
+        if _ends_in_vowel(ta) and _starts_with_vowel(tb):
             vowel_junctions += 1
 sa_c = sum(TA[s] for s in common); sl_c = sum(TL[s] for s in common)
 sv_c = sum(TV[s] for s in common)
@@ -192,7 +223,7 @@ print("    Aufrecht -> Lubotsky  %+.2f%%  both de-sandhied, segmentation differs
       % (100.0*(sl_c-sa_c)/sa_c))
 print("    Lubotsky -> van N.-H. %+.2f%%  same pada segmentation, metre only"
       % (100.0*(sv_c-sl_c)/sa_c))
-print("    pada-pair junctions Aufrecht writes as one line: %d, of which"
+print("    pada-pair junctions Aufrecht writes inside one line: %d, of which"
       % junctions)
 print("    vowel against vowel: %d (%.1f%% of junctions)"
       % (vowel_junctions, pct(vowel_junctions, junctions)))
@@ -282,6 +313,19 @@ print("    Kruskal-Wallis on per-stanza restoration rate: H = %.1f, p = %.3g"
 for c, g in zip(codes, groups):
     print("       %-3s n=%5d  median %.4f  mean %.4f"
           % (c, len(g), med[c], sum(g) / len(g)))
+# The row asserts a three-tier structure - Archaic, then Strophic, then the
+# rest undifferentiated. The second adversarial review pointed out that it
+# asserted it on medians alone. Each tier boundary is tested here.
+from scipy.stats import mannwhitneyu
+gi = {c: g for c, g in zip(codes, groups)}
+_, p_as = mannwhitneyu(gi["A"], gi["S"], alternative="greater")
+rest = gi["C"] + gi["N"] + gi["P"]
+_, p_sr = mannwhitneyu(gi["S"], rest, alternative="greater")
+_, p_cnp = kruskal(gi["C"], gi["N"], gi["P"])
+print("    the three tiers, tested rather than read off the medians:")
+print("      Archaic > Strophic                : Mann-Whitney p = %.3g" % p_as)
+print("      Strophic > Cretic+Normal+Popular  : Mann-Whitney p = %.3g" % p_sr)
+print("      Cretic vs Normal vs Popular       : Kruskal-Wallis p = %.3g" % p_cnp)
 ties = [c for c in codes if abs(med[c] - med["N"]) < 1e-9]
 print("    strata sharing the Normal median exactly: %s" % ", ".join(ties))
 print("    So the rank test separates Archaic, and Strophic behind it. It does")

@@ -199,16 +199,35 @@ That would have been wrong in three ways, and each was corrected:
    refutation of the thing.
 2. **The reproduction confirms the narrow result, not the wide one.**
    `RCT-006` reproduces the pattern on one allomorph pair from this
-   repository's own extraction — position beats stratum, p = 8.9e-44 against
-   p = 0.474. `RCT-007` then shows the aggregate null is two opposing effects
+   repository's own extraction — position beats stratum, p = 4.9e-37 against
+   p = 0.353. `RCT-007` then shows the aggregate null is two opposing effects
    cancelling, which is a stronger caution against uncontrolled allomorph
    counts *in either direction*, including a debunking one.
-3. **Other instruments do separate the strata.** Metrical restoration rate
-   orders them Archaic → Popular at p = 6.5e-44 (`RCT-004`), and three
-   author-independent late-addition instruments concentrate in Popular with
-   the book-10 effect controlled out (`RCI-008`). A reading that took the
-   2021 abstract as dissolving Rigvedic relative chronology would have had
-   to suppress both.
+3. **Other instruments do separate the strata, though less than this section
+   first claimed.** Metrical restoration rate separates Archaic from the rest
+   and Strophic behind it, at Mann-Whitney p = 5.3e-12 and p = 2.9e-10, and
+   leaves Cretic, Normal and Popular indistinguishable at p = 0.237
+   (`RCT-004`). Two author-independent late-addition instruments concentrate
+   in Popular with book identity controlled, not three (`RCI-008`). A reading
+   that took the 2021 abstract as dissolving Rigvedic relative chronology
+   would still have had to suppress both.
+
+**And this passage is itself the sharpest instance of what it is about.**
+Every clause of point 3 was withdrawn elsewhere in the repair pass and
+survived here for a further commit: the claim of an Archaic-to-Popular
+*ordering* (withdrawn, finding F), the p-value 6.5e-44 (withdrawn, finding
+B), the count of *three* instruments (withdrawn, finding G — Grassmann fails
+the within-book control), and *the book-10 effect controlled out* (withdrawn,
+finding G — that was the wrong control). Four withdrawn claims, all four
+running in the direction this section exists to guard against, sitting inside
+the guard.
+
+The mechanism is worth naming because it is not carelessness. Corrections
+were made where the review pointed — in the register rows — and the prose
+that had been *derived* from those rows was not swept. A withdrawn number
+does not stay in one file. `BF-026` logs it, and the sweep is now a step:
+after any figure is withdrawn, `grep` the whole tree for it before the commit
+that withdraws it.
 
 `RCT-010` is where this lands, and it is PROVISIONAL, not VERIFIED, because
 the paper itself is on `HOLD-011`.
@@ -449,6 +468,8 @@ controls, checked:
 | A null reports the point estimate, its direction, and the power limitation | `BF-004` | **Breached** by `RCT-006`. Smallest stratum n = 89, now stated. |
 | Report the measurement that cuts against the working hypothesis in register-row format | `BF-011` | Held. `RCI-009` and the `RCT-004` medians are register rows, not prose. |
 | Where a control variable has a large effect, stratify by it before reporting the null | `BF-022`, written by this unit | **Breached by this unit in the same commit that wrote it**, at `RCI-008`. |
+| After any figure is withdrawn, grep the whole tree for it before the commit that withdraws it | `BF-026`, written by this unit | **Breached by the repair pass that wrote it.** Withdrawn figures stood in the ledger, the manifest, a HOLD file, a locator, and inside §7. |
+| A correction is not made until the diff shows it | `BF-026` | **Breached.** A correction to the `SRC-090` ledger note was reported to the owner and to the reviewer and had not been made. |
 
 A future domain-A unit runs this table before its registers are committed,
 not after.

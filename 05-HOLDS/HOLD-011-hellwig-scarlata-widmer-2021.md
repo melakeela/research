@@ -38,8 +38,8 @@ Five literature connectors and four hosts; one abstract.
 
 `RCT-006` reproduces the paper's central pattern independently, on one
 allomorph pair, from this repository's own extraction: position in the pāda
-governs the -ebhiḥ/-aiḥ choice at p = 8.9e-44 while Arnold's strata give
-p = 0.474. That reproduction does not depend on the paper.
+governs the -ebhiḥ/-aiḥ choice at p = 4.9e-37 while Arnold's strata give
+p = 0.353. That reproduction does not depend on the paper.
 
 `RCT-010` does depend on it. It states that the 2021 result is a failure to
 find support for stratification in one class of evidence under controls, and

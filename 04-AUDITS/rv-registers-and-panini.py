@@ -19,7 +19,7 @@ M.  The instrumental plural of a-stems, -ebhih against -aih. The standard
 
 Reads only.
 """
-import csv, json, os, sys, collections, unicodedata
+import csv, json, os, re, sys, collections, unicodedata
 from scipy.stats import chi2_contingency, fisher_exact
 
 SUTRA = sys.argv[1] if len(sys.argv) > 1 else \
@@ -52,11 +52,23 @@ OTHER = {"मन्त्रे": "mantre", "निगमे": "nigame", "ब्
 # 4.3.71 chandaso yad-anau. The second is not a Vedic-scope rule. The
 # scope-marker form is counted separately so the headline is a range, not
 # a point.
-SCOPE_FORMS = ("छन्दसि",)
+# The second adversarial review found the first version of this split wrong.
+# A literal match on the locative "chandasi" fails on every sandhi form, and
+# the locative before a vowel is exactly where these rules put it:
+# chandasi + ubhayathā -> chandasy-ubhayathā, chandasi + īraḥ -> chandasī-raḥ,
+# chandasi + ṛt -> chandasy-ṛt. Fourteen of the seventeen sutras the first
+# version called "about the word" are ordinary Vedic-scope rules in sandhi.
+# The split that survives inspection is by CASE: the genitive chandasaḥ /
+# chandaso introduces a rule ABOUT the word chandas; every other form is
+# scope. The locative dual chandasoḥ (chandasor before a voiced sound) in
+# saṃjñā-chandasoḥ, "in a name and in the Veda", is scope, not genitive.
+GENITIVE = re.compile("\u091b\u0928\u094d\u0926\u0938\u0903"
+                      "|\u091b\u0928\u094d\u0926\u0938\u094b"
+                      "(?![\u0903\u0930])")
 explicit = {r["i"] for r in sut if CHANDAS in (r.get("s") or "")}
-scope_marker = {r["i"] for r in sut
-                if any(f in (r.get("s") or "") for f in SCOPE_FORMS)}
-about_the_word = explicit - scope_marker
+about_the_word = {r["i"] for r in sut
+                  if r["i"] in explicit and GENITIVE.search(r.get("s") or "")}
+scope_marker = explicit - about_the_word
 inherited = {r["i"] for r in sut if CHANDAS in (r.get("an") or "")}
 other = {r["i"] for r in sut
          if any(k in (r.get("s") or "") for k in OTHER)}
@@ -76,16 +88,17 @@ print("    union with those as well                    : %4d (%.2f%%)"
       % (len(scope | other), pct(len(scope | other), N)))
 print()
 print("    the two senses of chandas-, separated:")
-print("      in the locative scope form chandasi           : %4d" % len(scope_marker))
-print("      other chandas- forms in a sutra's own text    : %4d" % len(about_the_word))
+print("      chandas- in a scope form (locative sg or du)  : %4d" % len(scope_marker))
+print("      chandas- in the genitive, a rule ABOUT the word: %4d" % len(about_the_word))
 for r in sut:
     if r["i"] in about_the_word:
         print("        %s.%s.%s  %s" % (r["a"], r["p"], r["n"], r.get("s", "")))
-print("    Some of the second group are rules ABOUT the word chandas, not")
-print("    rules operating in the Vedic register. The union of 253 is")
-print("    therefore an UPPER BOUND. The lower bound, taking only the")
-print("    locative scope form and its anuvrtti inheritance, is %d (%.2f%%)."
-      % (len(scope_marker | inherited), pct(len(scope_marker | inherited), N)))
+print("    Those are rules ABOUT the word chandas, not rules operating in the")
+print("    Vedic register, so the union of %d is an UPPER BOUND. Removing them"
+      % len(scope | other))
+print("    and keeping the anuvrtti inheritance gives %d (%.2f%%)."
+      % (len((scope | other) - about_the_word),
+         pct(len((scope | other) - about_the_word), N)))
 
 by_adhyaya = collections.Counter(r["a"] for r in sut if r["i"] in scope)
 tot_adhyaya = collections.Counter(r["a"] for r in sut)

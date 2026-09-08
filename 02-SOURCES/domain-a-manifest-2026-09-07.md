@@ -36,7 +36,7 @@ scholars in five separate columns (`SRC-090`):
 | `wuest` | Wüst 1928, *Stilgeschichte und Chronologie des Ṛgveda* | `W` 418 / `w` 291 | 709 |
 | `witzel` | Witzel 1995, "Ṛgvedic History: Poets, Chieftains and Polities" | `Z` 441 / `z` 248 | 689 |
 
-2,372 stanzas of 10,552 carry at least one mark.
+2,350 stanzas of 10,552 carry at least one mark. (The file has 2,372 keys; 22 are empty objects. Recorded as 2,372 on 2026-09-07 and corrected the same day after adversarial review.)
 
 The layer has been in the pinned clone throughout and has never been opened in
 this repository. It is not `strata.json` and it is not derived from it.

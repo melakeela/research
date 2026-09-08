@@ -24,6 +24,12 @@ from scipy.stats import fisher_exact, chi2_contingency
 VW  = sys.argv[1] if len(sys.argv) > 1 else "/home/user/vedaweb-data/rigveda"
 OUT = sys.argv[2] if len(sys.argv) > 2 else "."
 SEED = 20260907
+# Oldenberg 1888, 197-202, 222-223, as listed in Hellwig 2020 footnote 6.
+OLDENBERG_APPENDICES = """
+1.104 1.162 1.163 1.164 1.179 1.191 2.42 2.43 3.28 3.29 3.52 3.53
+4.48 4.58 5.27 5.28 5.61 5.87 6.47 6.74 6.75 7.17 7.33 7.55 7.103
+7.104 9.112 9.113 9.114 10.19 10.60
+""".split()
 SCHOLARS = ["grassmann", "oldenberg", "arnold", "wuest", "witzel"]
 
 
@@ -197,6 +203,46 @@ print("    Grassmann is the instrument that does not survive this control.")
 print("    Its association with the Popular stratum is largely BETWEEN books,")
 print("    not within them - which matters because Grassmann is the one")
 print("    instrument RCI-011 and RCI-012 lean on as non-circular.")
+# The second adversarial review asked the question the Grassmann collapse
+# opens: RCI-012 now rests on Oldenberg alone, and 308 of the 699 stanzas in
+# VedaWeb's oldenberg column are not confirmed against Oldenberg himself
+# (HOLD-010). Does the surviving instrument depend on the unverified part?
+conf = {s for s in strata if hymn(s) in set(OLDENBERG_APPENDICES)
+        and s in marks["oldenberg"]}
+unconf = set(marks["oldenberg"]) - conf
+
+
+def mh(marked):
+    num = den = 0.0
+    for b in range(1, 11):
+        u = [s for s in strata if s in stratum and book(s) == b]
+        a = sum(1 for s in u if s in marked and stratum[s] == "P")
+        bb = sum(1 for s in u if s in marked and stratum[s] != "P")
+        c = sum(1 for s in u if s not in marked and stratum[s] == "P")
+        d = sum(1 for s in u if s not in marked and stratum[s] != "P")
+        n = a + bb + c + d
+        if n and (a + bb) and (c + d):
+            num += a * d / n; den += bb * c / n
+    return num / den if den else float("inf")
+
+
+print()
+print("M6d does Oldenberg's instrument depend on its unverified portion?")
+print("    Hellwig-confirmed stanzas   n=%4d  within-book MH OR %.1f"
+      % (len(conf), mh(conf)))
+print("    the rest of the column      n=%4d  within-book MH OR %.1f"
+      % (len(unconf), mh(unconf)))
+print("    the whole column            n=%4d  within-book MH OR %.1f"
+      % (len(marks["oldenberg"]), mh(marks["oldenberg"])))
+print("    The confirmed portion carries the association on its own, so")
+print("    RCI-012 does not rest on the part of the column that HOLD-010")
+print("    cannot check.")
+w("m6d-oldenberg-confirmed-subset.tsv",
+  ["subset", "stanzas", "within_book_mh_or"],
+  [["hellwig_confirmed", len(conf), "%.1f" % mh(conf)],
+   ["remainder_of_column", len(unconf), "%.1f" % mh(unconf)],
+   ["whole_column", len(marks["oldenberg"]), "%.1f" % mh(marks["oldenberg"])]])
+
 w("m6b-mantel-haenszel-by-book.tsv",
   ["scholar", "books_1_9_pooled_or", "within_book_mh_or", "min_per_book_or",
    "max_per_book_or", "books_with_10plus_marks"], mh_rows)
