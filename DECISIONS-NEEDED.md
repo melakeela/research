@@ -1233,3 +1233,68 @@ scoring (§10.5.2).
 
 **Decision:** which of the three, and if the first, is §10.3 amended in the
 framework or left standing with this layer as its exception?
+
+## D-053 — Unsupported claims on a live page: leave, annotate, hedge or pull?
+
+**Status:** OPEN. Raised 2026-09-08. Blocks the RELEASE 1 build of the
+dasa-forts route; blocks nothing in the research programme.
+
+### What is established
+
+`dasa-forts-rigveda.html` is live and indexed. Two of its claims are now
+recorded as unsupported, and the record is in this repository:
+
+- **The exclusion.** "Whatever the ninety-nine forts were, they were not
+  Mohenjo-daro", and the headline form "three centuries too late", rest on
+  the c. 1500–1200 BCE window for the family books. That window is
+  inferred, is the subject of domain A, and carries no row in any register
+  here. `BF-024`. It appears on the page in six places, in the title and
+  five meta tags, and on three derived surfaces that will not follow a
+  correction unless regenerated — `MDO-OCC-001` to `-006`, `-009`, `-017`.
+- **The cause.** "That city fell to a river" states a single agent as fact
+  one line below the same page's "the collapse is associated with
+  hydrological change", and against the platform's own synthesis document,
+  which holds that "the Late Harappan decline was not purely
+  environmental". `BF-025`, `IC-J-002`.
+
+### What is not established, and is not being asked
+
+Whether either claim is false. This repository holds no position on the
+Rigvedic chronology, on the cause of the Late Harappan decline, or on the
+identification of the Rigvedic forts with any site. Domain A has not run.
+The decision below is about what a page does while that is true, not about
+who is right.
+
+### The options
+
+1. **Leave as published; correct when domain A reports.** Lowest effort,
+   and defensible if domain A is imminent. It is not scheduled to a date.
+   The cost is that the page carries an exclusion the repository has
+   recorded as unsupported, on a route already flagged as a safety
+   correction, for an unbounded interval.
+2. **Annotate now.** Add the page's own open question to the page, leaving
+   the argument intact. The page already does something close to this 130
+   lines below the headline, where it says the dating gap "is unresolved,
+   and anyone who tells you otherwise is choosing a date to fit a
+   conclusion" — the annotation would mostly be moving what the page
+   already says to where the claim is made.
+3. **Hedge the headline, title and five meta tags; leave the body.** The
+   share card and the search result are the version most readers meet, and
+   they carry the exclusion with none of the page's qualifications.
+4. **Pull the headline and the pull quote pending domain A.** Highest cost,
+   and the only option that removes the claim from the derived surfaces
+   quickly.
+
+### Why this is the owner's
+
+It is a publication decision about live copy, which `CLAUDE.md` reserves to
+the owner. It trades the cost of an unsupported exclusion standing against
+the cost of hedging a headline that may well turn out to be defensible —
+`MDO-OCC-005` shows the page's own reasoning is careful once the premise is
+granted. An agent picking either way picks for the institution.
+
+### What this decision does not authorize
+
+No replacement copy is written by this unit, and none should be drafted
+against this row before domain A reports and step 14 runs. `RA-022` holds
+the re-audit; `RESEARCH-QUEUE.md` holds the domain A item.

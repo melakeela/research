@@ -248,6 +248,31 @@ or research holds. Constitution §11.
   argument sits in retrievable data and the other in unretrievable
   literature.
 
+## Opened by the Mohenjo-daro occurrence sweep, 2026-09-08
+
+- **Domain A has to run, and nothing was scheduling it.** `BF-024`
+  records a live page excluding Mohenjo-daro on the c. 1500–1200 BCE
+  window for the family books — inferred, not attested, constitution
+  §4A, and carried by no register row in this repository. Five artifacts
+  of that unit name domain A as the work the correction depends on and
+  none of them commissioned it; the gap was found by adversarial review
+  (finding F-14). The item is: establish what the conventional Rigvedic
+  dating rests on, what its standing is, and what would move it —
+  composition, attestation, redaction and modern interpretation kept as
+  four different dates, per step 2. The named trap for the domain stands:
+  neither "a perfect audio recording" nor "Pāṇini rewrote it."
+  Until it reports, no surface may use the window as an excluding premise
+  without stating its standing on the same surface.
+- **A publication decision is open in the meantime.** `D-053` — does the
+  page stay as published while domain A runs, or is it annotated, hedged
+  or pulled? Blocks the RELEASE 1 build of that route and nothing in the
+  research programme.
+- **The cause of the Late Harappan decline is unregistered and the
+  platform disagrees with itself about it.** `IC-J-002`. Not a
+  commissioned item here — it is named so that the next unit to touch it
+  knows the register holds no row and that four platform formulations are
+  in circulation, one of which denies the others.
+
 ## Standing sequencing rules
 
 - One programme at a time. Do not open parallel programmes until one has
