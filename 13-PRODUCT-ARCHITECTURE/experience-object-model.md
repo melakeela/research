@@ -756,3 +756,147 @@ override.
   question is a question the institution is also asking, which is the single most
   useful thing this object can do for them, and it is a claim about their
   question that must be checkable rather than flattering.
+
+---
+
+## 7. Exhibit — `mk:exh:`
+
+### 7.1 What it is
+
+**An Exhibit is the publishable unit a visitor lands on.** Museum framework §2.1
+says exactly that and stops there. It is referenced throughout — `supports_exhibit`
+on the Claim Object, `exhibit` as a search facet, the unit both adversarial tests
+run on, the unit posture is assigned to, the unit the export bundles — and it has
+no field list.
+
+It is the successor to the workbook's *page*. That word is deliberately not used:
+a page is a file with a slug, and the audited inventory shows what happens when
+the publishable unit is defined by its file — 96 pages carrying 29 `Type` values,
+17 of them singletons, 34 assigned to a residual environment, and a taxonomy
+*"doing production-planning work it is too sparse to do reliably"* (`SCHEMA.md`
+§3, `INHERITED-UNVERIFIED`). An Exhibit is defined by the claims it presents.
+
+### 7.2 Fields
+
+| Field | Type | Notes |
+|---|---|---|
+| `id` | identifier | `mk:exh:<key>` |
+| `revision` | integer | append-only |
+| `title` | string | **may not contain a count, a total or a superlative unless that number is itself a `presents` claim on this Exhibit** — §8.1's Atlas rule, generalised. The audited `"Artifact Atlas: 175 Ancient South Asian Sites Mapped"` is the case: a contested count (`IH-250`, X-01; D-034) in a title, rated low-risk. |
+| `presents[]` | array of `mk:rel:` (`presents`) | the claims, relationships and absences shown in the institution's voice. **Non-empty. This is the Exhibit's grounding.** |
+| `question_refs[]` | array of `mk:qst:` | the questions this Exhibit is an attempt on |
+| `posture_assignment` | Posture Block | `derived_posture` · `assigned_posture` · `override_reason` · `derived_residual` · `decided_by` · `decided_date`, per §1.5. An override with an empty reason is invalid. Written to the Editorial Register (§11.5). |
+| `modes_enabled[]` | enum(5) | Source · Atlas · Investigation · Field · Classroom, constrained by the §1.7 matrix for the assigned posture. Source Mode is mandatory and cannot be disabled. |
+| `entry_routes[]` | enum(5) | object · place · word · text · question |
+| `public_copy` | Step 14 Block | the seven required headings, §7.4 |
+| `plain_language_summary` | string | required (§11.9.6), **carrying the same statuses as the full text** |
+| `genre` | label | free vocabulary, navigation and search facets only. **No downstream authority**: it may not determine asset class, priority or posture (§1.6.3c). |
+| `production_classes[]` | derived | from the evidence-class composition of what it presents (§1.6.3a), never from genre. An Exhibit with no recorded evidence classes yields none, which is the correct output. |
+| `bias_tests[]` | array of Bias Test records | §3.11. **Both required before publication; running one is a failed test.** |
+| `obligations[]` | array of `mk:obl:` | notably right-of-reply where a named living party is criticised (§11.3) |
+| `right_of_reply_state` | enum | `not-triggered` · `notified` · `awaiting` · `replied` · `non-response-published` · `exchange-open` |
+| `consent_refs[]` | array of `mk:cns:` | required where any `oral-living` evidence appears |
+| `authority_refs[]` | array of `mk:agt:` + `mk:rel:` | where a community holds interpretive authority over material here (§11.2) |
+| `characters[]` | array of `mk:chr:` | §13 |
+| `activities[]` | array of `mk:act:` | §8 |
+| `space_allocation` | Proportionality Block | §3.10, per claim presented |
+| `editorial_decision_ref` | `mk:dec:` | the publication decision in the Editorial Register, rendered `publication:keep` / `publication:hold` etc. so it can never be read as an evidence status (§11.5) |
+| `release_state` | enum | `draft` · `in-review` · `published` · `withdrawn` · `superseded` |
+| `constraint_block` | Constraint Block | §5.2 |
+| `export_profile` | reference | the §5.2 exhibit bundle this Exhibit produces |
+
+### 7.3 Grounding
+
+**An Exhibit with no `presents` link cannot exist.** Not "cannot publish" —
+cannot be created. There is no draft state in which an Exhibit is a title and a
+posture waiting for content, because that state is precisely how the audited
+inventory acquired 32 pages typed `research-essay`, which `SCHEMA.md` §4 finds is
+*"what a page is called when the audit did not classify it further"*
+(`INHERITED-UNVERIFIED`).
+
+Composition transitivity (§2.5) does **not** apply to an Exhibit. An Exhibit
+grounds itself directly. It may not borrow grounding from the Activities it
+contains or the Journey that traverses it, because it is the unit that speaks in
+the institution's voice, and a unit that speaks must resolve on its own.
+
+### 7.4 The public-copy shape is a field, not a template
+
+Constitution Step 14 fixes the shape of public copy: **QUESTION / WHAT IS
+OBSERVED / WHAT THE EVIDENCE SUPPORTS / WHAT COMPLICATES IT / WHAT REMAINS
+UNKNOWN / MELAKEELA'S CURRENT INTERPRETATION / WHAT WOULD CHANGE IT.**
+
+It is specified here as seven required fields on the Exhibit, each with a
+constraint on what it may resolve to:
+
+| Heading | Field | Must resolve to |
+|---|---|---|
+| QUESTION | `copy_question` | one or more `mk:qst:`, shown in `plain_form` |
+| WHAT IS OBSERVED | `copy_observed` | evidence objects, described separately from interpretation (§2.4's iconographic rule generalised) |
+| WHAT THE EVIDENCE SUPPORTS | `copy_supports` | claims at `VERIFIED` or `PROVISIONAL` only, with statuses shown. Step 14: *"Draft public copy only from accepted claims."* |
+| WHAT COMPLICATES IT | `copy_complicates` | rival claims, contradicting relationships, dependency findings, contested readings |
+| WHAT REMAINS UNKNOWN | `copy_unknown` | Absence records with their types, and `05-HOLDS/` rows. **Not prose about uncertainty** — typed absences, so a reader can tell `NOT EXCAVATED` from `ABSENT DESPITE ADEQUATE SEARCH` (§3.7). |
+| MELAKEELA'S CURRENT INTERPRETATION | `copy_interpretation` | a claim set with statuses, attributed to the institution, and **disclosed after the evidence, never before** — the same ordering §9.3 requires of PROVE IT |
+| WHAT WOULD CHANGE IT | `copy_falsifiers` | Falsifier records (§3.9), non-empty |
+
+Two rules on the shape:
+
+- **No heading may be empty and none may be omitted.** An Exhibit with nothing
+  under WHAT COMPLICATES IT has either found a genuinely uncomplicated corner of
+  the record — which is possible and should be stated as such, with the
+  adversarial tests that looked for complication — or has not looked. The field
+  distinguishes them: `copy_complicates` accepts an explicit `none-found` value
+  carrying the bias-test rows that searched.
+- **The order is fixed.** The interpretation comes sixth. An Exhibit that leads
+  with what MelaKeela thinks has inverted the shape, and the inversion is not a
+  design variation.
+
+### 7.5 Rules
+
+- **Every claim-bearing sentence resolves** (§3.4). A sentence that cannot
+  expose its `mk:clm:`, status, Evidence Links and route into Source Mode is
+  published as editorial framing and marked as such. `editorial_framing` is a
+  distinct span type in the copy fields, and the proportion of an Exhibit that
+  is framing is countable and is a review finding when it grows.
+- **Source Mode is reachable from every Exhibit in one interaction** (§1.7).
+  Not a footer link.
+- **Posture is assigned, not chosen for tone** (§1.3). The derived value is
+  computed from the claim set and the absences; a divergence needs a reason;
+  a residual assignment is flagged `derived_residual` so the unclassified set
+  stays countable (§1.6.1).
+- **Field Mode is forbidden where §1.7 forbids it.** An Exhibit in the
+  Extraction / Collection or Reconnection posture may hold no Activity whose
+  mode is Field. If a posture reassignment moves an Exhibit into one of those
+  postures, its Field Activities are suspended by that reassignment, not left to
+  be noticed.
+- **Proportionality is per claim presented** (§3.10), advisory, and compared at
+  review. Layout does not settle which explanation is stronger.
+- **An Exhibit is not a Journey stop that happens to have content.** It stands
+  alone: a visitor arriving from a search result, an external citation or a
+  Journey sees the same object with the same statuses. Journeys add route, not
+  content (§11.4).
+- **Decay.** When a presented claim is superseded, the Exhibit revises and shows
+  the succession (§3.6 pins both directions). When a presented claim is rejected,
+  the Exhibit does not silently drop it: `REJECTED` rows persist and stay visible,
+  and an Exhibit that argued from one now shows that it did. When consented
+  material is withdrawn, the material goes and the record that it was here and
+  was withdrawn remains (§11.4) — `decay_behaviour = retract` for the material,
+  `disclose` for the fact.
+
+### 7.6 What an Exhibit is not permitted to do
+
+1. **Assert in its own voice anything not in `presents[]`.**
+2. **Carry a count, total or superlative in its title** that is not itself a
+   statused claim on the Exhibit (§7.2).
+3. **Open with an interpretation** where its entry route is the object route
+   (§6.2's page order: material description, present holder and terms, asserted
+   provenance with its type, custody chain with gaps, dates by type, the §4V
+   provenance questions with the unanswered ones displayed as unanswered, and
+   only then the claims).
+4. **Present a bridge as a property of its subject** (§6.7): an object does not
+   have a language, a place does not have an ethnicity, a word does not have a
+   people, a text does not have a race.
+5. **Publish without both adversarial tests** (§3.11).
+6. **Publish media at `rights_status = unknown`** (§11.8.2). The rights
+   placeholder states what exists, where, and why it is not shown.
+7. **Vary its historical content by interface language** (§11.10.2). Two
+   visitors in two languages see the same claims with the same statuses.
