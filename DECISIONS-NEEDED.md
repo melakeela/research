@@ -1236,7 +1236,7 @@ framework or left standing with this layer as its exception?
 
 ## D-054 — May the WATER modern-system slot name a live Chennai water dispute?
 
-**Raised by:** `13-PRODUCT-ARCHITECTURE/water-living-world.md` §4.5
+**Raised by:** `13-PRODUCT-ARCHITECTURE/water-living-world.md` §4.5 (slot 5)
 **Category:** living-community consent
 **Related:** D-005 (is WATER first), D-048 (individual consent where a
 community holds authority), D-001 (india-seminar.com is blocked, so the one
@@ -1282,9 +1282,10 @@ them.
 | **Aggregate hydrology and governance only — reservoir volumes, rainfall, network coverage, no named community** | Cleanest consent position, and it still supports a true modern slot: the 2019 reservoir failure is a fact about storage. Cost: it reproduces the depoliticised account that Coelho is arguing against, and it does so by omission, which the negative-evidence standard would type as `NOT PRODUCED` by us. |
 | **Defer the slot until Release 1 scope is set** | Honest, and consistent with D-005 being open. Cost: WATER without a modern slot is not a Living World under §10.1; it is six-sevenths of one, and the specification says so. |
 
-**What the specification does under each.** §4.5 defines the slot's evidence
-requirement and its bridge discipline identically under all four; only the
-permitted subject changes. Nothing else in the seven-slot pattern moves. The
+**What the specification does under each.** Slot 5 of
+`water-living-world.md` (its §4.5) defines the slot's evidence requirement and
+its bridge discipline identically under all four; only the permitted subject
+changes. Nothing else in the seven-slot pattern moves. The
 specification is therefore complete and unblocked as a specification, and
 blocked only at the point of filling this one slot.
 
