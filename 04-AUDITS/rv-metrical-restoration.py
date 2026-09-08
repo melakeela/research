@@ -188,12 +188,21 @@ VOWELS = set("aiueo")
 
 
 def _final_base(t):
-    """Last base character of a pada, and whether it carries the ring below."""
+    """Last base LETTER of a pada, and whether it carries the ring below.
+
+    Both the editorial markup and the combining marks have to be skipped.
+    The van Nooten and Holland text ends 79 of these padas with a markup
+    character - dr̥r̥ḷhā́+, āśate@, priṇānó@ - and 44 more begin with one, so
+    a version that skipped only combining marks read those as consonant-
+    final and lost 24 junctions.
+    """
     d = unicodedata.normalize("NFD", t)
     marks = []
     for ch in reversed(d):
         if unicodedata.category(ch)[0] == "M":
             marks.append(ch)
+            continue
+        if not ch.isalpha():
             continue
         return ch, RING in marks
     return "", False
@@ -217,7 +226,8 @@ def _ends_in_vowel(t):
 
 
 def _starts_with_vowel(t):
-    d = unicodedata.normalize("NFD", t)
+    d = [c for c in unicodedata.normalize("NFD", t)
+         if c.isalpha() or unicodedata.category(c)[0] == "M"]
     if not d:
         return False
     if d[0].lower() in VOWELS:

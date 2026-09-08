@@ -239,11 +239,23 @@ was the last place they survived. That belongs here.
 The **process** limb is that corrections were made where the review pointed —
 in the register rows — and the prose *derived* from those rows was not swept.
 A withdrawn number does not stay in one file. That is not bias; it is an
-incomplete edit, and it belongs to `BF-026`, which owns it. The sweep is now
-a step and a tool: `04-AUDITS/figure-sweep.py` derives the list of live
-figures from what the scripts emit, rather than from what someone remembered
-to look for. A hand-written list failed twice, the second time missing two
-numbers in the paragraph below this one.
+incomplete edit, and it belongs to `BF-026`, which owns it.
+
+The sweep is now a step and a tool: `04-AUDITS/figure-sweep.py` builds the
+set of live figures from what the scripts actually emit, rather than from
+what someone remembered to look for. A hand-written list failed twice, the
+second time missing two numbers in the paragraph below this one.
+
+**What that tool does not do has to be stated here, because a guarantee
+advertised wider than it is would be exactly the failure `BF-020` logs.** It
+answers "does any script emit this token anywhere". It cannot answer "does
+the script this locator names emit this figure *in this role*", because
+nothing in it reads locators. The two withdrawn odds ratios in the paragraph
+below — 15.4 and 3.63 — are both still emitted, on the group-label rows of
+`m8b` that `RCI-011` abandoned, so **the tool would not have caught the
+failure it was written for.** It catches figures no script emits at all. A
+figure it passes is not thereby current, and the fourth adversarial review is
+what established that; an earlier draft of this paragraph claimed more.
 
 `RCT-010` is where this lands, and it is PROVISIONAL, not VERIFIED, because
 the paper itself is on `HOLD-011`.
