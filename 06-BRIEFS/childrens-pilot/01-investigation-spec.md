@@ -370,9 +370,16 @@ and we have not looked that up."*
 > **FOUND.** Two different people, a long time apart, split this line into
 > words, and here they agree. *(`PUR-010`)*
 >
-> **FOUND.** But they do not always agree. There are 160 places in the book
-> where the old split writes a word so plainly that you cannot tell which of two
-> different words it is. The old split cannot decide those. *(`PUR-009`)*
+> **FOUND.** But they do not always agree — and where they cannot, it is worth
+> knowing why. There are 160 places in the book where the old split writes a
+> word so plainly that you cannot tell which of two different words it is. The
+> old split cannot decide those. *(`PUR-009`)*
+>
+> **This is the one place in the whole investigation where two people really did
+> check each other.** The old split and the modern one were made by different
+> people using different methods, so when they agree that is worth something.
+> *(`DEP-003`, which records the check as genuine and also records its limit:
+> the old split cannot confirm the 48 ambiguous cases at all)*
 
 **Field Bag.** The stanza, by identifier and revision, with its three source
 rows.
@@ -869,6 +876,11 @@ whole screen rests on a `HYPOTHESIS`.
 > arguments either. So this is not "nobody knows" — it is "we have not looked",
 > which is our problem, not the evidence's. *(`PUR-028`, HYPOTHESIS;
 > `PUR-013`, single source)*
+>
+> **And there is a second list in our files that looks like a check and is not.**
+> It sorts the poem's verses too, and it mostly agrees with this one. It is by
+> the same man, eight years earlier. Two lists by one person agreeing is not two
+> people agreeing. *(`DEP-022`)*
 
 **Child does.** Places **86 counters — one per hymn, already labelled with its
 period** — into five bins, then presses one button: **"show what you'd expect"**,

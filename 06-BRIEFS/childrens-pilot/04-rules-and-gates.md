@@ -612,10 +612,28 @@ four passes:**
 
 **What to attack next.**
 
-1. **`02-SOURCES/dependency.csv`, row by row against the claim basis.**
-   `DEP-005` sat unused through four passes and was the largest finding when it
-   surfaced. There are 26 `DEP-` rows and this unit cites six. That is the
-   highest-value pass left and it has never been run.
+1. ~~`02-SOURCES/dependency.csv`, row by row.~~ **Run.** All 26 rows read
+   against the claim basis. Nine bear on the púr- corpus; the unit had cited
+   five. Three more are now cited and the fourth pass's prediction was right —
+   this was the highest-value pass left:
+   - **`DEP-003`**, at S-01, and it is **the only dependency row in this unit
+     that runs the positive way**: the Zurich lemmatisation and the padapāṭha are
+     *partially independent*, which is what makes `PUR-010` a genuine recall
+     check rather than a source agreeing with itself. It also fixes the limit —
+     the padapāṭha cannot confirm the 48 ambiguous cases at all. A unit that
+     cites dependency rows only when they weaken something is running the test
+     in one direction.
+   - **`DEP-022`**, in the S-09 banner: `stanza_properties.json` carries Arnold
+     1897, `strata.json` carries Arnold 1905. The second Arnold column is not an
+     independent check on the first; agreement between them is one scholar being
+     consistent with himself eight years apart.
+   - **`DEP-024`**, in every `VERIFIED` row's verification cell: `SRC-019`,
+     `SRC-059` and `SRC-085` are the same repository at the same commit fetched
+     three times and **count as one source**. The boilerplate listed all three,
+     which reads as three sources unless the row says otherwise. It now does.
+
+   The remaining seventeen are domain E or probe-duplication rows and do not
+   touch this unit.
 2. **The stopping rule's clause (b) is untested**, and it was written by the unit
    it constrains — the same objection that reshaped G-01, not yet applied to
    `BF-021`.
