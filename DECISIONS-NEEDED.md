@@ -962,7 +962,7 @@ touches published copy.
 and carry the range in the interim. The change itself belongs in
 `melakeela/site`, not here. Queued as `RA-009`.
 
-## D-045 — Egress allowlist: four items domain A could not read
+## D-047 — Egress allowlist: four items domain A could not read
 
 Domain A was commissioned to test whether any instrument of Rigvedic
 relative chronology is reachable that is not Arnold. Three are, and they
@@ -985,13 +985,13 @@ instruments are corroboration or a tradition with shared inputs.
    and Oldenberg published before Arnold, so they cannot be following him.
    Whether **he was following them** is answerable only from this text, and
    the answer decides whether `RCI-012` moves toward VERIFIED or toward
-   REJECTED. `HOLD-006`.
+   REJECTED. `HOLD-009`.
 3. Oldenberg 1888, *Prolegomena*, 191–197, 197–202, 222–223, 265 — the
    arrangement rule and the appendix list, currently used at second hand
    through Hellwig 2020 and through Gunkel and Scarlata's transcription.
-   `HOLD-007`.
+   `HOLD-010`.
 4. Hellwig, Scarlata and Widmer 2021, "Reassessing Rigvedic Strata", *JAOS*
-   141.4: 847–865 — reached in abstract only. `HOLD-008`.
+   141.4: 847–865 — reached in abstract only. `HOLD-011`.
 
 Items 1–3 are on archive.org. Item 4 has an author copy at
 `www.zora.uzh.ch`.
@@ -1002,10 +1002,10 @@ this repository.
 **What it is not:** a gap in the historical record. All four texts exist and
 are digitised; three are out of copyright and the fourth is open access.
 Twelve hosts were probed on 2026-09-07 and all twelve refused at CONNECT
-with HTTP 403 (`SRC-084`). The five MCP literature connectors were all
+with HTTP 403 (`SRC-104`). The five MCP literature connectors were all
 called; the ones that answered cover computer science and Wiley journals,
 and the philological journal literature of Indology is reachable through
-none of them (`SRC-079`–`SRC-083`).
+none of them (`SRC-099`–`SRC-103`).
 
 **Relation to `D-043`:** archive.org is already requested there, for the
 domain E substrate literature. This row is separate because it names what

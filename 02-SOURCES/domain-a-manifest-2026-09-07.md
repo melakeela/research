@@ -1,6 +1,6 @@
 # Domain A retrieval manifest — 2026-09-07
 
-Backing record for ledger rows `SRC-069` through `SRC-084`.
+Backing record for ledger rows `SRC-089` through `SRC-104`.
 
 Domain A is Rigvedic chronology and transmission. The unit was commissioned to
 examine, rather than use, the dependency `DEP-001` already records: that every
@@ -17,16 +17,16 @@ repository has had pinned since 2026-09-07.
 ### The corpus, for the third time
 
 `VedaWebProject/vedaweb-data` at `d3eb8af7324338161520d2d35eae8f7e985a19a5`
-(`SRC-069`). Every checksum in `02-SOURCES/vedaweb-manifest-2026-09-07.md` that
+(`SRC-089`). Every checksum in `02-SOURCES/vedaweb-manifest-2026-09-07.md` that
 was re-checked matched, and `04-AUDITS/rv-token-extract.py` reproduced 164,758
 tokens. This is a third retrieval event of one target, not a third source:
-`DEP-020` already records the second, and `DEP-023` below records this one.
+`DEP-020` already records the second, and `DEP-029` below records this one.
 
 ### `info/stanza_properties.json` — the find of the unit
 
 A per-stanza layer of **presumed late additions**, compiled by Dieter Gunkel
 (Richmond) and Salvatore Scarlata (Zürich), carrying the judgements of five
-scholars in five separate columns (`SRC-070`):
+scholars in five separate columns (`SRC-090`):
 
 | Column | Work | Codes | Stanzas |
 |---|---|---|---|
@@ -44,7 +44,7 @@ this repository. It is not `strata.json` and it is not derived from it.
 ### The legend for that layer
 
 `resources/help/lateAdditions.md` in `VedaWebProject/vedaweb` at
-`f6f840084e5c4d80444dec323fcd94d74e5b1bfc` (`SRC-071`). It states the code
+`f6f840084e5c4d80444dec323fcd94d74e5b1bfc` (`SRC-091`). It states the code
 semantics in full, and they are not guessable from the data:
 
 > The abbrevations are case sensitive: Lowercase is used to indicate that the
@@ -53,14 +53,14 @@ semantics in full, and they are not guessable from the data:
 > Arnold distinguishes between two phases of Additions, C1 and C2.
 
 The same legend is served to readers at `vedaweb.uni-koeln.de`, which is
-`EGRESS_BLOCKED` in this session (`SRC-035`, `SRC-084`). The platform's own
+`EGRESS_BLOCKED` in this session (`SRC-035`, `SRC-104`). The platform's own
 source repository, reached over the git lane, was the only channel that
 delivered it.
 
 ### Hellwig 2020 in full text
 
 `papers/2020lt4hala/paper/hellwig-linguistic-markers-2020.pdf` inside
-`OliverHellwig/sanskrit` (`SRC-073`, `SRC-074`): Oliver Hellwig, "Dating and
+`OliverHellwig/sanskrit` (`SRC-093`, `SRC-094`): Oliver Hellwig, "Dating and
 Stratifying a Historical Corpus with a Bayesian Mixture Model", LT4HALA 2020.
 Ten pages, read in full. It carries three things this unit needed and could not
 get any other way:
@@ -74,32 +74,32 @@ get any other way:
    it: the appendix effect is driven by a handful of hymns, and the family-book
    appendices are not marked late by the model at all — some are marked early.
 
-This is Hellwig reporting Oldenberg. `DEP-021` records that it is not Oldenberg
+This is Hellwig reporting Oldenberg. `DEP-027` records that it is not Oldenberg
 retrieved.
 
 ### The Aṣṭādhyāyī
 
-`ashtadhyayi-com/data` at `24109f7` (`SRC-078`), `sutraani/data.txt`: one record
+`ashtadhyayi-com/data` at `24109f7` (`SRC-098`), `sutraani/data.txt`: one record
 per sūtra with Devanagari text, transliteration, padaccheda and anuvṛtti. It
 makes the `chandasi` question countable. It is a community edition with no
 stated critical apparatus, so counts over it are counts over that file.
 
 ### Retrieved, logged, not used as instruments here
 
-- `UniversalDependencies/UD_Sanskrit-Vedic` (`SRC-076`) — 4,000 sentences across
+- `UniversalDependencies/UD_Sanskrit-Vedic` (`SRC-096`) — 4,000 sentences across
   five texts. A sample, too small for a per-book Rigvedic distribution.
-- `sanskrit-texts/rigveda` (`SRC-077`) — Hellwig's morpho-lexical and Hettrich's
+- `sanskrit-texts/rigveda` (`SRC-097`) — Hellwig's morpho-lexical and Hettrich's
   verb-argument annotation of the whole Rigveda. A second, author-independent
   morphological annotation of the same text. Aligning it token-by-token to the
   Zürich layer is a unit of work in itself and was not attempted.
 - The DCS transcription of Arnold's *lexical* criteria, Arnold 1905 pp. 29–43
-  (`SRC-075`). Same author and same book as `SRC-023`/`SRC-026`; a different
-  part of it. Recorded as `DEP-022`, not as an independent instrument.
+  (`SRC-095`). Same author and same book as `SRC-023`/`SRC-026`; a different
+  part of it. Recorded as `DEP-028`, not as an independent instrument.
 
 ## What could not be retrieved
 
 Twelve hosts were probed and all twelve refused at CONNECT with HTTP 403
-(`SRC-084`): archive.org, gretil, titus, dsal, jstor, arxiv.org, doi.org,
+(`SRC-104`): archive.org, gretil, titus, dsal, jstor, arxiv.org, doi.org,
 api.crossref.org, zora.uzh.ch, aclanthology.org, openalex.org. `WebFetch`
 returned `EGRESS_BLOCKED` for archive.org and zora.uzh.ch. The egress policy in
 this session is GitHub-only over the git proxy lane.
@@ -108,13 +108,13 @@ The three consequences are exact:
 
 - **Arnold 1905 itself was not read in this session.** `PUR-011` was verified
   against the archive.org scan in an earlier session, when that host answered;
-  it is not re-verifiable now. `HOLD-006`.
+  it is not re-verifiable now. `HOLD-009`.
 - **Oldenberg 1888 itself was not read.** What this unit has is Gunkel and
-  Scarlata's transcription of his marks (`SRC-070`) and Hellwig's report of his
-  rule and his appendix list (`SRC-074`). `HOLD-007`.
+  Scarlata's transcription of his marks (`SRC-090`) and Hellwig's report of his
+  rule and his appendix list (`SRC-094`). `HOLD-010`.
 - **Hellwig, Scarlata and Widmer 2021 was reached in abstract only**, through
-  the Consensus connector (`SRC-079`). The ZORA open-access copy and the JAOS
-  copy were both refused. `HOLD-008`.
+  the Consensus connector (`SRC-099`). The ZORA open-access copy and the JAOS
+  copy were both refused. `HOLD-011`.
 
 ## The connectors, one by one
 
@@ -123,11 +123,11 @@ returned. All five were called.
 
 | Connector | Result |
 |---|---|
-| Consensus (`SRC-079`) | **Worked.** Returned the Hellwig, Scarlata and Widmer 2021 abstract verbatim, plus Klein 2008 on Arnold's standing. The only connector that reached the target paper at all. |
-| Scholar Gateway (`SRC-080`) | Worked, wrong corpus. Ten Wiley passages, none the target. Two are useful as standing evidence: TPS 12141 uses Arnold's "Popular Rigveda" as a live chronological label in 2018. |
-| Scholar Feed (`SRC-081`) | Worked, arXiv cs.CL only. Three relevant computational papers, no philology. |
-| alphaXiv (`SRC-082`) | Worked, arXiv only. Overlaps Scholar Feed. |
-| Scite (`SRC-083`) | **Failed.** Monthly free-tier quota (25 calls) exhausted; resets 2026-10-01. Identical to its state on 2026-09-06 (`SRC-002`). |
+| Consensus (`SRC-099`) | **Worked.** Returned the Hellwig, Scarlata and Widmer 2021 abstract verbatim, plus Klein 2008 on Arnold's standing. The only connector that reached the target paper at all. |
+| Scholar Gateway (`SRC-100`) | Worked, wrong corpus. Ten Wiley passages, none the target. Two are useful as standing evidence: TPS 12141 uses Arnold's "Popular Rigveda" as a live chronological label in 2018. |
+| Scholar Feed (`SRC-101`) | Worked, arXiv cs.CL only. Three relevant computational papers, no philology. |
+| alphaXiv (`SRC-102`) | Worked, arXiv only. Overlaps Scholar Feed. |
+| Scite (`SRC-103`) | **Failed.** Monthly free-tier quota (25 calls) exhausted; resets 2026-10-01. Identical to its state on 2026-09-06 (`SRC-002`). |
 
 The pattern is worth stating plainly, because it shapes what this repository can
 verify: the connectors that answered cover computer science and Wiley journals.

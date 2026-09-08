@@ -8,13 +8,13 @@ for about older pronunciation, and what later sandhi obscures. VedaWeb
 carries three texts of the same poems, each applying sandhi differently:
 
   versions/aufrecht.csv   the transmitted Samhita, sandhi as handed down,
-                          segmented by line                       SRC-085
+                          segmented by line                       SRC-105
   versions/lubotsky.csv   Lubotsky's Rgvedic word concordance, sandhi
-                          undone, segmented by pada               SRC-086
+                          undone, segmented by pada               SRC-106
   versions/vnh.csv        van Nooten and Holland 1994, Rig Veda: a
                           Metrically Restored Text, sandhi as the metre
                           requires, segmented by pada, via Thomson and
-                          Slocum, UT Austin LRC                   SRC-087
+                          Slocum, UT Austin LRC                   SRC-107
 
 Aufrecht is segmented by line and the other two by pada, so aufrecht is
 compared at stanza level only. The pada-level tests use the two texts that

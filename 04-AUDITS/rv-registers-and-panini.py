@@ -5,7 +5,7 @@ rv-registers-and-panini.py — two smaller domain-A measurements.
 P.  Panini's chandas rules, counted. Constitution s.4.A asks what the
     chandasi rules imply. The first thing they imply is a proportion, and
     the proportion is countable.
-    Source: ashtadhyayi-com/data @ 24109f7, sutraani/data.txt      SRC-078
+    Source: ashtadhyayi-com/data @ 24109f7, sutraani/data.txt      SRC-098
     A community edition with no stated critical apparatus: these are
     counts over that file, not over a critical edition of the Astadhyayi.
 

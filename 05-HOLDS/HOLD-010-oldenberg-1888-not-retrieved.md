@@ -1,7 +1,7 @@
-# HOLD-007 — Oldenberg 1888 is used here only at second hand
+# HOLD-010 — Oldenberg 1888 is used here only at second hand
 
 **Raised** 2026-09-07, domain A.
-**Caps** RCI-007, RCI-010, RCI-011 and DEP-021.
+**Caps** RCI-007, RCI-010, RCI-011 and DEP-027.
 
 ## What is needed
 
@@ -13,11 +13,11 @@ Prolegomena*, Berlin 1888 — pages 191–197 and 265 for the arrangement rule,
 
 Two derivatives, and they agree:
 
-1. **Hellwig 2020**, LT4HALA, §5.4 and footnote 6 (`SRC-074`), which states
+1. **Hellwig 2020**, LT4HALA, §5.4 and footnote 6 (`SRC-094`), which states
    the rule and lists the 31 appendix hymns. Read in full from a PDF inside
    the DCS repository.
 2. **The `oldenberg` column of VedaWeb's `stanza_properties.json`**
-   (`SRC-070`), Gunkel and Scarlata's transcription of the *Prolegomena*
+   (`SRC-090`), Gunkel and Scarlata's transcription of the *Prolegomena*
    together with the 1909 and 1912 *Noten*.
 
 All 31 hymns in Hellwig's list are marked in every stanza in the VedaWeb
@@ -28,11 +28,11 @@ something; it is not the source.
 ## Why it is blocked
 
 archive.org, which holds the *Prolegomena*, refused at CONNECT with HTTP 403
-(`SRC-084`).
+(`SRC-104`).
 
 ## What turns on it
 
-Less than `HOLD-006`, because the arrangement rule was **tested against the
+Less than `HOLD-009`, because the arrangement rule was **tested against the
 corpus rather than accepted on Oldenberg's authority** (`RCI-010`): 216
 descents against 56 ascents within maximal addressee runs, Monte Carlo
 p < 0.01 in every book. That test does not depend on Hellwig having reported
@@ -49,4 +49,4 @@ re-running against the corrected list.
 
 ## What would clear it
 
-`archive.org` on the environment egress allowlist (`D-043`, `D-045`).
+`archive.org` on the environment egress allowlist (`D-043`, `D-047`).

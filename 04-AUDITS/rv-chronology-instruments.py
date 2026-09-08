@@ -9,12 +9,12 @@ when instruments that are not Arnold are applied to the same text.
 
 Inputs, all local, all pinned:
   rigveda/info/strata.json            Arnold 1905, per pada          SRC-023
-  rigveda/info/stanza_properties.json five scholars, per stanza      SRC-070
-  rigveda/info/addressees.json        Koelligan 2020, per hymn       SRC-072
+  rigveda/info/stanza_properties.json five scholars, per stanza      SRC-090
+  rigveda/info/addressees.json        Koelligan 2020, per hymn       SRC-092
   rv_tokens.tsv                       Zurich token layer             SRC-019/022
-  Oldenberg's 31 appendix hymns       Hellwig 2020 fn. 6             SRC-074
+  Oldenberg's 31 appendix hymns       Hellwig 2020 fn. 6             SRC-094
 
-Legend for stanza_properties (SRC-071, VedaWebProject/vedaweb @ f6f8400,
+Legend for stanza_properties (SRC-091, VedaWebProject/vedaweb @ f6f8400,
 resources/help/lateAdditions.md): uppercase = the author judged the stanza
 certainly a late addition, lowercase = may/might be; Arnold's 1897 Sketch
 distinguishes two phases of additions, C1 and C2.
@@ -135,7 +135,7 @@ w("m1-metre-by-stratum.tsv", ["metre_label", "stratum", "padas"],
 
 # ------------------------------------- M3 stanza_properties coverage
 print()
-print("M3  stanza_properties coverage (SRC-070)")
+print("M3  stanza_properties coverage (SRC-090)")
 marks = {sc: {} for sc in SCHOLARS}       # scholar -> {stanza: code}
 for sid, rec in props.items():
     for sc, code in rec.items():

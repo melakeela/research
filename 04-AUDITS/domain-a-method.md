@@ -31,8 +31,8 @@ as different dates. For domain A they are:
 | Recitational fixing | when the Saṃhitā text's sandhi was fixed | `RCT-002` measures the gap it left, not when it opened |
 | Padapāṭha analysis | the word-by-word analysis | `RCT-003` measures its behaviour |
 | Manuscript copying | surviving manuscripts | out of scope; none consulted |
-| Editing | Aufrecht; Lubotsky; van Nooten & Holland 1994 | `SRC-085`–`SRC-087` |
-| Digitisation and annotation | Gunkel, Ryan, Scarlata, Kölligan, Zürich, 2020 | `SRC-019`, `SRC-023`, `SRC-070`, `SRC-072` |
+| Editing | Aufrecht; Lubotsky; van Nooten & Holland 1994 | `SRC-105`–`SRC-107` |
+| Digitisation and annotation | Gunkel, Ryan, Scarlata, Kölligan, Zürich, 2020 | `SRC-019`, `SRC-023`, `SRC-090`, `SRC-092` |
 | Modern interpretation | Grassmann 1876 → Witzel 1995 → Hellwig 2020/2021 | the instruments themselves |
 
 Nothing in this unit dates the composition of anything. Every result is a
@@ -97,7 +97,7 @@ marked-versus-unmarked as an *asymmetric* comparison, and no claim reads an
 unmarked stanza as positively early.
 
 **Arnold 1905, Oldenberg 1888 and the 2021 reassessment were not read.**
-Typing: `NOT ACCESSIBLE`, all three. `HOLD-006`, `HOLD-007`, `HOLD-008`. All
+Typing: `NOT ACCESSIBLE`, all three. `HOLD-009`, `HOLD-010`, `HOLD-011`. All
 three texts exist, two are out of copyright and digitised, and one has an
 open-access copy in an institutional repository. The blockage is an egress
 policy in this session, not a gap in the historical record, and it must never
@@ -132,18 +132,18 @@ Two specific corrections were made:
 1. **The agreement of five European scholars was not allowed to count as
    five measurements.** `RCI-009` measures the pairwise agreement and finds
    Wüst and Oldenberg at Jaccard 0.836 — effectively one instrument
-   (`DEP-024`). The count of author-independent instruments in every claim is
+   (`DEP-030`). The count of author-independent instruments in every claim is
    three, not five.
 2. **Arnold's own second work was not allowed to corroborate his first.**
    The `arnold` column of the layer is Arnold 1897 and `strata.json` is
-   Arnold 1905 (`RCI-003`, `DEP-022`). Its enrichment of ×6.75 is the highest
+   Arnold 1905 (`RCI-003`, `DEP-028`). Its enrichment of ×6.75 is the highest
    of the five and is reported as the **same-author ceiling** against which
    the others are read, never as evidence.
 
 What could not be corrected: the archive itself. There is no counterpart
 layer of Indian scholarly judgement in machine-readable form to test these
 against, and this session could not go looking for one, because every
-non-GitHub host was refused. That is `BF-012`.
+non-GitHub host was refused. That is `BF-021`.
 
 ## 7. Preferred-counter-narrative challenge
 
@@ -181,7 +181,7 @@ That would have been wrong in three ways, and each was corrected:
    to suppress both.
 
 `RCT-010` is where this lands, and it is PROVISIONAL, not VERIFIED, because
-the paper itself is on `HOLD-008`.
+the paper itself is on `HOLD-011`.
 
 The second correction under this heading is smaller and concerns Oldenberg.
 `RCI-011` looks like strong corroboration — rule-breaking hymns are marked
@@ -196,8 +196,8 @@ formulated the rule.
 
 - **Arnold 1905's periodisation**: historically influential, still in
   working use as a chronological label in the journal literature as recently
-  as 2018 (`SRC-080`, TPS 12141, "late, Popular Rigveda"), and under active
-  quantitative challenge (`SRC-079`). Arnold himself called the period names
+  as 2018 (`SRC-100`, TPS 12141, "late, Popular Rigveda"), and under active
+  quantitative challenge (`SRC-099`). Arnold himself called the period names
   provisional (1905 §§60–61, per `PUR-026`).
 - **Oldenberg's arrangement rule**: "still among the most frequently cited
   studies on the textual history of the R̥V" (Hellwig 2020 §5.4). Tested
@@ -213,14 +213,14 @@ formulated the rule.
 
 - **`RCI-006`, `RCI-008`, `RCI-012`** would move toward REJECTED as claims of
   *corroboration* if Arnold 1905 turns out to have used Grassmann's and
-  Oldenberg's judgements in assigning his Popular period. `HOLD-006` names
+  Oldenberg's judgements in assigning his Popular period. `HOLD-009` names
   the page range that would settle it. The measurements would survive
   unchanged as descriptions of how the layers relate.
 - **`RCT-004`** would weaken if van Nooten and Holland's restoration turns
   out to have used Arnold's periodisation as an input. `RCT-005` holds that
   open.
 - **`RCT-010`** would change on any reading of the 2021 paper's own scope
-  statement that is wider than its abstract (`HOLD-008`).
+  statement that is wider than its abstract (`HOLD-011`).
 - **`RCI-010`** would be overturned by a demonstration that VedaWeb's
   addressee strings encode a grouping derived from Oldenberg. The
   label-free segmentation was run precisely to survive that, and it does:

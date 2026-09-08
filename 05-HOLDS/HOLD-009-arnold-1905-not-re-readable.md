@@ -1,4 +1,4 @@
-# HOLD-006 — Arnold 1905 could not be read in this session
+# HOLD-009 — Arnold 1905 could not be read in this session
 
 **Raised** 2026-09-07, domain A.
 **Blocks** RCI-012, RCT-005, and any promotion of PUR-011 or PUR-013 that
@@ -18,7 +18,7 @@ E. Vernon Arnold, *Vedic Metre in its Historical Development*, Cambridge
 ## Why it is blocked
 
 archive.org refused at CONNECT with HTTP 403 through the session egress
-proxy, and `WebFetch` returned `EGRESS_BLOCKED` (`SRC-084`). The scan that
+proxy, and `WebFetch` returned `EGRESS_BLOCKED` (`SRC-104`). The scan that
 `PUR-011` cites was reachable when that claim was verified and is not
 reachable now.
 

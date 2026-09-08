@@ -1,4 +1,4 @@
-# HOLD-008 — the 2021 reassessment was reached in abstract only
+# HOLD-011 — the 2021 reassessment was reached in abstract only
 
 **Raised** 2026-09-07, domain A.
 **Caps** RCT-006, RCT-007 and RCT-010.
@@ -11,7 +11,7 @@ Strata", *Journal of the American Oriental Society* 141.4 (2021): 847–865.
 ## What this session has
 
 The abstract, retrieved verbatim through the Consensus connector
-(`SRC-079`) — the authors' own statement of what they tested and what they
+(`SRC-099`) — the authors' own statement of what they tested and what they
 found. From it, three things are firm: they modelled allomorph
 distributions; they controlled for metrical positioning, prosodic structure
 and content; and under those controls the distributions did not lend
@@ -28,9 +28,9 @@ themselves say the result does and does not rule out.
   author copy: HTTP 403 at CONNECT, and `EGRESS_BLOCKED` from `WebFetch`.
 - `www.jstor.org`, `doi.org` and `api.crossref.org`: HTTP 403 at CONNECT.
 - Scholar Gateway's corpus is Wiley-weighted and does not carry JAOS
-  (`SRC-080`). Scholar Feed and alphaXiv are arXiv-only (`SRC-081`,
-  `SRC-082`). Scite's free-tier quota is exhausted until 2026-10-01
-  (`SRC-083`).
+  (`SRC-100`). Scholar Feed and alphaXiv are arXiv-only (`SRC-101`,
+  `SRC-102`). Scite's free-tier quota is exhausted until 2026-10-01
+  (`SRC-103`).
 
 Five literature connectors and four hosts; one abstract.
 
@@ -58,5 +58,5 @@ repository. This is an egress policy, not a gap in the record.
 
 ## What would clear it
 
-`www.zora.uzh.ch` on the environment egress allowlist (`D-045`), or a
+`www.zora.uzh.ch` on the environment egress allowlist (`D-047`), or a
 scite/institutional subscription restored.
