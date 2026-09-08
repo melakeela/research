@@ -177,30 +177,47 @@ Human remains do not arise; nothing in the púr- corpus is a remain. The rule
 
 ## 2. Posture, mode and route
 
-**Derived posture: Nocturnal Veḷi**, by §1.5 rule 3, *absence dominance*. The
-majority of this investigation's load-bearing propositions resolve to typed
-absences or holds rather than to positive claims: 82 of 103 passages state no
-count (`PUR4J-001`), 93 of 103 state no material (`PUR4J-012`), the geography
-field cannot be filled at all (`PUR4J-018`), 48 of 103 poet attributions are
-`NOT PRODUCED` (`PUR4J-016`, `HOLD-006`), three of §4J's five types are
-`NOT ASSIGNED` (`PUR4J-024`), and there is no ground evidence in the repository
-(`HOLD-007`). Rules 1, 2, 4 and 5 do not fire: no withheld access, no repair
-state, the substance is Claim Objects rather than Relationship Objects, and the
-supporting evidence is textual rather than material or site-bound.
+**Derived posture: Reading Room**, by §1.5 rule 7, the residual. Rules 1 to 6 all
+fail, run in the precedence order §1.5 requires. The full cascade is in
+`04-rules-and-gates.md` §3.4; the two that matter here:
 
-**Assigned posture: Nocturnal Veḷi.** No override; derived and assigned agree.
-The `Avoid` for the posture — *"no fantasy portal or occult styling"* — is a
-live risk here, because "the mystery of the ninety-nine forts" is exactly the
-register the material invites. It is refused: the unknowns in this investigation
-are ordinary, countable and specific, and each is shown with what it would take
-to close it.
+- **Rule 3, absence dominance, does not fire.** 2 of the 47 claim rows carry a
+  constitution §6 type. The investigation is *full* of absences, but they are
+  proportions inside individual claims — 82 of 103 passages state no count, 93
+  of 103 state no material — and rule 3 counts the exhibit's *propositions*.
+- **Rule 4, relation dominance, does not fire.** The substance is 47 Claim
+  Objects. The three comparisons at S-08 live on one screen of fourteen and are
+  built from those rows.
 
-**This is a build gate, not a label.** Under §1.7, Field Mode is *available* in
-Nocturnal Veḷi and **forbidden** in Reading Room. Rule 7 of §1.5 makes Reading
-Room the residual, and a careless assignment would land there — at which point
-this investigation may not be built at all. The posture assignment is therefore
-recorded to the Editorial Register (§1.5) with its derivation before any
-build begins. Gate G-01 in `04-rules-and-gates.md`.
+**Under §1.7, Field Mode is forbidden in Reading Room.** So:
+
+> **This investigation cannot be built on its derivation. It requires an
+> editorial assignment away from Reading Room, with a written `override_reason`,
+> by whoever holds the Editorial Register.** Gate **G-01**. An override with an
+> empty reason is invalid (§1.5), and §1.3's constraints on posture are
+> evidentiary — none of them bars an override that unlocks a mode.
+
+**Two earlier versions of this section were wrong, and both wrongly favoured
+building.** The first asserted Nocturnal Veḷi by rule 3 without counting, and
+had amended the rule to read "typed absences **or holds**" — the holds
+`04-rules-and-gates.md` §5 insists are not typed absences. The second counted
+correctly but treated §1.5 as a ballot, listing three parallel candidates and
+observing that two of them permit Field Mode. §1.5 is a precedence cascade.
+Recorded rather than deleted, because two corrections in a row moving toward
+"buildable" is the finding.
+
+**The candidate override reasons are on the record and none is a derivation:**
+the material's absences are unusually legible at this reading age, `PUR4J-006`
+is checkable by an eight-year-old unaided, and the rights position is cleaner
+than either of D-006's two options. Whether they are sufficient is not this
+unit's to say.
+
+**The `Avoid`s.** Reading Room's is *"no visual fatigue or luxury minimalism"* —
+presentation, outside this repository. Nocturnal Veḷi's, as the likeliest
+override target, is *"no fantasy portal or occult styling"*, and it is a live
+risk, because "the mystery of the ninety-nine forts" is exactly the register
+this material invites. Refused: every unknown here is ordinary, countable and
+specific, and each is shown with what it would take to close it.
 
 **Entry route:** the **word route** (§6.4), on `púr-`. Not the object route:
 there is no object. Not the place route: there is no place (`PUR4J-018`). This
@@ -554,25 +571,56 @@ a number.
 
 *(`PUR4J-012`)*
 
-**Then the child taps "made of metal" and the eight open up.** This is the
-sharpest evidence in the whole investigation and it must not sit behind a
-number:
+**Then the child taps "made of metal" and all eight open up.** Eight cards, and
+the child can count them:
 
-> **WE THINK.** Only **one** of the eight metal forts belongs to an enemy and
-> gets knocked down.
+> **WE THINK.** Here is who each of the eight metal forts belongs to.
+> *(`PUR4J-013`, PROVISIONAL)*
 >
-> In five of them somebody is *asking* for a metal fort to keep them safe. In
-> two of those five, the fort is not a building at all — in one, a god is asked
-> to *be* the fort; in another, the fort **is a river**. And in the last one,
-> priests are told to go and *make* metal forts. *(`PUR4J-013`, PROVISIONAL)*
+> | | |
+> |---|---:|
+> | An enemy we are told the name of. The poem knocks it down. | **1** |
+> | Somebody is holding a bird prisoner in a story. We are not told who. | **2** |
+> | Somebody asks for a metal fort to keep them safe | **2** |
+> | A god is asked to *be* the fort | **1** |
+> | The fort **is a river** | **1** |
+> | Nobody's yet — priests are told to go and *make* some | **1** |
 >
-> So when the poem says "metal fort", it is not always talking about a fort.
-> Sometimes it is talking about a god. Once it is talking about a river.
+> **So one of the eight is an enemy's fort that gets knocked down.**
+>
+> **Unless it's three.** The two with the bird in could be counted as enemies
+> too — somebody is holding that bird, and we are not told who. The people who
+> made this table said so themselves and wrote down both answers. One out of
+> eight, or three out of eight. We are showing you both, because picking the
+> smaller one would make our own point look better than it is.
+> *(`PUR4J-013`, which states the alternative in its own note)*
 
-**A river cannot be photographed as a fort.** If a child takes one thing from
-S-07, this is the one, and it is why `PUR4J-013` belongs on this screen rather
-than in a footnote — a metal fort that is a river is the investigation's own
-question answered by the corpus itself.
+**And the other half of it, on the same card**, because leaving it off would
+make this screen argue for one answer:
+
+> **WE THINK.** Nearly half the verses about forts *are* describing something
+> being held and broken — with people's names on them, a gate in one, and two
+> where the poem says what the fort was made of: the stone one you have already
+> seen, and the metal one that gets knocked down. *(`PUR4J-I-03`,
+> `evidence_against`, PROVISIONAL)*
+
+**Deferred to gate G-05.** The two passages where the fort is a god (RV 7.15.14)
+and a river (RV 7.95.1) currently carry no translator's words — only the
+register's classification. EC-04 quotes three translators for the river passage
+at S-06 and EC-09 quotes two at S-10; this card must do the same before it
+ships. **Until then the card runs without the god-and-river line**, which is the
+one a child would remember, and that is the correct way round.
+
+**Why `PUR4J-013` is on this screen at all.** A poem can call a river a fort. As
+a *reason for the design*, that is this investigation's question answered by the
+corpus itself. As a sentence to a child it is an unquoted paraphrase of a
+`PROVISIONAL` reading, and the two are not the same thing — the reasoning belongs
+in `04-rules-and-gates.md`, not in the copy. Note also that `PUR4J-013`'s own
+note names a *different* sharpest case: RV 10.101.8, the instruction to build
+metal forts beside making a cattle-pen and stitching armour, "the least
+figurative statement about fort construction in the corpus". Where the register
+and this unit's pedagogic instinct disagree about what is sharpest, the register
+is the one with the reasoning written down.
 
 Then the stone one, which is the stanza from S-01, now translated:
 
@@ -652,10 +700,11 @@ be loaded into this interface, and it is built so that none can be.
 > than a thing to live in. Nobody has tested that properly yet.
 > *(`PUR-027`, HYPOTHESIS)*
 >
-> **And here is what argues with that.** Of the eight metal forts, only **one**
-> belongs to an enemy and gets stormed. In five, somebody is asking for a fort
-> to protect them — and in two of those, the fort *is* a god, or *is* a river.
-> In one more, priests are told to go and make some. *(`PUR4J-013`, WE THINK)*
+> **And here is what argues with that.** Of the eight metal forts, **one** is a
+> named enemy's and gets knocked down — or **three**, if you count the two where
+> somebody unnamed is holding a bird. The other five are somebody's protection,
+> or a god, or a river, or nobody's yet. *(`PUR4J-013`, WE THINK — and it states
+> both counts itself)*
 
 Beside the stone/raw comparison, the museum's caution, in the child's words:
 
@@ -849,7 +898,7 @@ reconstruction of the exact thing the screen says we do not have (§10.4.4).
 
 ### S-11 — DECIDE
 
-**On it.** Six statements, and four bins. The child sorts *statements*, not
+**On it.** Seven statements, and six bins. The child sorts *statements*, not
 things and not people.
 
 **Child does.** Drags each statement into one of **six** bins: `FOUND` /
@@ -868,7 +917,7 @@ the fix is fewer *statements*, not fewer bins.
 | "The poem says a hundred stone forts." | FOUND (`PUR4J-012`, `PUR4J-002`) |
 | "Only one verse in the whole book says stone." | FOUND (`PUR4J-012`) |
 | "Ninety-nine is the famous number." | **WE THINK** — and it is a guess about *people today*, not about the poem. See below. (`PUR4J-I-02`, PROVISIONAL) |
-| "Ninety-nine is the poem's commonest number." | **FOUND — that it is false.** A hundred is commonest, 9 verses to 6. (`PUR4J-003`) |
+| "A hundred is the number the poem uses most." | **FOUND.** 9 verses to 6. (`PUR4J-003`, `PUR4J-002`) |
 | "The forts were made of iron." | WE DON'T KNOW — grown-ups disagree (`PUR4J-023`) |
 | "The poem says what the forts were made of." | WE DON'T KNOW — nobody wrote it down; 93 of 103 verses never say (`PUR4J-012`) |
 | "There was a stone fort somewhere." | WE DON'T KNOW — we haven't looked (`HOLD-007`) |
@@ -889,12 +938,24 @@ screen says why in the child's words:
 > from. It is on one of our own pages and nobody wrote down where it came from.
 > *(`PUR4J-I-02`)*
 
-The statement about the commonest number is the only one in the investigation
-a child can place *wrong against the evidence*. It has a real bin — FOUND,
-because that it is false is a `VERIFIED` measurement (`PUR4J-003`) — so the
-screen no longer needs a seventh answer outside its own vocabulary. The
-interface still does not mark it. It shows the count again and lets the child
-move it or not.
+The statement about the commonest number was originally *"Ninety-nine is the
+poem's commonest number"*, whose museum answer was "**Not true**" — an answer
+outside the six bins. Relabelling it "FOUND — that it is false" did not fix
+that: **a bin labels the status of the statement in it, not of its negation.**
+A child dragging that card to FOUND would have agreed with the bin and
+disagreed with the museum, and the interface had no way to show it.
+
+Corrected by flipping the statement rather than the bin: *"A hundred is the
+number the poem uses most"* is `FOUND` in the ordinary way. Every statement on
+this screen now has a bin that describes **it**.
+
+**The cost, stated:** the screen loses the one card a child could place wrong
+against the evidence. That was a real feature — a child who put ninety-nine
+first and met the count was learning something. It is deliberately given up,
+because a sorting interface whose labels do not describe the things being
+sorted teaches the wrong lesson about the vocabulary, and the vocabulary is what
+this investigation is for. The ninety-nine-versus-a-hundred correction still
+happens, at S-04, where the child does the counting themselves.
 
 **Then the investigation's question**, in the child's words, free text plus four
 options:
@@ -918,7 +979,7 @@ a river-name both translators agree on. And "this poem was copied and copied"
 rested on nothing — no row in this evidence base addresses manuscript
 transmission, which is also why S-01 no longer tells that story.)*
 
-**Field Bag.** The child's six placements and their answer, all marked as theirs
+**Field Bag.** The child's seven placements and their answer, all marked as theirs
 and never mixed with institutional text (§10.4.5).
 
 ---

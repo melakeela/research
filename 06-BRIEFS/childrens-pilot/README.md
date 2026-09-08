@@ -51,7 +51,7 @@ each feeds and what would verify it.
 | `PROVISIONAL` | 10 | WE THINK |
 | `HYPOTHESIS` | 2 | MAYBE |
 | `HOLD` | 1 | WE DON'T KNOW — we haven't looked yet |
-| `INHERITED-UNVERIFIED` | 1 | *(the vocabulary itself — see below)* |
+| `INHERITED-UNVERIFIED` | 1 | *(the vocabulary itself — `CP-VOCAB-001`, see below)* |
 
 Four rows (`PUR-022`, `PUR-023`, `PUR4J-030`, and `PUR4J-016` in part) appear on
 **no screen**: they are the rows the design reasons *about* — the named-entity
@@ -121,38 +121,55 @@ This unit was adversarially reviewed on 2026-09-08 by an agent that did not
 produce it, and repaired. Four repairs changed a position rather than a
 sentence, and all four are recorded in place:
 
-1. **The posture derivation did not fire on a proper count.** §1.5 rule 3 counts
-   the exhibit's *propositions*; the first draft counted proportions inside
-   individual claims (82 of 103 passages, 93 of 103) and asserted a majority
-   without counting — then silently amended the rule to "typed absences **or
-   holds**", the holds `04-rules-and-gates.md` §5 insists are not typed
-   absences. §3 and §5 contradicted each other, load-bearingly. Rewritten:
-   the posture is now an **editorial assignment under gate G-01**, not a
-   derivation, and **on the §1.5 residual reading this investigation may not be
-   built at all.** Also logged `IC-P-004`: §1.7's table and its own prose
-   disagree about whether Field Mode is forbidden in Reading Room, and the whole
-   argument rests on the table cell the prose omits.
-2. **`PUR4J-013` was missing from the entire unit** — only one of the eight
-   metal forts is an enemy's; in two of them the fort *is* a god or a river.
-   Omitting it left `PUR-027` less challenged than the register leaves it *and*
-   withheld the sharpest evidence in the corpus for this investigation's own
-   question. Now on S-07 and S-08.
-3. **S-08 performed the excluded move with the vocabulary removed** — "the other
-   side", "somebody else's forts" — while S-10 told the child the museum was not
-   showing them that material. The COMPARE terms are now the verb and the
-   grammatical role.
+1. **The posture derivation gives Reading Room, where Field Mode is
+   forbidden — so this investigation can only be built on a logged editorial
+   override.** It took two review passes to get here. The first draft asserted
+   §1.5 rule 3 (absence dominance) without counting, and had silently amended
+   the rule to "typed absences **or holds**" — the holds `04-rules-and-gates.md`
+   §5 insists are not typed absences, so §3 and §5 contradicted each other. The
+   first repair counted properly (2 rows of 47; rule 3 fails) but then treated
+   §1.5 as a **ballot** — listing rules 3, 4 and 7 as parallel candidates and
+   noting "two of the three permit Field Mode" — when §1.5's own words are
+   *"Derivation inputs, **in precedence order**"*. That tally cannot exist, it
+   made a binary outcome look 2:1 favourable, and it also skipped rule 6
+   entirely. §3 now runs the cascade in order: rules 1–6 all fail (rule 6 on
+   `ARCHIVE-AND-POWER-AUDIT.csv`, whose six rows are all domain E and none bear
+   on this corpus), and rule 7 gives **Reading Room**. Gate G-01 is the
+   override, not a re-derivation. Also logged `IC-P-004`: §1.7's table and its
+   own prose disagree about Reading Room, and this rests on the table.
+2. **`PUR4J-013` was missing from the entire unit, and adding it introduced a
+   fresh bias failure — logged as `BF-021`.** The row records that only one of
+   the eight metal forts is a named enemy's, and that in two of them the fort
+   *is* a god or a river. Omitting it left `PUR-027` less challenged than the
+   register leaves it. But the card written to fix that took 1-of-8 — the figure
+   most favourable to a deflationary reading — while `PUR4J-013`'s own note
+   states the 3-of-8 alternative; dropped the two Soma-myth passages so the
+   arithmetic did not close, on a counting screen; and said "five are asking for
+   protection" where the row supports two. **All three drifted the same way,
+   on the screen added to correct the opposite bias.** `BF-014` had already
+   logged that direction against this material in the parent unit, which is why
+   `BF-021`'s control is a standing rule: when copy is added to correct a bias,
+   the test for the opposite bias is re-run against that addition, because the
+   original test predates it.
+3. **S-08 performed the excluded move with the vocabulary removed** — "the
+   other side", "somebody else's forts" — while S-10 told the child the museum
+   was not showing them that material. The COMPARE terms are now the verb and
+   the grammatical role.
 4. **Four child-facing FOUND statements overstated their rows**, and all four
    overstated toward this investigation's own thesis. That direction is the
    finding, not the four sentences.
 
-Also repaired: unsourced dates removed throughout (nothing in this repository
-dates the Rigveda); `PUR4J-I-02` was labelled FOUND at `PROVISIONAL` on the one
-line where the inherited "99" reached an evidence screen, and gate G-04 passed
-it; the §0.1 claim that the status mapping "loses nothing" was false in two
-ways; S-11's four bins collapsed the three kinds of WE DON'T KNOW on the one
-screen that sorts them; S-09 showed the token-level distribution the register
-says overstates; `HOLD-007` named a period and a region it has no source for;
-and `RA-002` collided with an existing identifier.
+Also repaired across the two passes: unsourced dates removed throughout (nothing
+in this repository dates the Rigveda); `PUR4J-I-02` labelled FOUND at
+`PROVISIONAL` on the one line where the inherited "99" reached an evidence
+screen, which gate G-04 passed; the §0.1 claim that the status mapping "loses
+nothing", false in two ways; S-11's bins, which first collapsed the three kinds
+of WE DON'T KNOW and then labelled one statement by the status of its
+*negation* — fixed by flipping the statement, at the cost of the one card a
+child could place wrong; S-09's token-level distribution, which `PUR-018` says
+overstates, now the hymn unit under gate G-12 with two aggregation rules it also
+lacks; `HOLD-007` naming a period and a region it has no source for; and
+`RA-002` colliding with an existing identifier.
 
 ## What this unit found while specifying
 

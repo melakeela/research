@@ -97,69 +97,110 @@ proportion of passages inside an individual claim.
 
 ### 3.2 Counting it properly
 
-Of the 45 claim rows in `02-claim-basis.csv`, the rows carrying a constitution
-§6 type are:
+Of the **47 claim rows** in `02-claim-basis.csv`, the rows carrying a
+constitution §6 type are:
 
 - `PUR4J-012` — 93 of 103 passages state no material, typed `NOT PRODUCED`.
 - `PUR4J-016` / `HOLD-006` — passages whose heading names no poet, typed
   `NOT PRODUCED`.
 
 `PUR4J-018` is a claim that a **dataset** carries no geographic content — an
-absence in VedaWeb's metadata files, not a typed absence in the record of the
-past. `PUR4J-024`'s "NOT ASSIGNED" is not one of §6's eight types.
-`PUR4J-001`'s 82-of-103 is not typed anywhere. `HOLD-007` is a hold and §5 of
-this document argues at length that it is **not** a typed absence and must never
-be treated as one.
+absence in VedaWeb's metadata files, not in the record of the past.
+`PUR4J-024`'s "NOT ASSIGNED" is not one of §6's eight types. `PUR4J-001`'s
+82-of-103 is not typed anywhere. `HOLD-007` is a hold, and §5 argues it is
+**not** a typed absence and must never be treated as one.
 
-**That is 2 or 3 rows of 45. It is not a majority, and rule 3 does not fire on
-the count.**
+**That is 2 rows of 47. Rule 3 does not fire.**
+
+*(An earlier version of this section said "2 or 3 rows of 45" — a stale count,
+in the section whose whole subject is a derivation asserted rather than counted.
+Standing rule 14: counts are derived, never carried forward.)*
 
 ### 3.3 What the original derivation did, and why it was wrong
 
 It listed six items and asserted a majority without counting, and it counted
-*proportions inside individual claims* (82 of 103 passages, 93 of 103 passages)
-where rule 3 counts *propositions of the exhibit*. Worse, it silently amended
-the rule: §1.5 rule 3 says "typed absences", the derivation said "typed absences
-**or holds**", and the hold it added was `HOLD-007` — which §5 of this same
-document insists is not a typed absence. **§3 and §5 contradicted each other,
-and the contradiction was load-bearing.** Recorded here rather than deleted.
+*proportions inside individual claims* (82 of 103 passages, 93 of 103) where
+rule 3 counts *propositions of the exhibit*. It then silently amended the rule:
+§1.5 rule 3 says "typed absences", the derivation said "typed absences **or
+holds**", and the hold it added was `HOLD-007` — which §5 of this same document
+insists is not a typed absence. **§3 and §5 contradicted each other, and the
+contradiction was load-bearing.** Recorded rather than deleted.
 
-### 3.4 Where that leaves the posture
+### 3.4 Running the cascade in order
 
-Rules 1, 2 and 5 do not fire: no withheld access, no repair state, and the
-supporting evidence is textual rather than material or site-bound.
+**§1.5 is a precedence cascade, not a ballot.** Its own words: *"Derivation
+inputs, **in precedence order**."* Each rule is reached only if every rule above
+it fails. A previous revision of this section listed rules 3, 4 and 7 as three
+parallel candidates and observed that "two of the three permit Field Mode and
+one forbids it" — a tally that cannot exist, since rule 7 is unreachable if rule
+4 fires and rule 4 is unreachable if rule 3 fires. It also made the outcome look
+2:1 favourable when it is binary. **Withdrawn**, and recorded because it was the
+same failure as §3.3 in a new place: a cascade treated as a count.
 
-**Rule 4 — relation dominance — is live and was dismissed too fast.** The
-original text asserted "the substance is Claim Objects rather than Relationship
-Objects" and moved on. But S-08's Field Bag entry records three comparisons *as*
-Relationship Objects, and the investigation's governing question — how a textual
-attestation stands to a material one — is a comparison. Against that: the
-investigation's 45 load-bearing rows are Claim Objects almost without exception,
-and the three comparisons are built *from* those rows rather than being the
-substance the rows serve. The rule is close, not clearly failed, and it is not
-this unit's to settle. **Rule 4 → Living Signal Field**, where §1.7 also makes
-Field Mode *available*.
+Run properly:
 
-**Rule 7, the residual, gives Reading Room**, where §1.7's table makes Field Mode
-**forbidden**.
+| Rule | Fires? | Why |
+|---|---|---|
+| **1** withheld access | No | No central claim depends on material with access status `NOT ACCESSIBLE`, and no Institutional Obligations row records a refused or unanswered request. |
+| **2** repair state | No | The governing relationship is not a community-authority record, consent grant, withdrawal, right-of-reply or reopened access. |
+| **3** absence dominance | **No** | 2 typed-absence rows of 47. §3.2. |
+| **4** relation dominance | **No** | §3.4.1 below. |
+| **5** place/material dominance | No | The supporting evidence is textual and annotational, not material, environmental or site-bound, and the exhibit is anchored to no Place — `PUR4J-018`. |
+| **6** counter-account | **No** | §3.4.2 below. |
+| **7** residual | **Yes** | **Reading Room.** |
 
-**So the derived posture is Nocturnal Veḷi only on a reading of rule 3 this unit
-can no longer support by counting, Living Signal Field on a plausible reading of
-rule 4, and Reading Room on the residual.** Two of the three permit Field Mode
-and one forbids it.
+#### 3.4.1 Rule 4 fails, and the earlier hedge was a correction running the wrong way
 
-### 3.5 The consequence, stated plainly
+Rule 4 asks whether *"the exhibit's **substance** is Relationship Objects rather
+than Claim Objects — comparison, movement, correspondence."*
 
-**This is now an open question that gates the build, not a settled derivation.**
-An assigned posture is editorial (§1.5) and may override a derived one with a
-logged reason — so the investigation is not thereby forbidden. What it may not
-do is claim a derivation it does not have.
+The substance is 47 Claim Objects. The three comparisons at S-08 live on one
+screen of fourteen and are constructed *from* those rows rather than being what
+the rows serve; nothing in the investigation is a movement or a correspondence.
+**Rule 4 fails.**
 
-`04-rules-and-gates.md` cannot assign the posture. Gate **G-01** now requires
-the assignment to be made by whoever holds the Editorial Register, with the
-derivation above in front of them, and with an `override_reason` written if the
-assignment is Nocturnal Veḷi. An override with an empty reason is invalid
-(§1.5).
+A previous revision stated exactly that argument and then concluded "close, not
+clearly failed", carrying Living Signal Field forward as a live candidate.
+**That was a correction moving the result toward the preferred reading** — the
+one in which Field Mode stays available and the investigation stays buildable —
+and it is the same shape as `BF-004`. Corrected to a verdict. The investigation's
+governing *question* is a comparison; its *substance* is not, and rule 4 asks
+about the substance.
+
+#### 3.4.2 Rule 6 fails, and skipping it was the original failure relocated
+
+Rule 6 requires **both** that the principal Relationship Objects be
+`contradicts` or `supersedes` against a named dominant account, **and** that the
+asymmetry audit (§11.2) record an archival power differential.
+
+A previous revision jumped from rule 5 to rule 7 without evaluating rule 6 at
+all — inside the section whose entire subject is a cascade that was asserted
+rather than run. Evaluated now: `04-AUDITS/ARCHIVE-AND-POWER-AUDIT.csv` holds
+six rows, all `APA-E-` (domain E), **none bearing on the púr- corpus**. The
+second conjunct is unsatisfied. **Rule 6 fails**, whatever is true of the first.
+
+### 3.5 The derived posture is Reading Room, where Field Mode is forbidden
+
+That is the honest output of the cascade, and it is worse than the previous two
+revisions said.
+
+**It does not forbid the investigation.** §1.5 makes the assigned posture
+editorial and provides for an override with a logged reason; §1.3's constraints
+on posture are evidentiary — it may not set a claim's status, substitute for
+negative-evidence typing, or be inferred from tone — and none of them bars an
+override that unlocks a mode. So the position is:
+
+> **The derivation gives Reading Room. Building this investigation requires an
+> editorial assignment away from it, with a written `override_reason`, by
+> whoever holds the Editorial Register.** An override with an empty reason is
+> invalid (§1.5).
+
+What that costs is honesty about what is being done: not "the derivation
+supports a children's mode here", but "the derivation does not, and we are
+overriding it for these stated reasons." The candidate reasons are on the
+record — the material's absences are unusually legible, `PUR4J-006` is
+checkable by an eight-year-old, and the rights position is cleaner than either
+of D-006's options — and none of them is a derivation.
 
 ### 3.6 A contradiction in the governing document, found while relying on it
 
@@ -174,15 +215,19 @@ governing, because it is the more specific statement. **That reading is recorded
 not settled**, and is logged as `IC-P-004` in
 `04-AUDITS/INTERNAL-CONTRADICTIONS.csv`.
 
-### 3.7 The posture's Avoid, whichever it is
+### 3.7 The `Avoid`s that apply
 
-Nocturnal Veḷi's `Avoid` is *"no fantasy portal or occult styling"*, and it is a
-live risk, because "the mystery of the ninety-nine forts" is the register this
-material invites. Refused: every unknown here is ordinary, countable and
-specific, and each is shown with what it would take to close it. Living Signal
-Field's `Avoid` — *"no gaming HUD or arbitrary links"* — is met by the absence of
-any score, timer or progress mechanic. Reading Room's — *"no visual fatigue or
-luxury minimalism"* — is a presentation matter outside this repository.
+**Reading Room's**, since that is what the cascade derives: *"no visual fatigue
+or luxury minimalism"* — a presentation matter, outside this repository.
+
+**Nocturnal Veḷi's**, since it is the most likely override target: *"no fantasy
+portal or occult styling"*. Live, because "the mystery of the ninety-nine forts"
+is the register this material invites. Refused: every unknown here is ordinary,
+countable and specific, and each is shown with what it would take to close it.
+
+**Living Signal Field's**, recorded because a previous revision carried it as a
+candidate: *"no gaming HUD or arbitrary links"* — met by the absence of any
+score, timer or progress mechanic.
 
 ## 4. Constitution §14 — the public-copy shape
 
@@ -364,7 +409,7 @@ Twelve. None is optional. Each blocks the screen or screens named.
 
 | Gate | Blocks | What must happen |
 |---|---|---|
-| **G-01** | everything | Posture **assigned** by whoever holds the Editorial Register, with §3's derivation in front of them and an `override_reason` written if the assignment is Nocturnal Veḷi. §3.2 shows rule 3 does not fire on a proper count; rule 4 is live; rule 7's residual is Reading Room, where §1.7's table forbids Field Mode. An override with an empty reason is invalid (§1.5). **Not a label — on the residual reading this investigation may not be built.** See also `IC-P-004`: §1.7's table and its own prose disagree about Reading Room. |
+| **G-01** | everything | **The derivation gives Reading Room** (§3.4: rules 1–6 all fail, run in precedence order). §1.7's table forbids Field Mode there, so building this requires an **editorial assignment away from Reading Room with a written `override_reason`** by whoever holds the Editorial Register; an empty reason is invalid (§1.5). The gate is the override, not a re-derivation — and it is not a veto: §1.3's constraints on posture are evidentiary and none bars an override that unlocks a mode. What the gate refuses is building while *claiming* a derivation the cascade does not produce. See also `IC-P-004`: §1.7's table and its own prose disagree about Reading Room, and this gate rests on the table. |
 | **G-02** | S-06, S-08, S-12 | `PUR4J-010` and `PUR4J-030` are readable as prose and are structurally incapable of entering any comparison, filter or drag interface. Verified against the built interface, not the design. §10.4.7. |
 | **G-03** | S-04, S-05, S-07, S-09 | Every count in the investigation is at the stanza unit (103), and the screens say so. **D-044 does not block this** — `OWNER-DECISIONS.csv` gives its `blocks` as "Nothing. The corpus is built at the stanza and every register is keyed on it; a change would be a rebuild, not a blocker", and `CLAUDE.md` makes that file authoritative. An earlier draft of this gate asserted D-044 as a blocker against its own register row; withdrawn. What the gate actually checks is that no screen mixes units — the token, pāda, stanza and hymn figures are all in the registers and only the stanza figures may reach a child. |
 | **G-04** | S-11, S-12 | No screen uses the inherited "99" as a quantity of forts: it appears only as a `VERIFIED` count of six passages (`PUR4J-002`). **This gate failed in the first draft and the failure is instructive.** S-11 labelled *"Ninety-nine is the famous number"* as **FOUND** on `PUR4J-I-02`, which is `PROVISIONAL` — the mapping broken in the promoting direction — and the only evidence in this repository that 99 *is* famous is MelaKeela's own unsourced page headline and Version 12 line numbers, i.e. `INHERITED-UNVERIFIED` material, so §0.2 was breached on the same line. The gate had been written to catch 99-as-a-quantity and did not think to check 99-as-a-reception-fact. Now: **the reception claim is WE THINK, and the screen tells the child the museum has not checked where it got the number from.** D-045 remains not a blocker. |
@@ -375,7 +420,7 @@ Twelve. None is optional. Each blocks the screen or screens named.
 | **G-09** | S-02, S-06, S-07, S-10 | **Rights position per quoted translation** (§11.8). Griffith 1890 and Grassmann 1876–7 are long out of copyright on their publication dates. **Geldner 1951, Renou and Elizarenkova 1989–99 are not obviously so**, and a children's product quoting them publicly needs an answered rights position, not an assumption in either direction. Bears on D-029 and D-030. This unit takes no position and has no legal advice. |
 | **G-10** | S-06, S-12 | No screen presents `PUR4J-I-01` more confidently than `PROVISIONAL`, and the evidence against it (`PUR4J-010`) appears on the same screen as the reading. §7 above. |
 | **G-11** | everything | No behavioural analytics, no third-party trackers, no advertising, verified in the built artefact. Aggregate non-identifying counts only; measurement policy published. §10.4.5. |
-| **G-12** | S-09 | The by-**hymn** observed and expected stratum counts derived from `rigveda-pur-family-occurrences.csv` (86 hymns of 1,028), because `PUR-018`'s note makes the hymn the unit to quote and tokens within a hymn are not independent. This unit did not derive them — that is a corpus operation and this unit performed none — and the screen may not ship with the token-level table standing in. Requires the same fresh clone as G-05. |
+| **G-12** | S-09 | Three derivations this unit did not run, because each is a corpus operation and this unit performed none. **(a)** The by-**hymn** observed and expected stratum counts (86 hymns of 1,028), because `PUR-018`'s note makes the hymn the unit to quote and tokens within a hymn are not independent; the screen may not ship with the token-level table standing in. **(b)** A stated **aggregation rule** for labelling a hymn counter: `PUR-018` assigns each hymn its *majority* stratum code, and `PUR-015`'s uniformity finding is at the **stanza** level, not the hymn — so a hymn label discards minority strata by a rule nobody has written down. **(c)** A stated rule for carrying `PUR-011`'s confidence flag, which is per-**occurrence** (14 of 106) and cannot ride a hymn counter without a second aggregation. Requires the same fresh clone as G-05. |
 
 **And one that is not a gate but an owner decision.** **D-046** — whether a
 corpus investigation is admissible as the children's pilot at all. D-006 offers
@@ -385,54 +430,62 @@ Keezhadi or an inscription; this is neither. Raised in `DECISIONS-NEEDED.md`.
 
 ## 9. Review history, and what to attack next
 
-**This unit was adversarially reviewed on 2026-09-08 and repaired.** The review
-found 30-odd defects; the repairs are in the branch history, and the ones that
-changed a position rather than a sentence are recorded in place rather than
-tidied away — §2 (the indirect COMPARE breach), §3 (the posture derivation,
-rewritten), §5 (the poet figures and the `PUR4J-018` misuse), gates G-01, G-03,
-G-04 and the new G-12, and §0.1 and §0.2 of the spec.
+**Two adversarial passes, 2026-09-08, by an agent that did not produce this
+unit.** The first found ~30 defects; the second found that four of the repairs
+were themselves wrong, including two that had moved toward the preferred
+reading. Repairs that changed a position are recorded in place — §2, §3, §5,
+gates G-01, G-03, G-04, G-12, and §0.1/§0.2 of the spec.
 
-Four repairs were substantive enough to name here:
+**What the second pass found, and it is the more useful list, because these are
+failures introduced by repair:**
 
-1. **The posture derivation did not fire on a proper count**, and had silently
-   amended rule 3 to include holds — the holds §5 of this document insists are
-   not typed absences. §3 now says so and G-01 requires an editorial assignment
-   with a written reason instead. **On the residual reading this investigation
-   may not be built at all**, and that is now visible rather than argued past.
-2. **`PUR4J-013` was absent from the entire unit** — the row recording that only
-   one of the eight metal forts is an enemy's, and that in two of them the fort
-   *is* a god or a river. Its omission left `PUR-027` less challenged than the
-   register leaves it *and* withheld from S-07 the sharpest evidence in the
-   corpus for the investigation's own question. It is now on both screens.
-3. **S-08 performed the excluded move with the vocabulary stripped out** — "the
-   other side", "somebody else's forts" — while S-10 told the child the museum
-   was not showing them that material. A compliance table checking only for
-   name-cards passed it.
-4. **Four child-facing FOUND statements overstated their rows**, all four in the
-   direction of the investigation's own thesis. That direction is the finding,
-   not the four sentences.
+1. **§1.5 was treated as a ballot.** The first repair counted rule 3 properly,
+   found it fails, and then listed rules 3, 4 and 7 as parallel candidates —
+   "two of the three permit Field Mode and one forbids it". §1.5 says
+   *"in precedence order"*. That set cannot exist, and the tally made a binary
+   outcome look 2:1 favourable. It also skipped rule 6 without evaluating it,
+   inside the section whose subject is a cascade asserted rather than run. §3.4
+   now runs all seven in order and gives **Reading Room**.
+2. **Rule 4 was hedged in the favourable direction.** §3.4 stated the argument
+   that rule 4 fails and then concluded "close, not clearly failed", keeping
+   Living Signal Field — and Field Mode availability — alive. A correction
+   moving toward the preferred reading, the `BF-004` shape. Now a verdict.
+3. **The `PUR4J-013` card was a fresh bias failure**, `BF-021`. Added to correct
+   an omission that favoured the deflationary reading, it then favoured the
+   deflationary reading three separate ways: 1-of-8 without the register's own
+   3-of-8 alternative, two passages dropped so the arithmetic did not close on a
+   counting screen, and "five are asking" where the row supports two. `BF-014`
+   had logged the same direction on the same material in the parent unit.
+4. **S-11 labelled a statement by the status of its negation** — "FOUND — that
+   it is false" — which a relabel could not fix, because a bin describes the
+   thing in it. Fixed by flipping the statement, at the cost of the one card a
+   child could place wrong against the evidence. The cost is stated on the
+   screen spec, not absorbed.
 
-**What to attack next.** The reviewer's own list, plus what it declined to check:
+**What to attack next.**
 
-1. **S-09 should probably not exist.** It rests on a `HYPOTHESIS`, its second
-   instrument returns a null, the two are entangled, and it now also carries an
-   unfilled gate (G-12) because the by-hymn figures have not been derived. The
-   case for keeping it is that it is the only screen where a child meets a real
-   result *and* the reason not to trust it. That case may be wrong.
-2. **S-10's empty box may be too abstract for eight.** Whether an eight-year-old
-   gets *"we haven't looked"* as distinct from *"there's nothing there"* is
-   empirical. G-08 answers it; a failure there is a redesign of S-10, not a
-   relaxation of it.
-3. **Every original-language string is provisional.** G-05 and G-12 mean the
-   primary-source layer and the S-09 figures are not yet fixed. This is a
-   specification whose evidence layer awaits a clone.
-4. **The exit criterion's first sentence rests on the museum's own paraphrase**
-   (`PUR4J-014`), not a translator's words. G-05 blocks it. The claim survives
-   the substitution; the sentence may not.
-5. **`BIAS-FAILURE-LOG.csv` has not had a full column-by-column pass against
-   this unit.** The reviewer checked `RA-018`'s `future_control` (arguments from
-   absence require a stated search coverage — and found S-09's banner breaching
-   it, now repaired) and did not check the others. That pass is outstanding.
+1. **`BF-021`'s control has not been applied to the rest of the unit.** It says:
+   when copy is added to correct a bias, re-run the test for the opposite bias
+   against that addition. This pass applied it to S-07. S-06's counter-argument
+   card, S-10's exclusion card and S-12's "we got this wrong" cards were all
+   added or rewritten for the same kind of reason and have not been re-tested.
+2. **`BIAS-FAILURE-LOG.csv` has had no column-by-column pass against this unit.**
+   `RA-018`'s `future_control` was checked and is now satisfied at S-09 and
+   `HOLD-007`. `BF-014`'s is the next one to read, given `BF-021`.
+3. **S-09 should probably not exist.** It rests on a `HYPOTHESIS`, its second
+   instrument returns a null, the two are entangled, and G-12 now names three
+   derivations it lacks — including two aggregation rules nobody has written.
+   The case for keeping it is that it is the only screen where a child meets a
+   real result and the reason not to trust it. That case may be wrong.
+4. **S-10's empty box may be too abstract for eight.** G-08 answers it; a failure
+   there is a redesign, not a relaxation.
+5. **Every original-language string is provisional.** G-05 and G-12 both await a
+   clone. The exit criterion's first sentence still rests on the register's
+   paraphrase of RV 4.30.20, and the S-07 god-and-river line is deferred until
+   Griffith and Geldner at RV 7.15.14 and 7.95.1 are pulled.
 6. **This unit read the registers; it did not re-run them.** `RA-001` is open
-   against `PUR-003`–`PUR-005`, and the claim basis now says so on those rows
-   instead of calling them settled.
+   against `PUR-003`–`PUR-005`, and the claim basis says so on those rows.
+7. **Not re-checked by either pass:** `03-evidence-cards.md` beyond EC-05 and
+   EC-08; `DECISIONS-NEEDED.md`'s D-046 prose; the arguments inside `IC-P-004`,
+   `IC-P-005`, `RA-020` and `RA-021` (identifiers verified, reasoning not);
+   §0.1's revised mapping table in full.
