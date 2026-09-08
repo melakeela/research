@@ -961,3 +961,57 @@ touches published copy.
 **Asked of the owner:** whether the page should name its digitization
 and carry the range in the interim. The change itself belongs in
 `melakeela/site`, not here. Queued as `RA-009`.
+
+## D-045 — Egress allowlist: four items domain A could not read
+
+Domain A was commissioned to test whether any instrument of Rigvedic
+relative chronology is reachable that is not Arnold. Three are, and they
+were already inside the corpus this repository had pinned. The unit ran and
+its measurements stand.
+
+What it could not do is read the four texts that would settle whether those
+instruments are corroboration or a tradition with shared inputs.
+
+**The four items, all open-access or out of copyright:**
+
+1. Arnold 1905, *Vedic Metre in its Historical Development*, Appendix IV
+   §265 — the page `PUR-011` was verified against in an earlier session,
+   when archive.org still answered.
+2. Arnold 1905, his own account of how he assigned the Popular period.
+   This is the one that matters. `RCI-006` and `RCI-008` show that
+   Grassmann 1876–7, Oldenberg 1888 and Witzel 1995 all concentrate their
+   late-addition marks in Arnold's Popular stratum, and that the agreement
+   survives excluding book 10 and inside the family books alone. Grassmann
+   and Oldenberg published before Arnold, so they cannot be following him.
+   Whether **he was following them** is answerable only from this text, and
+   the answer decides whether `RCI-012` moves toward VERIFIED or toward
+   REJECTED. `HOLD-006`.
+3. Oldenberg 1888, *Prolegomena*, 191–197, 197–202, 222–223, 265 — the
+   arrangement rule and the appendix list, currently used at second hand
+   through Hellwig 2020 and through Gunkel and Scarlata's transcription.
+   `HOLD-007`.
+4. Hellwig, Scarlata and Widmer 2021, "Reassessing Rigvedic Strata", *JAOS*
+   141.4: 847–865 — reached in abstract only. `HOLD-008`.
+
+Items 1–3 are on archive.org. Item 4 has an author copy at
+`www.zora.uzh.ch`.
+
+**Why it is the owner's:** egress policy is set on the environment, not in
+this repository.
+
+**What it is not:** a gap in the historical record. All four texts exist and
+are digitised; three are out of copyright and the fourth is open access.
+Twelve hosts were probed on 2026-09-07 and all twelve refused at CONNECT
+with HTTP 403 (`SRC-084`). The five MCP literature connectors were all
+called; the ones that answered cover computer science and Wiley journals,
+and the philological journal literature of Indology is reachable through
+none of them (`SRC-079`–`SRC-083`).
+
+**Relation to `D-043`:** archive.org is already requested there, for the
+domain E substrate literature. This row is separate because it names what
+domain A specifically needs from archive.org and adds `www.zora.uzh.ch`, so
+that a partial grant can be acted on rather than deferred.
+
+**Asked of the owner:** allowlist `archive.org` and `www.zora.uzh.ch`, or
+supply the four page ranges as files. Until then `RCI-012`, `RCT-005` and
+`RCT-010` stay PROVISIONAL and no public copy is drawn from them.
