@@ -3,9 +3,14 @@
 **Artefact class:** specification. Not research, not site code, not a page brief.
 **Extends:** `13-PRODUCT-ARCHITECTURE/museum-framework.md` §8, which states what the
 Atlas *is*; this document states what has to be built for §8 to be true of a
-running thing. It adds four record shapes the framework names but does not
-specify — Place, Extent Assertion, Route, Place-Evidence Link — and the geometry,
-time and enforcement contracts they sit in.
+running thing. Of the four record shapes it specifies, one is named by the
+framework and left unspecified (**Place**, `mk:plc:`, referenced throughout §2–§8
+and never given fields); the other three are **new constructs introduced here** —
+**Extent Assertion**, **Route** and **Place-Evidence Link** — as are the
+Confidence Polygon, the Coverage record, `absence_scope`, `boundary_basis` and
+Rule S-5. Saying which are which matters, because a specification that presented
+its own inventions as the framework's would be borrowing authority it has not
+got.
 **Constitutional basis:** `00-CONTROLLER/METHODOLOGY-CONSTITUTION.md` §13
 (the language-movement artifact atlas, the eleven layers, the four artifact
 states, the visibly-unknown requirement), §12 (product and institutional
@@ -33,31 +38,32 @@ what the check asserts and what failing it means, not the program that runs it.
 Eight things, in dependency order:
 
 1. **The geometry contract** — a constrained GeoJSON profile, positional
-   certainty, confidence polygons, and the drawn form of `zone-unknown` (§2).
+   certainty, confidence polygons, and the drawn form of `zone-unknown` (§2 of this document).
 2. **The Place object** — `mk:plc:`, with stable opaque identifiers, plural dated
-   extents, names as assertions, and excavation coverage as a required field (§3).
+   extents, names as assertions, and excavation coverage as a required field (§3 of this document).
 3. **The time contract** — signed structured dates on a single axis that crosses
    BCE/CE without a year-zero fault, radiocarbon handled as radiocarbon, and a
-   second axis for chronology that is only relative (§4).
+   second axis for chronology that is only relative (§4 of this document).
 4. **The Route object** — `mk:rte:`, with origin, destination, ordered waypoints,
    direction as a separate claim, and a six-valued route uncertainty that decides
-   whether a line may be drawn at all (§5).
+   whether a line may be drawn at all (§5 of this document).
 5. **The language-evidence state** — the four-value field constitution §13
    requires when a visitor clicks an artifact, specified as a required, derived,
-   non-null field on every Place-Evidence Link (§6).
+   non-null field on every Place-Evidence Link (§6 of this document).
 6. **The transitivity block** — the mechanism by which closure across the
    constitution's seven domains is disabled, so a map of trade goods cannot
-   become a map of languages (§7).
+   become a map of languages (§7 of this document).
 7. **The unknown and the count** — how unknown regions are rendered as objects
    rather than as absence, and the structural reason the Atlas cannot display a
-   headline site count (§8).
+   headline site count (§8 of this document).
 8. **The eleven layers** — each specified against the object model, each with a
    statement of which registered claims could populate it today and which could
-   not (§9).
+   not (§9 of this document).
 
 Then the transition record (§10), the conformance checks (§11), an honest
 statement of what the first buildable Atlas actually contains (§12), the owner
-decisions (§13), the adversarial tests (§14) and this file's status (§15).
+decisions (§13), the adversarial tests (§14) and this file's status (§15) — all
+of this document; see §0.4 on how references read.
 
 ### 0.2 The rules it inherits
 
@@ -76,6 +82,20 @@ recorded, not taken.** Three are recorded here as `D-053`, `D-054` and `D-055` i
 `09-DECISIONS/OWNER-DECISIONS.csv`. In each case the specification is written so
 that it is buildable under either answer, and the default it builds under is
 stated.
+
+**The threshold, stated because this document escalates a two-letter type code
+and adopts several new record shapes without asking.** Rule S-2 governs *choices
+that are the owner's* — product positions, publication positions, and amendments
+to documents this one does not own. It does not govern specification work, which
+is what this document was commissioned to do: inventing a Confidence Polygon or
+an `absence_scope` field is the task, not a decision taken in the owner's place.
+`D-054` is escalated precisely because it is the one construct that would *edit
+another specification's table* — framework §2.1's identity codes — rather than
+add to this one. Where this document instead **adopts** on a question the
+framework left open, it says so at the point of adoption and names what it
+narrows; there are two such places, at §8.2 (the scope polygon) and §8.5 rule 4
+(distribution readouts, which resolve a contradiction between framework §8.4 and
+framework §8.1 that neither anticipated).
 
 **Rule S-3 — Specification does not promote.** Naming a Place object does not
 create a place record. No `mk:plc:`, `mk:rte:` or transition described in this
@@ -103,10 +123,11 @@ in a form that carries no sentence to argue with.
 
 Rule S-5 is therefore enforced by the geometry vocabulary rather than by review:
 the constructs that would overclaim are not available. `point` is not a permitted
-geometry for an approximate location (§2.3). A `LineString` is not a permitted
-geometry for a route whose path is unevidenced (§5.3). A continuous colour ramp
-is not a permitted rendering for a hand-drawn extent (§2.4). An extent is not a
-permitted property of a reconstructed proto-language at all (§2.6). None of these
+geometry for an approximate location (§2.3 of this document). A `LineString` is
+not a permitted geometry for a route whose path is unevidenced (§5.3 of this
+document). A continuous colour ramp is not a permitted rendering for a hand-drawn
+extent (§2.4 of this document). An extent is not a permitted property of a
+reconstructed proto-language at all (§2.6 of this document). None of these
 is a style guideline; each is a validity condition, and an object that fails one
 does not render.
 
@@ -157,7 +178,7 @@ Three requirements from the record have to hold structurally rather than by
 editorial care. They are stated here in one place so that a reader can check the
 rest of the document against them, and each is specified in full later.
 
-**R-1 — Clicking an artifact must say what it supplies for language.**
+**REQ-1 — Clicking an artifact must say what it supplies for language.**
 Constitution §13: clicking an artifact must state whether it *"supplies
 linguistic evidence"*, *"provides only a possible contact setting"*,
 *"demonstrates material movement"*, or *"provides no language evidence"*.
@@ -167,7 +188,7 @@ from the object's Evidence Links by a published function, not enterable by an
 editor, displayed on selection, exported, faceted, and guarded by a distribution
 check because §8.6 requires the fourth state to be *common*.
 
-**R-2 — Transitive closure is disabled across the seven domains.**
+**REQ-2 — Transitive closure is disabled across the seven domains.**
 §4.4 rule 5: *"If A (artifact) bridges to B (polity) and B bridges to C
 (language), the system must not derive or display A→C… This is a database-level
 rule because it is the mechanism by which a map of trade goods silently becomes a
@@ -177,7 +198,7 @@ rendering surface, a traversal allow-list with bridges as terminal edges, a ban
 on persisting or rendering any derived edge, and an export that carries the
 domain pair so that a downstream user who chains anyway does it visibly.
 
-**R-3 — Unknown regions stay visibly unknown, and the Atlas carries no headline
+**REQ-3 — Unknown regions stay visibly unknown, and the Atlas carries no headline
 count.** Constitution §13: *"Unknown regions must remain visibly unknown."*
 §8.1: *"The Atlas has no headline count."* The count is not a stylistic
 restraint: `IH-250` (`INHERITED-UNVERIFIED`, contradiction `X-01`) records the
@@ -201,12 +222,14 @@ The framework's scheme (§2.1) is used unchanged: `mk:<type>:<key>`, opaque
 never reused, never deleted, revision-addressable as `@r<n>`, sub-addressable as
 `#<anchor>`, resolvable at `<institution-domain>/id/<type>/<key>`.
 
-The Atlas reads `evd`, `clm`, `rel`, `abs`, `src`, `agt`, `plc`, `lex`, `txt` and
-`exh`. It adds **one code**, and the addition is declared rather than assumed:
+The Atlas reads `evd`, `clm`, `rel`, `abs`, `src`, `agt`, `plc`, `lex`, `txt`,
+`exh`, and — for the editorial decisions and corrections this document requires at
+§3.2, §3.7 and §6.3 of it — `dec` and `cor`. It adds **one code**, and the
+addition is declared rather than assumed:
 
 | Code | Object | Status of the addition |
 |---|---|---|
-| `rte` | **Route** — §5 of this document | An extension to §2.1's code table. §2.1 is the framework's, so the extension is raised as **`D-054`** and the specification is written to work without it (§5.1 gives the fallback modelling). |
+| `rte` | **Route** — §5 of this document | An extension to §2.1's code table. §2.1 is the framework's, so the extension is raised as **`D-054`** and the specification is written to work without it (§5.1 of this document gives the fallback modelling). |
 
 Two sub-identifiers are used inside a Place and are **not** separate objects:
 `assertion_id` on an Extent Assertion and on a Place Assertion, addressed as
@@ -229,7 +252,7 @@ unconstrained GeoJSON is capable of stating things this record cannot support.
 |---|---|---|
 | G-1 | **WGS 84 (CRS84), longitude then latitude, decimal degrees.** No `crs` member; alternative CRSs are not accepted on input and are converted at ingest with the conversion logged. | RFC 7946 fixes one CRS. A silent CRS assumption is a systematic positional error with no visible symptom. |
 | G-2 | **Every geometry is wrapped in a `Feature`.** A bare geometry is not a valid Atlas object. | A geometry with its properties stripped is §5.2's *"spreadsheet of claims with the status column stripped"* in map form. |
-| G-3 | **Required Feature properties**, all non-null: `mk:id`, `mk:revision`, `mk:object_type`, `mk:status`, `mk:attestation_mode`, `mk:positional_certainty`, `mk:geometry_semantics`, `mk:date_type`, `mk:earliest`, `mk:latest`, `mk:source_ids`, `mk:locator`. Plus `mk:language_evidence_state` on every Feature that carries a Place-Evidence Link (§6), and `mk:absence_ref` on every `zone-unknown` Feature (§2.5). | A Feature that reaches a renderer without a status cannot be drawn under §4.5 and cannot be exported under §5.2. Making the properties required at the geometry level means the two rules have one enforcement point. |
+| G-3 | **Required Feature properties**, all non-null: `mk:id`, `mk:revision`, `mk:object_type`, `mk:status`, `mk:attestation_mode`, `mk:positional_certainty`, `mk:geometry_semantics`, `mk:date_type`, `mk:earliest`, `mk:latest`, `mk:source_ids`, `mk:locator`. Plus `mk:language_evidence_state` on every Feature that carries a Place-Evidence Link (§6 of this document), and `mk:absence_ref` on every `zone-unknown` Feature (§2.5). | A Feature that reaches a renderer without a status cannot be drawn under §4.5 and cannot be exported under §5.2. Making the properties required at the geometry level means the two rules have one enforcement point. |
 | G-4 | **No `GeometryCollection`.** A place with two disjoint candidate locations is two Features with two certainties, not one geometry with two parts. | A `GeometryCollection` renders as one shape and hides that it is a disagreement. `MultiPolygon` remains available for a single extent that is genuinely discontinuous (an island group, a two-mound site). |
 | G-5 | **Polygon winding follows RFC 7946** — exterior rings counter-clockwise, holes clockwise — and rings are closed and non-self-intersecting. | Interoperability, and because a self-intersecting "extent" has no defined interior and therefore no defined claim. |
 | G-6 | **No third coordinate.** Elevation is a property of a place, recorded as a field with its source, not a coordinate. | An elevation smuggled into a coordinate array is unsourced and unstatused. |
@@ -254,9 +277,9 @@ valid**. This is the single most load-bearing constraint in §2 of this document
 | `mapped-approximate` | A location known to within a mapped area — a mound, a village territory, a published site polygon | `Polygon` · `MultiPolygon` |
 | `region-only` | The source gives a region, district or river reach, not a location | `Polygon` · `MultiPolygon` (the region's own extent) |
 | `named-region-unmapped` | The source names a region whose extent is not established | `Polygon` marked `mk:geometry_semantics = named-region-unmapped`, drawn as an unbounded label field, never as a filled boundary |
-| `disputed-location` | Two or more candidate locations, each with its own source | Two or more Features, each with its own certainty and its own identification claim (§3.4). **Never one geometry spanning the candidates.** |
-| `unlocated` | No location is asserted | No geometry. The object appears in the Atlas's unlocated tray (§4.6, §8.2) and is counted in every readout. It does not appear on the map and it does not disappear from the interface. |
-| `zone-unknown` | The location question is itself the object (§2.5) | `Polygon` · `MultiPolygon`, with `mk:absence_ref` |
+| `disputed-location` | Two or more candidate locations, each with its own source | Two or more Features, each with its own certainty and its own identification claim (§3.4 of this document). **Never one geometry spanning the candidates.** |
+| `unlocated` | No location is asserted | No geometry. The object appears in the Atlas's unlocated tray (§4.6 of this document, framework §8.2) and is counted in every readout. It does not appear on the map and it does not disappear from the interface. |
+| `zone-unknown` | The location question is itself the object (§2.5 of this document) | `Polygon` · `MultiPolygon`, with `mk:absence_ref` |
 
 **The point rule, stated on its own because it is the one that will be argued
 with:** a `Point` is legal only for `surveyed-point`. There is no permitted path
@@ -302,7 +325,7 @@ on an Extent Assertion or on a claim's geometry, not an object of its own.
 1. **Nesting is validated, not asserted.** Each ring must be spatially contained
    in the next ring out. A confidence polygon whose rings cross is invalid and
    does not render. Overlapping-but-not-nested candidate extents are a
-   `disputed-location`, which is a different construct (§2.3).
+   `disputed-location`, which is a different construct (§2.3 of this document).
 2. **A ramp implies a model.** A continuous fill gradient states that the value
    varies continuously and that someone computed the variation. Only
    `modelled-probability-contour` did. Every other value renders as discrete
@@ -372,8 +395,11 @@ authors.
 `attestation_mode = unidentified-residue` is excluded from extents on the same
 grounds and more strongly. §2.6: it *"must be shown as residue — a gap with a
 shape, never a donor"*. A residue with a polygon is a donor with a homeland. The
-253-lemma Rigvedic retroflex residue (`DME-004`, `VERIFIED`) is the register's
-live instance of exactly this object, and it has no location and is not owed one.
+253-lemma Rigvedic retroflex figure (`DME-004`, `VERIFIED`) is the register's
+nearest live instance, with the register's own qualification carried: its note
+reads *"This is an UPPER BOUND on the residue, not a loanword list."* An upper
+bound is not itself a residue and is not a donor; it has no location and is not
+owed one.
 
 ---
 
@@ -423,7 +449,8 @@ flag on a spreadsheet.
   antiquity that indexes by modern nation has made a claim about continuity it
   did not intend to make and cannot support.
 - **No `coordinates`.** There is no scalar location on a Place. Location is
-  always an Extent Assertion with a certainty, a date and a source (§3.3). A
+  always an Extent Assertion with a certainty, a date and a source (§3.3 of this
+  document). A
   place with one surveyed point has one extent whose geometry is a `Point`; the
   shape of the record does not change.
 
@@ -434,9 +461,9 @@ overlapping extents… 'Punjab' at one date and at another are not the same
 polygon."* The Extent Assertion is that requirement as a record, and it applies
 to every place, not only to the settings.
 
-`assertion_id` · `geometry` (a Feature under §2.2) · `positional_certainty` ·
-`geometry_semantics` · `confidence_polygon` (optional, §2.4) · `valid_from` ·
-`valid_to` (signed structured dates, §4) · `date_type` · `basis` · `method` ·
+`assertion_id` · `geometry` (a Feature under §2.2 of this document) · `positional_certainty` ·
+`geometry_semantics` · `confidence_polygon` (optional, §2.4 of this document) · `valid_from` ·
+`valid_to` (signed structured dates, §4 of this document) · `date_type` · `basis` · `method` ·
 `source_id` · `locator` · `retrieval_date` · `status` · `attestation_mode` ·
 `contested_by[]`
 
@@ -448,11 +475,12 @@ Rules:
    tray rather than off the interface.
 2. **Extents do not interpolate.** An extent asserted for one period and an
    extent asserted for another do not imply anything about the interval between
-   them. A time control moving across the gap shows the gap (§4.6).
+   them. A time control moving across the gap shows the gap (§4.6 of this document).
 3. **Two extents for the same period are a disagreement**, rendered as two
    Features with their sources, never merged, never averaged, never unioned.
 4. **`valid_from`/`valid_to` carry a `date_type`** like every other date in the
-   system (§4.2). The period over which an extent is *asserted to have held* and
+   system (§4.2 of this document). The period over which an extent is *asserted
+   to have held* and
    the period over which it was *surveyed* are different assertions.
 
 ### 3.4 Names, and the identification claim
@@ -464,8 +492,9 @@ Rules:
 `name_type` ∈ `endonym` · `exonym` · `scholarly-coinage` ·
 `archaeological-site-name` · `modern-administrative` · `dealer-or-catalogue`.
 The last two are marked wherever they appear. `scholarly-coinage` covers names an
-excavator or a philologist invented, which are the majority of archaeological
-culture names (§9.9 of this document) and a large minority of site names.
+excavator or a philologist invented — the type an archaeological culture name
+normally takes (§9.9 of this document), and one that site names take often enough
+that the field cannot be left to a default.
 
 **The identification claim is the load-bearing part.** That a name in a text
 denotes a place on the map is a claim with a status, a proposer, evidence,
@@ -481,7 +510,7 @@ rivals and a falsifier — not a property of either the text or the place.
   null, a status ceiling of `PROVISIONAL` on correlational evidence, endpoint
   domains rendered, and no transitive inheritance (§7 of this document).
 - Where an identification is disputed, the place carries `positional_certainty =
-  disputed-location` and each candidate is its own Feature (§2.3).
+  disputed-location` and each candidate is its own Feature (§2.3 of this document).
 
 The register's live case is the Rigvedic hydronyms. `DME-015` (`VERIFIED`) counts
 31 named rivers over 251 `RIVER`-typed occurrences; `DME-016` records that nine
@@ -501,7 +530,7 @@ and a place fully excavated do not produce the same silence."*
 
 Coverage record: `coverage_id` · `method` (`excavation` · `systematic-survey` ·
 `remote-sensing` · `surface-collection` · `none-recorded`) · `extent_surveyed`
-(a geometry under §2.2, or `unquantified`) · `fraction_of_extent` (or
+(a geometry under §2.2 of this document, or `unquantified`) · `fraction_of_extent` (or
 `unquantified` with a reason) · `date_range` · `agent` (`mk:agt:`) ·
 `publication` (`mk:src:`) · `unpublished_excavation` (boolean) · `notes`.
 
@@ -520,14 +549,16 @@ Rules:
 
 A Place may carry `same_as[]` links to external gazetteers and site registers.
 Each is a `mk:rel:` with a status, because *"this excavation report's site X is
-that gazetteer's entry Y"* is a claim that is sometimes wrong and is one of the
-commonest silent errors in aggregated archaeological data.
+that gazetteer's entry Y"* is a claim, it is sometimes wrong, and it fails
+silently: an incorrect concordance produces a plausible record rather than an
+error.
 
 Rules: the external identifier is stored with its scheme and its retrieval date;
 the external record's own coordinate is **not** ingested as an Extent Assertion
 unless its source and certainty are ingested with it; and a chain of `same_as`
 links is **not** traversable (§7.4 of this document) — A `same_as` B and B
-`same_as` C does not give A `same_as` C, because concordance errors compose.
+`same_as` C does not give A `same_as` C, because a wrong link anywhere in a chain
+silently merges two places and nothing downstream can detect it.
 
 ### 3.7 Split, merge, re-localisation
 
@@ -603,7 +634,7 @@ integer:
 
 | Field | Notes |
 |---|---|
-| `signed_year` | Integer, astronomical numbering (§4.1). Null only where `scale = relative-ordinal` or `undated` |
+| `signed_year` | Integer, astronomical numbering (§4.1 of this document). Null only where `scale = relative-ordinal` or `undated` |
 | `precision` | `year` · `decade` · `quarter-century` · `century` · `half-millennium` · `millennium` · `era-only`. **A bound is never more precise than its source** |
 | `scale` | `proleptic-gregorian-astronomical` · `julian` · `cal-BCE-CE` · `cal-BP` · `uncal-BP` · `relative-ordinal` · `undated` |
 | `source_notation` | The date **as the source wrote it**, verbatim, including its own era marker, its ± and its qualifiers |
@@ -628,8 +659,9 @@ the same conventions.
   which).** Two determinations calibrated on different curves are not
   comparable without saying so, and the record says so by carrying both.
 - **BP is stored with its reference epoch** (1950 CE) explicitly, never as a bare
-  number, because "BP" in an unattributed dataset is the commonest half-century
-  error in imported archaeological data.
+  number, because "BP" without its epoch is
+  a half-century offset waiting to be applied twice or not at all, and an
+  unattributed dataset gives a reader no way to tell which happened.
 - A calibrated range is **not** a uniform bar. Where the source publishes a
   probability distribution, the Atlas may render it as a distribution and must
   name the curve; where it publishes only an interval, the Atlas renders an
@@ -646,9 +678,21 @@ years — cannot be established from anything retrieved in this session."* Its n
 records that the chronology gate is *"passed only in its relative form, on
 Arnold's strata, and is single-sourced there"* (`DEP-001`). The strata themselves
 — Archaic, Strophic, Normal, Cretic, Popular — order a great deal of registered
-material: `DE-M-012`, `DME-008` to `DME-012`, `VAR-005`, and the
+material: `DE-M-012`, `DME-008`, `DME-009`, `DME-010`, `VAR-005`, and the
 `arnold_stratum_code` column on all 103 rows of `rigveda-pur-passages.csv` and on
 469 hydronym occurrences.
+
+**And the corpus carries a second ordering, which is a separate instrument.**
+`DME-011` and `DME-012` are **not** Arnold-strata rows: `DME-011` opens *"The
+second instrument, book order, also returns a null"*, and `DME-012` is a
+vocabulary-renewal test over books. The inherited standing rule that governs them
+(`00-CONTROLLER/RESEARCH-CONSTITUTION.md` standing rule 1, from correction
+`C-05`) is that *"Two chronological instruments (metrical stratum, book order)
+are reported together; neither is used alone for a directional claim."*
+`ordering_id` is therefore **not singular**: where a corpus carries two
+orderings, the ordinal track renders both, neither is the default, and a claim
+ordered by only one of them says which. A track showing Arnold's five bands alone
+would be using one instrument alone, which is what `C-05` corrects.
 
 **A `relative-ordinal` date may not be placed on the absolute axis.** It carries
 `ordering_id` (the named ordering — here, Arnold's five strata), `ordinal_position`,
@@ -661,12 +705,15 @@ Two consequences that are the reason for the rule:
    or by a filter. There is no interaction that produces an absolute date from a
    relative one, because there is no evidence in the record that would produce
    one.
-2. **An ordering is single-sourced until it is not.** Arnold 1905 is the sole
-   source for these strata (`DEP-001`), so the track is labelled with its source
-   and its date, and every object on it inherits `PROVISIONAL` at best on
-   chronological grounds. A visitor who sees five ordered bands and does not see
-   that one 1905 metrical analysis produced all five has been misled by a
-   layout.
+2. **Each ordering is labelled with its own source and is single-sourced until
+   it is not.** Arnold 1905 is the sole source for the metrical strata
+   (`DEP-001`), so that track carries its source and its date, and every object
+   on it inherits `PROVISIONAL` at best on chronological grounds. A visitor who
+   sees five ordered bands and does not see that one 1905 metrical analysis
+   produced all five has been misled by a layout.
+3. **Where two orderings exist, neither may be shown alone as the chronology.**
+   The track renders both, labelled, and a claim ordered by only one says which
+   — `C-05`'s rule as a rendering constraint rather than a reporting habit.
 
 ### 4.5 Arithmetic, sorting, open bounds
 
@@ -704,6 +751,14 @@ buildable consequences:
 4. **The ordinal track is always visible when it is populated**, because hiding
    it is how relative-only material disappears from a chronology and then
    reappears in a summary as though it had been dated.
+5. **An object with a Place Assertion and no Date Assertion of any type is
+   `undated`, and `undated` is a state rather than a gap.** It sits in the
+   no-assertion tray under every setting of the control, and it reaches the map
+   only through an explicit, labelled *show undated objects* control, drawn with
+   an undated marker that no time filter narrows. It is never quietly included in
+   a period view and never quietly dropped from one. This is not a corner case in
+   this record: it is the state of the only place-anchored dataset the
+   repository holds (§9.2 of this document).
 
 ---
 
@@ -726,7 +781,7 @@ intermediate nodes, and modelling one as a chain of edges reintroduces exactly
 the transitive traversal §7 of this document exists to prevent.
 
 **The specification is written so that either modelling works.** Every field in
-§5.2 is a field either way; under the fallback they are fields on a Relationship
+§5.2 of this document is a field either way; under the fallback they are fields on a Relationship
 Object with a `waypoints[]` extension, and `mk:rte:` is not allocated. The choice
 is **`D-054`**. This document builds under the default that `rte` is allocated,
 and says so.
@@ -737,13 +792,13 @@ and says so.
 |---|---|
 | `id` | `mk:rte:<key>` (or the fallback under `D-054`) |
 | `revision` | append-only |
-| `label` | An editorial name, logged as `mk:dec:`. **Not an ancient name** unless a name assertion and an identification claim exist (§3.4) |
+| `label` | An editorial name, logged as `mk:dec:`. **Not an ancient name** unless a name assertion and an identification claim exist (§3.4 of this document) |
 | `origin`, `destination` | `mk:plc:` references with their own Place Assertions and certainties. Both required |
 | `waypoints[]` | Ordered. Each: `mk:plc:`, `sequence_index`, `waypoint_basis`, `evidence_links[]`, `date_assertions[]`, `certainty`. **A waypoint with no evidence link is not a waypoint** |
 | `directionality` | `origin-to-destination` · `bidirectional` · `direction-unknown`. §5.5 of this document |
-| `date_assertions[]` | When the route is asserted to have operated. Typed (§4.2). **Not** the dates of its endpoints |
+| `date_assertions[]` | When the route is asserted to have operated. Typed (§4.2 of this document). **Not** the dates of its endpoints |
 | `path_geometry` | `LineString` · `MultiLineString` · `Polygon` (corridor) · **absent**. Which of these is legal is decided by `route_uncertainty`, §5.3 |
-| `route_uncertainty` | The six values, §5.3. Required |
+| `route_uncertainty` | The six values, §5.3 of this document. Required |
 | `movement_evidence[]` | `mk:evd:` establishing that something moved: `same-material-source-as`, `traded-along`, or a `made-at` ≠ `found-at` pair. **What moved is named** |
 | `mechanism` | Required, per §4.4 rule 1 for anything implying transfer. May not restate the correlation |
 | `alternatives[]` | Rival routes and the null (no route; the two assemblages are independent). Non-empty |
@@ -757,15 +812,15 @@ and says so.
 ### 5.3 `route_uncertainty` — the field that decides whether a line may be drawn
 
 This is the route object's load-bearing field. A drawn line asserts every
-kilometre under it, and the commonest real situation is that the endpoints are
-evidenced and the path is not.
+kilometre under it, and the case the field is built around is the one where the
+endpoints are evidenced and the path is not.
 
 | Value | What is evidenced | Legal `path_geometry` | Render obligation |
 |---|---|---|---|
-| `endpoints-evidenced-path-unevidenced` | Two places, and something that moved between them. Nothing about how | **No `LineString`.** Optionally a `Polygon` corridor with `geometry_semantics = analyst-drawn-extent` | Endpoints drawn, movement stated, **path drawn as absent**. If a corridor is shown it is labelled as the analyst's terrain envelope, with the analyst named (§2.4) |
-| `waypoint-evidenced` | ≥1 dated intermediate place with its own evidence | `MultiLineString` through evidenced waypoints only | **Gaps are drawn as gaps.** No interpolation, no smoothing, no spline (§5.4) |
+| `endpoints-evidenced-path-unevidenced` | Two places, and something that moved between them. Nothing about how | **No `LineString`.** Optionally a `Polygon` corridor with `geometry_semantics = analyst-drawn-extent` | Endpoints drawn, movement stated, **path drawn as absent**. If a corridor is shown it is labelled as the analyst's terrain envelope, with the analyst named (§2.4 of this document) |
+| `waypoint-evidenced` | ≥1 dated intermediate place with its own evidence | `MultiLineString` through evidenced waypoints only | **Gaps are drawn as gaps.** No interpolation, no smoothing, no spline (§5.4 of this document) |
 | `physically-traced` | A surveyed and dated physical feature — road, canal, cairn line, tow-path | `LineString` · `MultiLineString` | Drawn as a line. The survey and its date are named; the *dating of the feature* and the *survey of the feature* are separate Date Assertions |
-| `documented-itinerary` | A text names the stages | `MultiLineString` over the stages that have identification claims | Each stage identification is its own `mk:clm:` with its own status (§3.4). The text's date, author and genre are shown: **an itinerary is a claim by its author, not a map** |
+| `documented-itinerary` | A text names the stages | `MultiLineString` over the stages that have identification claims | Each stage identification is its own `mk:clm:` with its own status (§3.4 of this document). The text's date, author and genre are shown: **an itinerary is a claim by its author, not a map** |
 | `modelled-least-cost` | A computed path | `LineString`, marked as derivative | A derivative asset under §3.12: the model, the terrain data, the cost function and the parameters are named, and it **may not be published while the claim it depicts is `INHERITED-UNVERIFIED` or `HOLD`**. Rendered visibly distinct from every evidenced path |
 | `proposed-only` | A named proposal in the literature | The proposal's own line, as a derivative of that publication | Drawn in the proposer's name with the date of the proposal (§2.6's obligation for `proposed`), never in the institution's |
 
@@ -780,7 +835,7 @@ great-circle fill between waypoints, no snapping to a modern road network, no
 unevidenced.
 
 This is Rule S-5 in its sharpest form. Interpolation is the map's version of the
-transitivity failure at §7: it derives the middle from the ends. The register
+transitivity failure at §7 of this document: it derives the middle from the ends. The register
 already contains a measured demonstration that a geometric convenience applied
 between two exactly-known points introduces error that nobody sees — `DMB-014`
 (`VERIFIED`, `SRC-050`), where flat-degree distance overstates great-circle
@@ -804,7 +859,7 @@ A route's `directionality` is evidenced separately from its existence, and
 - **A route's direction never transfers to anything travelling on it.** That a
   material moved A→B does not evidence that a practice, a word, a person or an
   ancestry component moved A→B. Each is a bridge and each is blocked from
-  inheriting the route's direction by §7.
+  inheriting the route's direction by §7 of this document.
 
 ### 5.6 What routes exist in this record today
 
@@ -825,7 +880,7 @@ real ones, and neither has been run in this repository.
 
 ---
 
-## 6. Requirement R-1 — the language-evidence state on every place-evidence link
+## 6. Requirement REQ-1 — the language-evidence state on every place-evidence link
 
 ### 6.1 The Place-Evidence Link
 
@@ -846,7 +901,7 @@ links, and what it supplies for language is not necessarily the same at both.
 | `place_id` | `mk:plc:` |
 | `place_assertion_ref` | `mk:evd:<key>#plc-<n>` — which of the object's Place Assertions this link renders |
 | `place_type` | The eight (§2.8) |
-| `geometry_ref` | The Feature drawn for this link (§2.2) |
+| `geometry_ref` | The Feature drawn for this link (§2.2 of this document) |
 | `positional_certainty` | §2.3 of this document |
 | `date_assertion_refs[]` | Which Date Assertions position this link in time, typed |
 | **`language_evidence_state`** | **Required, non-null, one of four, derived not entered** — §6.2–§6.4 of this document |
@@ -879,7 +934,7 @@ object's Evidence Links and Relationship Objects by a published function whose
 inputs are exported (§5.3 rule 5). This mirrors §3.2's rule that status is
 recomputed and *"the editorial CMS has no status dropdown"*, and it exists for
 the same reason: a field that can be typed is a field that records an opinion
-about what an object shows, and the whole purpose of R-1 is that the answer be
+about what an object shows, and the whole purpose of REQ-1 is that the answer be
 forced by the links.
 
 Editorial review remains, and it is a check, not an override:
@@ -899,6 +954,16 @@ empty — the object has no Evidence Links at all — the derivation returns
 `provides-no-language-evidence` with `state_basis` naming the absence of links,
 which is a true and useful answer. There is no null state and no "pending" state.
 
+**"Not enterable" is true of the field and would be false of the answer, so it is
+stated narrowly.** An editor cannot type the state; an editor *can* author and
+change the Evidence Link roles the derivation consumes, and a role changed from
+`contextualises` to `supports` moves the state. The field is therefore **not
+directly enterable**, and the indirect route is audited: **any change to a link
+role that moves a `language_evidence_state` requires a `mk:cor:` and appears in
+the link's `state_basis` history with the prior value, the new value and the
+reason.** REQ-1 closes against a typo by construction and against intent by
+audit, and the difference is worth stating rather than eliding.
+
 ### 6.4 Exhaustive, mutually exclusive, and the facts that would otherwise be lost
 
 §8.6 requires the four to be exhaustive and mutually exclusive. Objects do not
@@ -916,6 +981,15 @@ first and the second conditions at once.
 costs no information. The panel reads *"Supplies linguistic evidence. Also
 demonstrates material movement."*
 
+**Clicking an artifact, not a link.** Constitution §13 and framework §8.6 put the
+answer on the *artifact*, and an artifact with a `made-at` link and a `found-at`
+link has two. The **object-level headline is the highest-precedence state across
+all of that object's Place-Evidence Links**, computed by the same function; each
+link keeps its own state, and selecting a link shows that link's state beside the
+object's. The panel therefore reads *"This object: demonstrates material
+movement. At this place: provides no language evidence."* Checked by
+`CHK-REQ1-8`.
+
 Two rules keep precedence from being used as a dial:
 
 - **The headline may never sit lower in the precedence than a condition that
@@ -924,6 +998,28 @@ Two rules keep precedence from being used as a dial:
   into the background.
 - **The headline may never sit higher than the links support.** This blocks the
   upgrade, which is the failure §13 was written against.
+
+**The disputed or unread reading, which the four states do not distinguish.** An
+object whose only language link is `attests` or `supports` to a claim at or below
+`HYPOTHESIS` fails condition 1 on the status floor, fails condition 2 if it has no
+movement pair, and fails condition 3 because that requires `contextualises`-*only*
+links. It falls to `provides-no-language-evidence` — which is the right headline
+(no reading of it is a claim the institution can stand behind) and a misleading
+one if left bare, because the object plainly bears a form. Two consequences:
+
+- The state carries a **required reason code** where it applies:
+  `unread-or-disputed-reading`, with the below-floor claims named. The panel says
+  *"provides no language evidence: it bears a form, and no reading of that form is
+  a claim above `HYPOTHESIS`"*, and offers the competing readings with their
+  statuses.
+- **Objects carrying that reason code are excluded from the §6.6 distribution
+  guard's count**, in both numerator and denominator. Otherwise a curator could
+  satisfy a guard designed to measure honest emptiness by accumulating disputed
+  readings, which is the opposite of what the guard measures.
+
+§6.5's seal escapes this only because it happens to have a `made-at` ≠ `found-at`
+pair. An undeciphered inscribed object found *in situ* has no such pair, and it
+is exactly the case this rule is for.
 
 ### 6.5 The worked case that decides the design
 
@@ -942,7 +1038,7 @@ An **undeciphered Indus seal found in Mesopotamia**.
 This is the single case the whole field exists for, and the record already refuses
 the shortcut in prose: `BR-E-005` (`03-REGISTERS/CROSS-DOMAIN-BRIDGES.csv`)
 records the bridge *"a substrate donor in the northwest → the language of the
-Indus civilisation"* as **NOT CROSSED**. R-1 is that refusal made structural, so
+Indus civilisation"* as **NOT CROSSED**. REQ-1 is that refusal made structural, so
 that it survives a data import, a contractor, and a redesign.
 
 ### 6.6 The distribution guard
@@ -956,14 +1052,18 @@ enforced on the view:
 
 - **Every Atlas view's legend carries the distribution of the four states across
   the objects in view**, as counts, beside the layer status distributions §8.4
-  already requires.
+  already requires. It is a *distribution readout* under §8.5 rule 4 of this
+  document — bound to the view, carrying its definition string and its exclusion
+  count, never a heading and never a single number.
 - **A view in which `provides-no-language-evidence` is zero raises a review
   finding.** Not an error and not a block — it can be legitimate for a
   deliberately narrow filter — but it is written to `04-AUDITS/` as a finding to
   be dismissed with a reason, and a *published default view* with a zero there is
   a bias-log entry under §3.11.
-- **The distribution is exported with the view** (§5.2), so the shape of the
-  Atlas's language claims is checkable by someone who does not trust the Atlas.
+- **The per-object states are exported with the view** (§5.2), so the shape of
+  the Atlas's language claims is recomputable by someone who does not trust the
+  Atlas — which is stronger than exporting the shape and asking them to trust the
+  arithmetic.
 
 ### 6.7 Where it appears
 
@@ -980,20 +1080,26 @@ pane"*, and it is a search facet (§7.2). Adding to that:
 
 ### 6.8 What is checked
 
-`CHK-R1-1` Every Place-Evidence Link has a non-null `language_evidence_state`
-from the four-value enumeration. · `CHK-R1-2` Every state has non-empty
-`state_basis[]`. · `CHK-R1-3` No state was written by an editor: every value's
-provenance is a derivation record. · `CHK-R1-4` For every link, the headline is
+`CHK-REQ1-1` Every Place-Evidence Link has a non-null `language_evidence_state`
+from the four-value enumeration. · `CHK-REQ1-2` Every state has non-empty
+`state_basis[]`. · `CHK-REQ1-3` No state was written by an editor: every value's
+provenance is a derivation record. · `CHK-REQ1-4` For every link, the headline is
 the highest-precedence condition that holds, and `also_true[]` contains the
-rest. · `CHK-R1-5` No `supplies-linguistic-evidence` rests on a language claim
-at or below `HYPOTHESIS`. · `CHK-R1-6` No `provides-contact-setting-only` object
-appears in any transition's `earliest_evidence`. · `CHK-R1-7` Every published
+rest. · `CHK-REQ1-5` No `supplies-linguistic-evidence` rests on a language claim
+at or below `HYPOTHESIS`. · `CHK-REQ1-6` No `provides-contact-setting-only` object
+appears in any transition's `earliest_evidence`. · `CHK-REQ1-7` Every published
 default view has a non-zero `provides-no-language-evidence` count, or a logged
-dismissal.
+dismissal, computed **excluding** objects carrying the
+`unread-or-disputed-reading` reason code. · `CHK-REQ1-8` Every evidence object
+with more than one Place-Evidence Link has an object-level headline equal to the
+highest-precedence state across its links, and the panel shows both the object's
+headline and the selected link's state. · `CHK-REQ1-9` Every link-role change
+that moved a `language_evidence_state` carries a `mk:cor:` and a `state_basis`
+history entry.
 
 ---
 
-## 7. Requirement R-2 — transitive closure is disabled across the seven domains
+## 7. Requirement REQ-2 — transitive closure is disabled across the seven domains
 
 ### 7.1 What is being prevented, in both directions
 
@@ -1015,10 +1121,12 @@ it only blocks one direction:
 > is identified with a population (**ancestry**) → that population is identified
 > with a language family (**language**) ⇒ the Indus script is that family's.
 
-`BR-E-005` records that bridge as **NOT CROSSED**; `BR-E-004` records
-*"a language family → a population"* as **NOT CROSSED — DELIBERATELY**;
-`BR-E-003` records *"attested modern distribution → prehistoric distribution"* as
-**EXPLICITLY REFUSED**. The mechanism below is symmetric and blocks both chains
+Each link in *that* chain is registered as refused, and by the right row:
+`BR-E-004` records *"a language family → a population"* as **NOT CROSSED —
+DELIBERATELY**, which is the ancestry step; `BR-E-005` records *"a substrate
+donor in the northwest → the language of the Indus civilisation"* as **NOT
+CROSSED**, which is the conclusion; and `BR-E-003` records *"attested modern
+distribution → prehistoric distribution"* as **EXPLICITLY REFUSED**. The mechanism below is symmetric and blocks both chains
 by the same rule, which is the only way it can be trusted to block either.
 
 ### 7.2 Mechanism 1 — domain tagging is total
@@ -1059,7 +1167,7 @@ capability that is absent rather than a query that is forbidden, because a
 forbidden query is one refactor away from being issued, and an absent capability
 is not.
 
-Where a transitive result is genuinely needed, §7.4 governs.
+Where a transitive result is genuinely needed, §7.4 of this document governs.
 
 ### 7.4 Mechanism 3 — the traversal allow-list, and the terminal-edge rule
 
@@ -1089,6 +1197,40 @@ Three conditions on every permitted traversal:
 3. **`same_as` is not on the list** (§3.6 of this document), and neither is any
    spatial predicate. Concordance errors and route segments compose in exactly
    the way the rule exists to stop.
+
+**Routes are inside this mechanism, not outside it.** A Route is a multi-endpoint
+object of this document's own invention (§5), and object-modelling relocates a
+traversal rather than removing it, so three rules attach:
+
+- **`bridge_type` on a Route is computed pairwise**, over every (origin,
+  waypoint), (waypoint, waypoint) and (waypoint, destination) pair, not over a
+  single "ordered domain pair" that a multi-endpoint object does not have.
+  `CHK-REQ2-2` and `CHK-REQ2-4` read the pairwise set.
+- **Routes are not composable.** Route A→B and route B→C do not give A→C, are
+  never rendered as a continuous path, and no view offers an affordance that
+  joins them. Two routes sharing an endpoint are two routes.
+- **`Place.routes[]` is a one-hop index and carries no walk.** It is a derived
+  read-only index (§3.2 of this document); it is not on the §7.4 allow-list, and
+  no surface may follow it from a place to a route to another place to another
+  route. Two sequential one-hop queries composed by a renderer are the
+  reachability walk mechanism 2 says the Atlas cannot perform.
+
+**Two bridge edges sharing an endpoint are not a chain, and are not drawn as
+one.** §7.4's terminal-edge rule governs traversal results; two independently
+authored bridges rendered in the same view produce the visual A→C with no derived
+edge and no traversal at all. **No view may render two bridge edges sharing an
+endpoint without the non-transitivity notice**, which names both domain pairs and
+states that the institution has asserted no relation between the outer ends.
+
+**And the one line this document permits that §7.5 would otherwise forbid.**
+§5.3's `modelled-least-cost` path renders as a `LineString`. It is not a derived
+*relationship*: it is a derived *asset* under framework §3.12, depicting a route
+claim that already exists as a row, with its model, terrain data, cost function
+and parameters named, visibly distinct from every evidenced path, and barred from
+publication while the claim it depicts is `INHERITED-UNVERIFIED` or `HOLD`. §7.5 of this
+document forbids rendering a relation nobody asserted; §3.12 permits depicting one
+somebody did. The boundary is that a derived asset may depict an existing edge
+and may never stand in for a missing one.
 
 The experience object model's one permitted transitivity — Mission composition
 (its §2.5) — is not an exception here and does not reach this graph. It traverses
@@ -1137,7 +1279,7 @@ rather than a relationship. Buildably:
 ### 7.7 Export closure
 
 §5.2's Atlas view export carries *"every object in view with its assertions,
-every excluded object with the reason it was excluded"*. Under R-2 it also:
+every excluded object with the reason it was excluded"*. Under REQ-2 it also:
 
 - carries **only edges that exist as rows** — no computed adjacency, no
   reachability matrix, no path table;
@@ -1153,24 +1295,27 @@ hand them a file in which the chaining looks pre-approved.
 
 ### 7.8 What is checked
 
-`CHK-R2-1` Every object has a non-null `domain`. · `CHK-R2-2` Every relationship's
+`CHK-REQ2-1` Every object has a non-null `domain`. · `CHK-REQ2-2` Every relationship's
 `bridge_type` equals the ordered domain pair of its endpoints, computed
-independently of the stored value. · `CHK-R2-3` For every connection drawn in
+independently of the stored value. · `CHK-REQ2-3` For every connection drawn in
 any view, a `mk:rel:` or `mk:rte:` row exists with those endpoints; a drawn
-connection with no backing row fails the check. · `CHK-R2-4` No traversal result
+connection with no backing row fails the check. · `CHK-REQ2-4` No traversal result
 in any surface contains a path of length > 1 that includes an edge with non-null
-`bridge_type`. · `CHK-R2-5` No persisted relationship has a provenance of
-`derived`. · `CHK-R2-6` No two active layers share a colour scale keyed to the
-same category set. · `CHK-R2-7` Every Atlas export carries endpoint domains,
-`bridge_type` and the non-transitivity header.
+`bridge_type`. · `CHK-REQ2-5` No persisted relationship has a provenance of
+`derived`. · `CHK-REQ2-6` No two active layers share a colour scale keyed to the
+same category set. · `CHK-REQ2-7` Every Atlas export carries endpoint domains,
+`bridge_type` and the non-transitivity header. · `CHK-REQ2-8` No view renders two
+bridge edges sharing an endpoint without the non-transitivity notice. ·
+`CHK-REQ2-9` No route is rendered as continuous with another route, and no
+surface traverses `Place.routes[]`.
 
-`CHK-R2-3` is the one that catches the failure in practice, because it tests the
+`CHK-REQ2-3` is the one that catches the failure in practice, because it tests the
 *rendering*, not the data. A build can hold a perfectly clean graph and still draw
 a line, and the line is what the visitor sees.
 
 ---
 
-## 8. Requirement R-3 — unknown stays drawn, and the Atlas carries no count
+## 8. Requirement REQ-3 — unknown stays drawn, and the Atlas carries no count
 
 ### 8.1 Unknown is a Feature with a record behind it
 
@@ -1192,6 +1337,18 @@ empty and empty reads as nobody."*
   point is inside a known extent, inside a `zone-unknown` extent, or inside a
   declared no-coverage extent. Outside it, the interface says the Atlas does not
   extend there, which is a statement about the Atlas and not about the past.
+
+  **This document adopts here, and names what it narrows.** Requiring a declared
+  scope polygon is not in the framework, and which region an atlas covers is an
+  interpretive choice with visible consequences — a scope drawn to the seven
+  settings of §8.3 already asserts that those seven are the relevant world. The
+  adoption is narrow: **the scope polygon is a property of the build or the
+  saved view, not a claim about a region.** It is displayed wherever the map is,
+  it is logged as a `mk:dec:` with its reason and its decider, it is exported
+  with every view, and it carries no status because it asserts nothing about the
+  past. What region ships is an editorial decision in that register, adjacent to
+  `D-022`; what this document fixes is only that the decision is declared rather
+  than implied by where the tiles happen to stop.
 - **Layer 11 is not occluded.** Where the unknown layer and any other layer
   overlap, the unknown remains legible at every zoom. It is not a background
   wash that opaque layers cover; a layer that can be painted over has been
@@ -1244,7 +1401,10 @@ six values across the project's own documents — **140** (live Enter and the
 owner's visual document), **150** (MANIFEST and VELI-02), **158** (live Explore),
 **167 rising to 175** (VELI-09 and the live page title), **194** (VELI-02 §6,
 VELI-03, VELI-13) and **199** (site-class rows) — with the window count disputed
-in parallel at 299 against 315 (`IH-060`). The schema assessment's collision A
+in parallel at 299 against 315 (`IH-060`). `IH-057` records three of those six
+disagreeing **within the live site itself** — 140 on Enter, 158 on Explore, 175
+in the page title — which is the form of the problem a visitor could already
+see. The schema assessment's collision A
 records 175 as *"adopted as settled fact, put in a page title, and rated
 low-risk"*. `IH-270` records the resolution path — extract the atlas to JSON and
 generate every figure from it — as an open work item, and `IH-329` records the
@@ -1254,12 +1414,28 @@ open.
 
 Five structural rules, so that the Atlas can ship before `D-034` is answered:
 
-1. **The title slot admits no numeric token.** The Atlas surface's title,
-   heading, breadcrumb, share card, social preview and meta description are
-   filled from a fixed string with no numeric interpolation available. Checked
-   by `CHK-R3-4`. The v1 title — *"Artifact Atlas: 175 Ancient South Asian Sites
-   Mapped"* — is unrepresentable in v2's template, which is the point: the
-   constraint is in the template, not in the copywriter.
+1. **The title slot carries no count, total or superlative.** The Atlas
+   surface's title, heading, breadcrumb, share card, social preview and meta
+   description admit no cardinal number, no word numeral ("one hundred and
+   seventy-five", "hundreds of"), no total and no superlative ("the largest
+   atlas of…"). Checked by `CHK-REQ3-4`. A digit test was drafted first and is
+   the wrong test twice over: it passes "hundreds of sites" and fails "Atlas
+   v2".
+
+   **Two framework rules bear on this and they point different ways, so both are
+   cited and one governs.** `museum-framework.md` §8.1 states flatly that the
+   Atlas *"has no headline count"*. `experience-object-model.md` §7.2 states the
+   Exhibit rule as a conditional: a title *"may not contain a count, a total or
+   a superlative **unless that number is itself a `presents` claim on this
+   Exhibit**"* — that is, it permits a number that is a statused claim the
+   Exhibit displays. **§8.1 governs for the Atlas surface**, because the
+   condition EOM §7.2 attaches cannot currently be met: the only candidate
+   number is under contradiction `X-01` with six values and `D-034` open, and
+   `IH-329` records a standing hold on any site count in public copy. If
+   `D-034` is answered and a count claim is created, EOM §7.2's conditional
+   becomes available and this rule should be revisited rather than quietly
+   kept. The tension is logged as `IC-X-002` in
+   `04-AUDITS/INTERNAL-CONTRADICTIONS.csv`.
 2. **Any number the Atlas displays is one of exactly two things**, and there is
    no third: (a) a **count claim** — a `mk:clm:` with a status, a definition of
    what is counted, an inclusion rule, sources and a falsifier, rendered as a
@@ -1270,10 +1446,23 @@ Five structural rules, so that the Atlas can ship before `D-034` is answered:
    is always accompanied by its **exclusion count** with a route to the exclusion
    set. "Showing 41; 55 excluded — see why" cannot be misread as a total in the
    way "41 sites" can.
-4. **A view cardinality is never exported as a total.** §5.2's Atlas view export
+4. **A distribution is a third thing, and the rule would contradict itself
+   without saying so.** §6.6 of this document requires the four-state
+   distribution in every legend, and framework §8.4 requires status distributions
+   there. Those are counts, and rule 2 as first drafted would have rejected the
+   numbers this document elsewhere mandates. A **distribution readout** —
+   a breakdown of the objects in view across the values of one required field —
+   is permitted in a legend on the same three conditions as a cardinality
+   readout: bound to the view that produced it, carrying its definition string,
+   and shown with its exclusion count. It is never a heading and never a single
+   number. A distribution is a shape; a total is a claim.
+5. **A view cardinality is never exported as a total.** §5.2's Atlas view export
    carries the filter state, the objects in view and the excluded objects with
    reasons. It does not carry a summary count field, because a summary count
-   field in a CSV is a headline count that has escaped the interface.
+   field in a CSV is a headline count that has escaped the interface. **A
+   distribution is not exported as an aggregate either**: the export carries the
+   per-object field values from which any distribution is recomputable, which is
+   what makes it checkable rather than trusted.
 5. **No count claim about the Atlas's contents may be created while `X-01`
    stands.** If the six values are shown at all, they are shown as the
    contradiction record: all six, with their sources, and the statement that the
@@ -1282,18 +1471,20 @@ Five structural rules, so that the Atlas can ship before `D-034` is answered:
 
 ### 8.6 What is checked
 
-`CHK-R3-1` Every `zone-unknown` Feature has a non-null `mk:absence_ref` resolving
+`CHK-REQ3-1` Every `zone-unknown` Feature has a non-null `mk:absence_ref` resolving
 to an `mk:abs:` record with all seven negative-evidence fields and a typed
-`absence_type`. · `CHK-R3-2` No point inside the declared scope polygon is
+`absence_type`. · `CHK-REQ3-2` No point inside the declared scope polygon is
 outside every extent, unknown zone and declared no-coverage zone. ·
-`CHK-R3-3` The layer-11 toggle is disabled in every view state, saved view and
-export in which layer 1, 2 or 3 is on. · `CHK-R3-4` The title, heading, share-card
-and meta-description slots of the Atlas surface contain no digit. ·
-`CHK-R3-5` Every rendered number resolves either to a `mk:clm:` count claim with
-a visible status or to a filter-bound cardinality readout with a definition
-string and an exclusion count. · `CHK-R3-6` No export contains a summary total
-field. · `CHK-R3-7` No transition's `alternatives[]` contains an "unknown"
-member. · `CHK-R3-8` Every unlocated object appears in the view's tray and in its
+`CHK-REQ3-3` The layer-11 toggle is disabled in every view state, saved view and
+export in which layer 1, 2 or 3 is on. · `CHK-REQ3-4` The title, heading, breadcrumb,
+share-card, social-preview and meta-description slots of the Atlas surface
+contain no cardinal number, word numeral, total or superlative. ·
+`CHK-REQ3-5` Every rendered number resolves to one of exactly three things: a
+`mk:clm:` count claim with a visible status, a filter-bound cardinality readout,
+or a view-bound distribution readout — the last two each carrying a definition
+string and an exclusion count. · `CHK-REQ3-6` No export contains a summary total
+or an aggregated distribution; per-object field values are present instead. · `CHK-REQ3-7` No transition's `alternatives[]` contains an "unknown"
+member. · `CHK-REQ3-8` Every unlocated object appears in the view's tray and in its
 readouts.
 
 ---
@@ -1317,7 +1508,7 @@ reads**, **the assertions it requires before an object can appear on it**, and
 3. It carries, or can carry without a new claim, **the assertions the layer
    plots**: at least one Place Assertion with a permitted geometry (§2.3 of this
    document) and at least one Date Assertion of the type the layer's time control
-   filters on (§4.2).
+   filters on (§4.2 of this document).
 
 Condition 3 is the one that fails. Almost everything in this repository satisfies
 the first two and cannot satisfy the third, and saying so layer by layer is more
@@ -1336,10 +1527,14 @@ Three findings recur and are stated once here rather than eleven times:
   of this document such material renders on the ordinal track, not the calendar
   axis.
 - **The only place-anchored registered material in this repository is
-  present-day.** 47 Dravidian and 20 Munda attested lects with Glottolog
-  coordinates (`DE-M-021`, `DE-M-022`, `VERIFIED`, `SRC-060`), and the 20 DravLex
-  varieties (`DMB-008`, `SRC-050`). `BR-E-003` records the bridge from that
-  distribution to a prehistoric one as **EXPLICITLY REFUSED**.
+  present-day, undated and single-sourced.** 47 Dravidian and 20 Munda attested
+  lects with Glottolog coordinates (`DE-M-021`, `DE-M-022`, `VERIFIED`,
+  `SRC-060`), and the 20 DravLex varieties (`DMB-008`, `SRC-050`) — which are the
+  *same* Glottolog coordinates, per `DE-M-021`'s note and `DEP-027`, so the three
+  rows do not add. None of them carries a date assertion: `DMB-008` reads
+  *"nothing here dates anything"* and the `SRC-050` ledger row reads *"no date"*.
+  And `BR-E-003` records the bridge from that distribution to a prehistoric one
+  as **EXPLICITLY REFUSED**.
 
 ### 9.1 SOUNDS
 
@@ -1351,7 +1546,7 @@ item to appear *on the map* — a localisation that is itself a statused claim
 
 **Could populate today, as layer content:** the Rigvedic retroflexion measurements.
 `DME-003` (2,666 retroflex segments over 10,031 lemma citation forms, 2,399 of
-them derived by RUKI, nati or a retroflex cluster), `DME-004` (253 lemmas, 2.52%,
+them derived by RUKI, nati or a retroflex cluster), `DME-004` (an **upper bound** of 253 lemmas, 2.52%,
 carrying a retroflex the two regular rules do not derive, over 1,257 of 164,758
 tokens), `DME-005`, `DME-006` (the commonest conditioning environments),
 `DME-007` (every word-initial retroflex in the lemma inventory is `ṣ-`, and all
@@ -1363,8 +1558,10 @@ and the 253 rows of `03-REGISTERS/domain-e-retroflex-residue.csv`.
 **Could not populate:** **any of it on the map.** Not one of these claims carries
 a Place Assertion, and none can acquire one without a localisation claim that has
 not been made. RUKI and nati are rules of a transmitted corpus, not events at
-coordinates. Chronologically they carry Arnold's strata only (`DME-008` to
-`DME-012`), so they sit on the ordinal track under §4.4 of this document.
+coordinates. Chronologically they carry two relative orderings and no absolute
+one — Arnold's strata (`DME-008` to `DME-010`) and book order (`DME-011`,
+`DME-012`) — so they sit on the ordinal track under §4.4 of this document, on
+both of its orderings and not on either alone.
 
 **Verdict: populatable as content, zero map geometry.** The layer's first
 honest state is a legend, a rule inventory and an ordinal track, and no marks on
@@ -1410,19 +1607,31 @@ constraints on them, both structural:
 
 - **They are not points.** A Glottolog coordinate denotes a language, whose
   extent is a speech area; the located object is not a surveyed feature. Under
-  §2.3 their `positional_certainty` is `mapped-approximate` at best, and a
+  §2.3 of this document their `positional_certainty` is `mapped-approximate` at
+  best, and a
   `Point` geometry is not legal for them. Every distance in
   `03-REGISTERS/domain-e-geography.csv` and in `DMB-010`–`DMB-014` was computed
   from these representative coordinates and is, under G-9, a derivative with its
   method named — which is exactly how `DMB-014` was able to measure the metric's
   own +13.7% distortion.
-- **Their Date Assertions are modern.** `date_type = attestation`, in the survey
-  era. Under the time control they appear in the modern band and nowhere else,
-  and there is no interaction that moves them earlier, because `BR-E-003` is
-  refused.
+- **They carry no date assertion at all.** `DMB-008`'s note is explicit:
+  *"Present-day or recent-survey locations only: nothing here dates anything."*
+  The ledger row for `SRC-050` says the same of the source — *"Point coordinates
+  only. No polygon, no historical extent, no date."* A 2026 retrieval date is a
+  retrieval, not an attestation. Under §4.6 rule 2 of this document these objects
+  therefore sit in the **no-assertion tray under every setting of the time
+  control**, and under §4.6 rule 5 they reach the map only through the explicit
+  undated control, drawn with the undated marker. There is no interaction that
+  moves them earlier, because `BR-E-003` is refused.
+- **They are one source, not two.** `DE-M-021`'s own note reads *"Glottolog
+  coordinates as carried by JAMBU"*, and `DMB-008` retrieved the same Glottolog
+  coordinates directly. `SRC-060` and `SRC-050` are one upstream
+  (`02-SOURCES/dependency.csv` `DEP-027`), so the 47, the 20 and the 20 do not
+  add and the layer is single-sourced.
 
-**Verdict: partly populatable, and only in the modern band.** The ancient
-lexicon is registered, measured and unplottable.
+**Verdict: spatially assertable, temporally unasserted, single-sourced.** The
+ancient lexicon is registered, measured and unplottable; the one place-anchored
+dataset answers no time control.
 
 ### 9.3 GRAMMAR
 
@@ -1473,9 +1682,22 @@ the reference point is a free parameter of the analyst's choosing"* — with
 `DMB-013` measuring that free parameter's effect at 0 to 1,453 km depending on
 where the analyst puts the reference point.
 
+**And a rule the layer needs, because half of this material is
+reference-dependent.** `DE-M-023`, `DE-M-025`, `GEO-DR-04`/`05` and `DMB-012` are
+all *distance from a chosen northwestern reference*, and `DMB-013` measures what
+the choice is worth: deleting Brahui moves the statistic by between 0 and 1,453
+km depending on where the analyst puts the reference point. `BF-005` is the
+logged case of exactly this statistic being over-read, and its control requires
+the reference point and the per-element influence to be reported wherever the
+number is. A line or a distance drawn on a map has nowhere to carry either.
+**A reference-dependent statistic may not generate map geometry** unless its
+reference point is drawn with it and its influence distribution is one
+interaction away; otherwise it is panel content.
+
 **Verdict: populatable only as a present-day adjacency statement**, whose objects
-all carry `contextualises` and therefore cannot move any language claim. Whether
-such a layer should ship at all is **`D-055`**.
+all carry `contextualises` and therefore cannot move any language claim, and half
+of whose quantities are panel content rather than geometry. Whether such a layer
+should ship at all is **`D-055`**.
 
 ### 9.5 MATERIALS
 
@@ -1510,7 +1732,7 @@ bridge (§4.4).
 **Could populate today:** nothing. Constitution §4U (sacrifice, renunciation and
 appropriation) has not been run in this repository. The nearest registered
 material is the `pur-` corpus, which is textual and whose typology explicitly
-declines every non-textual assignment (§9.10 below).
+declines every non-textual assignment (§9.10 of this document).
 
 **Verdict: not populatable.**
 
@@ -1536,19 +1758,21 @@ contains none. Every place assertion on this text would be `unlocated`, and
 `DE-M-027` records that its absolute dates cannot be established from anything
 retrieved.
 
-**What it would therefore draw** is the one thing in this record that *is*
-located and dated: the **editions**. `DE-M-026` (`VERIFIED`) dates the
-instruments across 114 years — Arnold 1905, Turner 1962–66, Burrow and Emeneau
-1984, Krishnamurti 2003, Rau 2019, and the JAMBU build of 2026-08-30. A TEXTS
-layer built from this record shows a text with an unlocated origin and a
-well-mapped, well-dated modern editorial apparatus, and the distance between
-those two is the transmission the layer exists to draw.
+**And the editions are dated but not located either.** `DE-M-026` (`VERIFIED`)
+dates the instruments across 114 years — Arnold 1905, Turner 1962–66, Burrow and
+Emeneau 1984, Krishnamurti 2003, Rau 2019, and the JAMBU build of 2026-08-30 —
+and that is all it does. **The row names no place, its locator names none, and
+no Place Assertion for any of the six exists anywhere in `03-REGISTERS/`.**
+Framework §2.4's required fields for `evidence_class = historiographical` do not
+include one either. So the instrument timeline satisfies condition 2 of §9.0 of
+this document and fails condition 3 exactly as the rest of the record does.
 
-**Verdict: partly populatable, and what it draws is the apparatus.** That is a
-true and unusual picture and it should not be corrected into a comfortable one.
-It also raises the question at **`D-053`**: the eleven layers have no home for
-historiographical evidence, which is the best-dated and best-located class in
-this record.
+**Verdict: not populatable on the map.** The Rigveda would be a text object whose
+every Place Assertion is `unlocated`, sitting in the unlocated tray with its
+editions beside it — which is honest content and is panel content, not layer
+content. It still raises the question at **`D-053`**: the eleven layers have no
+home for historiographical evidence, which is the best-*dated* class in this
+record even though it is not a located one.
 
 ### 9.8 ANCESTRY
 
@@ -1603,7 +1827,7 @@ The forts corpus is 103 stanzas of the Rigvedic `pur-` family, built at the
 stanza and fully registered: `rigveda-pur-passages.csv`,
 `rigveda-pur-typology.csv`, `rigveda-pur-fields.csv`, `rigveda-pur-4j-claims.csv`.
 Its typology assigns 48 `TEXTUAL-STRONGHOLD`, 47 `POETIC-FORMULA`, 3 `BOTH` and 5
-`CANNOT-CLASSIFY`. And on **all 103 rows** the columns `inferred_geography`,
+`CANNOT-CLASSIFY`, every row `PROVISIONAL`. And on **all 103 rows** the columns `inferred_geography`,
 `archaeological_fortification` and `unsupported_identification` read
 `NOT ASSIGNED`, with the register's own reason carried in every row:
 
@@ -1640,8 +1864,13 @@ seven negative-evidence fields, a typed absence, and a typed `boundary_basis`.
   prefixing language, and Language X — yield **zero measurable items** from
   anything retrieved, typed `NOT ACCESSIBLE`, *"the weakest form of absence"*,
   with the note that the row exists *"to stop a later reader treating the empty
-  cells as findings"*.
-- `DME-025` (`HOLD`), and the six records in `05-HOLDS/`.
+  cells as findings"*. `SRC-068` is the substrate literature — Witzel 1999,
+  Kuiper 1991, Masica 1979 — for which *"no reachable host serves these texts in
+  this session"*.
+- The six records in `05-HOLDS/`, and `DME-025`, which is itself `HOLD` and
+  therefore appears as a hold record rather than as layer content: framework
+  §3.12 bars publishing any derived asset depicting a `HOLD` claim, and a drawn
+  zone is a derived asset.
 - `BR-E-003`, the refused bridge from modern to prehistoric distribution, which
   is the reason most of the map is unknown rather than merely unlabelled.
 
@@ -1650,23 +1879,30 @@ seven negative-evidence fields, a typed absence, and a typed `boundary_basis`.
 holds **corpus** coverage (the pinned Rigvedic corpus, exhaustively searched, is
 a real and complete denominator for statements about that corpus) and **no
 excavation or survey coverage for any region at all**. Without a denominator the
-boundary cannot be typed, and an untyped boundary is the freehand line §2.5
-refuses.
+boundary cannot be typed, and an untyped boundary is the freehand line §2.5 of
+this document refuses.
 
 **And one distinction the layer must carry that the framework does not spell
 out:** `NOT ACCESSIBLE` in `DE-M-019` is an absence in a **literature**, caused
-by an egress block (`SRC-056`, `dsal.uchicago.edu`; `HOLD-005`), not an absence
-in a **region**. A polygon drawn over Balochistan because a dictionary could not
-be downloaded would be a map of this session's network policy wearing the
-costume of a map of the past. Absence records are therefore scoped —
+by egress blocks on the hosts serving Witzel, Kuiper and Masica (`SRC-068`;
+`HOLD-005`), not an absence in a **region**. `DME-025` is the same shape and says
+so — *"a fact about the network, with no bearing on the lexicon"* — and the DEDR
+block is a third (`SRC-056`, `dsal.uchicago.edu`; `HOLD-002`). A polygon drawn
+over Balochistan because a dictionary could not be downloaded would be a map of
+this session's network policy wearing the costume of a map of the past. Absence
+records are therefore scoped —
 `absence_scope` ∈ `region` · `corpus` · `literature` · `archive` — and **only
 `region`-scoped absences may generate geometry.**
 
-**Verdict: partly populatable.** The absence records exist and are typed; the
-denominators that would bound them do not. The layer's first honest state is a
-small number of region-scoped zones with `boundary_basis = coverage-limit`
-flagged as unquantified, beside a larger set of corpus- and literature-scoped
-absences that appear in the panel and not on the map.
+**Verdict: records yes, polygons no.** The absence records exist and are typed;
+the denominators that would bound them do not, so no `zone-unknown` geometry can
+be validly drawn yet. `DMB-015` is the one region-scoped absence in the set and
+it is unquantified — there is no excavation or survey coverage figure for the
+corridor it describes — so its boundary cannot be typed under §2.5 of this
+document. The rest are corpus- and literature-scoped and are barred from geometry
+by rule. The layer's first honest state is a populated panel and an unpopulated
+overlay, which is a worse-looking and truer result than a zone drawn to a
+boundary nobody measured.
 
 ### 9.12 Cross-layer rules, and the state of the bridges
 
@@ -1697,19 +1933,19 @@ switches on together: *co-location is not a relationship, and no statused bridge
 exists between these two layers.* That is not a placeholder awaiting content. It
 is the current state of the record, it is checkable, and a build in which the
 notice ever says otherwise without a new `mk:rel:` row having been evidenced has
-failed `CHK-R2-3`.
+failed `CHK-REQ2-3`.
 
 ### 9.13 Summary
 
 | # | Layer | Populatable today | What could populate it | What blocks it |
 |---|---|---|---|---|
 | 1 | SOUNDS | **Content only, no geometry** | `DME-003`–`DME-007`, `DME-013`, `DME-014`, `DME-019`, `DME-021`; 253 residue rows | No localisation claim exists for any sound change; chronology is relative-ordinal only |
-| 2 | WORDS | **Partly — modern band only** | Plottable: `DE-M-021`, `DE-M-022`, `DMB-008` as approximate extents with modern attestation dates. Unplottable: `DE-M-009`–`DE-M-011`, `DE-M-020`, `DME-015`–`DME-018`, `VAR-001`, `VAR-007`, the `pur-` family | The Rigveda has no attestation place (`PUR4J-018`); hydronym→river is an unmade identification claim; `BR-E-003` refuses the modern→ancient step |
+| 2 | WORDS | **Partly — undated, single-sourced** | Spatially assertable: `DE-M-021`, `DE-M-022`, `DMB-008` as approximate extents carrying **no date assertion** (`DMB-008` note; `SRC-050`), one Glottolog upstream (`DEP-027`). Unplottable: `DE-M-009`–`DE-M-011`, `DE-M-020`, `DME-015`–`DME-018`, `VAR-001`, `VAR-007`, the `pur-` family | The Rigveda has no attestation place (`PUR4J-018`); hydronym→river is an unmade identification claim; `BR-E-003` refuses the modern→ancient step; and the one mappable set answers no time control |
 | 3 | GRAMMAR | **No** | — | `HOLD-004`; `DMB-020` — no comparative phonological or morphological dataset retrieved |
 | 4 | NEIGHBOURS | **Present-day only** | `DE-M-023`–`DE-M-025`, `GEO-DR-04`–`06`, `GEO-MU-04`–`06`, `DMB-010`, `DMB-011` | All measurements are between modern survey locations; `DMB-002` and `DMB-013` bound what they support. Shipping it at all is `D-055` |
 | 5 | MATERIALS | **No** | — | No material-class evidence object exists in `03-REGISTERS/`. `IH-105` is `INHERITED-UNVERIFIED` with 145 of 199 rows "assumed" |
 | 6 | RITUALS | **No** | — | Constitution §4U not run |
-| 7 | TEXTS | **Partly — the apparatus** | `DME-001`, `DME-002`, `PUR-001`, the editions at `SRC-020`/`022`/`069`/`072`/`073`/`074`, `SRC-023`; `DE-M-026` for the instrument timeline | No composition, attestation, redaction or witness place is registered; absolute dates unestablished (`DE-M-027`) |
+| 7 | TEXTS | **No — panel content only** | Off-map: `DME-001`, `DME-002`, `PUR-001`, the editions at `SRC-020`/`022`/`069`/`072`/`073`/`074`, `SRC-023`; `DE-M-026` for the instrument timeline | No composition, attestation, redaction or witness place is registered (`PUR4J-018`); absolute dates unestablished (`DE-M-027`); and `DE-M-026` dates the instruments without locating them |
 | 8 | ANCESTRY | **No** | — | No genetic evidence object; and §2.4 requires a consent record or typed refusal per sample, which an import does not supply |
 | 9 | ARCH. CULTURES | **No** | — | No culture object; naming history is a historiographical retrieval not yet run |
 | 10 | POLITICAL CONTROL | **No** | — | The 103-row `pur-` corpus refuses the assignment on all rows (`PUR4J-018`, `PUR4J-024`) |
@@ -1728,10 +1964,10 @@ geometry and time contracts above.
 
 | §8.5 field | Type under this document |
 |---|---|
-| `earliest_evidence` | `mk:evd:` + locator + a Date Assertion (§4.2). Where the earliest is contested, an array of contenders, each with its own source. **A `provides-contact-setting-only` object may not appear here** (§6.2) |
+| `earliest_evidence` | `mk:evd:` + locator + a Date Assertion (§4.2). Where the earliest is contested, an array of contenders, each with its own source. **A `provides-contact-setting-only` object may not appear here** (§6.2 of this document) |
 | `evidence_classes[]` | The nine (§2.3), plural, with the breakdown shown |
-| `date_range` | Two `DateValue`s (§4.2) with `date_type` named and the basis of each bound. **A transition whose only chronology is `relative-ordinal` has no calendar `date_range`** and is not displayable on the map's time axis (§10.2 below) |
-| `geography` | Typed Place Assertions with geometry and `positional_certainty` (§2.3); `zone-unknown` permitted and drawn |
+| `date_range` | Two `DateValue`s (§4.2 of this document) with `date_type` named and the basis of each bound. **A transition whose only chronology is `relative-ordinal` has no calendar `date_range`** and is not displayable on the map's time axis (§10.2 of this document) |
+| `geography` | Typed Place Assertions with geometry and `positional_certainty` (§2.3 of this document); `zone-unknown` permitted and drawn |
 | `attestation_mode` | The five-value gradient (§2.6), not a binary |
 | `mechanisms[]` | Named processes with the evidence that each was available in that place and period. Non-empty |
 | `alternatives[]` | Rival transitions, each independently reconstructed, displayed at equal weight, **with the null always among them and "unknown" never among them** (§8.4 of this document) |
@@ -1748,7 +1984,7 @@ animates at all is `D-023`.
 
 **10.2 A transition needs a place and a calendar date, and this record has
 neither.** The consequence is worth stating plainly rather than leaving a reader
-to derive it from §9: **no transition is constructible from any registered claim
+to derive it from §9 of this document: **no transition is constructible from any registered claim
 in this repository today.** `geography` requires typed Place Assertions and
 `PUR4J-018` establishes that the corpus carries none; `date_range` requires a
 named date type with a basis for each bound and `DE-M-027` establishes that the
@@ -1768,7 +2004,7 @@ are exported with their inputs, not as results.
 
 ### 11.1 The checks
 
-Thirty-eight checks are named in this document. They are grouped here so that a
+Forty-two checks are named in this document. They are grouped here so that a
 build has one list, and each is stated as an assertion whose failure means the
 object or the view does not render.
 
@@ -1796,14 +2032,14 @@ between waypoints · `CHK-RT-3` no waypoint lacks an evidence link ·
 `CHK-RT-4` no route is rendered whose origin and destination are both `unlocated`
 or `zone-unknown`.
 
-**R-1** — `CHK-R1-1` to `CHK-R1-7`, §6.8.
-**R-2** — `CHK-R2-1` to `CHK-R2-7`, §7.8.
-**R-3** — `CHK-R3-1` to `CHK-R3-8`, §8.6.
+**REQ-1** — `CHK-REQ1-1` to `CHK-REQ1-9`, §6.8 of this document.
+**REQ-2** — `CHK-REQ2-1` to `CHK-REQ2-9`, §7.8 of this document.
+**REQ-3** — `CHK-REQ3-1` to `CHK-REQ3-8`, §8.6 of this document.
 
 Three of them test the **rendering** rather than the data, and they are the ones
-that catch the failures this document exists to prevent: `CHK-R2-3` (no drawn
-connection without a backing row), `CHK-R3-2` (no blank inside the declared
-scope) and `CHK-R3-4` (no digit in the title slot). A build can hold a clean
+that catch the failures this document exists to prevent: `CHK-REQ2-3` (no drawn
+connection without a backing row), `CHK-REQ3-2` (no blank inside the declared
+scope) and `CHK-REQ3-4` (no digit in the title slot). A build can hold a clean
 graph and still draw a line, leave a hole, or put a number in a heading.
 
 ### 11.2 The Atlas view export
@@ -1813,14 +2049,16 @@ graph and still draw a line, leave a hole, or put a number in a heading.
 excluded object with the reason it was excluded"*. This document adds four
 requirements:
 
-1. **The GeoJSON export is the constrained profile** (§2.2), including all
+1. **The GeoJSON export is the constrained profile** (§2.2 of this document), including all
    required Feature properties. An export that strips them to make a smaller
    file is the status-column-stripped spreadsheet in another format.
-2. **The export carries the four-state distribution** for the view (§6.6) and
-   `language_evidence_state`, `also_true[]` and `state_basis[]` on every object.
+2. **The export carries `language_evidence_state`, `also_true[]` and
+   `state_basis[]` on every object**, from which the four-state distribution
+   (§6.6 of this document) is recomputable. It does not carry the distribution as
+   an aggregate — §8.5 rule 5 of this document.
 3. **The export carries endpoint domains, `bridge_type`, and the
-   non-transitivity header** (§7.7).
-4. **The export carries no summary total** (§8.5 rule 4). It carries the objects,
+   non-transitivity header** (§7.7 of this document).
+4. **The export carries no summary total** (§8.5 rule 5 of this document). It carries the objects,
    the exclusions and the filter, from which any consumer can count whatever
    they can define.
 
@@ -1838,7 +2076,7 @@ geometry · a place with two dated extents that do not interpolate · a date
 crossing the BCE/CE boundary · an uncalibrated radiocarbon determination · a
 relative-ordinal date on Arnold's strata · a route with unevidenced path · a
 route with evidenced waypoints and a gap · one object in each of the four
-language-evidence states, including the undeciphered inscribed object of §6.5 ·
+language-evidence states, including the undeciphered inscribed object of §6.5 of this document ·
 a bridge edge that a traversal must terminate at · a view whose
 `provides-no-language-evidence` count is zero.
 
@@ -1850,23 +2088,40 @@ A specification that did not say this would be describing a building with no
 contents.
 
 **On the map today, from registered evidence above `INHERITED-UNVERIFIED`:**
-67 attested language locations — 47 Dravidian and 20 Munda — plus the 20 DravLex
-varieties that overlap them, drawn as approximate extents rather than points,
-carrying modern attestation dates, sitting in the modern band of the time
-control. Nothing else. No site, no artifact, no culture, no polity, no route, no
-transition.
+one dataset — the attested Dravidian and Munda lect locations (`DE-M-021`,
+`DE-M-022`, `DMB-008`), drawn as approximate extents rather than points. Three
+qualifications, all of them structural rather than editorial. The three rows are
+**one Glottolog upstream, not three datasets** (`DEP-027`), so the layer is
+single-sourced and its counts do not add. It carries **no date assertion at all**
+(`DMB-008`: *"nothing here dates anything"*; `SRC-050`: *"no date"*), so under
+§4.6 of this document it sits in the no-assertion tray under every time-control
+setting and reaches the map only through the explicit undated control. And it is
+present-day, which `BR-E-003` bars from standing for antiquity. Nothing else. No
+site, no artifact, no culture, no polity, no route, no transition.
 
 **Off the map but in the Atlas:** the whole of the lexical, phonological and
 textual record — the 15 Rigvedic loan-candidate lemmas and their 21 tokens, the
-253-lemma retroflex residue, the 31 hydronyms over 251 occurrences, the 103-stanza
-`pur-` corpus, the 23 tokens of `varṇa-` — every one of them in the unlocated
-tray, counted in every readout, exported with every view, and visible as
-*present and unplaced* rather than absent.
+253-lemma retroflex upper bound, the 31 hydronyms over 251 occurrences, the
+103-stanza `pur-` corpus, the 23 tokens of `varṇa-`, and the Rigveda itself with
+its editions — every one of them in the unlocated tray, counted in every readout,
+exported with every view, and visible as *present and unplaced* rather than
+absent. The instrument timeline (`DE-M-026`) is here too, and not on the map: it
+dates six instruments across 114 years and locates none of them.
 
-**And the unknown**: a small number of region-scoped absence records whose
-polygons cannot yet be bounded, beside a larger set of corpus- and
-literature-scoped absences that stay in the panel because a network block is not
-a fact about the past.
+**And the unknown**: a populated panel and an unpopulated overlay. The one
+region-scoped absence record in the set (`DMB-015`) has no coverage denominator,
+so its boundary cannot be typed and no `zone-unknown` polygon can validly be
+drawn from it yet; the rest are corpus- and literature-scoped and are barred from
+geometry by rule, because a network block is not a fact about the past.
+
+**Against the eleven layers**, from the table at §9.13 of this document: two are
+partly populatable and neither of them is populatable on the map (WORDS, undated
+and single-sourced; UNKNOWN SPEECH ZONES, records without polygons), one is
+content-only (SOUNDS), one could carry a present-day reference statement only
+(NEIGHBOURS, subject to `D-055`), and seven are empty (GRAMMAR, MATERIALS,
+RITUALS, TEXTS, ANCESTRY, ARCHAEOLOGICAL CULTURES, POLITICAL CONTROL). That count
+is read off the table rather than carried alongside it, per the inherited
+standing rule that counts are data-derived and never a running tally.
 
 That is a thin Atlas, and it is not a thin record — the registers behind it hold
 several hundred measured, sourced, retrieval-backed rows. The gap between the two
@@ -1878,9 +2133,9 @@ present-day (`DE-M-021`, `DE-M-022`) and are barred from standing for antiquity
 
 An Atlas that looked fuller than this could be built today by three moves, and
 each is forbidden by a rule in this document: importing the inherited 194 site
-records (Rule S-1, and §9.5), identifying the 31 hydronyms with modern channels
-(§3.4), or reading the present-day lect distribution back into antiquity
-(`BR-E-003`, §7). The Atlas being thin is the specification working, not the
+records (Rule S-1, and §9.5 of this document), identifying the 31 hydronyms with
+modern channels (§3.4 of this document), or reading the present-day lect
+distribution back into antiquity (`BR-E-003`, §7 of this document). The Atlas being thin is the specification working, not the
 specification failing. What would make it full is retrieval — material,
 epigraphic and archaeological sources that this repository has not yet reached —
 and `CLAUDE.md`'s rule holds here as everywhere: only retrieval promotes.
@@ -1896,28 +2151,32 @@ for the `D-` namespace. The specification is buildable under either answer to
 each, and the default it builds under is stated.
 
 **`D-053` — Do the eleven layers gain a twelfth for historiographical evidence,
-or does it stay in the panel?** Constitution §13 names eleven layers, and none of
-them is a home for `evidence_class = historiographical` — which, in this
-repository, is the best-dated and best-located evidence there is (`DE-M-026`: six
-instruments across 114 years, each with a place and a date). §9.7 shows the
-consequence: the TEXTS layer, populated from this record, draws the editorial
-apparatus because the apparatus is what has coordinates. Amending a
-constitutional list is the owner's. **Default built under: no twelfth layer.**
-The instrument timeline lives in the transition panel's `sources[]`, in the
-source-genealogy tree (§3.5) and in Source Mode (§7), and the Atlas does not
+or does it stay in the panel?** None of the eleven is a home for
+`evidence_class = historiographical` — which, in this repository, is the
+best-*dated* evidence there is (`DE-M-026`: six instruments across 114 years).
+**Constitution §13 does not forbid a twelfth**: it reads *"Available layers
+should include:"*, which is a floor and not a closed enumeration, so adding one
+amends nothing and the reason to escalate is not a constitutional one. The reason
+it is escalated is that putting the history of scholarship on the same map as
+antiquity is a product position with real interpretive weight — it is the
+difference between an atlas of the past and an atlas of the past and of its
+study — and it sits directly against `D-022`, which decides layer grouping and
+first-load defaults. **Default built under: no twelfth layer.** The instrument
+timeline lives in the transition panel's `sources[]`, in the source-genealogy
+tree (framework §3.5) and in Source Mode (framework §7), and the Atlas does not
 draw it. Blocks nothing.
 
 **`D-054` — Does the Route get its own type code `mk:rte:`, or is it modelled as
-a Relationship Object with a waypoint extension?** §5.1 states both and the
+a Relationship Object with a waypoint extension?** §5.1 of this document states both and the
 reason for preferring the first. Adding a code to §2.1's identity table amends
 another specification, which is why it is raised rather than taken. **Default
-built under: `rte` is allocated.** Every field in §5.2 is a field under either
+built under: `rte` is allocated.** Every field in §5.2 of this document is a field under either
 modelling. Blocks nothing; changing it later is an identifier migration, which is
 why it is better decided before any route exists.
 
 **`D-055` — Does the Atlas ship a present-day language-distribution reference
 layer at all?** This is the only layer the record could populate on the map today
-(§9.2, §9.4), and it is also the layer whose misreading `BR-E-003` explicitly
+(§9.2 and §9.4 of this document), and it is also the layer whose misreading `BR-E-003` explicitly
 refuses. §6.3 permits present-day reference material *"if at all"*, and the "if"
 is doing real work: a labelled, switchable modern layer is honest, and a visitor
 who reads a modern Dravidian distribution as an ancient one has been given the
@@ -1934,16 +2193,26 @@ settings) · `D-022` (layer grouping, first-load defaults, and — under §8.2 o
 this document — render order, subject to the layer-11 non-occlusion rule) ·
 `D-023` (whether the mode animates) · `D-034` (the page count and the atlas site
 count; neutralised but not answered by §8.5 of this document — the Atlas can be
-built without it and cannot be titled without it).
+built without it and cannot be titled without it) · `D-012` (whether product and
+institutional specification belongs in this repository or in `melakeela/site`,
+whose `blocks` column names *"where the Atlas mode spec and the evidence-object
+model live"* — this file is that spec, filed in `13-PRODUCT-ARCHITECTURE/` per
+constitution §15 on the same reading `museum-framework.md` §0.4 took, and it
+moves wherever `D-012` sends the directory).
 
 ---
 
 ## 14. Adversarial tests
 
-Both were run at document scope before this file was committed, per `CLAUDE.md`
-§8 and §3.11. Both found something. Logged as `BF-024` and `BF-025` in
-`04-AUDITS/BIAS-FAILURE-LOG.csv`, with the earlier work one of them touches
-queued as `RA-022` in `04-AUDITS/REAUDIT-QUEUE.csv`.
+Both were run at document scope before this file was first committed, per
+`CLAUDE.md` §8 and framework §3.11. Both found something. A third row, `BF-026`,
+records what **neither of them caught and adversarial review did**, and a reader
+is entitled to see that in the same place rather than to find it in the log.
+Logged as `BF-024`, `BF-025` and `BF-026` in
+`04-AUDITS/BIAS-FAILURE-LOG.csv`, with the earlier work they touch queued as
+`RA-022` and `RA-023` in `04-AUDITS/REAUDIT-QUEUE.csv` and the framework tension
+one of them surfaced logged as `IC-X-002` in
+`04-AUDITS/INTERNAL-CONTRADICTIONS.csv`.
 
 **Prestige-bias challenge — `BF-024`.** *Did this privilege a claim because it is
 canonical, Sanskritic, Brahmanical, Indo-European, European, colonial,
@@ -1959,7 +2228,7 @@ Corrected at §8.2 of this document: the enumeration order is declared **not** a
 render order and not a priority, layer 11 is non-occludable at every zoom, and
 render order goes to `D-022`. A second, smaller instance was caught in the same
 pass: the geometry contract had defaulted to north-up without noticing that
-orientation is a convention and that the v1 page was south-up (`IH-197`); §0.5
+orientation is a convention and that the v1 page was south-up (`IH-197`); §0.5 of this document
 now records orientation as a decision with a stated reason and the contract
 stores coordinates rather than a view.
 
@@ -1969,13 +2238,13 @@ subaltern, diffusionist or politically corrective?*
 
 Two findings.
 
-1. The draft's §9 summary read *"the Atlas can draw nothing today"* — a
+1. The draft's §9 summary (of this document) read *"the Atlas can draw nothing today"* — a
    satisfying, methodologically self-flattering result that was **false**. The
    47 Dravidian and 20 Munda lect locations (`DE-M-021`, `DE-M-022`, `VERIFIED`)
    are plottable, with modern attestation dates and approximate geometry. The
    honest statement is that the Atlas can draw one thing and it is present-day,
    which is a weaker and more useful finding than the pure zero, and it is what
-   §9.2, §9.13 and §12 now say. It also produced `D-055`, which the false version
+   §9.2, §9.13 and §12 of this document now say. It also produced `D-055`, which the false version
    would have hidden.
 2. The `zone-unknown` construct as first drafted carried an unexamined
    implicature. "Unknown speech zone" reads as *"people were here and we do not
@@ -1983,25 +2252,52 @@ Two findings.
    corrects the erasure §8.2 warns about (*"blank reads as empty and empty reads
    as nobody"*). But the correction can overshoot: not knowing what was spoken in
    a region and not knowing whether anyone was there are different absences with
-   different evidence. §2.5 now requires a typed `boundary_basis` and §9.11
+   different evidence. §2.5 of this document now requires a typed `boundary_basis` and §9.11 of this document
    requires a scoped `absence_scope`, with only `region`-scoped absences
    permitted to generate geometry — which also stops a network block
    (`SRC-056`, `HOLD-005`) from being drawn as a fact about Balochistan.
 
 **Symmetry check, run as part of the second test.** The three main mechanisms
-were checked in both directions and block both: §2.6 forbids an Indo-European
-homeland polygon and a Proto-Dravidian one on identical grounds; §7 blocks
+were checked in both directions and block both: §2.6 of this document forbids an
+Indo-European homeland polygon and a Proto-Dravidian one on identical grounds; §7
+of this document blocks
 artifact→polity→language (trade goods becoming a language map) and
 artifact→ancestry→language (`BR-E-005`, the Indus script becoming a family's) by
-the same terminal-edge rule; §6.4's precedence rules block both the upgrade of an
+the same terminal-edge rule; §6.4 of this document's precedence rules block both the upgrade of an
 undeciphered object into linguistic evidence and the downgrade of an awkward one
 into background. A mechanism that blocked only the direction this repository is
 predisposed against would not be a mechanism.
 
+**Found in adversarial review, not by either of those passes — `BF-026`.** The
+submitted draft of this file overstated what the register supports in four
+places, all in the same direction, and the direction is the one that made the
+document's own argument easier. It asserted that `DE-M-026`'s six instruments
+*"each"* carry *"a place and a date"* — the row names no place, its locator names
+none, and no Place Assertion for any of the six exists in `03-REGISTERS/` — and
+rated TEXTS *"partly populatable"* on the strength of it. It said the lect
+locations carry modern attestation dates, against rows that say the opposite in
+terms (`DMB-008`: *"nothing here dates anything"*; `SRC-050`: *"no date"*). It
+counted three selections over one Glottolog coordinate set as three datasets,
+against `DE-M-021`'s own note. And it listed `DME-011` and `DME-012` among
+Arnold-strata rows when `DME-011` opens *"The second instrument, book order"* —
+a breach of `RESEARCH-CONSTITUTION.md` standing rule 1, from correction `C-05`.
+
+The corrections are at §9.7, §9.13, §9.2, §12, §4.6 rule 5, §4.4 and §9.1 of this
+document, in `DEP-027`, and in the `D-053` and `D-055` rows. The thing worth
+recording is not the four errors but their relation to `BF-025`: that row caught
+a false *zero* accepted because it flattered the method, and wrote a control
+requiring a finding in the opposite direction to be checked row by row on the
+same footing. The control was written and then not applied to the replacement
+finding in the same document. A control that is not run on the document that
+produced it is a control in name.
+
 **`RA-022`** queues `museum-framework.md` §8.4 for re-audit: its layer table
 presents the eleven in constitution §13's order and does not state that the order
 is neither a priority nor a render order, which is the omission `BF-024` found
-being read as an instruction.
+being read as an instruction. **`RA-023`** queues framework §2.8 and §8.4 layer
+11: neither types a `zone-unknown` polygon's boundary nor scopes the absence
+behind it, which is the gap `BF-025`'s second finding closed inside this document
+and left open in the framework.
 
 ---
 
@@ -2019,9 +2315,18 @@ and no retrieval happened while writing it.
 
 **Nothing here has been retrieved**, so no rows were added to
 `02-SOURCES/access-ledger.csv` and **no domains were requested**. Nothing was
-blocked at the egress proxy, because nothing was fetched.
+blocked at the egress proxy, because nothing was fetched. One row was added to
+`02-SOURCES/dependency.csv` — `DEP-027`, recording that `SRC-050` and `SRC-060`
+carry one Glottolog coordinate set — which is a restatement of `DE-M-021`'s own
+note and not a retrieval.
 
-**One correction to the task's premise is recorded at §0.6**:
+**This file was repaired after adversarial review and before the pull request.**
+Fourteen findings were returned against the first commit; the load-bearing ones
+are corrected in place and logged at `BF-026`, and the correction history is
+preserved in the commit series rather than squashed, per `CLAUDE.md`'s standing
+constraint that rejected reasoning stays visible.
+
+**One correction to the task's premise is recorded at §0.6 of this document**:
 `03-REGISTERS/domain-m-measurements.csv` does not exist; domain M's registered
 measurements are `03-REGISTERS/domain-m-brahui-position.csv`, which is the file
 read here.

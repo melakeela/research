@@ -1262,10 +1262,22 @@ and it is also the layer whose misreading the record explicitly refuses.
 attested Munda lects with Glottolog coordinates (`DE-M-021`, `DE-M-022`,
 `VERIFIED`, `SRC-060`), and the 20 DravLex varieties that overlap them
 (`DMB-008`, `SRC-050`). Everything else the repository has measured — the 15
-Rigvedic loan-candidate lemmas and their 21 tokens, the 253-lemma retroflex
-residue, the 31 hydronyms over 251 occurrences, the 103-stanza `pur-` corpus, the
+Rigvedic loan-candidate lemmas and their 21 tokens, the 253-lemma retroflex upper
+bound, the 31 hydronyms over 251 occurrences, the 103-stanza `pur-` corpus, the
 23 tokens of `varṇa-` — has no place assertion at all, because the pinned corpus
 carries no geographic content of any kind (`PUR4J-018`, `VERIFIED`).
+
+**Two things about that dataset that narrow the question.** It is **one source,
+not three**: `DE-M-021`'s note reads *"Glottolog coordinates as carried by
+JAMBU"*, so `SRC-060` and `SRC-050` are one upstream (`DEP-027`), the counts do
+not add, and the layer would be single-sourced. And it carries **no date
+assertion at all** — `DMB-008`: *"Present-day or recent-survey locations only:
+nothing here dates anything"*; `SRC-050`: *"Point coordinates only. No polygon,
+no historical extent, no date"* — so it answers no setting of the Atlas time
+control and would reach the map only through an explicit undated control. The
+layer under discussion is therefore one undated, single-sourced, present-day
+dataset, which is a smaller thing than the first draft of this section described
+(corrected under `BF-026`).
 
 **Why it is not simply a free win.** `BR-E-003` records the bridge *attested
 modern distribution → prehistoric distribution* as **EXPLICITLY REFUSED**.
