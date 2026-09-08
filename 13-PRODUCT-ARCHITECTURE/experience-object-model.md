@@ -201,7 +201,8 @@ already carry.** The experience layer arranges the record. It does not extend it
 ### 2.1 The rule
 
 > **Every experience object must carry at least one Grounding Link to an object
-> in the evidence or governance layer. An experience object with no such link
+> in the evidence or governance layer — directly, or, for a Mission alone,
+> through the composition path at §2.5. An experience object with no such link
 > cannot be created, cannot be published, and cannot be exported. There is no
 > waiver, no draft state that exempts it, and no editorial override.**
 
@@ -218,9 +219,10 @@ direct link — the reason is at §2.5.
 
 Note what is *not* on the list: `qst`, `exh`, `act`, `chl`, `msn`, `jny`, `lob`
 and `chr`. **An experience object never grounds another experience object.** A
-Challenge pointed only at a Question, or a Mission pointed only at a Question, is
-ungrounded; each carries a separate evidence-layer link, specified at §9.4 and
-§10.3.
+Challenge pointed only at a Question is ungrounded, and carries a separate
+evidence-layer link specified at §9.4. A Mission pointed only at a Question is
+ungrounded too, and does *not* acquire a separate link: it grounds through its
+Activities, which is what the exception above is for (§10.3).
 
 ### 2.2 Why — six reasons, none of them stylistic
 
@@ -545,6 +547,7 @@ social and institutional, epistemic. A ninth group is added.
 | `speaks-for` | `chr` → `agt` | A present-day investigator speaks for themselves (`agt` = the person) or, where a community authority record exists, as a named representative with its limits recorded (§11.2). Never "for" a past people. |
 | `assembles` | `msn` → `act`; `jny` → `msn` | Structural composition, ordered. Asserts nothing about the past (§2.5). |
 | `prepares-for` | `act`, `msn` → `lob` | This activity or mission is where the objective is met. |
+| `puts-in-evidence` | `chl` → `evd`, `clm`, `rel`, `abs`, `src` | The Challenge puts this before the visitor to weigh. A **new** record with the Challenge as subject, never a pointer at the target claim's Evidence Links. **Non-empty on every Challenge**, and it is the Challenge's grounding — §9.4. |
 | `governed-by` | any experience object → `cns`, `obl`, `cor`, `dec` | The consent, obligation, correction or editorial decision that constrains this object. Required where consented or rights-restricted material appears. |
 
 ### 4.3 Link fields
@@ -700,11 +703,14 @@ store to anyone, which satisfies the under-16 rule by construction and is what
 §10.5 specifies. If the owner prefers a declared-age gate, the derivation fails
 and §5.4 and §10.5 both change; that possibility is part of D-046 and D-052.
 
-**Therefore, on the instruction of the task that produced this document, the
-Constraint Block binds all eight object types at every age band.** This extends
-§10.4.7's stated scope, which is the children's mode, to the whole experience
-layer. The extension is taken here because within this layer it is what the
-instruction requires and what the no-gate architecture implies.
+**Therefore the Constraint Block binds all eight object types at every age
+band.** The argument is the derivation above: a constraint that varies by age
+band requires the institution to know a visitor's age, the architecture has
+removed every means of knowing it, and a constraint conditioned on something
+unknowable is not a constraint. This extends §10.4.7's stated scope, which is the
+children's mode, to the whole experience layer. (The task that produced this
+document also instructed the extension; that is corroboration, not the ground —
+if the derivation fails, so does the rule, whatever any instruction said.)
 
 It is not extended beyond this layer. Whether the same prohibitions bind
 surfaces outside the experience layer — a research register view, an Atlas layer
@@ -1152,8 +1158,10 @@ populations as its terms anywhere in the children's mode, in any Living World, i
 any pilot."* Under §5.4 this model binds it at every age band within the
 experience layer.
 
-**How it is implemented.** Not as a check that runs on a finished Activity. As a
-shape the Activity cannot be given:
+**How it is implemented.** For the cases the enumeration reaches — which is the
+sort as such, not every route to it — the prohibition is not a check that runs on
+a finished Activity but a shape the Activity cannot be given. The three routes it
+does not reach are stated below rather than left to be discovered:
 
 1. `compare_terms[]` is required and non-empty when `interaction_pattern =
    COMPARE`, and each term is an identifier, never a label.
@@ -1352,7 +1360,7 @@ defect, exactly as an undifferentiated "hold" is (§11.5).
 | `targets` | `mk:rel:` (`targets`) | **exactly one**, to a `mk:clm:@r<n>`, a `mk:qst:` or a `mk:rel:`. Revision-pinned: a Challenge is against a claim as it stood, and a visitor who returns is shown what has changed since. §9.4. |
 | `challenge_form` | enum | `test-a-claim` · `weigh-rivals` · `find-the-dependency` · `type-the-absence` · `check-the-locator` · `read-the-variant` · `apply-a-gate` |
 | `activities[]` | ordered array of `mk:act:` | the run's stages as Activity objects (§8), so the interaction constraints apply here without restatement |
-| `evidence_set[]` | array of `mk:rel:` | the Evidence Links put before the visitor, with roles, locators, editions, retrieval dates and independence groups (§3.3). **Non-empty. This is the Challenge's grounding** — §9.4. |
+| `evidence_set[]` | array of `mk:rel:` (`puts-in-evidence`) | what is put before the visitor to weigh, each carrying the locator, edition, retrieval date and independence group of the Evidence Link it shows (framework §3.3). Each is a **new** Relationship Object with this Challenge as its subject — §9.4. **Non-empty. This is the Challenge's grounding.** |
 | `independence_tree_shown` | bool | **true.** §9.2 stage 3: *"nine citations resolving to one 1953 report is the single most instructive thing this mode can teach."* |
 | `rivals[]` | array of `mk:clm:` | every viable explanation **plus the null explanation**, independently stated (§9.2 stage 2) |
 | `exclusion_notes[]` | array of Gate Results | gated-out explanations with the gate they failed, in the fixed small footprint of §3.10 |
@@ -1384,6 +1392,17 @@ Grounding on the evidence set also states the substantive rule. A Challenge is
 not made legitimate by naming a claim; it is made legitimate by putting the
 evidence in front of the visitor. **A Challenge with a target and no evidence set
 is a poll.**
+
+`evidence_set[]` entries are **new `mk:rel:` records with the Challenge as their
+subject**, under the `puts-in-evidence` predicate (§4.2), not pointers at the
+target claim's existing Evidence Links. Two reasons, and the second is the one
+that matters. Mechanically, framework §3.3's eleven evidence roles take a *claim*
+as their subject, so reusing those links would leave the Challenge the subject of
+nothing and fail §2.1. Substantively, **a Challenge chooses what it shows.** A
+Challenge that displays four of a claim's nine Evidence Links has made a
+selection, and a selection is an assertion — the one §9.8 item 2 names as this
+mode's characteristic failure. Giving the selection its own records gives it a
+status, a revision history, and something a challenger can contest.
 
 `targets` remains required, **exactly one**, and revision-pinned. That is a
 separate structural rule and the single-target part of it is not a
@@ -1465,8 +1484,11 @@ can actually be computed rather than asserted.
   §4.5 requires that selecting a bridge shows *"its rivals at the same visual
   weight as itself"* — a rule about a bridge and its alternatives. §12.3, V-8
   states the general rule the other way: *"Equal visual weight is a claim, and is
-  only made where the evidence is equal. Two rival explanations rendered
-  identically when their evidence differs fails §3.10."* `CLAUDE.md` is with V-8:
+  only made where the evidence is equal"* — with the detection test *"Two rival
+  explanations rendered identically when their evidence differs fails §3.10; a
+  dominant account given more finish than a counter-account with equal evidence
+  fails §3.11."* V-8 cuts both ways, and its second half constrains this
+  institution's own preferred direction. `CLAUDE.md` is with V-8:
   *"No false equivalence. A contested claim and an established one do not get
   parallel presentation."*
 
@@ -1634,13 +1656,10 @@ narrower position is the one §10.2's field list is written against as a default
 and the recommendation is labelled as such: it is a recommendation, not an
 adoption.
 
-Classroom sets are unaffected either way. They are the teacher's, saved to the
+Classroom sets are unaffected under every option. They are the one place a
+stored, shareable container exists, and they are the teacher's, saved to the
 teacher's optional account, holding no student data and no assessment scoring
 (§10.5.2).
-
-Classroom sets are the one place a stored, shareable container exists, and they
-are the teacher's, saved to the teacher's optional account, holding no student
-data and no assessment scoring (§10.5.2).
 
 ### 10.6 Rules
 
@@ -1661,9 +1680,11 @@ data and no assessment scoring (§10.5.2).
 - **Field-mode Missions do not exist in the Extraction / Collection or
   Reconnection postures** (§1.7). The restriction is on Field Mode, not on
   seriousness: Investigation Mode is mandatory in Extraction / Collection and
-  available in Reconnection, so adult work runs in both. The matrix mandates a
-  *mode*, never an object instance — an Exhibit satisfies it by making the mode
-  available, not by containing a Mission.
+  available in Reconnection, so adult work runs in both. **The matrix mandates a
+  mode, never a Mission.** A mandatory Investigation Mode is satisfied by the
+  Exhibit carrying a Challenge (§14.2) — that is what the mode is made of — and
+  never by its carrying a Mission, which is an optional way of sequencing
+  Activities and is mandated nowhere.
 - **The Constraint Block binds the Mission independently of its Activities.** A
   sequence of individually permissible Activities can compose a forbidden one —
   §8.5's buckets problem is exactly that — so the Mission declares its own
@@ -1758,15 +1779,24 @@ reverse learn something false?** If yes, the order is a claim. If they would onl
 be confused, it is pedagogy.
 
 This is where a Journey most easily becomes an argument the institution has not
-made. A route from steppe to Punjab to the Ganges asserts a migration whether or
-not a sentence says so, and a route ending on MelaKeela's preferred explanation
-asserts that it is where the evidence leads. Both are claims with statuses or
-they are not routes.
+made, and the rule is symmetrical in a way worth stating with both examples,
+because giving only one of them would aim the rule at one account.
+
+A route running steppe → Punjab → Ganges asserts a migration whether or not a
+sentence says so. A route running one Indian site to the next in an unbroken
+sequence asserts continuity, autochthony or descent just as firmly, and it does
+so more quietly, because a route that never leaves is read as no route at all. A
+route ending on MelaKeela's preferred explanation asserts that it is where the
+evidence leads. **All three are claims with statuses or they are not routes**,
+and the third is the one this institution is most likely to build without
+noticing.
 
 ### 11.5 Grounding
 
-A Journey carries **both** a direct grounding (`through_line_claims[]`,
-non-empty) and composition grounding through its Exhibits.
+A Journey grounds **directly**, on `through_line_claims[]`, which is non-empty.
+It does not ground through its Exhibits: §2.5 withdraws composition transitivity
+from everything but the Mission, and a Journey asserts a through-line no Exhibit
+asserts.
 
 The direct link is required because the through-line is the one thing a Journey
 adds. Without it a Journey is a list of Exhibits — which is a legitimate object,
@@ -2359,6 +2389,57 @@ him.
 **That is the whole argument of this section in one comparison, and it is why the
 Character object is specified as narrowly as it is.**
 
+### 13.10 The limit of §13.9, and why it has to be stated
+
+§13.9 forbids the institution from inventing a voice for someone the archive did
+not record. It does **not** forbid a living community's own account of its
+ancestors, and the distinction is load-bearing enough that leaving it implicit
+would turn an anti-fabrication rule into a silencing one.
+
+An oral tradition held and spoken by a living community is **evidence**, not
+invention. Framework §2.3 makes `oral-living` one of the nine evidence classes;
+§2.4 gives it required fields — speaker or community as `mk:agt:`, recording
+circumstances, consent, withdrawal terms, whether the speaker holds interpretive
+authority; §11.2 provides for a community holding interpretive authority the
+institution does not. A community member recounting what their community holds
+about people the colonial archive did not record is a `present-day-investigator`
+Character (§13.3.3) speaking their own words as evidence, with consent, carried
+as theirs.
+
+**What §13.9 forbids is the institution supplying the voice. What it must not do
+is refuse the voice when a community supplies it.** The failure modes are
+different and both are real:
+
+| Failure | What it looks like |
+|---|---|
+| Fabrication (§13.1, H-3) | The institution writes words for an unrecorded person, and covers a documented silence with a satisfying presence. |
+| Silencing | The institution cites its own anti-fabrication rule to decline oral-living evidence a community has offered, and the archive's exclusions are reproduced by an institution that has just finished documenting them. |
+
+The second is the harder one to see from inside this document, because the rule
+that produces it reads as rigour. The test that separates them is not whether a
+person is nameable in a written archive; it is **who is speaking, and on what
+authority.** An institution speaking for the unrecorded is fabricating. A
+community speaking for itself is giving evidence, and the institution's job is
+the one §11.2 sets: name the authority, carry the account as theirs, and do not
+absorb it into its own voice or set it against a written source as though the two
+were rival hypotheses in the same game.
+
+Two consequences for the object model:
+
+- A `role` Character's `role_absences[]` records what the *written* record does
+  not carry. It is not a finding that nothing is known — where an oral-living
+  source exists, the absence is typed against the archive that produced it
+  (framework §3.7's archive audit), and the oral evidence stands as evidence
+  beside it.
+- **`NOT RECOGNISED` is the type that most often applies** where a tradition
+  exists and the archive did not count it as a record. Typing such a case as
+  `NOT PRODUCED` would assert that nothing was made, which is the archive's own
+  account of itself and not a finding.
+
+This section is the correction produced by the preferred-counter-narrative
+challenge logged as `BF-023`. The first draft of §13 had the fabrication failure
+fully specified and this one nowhere.
+
 ---
 
 ## 14. Composition, modes and the publication gate
@@ -2451,8 +2532,9 @@ named rather than implied.
    a Challenge has `independence_tree_shown = true` and a non-empty
    `evidence_set[]`; an Activity's free-text output has `output_is_private =
    true`; an Exhibit in a posture where Investigation Mode is mandatory has that
-   mode enabled; a Learning Objective's `taught_on[]` does not consist wholly of
-   `INHERITED-UNVERIFIED` or `HOLD` claims (§12.4.1).
+   mode enabled **and carries at least one `mk:chl:`** (§14.2); a Learning
+   Objective's `taught_on[]` does not consist wholly of `INHERITED-UNVERIFIED` or
+   `HOLD` claims (§12.4.1).
 
 **Three of the ten need a person, and they say so.** Conditions 3, 6 and 7 are
 not machine-decidable: the Constraint Block's judgement residues are at §8.4,
@@ -2560,11 +2642,21 @@ discrepancy at D-037), and their standing as constraints does not depend on that
 because they are prohibitions on what the institution builds, not claims about
 the past.
 
-**Both adversarial tests were run on this document** before it was submitted, per
-`CLAUDE.md` §8, and the results are logged: `BF-X-001` and `BF-X-002` in
-`04-AUDITS/BIAS-FAILURE-LOG.csv`, with the earlier work they touch in
-`04-AUDITS/REAUDIT-QUEUE.csv`. The framework tension the second test surfaced is
-`IC-X-001` in `04-AUDITS/INTERNAL-CONTRADICTIONS.csv`.
+**Both adversarial tests were run and logged**, per `CLAUDE.md` §8, as `BF-021`,
+`BF-022` and `BF-023` in `04-AUDITS/BIAS-FAILURE-LOG.csv`, with the earlier work
+they touch queued as `RA-020` and `RA-021` in `04-AUDITS/REAUDIT-QUEUE.csv` and
+the framework tension one of them surfaced logged as `IC-X-001` in
+`04-AUDITS/INTERNAL-CONTRADICTIONS.csv`.
+
+**Two things about that pair a reader is entitled to know.** `BF-022` records a
+failure that was in the *submitted* document and was found in adversarial review,
+not by the author's own pass — which had cleared the section it was in. And the
+two tests were not first run at the same scope: the prestige-bias challenge
+examined §13, and the counter-narrative challenge only the section review had
+already flagged. That is the imbalance `RA-019` records against earlier work in
+this repository — *"running one test is a failed test"*. `BF-023` is the
+counter-narrative challenge re-run at document scope, and it found two
+corrections, now in §11.4 and §13.9.
 
 Nothing here has been retrieved, so no rows were added to
 `02-SOURCES/access-ledger.csv` and no domains were requested.
