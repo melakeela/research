@@ -376,12 +376,14 @@ highlighted on tap:
 |---|---|
 | RV 1.54.6d | puro **navatim** dambhayo **nava** |
 | RV 2.19.6c | **navatim** ca **nava** |
-| RV 4.26.3b | **nava** sākam **navatih** |
+| RV 4.26.3b | **nava** sakam **navatih** |
 | RV 7.19.5b | **nava** yat puro **navatim** ca |
 | RV 7.99.5b | **nava** puro **navatim** ca |
 | RV 8.93.2a | **nava** yo **navatim** puro |
 
-*(`PUR4J-004`)*
+*(`PUR4J-004`, quoted exactly as the register's locator carries them —
+unaccented. Gate **G-05**: the accented forms come from the pinned corpus
+before build; this unit supplies no diacritic of its own.)*
 
 **What they see.**
 
@@ -418,7 +420,7 @@ the same two words. Then taps to see what they are counting.
 
 **What they see.**
 
-> RV 10.104.8c — **navatím** srotyā́ **náva** ca sravantī́r
+> RV 10.104.8c — **navatim** srotya **nava** ca sravantir
 >
 > Griffith, 1890: *"nine-and-ninety flowing streams"*
 > Geldner, 1951: *"die neunundneunzig fließenden Ströme"*
@@ -482,8 +484,14 @@ counter appears and stays:
 
 Then the stone one, which is the stanza from S-01, now translated:
 
-> **RV 4.30.20** — *śatám aśmanmáyīnām purā́m índro ví ásyat / dívodāsāya
+> **RV 4.30.20** — *śatám aśmanmáyīnām purā́m índro vy āā̀syat / dívodāsāya
 > dāśúṣe*
+>
+> *(quoted exactly as `PUR-P-041` stores it. `vy āā̀syat` is an encoding
+> artefact of the register file, not a reading; `PUR4J-014`'s locator gives
+> `vy asyat`. Gate **G-05** resolves it against the pinned corpus. It is not
+> silently repaired here, because silently repairing a quotation is the move
+> this whole investigation is about.)*
 >
 > "Indra threw down a hundred stone forts, for Divodāsa who gave offerings."
 > *(`PUR4J-014`; and see gate G-05 — the translators' own words at this verse
@@ -663,7 +671,7 @@ Then, the second kind, which is not fixable by looking:
 Then the one thing the poem might have named, and did not quite:
 
 > **WE DON'T KNOW — grown-ups disagree.** One fort in the whole book might have
-> a name. One translator reads *nārmiṇī* as a name — "the fort Narmini". The
+> a name. One translator reads *narmini* as a name — "the fort Narmini". The
 > other reads the same word as "joyous". The dictionary refuses to choose. If
 > the first is right, that is the only named fort in 103 verses. If the second
 > is right, there are none. *(`PUR4J-015`)*

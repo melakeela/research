@@ -7,10 +7,16 @@ is not shown to a child as evidence."* Every string a child reads that purports
 to be evidence appears below, with its register row, its locator and its status.
 Anything not below may not appear on a screen.
 
-**Diacritics.** The register carries the accented Saṃhitā text; several
-locators carry an unaccented transliteration. Both are reproduced as the
-register has them. Gate **G-05** requires a diacritic and encoding pass against
-the pinned corpus before any of this reaches a screen.
+**Diacritics — read this before quoting anything below.** Some register rows
+carry the accented Saṃhitā text (the `text_samhita` column of
+`rigveda-pur-passages.csv`); most of the passage strings in the *locator* fields
+of `rigveda-pur-4j-claims.csv` are **unaccented transliterations**. Every string
+below is reproduced **exactly as the register has it**, accented or not. No
+accent, macron or diacritic has been supplied by this unit, and none may be:
+supplying one is a reconstruction of the text, not a quotation of it. Gate
+**G-05** requires the accented forms to be pulled from the pinned corpus
+(`SRC-020`, `SRC-084`) before any of this reaches a screen, and the unaccented
+strings replaced rather than decorated.
 
 ---
 
@@ -75,7 +81,7 @@ carries them, unaccented.
 |---|---|---|
 | RV 1.54.6d | `puro navatim dambhayo nava` | `navatim` … `nava` |
 | RV 2.19.6c | `navatim ca nava` | `navatim` … `nava` |
-| RV 4.26.3b | `nava sākam navatih` | `nava` … `navatih` |
+| RV 4.26.3b | `nava sakam navatih` | `nava` … `navatih` |
 | RV 7.19.5b | `nava yat puro navatim ca` | `nava` … `navatim` |
 | RV 7.99.5b | `nava puro navatim ca` | `nava` … `navatim` |
 | RV 8.93.2a | `nava yo navatim puro` | `nava` … `navatim` |
@@ -85,8 +91,8 @@ Joined by `ca` in three; separated by other words in four. `PUR4J-004`.
 `navatí-` is feminine **singular** — a collective, "a ninety" — in five of the
 six; only RV 4.26.3 has the agreeing plural `navatih`. `PUR4J-005`.
 
-**The completion.** RV 4.26.3c `śatatamáṃ véśyam`; RV 7.19.5c `niveśané
-śatátama`. In both, "the hundredth" modifies a dwelling word, not the fort word.
+**The completion.** RV 4.26.3c `satatamam vesyam`; RV 7.19.5c `nivesane
+satatama`. In both, "the hundredth" modifies a dwelling word, not the fort word.
 `PUR4J-008`.
 
 ---
@@ -95,8 +101,8 @@ six; only RV 4.26.3 has the agreeing plural `navatih`. `PUR4J-005`.
 
 From `PUR4J-006`, `VERIFIED`. **The hinge card.**
 
-> RV 10.104.8c — `navatim srotyā nava ca sravantīr`
-> padapāṭha — `navatim | srotyaḥ | nava | ca | sravantīḥ`
+> RV 10.104.8c — `navatim srotya nava ca sravantir`
+> padapāṭha — `navatim | srotyah | nava | ca | sravantih`
 
 | Translator | Rendering | Source |
 |---|---|---|
@@ -126,7 +132,7 @@ From `PUR4J-012`, `VERIFIED`.
 | raw, unbaked | `āmá-` | 1 | RV 2.35.6 |
 | *(none stated)* | — | **93** | typed `NOT PRODUCED` |
 
-The unbaked one: RV 2.35.6 `āmāsu pūrṣu paro apramṛṣyam / na āratayo vi naśan` —
+The unbaked one: RV 2.35.6 `amasu pursu paro apramrsyam / na aratayo vi nasan` —
 in the raw forts, neither malice nor deceptions reach him. `PUR4J-014`.
 
 **The metal crux.** Griffith prints "iron" at all eight; Geldner prints *ehern*
@@ -221,9 +227,9 @@ without that flag overstates the evidence (`PUR-011`,
 
 From `PUR4J-015`, `VERIFIED`.
 
-> RV 1.149.3a — `ā yaḥ puram nārmiṇīm adīdet`
+> RV 1.149.3a — `a yah puram narminim adided`
 
-| Reader | Reads `nārmiṇī-` as | Rendering |
+| Reader | Reads `narmin-` as | Rendering |
 |---|---|---|
 | Geldner 1951 | a proper name | "Der die Burg Narmini beschien" |
 | Griffith 1890 | an adjective | "He who hath lighted up the joyous castle" |
