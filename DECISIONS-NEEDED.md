@@ -961,3 +961,92 @@ touches published copy.
 **Asked of the owner:** whether the page should name its digitization
 and carry the range in the interim. The change itself belongs in
 `melakeela/site`, not here. Queued as `RA-009`.
+
+## D-046 — Does an exhibit's uncertainty surface display work the record states is owed and not done?
+
+**Raised:** 2026-09-08, visitor-loop specification. **Category:** publication
+approval. **Affects:** `06-BRIEFS/visitor-loop.md` screen S4, element 3 — the
+one element on which the loop's distinguishing move rests.
+
+### The gap
+
+`CLAUDE.md`'s negative-evidence standard types eight kinds of absence: `NOT
+PRODUCED` · `NOT PRESERVED` · `NOT EXCAVATED` · `NOT PUBLISHED` · `NOT
+ACCESSIBLE` · `NOT RECOGNISED` · `DOCUMENTED DESTRUCTION` · `ABSENT DESPITE
+ADEQUATE SEARCH`. `05-HOLDS/` covers what the institution cannot reach.
+
+**Neither covers what the institution could do and has not done.** That is a
+third thing, and it is not a fine distinction — it is the difference between a
+statement about the archive and a statement about ourselves.
+
+The attempt to invent a ninth type for it has already been made and struck down:
+`CORRECTIONS-PENDING.md` §5.1 defect 9 records **"NOT ATTEMPTED"** being dropped
+under independent review, correctly, because it would have let undone work
+masquerade as evidence about the past.
+
+`museum-framework.md` §11.1's negative rows in the Institutional Obligations
+Register are the nearest existing fit — *"refused requests, unanswered letters,
+unreturned objects, consultations not held"* — but §1.6.2 attaches them to the
+**Reconnection** posture alone, and they are obligations to third parties, not
+obligations to the record.
+
+### The concrete instance
+
+The loop's fourth screen shows a visitor the twenty-three occurrences of
+*varṇa-* in the Rigveda with the `sense` column displayed: twenty-three cells
+reading `NOT ASSIGNED`, beside twenty-three filled cells of grammatical
+analysis. That much is `VAR-004` (`VERIFIED`) — the annotation carries no sense
+field — and it types cleanly as `NOT PRODUCED`.
+
+But the screen's force comes from the record beside it:
+
+> **`IH-287`** (`INHERITED-UNVERIFIED`), `01-INHERITED/claude-project-handoff.md`
+> L523, handoff work item 19: *"The varna 23 human-applied split and the
+> colour/skin count done right are owed."*
+
+Recorded as owed **before this repository existed**, and still open. `VAR-008`
+(`VERIFIED`) records that the sense sort published on `what-varna-meant.html` is
+that owed work. Nothing blocks it: the nine translations are inside the pinned
+corpus. It has simply not been done.
+
+Typing that as an absence would be dishonest. Leaving it off the screen would
+leave the institution stating an ignorance without showing that the ignorance is
+its own fault. There is presently no third option in the vocabulary.
+
+### Why this is the owner's
+
+**It is publication approval and it is an institutional-voice question.** An
+institution that publishes its own undone work is making a claim about itself,
+and `D-010` already reserves which institutional claims may be published.
+
+It is also the question `BF-022` was logged against, and the argument runs both
+ways:
+
+- **For.** Owed work displayed with its date is the only thing that keeps
+  "we do not know" from being a posture. Without `IH-287`'s date and open state,
+  S4 says *this is unknowable*; with them, it says *we owe you this and have not
+  delivered it*, which is a different and harder sentence.
+- **Against.** `BF-022`: a design that stages an unmet obligation as the
+  institution's most impressive screen converts a failure into an asset. An
+  institution that displays its ignorance looks rigorous. This is Reconnection's
+  `Avoid` generalised — **digitization is not restitution, and neither is
+  disclosure.**
+
+### Asked of the owner
+
+Which of three:
+
+1. **Yes, with a specified record type.** Owed-work rows, available on any
+   posture, carrying at minimum: what is owed, where it was recorded as owed,
+   the date it was recorded, what would discharge it, and whether anything
+   blocks it. Requires a register that does not exist.
+2. **Yes, but only inside Reconnection**, as framework §11.1 currently scopes
+   negative rows. This would move the loop's S4 receipt to its S5 exit and
+   change the loop's shape.
+3. **No.** Owed work stays internal to `RESEARCH-QUEUE.md` and never reaches a
+   public surface. S4 then displays `VAR-004`'s typed absence and `VAR-008`'s
+   finding without `IH-287`'s receipt, which is defensible and is weaker.
+
+Nothing in `06-BRIEFS/visitor-loop.md` acts on any of the three. The
+specification states element 3 as it would be under option 1 and records that it
+is blocked, which is `W-7` in that file's §8.

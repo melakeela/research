@@ -109,7 +109,7 @@ thing the investigation is most likely to get wrong.
 | G | BMAC/Oxus and pre-split Indo-Iranian contact | Reading "Proto-Indo-Iranian" as pre-contact or purely inherited |
 | H | Rigvedic and Old Avestan social worlds | A violent-Indic versus peaceful-Iranian binary; genre mistaken for society |
 | I | Rigvedic society, patronage and canonization | Sanitizing patronage as timeless spirituality |
-| J | The Rigvedic forts | Translating *pur* into a Mature Harappan city; one famous count standing for the corpus — *corpus built 2026-09-07 at the stanza unit, 103 passages, all fifteen enumerated items addressed and the five-way typology assigned. 99 is stated in 6 passages and is not the modal count; 100 is, in 8. Poet lineage rests on Geldner alone (`HOLD-006`); proposed geography is `NOT PRODUCED` — the pinned corpus carries no geographic content. See `06-BRIEFS/pur-4j-corpus.md`.* |
+| J | The Rigvedic forts | Translating *pur* into a Mature Harappan city; one famous count standing for the corpus — *corpus built 2026-09-07 at the stanza unit, 103 passages, all fifteen enumerated items addressed and the five-way typology assigned. 99 is stated in 6 passages and is not the modal count; 100 is, in 9 (`IC-P-003`: this row read 8, the pre-correction figure, until 2026-09-08). Poet lineage rests on Geldner alone (`HOLD-006`); proposed geography is `NOT PRODUCED` — the pinned corpus carries no geographic content. See `06-BRIEFS/pur-4j-corpus.md`.* |
 | K | Indus writing and institutional discontinuity | Concluding that populations vanished because institutions and archives did |
 | L | Avestan writing | Reading a Sasanian-era alphabet as transparent evidence of Gāthic pronunciation |
 | M | Brahui, Kurukh and Malto | Medieval migration treated as documented fact; living people used as linguistic fossils |
@@ -277,7 +277,28 @@ or research holds. Constitution §11.
   under which the unit should have waited and under which this note is itself to
   be reverted, is written up in `06-BRIEFS/mvp-fifteen/README.md` §0. The other
   81 pages are untouched.
+  *Recorded against the product-specification item above, not as an exception to
+  it:* a visitor-loop specification was produced out of position on 2026-09-08,
+  on the owner's instruction, and is at `06-BRIEFS/visitor-loop.md`. **The
+  placement is not settled**, on the same terms as the page briefs: no owner
+  decision was allocated for it and none is claimed, `D-012` is still `OPEN`, and
+  `DECISIONS-NEEDED.md` **D-032** still reads *"Nothing in this repository acts
+  on the MVP set until this is answered"* — which bears on it, because the loop's
+  arrival screen is `index`, MVP rank 1. The specification schedules no launch,
+  approves no page, orders no work and assumes no answer to either decision; its
+  §9 names the one substitution that detaches it from `index` entirely if the
+  owner reads specifying a route through that page as acting on the set. Its
+  standing, and the reading under which the unit should have waited, are in
+  `06-BRIEFS/visitor-loop.md` §0. It raised **D-046**.
+
 - Anything touching `melakeela/site`.
+
+  *Recorded against that item:* the visitor-loop specification did **not** touch
+  it and could not. `SRC-086`'s blocking constraint — *"melakeela/site is not
+  accessible from this session"* — is displayed inside the loop as a limit on the
+  institution's own ignorance-claim rather than worked around. Constitution step
+  13 therefore did not run on `what-varna-meant.html`; `W-6` in that file is what
+  would let it.
 
 ## Item numbering
 
