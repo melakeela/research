@@ -11,7 +11,7 @@ No sentence in it may be lifted onto a page.
 Release 1, role `flagship`.
 **Retrieval performed for this unit:** yes — ten rows, `SRC-089` to `SRC-098`,
 logged 2026-09-08. One hold opened: `HOLD-007`. Register:
-`03-REGISTERS/water-living-world-readiness.csv`, ten rows. Archive audit:
+`03-REGISTERS/water-living-world-readiness.csv`, thirteen rows. Archive audit:
 `04-AUDITS/ARCHIVE-AND-POWER-AUDIT.csv` `APA-W-001`.
 
 ---
@@ -96,7 +96,7 @@ here as bridges when it is slot 4.
 
 An earlier draft declared the opposite convention and then broke it in about
 forty places, including inside §7, where the bias-test record pointed at the
-museum framework in the one section whose purpose is to let a later reader
+Museum framework in the one section whose purpose is to let a later reader
 check what the tests changed. Both the convention and the forty references
 were corrected in one pass. The numbers that collide are 3.4, 4.2 to 4.7,
 6.1, 6.2 and 11, and every external use of them here is prefixed.
@@ -196,7 +196,7 @@ about a people.**
 ### 2.2 The through-line, stated as a proposition that could be false
 
 Experience-object-model §11.2 requires `through_line_claims[]` to be non-empty
-and shown, statused, at the entrance. experience-object-model §11.5: *"A Journey that asserts no
+and shown, statused, at the entrance. Experience-object-model §11.5: *"A Journey that asserts no
 through-line is a saved search, and should be one."*
 
 WATER's through-line, written so that it can be contradicted:
@@ -307,8 +307,7 @@ A field structure on the Journey, one per slot. No new identifier namespace
 | `slot_question` | `mk:qst:` | the question this slot asks **in this world**, as a real Question object. Non-empty even when the slot is unfilled — a slot with no question is a container, and containers are what experience-object-model §11.5 calls a saved search. |
 | `filled_by` | `mk:exh:` or null, except slot 7 which takes `mk:chl:` or `mk:qst:` | the object standing in the slot. Null is a legitimate state — see §3.4 invariant 7 on what it is not sufficient for. An earlier draft typed this `mk:exh:` throughout while §4.7 assigned slot 7 a Challenge or a Question, so the field could not hold the content the specification gave it. |
 | `admission` | vocabulary reference | which evidence classes and which attestation modes this slot admits (§4, per slot) |
-| `absences[]` | array of `mk:abs:` | **non-empty when `filled_by` is null**, and permitted alongside a filled slot. Typed under museum framework §3.7. An array, not a single record: experience-object-model §11.2 types the Journey's `absences[]` as an array, and slot 6 is an entire slot made of absences — as a singular field it could hold exactly one. |
-| `inapplicable` | bool + reason | true where the slot's question **has no evidence class in this world**, as against having one that is unevidenced. See §9.1a: this is the field a LANGUAGE world needs and it is specified here rather than left to be discovered, because without it such a world must mint a typed absence for a slot that has nothing to be absent. |
+| `absences[]` | array of `mk:abs:` | **non-empty when `filled_by` is null** (§3.4 invariant 2), and permitted alongside a filled slot. Typed under museum framework §3.7. An array, not a single record: experience-object-model §11.2 types the Journey's `absences[]` as an array, and slot 6 is an entire slot made of absences — as a singular field it could hold exactly one. |
 | `entry_point` | bool | whether a visitor may begin the world here. See M-8, and the typing gap it records: experience-object-model §11.2 types a Journey's `entry_points[]` as an array of `mk:exh:`, so an unfilled slot cannot be an entry point in the object model as it stands. |
 | `inbound_edges[]` | array of `mk:rel:` | the relationships that justify drawing a connection from another slot **to** this one. Empty is normal and is not a defect. |
 | `render_budget` | derived | computed from the proportionality block of the claims in `filled_by`, advisory under museum framework §3.10 |
@@ -319,8 +318,12 @@ A field structure on the Journey, one per slot. No new identifier namespace
 1. **All seven slots exist in every Living World.** A world does not choose
    its slots. A world with five slots is a different product and needs its own
    specification.
-2. **A slot is either filled or typed.** `filled_by` null and `absence` null
-   together is a validation failure, not a draft state.
+2. **A slot is either filled or typed.** `filled_by` null and `absences[]`
+   empty together is a validation failure, not a draft state. There is no
+   third disposition: an earlier draft of this document added an
+   `inapplicable` flag as one and withdrew it (§9.1a, `BF-026`), because a
+   slot that can be declared not to apply is a slot that disappears when
+   empty, and §3.1 exists to prevent exactly that.
 3. **`slot_question` is never null.** The question survives the absence of an
    answer; that is most of what slot 6 is for.
 4. **No slot may be filled by an Exhibit created for it.** Experience-object-
@@ -336,13 +339,16 @@ A field structure on the Journey, one per slot. No new identifier namespace
    experience-object-model §11.6 forbids exactly that.
 7. **Filling slots is not the same as being a publishable Living World, and
    the slot record does not relax one rule of experience-object-model §11.3.**
-   A Journey needs `traverses[]` non-empty with a minimum of two, and a Living
-   World needs at least four postures crossed including Extraction /
-   Collection or Reconnection. Two filled slots yield at most two postures.
-   So a world with slots 6 and 7 filled and the rest typed absent is a
-   legitimate, honest, **unpublishable** object: it fails experience-object-model §11.3 rule 2 and
-   should. §6.2's build-sequence recommendation is written against this
-   invariant and not around it.
+   A Journey needs `traverses[]` non-empty with a **minimum of two Exhibits**,
+   and a Living World needs at least four postures crossed including
+   Extraction / Collection or Reconnection, computed from those Exhibits.
+   A world with slots 6 and 7 filled has **one** Exhibit, because slot 7 is
+   filled by a Challenge or a Question and `traverses` runs `jny → exh`. So it
+   fails experience-object-model §11.2's minimum before it ever reaches §11.3
+   rule 2 — a legitimate, honest, **unpublishable** object. (An earlier draft
+   said "two filled slots yield at most two postures", reaching the right
+   conclusion by the wrong arithmetic.) §6.2's build-sequence recommendation
+   is written against this invariant and not around it.
 
 ---
 
@@ -386,8 +392,8 @@ more than anywhere else in the document, because this is the slot that carries
 a date.
 
 What was retrieved is the **abstract** of Sengupta et al. 2020
-(`10.1002/jqs.3178`), returned by `SRC-089` probe 1 and repeated in the
-metadata block of `SRC-090`'s chunk 1. It states occupation *"at ~5500 years
+(`10.1002/jqs.3178`), returned by `SRC-089` probe 1. `SRC-090`
+returned chunks 1 and 20 of the same DOI; this range is `SRC-089`'s. It states occupation *"at ~5500 years
 BP (pre-Harappan), and continuation until ~3800 years BP"* and a settlement
 that *"rapidly expanded under favourable monsoonal climate conditions"*. The
 article, its calibration, its figures and its supplementary material are not
@@ -407,7 +413,7 @@ review:
    date for a reservoir are different claims, and the second is the one the
    slot actually needs.
 3. **Not sufficient to fill the slot; sufficient to know the slot is
-   fillable** — which is the whole of what §6 claims for it.
+   fillable** — which is what `WLW-013` records for it.
 
 ### 4.2 Slot 2 — MATERIAL EVIDENCE
 
@@ -430,7 +436,7 @@ review:
    `NOT RECOGNISED` if it did and we have not looked — and the type is
    displayed in slot 2, not deferred to slot 6.
 4. **Custody now.** Who holds the object, who may see it, under what terms.
-   museum framework §11.8.
+   Museum framework §11.8.
 5. **No generic landscape decoration.** Museum framework §10.2, constraint 4.
    A photograph of a river is not evidence of a drainage system. An atmosphere
    asset is `is_primary = derivative` with a stated non-evidential purpose and
@@ -476,8 +482,9 @@ Additionally, and specific to this slot:
    *reservoir*, *irrigation*, *canal* and *ritual bath* are all translations,
    and so is ***civilization***, which is on `CLAUDE.md`'s own ten-category
    audit list and is the one word from that list the reachable literature on
-   this thread actually uses — *"hydraulic civilisation"* is the phrase
-   `SRC-089` returned in the Singh et al. 2020 abstract, and `HOLD-007` names
+   this thread actually uses — the phrase `SRC-089`
+   returned in the Singh et al. 2020 abstract is *"hydraulic civilization"*,
+   with a *z*, and `HOLD-007` names
    it as needing audit. An earlier draft of this list omitted it while the
    hold asserted a control for it, so the hold pointed at a rule that did not
    exist.
@@ -485,7 +492,7 @@ Additionally, and specific to this slot:
    (`03-REGISTERS/rigveda-pur-typology.csv`), and that is the model.
 4. **No lexical bridge to a people.** A shared word is a `language→language`
    relationship. Reading it as `language→ancestry` or `language→modern
-   identity` is a bridge under museum framework §4.4 with all of its's requirements, and it is
+   identity` is a bridge under museum framework §4.4 with all of its requirements, and it is
    the single most likely place for this world to acquire an argument nobody
    made.
 
@@ -494,12 +501,15 @@ recording tank construction, donation and maintenance obligation; the
 Dravidian water and irrigation lexemes.
 
 **Current standing.** **Empty, and it is the emptiest slot.** No Tamil corpus
-lane has ever been opened in this repository — the reachable corpora are
-Vedic (`SRC-019` to `SRC-024`, `SRC-069` to `SRC-085`) and comparative-lexical
-(`SRC-060` to `SRC-067`). GRETIL and TITUS are refused (`SRC-080`, `SRC-082`).
-The Sangam material returned by `SRC-089` is seven English-language articles
-*about* Sangam water vocabulary, mostly in journals with no evident review,
-and an article about a text is not the text. **This slot cannot be filled for
+lane has ever been opened in this repository. Its corpus rows are Vedic
+material and comparative-lexical datasets and nothing else — the listing by
+category is at `SRC-098`, which was extended to carry it rather than leaving a
+range here that would have swept in `SRC-080` to `SRC-083`, rows that are
+themselves `EGRESS_BLOCKED`. GRETIL and TITUS are refused (`SRC-080`,
+`SRC-082`). What `SRC-089` returned on Sangam water vocabulary is eight
+low-citation English-language articles *about* it, four of them returned with
+"Unknown Journal", named in full in that row — and an article about a text is
+not the text. **This slot cannot be filled for
 WATER today at the standard the translation rule sets, and no allowlist change
 fixes it** — it needs a corpus lane opened deliberately.
 
@@ -700,13 +710,16 @@ accounting:
 
 | | Status |
 |---|---|
-| **M-1, M-2, M-3, M-5, M-8, M-10** | New here, or an existing rule narrowed to a point where it changes what may be built |
+| **M-1, M-2, M-3, M-8, M-10** | New here, or an existing rule narrowed to a point where it changes what may be built |
 | **M-6** | A restatement of museum framework §4.4 rule 5, verbatim in substance, restated because a Living World is where it will be tested |
 | **M-9** | Its rule sentence is museum framework §3.10 almost verbatim; the new element is the **slot-fill profile** alone |
-| **M-4, M-7** | Inherited requirements (step 2; experience-object-model §11.6) with one added constraint each — M-4's no-connecting-line rule, M-7's withdrawal consequence |
+| **M-4, M-5, M-7** | Inherited requirements (step 2; museum framework §10.2 constraint 1; experience-object-model §11.6) with one added constraint each — M-4's no-connecting-line rule, M-5's break-on-no-bridge, M-7's withdrawal consequence |
 
-Two of the ten therefore add little, and saying so is cheaper than letting a
-reader count safeguards that are already in force elsewhere.
+Five of the ten are new, two add little, and three are inherited rules plus
+one constraint. Saying so is cheaper than letting a reader count ten
+safeguards, most of which are in force elsewhere already. M-5 moved into the
+third row on re-review: its own text says *"The addition here is what happens
+on failure"*, which is the third row's shape, not the first's.
 
 ### M-1 · No edge, no line
 
@@ -724,15 +737,31 @@ bind the layout and not only the diagram.
 **Cost.** The world will look disconnected in places, because it is. A
 designer will want to bridge the whitespace and must not.
 
+**One exemption, and it is the same one M-3 carries.** M-4's single time axis
+composes objects from all seven slots and no edge licenses it, so M-1 read
+literally forbids M-4 — adjacency on a shared axis is adjacency. The
+exemption is stated at both rules because M-1 is the broader one and an
+exemption written into M-3 alone leaves the prohibition standing here: **two
+objects may be placed on a shared axis by a property each of them
+independently has, provided nothing is drawn between them.** A date is such a
+property; a theme, a colour, a region and a "phase" are not.
+
 **Does not catch.** Reading order. A visitor walks slot 1 then slot 2 and
 infers a link with no line drawn. M-4 and M-8 address that; M-1 alone does
 not.
 
 ### M-2 · The gap is a position, not the absence of one
 
-**Rule.** Slot 6 is a slot. It has a render budget, an entry point, and it
-cannot be collapsed, deferred to the end, or rendered at lower prominence than
-slots 1–5. Additionally, per §3.4 invariant 6, a slot-level absence renders
+**Rule.** Slot 6 is a slot. It has a render budget and a place in the
+sequence, and it cannot be collapsed, deferred to the end, or rendered at
+lower prominence than slots 1–5.
+
+An earlier draft said it also has *an entry point*. It cannot yet:
+Experience-object-model §11.2 types a Journey's `entry_points[]` as an array
+of `mk:exh:`, and slot 6 is the slot most often unfilled, so it has no Exhibit
+to point at. M-8 records the gap and §9.4 carries it as something the object
+model must change. Until it does, **slot 6's prominence is a render rule and
+not an entry rule**, which is weaker than this mechanism wants. Additionally, per §3.4 invariant 6, a slot-level absence renders
 **inside its own slot**, at the position where the missing thing would be.
 
 **Why.** Experience-object-model §11.6: *"Absences are part of the thread, not
@@ -764,7 +793,7 @@ the bridge exists. If the bridge exists at `PROVISIONAL`, the image ships with
 its rivals attached, which is less striking.
 
 **Open dependency, and which rule governs meanwhile.** *At what weight* the
-rivals render is not settled. museum framework §4.5 requires a bridge's alternatives at the
+rivals render is not settled. Museum framework §4.5 requires a bridge's alternatives at the
 same visual weight as the bridge; museum framework §12.3 constraint V-8 states that *"Equal
 visual weight is a claim, and is only made where the evidence is equal"*, and
 `CLAUDE.md`'s no-false-equivalence constraint says the same. `IC-X-001`
@@ -825,7 +854,7 @@ narrative. M-8.
 **Rule.** The transition from slot 4 to slot 5 is the pattern's highest-risk
 edge. It may be rendered as a connection **only** where a
 `culture→modern-identity` or `polity→modern-identity` bridge exists with
-museum framework §4.4's mechanism, alternatives and status, plus its §11.2 governance. **Where no
+Museum framework §4.4's mechanism, alternatives and status, plus its §11.2 governance. **Where no
 such bridge exists, the seam renders as a declared break** — an explicit
 statement that the record does not connect these, occupying the space the
 connection would have occupied.
@@ -840,7 +869,7 @@ visible as its presence would have been.
 Living World's most anticipated moment is a statement that we cannot join
 these two things.
 
-**Does not catch.** A bridge that exists and is weak. museum framework §4.5 handles that by
+**Does not catch.** A bridge that exists and is weak. Museum framework §4.5 handles that by
 requiring rivals at equal weight; it is a different failure.
 
 ### M-6 · Transitive closure is off across domains, at the data layer
@@ -918,7 +947,7 @@ is the truer one**, and the fact that the default order is the less true one is
 a defect in the pattern that this mechanism manages rather than removes.
 
 Refusing `fixed` is therefore not a convenience. If the order were `fixed`,
-experience-object-model §11.4 would require a statused claim in
+Experience-object-model §11.4 would require a statused claim in
 `through_line_claims[]` carrying the sequence — and that claim would be
 *"these five things are stages of one process"*, which is precisely the
 continuity claim the world declines to make. The same argument, one degree
@@ -970,7 +999,7 @@ is not cosmetic:
 
 | Cause | What the slot shows |
 |---|---|
-| **Withdrawn for consent** (experience-object-model §8.7) | a consent record, per §11.4. Not an absence type. |
+| **Withdrawn for consent** (experience-object-model §8.7) | a consent record, per museum framework §11.4. Not an absence type. |
 | **Withdrawn for a rights or custody change** | the rights record, per museum framework §11.8. |
 | **Superseded** | the supersession, pointing at what replaced it, per museum framework §3.6 — and, if nothing replaced it, the slot is unfilled and §3.4 invariant 2 applies. |
 | **The evidence itself turned out not to exist or not to be reachable** | an `mk:abs:` record with all seven museum framework §3.7 fields, typed. |
@@ -1019,8 +1048,8 @@ not:
 ## 6. What the repository can currently evidence
 
 Item 27 names six candidate materials and one scholar. This is the answer, as
-of 2026-09-08, against the probes at `SRC-089` to `SRC-098`. Each row of the
-candidate row of the table has a register row in
+of 2026-09-08, against the probes at `SRC-089` to `SRC-098`. Each candidate row of the
+table has a register row in
 `03-REGISTERS/water-living-world-readiness.csv` with its locator and retrieval
 date — `WLW-002` Dholavira, `WLW-011` engineering, `WLW-003` palaeoclimate,
 `WLW-004` South Indian infrastructure, `WLW-005` Tamil sources, `WLW-006`
@@ -1037,7 +1066,7 @@ record.
 | **Palaeoclimate** | 4 | **Partly — the only candidate that is.** Passage-level text with DOIs, from three articles. | Full-text chunks with DOI, journal, volume, pages; not the articles, not the figures, not the supplementary data. | `SRC-090`, `SRC-089` |
 | **Engineering** (as a distinct strand) | 2, 4 | **No, and it is the strand most at risk.** What is reachable is modelling of ancient hydraulics by modern engineers — CFD reconstructions, hydraulic-gradient recomputation, Bernoulli-and-Pascal readings of Indus drains. | Abstracts. | `SRC-089` |
 | **South Indian water infrastructure** | 2, 5 | **Barely.** One substantial reachable source (Mosse 1997, 389 citations) at abstract level, plus Coelho 2022 at passage level on *eris* in their urban phase. Nothing on tank construction, maintenance obligation or the epigraphy of donation. | Abstract; and passages on the modern phase only. | `SRC-089`, `SRC-090` |
-| **Tamil sources** | 3 | **No.** No Tamil corpus lane exists in this repository and none was opened by these probes. | English-language articles *about* Sangam water vocabulary, in journals of unestablished standing. An article about a text is not the text. | `SRC-089`, `SRC-098` |
+| **Tamil sources** | 3 | **No.** No Tamil corpus lane exists in this repository and none was opened by these probes. | Eight low-citation English-language articles *about* Sangam water vocabulary, named at `SRC-089`. An article about a text is not the text. | `SRC-089`, `SRC-098` |
 | **Chennai hydrology** | 5 | **Partly.** Passage-level text on the *eri* cascades, the 1876 colonial network, the 1980s Eri Schemes, the 2019 failure. | Full-text chunks with DOIs from three articles. | `SRC-090` |
 | **Bhavani Raman's Chennai water work** *(named by name in item 27)* | 5, 3 | **No.** The host is refused at the gateway. | A search-result listing giving a title, venue and year, which `CLAUDE.md` forbids treating as a source. | `SRC-096`, `SRC-097`, `HOLD-007` |
 
@@ -1081,32 +1110,36 @@ not commit any retrieval."* That is still true, and this unit adds one thing
 to it: **a WATER world could be specified today and could not be filled
 today.**
 
-**No slot of the seven can be filled at the standard the constitution sets.**
-Slot 6 is the only one with content requiring no external retrieval — the
-record of our own reach — and even slot 6 cannot type its Indus absences,
-because those need the excavation-coverage figures `APA-W-001` records as
-unmeasured. `WLW-009`.
+**Slots 1 to 6 cannot be filled at the standard the constitution sets. Slot 7
+can**, in the one form the evidence supports (§4.7). Slot 6 is the only one of
+the first six with content requiring no external retrieval — the record of our
+own reach — and even slot 6 cannot type its Indus absences, because those need
+the excavation-coverage figures `APA-W-001` records as unmeasured. `WLW-009`.
 
-An earlier draft of this section, of §4.6 and of `WLW-009` said instead that
-six slots were unfillable and the seventh was fillable, which was the one
-positive buildability claim in the unit and was contradicted twice in the same
-commit. `BF-025`. The unit also carried three different counts of the same
-quantity — five, six and five, in `HOLD-007`, here and §11 — against inherited
-standing rule 14, that counts are data-derived and never a running tally.
-Reconciled to one: **seven of seven, with a qualified half of slot 6.**
+This count was wrong twice and both are worth showing. The first draft said
+six unfillable and slot 6 fillable — the one positive buildability claim in
+the unit, contradicted twice in the same commit (`BF-025`). The first repair
+over-corrected to *no* slot fillable, which §4.7 and this section's own build
+sequence contradicted, and which over-shot **toward this document's preferred
+reading** that the archive gap is the finding. The second correction is
+re-derived rather than re-worded, and a slot-1 register row (`WLW-013`) was
+added because the earlier locator claimed a derivation over rows covering only
+slots 2 to 5. Standing rule 14 — counts are data-derived, never a running
+tally — applies to a repair's count as much as to a draft's.
 
 That is not an argument against WATER. It is an argument that the build
 sequence starts with the archive half of slot 6 and with slot 7, and that
 typing the Indus absences is itself a retrieval task rather than a writing
 task.
 
-**And a two-slot world is not yet publishable, which the sequence has to
-respect rather than route around.** §3.4 invariant 7: experience-object-model
-§11.2 requires `traverses[]` non-empty with a minimum of two, and §11.3 rule 2
-requires at least four postures crossed including Extraction / Collection or
-Reconnection. Two filled slots yield at most two postures. So the recommended
-first increment is an honest internal object that **fails experience-object-model §11.3 and should**;
-it becomes a Living World when slots 2 and 3 arrive, and not before.
+**And this increment is not yet a publishable Living World, which the sequence
+has to respect rather than route around.** §3.4 invariant 7: slots 6 and 7
+filled give **one** Exhibit, because slot 7 holds a Challenge or a Question and
+`traverses` runs `jny → exh`. That fails experience-object-model §11.2's
+minimum of two Exhibits before the four-posture rule at §11.3 is even reached.
+So the recommended first increment is an honest internal object that **fails
+the Living World test and should**; it becomes one when slots 2 and 3 arrive,
+and not before.
 
 ---
 
@@ -1126,11 +1159,17 @@ cited or nationally useful?*
    candidate is Dholavira and slot 5's is Chennai, which places a Bronze Age
    northwestern site at the origin of a thread whose modern end is Tamil. That
    ordering is the standard Indian-history sequence and it is doing exactly
-   the work item 27 warns about. **Correction:** M-8 requires that where any
-   starting point is offered, one of them is slot 5 or slot 6, so the world
-   can be walked from the present outward; and §4.2 names South Indian tank
-   systems as a slot 2 candidate in their own right, not as a later stage of
-   an Indus story.
+   the work item 27 warns about. **Correction, and it is now only half a correction.** §4.2 names South
+   Indian tank systems as a slot 2 candidate in their own right, not as a
+   later stage of an Indus story, and that half stands. The other half was
+   that M-8 lets the world be walked from the present outward — and after
+   M-8's own repair that is a conditional whose antecedent WATER cannot
+   satisfy: slot 5 is held by `D-054` and slot 6 is unfilled, so neither can
+   be an entry point under experience-object-model §11.2. **The prestige-bias
+   finding that the default sequence puts the Indus first is therefore still
+   live**, and recording it as corrected would be worse than not correcting
+   it. It is carried as an open item against `RA-019`, which already names
+   `the-water-city`.
 2. **The reachable literature is prestigious in a way that flatters one
    reading.** Quaternary-science journals are high-prestige and quantitative;
    the material that would constrain them is in ASI reports and Tamil
@@ -1174,7 +1213,8 @@ corrective?*
 **An earlier version of this section claimed no `BIAS-FAILURE-LOG.csv` row was
 owed**, on the ground that the findings were corrected before commit so there
 was no `failed_output` and no `affected_claim`. That argument is wrong, and
-this repository had already rejected it three times two commits earlier.
+this repository had already rejected it three times, nine commits back and on
+another branch (`9932f89`, merged at `7f8dfca`).
 `BF-021` is exactly that case and is logged, with the reason stated in the
 row: *"this failure was corrected before the first commit … It is logged
 because `CLAUDE.md` and constitution §8 require the result of the test whether
@@ -1182,7 +1222,10 @@ or not it found anything."* `BF-022` and `BF-023` carry `affected_claims:
 None` for the same reason, and museum framework §3.11 says the result is
 logged either way. Reasoning a specification out of the log, in a repository
 whose three most recent log entries were generated by a specification, would
-have made the log decorative for exactly this class of unit.
+have made the log decorative for exactly this class of unit. *(An earlier
+version of this paragraph said "two commits earlier"; the figure is nine, and
+a count taken on trust inside the section arguing that counts must not be is
+its own small instance of the thing.)*
 
 **Two rows logged.**
 
@@ -1192,7 +1235,12 @@ have made the log decorative for exactly this class of unit.
   `SRC-089` recorded no such judgement: a citation count was converted into a
   peer-review judgement and applied to the one body of scholarship whose
   exclusion `APA-W-001` is about. §7.1 was run on this document and did not
-  catch it. The ten items are now named and the judgement is removed.
+  catch it. The ten items are now named and the judgement is removed — from all three
+  places, which took two passes: the first repair logged the control and
+  changed one of the three, and the re-review found the judgement still
+  standing here while this section asserted it was gone. A control that is
+  logged and not applied is worse than one that is not logged, because the
+  log then certifies the artefact.
 - **`BF-025`** — method failure. The slot 6 buildability claim, described at
   §6.2.
 
@@ -1220,7 +1268,7 @@ propositions in §3 and §5, not to any historical claim.
 | F-1 | The seven slots cannot be filled for any second thread without adding or removing a slot | The pattern fails item 38's gate and is not a pattern. §9 is where this is most likely to be discovered. |
 | F-2 | A visitor who walks the world with M-1 through M-10 in place still reports a continuous-tradition reading at the same rate as one who walks it without them | The mechanisms are decorative and the problem is not solvable in the interface layer. §5.1 item 1 already concedes this partially; a test would settle it. |
 | F-3 | The four evidence classes in slots 1–4 turn out not to be independently datable for any candidate place — each depends on the others for its chronology | The through-line at §2.2 is false as stated, and WATER is one argument in four presentations rather than four records about one problem. |
-| F-4 | Slot 6 renders as an appendix in practice despite M-2, because visitors do not reach it | M-2 is insufficient and slot 6 needs to be an entry point by default rather than optionally. |
+| F-4 | Slot 6 renders as an appendix in practice despite M-2, because visitors do not reach it | M-2 is insufficient and slot 6 needs to be an entry point by default. That is currently inexpressible — experience-object-model §11.2 types `entry_points[]` as `mk:exh:` and slot 6 is usually unfilled — so this falsifier firing is also a change request against the object model (§9.4). |
 | F-5 | The render-budget computation of M-9 turns out to drive editorial decisions rather than merely surface them | M-9 violates museum framework §3.10's deliberate refusal to let a metric settle allocation, and must be reduced to a review report. |
 | F-6 | An allowlist change or a new corpus lane makes slots 2 and 3 richly fillable | §6.1's first finding is void, the evidence profile changes, and this document's build-sequence recommendation at §6.2 is wrong. **This is the falsifier most likely to fire**, and it fires on an administrative action, not a discovery. |
 
@@ -1248,38 +1296,49 @@ This document does not provide it and cannot: **one instance is not enough to
 tell which parts of a template are the template.** That is the honest answer
 and it is why D-053 matters.
 
-### 9.1a A LANGUAGE world has no slot 1 and no slot 4, and an absence is the wrong way to say so
+### 9.1a Whether any slot can be *inapplicable* rather than unevidenced — asked, and withdrawn as an answer
 
-Found in adversarial review, by expressing two hypothetical worlds in the
-seven slots. FOOD fits: slot 1 is subsistence and storage, slot 4 is
-archaeobotany and climate, slot 2 is residue and querns, slot 5 is the modern
-food system. **LANGUAGE breaks two slots outright.**
+Expressing two hypothetical worlds in the seven slots is the cheapest
+reusability test available, and FOOD passes it: slot 1 is subsistence and
+storage, slot 4 is archaeobotany and climate, slot 2 is residue and querns,
+slot 5 is the modern food system.
 
-Slot 1 asks *"What did people have to solve?"* A language thread has no
-problem being solved. Slot 4 asks what changed in the environment. Neither
-slot is *unevidenced* in a LANGUAGE world; both are **inapplicable** — there
-is no evidence class that could fill them.
+**A draft of this section claimed LANGUAGE fails it** — that a language thread
+has no problem being solved and no environmental change, so slots 1 and 4 are
+not unevidenced but *inapplicable*, and that §3.3 therefore needed an
+`inapplicable` field to stop such a world mistyping a category mismatch as an
+absence of evidence. **That claim is withdrawn and the field with it**
+(`BF-026`). It does not survive testing, and the way it failed is worth
+keeping:
 
-Under §3.4 as first drafted, invariant 1 said all seven slots exist in every
-world and invariant 2 said a slot with nothing filled and nothing typed is a
-validation failure. A LANGUAGE world was therefore forced to mint a typed
-`mk:abs:` record for a slot with nothing to be absent — **mistyping a category
-mismatch as an absence of evidence**, which is the error `SRC-088` was written
-to avoid and which museum framework §3.7's eight types have no entry for.
+- **Slot 1 asks what people had to solve, not what hardship the climate dealt
+  them.** Recording speech, administering a multilingual polity, transmitting
+  a liturgy across generations without writing, mutual intelligibility across
+  a trade network — each is an ancient problem, each has material, epigraphic
+  and textual evidence, and each is squarely inside §3.2's question. The
+  "environment + settlement" domain tag that suggested otherwise is this
+  document's own gloss, and §9.1b finds that tag vocabulary unsound.
+- **Slot 4 is the worse half, and it inverts the document's own purpose.**
+  Environmental and demographic change is the *standard* mechanism in
+  language-spread argument — this repository's `IH-138` runs on it. A LANGUAGE
+  world with slot 4 declared inapplicable would never have to place its
+  environmental claim in the slot governed by M-4's date types and museum
+  framework §4.4's bridge rules. That removes the one position where the
+  environmental-determinism bridge must be statused, in the document whose
+  §4.4 requirement 3 exists to catch it.
 
-**What is needed, and what is now provided.** §3.3 gains an `inapplicable`
-field, boolean with a required reason, and §3.4 invariant 2 is satisfied by
-`inapplicable = true` as well as by an absence. That is a repair, not a
-solution: **whether a pattern two of whose seven slots do not apply to
-LANGUAGE is one pattern or two is exactly what building the second world
-decides**, and this document cannot answer it from one instance. §9.4 bullet 1
-and bullet 2 are near this and are not it — both assume the absences are
-evidence absences and the slots separable-but-collapsing, not inapplicable.
+**What survives is the question, not the answer.** Whether any slot can ever
+be genuinely inapplicable to a thread — as against unevidenced, or evidenced
+in a form we did not anticipate — is a real question about the pattern, and it
+is one a second world answers by being built. A design field added on one
+paragraph of introspection is not that answer, and a field that lets a slot
+declare itself out of scope is the disappearing slot §3.1 exists to prevent.
+Until then, invariant 2 stands with two dispositions and no third.
 
 ### 9.1b The slot-domain vocabulary is not the bridge-domain vocabulary
 
 §3.2's *"Domain of its content"* column uses *environment*, *settlement*,
-*place*, *text* and *the archive itself*. museum framework §4.4's seven domains are **language ·
+*place*, *text* and *the archive itself*. Museum framework §4.4's seven domains are **language ·
 ancestry · culture · artifact · religion · polity · modern identity**.
 
 The two vocabularies do not meet, and two rules in this document depend on
@@ -1288,11 +1347,17 @@ a `bridge_type` that cannot exist in museum framework §4.4's enum. M-6's transi
 rule is defined over domain boundaries and cannot be evaluated at all for
 slots 1, 4 and 6.
 
-The slippage is inherited: museum framework §10.2 constraint 2 has it too, in the sentence this
-document quotes. So it is logged as `IC-W-003` and referred rather than
-patched here — a specification is not entitled to extend the framework's
-domain enum on its own authority. **Until it is resolved, any slot 1, 4 or 6
-link is treated as unevaluable rather than as permitted**, which is the
+The slippage is inherited: museum framework §10.2 constraint 2 has it too, in
+the sentence this document quotes. So it is logged as `IC-W-003` and referred
+rather than patched here — a specification is not entitled to extend the
+framework's domain enum on its own authority.
+
+**Until it is resolved, any link whose endpoint is not in the seven-domain
+enum is treated as unevaluable rather than as permitted.** That is wider than
+an earlier draft said. It named slots 1, 4 and 6; by the same reasoning it
+also covers slot 2's `place` half, slot 3's `text` half, and slot 7, which
+§3.2 gives no domain at all. Only *artifact* in slot 2 and *modern identity*
+and *polity* in slot 5 sit cleanly inside the enum. Unevaluable is the
 conservative reading and the one M-6 exists for.
 
 ### 9.2 The seam rule is water-specific in its risk profile, and may be wrong elsewhere
@@ -1401,10 +1466,11 @@ It is a specification, not a build authorisation. Under
 `13-PRODUCT-ARCHITECTURE/authoritative-programme/execution-queue.csv` it sits
 before Q08 (the WATER record programme) and Q09 (the WATER storyboard), and it
 does not discharge either: Q08's stopping condition is *"Every chain link has
-record or explicit unknown"*, and §6 of this document shows that **no** slot
-of the seven currently has a record, and that the explicit-unknown half is
-itself blocked for the Indus absences by the missing excavation coverage
-(`WLW-009`, `APA-W-001`).
+record or explicit unknown"*, and §6 shows that **six of the seven**
+slots currently have neither, that slot 7's is a record about this repository
+rather than about the past, and that the explicit-unknown half is itself
+blocked for the Indus absences by the missing excavation coverage (`WLW-009`,
+`APA-W-001`).
 
 **Repository scope, restated.** Nothing here is site code. `CLAUDE.md`: *"The
 website lives in `melakeela/site`. Never write site code here."* Whether
