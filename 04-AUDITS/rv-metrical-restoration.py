@@ -187,17 +187,42 @@ LINE_INTERNAL = {("a", "b"), ("c", "d"), ("e", "f"), ("g", "h")}
 VOWELS = set("aiueo")
 
 
-def _ends_in_vowel(t):
+def _final_base(t):
+    """Last base character of a pada, and whether it carries the ring below."""
     d = unicodedata.normalize("NFD", t)
+    marks = []
     for ch in reversed(d):
         if unicodedata.category(ch)[0] == "M":
+            marks.append(ch)
             continue
-        return ch in VOWELS or ch in "rl"       # vocalic r and l are nuclei
-    return False
+        return ch, RING in marks
+    return "", False
+
+
+def _ends_in_vowel(t):
+    """A syllable nucleus in final position.
+
+    Third version of this test. The second accepted `ch in "rl"` with the
+    comment "vocalic r and l are nuclei" and never checked for the ring
+    below, so it also accepted CONSONANTAL final -r - ŕ̥ṣibhir, kavír,
+    savitar - at 424 junctions. Those are not sites where the mechanism
+    being bounded operates: -r before a vowel stays -r V- in Samhita
+    sandhi and no syllable is lost. The census printed below is the check
+    that would have shown it: consonantal r is the seventh commonest final
+    base character at these junctions and vocalic r does not occur at one
+    at all.
+    """
+    ch, ring = _final_base(t)
+    return ch in VOWELS or (ch in "rl" and ring)
 
 
 def _starts_with_vowel(t):
-    return unicodedata.normalize("NFD", t)[:1].lower() in VOWELS
+    d = unicodedata.normalize("NFD", t)
+    if not d:
+        return False
+    if d[0].lower() in VOWELS:
+        return True
+    return d[0].lower() in "rl" and len(d) > 1 and d[1] == RING
 
 
 by_stanza = collections.defaultdict(list)
@@ -223,6 +248,17 @@ print("    Aufrecht -> Lubotsky  %+.2f%%  both de-sandhied, segmentation differs
       % (100.0*(sl_c-sa_c)/sa_c))
 print("    Lubotsky -> van N.-H. %+.2f%%  same pada segmentation, metre only"
       % (100.0*(sv_c-sl_c)/sa_c))
+census = collections.Counter()
+for sid in common:
+    letters = sorted(by_stanza.get(sid, []))
+    for a_, b_ in zip(letters, letters[1:]):
+        if (a_, b_) in LINE_INTERNAL and vnh.get((sid, a_)):
+            ch, ring = _final_base(vnh[(sid, a_)])
+            census[ch + ("\u0325" if ring else "")] += 1
+print("    final base characters at those junctions, commonest first:")
+print("      " + "  ".join("%s=%d" % kv for kv in census.most_common(8)))
+print("      (BF-023's control. Consonantal r appears here and vocalic r does")
+print("      not; the second version of this test conflated them.)")
 print("    pada-pair junctions Aufrecht writes inside one line: %d, of which"
       % junctions)
 print("    vowel against vowel: %d (%.1f%% of junctions)"

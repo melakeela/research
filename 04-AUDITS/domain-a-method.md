@@ -68,15 +68,16 @@ Lubotsky's **word concordance**, with sandhi undone. RV 1.1.2c reads there
 `sá devā́n ā́ ihá vakṣati` where the Saṃhitā has `sá devā́m̐ éhá vakṣati`.
 
 The error produced a plausible-looking table — 79.8% canonical rising to
-97.0% — that would have been reported as "restoration repairs the
+97.0%, *as then computed, before the counter itself was corrected under
+`BF-023`* — that would have been reported as "restoration repairs the
 transmitted text" when what it actually showed was two different operations
 on a third text.
 
-It was caught by looking at the cases that ran the wrong way. 3,333 pādas
-came out **shorter** after "restoration". A result that clean should not
-have 8.4% of its cases pointing backwards, and inspecting eight of them
-showed the concordance splitting sandhi rather than the restoration undoing
-it. The measurement was rebuilt on Aufrecht at stanza level, where the
+It was caught by looking at the cases that ran the wrong way. 3,333 pādas —
+again, as then computed — came out **shorter** after "restoration". A result
+that clean should not have 8.4% of its cases pointing backwards, and
+inspecting eight of them showed the concordance splitting sandhi rather than
+the restoration undoing it. The measurement was rebuilt on Aufrecht at stanza level, where the
 segmentations align.
 
 Recorded because it is the general case: *the anomalous minority is where an
@@ -162,8 +163,13 @@ Two specific corrections were made:
 1. **The agreement of five European scholars was not allowed to count as
    five measurements.** `RCI-009` measures the pairwise agreement and finds
    Wüst and Oldenberg at Jaccard 0.836 — effectively one instrument
-   (`DEP-030`). The count of author-independent instruments in every claim is
-   three, not five.
+   (`DEP-030`). The count of instruments independent *in authorship* is
+   three, not five. That is a different count from the one §7 point 3 gives:
+   only **two** of the three survive stratification by book (`RCI-008`), and
+   only **one** of those two, Oldenberg, also precedes Arnold 1905
+   (`RCI-012`). Three, two and one are three different questions —
+   authorship, statistical survival, and priority in date — and no claim
+   should quote one number for another.
 2. **Arnold's own second work was not allowed to corroborate his first.**
    The `arnold` column of the layer is Arnold 1897 and `strata.json` is
    Arnold 1905 (`RCI-003`, `DEP-028`). Its enrichment of ×6.75 is the highest
@@ -222,12 +228,22 @@ finding G — that was the wrong control). Four withdrawn claims, all four
 running in the direction this section exists to guard against, sitting inside
 the guard.
 
-The mechanism is worth naming because it is not carelessness. Corrections
-were made where the review pointed — in the register rows — and the prose
-that had been *derived* from those rows was not swept. A withdrawn number
-does not stay in one file. `BF-026` logs it, and the sweep is now a step:
-after any figure is withdrawn, `grep` the whole tree for it before the commit
-that withdraws it.
+Two distinct failures are tangled here and they should be separated, because
+filing the second under the first is a mild instance of the thing this
+section guards against.
+
+The **bias** limb is that all four withdrawn claims ran in the direction this
+section exists to resist, and that a passage recording what the unit resisted
+was the last place they survived. That belongs here.
+
+The **process** limb is that corrections were made where the review pointed —
+in the register rows — and the prose *derived* from those rows was not swept.
+A withdrawn number does not stay in one file. That is not bias; it is an
+incomplete edit, and it belongs to `BF-026`, which owns it. The sweep is now
+a step and a tool: `04-AUDITS/figure-sweep.py` derives the list of live
+figures from what the scripts emit, rather than from what someone remembered
+to look for. A hand-written list failed twice, the second time missing two
+numbers in the paragraph below this one.
 
 `RCT-010` is where this lands, and it is PROVISIONAL, not VERIFIED, because
 the paper itself is on `HOLD-011`.
@@ -260,12 +276,21 @@ helped, and it is logged as `BF-024`. Both quotations are now in the
 
 The next correction under this heading is smaller and concerns Oldenberg.
 `RCI-011` looks like strong corroboration — rule-breaking hymns are marked
-late at odds ratio 15.4 by Oldenberg. That number is **definitionally
+late at odds ratio 19.8 by Oldenberg. That number is **definitionally
 inflated**: violating the arrangement rule is *how Oldenberg identified
 appendices*. It is in the output file and is explicitly barred from being
 cited as corroboration. The figure that carries the claim is Grassmann's odds
-ratio of 3.63, because Grassmann published twelve years before Oldenberg
+ratio of 3.58, because Grassmann published twelve years before Oldenberg
 formulated the rule.
+
+Those two numbers were 15.4 and 3.63 until the third repair pass. They are
+the group-label figures `RCI-011` abandoned when it moved to the label-free
+segmentation, and they sat five paragraphs below the passage that names the
+tree-wide sweep as a new step, because a hand-written list of withdrawn
+values cannot contain the values nobody thought of. That is why the sweep is
+now `04-AUDITS/figure-sweep.py`, which derives the list from what the scripts
+actually emit instead. Run against this file it flags both of them, and it
+flagged the two in §4 above.
 
 ## 8. Step 11 — current standing
 
@@ -411,6 +436,13 @@ python3 04-AUDITS/rv-metrical-restoration.py    <vedaweb>/rigveda <out>
 python3 04-AUDITS/rv-registers-and-panini.py    <ashtadhyayi>/sutraani/data.txt rv_tokens.tsv <out>
 ```
 
+Then, before committing anything derived from them:
+
+```
+python3 04-AUDITS/figure-sweep.py <out>
+python3 04-AUDITS/validate-registers.py
+```
+
 `<vedaweb>` is `VedaWebProject/vedaweb-data` at `d3eb8af`, `<ashtadhyayi>` is
 `ashtadhyayi-com/data` at `24109f7`. Outputs are in
 `04-AUDITS/domain-a-outputs/`. The Monte Carlo in `rv-arrangement.py` is
@@ -468,7 +500,8 @@ controls, checked:
 | A null reports the point estimate, its direction, and the power limitation | `BF-004` | **Breached** by `RCT-006`. Smallest stratum n = 89, now stated. |
 | Report the measurement that cuts against the working hypothesis in register-row format | `BF-011` | Held. `RCI-009` and the `RCT-004` medians are register rows, not prose. |
 | Where a control variable has a large effect, stratify by it before reporting the null | `BF-022`, written by this unit | **Breached by this unit in the same commit that wrote it**, at `RCI-008`. |
-| After any figure is withdrawn, grep the whole tree for it before the commit that withdraws it | `BF-026`, written by this unit | **Breached by the repair pass that wrote it.** Withdrawn figures stood in the ledger, the manifest, a HOLD file, a locator, and inside §7. |
+| After any figure is withdrawn, run `04-AUDITS/figure-sweep.py` before the commit that withdraws it | `BF-026`, written by this unit | **Breached twice by the repair passes that wrote it**, which is why it is now a tool rather than a hand list. |
+| For any new counting rule, print the census of what it is actually counting before a number leaves the script | `BF-023`, `BF-026` | **Breached** by all three versions of the R1b junction test. The census is now printed. |
 | A correction is not made until the diff shows it | `BF-026` | **Breached.** A correction to the `SRC-090` ledger note was reported to the owner and to the reviewer and had not been made. |
 
 A future domain-A unit runs this table before its registers are committed,
