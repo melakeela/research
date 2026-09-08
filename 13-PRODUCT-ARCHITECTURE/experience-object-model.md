@@ -612,3 +612,147 @@ data rules, and §10.4.6's prohibition on assigning a child a verdict on a live
 custody question. Where the block and one of those appear to differ, the stricter
 governs, and the difference is a defect in this document to be corrected rather
 than a permission.
+
+---
+
+## 6. Question — `mk:qst:`
+
+### 6.1 What it is
+
+**A Question is constitution Step 1 made addressable.** Step 1 requires every
+investigation to be bounded before it begins: *"Exact proposition, date range,
+geography, evidence needed, terms needing original-language work, the viable
+explanations, the null explanation."* Museum framework §6.6 makes that record a
+public entry route. This section makes it an object.
+
+The Question is the spine of the whole experience layer. A Mission has exactly
+one; a Challenge targets one or a claim under one; an Activity is normally
+reasoning toward one; a Journey is a set of exhibits that between them address
+several. It is placed first because everything else is defined against it.
+
+**A Question is not a claim.** It carries no status of its own in the seven-value
+vocabulary, because a question is not true or false — the same boundary museum
+framework §2.3 draws when it refuses a truth field on the Universal Evidence
+Object. What a Question carries is an `open_state`, which is a fact about the
+institution's work rather than about the world.
+
+### 6.2 Fields
+
+| Field | Type | Notes |
+|---|---|---|
+| `id` | identifier | `mk:qst:<key>`, §3.1 |
+| `revision` | integer | append-only, museum framework §3.6 |
+| `proposition` | string | the exact proposition under examination, stated so it could be false. One proposition. A question that resolves into three is three Questions. |
+| `plain_form` | string | the same question in the plainest language that does not change it. Required — it is what the children's mode and the plain-language summary (§11.9.6) use, and writing it is a test of whether the proposition is actually bounded. |
+| `date_range` | Date Assertion bounds | with the **date type** named (§2.7). "Before 300 BCE" is meaningless until it says composition, attestation or deposition. |
+| `geography` | array of Place Assertions | typed, with geometry and certainty; `zone-unknown` permitted and drawn |
+| `evidence_classes_required[]` | enum(9) | what it would take to answer this, from Step 1's "evidence needed" |
+| `terms_needing_original_language[]` | array of `mk:lex:` | Step 1. Each resolves to a word object with a Translation Block (§3.8). |
+| `viable_explanations[]` | array of `mk:clm:` | each independently reconstructed (Step 8), each with its own status |
+| `null_explanation` | `mk:clm:` | **required, non-null.** Step 1. The explanation that nothing needs explaining — coincidence, independent innovation, an artefact of the archive. |
+| `gated_out[]` | array of Gate Results | explanations that failed a Step 7 gate: `explanation` · `gate_failed` (chronological · geographical · mechanism · positive-evidence · diagnostic) · `finding` · `decided_by` · `date`. Rendered as Exclusion Notes (§3.10), never as sections. |
+| `bears_on[]` | array of `mk:rel:` (`bears-on`) | the evidence that bears on the question — **including evidence that bears against every explanation currently listed** |
+| `absences[]` | array of `mk:abs:` | what should exist if each explanation were true, typed (§3.7) |
+| `holds[]` | array of paths | into `05-HOLDS/`, where an answer is blocked on source access |
+| `open_state` | enum | `open` · `partly-answered` · `answered-provisionally` · `blocked` · `retired` |
+| `retired_reason` | string or null | **required when `open_state = retired`.** A question is retired when it was malformed, not when it was answered. |
+| `standing_summary` | derived | the Step 11 standing of each explanation, shown together, never averaged into one number |
+| `falsifiers[]` | array of Falsifier records | §3.9, inherited from the explanations plus any that belong to the question itself |
+| `entry_routes[]` | enum | which of object · place · word · text · question surfaces reach it (§6) |
+| `child_askable` | bool | whether this question can be put to a child at all — see §6.5 |
+| `exhibits[]` | array of `mk:exh:` | where it is displayed |
+| `challenges[]` | array of `mk:chl:` | the Challenges built on it |
+| `constraint_block` | Constraint Block | §5.2 |
+| `created`, `created_by`, `revised`, `revised_by` | metadata | |
+
+### 6.3 Grounding
+
+A Question is grounded by **at least one** of:
+
+1. a `bears-on` Grounding Link to evidence, a claim or a source;
+2. an Absence record typed under §3.7;
+3. a `05-HOLDS/` record naming what is blocked and what is needed.
+
+The disjunction is not a loosening. It is the museum framework's own position
+made mechanical: §6.6 states that *"a question with no viable explanation still
+publishes, with its absences typed and its holds named"*, and that *"open
+questions may outnumber answered ones and this is not a defect."* A question the
+institution has looked into and cannot yet answer is one of the most honest
+objects it can publish. What it may not publish is a question it has not looked
+into: **a Question with no evidence bearing on it, no typed absence and no hold
+is not an open question, it is a headline**, and it is refused at creation.
+
+### 6.4 Rules
+
+- **The null explanation is always listed and is never last by default**
+  (§6.6). Its position in the list is not the display layer's to choose.
+- **`unknown` is never listed as a rival.** `CLAUDE.md`: *"'Unknown' is
+  residual, never a positive rival explanation."* The absence of an explanation
+  is `absences[]` and `open_state`, not an entry in `viable_explanations[]`.
+- **Gated-out explanations are visible and are not sections.** A visitor sees
+  what was ruled out and by which gate, in the fixed small footprint of an
+  Exclusion Note. Removing them entirely would leave the shortlist looking like
+  the whole field, which is the failure §9.2 stage 2 names.
+- **Proportionality applies to explanations** (§3.10). Rival explanations are
+  allocated space by evidence, not by rhetorical symmetry, and the divergence
+  between evidential weight and allocated space is a review finding.
+- **Both adversarial tests run on the Question, not only on its claims**
+  (§3.11). The prestige-bias test asks whether an explanation is on the list
+  because it is canonical; the preferred-counter-narrative test asks whether one
+  is on the list because it is corrective. A Question whose explanation set was
+  never tested is a bounded question with an unbounded selection behind it.
+- **A Question may not be reworded to fit an answer.** Narrowing scope is
+  `scope-narrowed` in the revision record (§3.6) with a reason, and the earlier
+  wording remains resolvable. Silently narrowing a question until the evidence
+  fits is the cheapest way to manufacture a finding and it is the one this rule
+  exists to make visible.
+- **Decay.** When an explanation is superseded or rejected the Question does not
+  degrade; it revises, and the rejected explanation stays visible with its
+  rejection (§3.6). When every explanation including the null is rejected, the
+  Question's `open_state` returns to `open` and the fact that it was once
+  answered is part of its history. This is the `decay_behaviour = disclose` case
+  in §4.3.
+
+### 6.5 `child_askable`, and what it is not
+
+`child_askable` records whether the institution will put this question to a
+child. It is **not** a difficulty rating and **not** a reading-age flag —
+museum framework §10.4.1 is explicit that simplification means *"fewer objects,
+more scaffolding on the reasoning, and plainer language"*, never a different
+epistemic standard, and that a child can be told *"nobody knows and here is how
+we know that nobody knows."* An unanswerable question is a good children's
+question.
+
+`child_askable = false` has three legitimate grounds and no others:
+
+1. **The Constraint Block cannot be satisfied.** Answering it would require
+   sorting people, scoring a classification, or staging persecution (§5.2). The
+   question may still be published for adults; it is not put to a child as a task.
+2. **§10.4.6 applies.** It is a live custody, restitution or legal matter, where
+   the distinction is *"between telling a child a true thing and assigning a
+   child a verdict."* A child may read the custody record; the question "was this
+   looted" is not handed to them.
+3. **Consent or community authority does not extend to the children's surface**
+   (§11.4: consent is per-surface). This is a fact about permission, not about
+   the child.
+
+"Too complicated", "too political", "too upsetting" and "no simple answer" are
+not grounds. Where one of them is what is meant, the honest record is a
+`false` value with ground 1 or 2 named, or a `true` value and a harder piece of
+writing. **The field carries `child_askable_ground` and an empty ground with a
+`false` value is invalid** — the same rule §1.5 applies to an empty posture
+override.
+
+### 6.6 What the Question object gives the rest of the layer
+
+- The **Mission** takes exactly one, and takes its scope from it (§10).
+- The **Challenge** targets it or a claim under it (§9).
+- The **Activity** exercises claims that are among its explanations (§8).
+- The **Learning Objective** is frequently taught on the *shape* of a Question —
+  its gates, its null, its absences — rather than on any answer (§12).
+- The **children's investigation's** second stage, ASK, maps a child's own
+  written question onto real `mk:qst:` nodes (§10.4.3, stage 2). That mapping is
+  a Grounding Link with `visitor_visible = true`: the child is shown that their
+  question is a question the institution is also asking, which is the single most
+  useful thing this object can do for them, and it is a claim about their
+  question that must be checkable rather than flattering.
