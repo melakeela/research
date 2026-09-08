@@ -1,0 +1,11 @@
+measure	value
+stanzas_compared	10548
+stanzas_excluded_defective	4
+stanzas_divergent_but_kept	61
+syllables_samhita	384397
+syllables_padapatha	402883
+syllables_restored	396737
+pct_padapatha_over_samhita	4.81
+pct_restored_over_samhita	3.21
+stanzas_padapatha_equals_samhita	3039
+stanzas_padapatha_equals_restored	3584

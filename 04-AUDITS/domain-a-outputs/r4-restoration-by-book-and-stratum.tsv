@@ -1,0 +1,17 @@
+grouping	value	stanzas	syllables_transmitted	syllables_restored	pct_added_by_restoration
+book	1	2006	75814	78302	+3.28
+book	2	429	17946	18530	+3.25
+book	3	617	23984	24586	+2.51
+book	4	589	22555	23335	+3.46
+book	5	727	27289	28202	+3.35
+book	6	765	29043	30035	+3.42
+book	7	841	32984	34057	+3.25
+book	8	1716	50740	52554	+3.58
+book	9	1108	34080	35060	+2.88
+book	10	1754	70130	72252	+3.03
+stratum	A	2246	77459	80587	+4.04
+stratum	C	1703	70772	72819	+2.89
+stratum	N	2689	97095	99959	+2.95
+stratum	P	1357	52764	54156	+2.64
+stratum	S	2555	86411	89324	+3.37
+stratum		2	64	68	+6.25

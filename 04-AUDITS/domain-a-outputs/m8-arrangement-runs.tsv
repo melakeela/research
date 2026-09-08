@@ -1,0 +1,21 @@
+segmentation	book	groups	ascents	descents	ties	monte_carlo_p
+VedaWeb group labels	1	13	45	83	50	0.0000
+VedaWeb group labels	2	5	4	22	12	0.0000
+VedaWeb group labels	3	4	6	18	34	0.0000
+VedaWeb group labels	4	11	7	21	19	0.0000
+VedaWeb group labels	5	7	9	37	34	0.0000
+VedaWeb group labels	6	5	11	24	35	0.0000
+VedaWeb group labels	7	12	13	44	35	0.0000
+VedaWeb group labels	8	19	21	45	18	0.0000
+VedaWeb group labels	9	7	12	18	77	0.0000
+VedaWeb group labels	10	25	25	52	89	0.0000
+addressee runs	1	104	9	44	34	0.0000
+addressee runs	2	20	0	13	10	0.0000
+addressee runs	3	21	3	12	26	0.0000
+addressee runs	4	26	2	15	15	0.0000
+addressee runs	5	17	4	33	33	0.0000
+addressee runs	6	24	7	15	29	0.0000
+addressee runs	7	45	7	31	21	0.0000
+addressee runs	8	56	11	26	10	0.0005
+addressee runs	9	5	12	20	77	0.0000
+addressee runs	10	157	1	7	26	0.0091
