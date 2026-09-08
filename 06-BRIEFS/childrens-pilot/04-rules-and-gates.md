@@ -175,32 +175,64 @@ asymmetry audit (§11.2) record an archival power differential.
 
 A previous revision jumped from rule 5 to rule 7 without evaluating rule 6 at
 all — inside the section whose entire subject is a cascade that was asserted
-rather than run. Evaluated now: `04-AUDITS/ARCHIVE-AND-POWER-AUDIT.csv` holds
-six rows, all `APA-E-` (domain E), **none bearing on the púr- corpus**. The
-second conjunct is unsatisfied. **Rule 6 fails**, whatever is true of the first.
+rather than run. Evaluated now, with the check recorded so the next reader need not open the
+file: `04-AUDITS/ARCHIVE-AND-POWER-AUDIT.csv` holds **six rows, every one
+prefixed `APA-E-`** — domain E, the Dravidian/substrate work — and **none bears
+on the púr- corpus**. The §11.2 conjunct is unsatisfied. **Rule 6 fails**,
+whatever is true of the first conjunct.
 
 ### 3.5 The derived posture is Reading Room, where Field Mode is forbidden
 
 That is the honest output of the cascade, and it is worse than the previous two
 revisions said.
 
-**It does not forbid the investigation.** §1.5 makes the assigned posture
-editorial and provides for an override with a logged reason; §1.3's constraints
-on posture are evidentiary — it may not set a claim's status, substitute for
-negative-evidence typing, or be inferred from tone — and none of them bars an
-override that unlocks a mode. So the position is:
+**It does not forbid the investigation, but the override is narrower than an
+earlier version of this section said.** That version cited §1.3's three bullets
+— status, §6 typing, tone — and concluded "none of them bars an override that
+unlocks a mode." It quoted the bullets and skipped the sentence above them:
 
-> **The derivation gives Reading Room. Building this investigation requires an
-> editorial assignment away from it, with a written `override_reason`, by
-> whoever holds the Editorial Register.** An override with an empty reason is
-> invalid (§1.5).
+> *"**Posture is a display and navigation axis. It has no evidentiary
+> authority.**"*
 
-What that costs is honesty about what is being done: not "the derivation
-supports a children's mode here", but "the derivation does not, and we are
-overriding it for these stated reasons." The candidate reasons are on the
-record — the material's absences are unusually legible, `PUR4J-006` is
-checkable by an eight-year-old, and the rights position is cleaner than either
-of D-006's options — and none of them is a derivation.
+The bullets stop posture acting *on* evidence. That sentence stops posture being
+a **permissions instrument**, which is exactly what an override taken to unlock
+Field Mode is. So the position is:
+
+> **The derivation gives Reading Room. Building this requires an editorial
+> assignment away from it, with a written `override_reason`, by whoever holds
+> the Editorial Register** — and the reason must be about the *posture*, not
+> about the product or the schedule.
+
+**The test G-01 puts to them:** *would this posture be assigned if Field Mode
+were available in every posture?* If not, the reason is the outcome written into
+the reason field. §1.5 requires a non-empty reason and **has no test for whether
+a reason is a reason**. Raised as **D-047**; this unit is the first thing in the
+repository to hit the gap.
+
+**One surviving candidate reason, of three.** An earlier version listed three and
+two were the ballot relocated:
+
+- **KEPT — "the absences are few in number but dominant in weight."** About the
+  posture. It argues rule 3's counting unit is wrong for this exhibit, and it is
+  self-limiting: it argues for Nocturnal Veḷi specifically, not for "away from
+  Reading Room" generally.
+- **STRUCK — "`PUR4J-006` is checkable unaided by an eight-year-old."** A reason
+  this *investigation* makes a good pilot. Belongs in **D-046**.
+- **STRUCK — "the rights position is cleaner than D-006's options."** Not about
+  posture, and **it contradicts gate G-09 in this same file**, which holds that
+  the twentieth-century translations need an answered rights position "not an
+  assumption in either direction" and that this unit takes none.
+
+**The stronger argument, and its cost.** §10.4.6 states the Field Mode
+prohibition substantively — *"the distinction is between telling a child a true
+thing and assigning a child a verdict"* — and §1.7's forbidden cells read as a
+proxy for it. This investigation assigns no verdict on a live custody or ethical
+matter: S-10 offers "we don't know" first, marks nothing correct, and answers
+*yes* and *no* identically. So the purpose the Reading Room cell serves is not
+engaged. **But if the cells are proxies that can be argued past, every forbidden
+cell is negotiable** — a conclusion about the whole mode matrix, reached from a
+children's pilot, which no single unit should be able to reach. Folded into
+`IC-P-004`, now rescoped to HIGH, rather than asserted here.
 
 ### 3.6 A contradiction in the governing document, found while relying on it
 
@@ -462,30 +494,67 @@ failures introduced by repair:**
    child could place wrong against the evidence. The cost is stated on the
    screen spec, not absorbed.
 
+**What the third pass found — all three predicted by `BF-021`'s own control,
+applied to copy added on the second pass:**
+
+1. **S-06's counter-argument card, prestige-bias.** It read *"'Seven forts'
+   **always** turns up in the same story"* — `PUR4J-010`, n = 4, and the card
+   never gave n. One screen later `PUR4J-014` at n = 1-and-1 gets an explicit
+   child-facing caution. Two small-n `PROVISIONAL` readings on adjacent screens,
+   and the one supporting the traditional reading got "always" while the one
+   supporting nothing in particular got the caution. Repaired with n = 4 and with
+   `BF-014`'s error history, in both directions.
+2. **S-10's exclusion card, preferred-counter-narrative — the sharpest find of
+   three passes.** It was the **only historiographical claim on any screen**, and
+   it carried no `claim_id`, no source, no locator, no date, no name and no
+   status. Set beside what the same unit does to *fort* — §7's ten fields, the
+   German gloss, a translator menu with counts, an independence warning — and
+   noting that *race* is on the same §7 list of categories to audit before use,
+   the asymmetry is total. It is also politically corrective, flattering to the
+   institution, and costless to assert: §8.2's three properties. The claim is
+   true, and that is not the point — a true thing said without its evidence is
+   what this investigation exists to teach against. Repaired by turning S-10's
+   own move on the museum: the card now states the rule, then states that we have
+   not written down who or when, that this is our gap and not the poem's, and
+   that the rule stands while the gap does.
+3. **S-12's correction cards, selection failure.** Three cards, all congenial:
+   one widened the museum's own margin (`IC-P-001` records the direction), one
+   "changed no headline finding" and said so, two were demotions that read as
+   rigour. The uncongenial correction — `BF-014` / `PUR4J-007`, where three of
+   five parts were wrong and all three errors ran toward the preferred conclusion
+   — was the one omitted. Added as a fourth card, marked as the one not to cut.
+
 **What to attack next.**
 
-1. **`BF-021`'s control has not been applied to the rest of the unit.** It says:
-   when copy is added to correct a bias, re-run the test for the opposite bias
-   against that addition. This pass applied it to S-07. S-06's counter-argument
-   card, S-10's exclusion card and S-12's "we got this wrong" cards were all
-   added or rewritten for the same kind of reason and have not been re-tested.
-2. **`BIAS-FAILURE-LOG.csv` has had no column-by-column pass against this unit.**
-   `RA-018`'s `future_control` was checked and is now satisfied at S-09 and
-   `HOLD-007`. `BF-014`'s is the next one to read, given `BF-021`.
-3. **S-09 should probably not exist.** It rests on a `HYPOTHESIS`, its second
-   instrument returns a null, the two are entangled, and G-12 now names three
-   derivations it lacks — including two aggregation rules nobody has written.
-   The case for keeping it is that it is the only screen where a child meets a
-   real result and the reason not to trust it. That case may be wrong.
-4. **S-10's empty box may be too abstract for eight.** G-08 answers it; a failure
-   there is a redesign, not a relaxation.
-5. **Every original-language string is provisional.** G-05 and G-12 both await a
-   clone. The exit criterion's first sentence still rests on the register's
-   paraphrase of RV 4.30.20, and the S-07 god-and-river line is deferred until
-   Griffith and Geldner at RV 7.15.14 and 7.95.1 are pulled.
-6. **This unit read the registers; it did not re-run them.** `RA-001` is open
-   against `PUR-003`–`PUR-005`, and the claim basis says so on those rows.
-7. **Not re-checked by either pass:** `03-evidence-cards.md` beyond EC-05 and
-   EC-08; `DECISIONS-NEEDED.md`'s D-046 prose; the arguments inside `IC-P-004`,
-   `IC-P-005`, `RA-020` and `RA-021` (identifiers verified, reasoning not);
-   §0.1's revised mapping table in full.
+1. **`BF-021`'s control now has a stopping rule and it has not been stress-tested.**
+   The control stops when an addition is a **quotation with a locator rather than
+   a characterisation**, because a quotation has no direction to drift in. That
+   rule would have caught all four failures it has found so far. Whether it holds
+   is unknown; it was written by the unit it constrains.
+2. **S-01 and S-02 have never been touched by a repair**, across three passes,
+   and they are the two screens the whole investigation's chronology and
+   translation discipline rest on. That is either evidence they are sound or
+   evidence nobody has looked. On the base rate established here, assume the
+   second.
+3. **The override argument reaches beyond this unit.** If §1.7's forbidden cells
+   are proxies for §10.4.6's substantive rule, every forbidden cell is
+   negotiable. `IC-P-004` (rescoped HIGH) and **`D-047`** carry it. Neither is
+   this unit's to answer, and it may not be built until both are.
+4. **S-09 should probably not exist.** A `HYPOTHESIS`, a null second instrument,
+   entanglement between the two, and three derivations G-12 says it lacks.
+5. **S-10's empty box may be too abstract for eight.** G-08 answers it.
+6. **Every original-language string is provisional.** G-05 and G-12 await a clone.
+7. **This unit read the registers; it did not re-run them.** `RA-001` is open
+   against `PUR-003`–`PUR-005`.
+8. **Not re-checked by any pass:** `03-evidence-cards.md` beyond EC-05 and EC-08;
+   the arguments inside `IC-P-005`, `RA-020` and `RA-021`; §0.1's revised mapping
+   table in full.
+
+**The pattern across three passes, which is worth more than any single finding.**
+Every unforced correction this unit made moved in one of two directions: toward
+keeping the investigation buildable, or toward the deflationary reading of the
+corpus. Twice on the posture, once on rule 4, once on the metal forts, once on
+the seven-fort card, once in the selection of which mistakes to show a child.
+None was caught by this unit's own §6 and §7 tests, which ran once, before most
+of that copy existed. That is what `BF-021`'s control is for, and it is the
+reason §8's tests are now per-addition rather than per-unit.

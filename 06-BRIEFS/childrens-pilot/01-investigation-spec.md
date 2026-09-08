@@ -194,8 +194,26 @@ fail, run in the precedence order §1.5 requires. The full cascade is in
 > **This investigation cannot be built on its derivation. It requires an
 > editorial assignment away from Reading Room, with a written `override_reason`,
 > by whoever holds the Editorial Register.** Gate **G-01**. An override with an
-> empty reason is invalid (§1.5), and §1.3's constraints on posture are
-> evidentiary — none of them bars an override that unlocks a mode.
+> empty reason is invalid (§1.5).
+
+**And the override is a narrower instrument than an earlier version of this
+section claimed.** That version cited §1.3's three bullets — status, §6 typing,
+tone — and concluded that "none of them bars an override that unlocks a mode."
+It quoted the bullets and not the sentence they sit under:
+
+> *"**Posture is a display and navigation axis. It has no evidentiary
+> authority.**"*
+
+The bullets stop posture acting *on* evidence. That sentence stops posture being
+a **permissions instrument**. An override whose purpose is to change what may be
+*built* is using the axis for something §1.3 says it is not — so an override here
+is available, but it is not free, and the reason has to be about the posture.
+
+**The test G-01 puts to whoever assigns it:** *would this posture be assigned if
+Field Mode were available in every posture?* If not, the reason is the outcome
+written into the reason field. §1.5 requires a reason to be non-empty; **it has
+no test for whether a reason is a reason**, and this unit is the first thing in
+the repository to hit that gap. Raised as **D-047**.
 
 **Two earlier versions of this section were wrong, and both wrongly favoured
 building.** The first asserted Nocturnal Veḷi by rule 3 without counting, and
@@ -206,11 +224,43 @@ observing that two of them permit Field Mode. §1.5 is a precedence cascade.
 Recorded rather than deleted, because two corrections in a row moving toward
 "buildable" is the finding.
 
-**The candidate override reasons are on the record and none is a derivation:**
-the material's absences are unusually legible at this reading age, `PUR4J-006`
-is checkable by an eight-year-old unaided, and the rights position is cleaner
-than either of D-006's two options. Whether they are sufficient is not this
-unit's to say.
+**One candidate override reason, not three.** An earlier version listed three
+and two of them were the ballot relocated into the reason field:
+
+- **KEPT — "the absences are few in number but dominant in weight."** The only
+  one of the three that is *about the posture*. It argues that rule 3's counting
+  unit is wrong for this exhibit: 2 typed-absence rows of 47, but the
+  investigation's centre of gravity is what the record does not hold, which is
+  what Nocturnal Veḷi is made of. It is self-limiting — it argues for Nocturnal
+  Veḷi specifically, not for "away from Reading Room" generally — and it is the
+  only thing that belongs in `override_reason`.
+- **STRUCK — "`PUR4J-006` is checkable by an eight-year-old unaided."** True, and
+  not about posture. It is a reason this *investigation* makes a good pilot, and
+  its home is **D-046**, whose question is exactly that. In `override_reason` it
+  moves a product argument into a field about epistemic environment.
+- **STRUCK — "the rights position is cleaner than D-006's options."** Not about
+  posture, and **it contradicts this unit's own gate G-09**, which holds that
+  Geldner 1951, Renou and Elizarenkova are not obviously out of copyright, that
+  the product needs an answered rights position "not an assumption in either
+  direction", and that this unit takes none and has no legal advice. A cleaner
+  rights position cannot be claimed here and disclaimed there.
+
+**A stronger argument, which is not pedagogic and was not made until the third
+review pass.** §10.4.6 states the Field Mode prohibition *substantively*: a child
+may read a custody record, but *"a child may not be given 'work out whether this
+was looted' as an investigation task… The distinction is between telling a child
+a true thing and assigning a child a verdict."* §1.7's forbidden cells read as a
+proxy for that rule. If they are, the override argument is about the rule rather
+than the product: **this investigation assigns the child no verdict on a live
+custody or ethical matter.** S-10 offers "we don't know" first, marks nothing
+correct, and returns the same response to *yes* and to *no*. The purpose the
+Reading Room cell serves is not engaged.
+
+**That argument costs something and the cost is stated.** If §1.7's cells are
+proxies that can be argued past, **every forbidden cell is negotiable** — a
+conclusion this unit is not entitled to reach on its own and that reaches well
+beyond a children's pilot. It is folded into `IC-P-004` rather than asserted
+here.
 
 **The `Avoid`s.** Reading Room's is *"no visual fatigue or luxury minimalism"* —
 presentation, outside this repository. Nocturnal Veḷi's, as the likeliest
@@ -529,10 +579,17 @@ Whatever the child answers, the museum's own position appears, labelled:
 > forts somebody remembered. We are not sure. *(`PUR4J-I-01`, PROVISIONAL)*
 >
 > **And here is what stops us being sure.** The numbers do not get used just
-> anywhere. "Seven forts" always turns up in the same story, with the same
-> people, and twice in almost exactly the same words. If they were only a way of
-> talking, why would they sort themselves out like that? *(`PUR4J-010`,
-> PROVISIONAL — and the register demoted this row itself, on review)*
+> anywhere. There are **four** verses about seven forts, and all four turn up in
+> the same story with the same people — twice in almost exactly the same words.
+> Four is not many. But if the numbers were only a way of talking, would four
+> out of four land in one story? *(`PUR4J-010`, PROVISIONAL, n = 4)*
+>
+> **And we have been wrong about this before, both ways.** Once we made this
+> argument too strongly, and three parts of it turned out to be false — and all
+> three mistakes pushed toward the answer we already liked. Another time we said
+> this was a solid finding when it was really just our reading, and somebody
+> checking our work made us move it down. *(`BF-014`; `PUR4J-010` demoted on
+> review)*
 
 **Field Bag.** The river line, and the child's answer.
 
@@ -867,10 +924,21 @@ Then the one thing the poem might have named, and did not quite:
 And the exclusion, stated as a decision the museum made (§10.4.4):
 
 > There are words in these poems about who the fighting was against. We are not
-> showing you those here. Grown-ups have used them to sort people into races,
-> and we are not going to teach you to do that even to show you it is wrong.
-> When you are older you can read about it, with the dates and who said it.
-> *(§10.4.7)*
+> showing you those here.
+>
+> Here is our reason, and here is what is wrong with our reason.
+>
+> **Our reason:** grown-ups have used these words to sort people into races, and
+> we are not going to teach you to do that even to show you it is wrong.
+>
+> **What is wrong with it:** we have not written down *who* did that, or *when*,
+> or *where you could go and read it*. Everywhere else on this trail we showed
+> you the book and the page. Here we just said it. **That is a gap on our list,
+> and it is our gap, not the poem's.** *(§10.4.7, `INHERITED-UNVERIFIED`;
+> `RESEARCH-QUEUE.md` `WMP-9`; `D-037`)*
+>
+> The rule stands while the gap does. We are not going to start sorting people
+> in the meantime just because we have not finished writing down why we don't.
 
 **Asked to conclude.** The screen's one question, and the only place in the
 investigation where "we don't know" is offered as the **first** option rather
@@ -1011,10 +1079,16 @@ reading age:
 
 Then, the "we got this wrong" cards, which are the reason for this screen:
 
-> **WE GOT THIS WRONG.** We first read one verse as "hundreds of forts". We went
-> back and looked properly, and it says "a hundred", the same as another verse
-> we had already read that way. Three translators all agree. We were wrong and
-> we changed it. *(`PUR4J-002`, recorded correction)*
+> **WE GOT THIS WRONG — and watch which way.** We first read one verse as
+> "hundreds of forts". We looked again: it says "a hundred", like another verse
+> we had already read that way, and three translators agree. So we changed it
+> from eight to nine.
+>
+> Notice what that did. It made "a hundred beats ninety-nine" **more** true —
+> nine to six instead of eight to six. The correction went the way we already
+> wanted it to go. That does not make it wrong. It does mean somebody should
+> check it again, and nobody has. *(`PUR4J-002`; `IC-P-001`, which records the
+> direction; flagged for re-derivation at `RA-015`)*
 >
 > **WE GOT THIS WRONG.** We sorted all 103 verses into "a real fort in the
 > story" and "just a way of speaking", and we got 11 of them the wrong way
@@ -1025,6 +1099,25 @@ Then, the "we got this wrong" cards, which are the reason for this screen:
 > really just somebody's reading. Somebody checking our work spotted it and we
 > moved it down from FOUND to WE THINK. *(`PUR4J-010`, `PUR4J-014` — both
 > demoted on review)*
+
+**And the fourth card, which the first three were hiding.** The three above are
+comfortable: one widened the museum's own margin, one "changed no headline
+finding" and says so, and two are demotions, which read as rigour. Choosing only
+those is a selection failure even when every card is true, and the control that
+caught it is `BF-021`'s.
+
+> **WE GOT THIS WRONG, AND IT WAS THE BAD KIND.** Once we built an argument
+> about these numbers on five things we thought we knew. Three of the five were
+> wrong. And all three mistakes pushed the same way — toward the answer we
+> already liked.
+>
+> That is the sort of mistake that is hardest to catch, because it feels right
+> the whole time you are making it. It was caught by somebody else checking, not
+> by us. *(`BF-014`, `PUR4J-007`; and `PUR4J-I-01`'s strongest test did not
+> survive being re-derived)*
+
+This is the card a child learns most from and it was the one left out. Anyone
+cutting S-12 for length cuts one of the first three, not this one.
 
 And the answer to S-03's sixth question, which the child was told was the wrong
 question:

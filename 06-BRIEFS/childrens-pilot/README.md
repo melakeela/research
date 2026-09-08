@@ -115,10 +115,44 @@ cap: **`PUR4J-I-02`** has a specific, cheap, unattempted retrieval behind it
 — `PUR-003`, `PUR-004`, `PUR-005` — carry `RA-001` open against them, so
 "already `VERIFIED`" is the one thing they are not; their CSV rows now say so.
 
-## Adversarial review
+## Adversarial review — three passes
 
-This unit was adversarially reviewed on 2026-09-08 by an agent that did not
-produce it, and repaired. Four repairs changed a position rather than a
+Reviewed three times on 2026-09-08 by an agent that did not produce this unit,
+and repaired after each. **The second and third passes found that repairs from
+the pass before were themselves wrong**, which is the finding worth reading:
+
+> **Every unforced correction this unit made moved in one of two directions —
+> toward keeping the investigation buildable, or toward the deflationary reading
+> of the corpus.** Twice on the posture, once on rule 4, once on the metal forts,
+> once on the seven-fort card, once in the selection of which of its own mistakes
+> to show a child. None was caught by this unit's §6 and §7 adversarial tests,
+> which ran once, before most of that copy existed. `BF-021`'s control now makes
+> those tests per-addition rather than per-unit, with a stopping rule: **the
+> control stops when an addition is a quotation with a locator rather than a
+> characterisation, because a quotation has no direction to drift in.**
+
+Two things the third pass found that change what this unit is:
+
+1. **The posture derivation gives Reading Room, where Field Mode is forbidden.**
+   Run in §1.5's stated precedence order — it is a cascade, not a ballot — rules
+   1 to 6 all fail and rule 7's residual is Reading Room. **This investigation
+   cannot be built on its derivation at all**, only on an editorial override. And
+   the override is narrower than two earlier versions claimed: §1.3's governing
+   sentence, *"Posture is a display and navigation axis. It has no evidentiary
+   authority"*, bars posture being used as a permissions instrument. Of three
+   candidate override reasons this unit wrote, **two were the desired outcome
+   restated** and were struck; one contradicted the unit's own gate G-09.
+   Nothing in the framework would have caught either. Raised as **`D-047`**.
+2. **S-10's exclusion card was the only historiographical claim on any screen**,
+   and carried no `claim_id`, source, locator, date, name or status — on a word
+   (*race*) that constitution §7 lists for audit alongside *fort*, which the same
+   unit works to all ten §7 fields two screens earlier. The claim is true; that
+   is not the point, and this investigation's own thesis is why. The card now
+   states the rule, then states that the museum has not written down who or when,
+   that this is the museum's gap and not the poem's, and that the rule stands
+   while the gap does.
+
+Earlier passes: Four repairs changed a position rather than a
 sentence, and all four are recorded in place:
 
 1. **The posture derivation gives Reading Room, where Field Mode is
