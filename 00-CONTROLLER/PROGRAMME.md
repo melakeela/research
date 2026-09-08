@@ -8,15 +8,18 @@ a unit of work is finished. It adds no rule of its own: every gate
 below cites the document it comes from.
 
 The coordinating session — the one the owner starts — is the programme
-director. It does not do research. It routes work to the team, enforces
+director. It does not do research. It routes work to the roster, enforces
 the gates, and opens the PR. If the director finds itself writing a
 register row, it has stopped directing.
 
-## The team
+## The AI agent roster
 
-Eight agents in `.claude/agents/`. Each has one lane, one trap it
-guards against, and persistent memory. They are not personas. They are
-separations of concern that make the method mechanical.
+Eight Claude subagents in `.claude/agents/`. Each has one lane, one trap
+it guards against, and persistent memory. They are not personas and they
+are not people. They are separations of concern that make the method
+mechanical. `AI-AGENT-ROSTER.md` states the standing rule: an agent is a
+model, its output is model-generated, and no named scholar or historical
+intellectual in this repository is a collaborator.
 
 | Agent | Lane | Where the lane comes from | Produces |
 |---|---|---|---|
@@ -29,7 +32,7 @@ separations of concern that make the method mechanical.
 | museum-translator | Accepted claims → briefs, copy, children | Steps 9 and 14, at brief level (reconciliation C-9) | briefs, copy, visual requirements |
 | rights-steward | Rights, consent, custody, institutional claims | §12 specification subjects; §4.V custody; `CLAUDE.md` escalation categories | rights rows, consent records |
 
-Two rules about the team:
+Two rules about the roster:
 
 1. **The reviewer is never the author.** Whatever agent produced a
    register does not review it. The adversarial-reviewer reviews
@@ -165,7 +168,14 @@ decision's status; allocate the next free number from it, never from the
 highest number seen in a document. The inherited `HD-01`–`HD-20` series
 is a separate namespace with no CSV rows.
 
-Decisions currently blocking real work, each named by its actual row:
+The three rows whose `status` is `BLOCKED` — meaning they cannot be
+answered until something else lands — are **`D-008`, `D-009` and `D-011`**.
+`09-DECISIONS/OWNER-DECISIONS.csv` is authoritative for status; the list
+below is a different thing, and was previously presented as though it
+were the same one.
+
+Decisions that are `OPEN` and are holding up work in practice, each named
+by its actual row:
 
 1. **D-001** — which domains are added to the egress allowlist. Blocks
    every `VERIFIED` promotion that depends on an unreachable source;
@@ -188,7 +198,9 @@ carried:
 
 No identifier is quoted for them, because the identifiers the draft used
 do not exist and repeating them would put unresolvable references back
-into the tree. The highest allocated decision is `D-035`.
+into the tree. The highest allocated decision is `D-046`; take the next
+free number from `09-DECISIONS/OWNER-DECISIONS.csv` and never from a
+figure quoted in a document, this one included.
 
 - *Register naming — do the twelve mandated files accumulate under their
   names, or does each domain get its own?* The draft attributed this to
@@ -201,8 +213,15 @@ into the tree. The highest allocated decision is `D-035`.
   / publication / product / access?* Attributed to another row past the
   end of the register. The five-dimension proposal comes from
   `06-BACKLOG/EXPANSION-PROMPT-2026-09-07.md`, which is
-  `INHERITED-UNVERIFIED`; `CLAUDE.md` presently mandates one status
-  column with the C-1 disposition recorded alongside it.
+  `INHERITED-UNVERIFIED`. **Taken on 2026-09-07 and pending owner review
+  as `D-046`.** `CLAUDE.md` now mandates `evidence_status` as the single
+  evidence gate with `interpretive_status`, `editorial_status`,
+  `publication_status` and `gate_verdict` beside it; definitions are in
+  `00-CONTROLLER/STATUS-DIMENSIONS.md`. The C-1 disposition is unchanged
+  and is still recorded alongside a status, never in place of one. This
+  paragraph said the opposite until the row existed, which is the defect
+  `CR-014` describes: a rule corrected in one surface and left standing
+  in another.
 - *Live-site audit gate — does it precede the research packets?*
   Attributed to `D-035`, which is a different decision entirely (where
   the challenged Brahui leave-one-out measurement lives). The audit-first

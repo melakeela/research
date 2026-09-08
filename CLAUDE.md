@@ -35,16 +35,23 @@ and your own previous answer. Constitution §2.
 
 ## Evidence status vocabulary
 
-Every claim carries exactly one status. No claim is unstatused.
+Every claim carries exactly one `evidence_status`. No claim is unstatused.
 
-| Status | Meaning |
+The column was named `status` until 2026-09-07 and was carrying five
+different things at once. It is now `evidence_status`, it holds only the
+seven values below, and it is the **only** evidence gate: `interpretive_status`,
+`editorial_status`, `publication_status` and `gate_verdict` sit beside it and
+none of them promotes a claim. Full definitions and enumerations:
+`00-CONTROLLER/STATUS-DIMENSIONS.md`.
+
+| `evidence_status` | Meaning |
 |---|---|
 | `VERIFIED` | Re-checked against a named source with locator and retrieval date |
 | `PROVISIONAL` | Supported, but by a single source or by dependent sources |
 | `HYPOTHESIS` | Proposed, not yet tested |
 | `INHERITED-UNVERIFIED` | Carried in from prior chat threads |
 | `REJECTED` | Tested and failed |
-| `SUPERSEDED` | Replaced; must point to what replaced it |
+| `SUPERSEDED` | Replaced; `superseded_by` names the replacement, and the validator enforces it |
 | `HOLD` | Blocked on source access; record in `05-HOLDS/` |
 
 The constitution's §3 list — `CONFIRMED` `SUPPORTED` `PLAUSIBLE` `REQUIRES
@@ -155,14 +162,33 @@ columns constitution §9 specifies; earlier work they touch goes in
 Registers live in `03-REGISTERS/` as CSV, one claim per row:
 
 ```
-claim_id,claim,status,source_id,locator,retrieval_date,supports_page,notes
+claim_id,claim,evidence_status,source_id,locator,retrieval_date,supports_page,notes,
+interpretive_status,editorial_status,publication_status,status_reason,superseded_by
 ```
 
 - `source_id` must resolve to a row in the access ledger.
+  `03-REGISTERS/claim-sources.csv` is **authoritative** for which sources a
+  claim rests on: a many-to-many join carrying `evidence_role`, `locator` and
+  `independence_group`. The inline cell is a projection of it, and the
+  validator fails if the two disagree in either direction. Do not duplicate a
+  claim row to carry a second source.
+- **In new rows, one cell holds one identifier.** The tree still contains
+  cells holding several, semicolon-delimited or as a range — 1,195 of them,
+  reproduce with the command in
+  `04-AUDITS/MIGRATION-REPORT-2026-09-07.md`. They were **not** rewritten,
+  because editing that many research rows to satisfy a schema is the thing
+  this repository refuses to do; the join expands them instead, and the
+  validator and the generator share one splitter so they cannot disagree
+  about what a cell says. Recorded as `MIGRATION-HOLDS.csv` MH-009.
 - `locator` must be specific enough to re-find: page, line, section or
-  catalogue number. "See the article" is not a locator.
+  catalogue number. "See the article" is not a locator. The validator rejects
+  a closed list of such phrases and checks that an identifier used as a
+  locator resolves; it cannot judge whether a locator is *specific enough*,
+  so "the relevant chapter" passes it. That judgement is the reviewer's.
 - `supports_page` ties the claim to the atlas entry or exhibit it is meant
   to feed. Evidence that supports nothing is not collected.
+- `status_reason` carries any qualification. Prose never goes in a status
+  column.
 
 ## Standing constraints
 
@@ -249,18 +275,34 @@ and is not corrected in place.
 ## Layout
 
 ```
-00-CONTROLLER/   constitution, reconciliation, stopping rules
+00-CONTROLLER/   constitution, reconciliation, repository map, control-plane registers
 01-INHERITED/    prior-thread handoffs; RESEARCH-INHERITANCE.md
 02-SOURCES/      access ledger, dependency map, retrieval notes
-03-REGISTERS/    claim/question registers, hypothesis eligibility, bridges
-04-AUDITS/       bias-failure log, re-audit queue, power audit, contradictions
+03-REGISTERS/    claim registers, claim/source join, eligibility, bridges
+04-AUDITS/       bias-failure log, re-audit queue, power audit, contradictions,
+                 measurement scripts, the validator
 05-HOLDS/        claims blocked on unavailable sources
-06-BACKLOG/      backlog coverage (awaiting the v2 backlog document)
+06-BACKLOG/      the 89-item backlog and its coverage table
+06-BRIEFS/       research briefs
 09-DECISIONS/    owner decisions register, decision-ID map
+13-PRODUCT-ARCHITECTURE/  product specification (folder number is a defect, CR-008)
 ```
 
+`00-CONTROLLER/REPOSITORY-MAP.md` is authoritative for what each folder may
+hold, what it takes in, what it puts out and who writes it.
+`00-CONTROLLER/CANONICAL-FILES.csv` says the same per file and is read by the
+validator, which fails if any tracked file has no authority row.
+
 Directories are created when the work that fills them begins, not in
-advance. Placement of the twelve required files: reconciliation C-3.
+advance. Placement of the twelve required files: reconciliation C-3. Nine of
+the twelve now exist; `SOURCE-DEPENDENCY.json` is deliberately not one of
+them (D-013).
+
+The numbers do not identify functions: `06` names two folders, `07`, `08`,
+`10`, `11` and `12` name none, and `13` carries a numbering the
+reconciliation rejected. `00-CONTROLLER/PATH-MIGRATION.csv` holds the
+crosswalk to an unnumbered structure and the references each move would
+break. **Nothing has been moved.**
 
 ## Work product
 
@@ -268,3 +310,15 @@ Finish a unit of work, commit it, and open a pull request against `main`
 with a summary of what was verified, what was rejected, and what is on
 hold. The PR is the release gate. Codex reviews it independently before
 merge.
+
+`04-AUDITS/validate-registers.py` must pass before a push. It governs every
+file `00-CONTROLLER/CANONICAL-FILES.csv` marks `GATED` or `REPORTED`. There
+is no one-token override: a failure that is known and deliberately not being
+fixed needs a committed row in `00-CONTROLLER/OVERRIDE-LOG.csv` with a
+reason, an actor, a date, an expiry and the exact failures waived. The local
+pre-push hook is early feedback; the gate is
+`.github/workflows/validate-registers.yml` plus branch protection.
+
+A row that cannot be migrated to a new schema without changing what it says
+is left unchanged and recorded in `00-CONTROLLER/MIGRATION-HOLDS.csv`. Never
+rewrite a research finding to satisfy the validator.

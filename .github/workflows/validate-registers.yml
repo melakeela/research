@@ -1,0 +1,64 @@
+name: validate-registers
+
+# The enforceable half of the gate. The pre-push hook in .claude/ is local to
+# one tool in one client and cannot see a push made through the GitHub UI or
+# API, another Git client, or any other session. This can.
+#
+# Requiring this check before merge is branch protection, which is a repository
+# setting no session can make. Until the owner turns it on, this reports and
+# does not block. See 00-CONTROLLER/CONTRADICTION-REGISTER.csv CR-013.
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # check_control_plane compares CANONICAL-FILES.csv against git
+          # ls-files, so the checkout must be a real working tree.
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate registers
+        # --respect-overrides is the ONE way past a red gate, and it is the same
+        # call the pre-push hook makes, so CI and the hook cannot disagree about
+        # what is waived. Overridden failures are printed loudly and the
+        # OVERRIDE-LOG row that covers them is in the diff.
+        run: python3 04-AUDITS/validate-registers.py --respect-overrides
+
+      - name: Prove the validator still catches defects
+        run: python3 04-AUDITS/test-validate-registers.py
+
+      - name: Prove the push gate still refuses what it claims to refuse
+        run: python3 04-AUDITS/test-push-gate.py
+
+      - name: Prove the generated registers and report match their generators
+        run: |
+          python3 04-AUDITS/build-claim-sources.py   > /dev/null
+          python3 04-AUDITS/build-canonical-files.py > /dev/null
+          python3 04-AUDITS/build-path-migration.py  > /dev/null
+          python3 04-AUDITS/inherited-claims-extraction.py > /dev/null
+          # VALIDATION-REPORT.md names the commit it describes. Nothing
+          # regenerated it, so it sat one commit behind the branch head - in a
+          # document whose own header says it exists because hand-written
+          # findings go stale and are then read as current (CR-012).
+          python3 04-AUDITS/validate-registers.py --report 04-AUDITS/VALIDATION-REPORT.md || true
+          if ! git diff --quiet; then
+            echo "A generated register does not match its generator:"
+            git --no-pager diff --stat
+            echo
+            echo "Re-run the build scripts from the repository root and commit the result."
+            exit 1
+          fi

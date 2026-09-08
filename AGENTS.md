@@ -1,8 +1,20 @@
 # MelaKeela Research — Agent Instructions (Codex)
 
 This repository is an evidence base, not a codebase. There is no
-application to build, no test suite to pass. The artifacts are
-markdown, CSV registers, and source ledgers.
+application to build. The artifacts are markdown, CSV registers, and
+source ledgers.
+
+There *is* something mechanical to run, and it must pass:
+
+```
+python3 04-AUDITS/validate-registers.py
+python3 04-AUDITS/test-validate-registers.py
+```
+
+The first checks every file `00-CONTROLLER/CANONICAL-FILES.csv` marks
+`GATED` or `REPORTED`. The second injects fifteen defects into a
+throwaway clone and asserts the validator rejects each one, so that a
+green validator means something. Both run in CI on every pull request.
 
 The full operating rules are in `CLAUDE.md`. Read it first. This
 file exists because Codex does not read `CLAUDE.md`; the rules are
@@ -31,9 +43,34 @@ When reviewing a pull request, check:
 5. **Chronology and geography.** Do the dates and places hold.
 6. **Inherited material.** Nothing from `01-INHERITED/` may be cited
    as evidence. It is a claim inventory only.
+7. **Sources.** `03-REGISTERS/claim-sources.csv` is authoritative for
+   which sources a claim rests on; the inline `source_id` cell is a
+   projection the validator forces to agree with it. New rows should put
+   one identifier in one cell, but **1,195 existing cells hold several**
+   and were deliberately not rewritten (MH-009) — the join expands them.
+   Do not flag those as defects; they are recorded.
+
+   Do check `independence_group` before accepting "multiple sources":
+   two join rows in one group are one independent observation. **28
+   `VERIFIED` claims currently cite sources that collapse this way**, and
+   the data does not distinguish an assessed-and-cleared collapse from an
+   unassessed one. `RA-020` queues that reading; the validator lists the
+   28 on every run.
+8. **Status dimensions.** `evidence_status` is the only evidence gate.
+   A row that is `APPROVED` editorially and `PROVISIONAL` evidentially
+   is a `PROVISIONAL` claim. Flag any prose that reads otherwise.
+9. **Overrides.** If the pull request was pushed past a failing
+   validator, `00-CONTROLLER/OVERRIDE-LOG.csv` carries a row saying
+   why, by whom, and when it expires. No row, no override — and an
+   override is not an answer to a defect.
 
 ## What not to do
 
 Do not rewrite the research to fix it. Report findings as review
 comments and let Claude Code repair. Do not approve a pull request
 that contains a `VERIFIED` row you could not trace.
+
+Do not accept a register row that was reworded to make the validator
+pass. A row that cannot be migrated without changing its meaning
+belongs in `00-CONTROLLER/MIGRATION-HOLDS.csv` unchanged; if a
+migration commit altered what a claim asserts, that is the finding.

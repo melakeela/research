@@ -38,8 +38,16 @@ raised_date,owner_answer,answer_date,notes,detail_ref
   `METHODOLOGY-CONSTITUTION.md` section where there is one; otherwise the
   document or rule that raised it.
 - `status` — `OPEN`, `BLOCKED` (cannot be answered until something else
-  lands), or `RESOLVED`. A resolved row is kept, never deleted: the reasoning
-  it records is why the resolution holds.
+  lands), `TAKEN-PENDING-REVIEW` (a branch proceeded on an answer the owner
+  has not confirmed), `RESOLVED`, or `SUPERSEDED` (pointing at the row that
+  replaced it). A resolved row is kept, never deleted: the reasoning it
+  records is why the resolution holds.
+
+  This list said three values until 2026-09-07 while the register carried
+  four, `TAKEN-PENDING-REVIEW` among them on live rows. The register
+  governs, so the list was corrected rather than the rows. `SUPERSEDED` is
+  added for the duplicate-decision case below. The validator enforces this
+  vocabulary; a sixth value cannot be introduced by writing it into a cell.
 - `detail_ref` — the prose section, e.g. `DECISIONS-NEEDED.md D-014`. Empty
   means this row is the whole record.
 
@@ -78,8 +86,8 @@ the owner re-affirms one, it is allocated a fresh `D-` from this CSV then.
 
 The third block holds reassignments made **after** the 2026-09-07 merge, when
 a branch that allocated an identifier correctly against the register it
-branched from found that number taken by the time it merged. Ten rows so far,
-all dated 2026-09-07. Two come from `main`: `D-035` to `D-037`, for the branch
+branched from found that number taken by the time it merged. Eleven rows so
+far: ten dated 2026-09-07 and one 2026-09-08. Two come from `main`: `D-035` to `D-037`, for the branch
 that raised the `MELA-KEELA-WHO-MADE-THE-PAST.md` section-numbering
 discrepancy while `D-035` and `D-036` were being taken on `main`; and `D-037`
 to `D-036`, which is not a renumbering but a disambiguation — the
@@ -94,6 +102,14 @@ block chain: an identifier that moved twice keeps one row, whose `new_id` is
 where it landed, and a second row is added under the number it was holding
 when the collision happened, so that a reference written at either point
 resolves.
+
+An eleventh row was added on 2026-09-08, from
+`claude/control-plane-reconciliation-d7qs4a` (PR #27): `D-044` to `D-046`. That
+branch allocated `D-044` for the status-dimension schema question when `D-043`
+was the register's highest; `main` then merged PR #26 and PR #32, which took
+`D-044` for the passage unit of the §4J forts corpus and `D-045` for the name
+of the site-facing forts artefact. `main` keeps both, so the branch's row moved
+to the next free number above `main`'s highest.
 
 This block will keep growing while branches run concurrently. Allocating from
 the register at branch time is still correct; what the block records is that
@@ -111,3 +127,21 @@ Rows are never removed. A `D-` reference in any file written before
 block, two-digit against the second. A three-digit reference in a file or a
 pull request written on a branch that predates its merge is resolved against
 the third.
+
+`old_id` is deliberately **not** unique here: `D-004` appeared in two files
+and an identifier that moved twice keeps a row under each number it held.
+The row key is `old_id` + `old_file` + `new_id`, and the validator is told
+so; a duplicate-identifier failure on this file would be a false positive.
+
+## One decision, two identifiers
+
+`D-036` and `D-039` ask the same question — whether the mandated registers
+accumulate under their mandated names or are re-created per domain — and
+carry different statuses, `OPEN` and `TAKEN-PENDING-REVIEW`. Neither row is
+edited or deleted. The owner answers them together; whichever is chosen, the
+other becomes `SUPERSEDED` pointing at it. Recorded as
+`00-CONTROLLER/CONTRADICTION-REGISTER.csv` CR-010.
+
+Both rows are non-blocking, so neither gets a `DECISIONS-NEEDED.md` section,
+and **no third identifier is allocated for the duplication itself** — the
+answer to two identifiers for one decision is not a third one.

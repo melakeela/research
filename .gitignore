@@ -8,5 +8,7 @@
 .DS_Store
 Thumbs.db
 .env
+
+# Python bytecode. A compiled .pyc was tracked in 04-AUDITS/ before this rule.
 __pycache__/
 *.pyc

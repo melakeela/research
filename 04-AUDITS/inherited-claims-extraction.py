@@ -12,7 +12,12 @@ import csv
 #   D-001 ..        the repository namespace. No row below cites one.
 ROWS = []
 def add(cid, claim, loc, notes):
-    ROWS.append((cid, claim, "INHERITED-UNVERIFIED", "", loc, "", "", notes))
+    # Column order matches the header written at the foot of this file.
+    # The three dimension columns are UNASSIGNED by construction: an
+    # inherited claim has no interpretive, editorial or publication
+    # standing until something in this repository gives it one.
+    ROWS.append((cid, claim, "INHERITED-UNVERIFIED", "", loc, "", "", notes,
+                 "UNASSIGNED", "UNASSIGNED", "UNASSIGNED", "", ""))
 
 # ---------- SECTION 0 : what this is ----------
 add("IH-001","The handoff was compiled 6 September 2026 from five conversations in the project and twelve project files dated 30 Aug - 1 Sep 2026.","01-INHERITED/claude-project-handoff.md L1-L2","Self-description of the handoff's own provenance. Compilation date and file count both uncheckable from this repo alone.")
@@ -454,7 +459,10 @@ ROWS = [("IH-%03d" % (i+1),) + r[1:] for i, r in enumerate(ROWS)]
 import csv, io as _io
 with _io.open("03-REGISTERS/inherited-claims.csv","w",encoding="utf-8",newline="") as fh:
     w = csv.writer(fh, quoting=csv.QUOTE_ALL, lineterminator="\n")
-    w.writerow(["claim_id","claim","status","source_id","locator","retrieval_date","supports_page","notes"])
+    w.writerow(["claim_id","claim","evidence_status","source_id","locator",
+                "retrieval_date","supports_page","notes","interpretive_status",
+                "editorial_status","publication_status","status_reason",
+                "superseded_by"])
     for r in ROWS:
         assert "\n" not in "".join(r), r[0]
         w.writerow(r)
@@ -463,4 +471,6 @@ ids = [r[0] for r in ROWS]
 assert len(set(ids)) == len(ids), "duplicate claim_id"
 assert all(r[2]=="INHERITED-UNVERIFIED" for r in ROWS), "status drift"
 assert all(r[3]=="" and r[5]=="" and r[6]=="" for r in ROWS), "non-empty reserved field"
+assert all(r[8]==r[9]==r[10]=="UNASSIGNED" for r in ROWS), "dimension drift"
+assert all(r[11]=="" and r[12]=="" for r in ROWS), "inherited row carries a qualifier"
 print("all ids unique; all statuses INHERITED-UNVERIFIED; source_id/retrieval_date/supports_page empty")
