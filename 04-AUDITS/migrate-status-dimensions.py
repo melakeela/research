@@ -78,6 +78,16 @@ CLAIM_REGISTERS = [
     "03-REGISTERS/domain-m-brahui-position.csv",
     "03-REGISTERS/inherited-claims.csv",
     "03-REGISTERS/rigveda-pur-family.csv",
+    # Arrived on main after this migration first ran (PR #26, PR #28, PR #32)
+    # and merged into the control plane on 2026-09-08. Their status cells hold
+    # bare vocabulary terms and each register carries source_id, locator and
+    # retrieval_date, so the rename is mechanical and decomposes nothing.
+    "03-REGISTERS/rigveda-pur-4j-claims.csv",
+    "03-REGISTERS/rigveda-pur-4j-interpretations.csv",
+    "03-REGISTERS/rigveda-pur-counts.csv",
+    "03-REGISTERS/rigveda-pur-typology.csv",
+    "03-REGISTERS/rigveda-varna.csv",
+    "03-REGISTERS/dedr-digitisation-lineage.csv",
 ]
 
 ELIGIBILITY_REGISTERS = [
@@ -127,6 +137,8 @@ def decompose(cell):
 
 def migrate_claim_register(rel):
     path = ROOT / rel
+    if not path.is_file():
+        return False                      # absent in the tree being migrated
     fields, rows = csvdialect.read(path)
     if "evidence_status" in fields:
         return False                      # already migrated

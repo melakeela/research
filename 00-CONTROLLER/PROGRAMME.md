@@ -198,7 +198,7 @@ carried:
 
 No identifier is quoted for them, because the identifiers the draft used
 do not exist and repeating them would put unresolvable references back
-into the tree. The highest allocated decision is `D-044`; take the next
+into the tree. The highest allocated decision is `D-046`; take the next
 free number from `09-DECISIONS/OWNER-DECISIONS.csv` and never from a
 figure quoted in a document, this one included.
 
@@ -214,7 +214,7 @@ figure quoted in a document, this one included.
   end of the register. The five-dimension proposal comes from
   `06-BACKLOG/EXPANSION-PROMPT-2026-09-07.md`, which is
   `INHERITED-UNVERIFIED`. **Taken on 2026-09-07 and pending owner review
-  as `D-044`.** `CLAUDE.md` now mandates `evidence_status` as the single
+  as `D-046`.** `CLAUDE.md` now mandates `evidence_status` as the single
   evidence gate with `interpretive_status`, `editorial_status`,
   `publication_status` and `gate_verdict` beside it; definitions are in
   `00-CONTROLLER/STATUS-DIMENSIONS.md`. The C-1 disposition is unchanged

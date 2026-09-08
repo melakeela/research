@@ -86,8 +86,8 @@ the owner re-affirms one, it is allocated a fresh `D-` from this CSV then.
 
 The third block holds reassignments made **after** the 2026-09-07 merge, when
 a branch that allocated an identifier correctly against the register it
-branched from found that number taken by the time it merged. Ten rows so far,
-all dated 2026-09-07. Two come from `main`: `D-035` to `D-037`, for the branch
+branched from found that number taken by the time it merged. Eleven rows so
+far: ten dated 2026-09-07 and one 2026-09-08. Two come from `main`: `D-035` to `D-037`, for the branch
 that raised the `MELA-KEELA-WHO-MADE-THE-PAST.md` section-numbering
 discrepancy while `D-035` and `D-036` were being taken on `main`; and `D-037`
 to `D-036`, which is not a renumbering but a disambiguation — the
@@ -102,6 +102,14 @@ block chain: an identifier that moved twice keeps one row, whose `new_id` is
 where it landed, and a second row is added under the number it was holding
 when the collision happened, so that a reference written at either point
 resolves.
+
+An eleventh row was added on 2026-09-08, from
+`claude/control-plane-reconciliation-d7qs4a` (PR #27): `D-044` to `D-046`. That
+branch allocated `D-044` for the status-dimension schema question when `D-043`
+was the register's highest; `main` then merged PR #26 and PR #32, which took
+`D-044` for the passage unit of the §4J forts corpus and `D-045` for the name
+of the site-facing forts artefact. `main` keeps both, so the branch's row moved
+to the next free number above `main`'s highest.
 
 This block will keep growing while branches run concurrently. Allocating from
 the register at branch time is still correct; what the block records is that

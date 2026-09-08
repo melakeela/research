@@ -97,7 +97,7 @@ CASES = [
      "reference HOLD-042 has no file in 05-HOLDS/"),
 
     ("dependency row citing a source that is not in the ledger",
-     lambda c: edit(c, "02-SOURCES/dependency.csv", "DEP-001,SRC-023", "DEP-001,SRC-998"),
+     lambda c: edit(c, "02-SOURCES/dependency.csv", '"DEP-001","SRC-023"', '"DEP-001","SRC-998"'),
      "source_a SRC-998 is not in the ledger"),
 
     ("a tracked file with no authority row",

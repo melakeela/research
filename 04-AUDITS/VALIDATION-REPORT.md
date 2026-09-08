@@ -5,16 +5,16 @@ a findings document written by hand goes stale and is then read as current,
 which is what happened to `VALIDATOR-FINDINGS-2026-09-07.md` (CR-012).
 Regenerated and diffed in CI, so it cannot fall behind the tree either.
 
-- Governed-file digest: `fb5df90e6b174f83`
-- Failures: **4**, of which **4** are covered by a committed OVERRIDE-LOG row
-- Warnings: **12** (each carries a MIGRATION-HOLDS row)
+- Governed-file digest: `f2dbb27e85aed45a`
+- Failures: **3**, of which **3** are covered by a committed OVERRIDE-LOG row
+- Warnings: **11** (each carries a MIGRATION-HOLDS row)
 
 A failure covered by an override is not fixed. `--respect-overrides`
 exits 0 when every failure is covered; the plain invocation exits 1.
 
 ## Notes
 
-- independence: 28 VERIFIED claim(s) cite sources the dependency register collapses into fewer independent observations
+- independence: 88 VERIFIED claim(s) cite sources the dependency register collapses into fewer independent observations
 - 03-REGISTERS/domain-e-claims.csv DME-002: 4 sources, 3 independent
 - 03-REGISTERS/domain-e-claims.csv DME-003: 4 sources, 3 independent
 - 03-REGISTERS/domain-e-claims.csv DME-004: 4 sources, 3 independent
@@ -32,7 +32,65 @@ exits 0 when every failure is covered; the plain invocation exits 1.
 - 03-REGISTERS/domain-e-claims.csv DME-016: 4 sources, 3 independent
 - 03-REGISTERS/domain-e-claims.csv DME-017: 5 sources, 3 independent
 - 03-REGISTERS/domain-e-claims.csv DME-018: 4 sources, 3 independent
+- 03-REGISTERS/domain-e-hypothesis-eligibility.csv E-11: 4 sources, 3 independent
 - 03-REGISTERS/domain-e-measurements.csv DE-M-026: 6 sources, 5 independent
+- 03-REGISTERS/rigveda-pur-4j-claims.csv PUR4J-001: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-4j-claims.csv PUR4J-002: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-4j-claims.csv PUR4J-003: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-4j-claims.csv PUR4J-004: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-4j-claims.csv PUR4J-006: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-4j-claims.csv PUR4J-008: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-4j-claims.csv PUR4J-009: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-4j-claims.csv PUR4J-022: 10 sources, 7 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-001: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-002: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-003: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-004: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-005: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-006: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-007: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-008: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-009: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-010: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-011: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-012: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-013: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-014: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-015: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-016: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-017: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-018: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-019: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-020: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-021: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-022: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-023: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-024: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-025: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-026: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-027: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-028: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-029: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-030: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-031: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-032: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-033: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-034: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-035: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-036: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-037: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-038: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-039: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-040: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-041: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-042: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-043: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-044: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-045: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-046: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-047: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-048: 7 sources, 6 independent
+- 03-REGISTERS/rigveda-pur-counts.csv PUR-N-049: 7 sources, 6 independent
 - 03-REGISTERS/rigveda-pur-family.csv PUR-002: 3 sources, 2 independent
 - 03-REGISTERS/rigveda-pur-family.csv PUR-009: 3 sources, 2 independent
 - 03-REGISTERS/rigveda-pur-family.csv PUR-010: 3 sources, 2 independent
@@ -43,8 +101,10 @@ exits 0 when every failure is covered; the plain invocation exits 1.
 - 03-REGISTERS/rigveda-pur-family.csv PUR-017: 3 sources, 2 independent
 - 03-REGISTERS/rigveda-pur-family.csv PUR-018: 3 sources, 2 independent
 - 03-REGISTERS/rigveda-pur-family.csv PUR-021: 3 sources, 2 independent
-- assessed-and-cleared is not distinguishable from unassessed in the data; RA-012 tracks that gap
-- release eligibility: 0 eligible, 510 not eligible, 0 marked PUBLISHED
+- 03-REGISTERS/rigveda-varna.csv VAR-004: 4 sources, 3 independent
+- 03-REGISTERS/rigveda-varna.csv VAR-005: 4 sources, 3 independent
+- assessed-and-cleared is not distinguishable from unassessed in the data; RA-020 tracks that gap
+- release eligibility: 0 eligible, 714 not eligible, 0 marked PUBLISHED
 - no claim has passed editorial review yet; editorial_status is UNASSIGNED across the tree, which is the truthful value after a migration that promoted nothing
 
 ## Warnings
@@ -57,11 +117,10 @@ MH-004: 06-BACKLOG/BACKLOG-COVERAGE.csv, columns current_site_coverage and exist
 MH-005: 00-CONTROLLER/CONTROLLER-RECONCILIATION.md, identifiers C-1 to C-9 — not migrated; blocked on Owner approval, then a single mechanical commit updating every reference enumerated in PAT
 MH-006: Every path in 00-CONTROLLER/PATH-MIGRATION.csv. — not migrated; blocked on Owner approval of REPOSITORY-MAP.md and of the alias policy. The crosswalk is written and 
 MH-007: 13-PRODUCT-ARCHITECTURE/museum-framework.md — not migrated; blocked on D-012 (whether specifications belong in this repository at all) and cross-repository acces
-MH-008: 03-REGISTERS/domain-e-hypothesis-eligibility.csv row 12 (E-11), column evidence_status — not migrated; blocked on An owner or author decision on what standing this row has. The underlying measurement is V
 MH-009: 1,195 inline source_id cells holding more than one identifier, across 03-REGISTERS/ and 04-AUDITS/. Reproduce the count with the command in 04-AUDITS/MIGRATION-REPORT-2026-09-07.md. — not migrated; blocked on Nothing, and it may never be worth doing. The defect the audit named - several identifiers
 MH-010: 03-REGISTERS/HYPOTHESIS-ELIGIBILITY.csv rows 2, 3 and 4 (HYP-E-000, HYP-E-001, HYP-E-002), column evidence_status. — not migrated; blocked on The same question as MH-008 and D-036 / D-039: whether an eligibility register carries an 
-MH-011: 03-REGISTERS/HYPOTHESIS-ELIGIBILITY.csv and 03-REGISTERS/domain-e-hypothesis-eligibility.csv, column source_dependencies. — not migrated; blocked on Either a source_id column on the eligibility registers, which is a schema change and belon
-MH-012: The VERIFIED claims whose cited sources the dependency register collapses into fewer independent observations. The validator prints the list and the count on every run. — not migrated; blocked on RA-012, a claim-by-claim reading of whether each collapse was assessed when the claim was 
+MH-011: 03-REGISTERS/HYPOTHESIS-ELIGIBILITY.csv, column source_dependencies. 03-REGISTERS/domain-e-hypothesis-eligibility.csv was released from this hold on 2026-09-08; see why_not_migrated. — not migrated; blocked on Either a source_id column on the eligibility registers, which is a schema change and belon
+MH-012: The VERIFIED claims whose cited sources the dependency register collapses into fewer independent observations. The validator prints the list and the count on every run. — not migrated; blocked on RA-020, a claim-by-claim reading of whether each collapse was assessed when the claim was 
 ```
 
 ## Failures covered by an override
@@ -72,7 +131,6 @@ These are real and unfixed. See `00-CONTROLLER/OVERRIDE-LOG.csv`.
 03-REGISTERS/HYPOTHESIS-ELIGIBILITY.csv:2: PROVISIONAL row in a register with no source_id, locator, retrieval_date column; the retrieval that would back it cannot be recorded here, so PROVISIONAL is untraceable in this file  [overridden by OV-001]
 03-REGISTERS/HYPOTHESIS-ELIGIBILITY.csv:3: PROVISIONAL row in a register with no source_id, locator, retrieval_date column; the retrieval that would back it cannot be recorded here, so PROVISIONAL is untraceable in this file  [overridden by OV-001]
 03-REGISTERS/HYPOTHESIS-ELIGIBILITY.csv:4: PROVISIONAL row in a register with no source_id, locator, retrieval_date column; the retrieval that would back it cannot be recorded here, so PROVISIONAL is untraceable in this file  [overridden by OV-001]
-03-REGISTERS/domain-e-hypothesis-eligibility.csv:12: evidence_status 'VERIFIED as a measurement; not a claim about origins' not in its vocabulary  [overridden by OV-001]
 ```
 
 ## Failures not covered by an override

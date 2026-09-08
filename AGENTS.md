@@ -54,7 +54,7 @@ When reviewing a pull request, check:
    two join rows in one group are one independent observation. **28
    `VERIFIED` claims currently cite sources that collapse this way**, and
    the data does not distinguish an assessed-and-cleared collapse from an
-   unassessed one. `RA-012` queues that reading; the validator lists the
+   unassessed one. `RA-020` queues that reading; the validator lists the
    28 on every run.
 8. **Status dimensions.** `evidence_status` is the only evidence gate.
    A row that is `APPROVED` editorially and `PROVISIONAL` evidentially

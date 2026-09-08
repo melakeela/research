@@ -109,7 +109,7 @@ thing the investigation is most likely to get wrong.
 | G | BMAC/Oxus and pre-split Indo-Iranian contact | Reading "Proto-Indo-Iranian" as pre-contact or purely inherited |
 | H | Rigvedic and Old Avestan social worlds | A violent-Indic versus peaceful-Iranian binary; genre mistaken for society |
 | I | Rigvedic society, patronage and canonization | Sanitizing patronage as timeless spirituality |
-| J | The Rigvedic forts | Translating *pur* into a Mature Harappan city; one famous count standing for the corpus |
+| J | The Rigvedic forts | Translating *pur* into a Mature Harappan city; one famous count standing for the corpus — *corpus built 2026-09-07 at the stanza unit, 103 passages, all fifteen enumerated items addressed and the five-way typology assigned. 99 is stated in 6 passages and is not the modal count; 100 is, in 8. Poet lineage rests on Geldner alone (`HOLD-006`); proposed geography is `NOT PRODUCED` — the pinned corpus carries no geographic content. See `06-BRIEFS/pur-4j-corpus.md`.* |
 | K | Indus writing and institutional discontinuity | Concluding that populations vanished because institutions and archives did |
 | L | Avestan writing | Reading a Sasanian-era alphabet as transparent evidence of Gāthic pronunciation |
 | M | Brahui, Kurukh and Malto | Medieval migration treated as documented fact; living people used as linguistic fossils |
@@ -264,6 +264,19 @@ or research holds. Constitution §11.
 - Product and institutional specification (§12) — pending **D-012**.
 - The language-movement Artifact Atlas specification (§13).
 - Page and exhibit briefs.
+
+  *Recorded against that item, not as an exception to it:* fifteen page briefs
+  were produced out of position on 2026-09-08, on the owner's instruction, and
+  are in `06-BRIEFS/mvp-fifteen/`. **The placement is not settled.** No owner
+  decision was allocated for it and none is claimed: an instruction to carry out
+  work is not a standing decision that the work may precede its queue position,
+  and `DECISIONS-NEEDED.md` **D-032** still reads *"Nothing in this repository
+  acts on the MVP set until this is answered."* The briefs describe what each of
+  the fifteen pages would need; they schedule no launch, approve no page, order
+  no work and assume no answer to D-032. Their standing, including the reading
+  under which the unit should have waited and under which this note is itself to
+  be reverted, is written up in `06-BRIEFS/mvp-fifteen/README.md` §0. The other
+  81 pages are untouched.
 - Anything touching `melakeela/site`.
 
 ## Item numbering
