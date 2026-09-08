@@ -41,13 +41,17 @@ already carried it, with its `claim_id` attached at the point of use.
 
 ## The headline answer this unit was asked for
 
-**The investigation rests on 38 register rows, plus one hold.**
-`02-claim-basis.csv` names all 39 by identifier, with the screens each feeds and
-what would verify it.
+**The investigation rests on 45 register rows, plus one hold.**
+`02-claim-basis.csv` names all 46 by identifier, with the screens each feeds and
+what would verify it. Four of the 45 (`PUR-022`, `PUR-023`, `PUR4J-030`, and
+`PUR4J-016` in part) appear on **no screen**: they are the rows the design
+reasons *about* — the named-entity material a forbidden COMPARE step would have
+used, and the exclusion that would change every count. They are listed so the
+audit trail is complete rather than only the child-facing part of it.
 
 | Status | Rows | Child word |
 |---|---:|---|
-| `VERIFIED` | 27 | FOUND |
+| `VERIFIED` | 34 | FOUND |
 | `PROVISIONAL` | 9 | WE THINK |
 | `HYPOTHESIS` | 2 | MAYBE |
 | `HOLD` | 1 | WE DON'T KNOW — we haven't looked yet |
