@@ -23,6 +23,14 @@ Checks:
      construction.
   5. Every D- reference in the tree resolves to exactly one row in
      09-DECISIONS/OWNER-DECISIONS.csv.
+  6. Identifiers in the audit logs under 04-AUDITS/ are unique, and every
+     BF-/RA- reference in the tree resolves. Check 4 only ever walked
+     03-REGISTERS/, so a duplicate BF- id could be appended to
+     BIAS-FAILURE-LOG.csv and pass: a session that allocated the next id by
+     eye rather than from the file did exactly that, and every reference to
+     it then resolved ambiguously. Allocate from the file, never from the
+     highest number you happen to have seen — the same rule CLAUDE.md states
+     for D- identifiers, applied to the audit namespace.
 
 CSVs in this repository mix CRLF and LF and carry embedded newlines
 inside quoted cells. Everything here opens with newline='' and never
@@ -37,6 +45,12 @@ ROOT = Path(__file__).resolve().parents[1]
 REGISTER_DIR = ROOT / "03-REGISTERS"
 LEDGER = ROOT / "02-SOURCES" / "access-ledger.csv"
 DECISIONS = ROOT / "09-DECISIONS" / "OWNER-DECISIONS.csv"
+AUDIT_DIR = ROOT / "04-AUDITS"
+# audit log -> (id column, reference pattern for check 6)
+AUDIT_LOGS = {
+    "BIAS-FAILURE-LOG.csv": ("failure_id", r"\bBF-\d{3}\b"),
+    "REAUDIT-QUEUE.csv": ("reaudit_id", r"\bRA-\d{3}\b"),
+}
 
 STATUS_VOCAB = {
     "VERIFIED", "PROVISIONAL", "HYPOTHESIS", "INHERITED-UNVERIFIED",
@@ -126,6 +140,41 @@ def check_register(path, ledger):
                         fail(f"{rel}:{n}: source_id {one} not in access ledger")
 
 
+def check_audit_logs():
+    """Check 6: unique ids in the audit logs, and resolvable BF-/RA- refs."""
+    known = set()
+    for name, (id_col, _) in AUDIT_LOGS.items():
+        path = AUDIT_DIR / name
+        if not path.is_file():
+            continue
+        seen = set()
+        for n, row in enumerate(read_csv(path), start=2):
+            rid = (row.get(id_col) or "").strip()
+            if not rid:
+                continue
+            if rid in seen:
+                fail(f"04-AUDITS/{name}:{n}: duplicate {id_col} {rid} — "
+                     f"allocate the next id from the file, not by eye")
+            seen.add(rid)
+        known |= seen
+    if not known:
+        return
+    pat = re.compile("|".join(p for _, p in AUDIT_LOGS.values()))
+    for path in ROOT.rglob("*"):
+        if any(part in SKIP_DIRS for part in path.parts):
+            continue
+        if path.suffix not in {".md", ".csv", ".py"} or not path.is_file():
+            continue
+        try:
+            text = path.read_text(encoding="utf-8", errors="replace")
+        except OSError:
+            continue
+        for ref in sorted(set(pat.findall(text))):
+            if ref not in known:
+                fail(f"{path.relative_to(ROOT)}: reference {ref} has no "
+                     f"row in the 04-AUDITS logs")
+
+
 def check_decision_refs(known):
     pat = re.compile(r"\bD-\d{3}\b")
     for path in ROOT.rglob("*"):
@@ -149,6 +198,7 @@ def main():
         for path in sorted(REGISTER_DIR.rglob("*.csv")):
             check_register(path, ledger)
     check_decision_refs(known)
+    check_audit_logs()
 
     if failures:
         print(f"validate-registers: {len(failures)} failure(s)")
