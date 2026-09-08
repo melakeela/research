@@ -216,8 +216,11 @@ in `02-SOURCES/access-ledger.csv`, so the pages cannot be read here — that is 
 missing input, not an egress question, and the owner supplying the archive is
 what clears it. The deployed site has **not been probed**: `SRC-052`'s sixteen
 hosts do not include it and neither do `SRC-080` to `SRC-083`, so this brief does
-not state that it is unreachable, only that no one here has tried and that every
-host probed in this session outside the git lane has been refused.
+not state that it is unreachable, only that no one here has tried. Nor is it
+covered by any general statement about this session's egress: `SRC-027` records
+`indianculture.gov.in` reachable on 2026-09-07, so "everything outside the git
+lane is refused" is not a property this repository holds, and §3 of the README
+keeps that conflict open rather than resolving it.
 
 **A `HOLD` row is owed once the deployed site has been probed and failed** —
 not before, since framework §3.2 gives `HOLD` to *a required source* that *is*

@@ -112,27 +112,19 @@ QUOTE_CHECKS = {
         "`decision_id` (`mk:dec:`)",
         "`derived_residual`",
         "Every design proposition here is `HYPOTHESIS`",
-        # the structured data every brief transcribes by hand: the mode matrix
-        # row per posture, and the derivation precedence order (finding 3.B)
-        "| Nocturnal Ve\u1e37i | mandatory | available | available | available | available |",
-        "| Living Signal Field | mandatory | mandatory | available | available | available |",
-        "| Tamil Retrofuture | mandatory | available | mandatory | available | available |",
-        "| Living Ti\u1e47ai | mandatory | available | available | mandatory | available |",
-        "| Reading Room | mandatory | available | mandatory | forbidden | available |",
-        "| Extraction / Collection | mandatory | available | mandatory | forbidden | available |",
-        "| Reconnection | mandatory | available | available | forbidden | available |",
+        # Derivation rules are asserted WITH their numbers, because the briefs
+        # cite the numbers ("rule 1 fires first", "rule 7's residual") and a
+        # reordering of section 1.5 would leave bare labels resolving while every
+        # citation was wrong.
         "Derivation inputs, in precedence order:",
-        "**Withheld-access flag.**",
-        "**Absence dominance.**",
-        "**Relation dominance.**",
-        "**Otherwise \u2192 Reading Room.**",
+        "1. **Withheld-access flag.**",
+        "2. **Repair state.**",
+        "3. **Absence dominance.**",
+        "4. **Relation dominance.**",
+        "5. **Place/material dominance.**",
+        "6. **Counter-account.**",
+        "7. **Otherwise \u2192 Reading Room.**",
         "An override with an empty reason is invalid.",
-        "not yet known",
-        "known by relation",
-        "known against an official account",
-        "known through place and material",
-        "known but withheld",
-        "knowable again",
     ],
     "00-CONTROLLER/METHODOLOGY-CONSTITUTION.md": [
         "Unknown regions must remain visibly unknown",
@@ -179,7 +171,8 @@ QUOTE_CHECKS = {
         "Nothing in this repository acts on the MVP set until this is answered.",
     ],
     "RESEARCH-QUEUE.md": [
-        "Page and exhibit briefs, **except** the fifteen MVP briefs",
+        "Recorded against that item, not as an exception to it:",
+        "The placement is not settled.",
     ],
     "CLAUDE.md": [
         "Argument does not promote a claim. Confidence does not promote a claim. Only retrieval does.",
@@ -198,9 +191,39 @@ def _flat(t):
     return " ".join(t.replace("\n>", "\n").split())
 
 
+def verify_pairings():
+    """The two dicts below are what the briefs actually print, one row per page.
+    Asserting the framework's rows as loose literals would let a swapped dict
+    entry pass while six briefs printed the wrong row - so each row is COMPOSED
+    from the dict and the composed string is asserted against the framework.
+    This is a pairing check, not an existence check, and it is what the briefs
+    depend on. Returns the number of composed rows checked."""
+    body = _flat(open(os.path.join(ROOT, "13-PRODUCT-ARCHITECTURE",
+                                   "museum-framework.md"), encoding="utf-8").read())
+    missing, n = [], 0
+    for env, (posture, avoid) in POSTURE_TABLE.items():
+        # section 1.1: | <env> | *<posture>* | <avoid> |
+        row = "| %s | *%s* | %s |" % (env, posture, avoid)
+        n += 1
+        if _flat(row) not in body:
+            missing.append(row)
+    for env, modes in MODES.items():
+        # section 1.7: | <env> | <source> | <atlas> | <investigation> | <field> | <classroom> |
+        row = "| %s | %s |" % (env, " | ".join(modes))
+        n += 1
+        if _flat(row) not in body:
+            missing.append(row)
+    if missing:
+        raise SystemExit("pairing check failed - a posture/mode row this build "
+                         "would print is not in museum-framework.md:\n" +
+                         "\n".join("  " + m for m in missing))
+    return n
+
+
 def verify_quotes():
-    """Assert every quoted fragment still resolves in its source. Returns the
-    number of fragments checked, which the README prints."""
+    """Assert every quoted fragment still resolves in its source, and every
+    composed posture/mode row still matches the framework. Returns the total
+    number of assertions, which the README prints."""
     n = 0
     missing = []
     for rel, frags in QUOTE_CHECKS.items():
@@ -212,7 +235,7 @@ def verify_quotes():
     if missing:
         raise SystemExit("quote check failed:\n" + "\n".join(
             "  %s : %s" % (r, f) for r, f in missing))
-    return n
+    return n + verify_pairings()
 
 
 def count_asset_sets_with(term, as_by):
@@ -510,8 +533,11 @@ in `02-SOURCES/access-ledger.csv`, so the pages cannot be read here — that is 
 missing input, not an egress question, and the owner supplying the archive is
 what clears it. The deployed site has **not been probed**: `SRC-052`'s sixteen
 hosts do not include it and neither do `SRC-080` to `SRC-083`, so this brief does
-not state that it is unreachable, only that no one here has tried and that every
-host probed in this session outside the git lane has been refused.
+not state that it is unreachable, only that no one here has tried. Nor is it
+covered by any general statement about this session's egress: `SRC-027` records
+`indianculture.gov.in` reachable on 2026-09-07, so "everything outside the git
+lane is refused" is not a property this repository holds, and §3 of the README
+keeps that conflict open rather than resolving it.
 
 **A `HOLD` row is owed once the deployed site has been probed and failed** —
 not before, since framework §3.2 gives `HOLD` to *a required source* that *is*
@@ -1642,10 +1668,12 @@ chronology for claim 3 from dated documents; and read Aktor 2018 and Davis
 
 **Retrieval state: the lanes to this literature are refused; the publications
 themselves are unprobed.** `SRC-052` probed sixteen hosts on 2026-09-07 and
-records them refused, and the list matters here — `doi.org`,
-`api.crossref.org`, `api.openalex.org`, `api.semanticscholar.org`,
-`degruyter.com` and `benjamins.com` are exactly the routes to Aktor 2018 and
-Davis 2020/2022/2024 — with `SRC-081` to `SRC-083` recording four more. **No
+records them refused, among them `doi.org`, the three
+bibliographic APIs and two named academic publishers, with `SRC-081` to
+`SRC-083` recording four more. **Which publisher carries either work is not
+recorded in this repository** — `IH-120` gives surnames and years and nothing
+else — so this brief names the lanes that are refused without asserting that
+they are the routes to these two publications. **No
 probe for these specific publications is in the ledger**, and `SRC-058` records
 the git lane open to arbitrary public repositories, so this brief does not
 assert that nothing serves them. Running the search and typing the outcome is
@@ -2007,11 +2035,17 @@ scanned for `supports_page`.
 `SCHEMA.md`, `method-limits.csv`, `summary.csv`, `claim-risk.csv`,
 `overlap-tensions.csv`, `02-SOURCES/access-ledger.csv`, `DECISIONS-NEEDED.md`,
 `RESEARCH-QUEUE.md`, `CLAUDE.md` and `04-AUDITS/BIAS-FAILURE-LOG.csv`. The
-generator asserts that **{n_quotes} quoted fragments** still resolve in those
-files and fails the build if one does not — including the §1.7 mode matrix rows,
-the §1.5 derivation precedence order, the seven posture labels, the
-negative-evidence type names, and `SRC-052`'s probe list and constraint, which
-are the structured values the briefs transcribe rather than paraphrase.
+generator makes **{n_quotes} assertions** against those files and fails the build
+if one does not hold — covering the §1.5 derivation rules *with their numbers*
+(the briefs cite the numbers), the negative-evidence type names, and `SRC-052`'s
+probe list and constraint.
+
+Fourteen of the assertions are **pairing** checks rather than existence checks:
+each brief prints one §1.1 posture row and one §1.7 mode row, composed from two
+tables in the generator, and the composed row is asserted against the framework.
+Asserting the framework's rows as loose strings would have let a swapped table
+entry pass while six briefs printed the wrong row — which is what an earlier
+version of this check did.
 
 **What the check does and does not do.** It catches *drift* — a quoted fragment
 edited or deleted in its source. It does not catch *misreading*: a fragment can
@@ -2091,9 +2125,12 @@ Constitution §8 and `CLAUDE.md`: both tests before a unit is called finished,
 logged whether or not they found anything, and *"running one is a failed test"*
 (framework §3.11). Method failures are logged at
 `04-AUDITS/BIAS-FAILURE-LOG.csv` `BF-018` to `BF-020`; re-audits at
-`04-AUDITS/REAUDIT-QUEUE.csv` `RA-019`. Two rounds of independent adversarial
-review were run on this unit before it was called finished; both found blocking
-defects, and what they found is in those rows rather than quietly repaired.
+`04-AUDITS/REAUDIT-QUEUE.csv` `RA-019`. Independent adversarial review was run on this
+unit in successive rounds before it was called finished, and every round found
+blocking defects; what they found is in those rows rather than quietly repaired.
+The number of rounds is deliberately not stated here — it is a figure about this
+unit that nothing derives, and standing rule 14 is what this unit has already
+broken once.
 
 **Prestige-bias challenge — did this unit privilege a claim because it is
 canonical, Sanskritic, Brahmanical, Indo-European, European, colonial,

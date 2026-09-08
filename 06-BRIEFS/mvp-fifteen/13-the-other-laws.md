@@ -265,10 +265,12 @@ chronology for claim 3 from dated documents; and read Aktor 2018 and Davis
 
 **Retrieval state: the lanes to this literature are refused; the publications
 themselves are unprobed.** `SRC-052` probed sixteen hosts on 2026-09-07 and
-records them refused, and the list matters here — `doi.org`,
-`api.crossref.org`, `api.openalex.org`, `api.semanticscholar.org`,
-`degruyter.com` and `benjamins.com` are exactly the routes to Aktor 2018 and
-Davis 2020/2022/2024 — with `SRC-081` to `SRC-083` recording four more. **No
+records them refused, among them `doi.org`, the three
+bibliographic APIs and two named academic publishers, with `SRC-081` to
+`SRC-083` recording four more. **Which publisher carries either work is not
+recorded in this repository** — `IH-120` gives surnames and years and nothing
+else — so this brief names the lanes that are refused without asserting that
+they are the routes to these two publications. **No
 probe for these specific publications is in the ledger**, and `SRC-058` records
 the git lane open to arbitrary public repositories, so this brief does not
 assert that nothing serves them. Running the search and typing the outcome is

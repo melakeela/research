@@ -17,11 +17,17 @@ scanned for `supports_page`.
 `SCHEMA.md`, `method-limits.csv`, `summary.csv`, `claim-risk.csv`,
 `overlap-tensions.csv`, `02-SOURCES/access-ledger.csv`, `DECISIONS-NEEDED.md`,
 `RESEARCH-QUEUE.md`, `CLAUDE.md` and `04-AUDITS/BIAS-FAILURE-LOG.csv`. The
-generator asserts that **76 quoted fragments** still resolve in those
-files and fails the build if one does not — including the §1.7 mode matrix rows,
-the §1.5 derivation precedence order, the seven posture labels, the
-negative-evidence type names, and `SRC-052`'s probe list and constraint, which
-are the structured values the briefs transcribe rather than paraphrase.
+generator makes **81 assertions** against those files and fails the build
+if one does not hold — covering the §1.5 derivation rules *with their numbers*
+(the briefs cite the numbers), the negative-evidence type names, and `SRC-052`'s
+probe list and constraint.
+
+Fourteen of the assertions are **pairing** checks rather than existence checks:
+each brief prints one §1.1 posture row and one §1.7 mode row, composed from two
+tables in the generator, and the composed row is asserted against the framework.
+Asserting the framework's rows as loose strings would have let a swapped table
+entry pass while six briefs printed the wrong row — which is what an earlier
+version of this check did.
 
 **What the check does and does not do.** It catches *drift* — a quoted fragment
 edited or deleted in its source. It does not catch *misreading*: a fragment can
@@ -101,9 +107,12 @@ Constitution §8 and `CLAUDE.md`: both tests before a unit is called finished,
 logged whether or not they found anything, and *"running one is a failed test"*
 (framework §3.11). Method failures are logged at
 `04-AUDITS/BIAS-FAILURE-LOG.csv` `BF-018` to `BF-020`; re-audits at
-`04-AUDITS/REAUDIT-QUEUE.csv` `RA-019`. Two rounds of independent adversarial
-review were run on this unit before it was called finished; both found blocking
-defects, and what they found is in those rows rather than quietly repaired.
+`04-AUDITS/REAUDIT-QUEUE.csv` `RA-019`. Independent adversarial review was run on this
+unit in successive rounds before it was called finished, and every round found
+blocking defects; what they found is in those rows rather than quietly repaired.
+The number of rounds is deliberately not stated here — it is a figure about this
+unit that nothing derives, and standing rule 14 is what this unit has already
+broken once.
 
 **Prestige-bias challenge — did this unit privilege a claim because it is
 canonical, Sanskritic, Brahmanical, Indo-European, European, colonial,
