@@ -62,15 +62,26 @@ child's help screen, and **loses nothing**:
 | `HYPOTHESIS` | **MAYBE** | "An idea nobody has tested yet. We are telling you because we don't want to hide it." |
 | `HOLD` | **WE DON'T KNOW — we haven't looked yet** | "We know where to look. We have not been able to get there." |
 | typed absence (§6) | **WE DON'T KNOW — nobody wrote it down** | "The poem never says. That is not the poem hiding it. It just never says." |
+| an open crux — a row `VERIFIED` as to *what the sources print*, where what they print does not agree | **WE DON'T KNOW — grown-ups disagree** | "Two people who both read this for a living say different things, and neither of them says why." |
 | `REJECTED` / `SUPERSEDED` | **WE GOT THIS WRONG** | "We thought this before. We checked and we were wrong. We keep it here so we don't do it again." |
 | `INHERITED-UNVERIFIED` | *(never shown as evidence)* | see §0.2 |
 
-**The split of WE DON'T KNOW into two kinds is load-bearing and is the single
+**The split of WE DON'T KNOW into three kinds is load-bearing and is the single
 most important thing in this specification.** A child who cannot tell "nobody
 wrote it down" from "we haven't looked yet" cannot reach a real *we don't know*,
 because the two have different next actions: the first is a fact about the past,
-the second is a job on somebody's list. Both are shown with that next action
-attached. That is what makes the result a result rather than a consolation.
+the second is a job on somebody's list. The third — *grown-ups disagree* — is
+different again: the evidence is complete and read, and it does not decide.
+Each is shown with its next action attached, and that is what makes the result
+a result rather than a consolation.
+
+The third kind carries an easy error and the design must not make it. A row
+like `PUR4J-023` (Griffith prints "iron" at all eight, Geldner prints *ehern* at
+all eight) is `VERIFIED` — as a statement about **what is printed**. What the
+metal was is not settled by it. The screen shows the FOUND part as FOUND and the
+open part as WE DON'T KNOW, on the same card, and never lets the status of the
+first travel to the second. Where it appears: S-07 (iron or bronze,
+`PUR4J-023`), S-10 (a named fort or an adjective, `PUR4J-015`).
 
 ## 0.2 What may not appear as evidence
 
