@@ -17,10 +17,18 @@ scanned for `supports_page`.
 `SCHEMA.md`, `method-limits.csv`, `summary.csv`, `claim-risk.csv`,
 `overlap-tensions.csv`, `02-SOURCES/access-ledger.csv`, `DECISIONS-NEEDED.md`,
 `RESEARCH-QUEUE.md`, `CLAUDE.md` and `04-AUDITS/BIAS-FAILURE-LOG.csv`. The
-generator asserts that **45 quoted fragments** still resolve in those
-files and fails the build if one does not, so an edit to a source cannot
-silently invalidate a brief. Prose written around a quote is still written by
-hand; the check catches drift, not misreading.
+generator asserts that **76 quoted fragments** still resolve in those
+files and fails the build if one does not — including the §1.7 mode matrix rows,
+the §1.5 derivation precedence order, the seven posture labels, the
+negative-evidence type names, and `SRC-052`'s probe list and constraint, which
+are the structured values the briefs transcribe rather than paraphrase.
+
+**What the check does and does not do.** It catches *drift* — a quoted fragment
+edited or deleted in its source. It does not catch *misreading*: a fragment can
+resolve while being attributed to the wrong speaker, given the wrong status, or
+used to support something it does not say. One such case was found by review in
+the first draft and corrected. The check narrows the space for silent error; it
+does not close it, and no claim here rests on its having done so.
 **Every count in this directory is derived at build time.** None is a typed
 literal — the inheritance's standing rule 14, which the first draft of this
 README broke by stating a diagram count from memory.
@@ -44,12 +52,29 @@ MVP set until this is answered."*
 
 **`RESEARCH-QUEUE.md` lists *"Page and exhibit briefs"* under `## Not yet`.**
 
-This unit was produced on the owner's direct instruction, which is the only
-thing that overrides a queue position — the queue's own ordering below its first
-item is `OWNER-DECISIONS.csv` **D-008**, an owner decision, and an instruction
-from the owner is not a violation of it. But the instruction does not answer
-D-032, and it does not license the unit to do what D-032 withholds. So the
-boundary is drawn explicitly:
+This unit was produced on the owner's instruction, given in the session of
+2026-09-08. **That instruction is not registered as an owner decision and this
+unit does not allocate one for it.** `CLAUDE.md` puts every owner decision taken
+in this repository in `09-DECISIONS/OWNER-DECISIONS.csv`, and an instruction to
+carry out a piece of work is not the same object as a standing decision that the
+work may precede its queue position; treating it as one would put an
+unverifiable authority into the decision namespace, which is what the `HD-01` to
+`HD-20` convention exists to refuse. If the owner wants the placement settled
+rather than the task done, that is a fresh `D-` and it has not been allocated
+here.
+
+**An earlier draft of this section argued that the instruction cleared the
+queue's placement because `OWNER-DECISIONS.csv` D-008 makes queue ordering an
+owner matter. That argument was withdrawn under review and is recorded rather
+than deleted.** It failed three ways: D-008 governs the queue's *ordering below
+its first item*, and `## Not yet` is a membership list, not a position; D-008's
+own state is `BLOCKED`, so it is an unexercised slot and cannot be the authority
+under which anything is permitted; and the instruction itself has no row anyone
+can check. Replacing *not noticing two controls* with *clearing them by an
+authority the repository cannot verify* would have been the worse failure of the
+two.
+
+So the unit rests on the boundary alone, drawn explicitly:
 
 - These briefs **describe** the fifteen pages the workbook nominated and state
   what each would need. That is preparatory work, and it is what was asked for.
@@ -60,11 +85,13 @@ boundary is drawn explicitly:
   takes no position on it.
 - Nothing here promotes a claim, because nothing here retrieved anything.
 
-If the owner reads that boundary as too fine — if writing briefs for a set whose
-membership is undecided *is* acting on it — then the correct disposition is that
-this unit waits on D-032 with the rest, and it is written down here so that
-judgement can be made rather than assumed. `RESEARCH-QUEUE.md` has been amended
-to record the unit and its standing.
+**And the boundary may not hold.** If the owner reads it as too fine — if
+writing briefs for a set whose membership is undecided *is* acting on that set —
+then the correct disposition is that this unit waits on D-032 with the rest.
+Nothing here forecloses that reading; it is written down so the judgement can be
+made rather than assumed, and the briefs are recoverable work either way, since
+what they mostly record is what is *missing*. `RESEARCH-QUEUE.md` has been
+amended to record the unit and its standing.
 
 ---
 
@@ -73,8 +100,10 @@ to record the unit and its standing.
 Constitution §8 and `CLAUDE.md`: both tests before a unit is called finished,
 logged whether or not they found anything, and *"running one is a failed test"*
 (framework §3.11). Method failures are logged at
-`04-AUDITS/BIAS-FAILURE-LOG.csv` `BF-018` and `BF-019`; re-audits at
-`04-AUDITS/REAUDIT-QUEUE.csv` `RA-019`.
+`04-AUDITS/BIAS-FAILURE-LOG.csv` `BF-018` to `BF-020`; re-audits at
+`04-AUDITS/REAUDIT-QUEUE.csv` `RA-019`. Two rounds of independent adversarial
+review were run on this unit before it was called finished; both found blocking
+defects, and what they found is in those rows rather than quietly repaired.
 
 **Prestige-bias challenge — did this unit privilege a claim because it is
 canonical, Sanskritic, Brahmanical, Indo-European, European, colonial,
@@ -108,8 +137,11 @@ receiving the least evidentiary pressure of the fifteen. The brief now runs the
 test on the page explicitly, in three parts — the date, the interference
 narrative, and the direction of correction. Logged as `BF-019`.
 
-**A third failure, not a bias failure but a method failure, found by the same
-review and logged with them:** the first draft expanded *"Kenoyer et al. 1983"* —
+**Further failures, not bias failures but method failures of the same class,
+found by the same reviews and logged with them (`BF-018`(b), `BF-020`):** the
+unit stated its own diagram count from memory rather than deriving it, and
+claimed to read two files at build time that its generator never opened — both
+repaired, both recorded. And the first draft expanded *"Kenoyer et al. 1983"* —
 the only form any source in this repository uses — into a full author list
 supplied from model memory, in a brief whose subject is that the publication has
 never been read. Bibliography from memory is the failure the inheritance rule

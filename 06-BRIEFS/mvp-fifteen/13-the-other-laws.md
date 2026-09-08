@@ -263,13 +263,16 @@ reconstruction are four different things); establish the colonial codification
 chronology for claim 3 from dated documents; and read Aktor 2018 and Davis
 2020/2022/2024 directly rather than through the handoff's summary of them.
 
-**Retrieval state: untested for these specific publications.** The general-web
-hosts are recorded refused (`SRC-081` to `SRC-083`), but **no probe for Aktor
-2018 or Davis 2020/2022/2024 is recorded in the ledger**, and `SRC-058` records
-the git lane open to arbitrary public repositories. This brief therefore does
-not assert that no host serves them; running the search and typing the outcome
-is part of the unit, and a `05-HOLDS/` row is owed once it has been run and
-failed. The decomposition itself needs no retrieval and should be done first — it
+**Retrieval state: the lanes to this literature are refused; the publications
+themselves are unprobed.** `SRC-052` probed sixteen hosts on 2026-09-07 and
+records them refused, and the list matters here — `doi.org`,
+`api.crossref.org`, `api.openalex.org`, `api.semanticscholar.org`,
+`degruyter.com` and `benjamins.com` are exactly the routes to Aktor 2018 and
+Davis 2020/2022/2024 — with `SRC-081` to `SRC-083` recording four more. **No
+probe for these specific publications is in the ledger**, and `SRC-058` records
+the git lane open to arbitrary public repositories, so this brief does not
+assert that nothing serves them. Running the search and typing the outcome is
+part of the unit; a `05-HOLDS/` row is owed once it has been run and failed. The decomposition itself needs no retrieval and should be done first — it
 is what turns one unfalsifiable headline into four checkable claims, and it is
 also the analytical half of the `Split`.
 

@@ -49,9 +49,10 @@ inline SVGs, 56 inbound links. Type `atlas`. H1: *"Where the objects were
 found."* Decision `Keep`, Risk **Low**, MVP rank 3.
 
 The title asserts a number — *"175 Ancient South Asian Sites Mapped"* — and the
-number is one side of an open contradiction. Framework §8.1 states the
-consequence bluntly: the count was *"adopted as settled fact, put in a page
-title, and rated low-risk."*
+number is one side of an open contradiction. Framework §8.1 relays the schema
+assessment's collision A, whose words these are — `INHERITED-UNVERIFIED`, quoted
+inside a `HYPOTHESIS` document, and not the framework's own verdict: the count
+was *"adopted as settled fact, put in a page title, and rated low-risk."*
 
 The `Low` risk rating deserves reading against the instrument that produced it.
 `method-limits.csv` says source visibility was estimated from *"visible

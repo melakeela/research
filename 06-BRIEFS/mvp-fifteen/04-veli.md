@@ -252,9 +252,10 @@ set. Log the retrieval in `02-SOURCES/access-ledger.csv`, the dependency in
 **Ceiling: `PROVISIONAL`.** Single digitisation lineage, per §3.2.
 **Owed alongside:** a `HOLD` row for the Tamil Lexicon (`dsal.uchicago.edu`,
 `SRC-056`, not reachable) and for a Telugu lexicographic source, naming what each
-would settle. This is the unit to run first of the fifteen: it is the only one
-whose central claim can be moved off the floor with the access this session
-actually has.
+would settle. Among the fifteen, this is the unit whose *central* claim has the most
+direct route with the access this session has — which is a statement about
+retrieval capability, not a work order; sequencing the MVP set is what README §0
+says this unit does not do.
 
 
 ---

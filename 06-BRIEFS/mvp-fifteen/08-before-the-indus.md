@@ -260,13 +260,15 @@ Damdama and Mahadaha; then the absolute dating literature for the Ganges
 Mesolithic cemeteries. Closing `IH-243` is the single action that would move the
 most on this page, because every Baghor claim is HELD behind it.
 
-**Retrieval state: refused where probed, untested for these two publications.**
-`SRC-081` records the Internet Archive refused at 2026-09-07T15:10Z; `SRC-082`
-TITUS; `SRC-083` sacred-texts and wisdomlib. **Neither publication has itself
-been probed**, and `SRC-058` records the git lane open to arbitrary public
+**Retrieval state: the likely lanes are refused; the two publications are
+unprobed.** `SRC-052` records sixteen hosts refused on 2026-09-07, including
+`doi.org`, the three bibliographic APIs, `archive.org` and `zenodo.org`;
+`SRC-081` records the Internet Archive refused again at 15:10Z, `SRC-082` TITUS,
+`SRC-083` sacred-texts and wisdomlib. **Neither publication has itself been
+probed**, and `SRC-058` records the git lane open to arbitrary public
 repositories, so this brief does not assert that no host serves them — it
-records that the hosts most likely to has been refused and that the specific
-search has not been run. Type the absence before writing the verdict, per
+records that the lanes most likely to carry them are refused and that the
+specific search has not been run. Type the absence before writing the verdict, per
 `04-AUDITS/BIAS-FAILURE-LOG.csv` `BF-010`'s standing control. A `05-HOLDS/` row
 is owed for each once the search has been run and failed, naming what each would
 settle; `05-HOLDS/` already contains six such records, so the form is

@@ -145,7 +145,7 @@ What exists instead is inherited material that **bears on** this page without be
 
 | claim_id | status | locator | what it bears on |
 |---|---|---|---|
-| `IH-113` | `INHERITED-UNVERIFIED` | `01-INHERITED/claude-project-handoff.md L243` | Provisional finding P-05 in the handoff, from secondary sources: *5,500 artefacts, then transfer, then a 982-page report in January 2023, then a May 2025 rework request, then a 114-page evaluation* — with the handoff's own caveat, **'pin each step'**. Five administrative events, none pinned to an issuing body and a document. |
+| `IH-113` | `INHERITED-UNVERIFIED` | `01-INHERITED/claude-project-handoff.md L243` | Provisional finding P-05 in the handoff, from secondary sources: *5,500 artefacts, then transfer, then a 982-page report in January 2023, then a May 2025 rework request, then a 114-page evaluation* — with the handoff's own caveat, **'pin each step'**. One artefact count and four administrative events — a transfer, a report, a rework request, an evaluation — none pinned to an issuing body and a document. |
 | `IH-061` | `INHERITED-UNVERIFIED` | `01-INHERITED/claude-project-handoff.md L166` | Correction C-41: among the sentences banned from the prospectus is *'any Keeladi claim beyond a specific inscribed mark'*, alongside *'any number not derivable from the repository'*. The project has already written itself a rule about how far Keeladi claims may go. |
 | `IH-215` | `INHERITED-UNVERIFIED` | `01-INHERITED/claude-project-handoff.md L406` | Work item 44: contacting Dr. G. Sundar of the Roja Muthiah Research Library, as a bridge to UTSC Digital Tamil Studies and the TNSDA Tamil-Brahmi graffiti project, is *'the most important single verification task in the file'* — and the handoff records that **nothing has been sent to any of the nine outreach roles**. |
 | `IH-212` | `INHERITED-UNVERIFIED` | `01-INHERITED/claude-project-handoff.md L402` | The Dig engine, a PWA over Keezhadi with an on-device Field Bag, plus a Children's Council and a Living Worlds Council with veto over misrepresentation and false continuity — T5 concepts, **none recorded as adopted by the owner**. |
@@ -171,7 +171,7 @@ and `INHERITED-UNVERIFIED` here, and the handoff's own instruction is *pin each
 step*. The correct posture is that the date is unestablished in this repository,
 not that it is established and awaiting citation.
 
-*On the interference narrative.* Five administrative events — a transfer, a
+*On the interference narrative.* Four administrative events — a transfer, a
 report, a rework request, an evaluation — are consistent with interference and
 also consistent with ordinary bureaucratic process. `IH-113` supplies the
 sequence, not the motive, and the page's H1 supplies the motive. That gap is the
@@ -247,7 +247,7 @@ are not repeated here. What follows is what this page needs **beyond** them.
 
 1. The date in the title is carried by a claim with a stated basis — which deposits, which method, which report — or the title stops asserting it. `IH-113` rests on secondary sources and the handoff itself says to pin each step.
 2. The literacy claim is tied to specific inscribed material with catalogue identifiers, per the project's own C-41 rule (`IH-061`).
-3. Each of the five administrative events has an issuing body, a date and a document. Five events reported at second hand is a narrative, not a chronology.
+3. Each of the four administrative events has an issuing body, a date and a document. Four events reported at second hand is a narrative, not a chronology.
 4. The interference claim triggers the right-of-reply obligation (§11.3) against every named institution, and `09-DECISIONS/OWNER-DECISIONS.csv` **D-010** — which institutional claims may presently be published — is the governing open decision.
 5. Field Mode resolved for this posture, and D-006 answered if the children's pilot is Keezhadi.
 6. Site and object imagery is commissioned with rights, credit and a custody position, or the page ships without it.
@@ -269,9 +269,13 @@ rest — and the difference matters.** `SRC-081` to `SRC-083` record the
 general-web hosts refused on re-probe at 2026-09-07T15:10Z, and `SRC-052`'s
 `blocking_constraint` generalises from a sixteen-host probe list. **No probe of
 an ASI, TNSDA or Indian publisher host is recorded anywhere in the ledger**, so
-this brief does not assert that they are unreachable; the honest type for them
-is `NOT RECOGNIZED` in the sense the negative-evidence standard intends — we
-have not looked. `indianculture.gov.in` was recorded reachable at `SRC-027`
+this brief does not assert that they are unreachable. Nor does it type the
+absence, because the constitution §6 typology has **no code for "not
+searched"** — `NOT RECOGNIZED` means evidence present but unidentifiable, and
+using it for an unrun search would be worse than leaving the absence untyped,
+since a wrongly typed absence stops looking like an open question.
+`04-AUDITS/REAUDIT-QUEUE.csv` `RA-018` already records the gap in the typology.
+What is stated instead is the fact: the search has not been run. `indianculture.gov.in` was recorded reachable at `SRC-027`
 earlier the same day, and `SRC-080`'s own note states the governing principle:
 *"A ledger row is a timestamped probe, not a standing property (D-042)."* The
 two rows are therefore not reconcilable from this brief. **Probing the specific

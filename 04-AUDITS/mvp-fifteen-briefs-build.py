@@ -112,6 +112,38 @@ QUOTE_CHECKS = {
         "`decision_id` (`mk:dec:`)",
         "`derived_residual`",
         "Every design proposition here is `HYPOTHESIS`",
+        # the structured data every brief transcribes by hand: the mode matrix
+        # row per posture, and the derivation precedence order (finding 3.B)
+        "| Nocturnal Ve\u1e37i | mandatory | available | available | available | available |",
+        "| Living Signal Field | mandatory | mandatory | available | available | available |",
+        "| Tamil Retrofuture | mandatory | available | mandatory | available | available |",
+        "| Living Ti\u1e47ai | mandatory | available | available | mandatory | available |",
+        "| Reading Room | mandatory | available | mandatory | forbidden | available |",
+        "| Extraction / Collection | mandatory | available | mandatory | forbidden | available |",
+        "| Reconnection | mandatory | available | available | forbidden | available |",
+        "Derivation inputs, in precedence order:",
+        "**Withheld-access flag.**",
+        "**Absence dominance.**",
+        "**Relation dominance.**",
+        "**Otherwise \u2192 Reading Room.**",
+        "An override with an empty reason is invalid.",
+        "not yet known",
+        "known by relation",
+        "known against an official account",
+        "known through place and material",
+        "known but withheld",
+        "knowable again",
+    ],
+    "00-CONTROLLER/METHODOLOGY-CONSTITUTION.md": [
+        "Unknown regions must remain visibly unknown",
+        "NOT PRODUCED",
+        "NOT PRESERVED",
+        "NOT EXCAVATED",
+        "NOT PUBLISHED",
+        "NOT ACCESSIBLE",
+        "NOT RECOGNIZED",
+        "DOCUMENTED DESTRUCTION",
+        "ABSENT DESPITE ADEQUATE SEARCH",
     ],
     "01-INHERITED/curatorial-audit-v1.1/SCHEMA.md": [
         "too sparse to do reliably",
@@ -138,6 +170,10 @@ QUOTE_CHECKS = {
     ],
     "02-SOURCES/access-ledger.csv": [
         "A ledger row is a timestamped probe, not a standing property (D-042).",
+        # SRC-052's probe list and constraint, quoted in six briefs
+        "glottolog.org, dsal.uchicago.edu/dictionaries/burrow/, archive.org, api.github.com, api.crossref.org, api.openalex.org, api.semanticscholar.org, doi.org, arxiv.org, degruyter.com, benjamins.com, zenodo.org, royalsocietypublishing.org, pmc.ncbi.nlm.nih.gov, europepmc.org, cdstar.eva.mpg.de",
+        "Only github.com and raw.githubusercontent.com are reachable.",
+        "Serves git only.",
     ],
     "DECISIONS-NEEDED.md": [
         "Nothing in this repository acts on the MVP set until this is answered.",
@@ -468,16 +504,21 @@ has are not yet identified in any register here.""",
  "unit": """\
 **MVP-U2 — foyer audit against the released build.** Confirm the C-32 fix live,
 confirm which of the 113 inbound links survive into the release, and remove or
-source every count. **Blocked twice over.** The audited archive `veli-site(3).zip`
-is not in this repository and has no row in `02-SOURCES/access-ledger.csv`, so
-the pages cannot be read here; and the deployed site is not reachable — the
-session's latest egress characterisation (`SRC-052`) records only `github.com`
-and `raw.githubusercontent.com` as reachable, with `SRC-081` to `SRC-083`
-recording further hosts blocked on re-probe at 2026-09-07T15:10Z.
+source every count. **Blocked on one thing and unprobed on the other.**
+The audited archive `veli-site(3).zip` is not in this repository and has no row
+in `02-SOURCES/access-ledger.csv`, so the pages cannot be read here — that is a
+missing input, not an egress question, and the owner supplying the archive is
+what clears it. The deployed site has **not been probed**: `SRC-052`'s sixteen
+hosts do not include it and neither do `SRC-080` to `SRC-083`, so this brief does
+not state that it is unreachable, only that no one here has tried and that every
+host probed in this session outside the git lane has been refused.
 
-**Therefore a `HOLD` row is owed** in `05-HOLDS/`, naming the archive and the
-deployed build as the unreachable sources, rather than a substitute audit run off
-the workbook's own summary of pages nobody here has opened. D-033 is the
+**A `HOLD` row is owed once the deployed site has been probed and failed** —
+not before, since framework §3.2 gives `HOLD` to *a required source* that *is*
+unreachable, and an unattempted fetch does not establish that. What is owed now
+is the probe, and then either a ledger row or a hold. Neither licenses a
+substitute audit run off the workbook's own summary of pages nobody here has
+opened. D-033 is the
 decision that unblocks it.""",
  "conflicts": "",
 },
@@ -491,9 +532,10 @@ inline SVGs, 56 inbound links. Type `atlas`. H1: *"Where the objects were
 found."* Decision `Keep`, Risk **Low**, MVP rank 3.
 
 The title asserts a number — *"175 Ancient South Asian Sites Mapped"* — and the
-number is one side of an open contradiction. Framework §8.1 states the
-consequence bluntly: the count was *"adopted as settled fact, put in a page
-title, and rated low-risk."*
+number is one side of an open contradiction. Framework §8.1 relays the schema
+assessment's collision A, whose words these are — `INHERITED-UNVERIFIED`, quoted
+inside a `HYPOTHESIS` document, and not the framework's own verdict: the count
+was *"adopted as settled fact, put in a page title, and rated low-risk."*
 
 The `Low` risk rating deserves reading against the instrument that produced it.
 `method-limits.csv` says source visibility was estimated from *"visible
@@ -650,9 +692,10 @@ set. Log the retrieval in `02-SOURCES/access-ledger.csv`, the dependency in
 **Ceiling: `PROVISIONAL`.** Single digitisation lineage, per §3.2.
 **Owed alongside:** a `HOLD` row for the Tamil Lexicon (`dsal.uchicago.edu`,
 `SRC-056`, not reachable) and for a Telugu lexicographic source, naming what each
-would settle. This is the unit to run first of the fifteen: it is the only one
-whose central claim can be moved off the floor with the access this session
-actually has.""",
+would settle. Among the fifteen, this is the unit whose *central* claim has the most
+direct route with the access this session has — which is a statement about
+retrieval capability, not a work order; sequencing the MVP set is what README §0
+says this unit does not do.""",
  "conflicts": "",
 },
 ]
@@ -822,7 +865,7 @@ dates, inscribed sherds. The other is institutional — transfers, reports,
 rework requests, evaluations. The second names a state body and asserts
 interference.""",
  "evidence": [
-   ("IH-113", "Provisional finding P-05 in the handoff, from secondary sources: *5,500 artefacts, then transfer, then a 982-page report in January 2023, then a May 2025 rework request, then a 114-page evaluation* — with the handoff's own caveat, **'pin each step'**. Five administrative events, none pinned to an issuing body and a document."),
+   ("IH-113", "Provisional finding P-05 in the handoff, from secondary sources: *5,500 artefacts, then transfer, then a 982-page report in January 2023, then a May 2025 rework request, then a 114-page evaluation* — with the handoff's own caveat, **'pin each step'**. One artefact count and four administrative events — a transfer, a report, a rework request, an evaluation — none pinned to an issuing body and a document."),
    ("IH-061", "Correction C-41: among the sentences banned from the prospectus is *'any Keeladi claim beyond a specific inscribed mark'*, alongside *'any number not derivable from the repository'*. The project has already written itself a rule about how far Keeladi claims may go."),
    ("IH-215", "Work item 44: contacting Dr. G. Sundar of the Roja Muthiah Research Library, as a bridge to UTSC Digital Tamil Studies and the TNSDA Tamil-Brahmi graffiti project, is *'the most important single verification task in the file'* — and the handoff records that **nothing has been sent to any of the nine outreach roles**."),
    ("IH-212", "The Dig engine, a PWA over Keezhadi with an on-device Field Bag, plus a Children's Council and a Living Worlds Council with veto over misrepresentation and false continuity — T5 concepts, **none recorded as adopted by the owner**."),
@@ -848,7 +891,7 @@ and `INHERITED-UNVERIFIED` here, and the handoff's own instruction is *pin each
 step*. The correct posture is that the date is unestablished in this repository,
 not that it is established and awaiting citation.
 
-*On the interference narrative.* Five administrative events — a transfer, a
+*On the interference narrative.* Four administrative events — a transfer, a
 report, a rework request, an evaluation — are consistent with interference and
 also consistent with ordinary bureaucratic process. `IH-113` supplies the
 sequence, not the motive, and the page's H1 supplies the motive. That gap is the
@@ -890,7 +933,7 @@ Tamil Nadu with permission.""",
  "launch": [
    "The date in the title is carried by a claim with a stated basis — which deposits, which method, which report — or the title stops asserting it. `IH-113` rests on secondary sources and the handoff itself says to pin each step.",
    "The literacy claim is tied to specific inscribed material with catalogue identifiers, per the project's own C-41 rule (`IH-061`).",
-   "Each of the five administrative events has an issuing body, a date and a document. Five events reported at second hand is a narrative, not a chronology.",
+   "Each of the four administrative events has an issuing body, a date and a document. Four events reported at second hand is a narrative, not a chronology.",
    "The interference claim triggers the right-of-reply obligation (§11.3) against every named institution, and `09-DECISIONS/OWNER-DECISIONS.csv` **D-010** — which institutional claims may presently be published — is the governing open decision.",
    "Field Mode resolved for this posture, and D-006 answered if the children's pilot is Keezhadi.",
    "Site and object imagery is commissioned with rights, credit and a custody position, or the page ships without it.",
@@ -908,9 +951,13 @@ rest — and the difference matters.** `SRC-081` to `SRC-083` record the
 general-web hosts refused on re-probe at 2026-09-07T15:10Z, and `SRC-052`'s
 `blocking_constraint` generalises from a sixteen-host probe list. **No probe of
 an ASI, TNSDA or Indian publisher host is recorded anywhere in the ledger**, so
-this brief does not assert that they are unreachable; the honest type for them
-is `NOT RECOGNIZED` in the sense the negative-evidence standard intends — we
-have not looked. `indianculture.gov.in` was recorded reachable at `SRC-027`
+this brief does not assert that they are unreachable. Nor does it type the
+absence, because the constitution §6 typology has **no code for "not
+searched"** — `NOT RECOGNIZED` means evidence present but unidentifiable, and
+using it for an unrun search would be worse than leaving the absence untyped,
+since a wrongly typed absence stops looking like an open question.
+`04-AUDITS/REAUDIT-QUEUE.csv` `RA-018` already records the gap in the typology.
+What is stated instead is the fact: the search has not been run. `indianculture.gov.in` was recorded reachable at `SRC-027`
 earlier the same day, and `SRC-080`'s own note states the governing principle:
 *"A ledger row is a timestamped probe, not a standing property (D-042)."* The
 two rows are therefore not reconcilable from this brief. **Probing the specific
@@ -1020,13 +1067,15 @@ Damdama and Mahadaha; then the absolute dating literature for the Ganges
 Mesolithic cemeteries. Closing `IH-243` is the single action that would move the
 most on this page, because every Baghor claim is HELD behind it.
 
-**Retrieval state: refused where probed, untested for these two publications.**
-`SRC-081` records the Internet Archive refused at 2026-09-07T15:10Z; `SRC-082`
-TITUS; `SRC-083` sacred-texts and wisdomlib. **Neither publication has itself
-been probed**, and `SRC-058` records the git lane open to arbitrary public
+**Retrieval state: the likely lanes are refused; the two publications are
+unprobed.** `SRC-052` records sixteen hosts refused on 2026-09-07, including
+`doi.org`, the three bibliographic APIs, `archive.org` and `zenodo.org`;
+`SRC-081` records the Internet Archive refused again at 15:10Z, `SRC-082` TITUS,
+`SRC-083` sacred-texts and wisdomlib. **Neither publication has itself been
+probed**, and `SRC-058` records the git lane open to arbitrary public
 repositories, so this brief does not assert that no host serves them — it
-records that the hosts most likely to has been refused and that the specific
-search has not been run. Type the absence before writing the verdict, per
+records that the lanes most likely to carry them are refused and that the
+specific search has not been run. Type the absence before writing the verdict, per
 `04-AUDITS/BIAS-FAILURE-LOG.csv` `BF-010`'s standing control. A `05-HOLDS/` row
 is owed for each once the search has been run and failed, naming what each would
 settle; `05-HOLDS/` already contains six such records, so the form is
@@ -1164,10 +1213,13 @@ excavation; the identification criteria proposed for elite residences in Indus
 archaeology and by whom; then type the absence. In parallel, the positive
 half — a register of water features with site, context and report locator.
 
-**Retrieval state as for MVP-U7**: general-web hosts refused (`SRC-081` to
-`SRC-083`), the excavation literature itself never probed, the git lane
-(`SRC-058`) untested for it. A `05-HOLDS/` row is owed once the search has been
-run and failed. What needs no retrieval at all is the criterion work: the recognition criterion for *palace* is an
+**Retrieval state as for MVP-U7**: the bibliographic and publisher lanes are
+refused — `SRC-052`'s sixteen-host probe of 2026-09-07 covers `doi.org`,
+`api.crossref.org`, `api.openalex.org`, `api.semanticscholar.org`,
+`archive.org` and `zenodo.org` — with `SRC-081` to `SRC-083` recording four
+more; the excavation literature itself has never been probed and the git lane
+(`SRC-058`) is untested for it. A `05-HOLDS/` row is owed once the search has
+been run and failed. What needs no retrieval at all is the criterion work: the recognition criterion for *palace* is an
 argument about categories and can be assembled from what is reachable, and it is
 the half of this unit that changes the page most.""",
  "conflicts": "",
@@ -1364,15 +1416,21 @@ each, and the grapheme inventories of Tamil-Brahmi and the northern Brahmi
 varieties with dated attestations. Link the existing retroflex and lexical work
 to this page where it genuinely bears, one Evidence Link at a time.
 
-**Partly executable now**, which makes this the third unit to run. The lexical
-and comparative half is reachable: DEDR via JAMBU (`SRC-060`, `SRC-061`),
+**Partly executable now** — the third of the three units with a live route, in
+no particular order (README §0). The lexical and comparative half is reachable: DEDR via JAMBU (`SRC-060`, `SRC-061`),
 Proto-Dravidian reconstructions (`SRC-062`), DravLex (`SRC-067`) — all `VERIFIED`
 in the ledger over the still-open git lane.
 
-**The epigraphic half is blocked.** No reachable host serves a Tamil-Brahmi
-inscription corpus: `SRC-052`, and `SRC-080` to `SRC-083`. So the letter-invention
-claim in `IH-103` — the part the title rests on — stays at the floor, and a
-`05-HOLDS/` row is owed for the epigraphic corpus. **Ceiling on the lexical half:
+**The epigraphic half has no probed route, and no probe either.** `SRC-052`
+probed sixteen hosts on 2026-09-07 and records them refused — among them
+`doi.org`, `api.crossref.org`, `api.openalex.org`, `api.semanticscholar.org`,
+`archive.org` and `zenodo.org`, which are the bibliographic lanes to an
+epigraphic corpus — and `SRC-080` to `SRC-083` record four more refused. **No
+Tamil-Brahmi inscription corpus host has itself been probed**, and `SRC-058`
+records the git lane open to arbitrary public repositories, so this brief does
+not state that none is reachable. The letter-invention claim in `IH-103` — the
+part the title rests on — stays at the floor either way, and a `05-HOLDS/` row is
+owed once the search has been run and failed. **Ceiling on the lexical half:
 `PROVISIONAL`,** single digitisation lineage (§3.2;
 `03-REGISTERS/dedr-digitisation-lineage.csv`).""",
  "conflicts": "",
@@ -1469,13 +1527,18 @@ their dates; extract the named comparative proposals for each and their standing
 (method step 11); type each absence. Log the retrieval, write the dependency row,
 and write claims with `supports_page = the-languages-we-lost`.
 
-**Executable now** — this is the second of only three units in the fifteen with a
-live retrieval route in this session, alongside MVP-U4 and the lexical half of
-MVP-U11. **Ceiling: `PROVISIONAL`**, one aggregating classification (§3.2). The
-primary comparative literature — where a `VERIFIED` promotion would have to come
-from — is not reachable: `SRC-052`, `SRC-081` to `SRC-083`. A `05-HOLDS/` row is
-owed for it, and `05-HOLDS/HOLD-005-substrate-literature.md` is the existing
-precedent for the form.""",
+**Executable now** — one of three units in the fifteen with a live retrieval
+route in this session, with MVP-U4 and the lexical half of MVP-U11. No order is
+implied among them; see README §0. **Ceiling: `PROVISIONAL`**, one aggregating classification (§3.2). The primary
+comparative literature — where a `VERIFIED` promotion would have to come from —
+has no probed route: `SRC-052` records `doi.org`, the three bibliographic APIs,
+`degruyter.com`, `benjamins.com`, `archive.org` and `zenodo.org` refused on
+2026-09-07, and `SRC-081` to `SRC-083` record four more. **The specific
+publications have not been probed** and `SRC-058`'s git lane is untested for
+them, so this brief does not assert they are unreachable. A `05-HOLDS/` row is
+owed once the search has been run and failed;
+`05-HOLDS/HOLD-005-substrate-literature.md` is the existing precedent for the
+form.""",
  "conflicts": "",
 },
 ]
@@ -1577,13 +1640,16 @@ reconstruction are four different things); establish the colonial codification
 chronology for claim 3 from dated documents; and read Aktor 2018 and Davis
 2020/2022/2024 directly rather than through the handoff's summary of them.
 
-**Retrieval state: untested for these specific publications.** The general-web
-hosts are recorded refused (`SRC-081` to `SRC-083`), but **no probe for Aktor
-2018 or Davis 2020/2022/2024 is recorded in the ledger**, and `SRC-058` records
-the git lane open to arbitrary public repositories. This brief therefore does
-not assert that no host serves them; running the search and typing the outcome
-is part of the unit, and a `05-HOLDS/` row is owed once it has been run and
-failed. The decomposition itself needs no retrieval and should be done first — it
+**Retrieval state: the lanes to this literature are refused; the publications
+themselves are unprobed.** `SRC-052` probed sixteen hosts on 2026-09-07 and
+records them refused, and the list matters here — `doi.org`,
+`api.crossref.org`, `api.openalex.org`, `api.semanticscholar.org`,
+`degruyter.com` and `benjamins.com` are exactly the routes to Aktor 2018 and
+Davis 2020/2022/2024 — with `SRC-081` to `SRC-083` recording four more. **No
+probe for these specific publications is in the ledger**, and `SRC-058` records
+the git lane open to arbitrary public repositories, so this brief does not
+assert that nothing serves them. Running the search and typing the outcome is
+part of the unit; a `05-HOLDS/` row is owed once it has been run and failed. The decomposition itself needs no retrieval and should be done first — it
 is what turns one unfalsifiable headline into four checkable claims, and it is
 also the analytical half of the `Split`.""",
  "conflicts": "",
@@ -1942,9 +2008,17 @@ scanned for `supports_page`.
 `overlap-tensions.csv`, `02-SOURCES/access-ledger.csv`, `DECISIONS-NEEDED.md`,
 `RESEARCH-QUEUE.md`, `CLAUDE.md` and `04-AUDITS/BIAS-FAILURE-LOG.csv`. The
 generator asserts that **{n_quotes} quoted fragments** still resolve in those
-files and fails the build if one does not, so an edit to a source cannot
-silently invalidate a brief. Prose written around a quote is still written by
-hand; the check catches drift, not misreading.
+files and fails the build if one does not — including the §1.7 mode matrix rows,
+the §1.5 derivation precedence order, the seven posture labels, the
+negative-evidence type names, and `SRC-052`'s probe list and constraint, which
+are the structured values the briefs transcribe rather than paraphrase.
+
+**What the check does and does not do.** It catches *drift* — a quoted fragment
+edited or deleted in its source. It does not catch *misreading*: a fragment can
+resolve while being attributed to the wrong speaker, given the wrong status, or
+used to support something it does not say. One such case was found by review in
+the first draft and corrected. The check narrows the space for silent error; it
+does not close it, and no claim here rests on its having done so.
 **Every count in this directory is derived at build time.** None is a typed
 literal — the inheritance's standing rule 14, which the first draft of this
 README broke by stating a diagram count from memory.
@@ -1968,12 +2042,29 @@ MVP set until this is answered."*
 
 **`RESEARCH-QUEUE.md` lists *"Page and exhibit briefs"* under `## Not yet`.**
 
-This unit was produced on the owner's direct instruction, which is the only
-thing that overrides a queue position — the queue's own ordering below its first
-item is `OWNER-DECISIONS.csv` **D-008**, an owner decision, and an instruction
-from the owner is not a violation of it. But the instruction does not answer
-D-032, and it does not license the unit to do what D-032 withholds. So the
-boundary is drawn explicitly:
+This unit was produced on the owner's instruction, given in the session of
+2026-09-08. **That instruction is not registered as an owner decision and this
+unit does not allocate one for it.** `CLAUDE.md` puts every owner decision taken
+in this repository in `09-DECISIONS/OWNER-DECISIONS.csv`, and an instruction to
+carry out a piece of work is not the same object as a standing decision that the
+work may precede its queue position; treating it as one would put an
+unverifiable authority into the decision namespace, which is what the `HD-01` to
+`HD-20` convention exists to refuse. If the owner wants the placement settled
+rather than the task done, that is a fresh `D-` and it has not been allocated
+here.
+
+**An earlier draft of this section argued that the instruction cleared the
+queue's placement because `OWNER-DECISIONS.csv` D-008 makes queue ordering an
+owner matter. That argument was withdrawn under review and is recorded rather
+than deleted.** It failed three ways: D-008 governs the queue's *ordering below
+its first item*, and `## Not yet` is a membership list, not a position; D-008's
+own state is `BLOCKED`, so it is an unexercised slot and cannot be the authority
+under which anything is permitted; and the instruction itself has no row anyone
+can check. Replacing *not noticing two controls* with *clearing them by an
+authority the repository cannot verify* would have been the worse failure of the
+two.
+
+So the unit rests on the boundary alone, drawn explicitly:
 
 - These briefs **describe** the fifteen pages the workbook nominated and state
   what each would need. That is preparatory work, and it is what was asked for.
@@ -1984,11 +2075,13 @@ boundary is drawn explicitly:
   takes no position on it.
 - Nothing here promotes a claim, because nothing here retrieved anything.
 
-If the owner reads that boundary as too fine — if writing briefs for a set whose
-membership is undecided *is* acting on it — then the correct disposition is that
-this unit waits on D-032 with the rest, and it is written down here so that
-judgement can be made rather than assumed. `RESEARCH-QUEUE.md` has been amended
-to record the unit and its standing.
+**And the boundary may not hold.** If the owner reads it as too fine — if
+writing briefs for a set whose membership is undecided *is* acting on that set —
+then the correct disposition is that this unit waits on D-032 with the rest.
+Nothing here forecloses that reading; it is written down so the judgement can be
+made rather than assumed, and the briefs are recoverable work either way, since
+what they mostly record is what is *missing*. `RESEARCH-QUEUE.md` has been
+amended to record the unit and its standing.
 
 ---
 
@@ -1997,8 +2090,10 @@ to record the unit and its standing.
 Constitution §8 and `CLAUDE.md`: both tests before a unit is called finished,
 logged whether or not they found anything, and *"running one is a failed test"*
 (framework §3.11). Method failures are logged at
-`04-AUDITS/BIAS-FAILURE-LOG.csv` `BF-018` and `BF-019`; re-audits at
-`04-AUDITS/REAUDIT-QUEUE.csv` `RA-019`.
+`04-AUDITS/BIAS-FAILURE-LOG.csv` `BF-018` to `BF-020`; re-audits at
+`04-AUDITS/REAUDIT-QUEUE.csv` `RA-019`. Two rounds of independent adversarial
+review were run on this unit before it was called finished; both found blocking
+defects, and what they found is in those rows rather than quietly repaired.
 
 **Prestige-bias challenge — did this unit privilege a claim because it is
 canonical, Sanskritic, Brahmanical, Indo-European, European, colonial,
@@ -2032,8 +2127,11 @@ receiving the least evidentiary pressure of the fifteen. The brief now runs the
 test on the page explicitly, in three parts — the date, the interference
 narrative, and the direction of correction. Logged as `BF-019`.
 
-**A third failure, not a bias failure but a method failure, found by the same
-review and logged with them:** the first draft expanded *"Kenoyer et al. 1983"* —
+**Further failures, not bias failures but method failures of the same class,
+found by the same reviews and logged with them (`BF-018`(b), `BF-020`):** the
+unit stated its own diagram count from memory rather than deriving it, and
+claimed to read two files at build time that its generator never opened — both
+repaired, both recorded. And the first draft expanded *"Kenoyer et al. 1983"* —
 the only form any source in this repository uses — into a full author list
 supplied from model memory, in a brief whose subject is that the publication has
 never been read. Bibliography from memory is the failure the inheritance rule

@@ -259,13 +259,18 @@ their dates; extract the named comparative proposals for each and their standing
 (method step 11); type each absence. Log the retrieval, write the dependency row,
 and write claims with `supports_page = the-languages-we-lost`.
 
-**Executable now** — this is the second of only three units in the fifteen with a
-live retrieval route in this session, alongside MVP-U4 and the lexical half of
-MVP-U11. **Ceiling: `PROVISIONAL`**, one aggregating classification (§3.2). The
-primary comparative literature — where a `VERIFIED` promotion would have to come
-from — is not reachable: `SRC-052`, `SRC-081` to `SRC-083`. A `05-HOLDS/` row is
-owed for it, and `05-HOLDS/HOLD-005-substrate-literature.md` is the existing
-precedent for the form.
+**Executable now** — one of three units in the fifteen with a live retrieval
+route in this session, with MVP-U4 and the lexical half of MVP-U11. No order is
+implied among them; see README §0. **Ceiling: `PROVISIONAL`**, one aggregating classification (§3.2). The primary
+comparative literature — where a `VERIFIED` promotion would have to come from —
+has no probed route: `SRC-052` records `doi.org`, the three bibliographic APIs,
+`degruyter.com`, `benjamins.com`, `archive.org` and `zenodo.org` refused on
+2026-09-07, and `SRC-081` to `SRC-083` record four more. **The specific
+publications have not been probed** and `SRC-058`'s git lane is untested for
+them, so this brief does not assert they are unreachable. A `05-HOLDS/` row is
+owed once the search has been run and failed;
+`05-HOLDS/HOLD-005-substrate-literature.md` is the existing precedent for the
+form.
 
 
 ---

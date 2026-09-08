@@ -210,16 +210,21 @@ are not repeated here. What follows is what this page needs **beyond** them.
 
 **MVP-U2 — foyer audit against the released build.** Confirm the C-32 fix live,
 confirm which of the 113 inbound links survive into the release, and remove or
-source every count. **Blocked twice over.** The audited archive `veli-site(3).zip`
-is not in this repository and has no row in `02-SOURCES/access-ledger.csv`, so
-the pages cannot be read here; and the deployed site is not reachable — the
-session's latest egress characterisation (`SRC-052`) records only `github.com`
-and `raw.githubusercontent.com` as reachable, with `SRC-081` to `SRC-083`
-recording further hosts blocked on re-probe at 2026-09-07T15:10Z.
+source every count. **Blocked on one thing and unprobed on the other.**
+The audited archive `veli-site(3).zip` is not in this repository and has no row
+in `02-SOURCES/access-ledger.csv`, so the pages cannot be read here — that is a
+missing input, not an egress question, and the owner supplying the archive is
+what clears it. The deployed site has **not been probed**: `SRC-052`'s sixteen
+hosts do not include it and neither do `SRC-080` to `SRC-083`, so this brief does
+not state that it is unreachable, only that no one here has tried and that every
+host probed in this session outside the git lane has been refused.
 
-**Therefore a `HOLD` row is owed** in `05-HOLDS/`, naming the archive and the
-deployed build as the unreachable sources, rather than a substitute audit run off
-the workbook's own summary of pages nobody here has opened. D-033 is the
+**A `HOLD` row is owed once the deployed site has been probed and failed** —
+not before, since framework §3.2 gives `HOLD` to *a required source* that *is*
+unreachable, and an unattempted fetch does not establish that. What is owed now
+is the probe, and then either a ledger row or a hold. Neither licenses a
+substitute audit run off the workbook's own summary of pages nobody here has
+opened. D-033 is the
 decision that unblocks it.
 
 

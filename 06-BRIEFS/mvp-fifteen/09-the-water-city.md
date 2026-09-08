@@ -240,10 +240,13 @@ excavation; the identification criteria proposed for elite residences in Indus
 archaeology and by whom; then type the absence. In parallel, the positive
 half — a register of water features with site, context and report locator.
 
-**Retrieval state as for MVP-U7**: general-web hosts refused (`SRC-081` to
-`SRC-083`), the excavation literature itself never probed, the git lane
-(`SRC-058`) untested for it. A `05-HOLDS/` row is owed once the search has been
-run and failed. What needs no retrieval at all is the criterion work: the recognition criterion for *palace* is an
+**Retrieval state as for MVP-U7**: the bibliographic and publisher lanes are
+refused — `SRC-052`'s sixteen-host probe of 2026-09-07 covers `doi.org`,
+`api.crossref.org`, `api.openalex.org`, `api.semanticscholar.org`,
+`archive.org` and `zenodo.org` — with `SRC-081` to `SRC-083` recording four
+more; the excavation literature itself has never been probed and the git lane
+(`SRC-058`) is untested for it. A `05-HOLDS/` row is owed once the search has
+been run and failed. What needs no retrieval at all is the criterion work: the recognition criterion for *palace* is an
 argument about categories and can be assembled from what is reachable, and it is
 the half of this unit that changes the page most.
 

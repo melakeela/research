@@ -243,15 +243,21 @@ each, and the grapheme inventories of Tamil-Brahmi and the northern Brahmi
 varieties with dated attestations. Link the existing retroflex and lexical work
 to this page where it genuinely bears, one Evidence Link at a time.
 
-**Partly executable now**, which makes this the third unit to run. The lexical
-and comparative half is reachable: DEDR via JAMBU (`SRC-060`, `SRC-061`),
+**Partly executable now** — the third of the three units with a live route, in
+no particular order (README §0). The lexical and comparative half is reachable: DEDR via JAMBU (`SRC-060`, `SRC-061`),
 Proto-Dravidian reconstructions (`SRC-062`), DravLex (`SRC-067`) — all `VERIFIED`
 in the ledger over the still-open git lane.
 
-**The epigraphic half is blocked.** No reachable host serves a Tamil-Brahmi
-inscription corpus: `SRC-052`, and `SRC-080` to `SRC-083`. So the letter-invention
-claim in `IH-103` — the part the title rests on — stays at the floor, and a
-`05-HOLDS/` row is owed for the epigraphic corpus. **Ceiling on the lexical half:
+**The epigraphic half has no probed route, and no probe either.** `SRC-052`
+probed sixteen hosts on 2026-09-07 and records them refused — among them
+`doi.org`, `api.crossref.org`, `api.openalex.org`, `api.semanticscholar.org`,
+`archive.org` and `zenodo.org`, which are the bibliographic lanes to an
+epigraphic corpus — and `SRC-080` to `SRC-083` record four more refused. **No
+Tamil-Brahmi inscription corpus host has itself been probed**, and `SRC-058`
+records the git lane open to arbitrary public repositories, so this brief does
+not state that none is reachable. The letter-invention claim in `IH-103` — the
+part the title rests on — stays at the floor either way, and a `05-HOLDS/` row is
+owed once the search has been run and failed. **Ceiling on the lexical half:
 `PROVISIONAL`,** single digitisation lineage (§3.2;
 `03-REGISTERS/dedr-digitisation-lineage.csv`).
 
