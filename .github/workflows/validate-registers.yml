@@ -1,0 +1,61 @@
+# The register gate.
+#
+# This is the only place the check can see a change made through the GitHub web
+# UI or REST API, by another git client, or by a session that is not Claude
+# Code. .claude/hooks/block-push-on-register-failure.sh is early feedback and
+# sees none of those.
+#
+# It becomes BINDING only when "validate" is required in branch protection on
+# main and direct pushes are disallowed. That is a repository setting and only
+# the owner can apply it: owner decision D-050, recorded BLOCKED because
+# nothing in this repository can take it. Until then this workflow reports and
+# does not stop anything.
+name: validate-registers
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Regenerate the derived registers and fail if they were stale
+        # CLAIM-SOURCES.csv and CLAIM-STATUS.csv are generated. A commit that
+        # edits a register without re-running the builders leaves them stale,
+        # and a stale join is worse than no join: it looks authoritative.
+        run: |
+          python3 04-AUDITS/claim-sources-build.py
+          python3 04-AUDITS/claim-status-build.py
+          python3 04-AUDITS/path-migration-build.py
+          if ! git diff --quiet; then
+            echo "::error::A generated register is stale. Re-run the builders in 04-AUDITS/ and commit the result."
+            git diff --stat
+            exit 1
+          fi
+
+      - name: Validate
+        run: python3 04-AUDITS/validate-registers.py --report
+
+      - name: Report any override in force
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import csv, datetime, pathlib
+          p = pathlib.Path("04-AUDITS/OVERRIDE-LOG.csv")
+          today = datetime.date.today().isoformat()
+          live = [r for r in csv.DictReader(p.open(newline="", encoding="utf-8"))
+                  if (r.get("expiry") or "").strip() >= today]
+          if live:
+              for r in live:
+                  print(f"::warning::override {r['override_id']} in force until "
+                        f"{r['expiry']} ({r['actor']}): {r['reason']}")
+          else:
+              print("no override in force")
+          PY

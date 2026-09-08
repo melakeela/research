@@ -85,6 +85,17 @@ AUTHORITY = {
 
 TEXT_SUFFIXES = {".md", ".csv", ".py", ".sh", ".json", ".txt", ".yml", ".yaml"}
 
+# Generated indexes are not scanned as referrers. This file lists every path in
+# the repository, so counting it as a reference to each of them would make the
+# count a function of its own previous output: a new file would need two runs
+# to settle, and CI's staleness check would fail on the first. The same holds
+# for the claim/source join, which names a register on every one of its rows.
+NOT_A_REFERRER = {
+    "00-CONTROLLER/PATH-MIGRATION.csv",
+    "03-REGISTERS/CLAIM-SOURCES.csv",
+    "03-REGISTERS/CLAIM-STATUS.csv",
+}
+
 
 def tracked_paths():
     out = subprocess.run(
@@ -115,7 +126,7 @@ def main():
     texts = {}
     for p in paths:
         fp = ROOT / p
-        if fp.suffix.lower() not in TEXT_SUFFIXES:
+        if fp.suffix.lower() not in TEXT_SUFFIXES or p in NOT_A_REFERRER:
             continue
         try:
             texts[p] = fp.read_text(encoding="utf-8", errors="replace")
