@@ -158,7 +158,7 @@ CASES = [
          (c / "00-CONTROLLER/OVERRIDE-LOG.csv").read_text()
          + '"OV-903","because","someone","2026-09-07","2026-10-01",'
            '"03-REGISTERS/domain-e-claims.csv","one push","owner",""\n'),
-     "name only a file path"),
+     "name no defect"),
 
 
 
@@ -188,6 +188,24 @@ CASES = [
      lambda c: blank_locators(c, 9) or add_overrides(
          c, 3, "VERIFIED row missing locator"),
      "VERIFIED row missing locator"),
+
+    ("an override signature that is a path plus a colon (Q3)",
+     lambda c: (c / "00-CONTROLLER/OVERRIDE-LOG.csv").write_text(
+         (c / "00-CONTROLLER/OVERRIDE-LOG.csv").read_text()
+         + '"OV-904","because","someone","2026-09-07","2026-10-01",'
+           '"03-REGISTERS/domain-e-claims.csv:","one push","owner",""\n'),
+     "name no defect"),
+
+    ("a claim register downgraded to REPORTED (Q1)",
+     lambda c: set_column(c, "00-CONTROLLER/CANONICAL-FILES.csv",
+                          "03-REGISTERS/domain-e-claims.csv", "validated",
+                          "REPORTED", idcol="path"),
+     "cannot be REPORTED"),
+
+    ("a VERIFIED row whose locator cites inherited material (Q13)",
+     lambda c: set_column(c, "03-REGISTERS/rigveda-pur-family.csv", "PUR-002",
+                          "locator", "01-INHERITED/claude-project-handoff.md L451"),
+     "locator cites inherited material"),
 
     ("a REPORTED register with no hold row naming it (T12)",
      lambda c: set_column(c, "00-CONTROLLER/CANONICAL-FILES.csv",

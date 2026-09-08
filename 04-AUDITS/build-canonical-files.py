@@ -91,7 +91,7 @@ TABLE = [
  ("03-REGISTERS/HYPOTHESIS-ELIGIBILITY.csv", "Hypothesis eligibility (mandated name)", "PENDING-RECONCILIATION", "", "constitution section 9; D-036 / D-039 both open", "chronology-gate", "GATED", "HYP-E-", "evidence_status",
   "Two live eligibility registers, not mapped row for row. Neither is canonical until the owner answers. CR-006."),
  ("03-REGISTERS/domain-e-hypothesis-eligibility.csv", "Hypothesis eligibility (domain E)", "PENDING-RECONCILIATION", "", "constitution section 9; D-036 / D-039 both open", "chronology-gate", "GATED", "E-", "evidence_status",
-  "See CR-006. Its gate vocabulary and the mandated file's YES/NO vocabulary are now both parsed into gate_verdict."),
+  "See CR-006. Both registers now carry an authored gate_verdict, which makes them comparable without merging them; nothing parses either vocabulary, because inference was tried in three forms and each moved a hypothesis across the gate by wording."),
  ("03-REGISTERS/CROSS-DOMAIN-BRIDGES.csv", "Cross-domain bridge tests", "CANONICAL", "", "constitution step 10", "director session", "REPORTED", "BR-E-", "",
   "Its verdict column is free prose in eight distinct forms. Not migrated to an enum: doing so would restate research findings. MH-001."),
  ("03-REGISTERS/domain-e-hydronyms.csv", "Rigvedic hydronym occurrences", "CANONICAL", "", "PROGRAMME.md step 4", "corpus-analyst", "GATED", "HYD-", "", "Data table. Rows are evidence for claims stated elsewhere, not claims."),

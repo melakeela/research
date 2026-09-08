@@ -5,7 +5,7 @@ a findings document written by hand goes stale and is then read as current,
 which is what happened to `VALIDATOR-FINDINGS-2026-09-07.md` (CR-012).
 Regenerated and diffed in CI, so it cannot fall behind the tree either.
 
-- Governed-file digest: `fb5df90e6b174f83`
+- Governed-file digest: `717421fef0e52ca9`
 - Failures: **4**, of which **4** are covered by a committed OVERRIDE-LOG row
 - Warnings: **12** (each carries a MIGRATION-HOLDS row)
 

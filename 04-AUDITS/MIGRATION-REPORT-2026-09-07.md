@@ -95,12 +95,48 @@ these four rows, and both the pre-push hook and CI reach it through the same
 `validate-registers.py --respect-overrides`, so they cannot disagree.
 Run the validator without that flag and it exits 1, which is the honest state.
 
-**So: zero cells changed meaning, and four rows are knowingly unresolved.**
+**So: no claim was promoted, one was demoted, and four rows are knowingly
+unresolved.**
 
-**Every original cell is byte-identical to its pre-migration value**, except
-status and priority tokens whose original text survives verbatim in
-`status_reason` or `priority_reason`. Reproduce by parsing both versions of
-each register into dicts and comparing every shared column.
+### The one demotion
+
+`DMB-021` in `03-REGISTERS/domain-m-brahui-position.csv` was `VERIFIED` with a
+locator reading, in part,
+`03-REGISTERS/inherited-claims.csv IH-237 and 01-INHERITED/claude-project-handoff.md L451`.
+`CLAUDE.md` is unambiguous that an `IH-` row is a claim to be tested rather
+than a source and that only a logged retrieval promotes, so the part of that
+claim resting on those references was never `VERIFIED` by this repository's
+own rule. It is now `PROVISIONAL`, which is what a claim supported by the
+glottolog and dravlex halves of the locator alone is; the row is not deleted
+and `status_reason` records the whole history.
+
+This is a research-row status change made in a control-plane pass, and it is
+the only one. It is a demotion, which is the safe direction — nothing was
+promoted without retrieval — and the owner can reverse it by reading
+Krishnamurti 2003 directly, which is what restoring `VERIFIED` requires.
+The validator now fails **any** `VERIFIED` row whose locator cites
+`01-INHERITED/` or an `IH-` identifier, so the class cannot recur silently.
+Found by adversarial review; queued as `RA-016` (closed) and `RA-017` (the
+negative claim inside the row still needs typing under §6).
+
+**24,556 comparable cells; 12 changed, in 10 rows.** Reproduce by parsing
+both versions of every CSV present at `aa40d3a` into dicts keyed on the
+identifier column and comparing every shared column, excluding
+`09-DECISIONS/DECISION-ID-MAP.csv`, whose key is `(old_id, old_file, new_id)`
+and which is verified separately as an unchanged 64-row multiset.
+
+The 12, in full, because an earlier version of this paragraph said the
+originals "survive verbatim" and that was not true of all of them:
+
+| Row | Change | Original recoverable? |
+|---|---|---|
+| `RA-001`, `RA-003` `priority` | `MEDIUM — the unit already…` → `MEDIUM` | The qualifying prose is in `priority_reason`; the `MEDIUM — ` prefix is not reproduced, so the cell is reconstructable, not verbatim |
+| `RA-004`, `RA-005` `priority`, `status` (4 cells) | `medium`/`high`/`open` → upper case | **No reason cell**, because a case change loses nothing: the original is the lower-cased token |
+| `RA-006`, `RA-009`, `RA-010`, `RA-011` `status` | `OPEN - blocked on X` → `OPEN` | Verbatim in `status_reason`; the dependency also in `blocked_by` |
+| `D-035` `status` | `open` → `OPEN` | Case only |
+| `DMB-021` `evidence_status` | `VERIFIED` → `PROVISIONAL` | **The one research-status change on this branch.** Not a migration: the inheritance rule applied to a locator that terminates in an `IH-` row. `status_reason` carries the full history. See below. |
+
+Nothing in a `claim`, `notes`, `locator` or `source_id` cell changed.
 Checked by reading `git show aa40d3a:<file>` and the current file into
 dictionaries and comparing every column of every row. The check is not a claim about the
 script's intent; it is a comparison of the two files.
@@ -220,7 +256,7 @@ does not become "buried".
 | MH-003 | The two eligibility registers | Different namespaces and different vocabularies, with no crosswalk. Merging means choosing between two gate verdicts, which is analysis. |
 | MH-004 | `BACKLOG-COVERAGE.csv` site-coverage columns | The route inventory is in `melakeela/site`. Filling from the frozen 96-page audit was already considered and rejected in `06-BACKLOG/README.md`. |
 | MH-005 | Reconciliation `C-1`–`C-9` | Renaming to `RCF-` is right but touches 14 files; a reference migration does not belong inside a schema migration. |
-| MH-006 | Every path in `00-CONTROLLER/PATH-MIGRATION.csv` | 1,024 enumerated references. Path moves are a separate mechanical commit after this passes review. |
+| MH-006 | Every path in `00-CONTROLLER/PATH-MIGRATION.csv` | Path moves are a separate mechanical commit after this passes review. |
 | MH-007 | `museum-framework.md` 96-page counts | Relabelling means re-reading each argument against a site this session cannot see. |
 | MH-008 | `E-11` `evidence_status` | Restored verbatim: no value in the vocabulary states what a residue's standing is, and `VERIFIED` here is untraceable by construction. |
 | MH-009 | 1,195 multi-identifier inline cells | The join expands them. Rewriting that many research rows to satisfy a schema is what this repository refuses to do. |

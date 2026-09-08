@@ -96,10 +96,10 @@ OVERRIDES = [
      '"OV-902","because","someone","2026-09-07","2026-12-31","-","one push","owner","short"', False),
     ("a waiver running more than 90 days (F3)",
      '"OV-903","because","someone","2026-09-07","2029-01-01",'
-     '"evidence_status \'CONFIRMED\' not in its vocabulary","one push","owner","too long"', False),
+     '"VERIFIED row in a register with no source_id","one push","owner","too long"', False),
     ("an expired waiver",
      '"OV-904","because","someone","2026-01-01","2026-02-01",'
-     '"evidence_status \'CONFIRMED\' not in its vocabulary","one push","owner","expired"', False),
+     '"VERIFIED row in a register with no source_id","one push","owner","expired"', False),
     ("a live waiver for a different failure",
      '"OV-905","because","someone","2026-09-07","2026-10-01",'
      '"some entirely unrelated failure text","one push","owner","non-matching"', False),
@@ -108,7 +108,7 @@ OVERRIDES = [
      '"03-REGISTERS/domain-e-claims.csv","one push","owner","file-wide"', False),
     ("a bounded, specific, unexpired waiver",
      '"OV-906","genuine emergency","someone","2026-09-07","2026-10-01",'
-     '"evidence_status \'CONFIRMED\' not in its vocabulary","one push","owner","valid"', True),
+     '"VERIFIED row in a register with no source_id","one push","owner","valid"', True),
 ]
 
 
@@ -155,9 +155,13 @@ def main():
             return 1
         print("baseline: clean tree allows a push")
 
-        claims = tree / "03-REGISTERS/domain-e-claims.csv"
+        # A defect in a register that CANNOT record a retrieval, so it is a
+        # schema question an override may hold. A vocabulary defect in a
+        # register that can record one is unwaivable by construction and no
+        # override row would be honoured for it - which is the point.
+        claims = tree / "03-REGISTERS/HYPOTHESIS-ELIGIBILITY.csv"
         claims.write_text(claims.read_text(encoding="utf-8")
-                          .replace("VERIFIED,SRC-047", "CONFIRMED,SRC-047", 1),
+                          .replace('"PROVISIONAL"', '"VERIFIED"', 1),
                           encoding="utf-8")
         if not ask(tree, "git push"):
             print("BASELINE FAILED: the hook allows a push on a failing tree")

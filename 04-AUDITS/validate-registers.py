@@ -103,6 +103,7 @@ MAX_FAILURES_PER_SIGNATURE = 3
 # The total across every active override row, so a blanket waiver cannot be
 # assembled out of individually-compliant rows.
 MAX_OVERRIDDEN_TOTAL = 6
+MIN_SIGNATURE_WORDS = 3
 
 DIMENSIONS = {
     "evidence_status": EVIDENCE_STATUS,
@@ -151,6 +152,13 @@ VAGUE_LOCATOR = re.compile(
     r"n/?a|tbd|unknown|the (article|source|paper)|as above|ibid\.?)$", re.I)
 BARE_IDENTIFIER = re.compile(r"^[A-Z]{1,6}(-[A-Z]{1,3})?-\d{1,4}[A-Za-z-]*$")
 
+# CLAUDE.md's inheritance rule: everything in 01-INHERITED/ is a claim to be
+# tested, an IH- row is a pointer to a prior claim rather than a source, and
+# only a logged retrieval promotes. A VERIFIED row whose locator terminates in
+# either is therefore VERIFIED on something that cannot verify it. This was
+# found on one row by adversarial review; the check covers the class.
+INHERITED_LOCATOR = re.compile(r"(^|[^\w-])(01-INHERITED/|IH-\d{3})")
+
 failures, warnings, notes = [], [], []
 
 
@@ -162,6 +170,26 @@ failures, warnings, notes = [], [], []
 # identifier collision, or a hole in the control plane: none of these is a
 # migration problem an expiring waiver can hold open.
 unwaivable = set()
+
+
+def can_carry_retrieval(fields):
+    """True if this register has the columns a retrieval is recorded in.
+
+    THE WAIVABLE BOUNDARY, stated once and derived from the data rather than
+    from which rows an override happens to need. Adversarial review observed,
+    correctly, that the first version of this line was drawn exactly where
+    OV-001 required it: a rule written after its exception.
+
+    A register that HAS source_id, locator and retrieval_date can record a
+    retrieval, so every claim-shaped defect in it is a defect in the row and no
+    waiver may cover it. A register that lacks those columns cannot record one
+    at all; a row in it asserting a source-dependent standing is a schema
+    question - whether that register should carry evidence_status - which is
+    D-036 / D-039, and an expiring override may hold it while the owner
+    answers. That is the same property MH-008 and MH-010 already turn on, and
+    it applies to any register, not to the four rows in hand.
+    """
+    return all(c in fields for c in REQUIRED_FOR_VERIFIED)
 
 
 def fail(msg, waivable=True):
@@ -217,6 +245,19 @@ def id_column(fields):
 VALIDATED_MODES = {"GATED", "REPORTED", "NOT-VALIDATED"}
 
 
+def claim_register(rel):
+    """True if the file carries an evidence_status column."""
+    path = ROOT / rel
+    if path.suffix != ".csv" or not path.is_file():
+        return False
+    try:
+        with open(path, newline="", encoding="utf-8") as fh:
+            header = next(csv.reader(fh), [])
+    except (OSError, csv.Error, StopIteration):
+        return False
+    return "evidence_status" in header
+
+
 def load_governed():
     """Read CANONICAL-FILES.csv into {relpath: (mode, prefix, role)}."""
     if not CANONICAL.exists():
@@ -241,6 +282,10 @@ def load_governed():
             fail(f"00-CONTROLLER/CANONICAL-FILES.csv:{n}: validated {mode!r} is not "
                  f"one of {sorted(VALIDATED_MODES)}; this column decides what the "
                  f"validator enforces and cannot hold an unrecognised value")
+        if mode == "REPORTED" and claim_register(row["path"]):
+            fail(f"00-CONTROLLER/CANONICAL-FILES.csv:{n}: {row['path']} carries an "
+                 f"evidence_status column and cannot be REPORTED; a register of "
+                 f"claims is GATED or it is not governed", waivable=False)
         if mode == "REPORTED" and row["path"] not in hold_targets:
             fail(f"00-CONTROLLER/CANONICAL-FILES.csv:{n}: {row['path']} is REPORTED "
                  f"but no MIGRATION-HOLDS.csv row names it; a downgraded register "
@@ -323,7 +368,13 @@ def all_register_ids(governed):  # noqa: C901
 def check_file(rel, mode, prefix, ledger, known_ids):
     """Checks 2-6 and 9 over one governed CSV."""
     def report(msg, waivable=True):
-        if mode == "GATED":
+        # An unwaivable failure is unwaivable in a REPORTED register too.
+        # warn() used to swallow the flag, so flipping one `validated` cell to
+        # REPORTED downgraded the retrieval requirement and ledger resolution
+        # for a whole register - a second waiver channel with no expiry, no
+        # cap, no signature and no per-defect scope. REPORTED can soften a
+        # judgement call; it cannot soften the gate.
+        if mode == "GATED" or not waivable:
             fail(msg, waivable=waivable)
         else:
             warn(msg)
@@ -338,6 +389,7 @@ def check_file(rel, mode, prefix, ledger, known_ids):
     fields = list(rows[0].keys())
     idcol = id_column(fields)
 
+    schema_question = not can_carry_retrieval(fields)
     keycols = COMPOSITE_KEY.get(rel) or ((idcol,) if idcol else ())
     prefixes = tuple(p for p in prefix.split("|") if p)
     seen = set()
@@ -363,9 +415,11 @@ def check_file(rel, mode, prefix, ledger, known_ids):
             if col in fields:
                 v = (row.get(col) or "").strip()
                 if col == "evidence_status" and not v:
-                    report(f"{rel}:{n}: evidence_status is empty; no claim is unstatused")
+                    report(f"{rel}:{n}: evidence_status is empty; no claim is unstatused",
+                           waivable=schema_question)
                 if v and v not in vocab:
-                    report(f"{rel}:{n}: {col} '{v[:60]}' not in its vocabulary")
+                    report(f"{rel}:{n}: {col} '{v[:60]}' not in its vocabulary",
+                           waivable=schema_question and col == "evidence_status")
         if rel in FILE_STATUS_VOCAB:
             col, vocab = FILE_STATUS_VOCAB[rel]
             v = (row.get(col) or "").strip()
@@ -385,7 +439,8 @@ def check_file(rel, mode, prefix, ledger, known_ids):
             prose = (row.get("eligible_for_extended_analysis") or "").strip()
             if prose and declared in ("", "UNASSIGNED"):
                 report(f"{rel}:{n}: the row has eligibility prose but no "
-                       f"gate_verdict; the verdict is written, not inferred")
+                       f"gate_verdict; the verdict is written, not inferred",
+                       waivable=False)
 
         status = (row.get("evidence_status") or "").strip()
 
@@ -400,7 +455,7 @@ def check_file(rel, mode, prefix, ledger, known_ids):
                 report(f"{rel}:{n}: {status} row in a register with no "
                        f"{', '.join(absent)} column; the retrieval that would "
                        f"back it cannot be recorded here, so {status} is "
-                       f"untraceable in this file")
+                       f"untraceable in this file", waivable=True)
             required = (REQUIRED_FOR_VERIFIED if status == "VERIFIED"
                         else ("source_id",))
             for col in required:
@@ -411,10 +466,16 @@ def check_file(rel, mode, prefix, ledger, known_ids):
         if "locator" in fields:
             loc = (row.get("locator") or "").strip()
             if loc and VAGUE_LOCATOR.match(loc):
-                report(f"{rel}:{n}: locator '{loc}' is not specific enough to re-find")
-            elif loc and BARE_IDENTIFIER.match(loc) and loc not in known_ids:
+                report(f"{rel}:{n}: locator '{loc}' is not specific enough to re-find",
+                       waivable=False)
+            if loc and status == "VERIFIED" and INHERITED_LOCATOR.search(loc):
+                report(f"{rel}:{n}: VERIFIED row whose locator cites inherited "
+                       f"material ({loc[:70]}); an IH- row is a claim to be "
+                       f"tested and 01-INHERITED/ has no evidentiary standing, "
+                       f"so nothing here can carry a retrieval", waivable=False)
+            if loc and BARE_IDENTIFIER.match(loc) and loc not in known_ids:
                 report(f"{rel}:{n}: locator '{loc}' looks like an identifier but "
-                       f"resolves to no register row")
+                       f"resolves to no register row", waivable=False)
 
         # --- 6. sources resolve, whatever the status
         for sid in split_sources(row.get("source_id")):
@@ -426,9 +487,11 @@ def check_file(rel, mode, prefix, ledger, known_ids):
         if status == "SUPERSEDED":
             target = (row.get("superseded_by") or "").strip()
             if not target:
-                report(f"{rel}:{n}: SUPERSEDED row names no replacement in superseded_by")
+                report(f"{rel}:{n}: SUPERSEDED row names no replacement in superseded_by",
+                       waivable=False)
             elif target not in known_ids:
-                report(f"{rel}:{n}: superseded_by {target} resolves to no register row")
+                report(f"{rel}:{n}: superseded_by {target} resolves to no register row",
+                       waivable=False)
 
 
 def check_identifier_namespaces(governed):
@@ -550,7 +613,8 @@ def check_join(governed, ledger):
             fail(f"03-REGISTERS/claim-sources.csv:{n}: source_id {sid!r} holds more "
                  f"than one identifier; the join exists to prevent exactly this")
         if ledger and sid and sid not in ledger:
-            fail(f"03-REGISTERS/claim-sources.csv:{n}: source_id {sid} not in the ledger")
+            fail(f"03-REGISTERS/claim-sources.csv:{n}: source_id {sid} not in the ledger",
+                 waivable=False)
         # independence_group is re-derived from 02-SOURCES/dependency.csv, not
         # trusted. It was hand-editable in a generated file, and rewriting it
         # erased every independence finding with the validator still passing.
@@ -560,7 +624,7 @@ def check_join(governed, ledger):
             if declared != expected:
                 fail(f"03-REGISTERS/claim-sources.csv:{n}: independence_group "
                      f"{declared!r} for {sid} does not match {expected!r} derived "
-                     f"from 02-SOURCES/dependency.csv")
+                     f"from 02-SOURCES/dependency.csv", waivable=False)
         by_claim.setdefault((r.get("register"), (r.get("claim_id") or "").strip()),
                             set()).add(sid)
 
@@ -602,7 +666,7 @@ def check_join(governed, ledger):
         if rel in register_is_claim and declared != register_is_claim[rel]:
             fail(f"03-REGISTERS/claim-sources.csv: {rel} is joined as {declared} "
                  f"but the register is {register_is_claim[rel]}; register_class "
-                 f"decides which rows count as claims")
+                 f"decides which rows count as claims", waivable=False)
             break
 
     # Join rows whose claim exists in no register are orphans: a relation to
@@ -751,16 +815,9 @@ def check_migration_holds():
                  f"blocked on {row['blocked_on'][:90]}")
 
 
-def tracked_paths_blob():
-    """One string of every tracked path, for spotting path-only waivers."""
-    return "\n".join(subprocess.run(["git", "ls-files"], cwd=ROOT,
-                                    capture_output=True, text=True).stdout.split())
-
-
 def check_overrides():
     """13. Override rows are well-formed. Returns the currently active ones."""
     active = []
-    tracked_paths_text = tracked_paths_blob()
     if not OVERRIDES.exists():
         fail("00-CONTROLLER/OVERRIDE-LOG.csv is missing; the gate has no waiver record")
         return active
@@ -808,11 +865,21 @@ def check_overrides():
                  f"shorter than {MIN_OVERRIDE_SIGNATURE} characters; a signature "
                  f"this general waives failures nobody has read", waivable=False)
             continue
-        pathlike = [sig for sig in sigs if sig in tracked_paths_text]
-        if pathlike:
-            fail(f"00-CONTROLLER/OVERRIDE-LOG.csv:{n}: waiver signature(s) "
-                 f"{pathlike} name only a file path; a signature must name the "
-                 f"defect it waives, or it waives every defect in that file", waivable=False)
+        # Testing "is this a path" was defeated by appending one colon, which
+        # is the natural spelling since every failure line reads
+        # `path:line: message`. Require the signature to CONTAIN a defect
+        # phrase instead: at least three words. No path has three words.
+        # Split on WHITESPACE only. Splitting on punctuation as well counted
+        # "03-REGISTERS/domain-e-claims.csv" as six words, so the rule written
+        # to stop a path-only signature accepted one. A file path contains no
+        # spaces; a phrase from a failure message does.
+        vague = [sig for sig in sigs if len(sig.split()) < MIN_SIGNATURE_WORDS]
+        if vague:
+            fail(f"00-CONTROLLER/OVERRIDE-LOG.csv:{n}: waiver signature(s) {vague} "
+                 f"name no defect; a signature carries at least "
+                 f"{MIN_SIGNATURE_WORDS} words of the failure it waives, so that a "
+                 f"bare path - with or without a trailing colon - cannot waive "
+                 f"every defect in a file", waivable=False)
             continue
         if expiry >= today:
             active.append(row)
@@ -884,6 +951,9 @@ def main():
         print(f"\nvalidate-registers: {len(failures)} failure(s)")
         for f in failures:
             print("  " + f)
+    elif overridden:
+        print(f"\nvalidate-registers: no unwaived failures. "
+              f"{len(overridden)} failure(s) stand, covered by an override.")
     else:
         print("\nvalidate-registers: all checks pass")
 
@@ -893,12 +963,18 @@ def main():
         # Rendering only what survived the flag would have made the record depend
         # on how it was invoked, and CI regenerating it would diff forever.
         Path(args.report).write_text(
-            render_report(remaining, overridden, warnings), encoding="utf-8")
+            render_report(remaining, overridden, warnings, governed),
+            encoding="utf-8")
     sys.exit(1 if failures else 0)
 
 
-def governed_digest():
+def governed_digest(governed):
     """A content digest of every governed file, in path order.
+
+    Takes the already-loaded map: calling load_governed() again re-ran its
+    checks and appended their failures AFTER apply_overrides and after the
+    exit-code line was computed, so passing --report could turn an exit 0 into
+    an exit 1 and inflate the report's own headline count.
 
     NOT the commit sha. This report is generated before the commit that
     contains it, so stamping HEAD would name the previous commit — and CI
@@ -908,7 +984,7 @@ def governed_digest():
     holding the same tree.
     """
     h = hashlib.sha256()
-    for rel in sorted(load_governed()):
+    for rel in sorted(governed):
         # The report is itself a governed file; including it would make the
         # digest depend on the previous run's output and never settle.
         if rel == "04-AUDITS/VALIDATION-REPORT.md":
@@ -958,14 +1034,14 @@ def apply_overrides(current, active):
     return overridden, remaining
 
 
-def render_report(remaining, overridden, warns):
+def render_report(remaining, overridden, warns, governed):
     lines = [
         "# Validation report", "",
         "Generated by `04-AUDITS/validate-registers.py --report`. Do not hand-edit:",
         "a findings document written by hand goes stale and is then read as current,",
         "which is what happened to `VALIDATOR-FINDINGS-2026-09-07.md` (CR-012).",
         "Regenerated and diffed in CI, so it cannot fall behind the tree either.", "",
-        f"- Governed-file digest: `{governed_digest()}`",
+        f"- Governed-file digest: `{governed_digest(governed)}`",
         f"- Failures: **{len(remaining) + len(overridden)}**, of which "
         f"**{len(overridden)}** are covered by a committed OVERRIDE-LOG row",
         f"- Warnings: **{len(warns)}** (each carries a MIGRATION-HOLDS row)",
