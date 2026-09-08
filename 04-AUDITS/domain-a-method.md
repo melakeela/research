@@ -231,11 +231,53 @@ formulated the rule.
 
 ## 10. Step 13 — MelaKeela's own pages
 
-Not checked in this unit. Every claim here carries `supports_page` =
-`forts (proposed)`, which is the page the domain E and pur- work already
-feeds. No public copy was drafted from any of it: `RCT-010` and `RCI-012`,
-the two claims a reader would most want, are both PROVISIONAL and both sit
-behind holds.
+`melakeela/site` was attachable, so this step ran. It was checked at
+`769a6f6`. Two failures and two passes, all four in
+`04-AUDITS/INTERNAL-CONTRADICTIONS.csv`.
+
+**`IC-A-001`.** `the-late-hymn.html` says "Books 1, 8, 9 and 10 are later."
+Book 8 is the most contested book in the corpus and the page states it flat.
+Hellwig 2020 §5.4 reports his model inducing the ordering
+(4, 8) < (1–3, 5–7, 9) < (10) — books 4 and 8 as the **earliest** — notes
+that this was already proposed for book 8 by Lanman 1872 and Arnold 1897 and
+strongly contested by Hopkins 1896, and says outright that the status of RV 1
+and especially RV 8 is disputed. This repository's own data shows the same
+fault line: Witzel marks 11.3% of book 8 late, his highest rate for any book,
+while Oldenberg marks 1.3% and Wüst 1.5%, their lowest; and Arnold 1905 makes
+book 8 43.4% Archaic against 3.8% Popular. `RA-020`.
+
+**`IC-A-002`.** The same page carries "composed centuries before the rest"
+and "family books c. 1500–1000 BCE; Books 1/8/9/10 later", attributed to
+"standard chronology" with no source. Nothing in this unit dates the
+composition of anything — §2 above is the first restriction the method note
+states — and Hellwig's model finds "no clear temporal separations between the
+remaining nine books". The page's argument is about relative order and does
+not need the numerals. `RA-020`.
+
+**`IC-A-003`, a pass, and an upgrade the page can take.** Its central claim —
+RV 10.90 sits in the newest book and reads as inserted — is supported by
+three retrieved primary instruments, where the page currently rests it on
+three secondary sources it honestly marks "source listed, not accessed". All
+64 pādas of RV 10.90 carry Arnold 1905's Popular stratum **in uppercase**,
+which per `PUR-011` means not by metrical variations alone. Grassmann 1876–7
+marks all 16 stanzas. Arnold 1897 marks all 16 as `C2`, the later of his two
+addition phases. Two of those three predate Arnold 1905.
+
+And the scope has to be kept honest in the same breath: Oldenberg, Wüst and
+Witzel mark **none** of the hymn. Under §5's typing that is `NOT PRODUCED`
+and is not disagreement — but it is not agreement either, and the page must
+not be given three instruments where it has three silences and two marks.
+`RA-021`.
+
+**`IC-A-004`, a second pass.** `panini.html` says "roughly 4,000 sūtras" and
+that Pāṇini "distinguishes chandas, the Vedic, from bhāṣā, the spoken
+language — and describes both". The retrieved edition has 3,983, and
+`RCT-008` puts a proportion under the qualitative claim: 6.35% in explicitly
+Vedic scope. Nothing to correct.
+
+No public copy was drafted from this unit. `RCT-010` and `RCI-012`, the two
+claims a reader would most want, are both PROVISIONAL and both sit behind
+holds.
 
 ## 11. Reproducing this
 
