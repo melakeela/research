@@ -961,3 +961,275 @@ touches published copy.
 **Asked of the owner:** whether the page should name its digitization
 and carry the range in the interim. The change itself belongs in
 `melakeela/site`, not here. Queued as `RA-009`.
+
+## D-046 — Do the §10.4.7 prohibitions bind the whole institution?
+
+**Raised by:** experience object model §5.4
+**Category:** publication approval; two consequential positions both viable
+
+Museum framework §10.4.7 states three prohibitions — no sorting of human
+beings into types, no reward mechanic on extremist categories, no
+persecution as spectacle — and scopes them to the children's mode:
+*"anywhere in the children's mode, in any Living World, in any pilot."*
+
+Two facts about the architecture put that scope under pressure.
+
+First, **the institution cannot know who is looking.** §10.4.5 requires
+that no account is offered to under-16 visitors and the Field Bag is local
+by default. There is therefore no age gate anywhere, and a child can reach
+every surface. Protections that activate only in a children's mode protect
+children only where the institution guessed right.
+
+Second, **the prohibitions are on interaction patterns, not on subjects.**
+§10.4.7 says so: *"the same interaction is the same interaction whatever is
+loaded into it."* A rule of that form does not obviously have an audience
+scope at all — the argument that a sorting interface teaches that the
+categories are operable does not weaken when the person sorting is
+nineteen.
+
+The experience object model takes the extension **within its own layer**:
+the Constraint Block binds all eight object types at every age band. That
+was the instruction the document was written under, and it is what the
+no-gate architecture implies for objects that ask a visitor to do
+something.
+
+It does not extend the prohibitions beyond that layer, because the costs
+there are real and are not the model's to weigh.
+
+| Option | Consequence |
+|---|---|
+| **Bind the whole institution.** No surface anywhere offers an interaction that sorts, scores or stages people | The rule becomes checkable in one place and cannot be defeated by an audience guess. Cost: an exhibit whose *subject* is a nineteenth-century racial schema may need to reproduce that schema's operation to analyse it, and a blanket interaction ban could stop the historiography the record most needs — the `WMP-9` programme is precisely a study of how a racial category was built. |
+| **Bind the experience layer only** (the position this model takes for itself) | Anything asking a visitor to do or conclude something is covered, at any age. Cost: a register view, an Atlas layer combination or a long-form Reading Room exhibit is outside, and the boundary between "arranging the record" and "asking the visitor to do something" will be argued over. |
+| **Bind child-facing surfaces only**, as §10.4.7 states | Nothing changes and the owner's wording governs unaltered. Cost: the guarantee is only as good as an audience guess the institution has deliberately made itself unable to make. |
+
+The wording of the three constraints is `INHERITED-UNVERIFIED`
+(`MELA-KEELA-WHO-MADE-THE-PAST.md` §9 is not in this repository;
+`RESEARCH-QUEUE.md` `WMP-9` records the provenance and the numbering
+discrepancy raised as D-037). Their standing as constraints does not
+depend on that — they are prohibitions on what the institution builds, not
+claims about the past — but their **scope** is the owner's, and it is what
+is being asked here.
+
+**Decision:** do the three prohibitions bind the whole institution, the
+experience layer, or child-facing surfaces only?
+
+## D-047 — Which curricula do Learning Objectives map to?
+
+**Raised by:** experience object model §12.6
+**Category:** publication approval
+**Related:** `09-DECISIONS/OWNER-DECISIONS.csv` D-008 (Release 1 scope),
+museum framework D-031 (language commitments)
+
+Museum framework §10.5.2 settles the discipline and leaves the scope open:
+*"Curriculum-alignable, not curriculum-bound. The institution may map its
+material to a syllabus as a convenience layer. It may not alter a claim, a
+status or an absence to fit one."* And, in the sentence that makes
+alignment safe to offer at all: where the record and a curriculum disagree,
+classroom mode *"says that they disagree and shows the evidence"*, in both
+directions — *"this applies equally where the curriculum is the one this
+project would prefer."*
+
+The experience object model implements all of that. `curriculum_alignments[]`
+is metadata: it may not appear in `taught_on[]`, may not affect
+`assertion_form`, and may not raise a claim's status. An alignment that would
+require a `knows-that` objective on a claim below `VERIFIED` is refused.
+
+What is not settled is whether any curriculum is mapped, and which.
+
+| Option | Consequence |
+|---|---|
+| **Map to named curricula** | Teachers find the material through the route they actually use, which is the difference between a resource that is used and one that is admired. Cost: each mapping is a standing maintenance commitment of the kind §11.10.4 describes for a language — a curriculum revises, and a stale alignment misroutes a teacher toward material that no longer answers what they were sent for. It is also a positioning claim: mapping to one national syllabus and not another says something about who the institution is for. |
+| **No alignment** | Nothing to maintain and nothing implied about audience. Cost: the teachers §10.5.1 is written for — *"not a specialist and has an hour"* — have to do the mapping themselves, and most will not. |
+| **Defer** | Reasonable, since the answer depends on D-008 and D-031 and costs nothing while objectives publish with the field empty. |
+
+This is a live question rather than a hypothetical one for this record
+specifically: the material touches topics that appear in national curricula
+in forms the evidence does not support, and an aligned objective is the
+surface where the institution's disagreement with a syllabus becomes visible
+to the person teaching it.
+
+**Decision:** which curricula, if any, are mapped?
+
+## D-048 — Does an individual's consent suffice where a community holds authority?
+
+**Raised by:** experience object model §13.3.3
+**Category:** living-community consent
+
+A `present-day-investigator` Character is a living person shown doing the
+work — an excavator, a translator, a conservator, a community member. §11.4
+requires a consent record from them, per purpose and per surface. §11.2
+separately records where a **community**, not the institution, holds
+interpretive authority over the material.
+
+When the person is a member of that community and the material is within
+that authority's scope, the two mechanisms meet and neither says which
+governs.
+
+The tension runs in both directions and neither side is safe.
+
+- **Requiring community sign-off** makes the institution the arbiter of who
+  counts as a representative — which §11.2 warns against in its own terms:
+  *"an institution that consults one organisation and reports 'the community
+  agreed' has made a claim it cannot support."* It also gives a community
+  body an effective veto over an individual member speaking about their own
+  practice.
+- **Not requiring it** lets the institution obtain one person's consent and
+  publish the result where a visitor will read it as the community's account.
+  §11.2's requirement that representation be recorded *"including its
+  limits"* — *"who was consulted, how they were identified, and who this does
+  not speak for"* — is a mitigation, not an answer.
+
+| Option | Consequence |
+|---|---|
+| **Individual consent suffices**, with the individual's own scope stated on the surface | The person speaks for themselves and is shown doing so. Cost: the distinction between "a member of this community says" and "this community says" rests entirely on a caption. |
+| **Community agreement additionally required** wherever an authority record covers the material | The community controls how it is represented on its own material. Cost: the institution has to decide whose agreement counts, which is the claim §11.2 says it cannot support. |
+| **Required only where the person is presented as speaking for the community** rather than for themselves | Follows the actual claim being made. Cost: the line is drawn by the institution's own framing, and framing drifts. |
+
+The model currently specifies the individual consent as required and the
+authority record as carried where one applies, without ruling on precedence.
+That is a deliberate gap, not an omission.
+
+**Decision:** which governs, and where is the line?
+
+## D-049 — May the method guide be personified for children?
+
+**Raised by:** experience object model §13.3.4
+**Category:** publication approval
+
+The `institutional-voice` Character is MelaKeela speaking as itself: the
+Step 14 interpretation register, and the guide that explains what a status
+is, what `NOT EXCAVATED` means, and why nine citations can be one source.
+The model specifies it unpersonified — no name, no biography, no
+personality, no relationship with the visitor.
+
+Whether that holds for children is the owner's.
+
+**The case for personification.** A guide is how most children's material
+makes an unfamiliar method approachable, and this institution is asking
+children to hold statuses, absence types and an attestation gradient — more
+apparatus than a children's museum usually carries, not less.
+
+**The case against.** A friendly guide is the standard vector for smoothing
+uncertainty. A character with warmth is read as reassuring, and reassurance
+is precisely what a `HYPOTHESIS` claim must not receive — museum framework
+§12.3, V-2: *"Confidence is never conveyed by production value."* A
+personified guide is also one step from a mascot, which §13.6 item 14
+forbids where it stands for a people, a place, a language or a period.
+
+If personification is permitted, the constraints that would have to hold are
+already in §13.3.4: no biography, no opinions beyond the institution's
+statused positions, speaks last on any question, and says *"we do not know"*,
+*"we were refused access"* and *"we were wrong"* as readily as it says
+anything else. A guide that cannot say those three things is not the
+institutional voice; it is a mascot with a clipboard.
+
+**Decision:** apparatus only, a personified guide with those constraints, or
+personification in the children's mode alone?
+
+## D-050 — Does the institution depict past people visually at all?
+
+**Raised by:** experience object model §13.5
+**Category:** publication approval
+**Related:** museum framework D-026 (human remains)
+
+Any depiction of a past person is an interpretation (`is_primary =
+interpretation`, §2.5) with a named maker and a date. It also supplies what
+the record does not: a face, a build, a skin, a dress, an age, a bearing.
+
+Each of those is an assertion, and several are identity attributions of the
+kind §13.6 item 4 forbids in text. **A drawn face makes an ancestry claim
+that a sentence would have had to status.** This is the specific reason the
+question is escalated rather than answered by the general rule about marked
+reconstructions: the marker travels with the image, but the inference the
+viewer draws does not wait for it.
+
+Against that: the total absence of depicted people leaves the past populated
+by objects and no one, which is its own distortion, and one this record has
+named repeatedly in the form of the §4V provenance questions.
+
+| Option | Consequence |
+|---|---|
+| **No depiction of past people** | No unstatused visual assertion is possible. Cost: the museum shows things and never people, which reads as a claim that the things made themselves. |
+| **Depiction as marked interpretation**, maker and date named, reconstruction marker carried | People are visible and the image is honest about being an image. Cost: every such image asserts appearance, and appearance is where ancestry claims enter without a mechanism. |
+| **Only where an attested ancient image exists** — a figurine, a relief, a painted scene — reproduced with description separated from interpretation (§2.4), and nothing commissioned | The institution shows how people were depicted *then*, which is evidence, rather than how they looked, which is not. Cost: coverage is uneven and follows what survives, which is itself an archive bias the surface would have to state. |
+
+Rights (§11.8) and evidential alt text (§11.9.3) apply to any depiction made.
+
+**Decision:** which, and under what marker?
+
+## D-051 — May attested words be voiced, or only quoted?
+
+**Raised by:** experience object model §13.3.2
+**Category:** two consequential positions both remaining viable
+
+A `documented-individual` Character presents words attested in a source at a
+locator. The model's default is `voice_rendering = quotation-only`: the words
+appear as quotation, with the Translation Block (§3.8) and the `is_primary`
+step (§2.5) beside them.
+
+Whether they may also be **read aloud** — as audio, a recorded reading, or a
+first-person presentation — is a real choice with costs on both sides.
+
+**Against voicing.** A reading adds tone, pace, emphasis, gender, age and
+emotion. The record carries none of these, and a listener attributes all of
+them to the speaker rather than to the reader. It also carries a translation
+choice past the visitor: §3.8's display contract requires the alternatives
+and the interpretive consequence *"one interaction away, on the same
+surface"*, which audio makes awkward. And it approaches, without crossing,
+the line §13.6 item 2 draws at interiority — a performance implies a state
+of mind.
+
+**For voicing.** Refusing it entirely leaves ancient words permanently inert
+and privileges silent reading of a script most visitors cannot read. That is
+an accessibility position as much as an editorial one, and §11.9 makes
+accessibility a release gate rather than a preference.
+
+| Option | Consequence |
+|---|---|
+| **Quotation only** (the model's default) | No performance, no implied state of mind, apparatus always adjacent. Cost: the words reach only readers of the script or of a translation. |
+| **Voicing permitted** with the apparatus reachable on the same surface | The words are audible. Cost: everything in the paragraph above, on every listen. |
+| **Voicing of attested original-language text only, never of a translation** | Voicing an original is closer to a facsimile than to a performance; voicing a translation is a performance *of an interpretation*, which is a different act. Cost: a visitor who does not know the language hears sound and reads apparatus, which may be exactly right or may be theatre. |
+
+§13.6 item 5's prohibition on voicing reconstructed forms stands under every
+option: no proto-language is ever spoken aloud, at any age, because no
+marker survives audio.
+
+**Decision:** quotation only, voicing with apparatus, or original-language
+voicing only?
+
+## D-052 — Does the institution hold per-visitor progress state?
+
+**Raised by:** experience object model §10.5
+**Category:** publication approval; two consequential positions both viable
+**Related:** D-046 (both turn on the same no-age-gate derivation)
+
+Museum framework §10.3 permits a server-side Field Bag: *"Local by default.
+The bag is stored on the visitor's own device and needs no account. Any
+server-side bag is opt-in, and for under-16 visitors it does not exist at
+all."*
+
+The experience layer needs a position on the same question for Mission and
+Journey progress, and taking one turns out to reopen the framework's rule
+rather than merely extend it.
+
+**The derivation.** §10.4.5 offers no account to under-16 visitors and
+forbids behavioural analytics *"on any surface, at any age"*. An institution
+with no accounts and no tracking cannot know who is on a surface. So a
+server-side store whose exclusion is "does not exist for under-16 visitors"
+has an exclusion it cannot apply. **An opt-in a child can take is not an
+opt-in with an age condition on it; it is an opt-in.**
+
+| Option | Consequence |
+|---|---|
+| **No server-side per-visitor state at all** (the model's recommendation, labelled as such) | The institution holds no per-visitor record, and the under-16 rule is satisfied by construction rather than by a check it cannot run. Cost: a visitor who changes device loses their place, and §10.3's opt-in bag is withdrawn — a real feature removed on an argument, not on a requirement. |
+| **Keep §10.3's opt-in**, and allow `opt-in-server-side` progress beside it | The framework's rule stands unamended and adults who want continuity across devices get it. Cost: the institution holds behavioural records it cannot show contain no child's data, while §10.4.5 states that it holds none. |
+| **A declared-age gate** | Rescues §10.3 and §10.4.5 as written, since the under-16 exclusion becomes operable. Cost: it puts an age claim about a visitor into a product from which §10.4.5 has removed every other visitor datum, and a self-declared birth date admits anyone who types a number. |
+
+The experience object model specifies both storage values, writes every
+other rule so that either works, and does not choose. Classroom sets are
+unaffected under all three options: they are the teacher's, saved to the
+teacher's optional account, holding no student data and no assessment
+scoring (§10.5.2).
+
+**Decision:** which of the three, and if the first, is §10.3 amended in the
+framework or left standing with this layer as its exception?
