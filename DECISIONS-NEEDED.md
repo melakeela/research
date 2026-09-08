@@ -1012,3 +1012,40 @@ is being asked here.
 
 **Decision:** do the three prohibitions bind the whole institution, the
 experience layer, or child-facing surfaces only?
+
+## D-047 — Which curricula do Learning Objectives map to?
+
+**Raised by:** experience object model §12.6
+**Category:** publication approval
+**Related:** `09-DECISIONS/OWNER-DECISIONS.csv` D-008 (Release 1 scope),
+museum framework D-031 (language commitments)
+
+Museum framework §10.5.2 settles the discipline and leaves the scope open:
+*"Curriculum-alignable, not curriculum-bound. The institution may map its
+material to a syllabus as a convenience layer. It may not alter a claim, a
+status or an absence to fit one."* And, in the sentence that makes
+alignment safe to offer at all: where the record and a curriculum disagree,
+classroom mode *"says that they disagree and shows the evidence"*, in both
+directions — *"this applies equally where the curriculum is the one this
+project would prefer."*
+
+The experience object model implements all of that. `curriculum_alignments[]`
+is metadata: it may not appear in `taught_on[]`, may not affect
+`assertion_form`, and may not raise a claim's status. An alignment that would
+require a `knows-that` objective on a claim below `VERIFIED` is refused.
+
+What is not settled is whether any curriculum is mapped, and which.
+
+| Option | Consequence |
+|---|---|
+| **Map to named curricula** | Teachers find the material through the route they actually use, which is the difference between a resource that is used and one that is admired. Cost: each mapping is a standing maintenance commitment of the kind §11.10.4 describes for a language — a curriculum revises, and a stale alignment misroutes a teacher toward material that no longer answers what they were sent for. It is also a positioning claim: mapping to one national syllabus and not another says something about who the institution is for. |
+| **No alignment** | Nothing to maintain and nothing implied about audience. Cost: the teachers §10.5.1 is written for — *"not a specialist and has an hour"* — have to do the mapping themselves, and most will not. |
+| **Defer** | Reasonable, since the answer depends on D-008 and D-031 and costs nothing while objectives publish with the field empty. |
+
+This is a live question rather than a hypothetical one for this record
+specifically: the material touches topics that appear in national curricula
+in forms the evidence does not support, and an aligned objective is the
+surface where the institution's disagreement with a syllabus becomes visible
+to the person teaching it.
+
+**Decision:** which curricula, if any, are mapped?

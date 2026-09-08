@@ -1562,3 +1562,167 @@ facets, the date and the base revision.
   (§10.6): a sequence of permissible Exhibits can compose an impermissible
   argument, most obviously by ordering material so that a classification appears
   to be discovered.
+
+---
+
+## 12. Learning Objective — `mk:lob:`
+
+### 12.1 What it is
+
+**A Learning Objective states what a visitor should be able to *do* after an
+Activity or Mission, and names the objects it is taught on.**
+
+Museum framework §10.5.1 identifies what this institution actually has to teach:
+*"The method, taught as the content. The fourteen steps, the negative-evidence
+types, the attestation gradient and the difference between citation count and
+independent-source count are teachable objects in their own right, and they are
+the most transferable thing this institution has."*
+
+That sentence sets the object's centre of gravity. The primary Learning
+Objectives of this institution are about **how to handle a record**, not about
+what happened in South Asia. A visitor who leaves able to ask "how many
+independent sources, and are they independent?" has got something that survives
+every revision this record will undergo. A visitor who leaves believing a
+`PROVISIONAL` claim has been given something that may not survive the year.
+
+### 12.2 Fields
+
+| Field | Type | Notes |
+|---|---|---|
+| `id` | identifier | `mk:lob:<key>` |
+| `revision` | integer | append-only |
+| `objective` | string | stated as a capability: "can distinguish an attested form from a reconstructed one", not "understands the attestation gradient" |
+| `objective_plain` | string | the same at the lowest reading age in `age_bands[]` |
+| `objective_type` | enum | `method` · `record-literacy` · `evidence-class-literacy` · `institutional-literacy` · `specific-content` |
+| `taught_on[]` | array of `mk:rel:` (`taught-on`) | the claims, absences, evidence or relationships used as the worked cases. **Non-empty. This is the objective's grounding.** |
+| `claim_status_ceiling` | derived | the highest status among `taught_on[]` targets — constrains `assertion_form`, §12.4 |
+| `assertion_form` | enum | `can-state-what-is-claimed` · `can-apply-the-method` · `can-identify` · `knows-that`. **`knows-that` requires every `taught_on[]` target to be `VERIFIED`.** §12.4. |
+| `demonstrated_by[]` | array of `mk:act:`, `mk:msn:` | via `prepares-for` |
+| `assessment` | enum | `none`. The only permitted value. §12.5. |
+| `curriculum_alignments[]` | array | optional, external syllabus codes as a convenience layer only. §12.6. |
+| `age_bands[]` | array | declarative |
+| `prerequisite_objectives[]` | array of `mk:lob:` | ordering within the objective set, not a lock on content |
+| `constraint_block` | Constraint Block | §5.2 |
+
+### 12.3 The five objective types
+
+| Type | What it teaches | Example shape |
+|---|---|---|
+| `method` | one of the fourteen steps, applied | "can apply a chronology gate to a proposed link" |
+| `record-literacy` | how to read the record's own vocabulary | "can tell `NOT EXCAVATED` from `ABSENT DESPITE ADEQUATE SEARCH` and say why the difference matters" |
+| `evidence-class-literacy` | what a class of evidence can and cannot show | "can say what a radiocarbon determination dates, and what it does not" |
+| `institutional-literacy` | how archives and institutions produce what survives | "can say who made this record, who preserved it, and who is missing from it" |
+| `specific-content` | a fact about the past | strictly constrained by §12.4 |
+
+The ordering is deliberate and is a position, not a taxonomy: **`specific-content`
+is last and is the one type whose objectives expire.** A record built to
+contradict its own previous answers (constitution §2) should not send visitors
+away holding its current answers as the thing they learned.
+
+### 12.4 An objective may not outrun the status of what it is taught on
+
+> **A Learning Objective may not require a visitor to hold as true anything the
+> institution has not verified.**
+
+`assertion_form` is constrained by `claim_status_ceiling`:
+
+| Highest status in `taught_on[]` | Permitted `assertion_form` |
+|---|---|
+| `VERIFIED` | any, including `knows-that` |
+| `PROVISIONAL` | `can-state-what-is-claimed`, `can-apply-the-method`, `can-identify` |
+| `HYPOTHESIS` | `can-state-what-is-claimed`, `can-apply-the-method` |
+| `INHERITED-UNVERIFIED` | `can-apply-the-method` only, and the objective must be about the inheritance, not the content |
+| `REJECTED` | `can-state-what-is-claimed`, `can-apply-the-method` — teaching why it was rejected is legitimate and valuable |
+| `HOLD` | `can-apply-the-method` only, with the hold disclosed |
+
+This is museum framework §3.2's derivation rule and §3.12's derived-asset rule
+in the same register: *"a derived asset may not be commissioned or published
+while the claim it depicts is `INHERITED-UNVERIFIED` or `HOLD`."* An objective is
+a derived asset of the claims it is taught on, and its scheduling is a function
+of the verification schedule.
+
+**Decay follows automatically.** When a claim taught at `knows-that` is
+superseded or rejected, the objective's ceiling drops and the objective is
+suspended until it is rewritten. This is `decay_behaviour = hold` (§4.3) and it
+is the case that most justifies the whole grounding rule: without it, the
+institution's teaching materials are the last thing to learn that its claims have
+changed, and they are the part of its output that travels furthest.
+
+### 12.5 No assessment, and what that costs
+
+`assessment = none` is the only permitted value.
+
+Museum framework §10.5.2: *"No student accounts, no student data, no assessment
+scoring. The institution supplies material; it does not grade children."* §9.3:
+no score, no points, no "correct". §10.4.4: no competition, no scoreboard, no
+time pressure.
+
+The cost is that the institution cannot tell whether an objective was met. That
+is a real loss, it is not recovered by a proxy, and no substitute is specified:
+completion tracking, quiz scores, time-on-task and "confidence sliders" are all
+assessment with the word removed, and each of them requires the per-visitor data
+§10.5 has ruled out.
+
+What is available instead: the aggregate, non-identifying usage counts §10.4.5
+permits with a published measurement policy, and the teacher's own judgement,
+which is what classroom mode's preparation material (§10.5.1) exists to support —
+*"written for a teacher who is not a specialist and has an hour."*
+
+### 12.6 Curriculum alignment is a convenience layer
+
+Museum framework §10.5.2: *"Curriculum-alignable, not curriculum-bound. The
+institution may map its material to a syllabus as a convenience layer. It may not
+alter a claim, a status or an absence to fit one."*
+
+As object rules:
+
+- `curriculum_alignments[]` is metadata on the objective. It may not appear in
+  `taught_on[]`, may not affect `assertion_form`, and may not affect any claim's
+  status.
+- **Where the institution's record and a curriculum disagree, the objective says
+  they disagree and shows the evidence, in both directions** — *"this applies
+  equally where the curriculum is the one this project would prefer."* That
+  sentence is the whole reason alignment is safe to offer at all, and it is a
+  required behaviour of any aligned objective, not a caveat.
+- An alignment that would require `knows-that` on a claim below `VERIFIED` is
+  refused. The syllabus does not raise a status.
+- Which curricula are mapped, if any, is not decided here: it interacts with
+  release scope (`OWNER-DECISIONS.csv` D-008) and language commitments
+  (museum framework D-031). Recorded as **D-047**.
+
+### 12.7 Grounding, and the one objective that looks ungrounded
+
+Every Learning Objective needs a non-empty `taught_on[]`, including the `method`
+and `record-literacy` types — which is the case where the rule looks hardest to
+satisfy and is in fact where it does most good.
+
+"Can tell an attested form from a reconstructed one" is an objective about a
+vocabulary (§2.6), and a vocabulary is not an evidence object. But the objective
+is not taught on the vocabulary; it is taught on **specific forms**: this
+attested word at this locator in this edition, beside this reconstruction with
+the method that produced it and the scholar who proposed it. Those are `mk:lex:`
+and `mk:evd:` objects with identifiers.
+
+An objective that cannot name its worked cases has not been designed yet, and
+the grounding rule catches that at creation rather than at the point where a
+teacher opens it and finds an abstraction.
+
+### 12.8 What a Learning Objective may never be
+
+1. **An objective to hold a claim as true above its status** (§12.4).
+2. **An assessment, or anything that functions as one** (§12.5).
+3. **An objective requiring the visitor to sort people, score a classification
+   or move through a staged persecution** — the Constraint Block binds this
+   object as it binds the rest (§5.2), and an objective is where such an exercise
+   would be justified as pedagogically necessary. It is not available as a
+   justification: §10.4.7's second constraint is explicit that *"it makes no
+   difference that the classification is being taught as false."*
+4. **An objective phrased as an identity claim about the visitor** — "understands
+   their own heritage", "connects with their ancestors". Language is not a proxy
+   for identity anywhere in the product (§11.10.2), and no surface may vary its
+   content by interface language; an objective that assumes who is reading has
+   done both.
+5. **An objective the institution cannot maintain in every language it offers**
+   (§11.10.4). A stale objective is worse than none, for the same reason a stale
+   translation is: it publishes superseded material under the institution's name
+   to the readers least able to check it.
