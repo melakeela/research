@@ -1,0 +1,6 @@
+scholar	violator_marked	violator_unmarked	compliant_marked	compliant_unmarked	odds_ratio	fisher_p_onesided
+grassmann	73	80	154	613	3.63	6.48e-12
+oldenberg	55	98	27	740	15.38	1.47e-27
+arnold	47	106	92	675	3.25	4.06e-08
+wuest	57	96	30	737	14.59	7.9e-28
+witzel	51	102	17	750	22.06	3.32e-29
