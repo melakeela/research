@@ -81,9 +81,37 @@ segmentations align.
 
 Recorded because it is the general case: *the anomalous minority is where an
 instrument tells you what it actually is.* The number that survived,
-`RCT-003`, is the same 79.8% against 97.0%, but it now says something true
-and much narrower — undoing sandhi word by word is not the same operation as
-restoring metre, and does not achieve it.
+`RCT-003`, says something true and much narrower — undoing sandhi word by
+word is not the same operation as restoring metre, and does not achieve it.
+
+### 4b. The same lesson, not applied, and what it cost
+
+The figures in the paragraph above were themselves wrong when first
+committed, and for a reason the paragraph above had already named.
+
+The van Nooten and Holland text writes long vocalic **r̥̄** as the digraph
+`r̥r̥` — `mr̥r̥ḷaya`, `jaritr̥r̥ṇáam` — where Aufrecht writes `mr̥ḷaya`. The
+syllable counter read it as two nuclei. 273 pādas carry it; 125 of them came
+out non-canonical for that reason alone. Every total in `RCT-001`, `RCT-002`,
+`RCT-003`, `RCT-011` and `RCT-012` was wrong, and `RCT-004`'s statistics
+shifted with them.
+
+The failure is not the bug. It is that §4's own lesson was available and was
+not used. The corrected measurement produced **1,200 non-canonical pādas in a
+metrically restored edition**, and not one of them was inspected. One
+orthographic digraph accounted for a tenth of them. The unit wrote down "the
+anomalous minority is where an instrument tells you what it actually is",
+then published a second measurement without looking at its anomalous
+minority.
+
+The self-test made it worse rather than catching it. `RCT-001`'s locator
+advertised "self-tested on RV 1.1.1–2, where every pāda must be 8" — and the
+code asserted **two** pādas. No two-pāda assertion can catch a systematic
+transliteration bug, and advertising one in a locator makes a register row
+look tested when it is not. The test now asserts four hand-checked pādas
+**and** the corpus residue: it fails if more than 5% of the restored text is
+non-canonical, or if more than ten non-canonical pādas carry the digraph.
+`BF-023`.
 
 ## 5. Negative-evidence typing
 
@@ -185,7 +213,33 @@ That would have been wrong in three ways, and each was corrected:
 `RCT-010` is where this lands, and it is PROVISIONAL, not VERIFIED, because
 the paper itself is on `HOLD-011`.
 
-The second correction under this heading is smaller and concerns Oldenberg.
+**The fourth correction is the one the unit did not make for itself.** The
+adversarial review found it: the paragraph of Hellwig 2020 §5.4 that supplied
+the appendix list and the "most frequently cited" quotation continues, in the
+same breath, with a caution against exactly the control `RCI-008` presents as
+strongest:
+
+> "this strong effect is mainly caused by a few of Oldenberg's appendices
+> marked as especially young by the model … The remaining appendices, esp.
+> those contained in the Family Books R̥V 2-7, are **not** marked as
+> particularly late by the model, but some of them even as quite old as, for
+> example, the 'praise of giving' in R̥V 5.27, whose status as an appendix
+> has been challenged by Jamison and Brereton (2014, 688) on metrical
+> grounds."
+
+`RCI-008` reports the family books 2–7 as the tightest form of the control.
+The source it draws on says its own model finds the family-book portion of
+that same list *not* late, and one member's appendix status contested. The
+favourable half of one paragraph was quoted and the unfavourable half of the
+same paragraph was not recorded. Footnote 5 of the same paper adds "*note
+that significant p-values can result from the mere sample sizes in this
+setting*", while `RCI-008` reported `p = 0` and `p = 4.6e-300`.
+
+This is asymmetric scrutiny of a single source, applied in the direction that
+helped, and it is logged as `BF-024`. Both quotations are now in the
+`RCI-007` and `RCI-008` notes.
+
+The next correction under this heading is smaller and concerns Oldenberg.
 `RCI-011` looks like strong corroboration — rule-breaking hymns are marked
 late at odds ratio 15.4 by Oldenberg. That number is **definitionally
 inflated**: violating the arrangement rule is *how Oldenberg identified
@@ -213,23 +267,70 @@ formulated the rule.
 
 ## 9. Step 12 — what would change the conclusions
 
-- **`RCI-006`, `RCI-008`, `RCI-012`** would move toward REJECTED as claims of
-  *corroboration* if Arnold 1905 turns out to have used Grassmann's and
-  Oldenberg's judgements in assigning his Popular period. `HOLD-009` names
-  the page range that would settle it. The measurements would survive
-  unchanged as descriptions of how the layers relate.
-- **`RCT-004`** would weaken if van Nooten and Holland's restoration turns
-  out to have used Arnold's periodisation as an input. `RCT-005` holds that
-  open.
-- **`RCT-010`** would change on any reading of the 2021 paper's own scope
-  statement that is wider than its abstract (`HOLD-011`).
-- **`RCI-010`** would be overturned by a demonstration that VedaWeb's
-  addressee strings encode a grouping derived from Oldenberg. The
-  label-free segmentation was run precisely to survive that, and it does:
-  216 descents against 56 ascents using maximal runs of identical addressee
-  string, with no group label involved.
-- **`RCT-008`** would move on a critical edition of the Aṣṭādhyāyī giving a
-  different sūtra count or a different anuvṛtti reconstruction.
+Constitution step 12 asks this of every accepted claim, and the first version
+of this note answered it for 7 of 24. All 26 are below. Falsifiers that
+several rows share are stated once and referenced.
+
+**F-1, the transliteration falsifier.** Any pāda where the syllable counter
+disagrees with a hand count on a string it has not been shown to handle.
+`BF-023` is what happens when this is not looked for. Applies to `RCT-001`,
+`RCT-002`, `RCT-003`, `RCT-004`, `RCT-011`, `RCT-012`.
+
+**F-2, the Arnold-provenance falsifier.** Arnold 1905's own account of how he
+assigned the Popular period, if it shows he used Grassmann's or Oldenberg's
+judgements as input. `HOLD-009`. Applies to `RCI-006`, `RCI-007`, `RCI-008`,
+`RCI-012`, and through them to the `PUR-026` supersession.
+
+**F-3, the edition falsifier.** A critical edition of the Aṣṭādhyāyī, or of
+the Padapāṭha, giving different counts. Applies to `RCT-008`, `RCT-009`,
+`RCT-011`, `RCT-012`.
+
+| Claim | What would change it |
+|---|---|
+| `RCI-001` | A VedaWeb release altering `stanza_properties.json`. The 2,350 figure is checkable in one line and was wrong once already. |
+| `RCI-002` | A VedaWeb statement of the code semantics that differs from `lateAdditions.md` — the platform page, when reachable, is the obvious check. |
+| `RCI-003` | Evidence that the `arnold` column is not Arnold 1897 but a later redaction of it. |
+| `RCI-004` | A metre-label grouping finer or coarser than the 66 in `strata.json` that raises prediction well above 40.4%. If metre did determine stratum, every result reading through the strata would be a result about metre. |
+| `RCI-005` | Nothing likely; it is a cross-tabulation of a fixed file. It would be *reinterpreted* by evidence that Arnold assigned periods at book level rather than hymn level. |
+| `RCI-006` | F-2. Also a sixth instrument, independent of all five, that does *not* concentrate in Popular. |
+| `RCI-007` | Oldenberg 1888 itself (`HOLD-010`), showing either that Hellwig's 31 are not his, or that the further 52 hymns in VedaWeb's column are not. |
+| `RCI-008` | F-2. Also: any book-level variable correlated with both marking and Popular that book-stratification does not absorb — hymn length is the obvious candidate and was not tested. |
+| `RCI-009` | Wüst 1928 itself, showing that his book differs from the marks attributed to him here. The Jaccard of 0.836 is a fact about the VedaWeb column, not necessarily about Wüst. |
+| `RCI-010` | A demonstration that hymn *length* is not what the arrangement tracks — that the descending runs follow something else that correlates with length. The whole-book test cannot separate those. |
+| `RCI-011` | Evidence that Grassmann 1876–7 had access to an arrangement principle equivalent to Oldenberg's. The claim rests entirely on his priority in date. |
+| `RCI-012` | F-2, decisively. This row exists to be settled by it. |
+| `RCT-001` | F-1. |
+| `RCT-002` | F-1. Also a demonstration that van Nooten and Holland's pāda segmentation *does* encode a metrical judgement about junction sandhi, which would move part of the +2.43% back into the metrical column. |
+| `RCT-003` | F-1. Also a canonical-length inventory wider than {8, 11, 12} — the 2.7% residue is not analysed here. |
+| `RCT-004` | F-1. Also: any variable that predicts restoration rate and is correlated with stratum and is neither metre label nor book. Both of those were controlled; a third was not looked for. |
+| `RCT-005` | van Nooten and Holland 1994 in its own text, showing whether Arnold's periodisation was an input to their restoration. |
+| `RCT-006` | A second allomorph pair behaving differently, or the same pair at full corpus scale with the other case-forms Hellwig, Scarlata and Widmer used. The stratum null has 89 tokens in its smallest cell and would not detect a small effect. |
+| `RCT-007` | More data, straightforwardly. The non-final limb does not survive multiplicity correction and either direction could be noise. |
+| `RCT-008` | F-3. Also a reading of *chandas* in Pāṇini's usage that reclassifies some of the 17 rules about the word, in either direction. |
+| `RCT-009` | The translation audit `RCT-009` itself says has not been done. Constitution §7 makes that audit prerequisite to the *count*, not only to its interpretation. |
+| `RCT-010` | The 2021 paper's own scope statement (`HOLD-011`), which is what should govern this row and does not yet. |
+| `RCT-011` | F-1, F-3. Also a reading of the 61 divergent-but-intact stanzas showing them defective after all, which would move the figure up. |
+| `RCT-012` | F-1, F-3. |
+| `IC-A-001`, `IC-A-002` | A source for the site's date range, or a resolution of book 8's position. Neither is available here. |
+| `IC-A-003` | Oldenberg 1888, Wüst 1928 or Witzel 1995 turning out to have judged RV 10.90 late somewhere the VedaWeb layer does not record. |
+| `IC-A-004` | F-3. |
+
+### R-02 in the inherited non-repetition record
+
+`01-INHERITED/claude-project-handoff.md` §5.4 records `R-02` as REJECTED:
+*"The corpus knows Afghanistan before it knows the Ganges" (Archaic-stratum
+reading)*, on the ground of a by-book count placing the Afghan rivers in
+books 5, 8 and 10.
+
+`RCT-004` raises the standing of Archaic-stratum readings in general, and the
+question has to be faced rather than left implicit: **does it revive `R-02`?
+It does not, and it cannot.** `R-02` was rejected on *geography*, by a
+by-book river count. `RCT-004` measures how much obscured metrical material a
+stratum carries. It says nothing about which rivers appear where, and the
+strata are in any case entangled with book identity at Cramér's V 0.471
+(`RCI-005`), so an Archaic-stratum reading of a by-book distribution is
+close to the circularity `R-02` was rejected for. Nothing in this unit
+licenses re-proposing it.
 
 ## 10. Step 13 — MelaKeela's own pages
 
@@ -296,3 +397,58 @@ python3 04-AUDITS/rv-registers-and-panini.py    <ashtadhyayi>/sutraani/data.txt 
 `04-AUDITS/domain-a-outputs/`. The Monte Carlo in `rv-arrangement.py` is
 seeded at 20260907 and is deterministic. `scipy` is the only non-stdlib
 dependency.
+
+
+---
+
+## 12. The adversarial review, and what it changed
+
+The review ran on `bb61d65` and reported against a tree that had moved twice
+under it. It is recorded here in full effect because a review that finds
+nothing is worth nothing, and this one found a great deal.
+
+**Nineteen findings. Two rows downgraded in substance, eleven renumbered or
+reworded, none withdrawn.** The four that changed what this unit can claim:
+
+1. **The syllable counter was wrong** on a digraph the restored text uses,
+   and five VERIFIED rows carried wrong totals. `BF-023`. The conclusions
+   survived; the numbers did not.
+2. **`RCI-008`'s control was the wrong control.** Deleting book 10 does not
+   control for a confound that runs through every book. Under the control
+   that does — stratification by book — **Grassmann falls from an odds ratio
+   of 15.3 to 4.0**, and Grassmann is the instrument `RCI-011` and `RCI-012`
+   lean on as incapable of being downstream of Arnold. `RCI-012` was weakened
+   accordingly: it now rests on one pre-Arnold instrument, Oldenberg, not two.
+3. **`RCI-010` tested a rule its source does not state.** Hellwig 2020 states
+   the arrangement rule *per book*; the unit tested it within groups, and
+   called them deity groups when VedaWeb's field is a poet heading. Retested
+   as stated, it holds — 388 descents against 214 ascents — but the first
+   version's locator did not cover the test it described.
+4. **The source was read asymmetrically.** `BF-024`. The favourable half of
+   one paragraph of Hellwig 2020 was quoted; the half warning that his model
+   finds the family-book appendices *not* late — the region `RCI-008`
+   presents as its tightest control — was not.
+
+The pattern across all four is one thing: **the unit checked the results it
+expected to be attacked and did not check the ones it expected to hold.**
+`RCT-004` and `RCT-006`, the two results most likely to draw fire, had been
+given genuine controls before review. `RCI-008` and the syllable counter,
+which felt settled, had not.
+
+### The `future_control` checklist
+
+`BF-025` records that three controls already in `04-AUDITS/BIAS-FAILURE-LOG.csv`
+were breached by this unit, and each would have caught a defect the review
+then found. The column is decorative unless something reads it. This unit's
+controls, checked:
+
+| Control | Source | State |
+|---|---|---|
+| A unit's statement of its inputs is checked against the code, in the same pass as its counts | `BF-020` | **Breached three times.** `RCI-005`, `RCT-001`, `RCT-011`. All repaired. |
+| No leave-one-out statistic without the per-element influence of every element | `BF-005` | **Breached** by `RCI-008`. `m6c-per-book-odds-ratios.tsv` now carries every element. |
+| A null reports the point estimate, its direction, and the power limitation | `BF-004` | **Breached** by `RCT-006`. Smallest stratum n = 89, now stated. |
+| Report the measurement that cuts against the working hypothesis in register-row format | `BF-011` | Held. `RCI-009` and the `RCT-004` medians are register rows, not prose. |
+| Where a control variable has a large effect, stratify by it before reporting the null | `BF-022`, written by this unit | **Breached by this unit in the same commit that wrote it**, at `RCI-008`. |
+
+A future domain-A unit runs this table before its registers are committed,
+not after.
