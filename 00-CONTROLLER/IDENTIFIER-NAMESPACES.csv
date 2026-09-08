@@ -5,7 +5,7 @@
 "HD","inherited handoff owner decision","NONE - closed series","03-REGISTERS/inherited-claims.csv; 09-DECISIONS/DECISION-ID-MAP.csv","HD-NN","2","HD-20","D-01 to D-20 in 01-INHERITED/ and 00-CONTROLLER/RESEARCH-CONSTITUTION.md","NO-ALLOCATION","INHERITED-UNVERIFIED. Gets no OWNER-DECISIONS.csv row; a register row would promote it by clerical act."
 "C","controller conflict","00-CONTROLLER/CONTROLLER-RECONCILIATION.md","","C-N","0","C-9","collides by normalisation with inherited correction series C-01 to C-41","PROSE-ONLY","The leading zero is load-bearing and nothing enforces it. CR-012. Renaming to RCF-00N is proposed by the 2026-09-07 audit and not adopted."
 "CR","control-plane contradiction","00-CONTROLLER/CONTRADICTION-REGISTER.csv","","CR-NNN","3","CR-021","","UNIQUE-IN-ALLOCATOR","Distinct from IC- (evidence contradictions)."
-"MH","migration hold","04-AUDITS/MIGRATION-HOLDS.csv","","MH-NNN","3","MH-007","","UNIQUE-IN-ALLOCATOR","Distinct from HOLD- (blocked on a source)."
+"MH","migration hold","04-AUDITS/MIGRATION-HOLDS.csv","","MH-NNN","3","MH-008","","UNIQUE-IN-ALLOCATOR","Distinct from HOLD- (blocked on a source)."
 "OVR","validation override","04-AUDITS/OVERRIDE-LOG.csv","","OVR-NNN","3","NONE ISSUED","","UNIQUE-IN-ALLOCATOR",""
 "HOLD","claim blocked on source access","05-HOLDS/","","HOLD-NNN","3","HOLD-006","","ONE-FILE-PER-ID","The identifier brief reports through HOLD-004 and is a dated snapshot."
 "BF","method failure","04-AUDITS/BIAS-FAILURE-LOG.csv","","BF-NNN","3","BF-017","","UNIQUE-IN-ALLOCATOR","No BF-E- series exists and none ever did."
