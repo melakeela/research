@@ -88,8 +88,9 @@ whether the investigation may exist:
 - **§1.5 rule 3, absence dominance, fires.** The majority of load-bearing
   propositions resolve to typed absences or holds: `PUR4J-001` (82 of 103 state
   no count), `PUR4J-012` (93 of 103 state no material), `PUR4J-018` (no
-  geography at all), `PUR4J-016`/`HOLD-006` (48 of 103 poet attributions
-  `NOT PRODUCED`), `PUR4J-024` (three of five types `NOT ASSIGNED`), `HOLD-007`
+  geography at all), `PUR4J-016`/`HOLD-006` (48 of 103 hymn headings name no
+  poet, and the 45 of those that name a deity are typed `NOT PRODUCED`),
+  `PUR4J-024` (three of five types `NOT ASSIGNED`), `HOLD-007`
   (no ground evidence). → **Nocturnal Veḷi.**
 - Rules 1, 2, 4, 5 do not fire; rule 7 (Reading Room, the residual) is reached
   only if rule 3 is not applied.
@@ -142,9 +143,12 @@ Constitution §6 types an absence as one of `NOT PRODUCED` · `NOT PRESERVED` ·
 - 93 of 103 passages state no material → `NOT PRODUCED` (`PUR4J-012`). A hymn
   praising the breaking of a wall had no occasion to say what the wall was made
   of. Shown to the child as **WE DON'T KNOW — nobody wrote it down.**
-- 48 of 103 poet attributions → `NOT PRODUCED` (`PUR4J-016`, `HOLD-006`).
-  Geldner's headings are an arrangement; where he arranged by deity he recorded
-  no poet. Not in scope for any screen; recorded here because S-03 tells the
+- Of 103 passages, Geldner's headings name a poet for 55 and name none for 48
+  (`PUR4J-016`). The 45 of those 48 whose heading names a **deity** are typed
+  `NOT PRODUCED` (`HOLD-006`): the headings are an arrangement, and where
+  Geldner arranged by deity he recorded no poet. That is not evidence the hymn
+  is anonymous. The remaining 3 are a metre and two others and are not typed
+  here. Not in scope for any screen; recorded here because S-03 tells the
   child two of their six questions have no answer.
 
 **The absence that is NOT typed, and must not be.**
