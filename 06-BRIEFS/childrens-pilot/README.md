@@ -23,7 +23,7 @@ specified end to end, for ages 8–11.
 | `01-investigation-spec.md` | the investigation: 14 screens, every action, every conclusion |
 | `02-claim-basis.csv` | every claim the investigation rests on, by `claim_id`, per screen, with what would verify it |
 | `03-evidence-cards.md` | the exact evidence a child sees, verbatim, with locators |
-| `04-rules-and-gates.md` | §10.4 rule-by-rule compliance, posture derivation, adversarial tests, and the twelve build gates |
+| `04-rules-and-gates.md` | §10.4 rule-by-rule compliance, posture derivation, adversarial tests, and the fourteen build gates |
 
 ## Scope
 
@@ -41,8 +41,8 @@ already carried it, with its `claim_id` attached at the point of use.
 
 ## The headline answer this unit was asked for
 
-**The investigation rests on 47 claim rows, one hold, and one display
-vocabulary.** `02-claim-basis.csv` names all 49 by identifier, with the screens
+**The investigation rests on 47 claim rows, two holds, and one display
+vocabulary.** `02-claim-basis.csv` names all 50 by identifier, with the screens
 each feeds and what would verify it.
 
 | Status | Rows | Child word |
@@ -50,7 +50,7 @@ each feeds and what would verify it.
 | `VERIFIED` | 35 | FOUND |
 | `PROVISIONAL` | 10 | WE THINK |
 | `HYPOTHESIS` | 2 | MAYBE |
-| `HOLD` | 1 | WE DON'T KNOW — we haven't looked yet |
+| `HOLD` | 2 | WE DON'T KNOW — we haven't looked yet |
 | `INHERITED-UNVERIFIED` | 1 | *(the vocabulary itself — `CP-VOCAB-001`, see below)* |
 
 Four rows (`PUR-022`, `PUR-023`, `PUR4J-030`, and `PUR4J-016` in part) appear on
@@ -96,10 +96,25 @@ are prohibitions on what the institution builds.
   over all 83 simplex tokens, which is a substantial part of it; whether that
   discharges the blocker is `RA-020`. Not treated as discharged.
 
-### The hold
+### The two holds, and they are different kinds
 
-**`HOLD-007`**, raised by this unit. Not a claim ranked below `HYPOTHESIS` — a
-retrieval nobody has run. Screen **S-10** is entirely about it.
+**`HOLD-007`** — no archaeological source. **A retrieval nobody has run.** Screen
+S-10 is entirely about it, and `04-rules-and-gates.md` §5 argues it must not be
+typed as a constitution §6 absence for exactly that reason.
+
+**`HOLD-008`** — no lexicon independent of Grassmann on `púr-`. **A retrieval
+attempted twice and refused at the proxy**: `SRC-041` (2026-09-07) and `SRC-089`
+(2026-09-08), both Cologne hostnames, exit 56, CONNECT tunnel 403. This is a
+`HOLD` in `CLAUDE.md`'s strict sense — blocked on source access — where
+`HOLD-007` is not. Escalated to **D-043**.
+
+*A note, because a reviewer got this wrong and it is an easy trap:* `SRC-041`'s
+`access_status` reads `VERIFIED`, which means the **ledger row** is verified —
+the probe happened and its result is recorded. It does not mean the source is
+reachable. The reachability field is `retrieval_capable`, and it reads **NO**.
+The fourth adversarial pass read the first as availability and concluded a
+second lexicon was one cheap retrieval away. It was re-probed rather than taken
+on trust, and it is blocked.
 
 ### The ten `PROVISIONAL` rows
 
@@ -130,6 +145,25 @@ the pass before were themselves wrong**, which is the finding worth reading:
 > those tests per-addition rather than per-unit, with a stopping rule: **the
 > control stops when an addition is a quotation with a locator rather than a
 > characterisation, because a quotation has no direction to drift in.**
+
+**The fourth pass found the largest single defect of the four, and it is not a
+wording problem.** `DEP-005` — *"The Zurich lemmatisation and the Grassmann gloss
+travel together in the same annotation layer. A claim that cites the lemma and a
+claim that cites the meaning are one source, not two"* — governs screen S-02 and
+**this unit had never cited it.** With `DEP-021` and `PUR-006` (the family
+boundary was fixed by Grassmann's glosses), Grassmann supplies which tokens are
+`púr-`, what `púr-` means, and one of the translations checking both. Every
+number the child handles is a measurement over a membership he defined.
+
+And this unit applied its own single-source control to the smaller of its two
+single sources: **Arnold underlies one screen and got an undismissable banner;
+Grassmann underlies the denominator of every screen and got "the dictionary"** —
+definite article, no name, no date. A periodisation reads as somebody's claim, a
+lexicon reads as neutral infrastructure. That is the prestige-bias test's exact
+target, and §6 had run on *fort*, on the four translators, and on Arnold — and
+stopped one row short of the lexicon supplying the word being audited. S-02 now
+opens under the same banner S-09 gives Arnold, and `HOLD-008` and gate **G-13**
+record that an independent lexicon is blocked at the proxy.
 
 Two things the third pass found that change what this unit is:
 

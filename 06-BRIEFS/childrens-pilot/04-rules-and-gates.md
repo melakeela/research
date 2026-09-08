@@ -203,11 +203,25 @@ Field Mode is. So the position is:
 > the Editorial Register** — and the reason must be about the *posture*, not
 > about the product or the schedule.
 
-**The test G-01 puts to them:** *would this posture be assigned if Field Mode
-were available in every posture?* If not, the reason is the outcome written into
-the reason field. §1.5 requires a non-empty reason and **has no test for whether
-a reason is a reason**. Raised as **D-047**; this unit is the first thing in the
-repository to hit the gap.
+**What G-01 requires is a recorded answer, not a passed test**, and the
+distinction was the fourth review's finding. G-01 is performed by whoever holds
+the Editorial Register, not by this unit — so a *test* this unit mints either
+binds nobody who performs the act, in which case it is inert, or binds them, in
+which case the unit that wants to build has written the standard it is judged by.
+Both horns come from the instrument being the wrong shape.
+
+**A question compels disclosure without asserting a standard.** So the assignment
+records its answer to:
+
+> *Would you assign this posture if Field Mode were available in every posture?*
+
+That is squarely within a unit's competence — requiring a record you feed to
+carry a stated answer — where requiring it to meet an invented threshold is not.
+And it survives **D-047** either way: if the owner mints a reason-quality test,
+the recorded answer is evidence for applying it; if the owner rules that a
+non-empty reason suffices, the answer is still on the record for the next
+reviewer. §1.5 requires a non-empty reason and **has no test for whether a reason
+is a reason**; that gap is D-047's, not this unit's to fill.
 
 **One surviving candidate reason, of three.** An earlier version listed three and
 two were the ballot relocated:
@@ -375,8 +389,45 @@ control.**
    instruments is shown. This is the strongest available control and the screen
    is still the investigation's weakest.
 
-No `BIAS-FAILURE-LOG` row is warranted: all three were caught and handled inside
-this unit rather than after it.
+**4. The one the test missed for four passes, and it is the largest: Grassmann.**
+
+§6 as first written ran on the English word *fort*, on four translators as four
+checks, and on "Arnold and the prestige of a χ²". It stopped one row short of the
+lexicon that supplies the word being audited.
+
+`DEP-005`: *"The Zurich lemmatisation and the Grassmann gloss travel together in
+the same annotation layer. A claim that cites the lemma and a claim that cites
+the meaning are one source, not two."* `DEP-021` and `PUR-006` add that **the
+family boundary was fixed by Grassmann's glosses**. So Grassmann supplies which
+tokens are `púr-`, what `púr-` means, and — through `SRC-074` — one of the
+translations used to check the other two. **Every number in this investigation
+is a measurement over a membership he defined, shown beside a meaning he wrote.**
+
+And the unit's own single-source control was applied to the smaller of its two
+single sources and withheld from the larger. Arnold underlies **one screen** and
+gets an undismissable banner naming him, dating him, citing `PUR-013` and
+`DEP-001`. Grassmann underlies **the denominator of every screen** and got *"the
+dictionary"* — definite article — and on second mention, at S-10, *"the
+dictionary refuses to choose"*, with no name and no date at all.
+
+**The direction is the classic one:** a periodisation reads as somebody's claim,
+a lexicon reads as neutral infrastructure. That is precisely what this test is
+for, and the test did not fire because it was run once, on the copy that existed
+then — which is `BF-021`'s finding arriving a fourth time.
+
+**Corrected:** S-02 opens under the same banner S-09 gives Arnold; the gloss is
+"Grassmann's dictionary" throughout; `DEP-005` is cited where it governs; and
+`HOLD-008` records that a lexicon independent of him is blocked at the proxy —
+two probes, `SRC-041` and `SRC-089`, both hostnames, exit 56, 403 — and
+escalates it to D-043. Gate **G-13**.
+
+**One `BIAS-FAILURE-LOG` row is warranted and one is not.** `BF-021` covers the
+copy failures. This one is *not* logged as a separate `BF-` row, because it is
+not a failure of output: no claim was overstated and no number is wrong. It is a
+failure of *scope* in this document's own §6, corrected inside §6, which is where
+a reader looking for it will be. If a later reviewer judges that a test which
+misses the largest single source in its own unit is an output failure, the row is
+theirs to write and this paragraph is the evidence for it.
 
 ## 7. Preferred-counter-narrative challenge
 
@@ -437,7 +488,7 @@ so that a later reviewer can check the reasoning rather than the outcome.
 
 ## 8. The build gates
 
-Twelve. None is optional. Each blocks the screen or screens named.
+Fourteen. None is optional. Each blocks the screen or screens named.
 
 | Gate | Blocks | What must happen |
 |---|---|---|
@@ -446,12 +497,14 @@ Twelve. None is optional. Each blocks the screen or screens named.
 | **G-03** | S-04, S-05, S-07, S-09 | Every count in the investigation is at the stanza unit (103), and the screens say so. **D-044 does not block this** — `OWNER-DECISIONS.csv` gives its `blocks` as "Nothing. The corpus is built at the stanza and every register is keyed on it; a change would be a rebuild, not a blocker", and `CLAUDE.md` makes that file authoritative. An earlier draft of this gate asserted D-044 as a blocker against its own register row; withdrawn. What the gate actually checks is that no screen mixes units — the token, pāda, stanza and hymn figures are all in the registers and only the stanza figures may reach a child. |
 | **G-04** | S-11, S-12 | No screen uses the inherited "99" as a quantity of forts: it appears only as a `VERIFIED` count of six passages (`PUR4J-002`). **This gate failed in the first draft and the failure is instructive.** S-11 labelled *"Ninety-nine is the famous number"* as **FOUND** on `PUR4J-I-02`, which is `PROVISIONAL` — the mapping broken in the promoting direction — and the only evidence in this repository that 99 *is* famous is MelaKeela's own unsourced page headline and Version 12 line numbers, i.e. `INHERITED-UNVERIFIED` material, so §0.2 was breached on the same line. The gate had been written to catch 99-as-a-quantity and did not think to check 99-as-a-reception-fact. Now: **the reception claim is WE THINK, and the screen tells the child the museum has not checked where it got the number from.** D-045 remains not a blocker. |
 | **G-05** | S-01, S-07 | Diacritic and encoding pass against the pinned corpus. Specifically: the `vy āā̀syat` artefact in `PUR-P-041` resolved, and the verbatim Griffith / Geldner / Grassmann renderings of RV 4.30.20 pulled from `SRC-072`–`SRC-074` to replace the register's paraphrase. Requires a fresh clone at `d3eb8af`. |
-| **G-06** | S-02 | The translator menu does not present four translators as four independent checks. `DEP-021`, `DEP-023`. **Note:** `DEP-021`'s `source_b` points at `SRC-026` (Arnold 1905) where its own prose describes Grassmann's *Wörterbuch*, which has no ledger row. The dependency it records is right; its pointer is not. Logged as `IC-P-003`. Do not implement this gate by following the pointer. |
+| **G-06** | S-02 | Two things. **(a)** The translator menu does not present four translators as four independent checks. `DEP-021`, `DEP-023`. **(b)** The menu is **unranked and carries no counts**: an earlier version led with *fort* and "63 times", which hands the child the word with an argument from frequency — §5 step 5's "citation count is not independent confirmation" — on the screen built to stop exactly that. `PUR4J-022`'s counts are also "by surface-string match, not lemmatised, so indicative rather than exact", which seven exact-looking integers do not convey; they stay in EC-02 for an adult reader. `DEP-021`, `DEP-023`. **Note:** `DEP-021`'s `source_b` points at `SRC-026` (Arnold 1905) where its own prose describes Grassmann's *Wörterbuch*, which has no ledger row. The dependency it records is right; its pointer is not. Logged as `IC-P-003`. Do not implement this gate by following the pointer. |
 | **G-07** | S-03 | The six offered questions are bound to real `mk:qst:` nodes (§2.1, §6.6). No `mk:` identifier has been minted in this repository. |
 | **G-08** | all draft copy | Reading-age test on every quotation block in `01-investigation-spec.md`, with children in the 8–11 band, before any of it is used. The copy is drafted from statused claims; it is not tested for comprehension. |
 | **G-09** | S-02, S-06, S-07, S-10 | **Rights position per quoted translation** (§11.8). Griffith 1890 and Grassmann 1876–7 are long out of copyright on their publication dates. **Geldner 1951, Renou and Elizarenkova 1989–99 are not obviously so**, and a children's product quoting them publicly needs an answered rights position, not an assumption in either direction. Bears on D-029 and D-030. This unit takes no position and has no legal advice. |
 | **G-10** | S-06, S-12 | No screen presents `PUR4J-I-01` more confidently than `PROVISIONAL`, and the evidence against it (`PUR4J-010`) appears on the same screen as the reading. §7 above. |
 | **G-11** | everything | No behavioural analytics, no third-party trackers, no advertising, verified in the built artefact. Aggregate non-identifying counts only; measurement policy published. §10.4.5. |
+| **G-13** | S-02 | **A lexicon independent of Grassmann on `púr-`.** `DEP-005` makes the Zurich lemma and the Grassmann gloss one source; `DEP-021` and `PUR-006` add that the family boundary was fixed by his glosses. So Grassmann supplies which tokens are `púr-`, what `púr-` means, and one of the translations used to check both — and every count in the investigation is a measurement over a membership he defined. `HOLD-008` records two blocked probes (`SRC-041`, `SRC-089`, both hostnames, exit 56, 403) and escalates to **D-043**. Until it lifts, S-02 names Grassmann, dates him, and says he is one man — the treatment S-09 gives Arnold, for the same reason. Constitution §7's *semantic range* is unmet: one lexicographer's gloss is not a range. |
+| **G-14** | S-02, and every screen after it | The child's chosen word is bound as a **template slot** in every place the draft copy writes "fort" — the title, the exit sentences, S-04, S-07, S-08, S-13 — or S-02's second action is cut and the screen keeps only the first. Four of the seven offered words are not English. This document promises the substitution and does not specify it, which is a gap that surfaces only at build. |
 | **G-12** | S-09 | Three derivations this unit did not run, because each is a corpus operation and this unit performed none. **(a)** The by-**hymn** observed and expected stratum counts (86 hymns of 1,028), because `PUR-018`'s note makes the hymn the unit to quote and tokens within a hymn are not independent; the screen may not ship with the token-level table standing in. **(b)** A stated **aggregation rule** for labelling a hymn counter: `PUR-018` assigns each hymn its *majority* stratum code, and `PUR-015`'s uniformity finding is at the **stanza** level, not the hymn — so a hymn label discards minority strata by a rule nobody has written down. **(c)** A stated rule for carrying `PUR-011`'s confidence flag, which is per-**occurrence** (14 of 106) and cannot ride a hymn counter without a second aggregation. Requires the same fresh clone as G-05. |
 
 **And one that is not a gate but an owner decision.** **D-046** — whether a
@@ -524,37 +577,71 @@ applied to copy added on the second pass:**
    five parts were wrong and all three errors ran toward the preferred conclusion
    — was the one omitted. Added as a fourth card, marked as the one not to cut.
 
+**What the fourth pass found, and the first item is the largest defect of the
+four passes:**
+
+1. **`DEP-005` governs S-02 and was never cited.** Grassmann supplies the family
+   membership, the meaning, and one of the checking translations. This unit gave
+   Arnold — one screen — an undismissable banner, and Grassmann — every screen's
+   denominator — the definite article. §6 above now carries it; S-02 carries the
+   banner; `HOLD-008` and `G-13` carry the blocked retrieval.
+2. **S-06 attached `BF-014` to the wrong claim, in the protective direction.**
+   The nearest antecedent made it read as though the *counter-argument* had the
+   bad error history. `BF-014` is about `PUR4J-007`, which fed `PUR4J-I-01` —
+   **the museum's own deflationary reading**. Moved to the WE THINK card where it
+   belongs. Third instance of that direction, second introduced by a repair.
+3. **The stopping rule exempted the repair that invented it.** "Quotation-*
+   equivalent*" let a table through, and a table is not a quotation but a
+   *partition* — and `BF-021`'s failure *was* a partition error. `PUR4J-013`
+   publishes two axes and its note records that its own original failure was
+   sorting on one and concluding on the other. What makes the repaired S-07 card
+   safe is not the table; it is 3-of-8 standing beside 1-of-8 with the reason.
+   Rule rewritten with that as clause (b).
+4. **S-02's menu was frequency-ranked**, leading with *fort* and "63 times" —
+   handing the child the word with an argument from citation count, on the screen
+   built to prevent exactly that, and with integers `PUR4J-022` itself calls
+   "indicative rather than exact". Unranked; counts moved to EC-02. `G-06`
+   extended.
+5. **S-01 said "three different kinds of event"** for two publications and an
+   analysis, and attributed the word-split to Śākalya on an unsourced free-text
+   note — on the screen about a text passing through many hands. Both corrected.
+6. **G-01 asserted a test this unit minted.** A test binds nobody who performs
+   the assignment (inert) or binds them (minting). Reshaped as a **recorded
+   answer to a question**, which asserts no standard and survives any resolution
+   of `D-047`.
+
 **What to attack next.**
 
-1. **`BF-021`'s control now has a stopping rule and it has not been stress-tested.**
-   The control stops when an addition is a **quotation with a locator rather than
-   a characterisation**, because a quotation has no direction to drift in. That
-   rule would have caught all four failures it has found so far. Whether it holds
-   is unknown; it was written by the unit it constrains.
-2. **S-01 and S-02 have never been touched by a repair**, across three passes,
-   and they are the two screens the whole investigation's chronology and
-   translation discipline rest on. That is either evidence they are sound or
-   evidence nobody has looked. On the base rate established here, assume the
-   second.
-3. **The override argument reaches beyond this unit.** If §1.7's forbidden cells
-   are proxies for §10.4.6's substantive rule, every forbidden cell is
-   negotiable. `IC-P-004` (rescoped HIGH) and **`D-047`** carry it. Neither is
-   this unit's to answer, and it may not be built until both are.
-4. **S-09 should probably not exist.** A `HYPOTHESIS`, a null second instrument,
-   entanglement between the two, and three derivations G-12 says it lacks.
-5. **S-10's empty box may be too abstract for eight.** G-08 answers it.
-6. **Every original-language string is provisional.** G-05 and G-12 await a clone.
-7. **This unit read the registers; it did not re-run them.** `RA-001` is open
-   against `PUR-003`–`PUR-005`.
-8. **Not re-checked by any pass:** `03-evidence-cards.md` beyond EC-05 and EC-08;
-   the arguments inside `IC-P-005`, `RA-020` and `RA-021`; §0.1's revised mapping
-   table in full.
+1. **`02-SOURCES/dependency.csv`, row by row against the claim basis.**
+   `DEP-005` sat unused through four passes and was the largest finding when it
+   surfaced. There are 26 `DEP-` rows and this unit cites six. That is the
+   highest-value pass left and it has never been run.
+2. **The stopping rule's clause (b) is untested**, and it was written by the unit
+   it constrains — the same objection that reshaped G-01, not yet applied to
+   `BF-021`.
+3. **S-03, S-05 and S-13 have never had a dedicated pass.** On this unit's base
+   rate, that is where the next defect is.
+4. **`03-evidence-cards.md` has never been read in full at HEAD.** EC-02's §7
+   field table in particular, now that the semantic-range gap is named: one
+   lexicographer's gloss is not a range, and EC-02 presents it in the "semantic
+   range" row.
+5. **S-09 should probably not exist.** A `HYPOTHESIS`, a null second instrument,
+   entanglement, and three derivations `G-12` says it lacks.
+6. **Fourteen gates now stand in front of this**, two of them (`G-05`, `G-12`)
+   needing a clone and one (`G-13`) needing an egress change. A specification
+   whose gates outnumber its screens by a fifth is worth asking whether it should
+   be built at all — which is D-046, and this is evidence for the owner rather
+   than an argument either way.
+7. **Not re-checked by any pass:** the arguments inside `IC-P-005`, `RA-020`,
+   `RA-021`; §0.1's mapping table in full; `DECISIONS-NEEDED.md`'s D-046 and
+   D-047 sections.
 
-**The pattern across three passes, which is worth more than any single finding.**
-Every unforced correction this unit made moved in one of two directions: toward
-keeping the investigation buildable, or toward the deflationary reading of the
-corpus. Twice on the posture, once on rule 4, once on the metal forts, once on
-the seven-fort card, once in the selection of which mistakes to show a child.
-None was caught by this unit's own §6 and §7 tests, which ran once, before most
-of that copy existed. That is what `BF-021`'s control is for, and it is the
-reason §8's tests are now per-addition rather than per-unit.
+**The pattern across four passes.** Every unforced correction this unit made
+moved one of two ways: toward keeping the investigation buildable, or toward the
+deflationary reading of the corpus. Twice on the posture, once on rule 4, once on
+the metal forts, once on the seven-fort card, once in selecting which of its own
+mistakes to show a child, once in attaching an error history to the argument it
+weakened rather than the one it implicates. None was caught by §6 and §7, which
+ran once, before most of that copy existed — and §6 itself missed the largest
+single source in the unit for four passes. That is what `BF-021`'s control is
+for, and it is why §8's tests are now per-addition rather than per-unit.

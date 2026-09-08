@@ -125,6 +125,13 @@ first travel to the second. Where it appears: S-07 (iron or bronze,
   six passages (`PUR4J-002`), never as MelaKeela's page headline, which has no
   recorded source. Where the investigation talks about the famous number
   (S-12), it is talking about itself, and it is labelled as that.
+  **One stated exception, and it is the inverse of the rule.** S-10's exclusion
+  card cites §10.4.7 — `INHERITED-UNVERIFIED` — *as the thing that has no
+  source*. It is not offered to the child as evidence for anything; it is the
+  subject of the card's admission that the museum has not written down who or
+  when. Citing a row in order to say it is unsourced is the opposite of using it
+  as evidence, and the exception is recorded here so a later reader does not
+  read it as a breach.
 - **No reconstruction, no composite, no "typical" fort, no artist's
   impression** (§10.4.4). This investigation contains **no image of a fort at
   all**, and S-10 says so in as many words. A drawing of a fort would answer the
@@ -330,13 +337,27 @@ translated yet. Card `EC-01` in `03-evidence-cards.md`.
 2. **Taps any word** to see it highlighted in the other two rows. The word
    `purā́m` is not visibly separable in the Devanāgarī row and *is* separable in
    the padapāṭha row; the interface shows that rather than hiding it.
-3. **Answers one question**, multiple choice, no score: *"Is this the piece of
-   paper the poet wrote on?"* Options: yes / no / we don't know.
+3. **Answers one question**, multiple choice, no score: *"Is this the very first
+   copy of this poem?"* Options: yes / no / we don't know.
+   *(An earlier version asked "is this the piece of paper the poet wrote on",
+   which presupposes both a written original and paper. The manuscripts of this
+   text are not paper, and this is a museum, on the screen about material
+   condition, in the child's first interaction.)*
 
-**What they see.** The three rows, and beneath them, three dates: the padapāṭha
-word-split is ancient (`PUR-010`, and its note: the analysis is Śākalya's, not a
-modern one); the printed Saṃhitā line is Aufrecht's, 1877 (`SRC-020`); the
-Devanāgarī setting is Eichler's, modern (`SRC-084`).
+**What they see.** The three rows, and beneath them what is actually known
+about each: the printed Saṃhitā line is Aufrecht's, 1877 (`SRC-020`); the
+Devanāgarī setting is Eichler's, modern (`SRC-084`); the word-split is old, and
+the museum's own source for it is **Lubotsky and VedaWeb** (`SRC-021`).
+
+**The screen does not say the word-split is Śākalya's**, though an earlier
+version did. `PUR-010`'s `source_id` is corpus files; the Śākalya attribution
+lives only in that row's free-text note, with nothing behind it. Under
+constitution §4V — who copied, who classified, who got the credit — naming
+Śākalya to a child on the strength of an unsourced note, on the very screen
+about a text passing through many hands, is the failure that screen is about.
+What the child is told instead: *"Somebody split this into words a long time
+ago. Our book says who printed it. It does not say who first did the splitting,
+and we have not looked that up."*
 
 **Asked to conclude.**
 
@@ -357,9 +378,19 @@ Devanāgarī setting is Eichler's, modern (`SRC-084`).
 rows.
 
 **Why this screen is first.** The child's first contact with the evidence is
-with its *material* condition, not its meaning. A photograph has one date. This
-line has at least three, and they are three different kinds of event
-(constitution §5 step 2). That is the crack the rest of the investigation opens.
+with its *material* condition, not its meaning. A photograph has one date; this
+line has several.
+
+**But not "three different kinds of event", which is what an earlier version
+said and is false.** The three shown are a word-analysis, a printed edition of
+1877, and a modern typesetting — **two publications and one analysis**, not
+three of constitution §5 step 2's kinds. And the three kinds that matter most
+here are the ones *not* on the screen: **composition, first attestation, and the
+copying between composition and Aufrecht.** The screen cited step 2 by number
+and then listed which of its kinds it did not have. Corrected: the screen now
+says it shows two publication dates and one analysis, and that the dates it does
+not have are the interesting ones — which is the same move S-10 makes and the
+reason this screen is first.
 
 ---
 
@@ -372,25 +403,60 @@ them — at reading age. Card `EC-02`.
 
 **Child does.** Two actions.
 
-1. **Opens the dictionary entry.** Grassmann, 1873. The gloss is German and is
-   shown in German with a plain-English rendering beside it: *Wall aus Steinen
-   und Lehm, Verschanzung, Palisade* — "a wall of stones and clay, a bank dug
-   for defence, a fence of stakes" (`PUR4J-021`).
+1. **Opens the dictionary entry**, under a banner that cannot be dismissed —
+   the same treatment S-09 gives Arnold, for the same reason:
+
+   > **One man wrote this, in Germany, in the 1870s. His name was Grassmann.**
+   >
+   > He did not only write down what this word means. He also decided **which
+   > words in the whole poem are this word** — the list you are about to count
+   > on the next screen. So the meaning and the list are not two things agreeing
+   > with each other. They are one man, twice. *(`DEP-005`, `DEP-021`,
+   > `PUR-006`)*
+   >
+   > We would like a second dictionary, by somebody else, to check him against.
+   > We have tried twice to get one and both times the door was shut.
+   > *(`HOLD-008`; `SRC-041`, `SRC-089`)*
+
+   Then the gloss, in German with a plain-English rendering beside it: *Wall aus
+   Steinen und Lehm, Verschanzung, Palisade* — "a wall of stones and clay, a
+   bank dug for defence, a fence of stakes" (`PUR4J-021`).
 2. **Picks a word for it.** The child is offered the words real translators
-   used, with who used each and when: *fort* (Griffith 1890, 63 times), *castle*
-   (Griffith, 33), *stronghold* (Griffith, 5), *Burg* (Geldner 1951, 79;
-   Grassmann, 84), *forteresse* (Renou, 34), *citadelle* (Renou, 22), *city*
-   (Griffith, **once** in 103 passages). `PUR4J-022`. The child's pick is
-   recorded and is used as the label on every later screen — **their** word, not
-   the museum's.
+   used, with who used each and when: *fort*, *castle*, *stronghold* and *city*
+   (Griffith 1890); *Burg* and *Feste* (Geldner 1951, and Grassmann 1876–7);
+   *forteresse* and *citadelle* (Renou). `PUR4J-022`.
+
+   **The menu is unranked and carries no counts, and that is a repair.** An
+   earlier version led with *fort* and "63 times" and descended from there. That
+   does not hand the child the word for free — it hands it over **with an
+   argument**, and the argument is frequency, which constitution §5 step 5 says
+   is not confirmation. A child picking the biggest number is doing the exact
+   thing this screen exists to prevent. `PUR4J-022`'s own note also records the
+   counts as "by surface-string match, not lemmatised, so **indicative rather
+   than exact**", and seven exact-looking integers do not say that. The counts
+   stay in `03-evidence-cards.md` EC-02, where an adult reads them with the
+   caveat attached.
+
+   The child's pick is recorded and is used as the label on every later screen —
+   **their** word, not the museum's.
+
+   **That substitution is a build requirement, not a promise, and this document
+   does not specify it.** Four of the offered words are not English, and the
+   draft copy here uses "fort" throughout: the title, the exit sentences at §0,
+   "fort verses" at S-04, "metal fort" at S-07, "fort words" at S-08. Either
+   every one of those is a template slot bound to the child's pick, or the
+   promise is not kept. **Gate G-14**: enumerate and bind the slots before build,
+   or cut S-02's second action and keep only the first.
 
 **What they see.** After picking, one line appears:
 
 > **FOUND.** Nobody who has translated this whole book calls it a city — except
 > once, in one line out of 103. *(`PUR4J-022`)*
 >
-> The dictionary says it is a wall of stones and clay. Not a city. Not a castle
-> with towers. A wall. *(`PUR4J-021`)*
+> **Grassmann's dictionary** says it is a wall of stones and clay. Not a city.
+> Not a castle with towers. A wall. *(`PUR4J-021`)*
+>
+> **And we have no second dictionary to check him against.** *(`HOLD-008`)*
 
 **Asked to conclude.** One question, free choice, no score: *"You just picked a
 word. Did the poem pick it, or did you?"*
@@ -578,18 +644,20 @@ Whatever the child answers, the museum's own position appears, labelled:
 > **WE THINK.** We think these numbers are a way of talking, not a count of real
 > forts somebody remembered. We are not sure. *(`PUR4J-I-01`, PROVISIONAL)*
 >
+> **And we have made a bad mistake defending exactly this idea.** We once built
+> it on five things we thought we knew. Three of the five were wrong, and all
+> three mistakes pushed the same way — toward this answer, the one we already
+> liked. *(`BF-014`, `PUR4J-007`)*
+>
 > **And here is what stops us being sure.** The numbers do not get used just
 > anywhere. There are **four** verses about seven forts, and all four turn up in
 > the same story with the same people — twice in almost exactly the same words.
 > Four is not many. But if the numbers were only a way of talking, would four
 > out of four land in one story? *(`PUR4J-010`, PROVISIONAL, n = 4)*
 >
-> **And we have been wrong about this before, both ways.** Once we made this
-> argument too strongly, and three parts of it turned out to be false — and all
-> three mistakes pushed toward the answer we already liked. Another time we said
-> this was a solid finding when it was really just our reading, and somebody
-> checking our work made us move it down. *(`BF-014`; `PUR4J-010` demoted on
-> review)*
+> **And we said this too strongly once.** We called it a solid finding when it
+> was really just our reading, and somebody checking our work made us move it
+> down to WE THINK. *(`PUR4J-010`, demoted on review)*
 
 **Field Bag.** The river line, and the child's answer.
 
@@ -932,10 +1000,15 @@ And the exclusion, stated as a decision the museum made (§10.4.4):
 > we are not going to teach you to do that even to show you it is wrong.
 >
 > **What is wrong with it:** we have not written down *who* did that, or *when*,
-> or *where you could go and read it*. Everywhere else on this trail we showed
+> or *where you could go and read it*. Most of the way along this trail we showed
 > you the book and the page. Here we just said it. **That is a gap on our list,
 > and it is our gap, not the poem's.** *(§10.4.7, `INHERITED-UNVERIFIED`;
 > `RESEARCH-QUEUE.md` `WMP-9`; `D-037`)*
+>
+> There are two other places we have not shown you the page yet, and you should
+> know where they are: the English of the stone-fort line is ours, not a
+> translator's, and we have not looked up who first split the poem into words.
+> *(gate G-05; S-01)*
 >
 > The rule stands while the gap does. We are not going to start sorting people
 > in the meantime just because we have not finished writing down why we don't.
