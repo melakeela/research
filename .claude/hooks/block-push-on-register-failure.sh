@@ -141,7 +141,10 @@ COMMAND = re.sub(r"\$[A-Za-z_][A-Za-z0-9_]*|\$[@*#?$!0-9]", " ", COMMAND)
 #    hide a token behind an escape that the shell removes anyway.
 COMMAND = re.sub(r"\\(.)", r"\1", COMMAND)
 # 5. Remove quotes, so `git pu"sh"` and `git "push"` cannot either.
-stripped = COMMAND.replace('"', "").replace("'", "")
+# Quotes go, and then any `$` left over: `git pu$""sh` survived expansion
+# removal because `$"` is not an expansion, and survived quote removal as
+# `pu$sh`, which the verb pattern does not match.
+stripped = COMMAND.replace('"', "").replace("'", "").replace("$", "")
 
 # `&` as well as `&&`: a bare ampersand backgrounds the first command and
 # starts a second, so `git status & git push` is two commands. Splitting only

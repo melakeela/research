@@ -179,6 +179,16 @@ CASES = [
          c, "03-REGISTERS/domain-e-claims.csv", "DME-019", "source_id", ""),
      "PROVISIONAL row missing source_id"),
 
+    ("an override cannot waive a missing retrieval field",
+     lambda c: blank_locators(c, 1) or add_overrides(
+         c, 1, "VERIFIED row missing locator"),
+     "VERIFIED row missing locator"),
+
+    ("overrides composed to waive more than the total cap",
+     lambda c: blank_locators(c, 9) or add_overrides(
+         c, 3, "VERIFIED row missing locator"),
+     "VERIFIED row missing locator"),
+
     ("a REPORTED register with no hold row naming it (T12)",
      lambda c: set_column(c, "00-CONTROLLER/CANONICAL-FILES.csv",
                           "03-REGISTERS/domain-e-claims.csv", "validated",
@@ -275,6 +285,35 @@ def sync(clone):
         dst.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(ROOT / rel, dst)
     subprocess.run(["git", "add", "-A"], cwd=clone, check=True, capture_output=True)
+
+
+def blank_locators(clone, n):
+    """Empty the locator on the first n VERIFIED rows of the domain E claims."""
+    import csv
+    path = clone / "03-REGISTERS/domain-e-claims.csv"
+    with open(path, newline="", encoding="utf-8") as fh:
+        rows = list(csv.DictReader(fh))
+        fields = list(rows[0].keys())
+    hit = 0
+    for r in rows:
+        if r["evidence_status"] == "VERIFIED" and hit < n:
+            r["locator"] = ""
+            hit += 1
+    with open(path, "w", newline="", encoding="utf-8") as fh:
+        w = csv.DictWriter(fh, fieldnames=fields, quoting=csv.QUOTE_ALL,
+                           lineterminator="\r\n")
+        w.writeheader()
+        w.writerows(rows)
+
+
+def add_overrides(clone, count, signature):
+    """Append `count` override rows, each waiving the same signature."""
+    log = clone / "00-CONTROLLER/OVERRIDE-LOG.csv"
+    text = log.read_text(encoding="utf-8")
+    for i in range(count):
+        text += (f'"OV-9{i:02d}","composition","attacker","2026-09-07","2026-10-01",'
+                 f'"{signature}","one push","none",""\n')
+    log.write_text(text, encoding="utf-8")
 
 
 def main():

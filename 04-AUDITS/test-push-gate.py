@@ -55,6 +55,15 @@ DENY = [
     ('expansion default with arguments (T8)', 'git ${undefined:-push} origin main'),
     ('positional expansion default (T8)', 'git ${1:-push}'),
     ('quoted expansion default (T8)', 'git "${x:-push}"'),
+    ('empty expansion inside the verb', 'git pu$""sh'),
+    ('tab between token and verb', 'git\tpush'),
+    ('empty quotes inside the verb', "git p''ush"),
+    ('git -c before the subcommand', 'git -c x=y push'),
+    ('--no-pager before the subcommand', 'git --no-pager push'),
+    ('command wrapper', 'command git push'),
+    ('exec wrapper', 'exec git push'),
+    ('nohup wrapper', 'nohup git push'),
+    ('timeout wrapper', 'timeout 60 git push'),
     ("removed marker no longer bypasses", 'MELAKEELA_REGISTER_GATE=off git push'),
     ("echo-marker trick", 'echo MELAKEELA_REGISTER_GATE=off; git push'),
 ]
@@ -62,6 +71,7 @@ DENY = [
 ALLOW = [
     ("an unrelated command", 'ls -la'),
     ("a read-only git command", 'git log --oneline'),
+    ("a subcommand that only starts with push", 'git pushx --dry-run'),
     ("a commit whose message says push", 'git commit -m "add push button"'),
     ("a commit about removing the bypass", 'git commit -m "remove the push bypass"'),
     # False positives the first repair introduced (S3).
@@ -70,6 +80,13 @@ ALLOW = [
      'git commit -am "add push button"'),
     ("a grep for the word push", 'git grep push -- 03-REGISTERS'),
 ]
+
+# Known and accepted limits, documented rather than silently tolerated:
+#   `GIT=git; $GIT push`  - the verb reaches git only at runtime, through a
+#                           variable this parser cannot expand. CI is the gate.
+#   `echo "git push"`     - denied, a false positive. Quote removal is needed to
+#                           catch `git pu"sh"`, and the cost is that a command
+#                           quoting the words is treated as one. Harmless.
 
 # (name, override row appended to OVERRIDE-LOG.csv, should the push be allowed)
 OVERRIDES = [

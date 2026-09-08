@@ -100,6 +100,9 @@ MIN_OVERRIDE_SIGNATURE = 24
 # been read and reasoned about is a blanket waiver, whatever its spelling.
 # Bounding by length alone was defeated by appending one colon to a file path.
 MAX_FAILURES_PER_SIGNATURE = 3
+# The total across every active override row, so a blanket waiver cannot be
+# assembled out of individually-compliant rows.
+MAX_OVERRIDDEN_TOTAL = 6
 
 DIMENSIONS = {
     "evidence_status": EVIDENCE_STATUS,
@@ -151,8 +154,20 @@ BARE_IDENTIFIER = re.compile(r"^[A-Z]{1,6}(-[A-Z]{1,3})?-\d{1,4}[A-Za-z-]*$")
 failures, warnings, notes = [], [], []
 
 
-def fail(msg):
+# Failures no override may cover, marked where they are raised rather than by
+# matching substrings of their text. Three passes of review defeated
+# prose-matching in three different places; this is the same decision taken
+# structurally. A row that should carry a retrieval and does not, a claim whose
+# sources do not resolve, a published claim that is not release-eligible, an
+# identifier collision, or a hole in the control plane: none of these is a
+# migration problem an expiring waiver can hold open.
+unwaivable = set()
+
+
+def fail(msg, waivable=True):
     failures.append(msg)
+    if not waivable:
+        unwaivable.add(msg)
 
 
 def warn(msg):
@@ -240,14 +255,16 @@ def check_control_plane(governed):
     ).stdout.split() if not p.endswith(".gitkeep"))
 
     for rel in sorted(tracked - set(governed)):
-        fail(f"00-CONTROLLER/CANONICAL-FILES.csv: {rel} is tracked but has no authority row")
+        fail(f"00-CONTROLLER/CANONICAL-FILES.csv: {rel} is tracked but has no authority row",
+             waivable=False)
     for rel in sorted(set(governed) - tracked):
         fail(f"00-CONTROLLER/CANONICAL-FILES.csv: row for {rel}, which is not tracked")
 
     if PATHMAP.exists():
         mapped = {r["current_path"] for r in read_csv(PATHMAP)}
         for rel in sorted(tracked - mapped):
-            fail(f"00-CONTROLLER/PATH-MIGRATION.csv: {rel} has no crosswalk row")
+            fail(f"00-CONTROLLER/PATH-MIGRATION.csv: {rel} has no crosswalk row",
+             waivable=False)
         for r in read_csv(PATHMAP):
             if r.get("move_status") != "NOT-MOVED" and not r.get("references_enumerated"):
                 fail(f"PATH-MIGRATION.csv: {r['path_id']} is moved with no references enumerated")
@@ -305,7 +322,11 @@ def all_register_ids(governed):  # noqa: C901
 # --------------------------------------------------------------------------
 def check_file(rel, mode, prefix, ledger, known_ids):
     """Checks 2-6 and 9 over one governed CSV."""
-    report = fail if mode == "GATED" else warn
+    def report(msg, waivable=True):
+        if mode == "GATED":
+            fail(msg, waivable=waivable)
+        else:
+            warn(msg)
     path = ROOT / rel
     try:
         rows = read_csv(path)
@@ -384,7 +405,7 @@ def check_file(rel, mode, prefix, ledger, known_ids):
                         else ("source_id",))
             for col in required:
                 if col in fields and not (row.get(col) or "").strip():
-                    report(f"{rel}:{n}: {status} row missing {col}")
+                    report(f"{rel}:{n}: {status} row missing {col}", waivable=False)
 
         # --- 5. locator quality
         if "locator" in fields:
@@ -398,7 +419,8 @@ def check_file(rel, mode, prefix, ledger, known_ids):
         # --- 6. sources resolve, whatever the status
         for sid in split_sources(row.get("source_id")):
             if ledger and sid not in ledger:
-                report(f"{rel}:{n}: source_id {sid} is not in the access ledger")
+                report(f"{rel}:{n}: source_id {sid} is not in the access ledger",
+                       waivable=False)
 
         # --- 9. supersession
         if status == "SUPERSEDED":
@@ -438,7 +460,8 @@ def check_identifier_namespaces(governed):
             if rid in issued and issued[rid][0] != rel:
                 fail(f"{rel}:{n}: identifier {rid} is also issued by "
                      f"{issued[rid][0]}:{issued[rid][1]}; an identifier names "
-                     f"one row in this repository, not one row per file")
+                     f"one row in this repository, not one row per file",
+                     waivable=False)
             issued.setdefault(rid, (rel, n))
 
 
@@ -571,7 +594,7 @@ def check_join(governed, ledger):
             if inline != joined:
                 fail(f"{rel}:{n}: claim {cid} cites {sorted(inline)} inline but the "
                      f"join register holds {sorted(joined)}; regenerate with "
-                     f"04-AUDITS/build-claim-sources.py")
+                     f"04-AUDITS/build-claim-sources.py", waivable=False)
 
     for r in join:
         rel = r.get("register")
@@ -586,7 +609,7 @@ def check_join(governed, ledger):
     # something that is not there.
     for (jrel, jcid), sids in sorted(by_claim.items()):
         fail(f"03-REGISTERS/claim-sources.csv: {len(sids)} row(s) join {jcid} in "
-             f"{jrel}, which holds no such row")
+             f"{jrel}, which holds no such row", waivable=False)
 
 
 def check_dependency(ledger):
@@ -702,7 +725,7 @@ def check_release_eligibility(governed):
                 if not ok:
                     fail(f"{rel}:{n}: {row.get(idcol)} is publication_status PUBLISHED "
                          f"but not release-eligible (evidence_status={ev or 'empty'}, "
-                         f"editorial_status={ed or 'empty'})")
+                         f"editorial_status={ed or 'empty'})", waivable=False)
     notes.append(f"release eligibility: {eligible} eligible, {blocked} not eligible, "
                  f"{published} marked PUBLISHED")
     if eligible == 0:
@@ -747,7 +770,8 @@ def check_overrides():
     for n, row in enumerate(read_csv(OVERRIDES), start=2):
         missing = [c for c in required if not (row.get(c) or "").strip()]
         if missing:
-            fail(f"00-CONTROLLER/OVERRIDE-LOG.csv:{n}: override row missing {missing}")
+            fail(f"00-CONTROLLER/OVERRIDE-LOG.csv:{n}: override row missing {missing}",
+                 waivable=False)
             continue
         # Parsed, not string-compared. "never" sorts after any ISO date, so a
         # lexical comparison made it a permanent waiver.
@@ -756,13 +780,13 @@ def check_overrides():
         except ValueError:
             fail(f"00-CONTROLLER/OVERRIDE-LOG.csv:{n}: expiry_date "
                  f"{row['expiry_date'].strip()!r} is not an ISO date (YYYY-MM-DD); "
-                 f"an override without a real expiry never expires")
+                 f"an override without a real expiry never expires", waivable=False)
             continue
         try:
             raised = date.fromisoformat(row["raised_date"].strip())
         except ValueError:
             fail(f"00-CONTROLLER/OVERRIDE-LOG.csv:{n}: raised_date "
-                 f"{row['raised_date'].strip()!r} is not an ISO date")
+                 f"{row['raised_date'].strip()!r} is not an ISO date", waivable=False)
             continue
         if expiry < raised:
             fail(f"00-CONTROLLER/OVERRIDE-LOG.csv:{n}: expiry_date precedes raised_date")
@@ -770,7 +794,7 @@ def check_overrides():
         if (expiry - raised).days > 90:
             fail(f"00-CONTROLLER/OVERRIDE-LOG.csv:{n}: override runs "
                  f"{(expiry - raised).days} days; an emergency waiver is bounded, "
-                 f"90 days at most, and is renewed by a new row that says why")
+                 f"90 days at most, and is renewed by a new row that says why", waivable=False)
             continue
         # A signature has to name the defect, not just the file. Length alone
         # did not achieve that: repository paths are long, so
@@ -782,13 +806,13 @@ def check_overrides():
         if bad:
             fail(f"00-CONTROLLER/OVERRIDE-LOG.csv:{n}: waiver signature(s) {bad} "
                  f"shorter than {MIN_OVERRIDE_SIGNATURE} characters; a signature "
-                 f"this general waives failures nobody has read")
+                 f"this general waives failures nobody has read", waivable=False)
             continue
         pathlike = [sig for sig in sigs if sig in tracked_paths_text]
         if pathlike:
             fail(f"00-CONTROLLER/OVERRIDE-LOG.csv:{n}: waiver signature(s) "
                  f"{pathlike} name only a file path; a signature must name the "
-                 f"defect it waives, or it waives every defect in that file")
+                 f"defect it waives, or it waives every defect in that file", waivable=False)
             continue
         if expiry >= today:
             active.append(row)
@@ -908,6 +932,9 @@ def apply_overrides(current, active):
     remaining, overridden = [], []
     for f in current:
         hit = None
+        if f in unwaivable:
+            remaining.append(f)
+            continue
         for row in active:
             for sig in row["affected_validation_failures"].split(";"):
                 sig = sig.strip()
@@ -922,6 +949,12 @@ def apply_overrides(current, active):
                 break
         (overridden if hit else remaining).append(
             f"{f}  [overridden by {hit}]" if hit else f)
+    # A per-signature cap bounds one row; it does not bound a set of rows. Nine
+    # retrieval failures split three ways across three rows each cleared the
+    # per-signature cap and the whole set was waived. An emergency covers a
+    # handful of rows; anything larger is a decision, not an emergency.
+    if len(overridden) > MAX_OVERRIDDEN_TOTAL:
+        return [], current
     return overridden, remaining
 
 
