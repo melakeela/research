@@ -900,3 +900,225 @@ Two rules on the shape:
    placeholder states what exists, where, and why it is not shown.
 7. **Vary its historical content by interface language** (§11.10.2). Two
    visitors in two languages see the same claims with the same statuses.
+
+---
+
+## 8. Activity — `mk:act:`
+
+### 8.1 What it is
+
+**An Activity is the smallest unit of visitor doing.** One interaction pattern,
+one prompt, one thing recorded. It is the atom the rest of the layer is built
+from: a Mission is an ordered set of Activities, a Challenge is an Activity
+sequence with a claim at risk, the children's five stages are five Activities,
+and PROVE IT's six stages are six.
+
+It is the object where the §10.4.7 prohibitions actually bite, because they are
+prohibitions on interaction patterns and the Activity is the only object that has
+one.
+
+**An Activity resolves to the claims it exercises.** That is the task's phrasing
+and it is exact: an Activity is not *about* a topic, it is reasoning *over* a
+specific set of claims, relationships or absences, and if that set is empty there
+is nothing for the visitor to do except accept what they are told.
+
+### 8.2 The interaction pattern vocabulary
+
+Controlled, closed, and extended only by revision of this document — because an
+open vocabulary would let a forbidden pattern re-enter under a new name.
+
+**The children's five** (museum framework §10.4.3): `LOOK` · `ASK` ·
+`FIND-OUT` · `DECIDE` · `CHECK`.
+
+**The vertical slice's additions** (`06-BACKLOG/EXPANSION-PROMPT-2026-09-07.md`
+L247, `INHERITED-UNVERIFIED`): `DIG-IT` · `WHAT-DID-YOU-FIND` · `COMPARE` ·
+`WHAT-DO-YOU-THINK`. (`PROVE IT` and `FIELD BAG` are not Activities: the first is
+a Challenge, §9; the second is the Field Bag, §10.3 of the framework.)
+
+**The research patterns**, available at every age band: `READ` (a primary source
+at its locator in the viewer) · `TRACE` (a custody or transmission chain, gaps
+included) · `WEIGH` (rival explanations against their evidence) · `LOCATE` ·
+`DATE` (which date type, on what basis) · `SEARCH` (a reproducible corpus query
+with its method) · `MAP` (a filtered Atlas view with its exclusion set) ·
+`TYPE-THE-ABSENCE` (apply the §3.7 typing to a silence) · `FOLLOW-THE-SOURCE`
+(walk an independence tree to its root) · `RE-READ` (set a variant reading beside
+the one the institution cites).
+
+Every pattern carries a fixed answer posture:
+
+| Pattern class | Has a right answer? |
+|---|---|
+| `LOOK`, `ASK`, `WHAT-DID-YOU-FIND`, `DECIDE`, `WHAT-DO-YOU-THINK`, `WEIGH`, `TYPE-THE-ABSENCE` | **No.** These record what the visitor observed, asked or concluded. |
+| `READ`, `TRACE`, `LOCATE`, `DATE`, `SEARCH`, `MAP`, `FOLLOW-THE-SOURCE`, `RE-READ`, `FIND-OUT`, `CHECK` | **Only where the answer is a `VERIFIED` claim or a mechanical property of the record** (a locator, an edition, a chain step, a count with its corpus and method). Never where it is `PROVISIONAL` or below. |
+| `COMPARE` | **No**, and its terms are constrained — §8.4. |
+| `DIG-IT` | **No.** See §8.5. |
+
+`has_right_answer = true` on a claim below `VERIFIED` is refused at creation.
+This is the derivation rule of §3.2 applied to pedagogy: **an Activity may not
+require a visitor to be right about something the institution has not verified.**
+
+### 8.3 Fields
+
+| Field | Type | Notes |
+|---|---|---|
+| `id` | identifier | `mk:act:<key>` |
+| `revision` | integer | append-only |
+| `interaction_pattern` | enum | §8.2. Exactly one. An Activity that does two things is two Activities. |
+| `prompt` | string | the exact words asked of the visitor. Not a summary of them. |
+| `prompt_plain` | string | the same prompt at the lowest reading age the Activity's `age_bands[]` includes |
+| `exercises[]` | array of `mk:rel:` (`exercises`) | the claims, relationships and absences the reasoning is over. **Non-empty. This is the Activity's grounding.** |
+| `objects_used[]` | array of `mk:evd:`, `mk:plc:`, `mk:lex:`, `mk:txt:` | what is put in front of the visitor, each with `is_primary` and `attestation_mode` rendered (§2.5, §2.6) |
+| `has_right_answer` | bool | constrained by §8.2 |
+| `right_answer_ref` | `mk:clm:` or null | **required and `VERIFIED` when `has_right_answer` is true** |
+| `recorded_output` | enum | `observation` · `question` · `decision` · `note` · `selection` · `nothing`. What goes to the Field Bag. |
+| `output_is_private` | bool | **true for every free-text output at every age band.** §10.4.5: a child's written text is never published, never transmitted by default, never enters the correction pipeline as a public artefact. Specified at every band because §5.4's no-gate argument holds for adults' notes too and because a private note is the only kind a visitor can write honestly. |
+| `compare_terms[]`, `compare_term_class[]` | Constraint Block | §5.2, §8.4 |
+| `mode` | enum(5) | which of the five modes this Activity runs in, constrained by the containing Exhibit's posture through §1.7 |
+| `posture_context` | enum(7) | derived from the containing Exhibit |
+| `age_bands[]` | array | declarative, §5.4 |
+| `preconditions[]` | array | consent, rights and community-authority records that must be in force before this Activity can run (§8.7) |
+| `accessibility_equivalent` | reference | **required.** The non-visual, non-motor equivalent that carries the same evidential content including status, attestation mode and uncertainty (§11.9.1–2). An Activity without one is not built. |
+| `duration_estimate` | interval | advisory, never enforced — §10.4.4 forbids time pressure |
+| `objective_refs[]` | array of `mk:lob:` | via `prepares-for` |
+| `constraint_block` | Constraint Block | §5.2 |
+
+### 8.4 COMPARE
+
+COMPARE is the pattern museum framework §10.4.7 singles out, and this is where
+its rule is implemented rather than restated.
+
+**The rule.** *"COMPARE may not take people, remains, named individuals or
+populations as its terms anywhere in the children's mode, in any Living World, in
+any pilot."* Under §5.4 this model binds it at every age band within the
+experience layer.
+
+**How it is implemented.** Not as a check that runs on a finished Activity. As a
+shape the Activity cannot be given:
+
+1. `compare_terms[]` is required and non-empty when `interaction_pattern =
+   COMPARE`, and each term is an identifier, never a label.
+2. `compare_term_class[]` runs parallel to it and draws on the enumeration in
+   §5.2, which has thirteen values and **no value for a person, a group of
+   people, human remains, a personal name, a population, an ancestry component,
+   an archaeological culture used as a stand-in for a people, or a language used
+   as a proxy for one.** A designer who wants a child — or an adult — to compare
+   two skulls, two portraits, two names or two ancestry profiles finds there is
+   no way to write it down.
+3. The validator checks the **resolved referent**, not the declared class
+   (§5.3): an identifier resolving to an `mk:agt:` of kind person or community,
+   to a UEO in the human-remains subclass set, or to an ANCESTRY-layer object
+   (§8.4 layer 8) is refused whatever class was declared for it.
+4. A COMPARE Activity has `has_right_answer = false` unconditionally. Comparison
+   produces observations, not verdicts.
+
+**Why the framing exemption is refused.** §10.4.7: *"Framing the exercise as a
+debunking of racial classification does not lift the prohibition; the child still
+performs the sort."* This model adds the mechanical reason. The Activity object
+records `interaction_pattern`, `compare_terms[]` and `compare_term_class[]`. It
+does not record intent, and it could not: intent is not a field, it is not
+exportable, it is not checkable at publication, and it is not what the visitor
+experiences. Two Activities with identical patterns and identical terms are the
+same interaction whatever the surrounding copy says about why. The framework says
+this in prose; the object model makes it the case that no other implementation is
+expressible.
+
+**What COMPARE is for.** On pots, scripts, seeds, beads, strata, reading
+variants, date assertions, source trees and typed absences, it is *"the reasoning
+the mode exists to teach"* (§10.4.7). Nothing in this section narrows that. The
+thirteen permitted classes are the working range of comparative reasoning in this
+record, and they are more than the flow ever needed.
+
+### 8.5 DIG-IT, and the buckets problem
+
+Museum framework §10.4.7 finds that the specified vertical slice supplies its own
+categories: *"DIG IT produces the items, COMPARE produces the categories, and
+PROVE IT then asks the child to defend the result."* The sequence is what makes
+the sort feel discovered rather than handed over.
+
+Three constraints on `DIG-IT` follow, and they are constraints on the Activity,
+not on the flow, so that reordering the flow cannot evade them:
+
+1. **DIG-IT yields only real objects.** §10.4.4: *"No fabricated evidence, ever.
+   No invented objects, no composite 'typical' artefacts."* Every item a DIG-IT
+   Activity produces is a `mk:evd:` that exists, with a findspot, a holder and a
+   custody chain, or it is a labelled derivative of one.
+2. **DIG-IT never yields a person, a set of remains or a named individual as an
+   item.** Not because remains cannot be discussed — §10.4.4 permits their
+   display where community authority and consent allow, *"at the least
+   sensational presentation possible, and never as a puzzle to be solved"* — but
+   because an item produced by DIG-IT becomes a term available to the next
+   Activity, and the next Activity is COMPARE. The prohibition has to sit at the
+   producing step or it arrives too late.
+3. **The categories a subsequent COMPARE offers are declared on the COMPARE
+   Activity**, in `compare_term_class[]`, before the DIG-IT Activity runs. A
+   sequence cannot generate its own permitted classes at runtime.
+
+### 8.6 Rules
+
+- **No score, no points, no streak, no badge, no timer, no "correct"**
+  (§9.3, §10.4.4). `reward_mechanic = none` in the Constraint Block, at every
+  age band on classification material and throughout the children's mode.
+- **Disagreement with the institution is a first-class output** (§9.3), on
+  `DECIDE`, `WEIGH` and `WHAT-DO-YOU-THINK`. Where it is recorded it routes to
+  the Challenge object's correction intake (§9.6), and only ever with the
+  visitor's explicit act — never automatically, and never for a child's free text
+  (§10.4.5).
+- **"I don't know" is always available and is never scored as a failure**
+  (§10.4.3, stage 4). It is a value of `recorded_output`, not the absence of one.
+- **Status travels into the output.** A claim a visitor puts in their Field Bag
+  from an Activity carries the status it had, and the bag shows what changed
+  since (§10.3).
+- **Every Activity states what it is showing and at what remove.** The
+  `is_primary` gradient is rendered on `objects_used[]`: a visitor looking at a
+  photograph of a plate in an edition of a text is three steps from the text and
+  the Activity says so (§2.5).
+- **An Activity may not be the place a translation choice is made silently.**
+  Where a term does work, the alternatives and the interpretive consequence are
+  one interaction away on the same surface (§3.8).
+- **Reconstructions carry their marker in the visitor's own words** (§10.4.4),
+  with what the reconstruction was based on shown.
+
+### 8.7 Preconditions, and why they are a field
+
+Museum framework §10.4.2 makes the point about the children's pilot: *"the site
+pilot has a consent precondition and the inscription pilot has a rights
+precondition, and neither can be scheduled as though it were only a content
+task."*
+
+`preconditions[]` generalises that to every Activity. It holds the `mk:cns:`,
+`mk:obl:` and community-authority records that must be **in force**, not merely
+requested, before the Activity can run. Two behaviours:
+
+- **A precondition that lapses suspends the Activity.** §11.4: a consent with a
+  review date passes to `lapsed` on that date and the material comes down until
+  it is renewed. The Activity goes with it, automatically, and the suspension is
+  a revision record with `change_type = grounding-lost` (§3.3).
+- **A precondition that was never obtained blocks creation.** An Activity built
+  on `oral-living` evidence with no `consent_ref` is invalid at the evidence
+  layer already (§2.3 requires it non-null); this field makes the same failure
+  visible at the surface that would have shown it.
+
+### 8.8 What an Activity may never be
+
+1. **A sort of human beings into types** — as a game, a match, a drag, a quiz,
+   or a "which group does this person, name, skull or word belong to" task, with
+   the categories renamed, softened, or presented as historical labels the
+   visitor applies (§10.4.7, first constraint).
+2. **A reward mechanic attached to a racial, racial-nationalist or other
+   extremist classification** — and it makes no difference that the
+   classification is being taught as false, because *"a scoring interface teaches
+   that the categories are operable before it teaches anything about them"*
+   (§10.4.7, second constraint).
+3. **A staging of persecution** — dramatized, role-played, simulated, scored or
+   reconstructed as an experience the visitor moves through (§10.4.7, third
+   constraint). Persecution is read as record, with its evidence and its status.
+4. **A verdict on a live custody, restitution or legal matter assigned to a
+   child** (§10.4.6). A child may read the custody record; "work out whether this
+   was looted" is not an Activity.
+5. **A task over fabricated evidence** — invented objects, composite artefacts,
+   unlabelled reconstructions (§10.4.4).
+6. **An identification of an object, a person or a set of remains as ethnic or
+   national** (§10.4.4), which is a §4.4 bridge in every case.
+7. **An exercise that requires the visitor to be right about a claim below
+   `VERIFIED`** (§8.2).
+8. **An activity with no accessibility equivalent** (§11.9.1).
