@@ -1060,9 +1060,11 @@ gate.
 | **D-010** — the accepted-publication threshold | `OPEN` | Publication of any Exhibit in any slot, per experience-object-model §7.4.1. Not re-raised. |
 | **D-015** — seven postures or six | `OPEN` | Nothing. Experience-object-model §11.3 already writes the four-posture rule to survive either answer. |
 
-No new escalation beyond D-053 and D-054. The Tamil-corpus gap at §4.3 is a
-research-programme scheduling matter, not an owner decision, and it belongs in
-`RESEARCH-QUEUE.md`.
+No new escalation beyond D-053 and D-054. The Tamil-corpus gap at §4.3, the
+unmeasured source genealogy at §4.2, the untyped absences at §4.6 and the
+reachability re-audit at §6.1 are research-programme scheduling matters, not
+owner decisions. They are queued under *Opened by the WATER Living World
+specification* in `RESEARCH-QUEUE.md`.
 
 ---
 
