@@ -28,9 +28,22 @@ The method the research runs under is
 03-REGISTERS/      evidence registers (CSV, one claim per row)
 04-AUDITS/         adversarial reviews, bias-failure log, re-audit queue
 05-HOLDS/          claims blocked on unavailable sources
-06-BACKLOG/        backlog coverage (awaiting the v2 backlog document)
+06-BACKLOG/        89 recovered item titles, a 95-row coverage table, and
+                   the expansion prompt; the full original item text is
+                   still outstanding (D-014)
+06-BRIEFS/         reconciliation and corpus briefs; writes no register row
 09-DECISIONS/      owner decisions register and decision-ID map
+13-PRODUCT-ARCHITECTURE/
+                   the museum/data/product specification (D-012 asks whether
+                   it belongs here at all)
+.claude/           subagent prompts and the local pre-push check
+.github/           the CI workflow that runs the validator
 ```
+
+`00-CONTROLLER/REPOSITORY-MAP.md` is authoritative for what each folder is
+for, what may go in it, and who writes there. The numbers in the folder names
+record when a folder was created and nothing else: a gap in the sequence is
+not a missing folder.
 
 ## Files
 
@@ -39,6 +52,18 @@ The method the research runs under is
   owner wrote it, committed unchanged
 - `00-CONTROLLER/CONTROLLER-RECONCILIATION.md` — how the two fit together
 - `AGENTS.md` — the same rules for Codex, which does not read CLAUDE.md
+- `AI-AGENT-ROSTER.md` — the eight Claude subagents, the register check
+  and the override log. They are subagents, not a human team, and no
+  scholar named anywhere in this project is engaged by it
+- `00-CONTROLLER/REPOSITORY-MAP.md` — what each folder is for, what may go
+  in it, and who writes there
+- `00-CONTROLLER/CANONICAL-FILES.csv` — the authoritative file for each
+  function, and how every duplicate is classed
+- `00-CONTROLLER/CONTRADICTION-REGISTER.csv` — control-plane contradictions
+  between controllers, statuses, counts, identifiers, route inventories
+  and decisions
+- `00-CONTROLLER/PATH-MIGRATION.csv` — every tracked path, its inbound
+  references, and the crosswalk any future move would use
 - `.mcp.json` — literature search connectors
 - `RESEARCH-QUEUE.md` — the only backlog
 - `DECISIONS-NEEDED.md` — the prose case for escalations that block

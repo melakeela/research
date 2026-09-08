@@ -11,11 +11,16 @@ Fill policy, so that no cell asserts more than its source supports:
 
   title                    parsed out of 06-BACKLOG/BACKLOG-v2-ITEMS.md, so
                            the CSV cannot drift from the recovered titles.
-  current_site_coverage    the instructed source, 06-BRIEFS/SITE-INVENTORY.md,
-                           does not exist in this repository. Recorded as not
-                           established rather than inferred from any other
-                           artefact. See 06-BACKLOG/README.md.
-  existing_route           same. No route inventory is present.
+  current_site_coverage    the instructed path, 06-BRIEFS/SITE-INVENTORY.md,
+                           does not exist in THIS repository. The inventory
+                           itself does exist, in melakeela/site (SRC-089,
+                           2026-09-08, commit e6b6b67, 133 root HTML files).
+                           What is still not established is the mapping from
+                           133 routes onto 89 titles, which is editorial and
+                           is D-052 - so the cell stays NOT ESTABLISHED and
+                           now says where the inventory is. MH-005.
+  existing_route           same: the routes are known, the route-to-item
+                           mapping is not.
   prior_research_available computed here, by the declared keyword map below,
                            over 03-REGISTERS/ only. Reports where material
                            bearing on an item sits; asserts nothing about
@@ -51,11 +56,17 @@ COLUMNS = [
 # section 10 lists owner_decision between reason and final_zip_location
 COLUMNS.insert(COLUMNS.index("final_zip_location"), "owner_decision")
 
-SITE_COVERAGE = ("NOT ESTABLISHED — 06-BRIEFS/SITE-INVENTORY.md, the instructed "
-                 "source, does not exist in this repository; coverage not inferred "
-                 "from any other artefact (06-BACKLOG/README.md)")
-ROUTE = ("NOT ESTABLISHED — no route inventory in this repository "
-         "(06-BACKLOG/README.md)")
+SITE_COVERAGE = ("NOT ESTABLISHED — the route inventory exists, in melakeela/site "
+                 "SITE-INVENTORY.md at commit e6b6b67 (SRC-089, 2026-09-08, 133 "
+                 "root HTML files); what is not established is which routes cover "
+                 "this item. Mapping 133 routes onto 89 titles is editorial, not "
+                 "an audit finding, and is owner decision D-052 (MH-005). The "
+                 "instructed path 06-BRIEFS/SITE-INVENTORY.md does not exist in "
+                 "this repository and no coverage is inferred from any other "
+                 "artefact (06-BACKLOG/README.md)")
+ROUTE = ("NOT ESTABLISHED — 133 routes are inventoried in melakeela/site "
+         "(SRC-089); no route-to-item mapping exists in either repository "
+         "(D-052, MH-005, 06-BACKLOG/README.md)")
 PROMPT_COVERAGE = ("TITLE ONLY — 06-BACKLOG/BACKLOG-v2-ITEMS.md. Full original item "
                    "text outstanding. Expansion prose in "
                    "06-BACKLOG/EXPANSION-PROMPT-2026-09-07.md is INHERITED-UNVERIFIED "

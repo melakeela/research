@@ -10,9 +10,12 @@ and §11 (packets R20–R21), plus one domain that has no entry in either
 
 ## Done
 
-1. **Source access audit** — `02-SOURCES/access-ledger.csv`, 18 rows.
-   Egress and connector reach probed; blockers escalated as `D-001` and
-   `D-003` in `DECISIONS-NEEDED.md`.
+1. **Source access audit** — `02-SOURCES/access-ledger.csv`, 18 rows **at
+   the time this item was done**. Egress and connector reach probed;
+   blockers escalated as `D-001` and `D-003` in `DECISIONS-NEEDED.md`.
+   The ledger has grown with every unit since and is not re-tallied here:
+   the current count is whatever `02-SOURCES/access-ledger.csv` holds, and
+   inherited standing rule 14 forbids carrying a running total. `CR-008`.
 2. **Inheritance intake** — `03-REGISTERS/inherited-claims.csv`, 369 rows,
    all at `INHERITED-UNVERIFIED`. Inventory only; nothing verified.
 3. **The púr- family in the Rigveda** (part of domain **J**) —

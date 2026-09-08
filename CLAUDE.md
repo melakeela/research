@@ -255,9 +255,17 @@ and is not corrected in place.
 03-REGISTERS/    claim/question registers, hypothesis eligibility, bridges
 04-AUDITS/       bias-failure log, re-audit queue, power audit, contradictions
 05-HOLDS/        claims blocked on unavailable sources
-06-BACKLOG/      backlog coverage (awaiting the v2 backlog document)
+06-BACKLOG/      89 recovered item titles and a 95-row coverage table;
+                 the full original item text is outstanding (D-014)
+06-BRIEFS/       reconciliation and corpus briefs
 09-DECISIONS/    owner decisions register, decision-ID map
+13-PRODUCT-ARCHITECTURE/  the product and institutional specification
 ```
+
+`00-CONTROLLER/REPOSITORY-MAP.md` is authoritative for folder authority,
+allowed contents and responsible writer; `00-CONTROLLER/CANONICAL-FILES.csv`
+names the authoritative file for each function and classes every duplicate.
+Folder numbers carry no meaning — do not create a folder to fill a gap.
 
 Directories are created when the work that fills them begins, not in
 advance. Placement of the twelve required files: reconciliation C-3.
