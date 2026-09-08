@@ -248,6 +248,37 @@ or research holds. Constitution §11.
   argument sits in retrievable data and the other in unretrievable
   literature.
 
+## Opened by the WATER Living World specification
+
+`13-PRODUCT-ARCHITECTURE/water-living-world.md`, 2026-09-08. None of these is
+an owner decision; they are research-programme scheduling.
+
+- **Open a Tamil corpus lane.** The emptiest slot of the seven, and the one
+  no allowlist change fixes. This repository's reachable corpora are Vedic
+  (`SRC-019` to `SRC-024`, `SRC-069` to `SRC-085`) and comparative-lexical
+  (`SRC-060` to `SRC-067`). There is no Tamil text lane at all, so slot 3 of
+  a WATER world — and every claim in backlog item 14, *Tamil textual corpus
+  parity* — is unfillable at the standard the translation rule sets. GRETIL
+  and TITUS are refused (`SRC-080`, `SRC-082`); what a Tamil lane would be
+  has not been investigated. `WLW-005`.
+- **Measure the source genealogy of the Indus hydraulic literature.**
+  `WLW-002`. Every reachable account of Dholavira's water engineering appears
+  to depend on excavations we cannot read, and *appears to* is the problem:
+  the dependency is asserted, not measured, because Scite refused for quota
+  (`SRC-091`, D-003). Method step 5 is the whole point of the exercise and it
+  has not been run on this literature.
+- **Type the WATER absences, which needs no retrieval.** Excavated area
+  against total site area for the Indus water sites; the recognition criterion
+  for an elite water work; the eight-type classification for each. This is
+  `06-BRIEFS/mvp-fifteen/09-the-water-city.md` §6's MVP-U9 and it is the one
+  unit of WATER work that is not blocked on anything.
+- **Re-audit the reachability readings across the repository.** `SRC-095`
+  reverses the 2026-09-07 conclusion recorded at D-001 that "every domain
+  except JSTOR now answers": `doi.org`, `api.crossref.org` and
+  `api.openalex.org` all refuse again. Reachability is a timestamped probe,
+  not a property — which is what D-042 asks — and any unit that relied on the
+  2026-09-07 reading should be re-checked rather than assumed.
+
 ## Standing sequencing rules
 
 - One programme at a time. Do not open parallel programmes until one has

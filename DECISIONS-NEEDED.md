@@ -1233,3 +1233,62 @@ scoring (§10.5.2).
 
 **Decision:** which of the three, and if the first, is §10.3 amended in the
 framework or left standing with this layer as its exception?
+
+## D-054 — May the WATER modern-system slot name a live Chennai water dispute?
+
+**Raised by:** `13-PRODUCT-ARCHITECTURE/water-living-world.md` §4.5 (slot 5)
+**Category:** living-community consent
+**Related:** D-005 (is WATER first), D-048 (individual consent where a
+community holds authority), D-001 (india-seminar.com is blocked, so the one
+source the backlog names by name for this slot is unread)
+
+The WATER Living World's fifth slot is MODERN SYSTEM. Museum framework
+§10.2, constraint 1, is explicit that the slot cannot be dropped: the thread
+*"must reach the present — refusing to would be its own distortion — and must
+do so through statused bridges, never through adjacency."*
+
+So the question is not whether WATER reaches the present. It is what the
+present slot is permitted to name.
+
+**What the reachable evidence contains.** The only literature lane that
+answered on Chennai in this session (`SRC-090`, Scholar Gateway) returned
+Coelho 2022, *Urban Waterlines* (`10.1111/1468-2427.13087`). Its argument is
+that Chennai's water infrastructure produces social difference: the pipe
+network is described as *"structured by historical geographies of power,
+embodying the exclusions and classifications of colonial rule"*, and the
+eco-restoration of urban *eris* from the mid-2000s *"spelled the violent
+demolition of homes and livelihoods autoconstructed by lowincome families
+over two generations"*, under a regime that *"(selectively) criminalized
+actions and people that violated this boundary."*
+
+*(Quoted from the passage chunks returned by `SRC-090`, not from the
+published article, which `SRC-095` shows cannot be reached. The connector
+strips hyphens and footnote markup — "lowincome" is the chunk's spelling, not
+Coelho's — so these are quotations of what was retrieved, and none may be
+carried onto a page until the article itself is read.)*
+
+That is the best modern-system evidence available to this repository today.
+It is also an account of identifiable living people who were evicted, some
+within the last twenty years, in a dispute that is still running.
+
+**Why this is the owner's and not the record's.** Three of the options below
+are defensible on the evidence and the evidence does not choose between
+them.
+
+| Option | Consequence |
+|---|---|
+| **Name the dispute, after the §11.2 community-authority and §11.4 consent work is real** | The slot does what the constitution's §4V asks — who did the labour, who was excluded, who got the credit — in the present tense, where it is checkable. Cost: it cannot ship until relationships exist that do not exist now, which pushes the WATER flagship behind work that has not started. |
+| **Name the dispute only where it is already a matter of public record, naming no community as a party** | Buildable now, and it keeps the institution off the ground where it would be speaking about people who have not been asked. Cost: "public record" is the colonial-hydrology archive plus the English-language press, which is precisely the archive that recorded the eviction and not the evicted. |
+| **Aggregate hydrology and governance only — reservoir volumes, rainfall, network coverage, no named community** | Cleanest consent position, and it still supports a true modern slot: the 2019 reservoir failure is a fact about storage. Cost: it reproduces the depoliticised account that Coelho is arguing against, and it does so by omission, which the negative-evidence standard would type as `NOT PRODUCED` by us. |
+| **Defer the slot until Release 1 scope is set** | Honest, and consistent with D-005 being open. Cost: museum framework §10.1 requires a Living World to cross at least four postures including Reconnection, and the modern slot is where WATER's Reconnection posture lives — so a deferred slot 5 is not a smaller world, it is one that fails §10.1's second requirement. Under the specification's own invariant 1 a deferred slot is still a slot: it renders a typed absence and the world is still seven slots, which is what a visitor sees. |
+
+**What the specification does under each.** Slot 5 of
+`water-living-world.md` (its §4.5) defines the slot's evidence requirement and
+its bridge discipline identically under all four; only the permitted subject
+changes. Nothing else in the seven-slot pattern moves. The
+specification is therefore complete and unblocked as a specification, and
+blocked only at the point of filling this one slot.
+
+**Decision:** which of the four, and if the first, does the WATER build wait
+on the community-authority work or proceed with the slot held open and
+visibly typed as held?
