@@ -22,22 +22,29 @@ logged 2026-09-08. One hold opened: `HOLD-007`. Register:
 
 Two things, and item 38 is explicit that the second is the more important:
 
-> **27.** WATER is the strongest proposed first Living World, connecting
-> Dholavira, palaeoclimate, engineering, South Indian water infrastructure,
-> Tamil sources and Chennai hydrology. The continuity belongs initially to the
-> human problem, not automatically to one civilization.
+> **27. WATER.** *Inherited work:* WATER is the strongest proposed first
+> Living World, connecting Dholavira, palaeoclimate, engineering, South Indian
+> water infrastructure, Tamil sources and Chennai hydrology. The continuity
+> belongs initially to the human problem, not automatically to one
+> civilization. *Build out:* Select a bounded route with dated records,
+> material mechanisms, discontinuities and modern stakes. Use Bhavani Raman’s
+> Chennai water work and relevant archaeological/environmental scholarship
+> where appropriate. *Gate:* Gaps remain gaps; ancient-to-modern juxtaposition
+> does not become an unsupported chain of cultural continuity.
 >
-> **38.** Same research programme as item 27, but here WATER is the first
-> repeatable Living World **model** rather than merely one flagship exhibit.
-> … Define the reusable pattern — ancient problem, material evidence,
-> text/language, ecological change, modern system, discontinuities and
-> action/question — without implying a single uninterrupted tradition.
-> **Gate:** the model can support a second water case without rebuilding the
-> interface.
+> **38. WATER.** *Inherited work:* Same research programme as item 27, but
+> here WATER is the first repeatable Living World model rather than merely one
+> flagship exhibit. *Build out:* Define the reusable pattern—ancient problem,
+> material evidence, text/language, ecological change, modern system,
+> discontinuities and action/question—without implying a single uninterrupted
+> tradition. *Gate:* The model can support a second water case without
+> rebuilding the interface.
 
 *(`06-BACKLOG/MELAKEELA-89-ITEM-MASTER-EXECUTION-PROMPT-v1.md` lines 316–322
-and 410–416, quoted verbatim. `06-BACKLOG/README.md` records that file as the
-"exact complete 89-item source document, preserved verbatim".)*
+and 410–416, both items complete and verbatim; the bold headings and italics
+are the source's own. `06-BACKLOG/README.md` records that file as the "exact
+complete 89-item source document, preserved verbatim", and `CLAUDE.md`'s
+inheritance rule means quoting it accurately promotes nothing.)*
 
 So this document specifies:
 

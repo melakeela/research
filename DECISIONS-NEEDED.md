@@ -1253,12 +1253,19 @@ present slot is permitted to name.
 **What the reachable evidence contains.** The only literature lane that
 answered on Chennai in this session (`SRC-090`, Scholar Gateway) returned
 Coelho 2022, *Urban Waterlines* (`10.1111/1468-2427.13087`). Its argument is
-that Chennai's water infrastructure produces social difference: the piped
-network *"embodies the exclusions and classifications of colonial rule"*,
-and the eco-restoration of urban *eris* from the mid-2000s *"spelled the
-violent demolition of homes and livelihoods autoconstructed by low-income
-families over two generations"*, under a regime that *"(selectively)
-criminalized actions and people that violated this boundary."*
+that Chennai's water infrastructure produces social difference: the pipe
+network is described as *"structured by historical geographies of power,
+embodying the exclusions and classifications of colonial rule"*, and the
+eco-restoration of urban *eris* from the mid-2000s *"spelled the violent
+demolition of homes and livelihoods autoconstructed by lowincome families
+over two generations"*, under a regime that *"(selectively) criminalized
+actions and people that violated this boundary."*
+
+*(Quoted from the passage chunks returned by `SRC-090`, not from the
+published article, which `SRC-095` shows cannot be reached. The connector
+strips hyphens and footnote markup — "lowincome" is the chunk's spelling, not
+Coelho's — so these are quotations of what was retrieved, and none may be
+carried onto a page until the article itself is read.)*
 
 That is the best modern-system evidence available to this repository today.
 It is also an account of identifiable living people who were evicted, some
