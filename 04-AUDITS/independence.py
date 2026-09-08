@@ -20,7 +20,7 @@ That is a substantive evidentiary question resting on the first two words of
 a free-prose column. Rewording one cell would silently merge or unmerge two
 sources. It is recorded as CONTRADICTION-REGISTER.csv CR-025 and the fix is a
 controlled column on the dependency register, which is a schema change and
-belongs with D-044.
+belongs with D-046.
 """
 import csv
 from pathlib import Path

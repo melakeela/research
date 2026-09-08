@@ -7,6 +7,13 @@ case below injects one defect into a throwaway clone, runs the validator, and
 asserts that a failure naming that defect comes back. A case that injects a
 defect and still passes is itself a failure.
 
+Not covered here: the inherited-locator rule. A VERIFIED row whose locator
+cites 01-INHERITED/ or an IH- identifier produces a WARNING, not a failure,
+because a claim ABOUT the record is correctly located in the record while a
+claim about the world resting on one is a promotion, and no mechanical rule
+separates them. RA-030 carries the reading. A case here would have asserted a
+failure that does not occur.
+
 Run from the repository root:  python3 04-AUDITS/test-validate-registers.py
 """
 import re
@@ -97,7 +104,7 @@ CASES = [
      "reference HOLD-042 has no file in 05-HOLDS/"),
 
     ("dependency row citing a source that is not in the ledger",
-     lambda c: edit(c, "02-SOURCES/dependency.csv", "DEP-001,SRC-023", "DEP-001,SRC-998"),
+     lambda c: edit(c, "02-SOURCES/dependency.csv", '"DEP-001","SRC-023"', '"DEP-001","SRC-998"'),
      "source_a SRC-998 is not in the ledger"),
 
     ("a tracked file with no authority row",
@@ -202,10 +209,6 @@ CASES = [
                           "REPORTED", idcol="path"),
      "cannot be REPORTED"),
 
-    ("a VERIFIED row whose locator cites inherited material (Q13)",
-     lambda c: set_column(c, "03-REGISTERS/rigveda-pur-family.csv", "PUR-002",
-                          "locator", "01-INHERITED/claude-project-handoff.md L451"),
-     "locator cites inherited material"),
 
     ("a REPORTED register with no hold row naming it (T12)",
      lambda c: set_column(c, "00-CONTROLLER/CANONICAL-FILES.csv",

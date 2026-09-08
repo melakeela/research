@@ -140,6 +140,18 @@ COMPOSITE_KEY = {
 ALIAS_REGISTERS = {
     "09-DECISIONS/DECISION-ID-MAP.csv",     # holds D- identifiers from the register
 }
+# Registers whose key column is a FOREIGN key: it names a row another register
+# issued, and repeating it is the join, not a collision. Named one by one
+# rather than inferred from a blank id_prefix, because inferring it would let
+# any register opt out of cross-register uniqueness by emptying one cell. Every
+# other check still applies to these files; only the "who issued this
+# identifier" question is answered elsewhere.
+FOREIGN_KEY_REGISTERS = {
+    # PUR-P- is issued by 03-REGISTERS/rigveda-pur-passages.csv; these two are
+    # per-passage attribute tables on it.
+    "03-REGISTERS/rigveda-pur-fields.csv",
+    "03-REGISTERS/rigveda-pur-typology.csv",
+}
 # claim-sources.csv is NOT exempt. Its `claim_id` column legitimately repeats
 # other registers' identifiers, but its own `join_id` must still be unique and
 # carry its declared prefix; exempting the whole file left CS- unenforced
@@ -469,10 +481,21 @@ def check_file(rel, mode, prefix, ledger, known_ids):
                 report(f"{rel}:{n}: locator '{loc}' is not specific enough to re-find",
                        waivable=False)
             if loc and status == "VERIFIED" and INHERITED_LOCATOR.search(loc):
-                report(f"{rel}:{n}: VERIFIED row whose locator cites inherited "
-                       f"material ({loc[:70]}); an IH- row is a claim to be "
-                       f"tested and 01-INHERITED/ has no evidentiary standing, "
-                       f"so nothing here can carry a retrieval", waivable=False)
+                # A WARNING, not a failure, and deliberately so. Two different
+                # things look identical here. A claim about the world resting
+                # on an IH- row is a promotion the inheritance rule forbids -
+                # that was DMB-021, and it was demoted after reading it. A
+                # claim ABOUT THE RECORD - "this repository records X as owed",
+                # "IH-119 is INHERITED-UNVERIFIED and is not used" - is
+                # correctly located in the record, and VAR-008 is one. No rule
+                # separates them, so this surfaces the class on every run and
+                # RA-030 queues the reading. Failing them all would rewrite
+                # sound rows to satisfy a blunt check, which is the move this
+                # repository exists to refuse.
+                warn(f"{rel}:{n}: VERIFIED row whose locator cites inherited "
+                     f"material ({loc[:60]}). Correct if the claim is about the "
+                     f"record; a promotion if the inherited row is the evidence. "
+                     f"RA-030.")
             if loc and BARE_IDENTIFIER.match(loc) and loc not in known_ids:
                 report(f"{rel}:{n}: locator '{loc}' looks like an identifier but "
                        f"resolves to no register row", waivable=False)
@@ -502,7 +525,8 @@ def check_identifier_namespaces(governed):
     """
     issued = {}
     for rel, (mode, prefix, _role) in sorted(governed.items()):
-        if mode == "NOT-VALIDATED" or not rel.endswith(".csv") or rel in ALIAS_REGISTERS:
+        if (mode == "NOT-VALIDATED" or not rel.endswith(".csv")
+                or rel in ALIAS_REGISTERS or rel in FOREIGN_KEY_REGISTERS):
             continue
         path = ROOT / rel
         if not path.is_file():
@@ -571,7 +595,7 @@ def check_independence(governed):
         for rel, cid, cited, groups in hits:
             notes.append(f"  {rel} {cid}: {cited} sources, {groups} independent")
         notes.append("  assessed-and-cleared is not distinguishable from "
-                     "unassessed in the data; RA-012 tracks that gap")
+                     "unassessed in the data; RA-020 tracks that gap")
 
 
 def check_join(governed, ledger):
@@ -689,8 +713,10 @@ def check_dependency(ledger):
         seen.add(did)
         for col in ("source_a", "source_b"):
             sid = (row.get(col) or "").strip()
-            if sid and ledger and sid not in ledger:
-                fail(f"02-SOURCES/dependency.csv:{n}: {col} {sid} is not in the ledger")
+            for one in split_sources(sid):
+                if ledger and one not in ledger:
+                    fail(f"02-SOURCES/dependency.csv:{n}: {col} {one} is not in "
+                         f"the ledger")
         if not (row.get("effect_on_status") or "").strip():
             fail(f"02-SOURCES/dependency.csv:{n}: {did} states no effect on status; "
                  f"a dependency that changes nothing has not been assessed")
