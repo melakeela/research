@@ -95,3 +95,33 @@ def main() -> None:
 
 if __name__ == '__main__':
     main()
+
+
+# Appended 2026-09-08T22:26Z after the preferred-counter-narrative test.
+# Ledger SRC-099. Register AS-007 (SUPERSEDED) -> AS-022.
+#
+# The first pass reported "Excavation populated on 2 of 1,005" and it was
+# about to be read as "the Met's South Asian records have lost their
+# findspots." That reading does not survive asking what the column does
+# elsewhere in the same file. Run this before repeating the earlier one:
+#
+#   curl -sS -L <MetObjects.csv> | python3 -c "$(sed -n '/^def excavation_scope/,$p' \
+#     04-AUDITS/met-openaccess-census.py); import sys; excavation_scope(sys.stdin)"
+
+def excavation_scope(stream) -> None:
+    """Which departments populate Excavation at all, and with what values."""
+    import csv as _csv, collections as _c
+    reader = _csv.DictReader(stream)
+    dept_total, dept_filled, values = _c.Counter(), _c.Counter(), _c.Counter()
+    for row in reader:
+        d = row.get('Department', '')
+        dept_total[d] += 1
+        e = (row.get('Excavation') or '').strip()
+        if e:
+            dept_filled[d] += 1
+            values[e[:60]] += 1
+    print(f'Excavation populated: {sum(dept_filled.values())} of {sum(dept_total.values())}')
+    for d, n in dept_total.most_common():
+        if dept_filled[d]:
+            print(f'  {d:38} {dept_filled[d]:6} of {n:6} ({100 * dept_filled[d] / n:.1f}%)')
+    print('top values:', values.most_common(10))
