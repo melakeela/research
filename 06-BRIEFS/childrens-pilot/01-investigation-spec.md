@@ -11,6 +11,15 @@ criterion for the whole design:
 
 1. **What the poem claims** — "The poem says Indra knocked down a hundred forts
    made of stone. In the whole book, that is the only time it says stone."
+   *(The count and the material are `VERIFIED` — `PUR4J-002`, `PUR4J-012`. The
+   English sentence rendering RV 4.30.20 is currently the register's own
+   paraphrase in a `PROVISIONAL` row (`PUR4J-014`), with no translator, edition
+   or alternatives. That is the one place the exit criterion rests on something
+   the translation standard would not accept, and **gate G-05 blocks the screen
+   until the translators' verbatim renderings are pulled**. The claim survives
+   the substitution — the count and the stone word are measured, not
+   translated — but the sentence a child says must not be the museum's own
+   prose.)*
 2. **What the ground shows** — "We don't know. Nobody in this museum has dug
    anything up for this. That is not the same as nothing being there."
 3. **Where the two do not meet** — "You can count words in a poem. You cannot
@@ -52,19 +61,45 @@ The working language is `FOUND / WE THINK / MAYBE / WE DON'T KNOW`
 `INHERITED-UNVERIFIED`, and this unit does not promote them; they are a display
 vocabulary, not a claim about the past).
 
-The mapping onto the seven statuses of `CLAUDE.md` is fixed, printed on the
-child's help screen, and **loses nothing**:
+The mapping onto the seven statuses of `CLAUDE.md` is fixed and is printed on
+the child's help screen. **It does not lose a status, and it is not
+reversible** — three separate things map onto WE DON'T KNOW, and WE GOT THIS
+WRONG is not a status at all. Read the table left to right, never right to
+left:
 
 | Register status | Child word | Child gloss shown on screen |
 |---|---|---|
-| `VERIFIED` | **FOUND** | "Somebody looked it up in a real book and wrote down the page." |
-| `PROVISIONAL` | **WE THINK** | "It fits what we found. But only one person has checked, or it is somebody's reading." |
+| `VERIFIED` | **FOUND** | "Somebody checked it — in a book, or by counting every word in the poem with a computer — and wrote down exactly where to look so you can check too." |
+| `PROVISIONAL` | **WE THINK** | "It fits what we found. But only one person has checked, or it is somebody's reading of what the words mean." |
 | `HYPOTHESIS` | **MAYBE** | "An idea nobody has tested yet. We are telling you because we don't want to hide it." |
-| `HOLD` | **WE DON'T KNOW — we haven't looked yet** | "We know where to look. We have not been able to get there." |
+| `HOLD` | **WE DON'T KNOW — we haven't looked yet** | "There is a job on our list that nobody has done." |
 | typed absence (§6) | **WE DON'T KNOW — nobody wrote it down** | "The poem never says. That is not the poem hiding it. It just never says." |
 | an open crux — a row `VERIFIED` as to *what the sources print*, where what they print does not agree | **WE DON'T KNOW — grown-ups disagree** | "Two people who both read this for a living say different things, and neither of them says why." |
-| `REJECTED` / `SUPERSEDED` | **WE GOT THIS WRONG** | "We thought this before. We checked and we were wrong. We keep it here so we don't do it again." |
+| a correction recorded *inside* a row (`REJECTED` and `SUPERSEDED` rows would map here too, and this evidence base has none) | **WE GOT THIS WRONG** | "We thought this before. We checked and we were wrong. We keep it here so we don't do it again." |
 | `INHERITED-UNVERIFIED` | *(never shown as evidence)* | see §0.2 |
+
+**Three things this table is honest about, because an earlier draft claimed it
+"loses nothing" and that was false.**
+
+1. **FOUND does not mean "in a book".** Most `VERIFIED` rows the child meets —
+   `PUR-001`, `PUR-003`, `PUR-014`, `PUR-016`, `PUR-017`, `PUR-020`,
+   `PUR4J-020` — are outputs of committed scripts run over a pinned corpus
+   against a modern machine-readable annotation layer (`SRC-022`), not a page in
+   a printed book. Others (`PUR4J-021`, `PUR4J-022`, `PUR4J-023`) really are a
+   book with a page. Telling a child FOUND means "a real book" both overstates
+   the warrant and hides the annotation layer that `PUR-013` and `DEP-001` make
+   so much of elsewhere. The gloss now names both, because they are different
+   evidence classes and constitution §5 step 4 says one may not borrow certainty
+   from the other.
+2. **WE GOT THIS WRONG is not a status.** No row in this evidence base carries
+   `REJECTED` or `SUPERSEDED`. The three S-12 cards that use the phrase are
+   corrections recorded *inside* rows that are otherwise `VERIFIED` or
+   `PROVISIONAL` (`PUR4J-002`, `PUR4J-029`, and the demotions of `PUR4J-010` and
+   `PUR4J-014`). The child word is right; the mapping row is a courtesy for
+   rows that do not yet exist.
+3. **The mapping does not run backwards.** A child cannot recover a status from
+   a word, because three kinds of WE DON'T KNOW share one column heading. That
+   is a deliberate loss and the reason S-11 uses six bins rather than four.
 
 **The split of WE DON'T KNOW into three kinds is load-bearing and is the single
 most important thing in this specification.** A child who cannot tell "nobody
@@ -190,8 +225,12 @@ only from statused claims and is subject to gates G-08 (reading age) and G-09
 
 > **Why is a poem not a photograph?**
 >
-> About three thousand years ago, somebody made up a poem about knocking down
-> forts. We still have the poem. We do not have the forts.
+> A long time ago, somebody made a poem about knocking down forts. We still
+> have the poem. We do not have the forts.
+>
+> How long ago? We are not going to tell you a number, because we have not got
+> one. Nobody in this museum has looked up when this poem was made. That is the
+> first thing you are going to find out about us.
 >
 > You are going to find out what the poem says, exactly. Then you are going to
 > find out what we know about the forts themselves. One of those two jobs goes
@@ -216,7 +255,11 @@ translated yet. Card `EC-01` in `03-evidence-cards.md`.
 
 **Child does.** Three actions, in order.
 
-1. **Counts the words** in the padapāṭha line. There are eight.
+1. **Counts the words** in the padapāṭha row of this stanza. There are eight.
+   Then counts them in the Saṃhitā row above it, where they are run together
+   and there are fewer. **Both figures must be fixed against the pinned corpus
+   before build — gate G-05 — and the screen does not ship with the museum's own
+   count standing in for them.**
 2. **Taps any word** to see it highlighted in the other two rows. The word
    `purā́m` is not visibly separable in the Devanāgarī row and *is* separable in
    the padapāṭha row; the interface shows that rather than hiding it.
@@ -232,11 +275,16 @@ Devanāgarī setting is Eichler's, modern (`SRC-084`).
 
 > **WE DON'T KNOW — we haven't looked yet.** Nobody in this museum has seen the
 > first copy of this poem. We do not know that there ever was one written down.
-> What we have is a book printed in 1877, which was made from other books.
+> What we have is a book printed in 1877. How this poem got from whoever made it
+> into that book is a real story, and **we have not looked it up**, so we are not
+> going to tell it to you.
 >
-> **FOUND.** Two different people, hundreds of years apart, split this line into
-> words. They agree. We checked all 10,552 verses and the split never disagreed
-> with the modern one, not once. *(`PUR-010`)*
+> **FOUND.** Two different people, a long time apart, split this line into
+> words, and here they agree. *(`PUR-010`)*
+>
+> **FOUND.** But they do not always agree. There are 160 places in the book
+> where the old split writes a word so plainly that you cannot tell which of two
+> different words it is. The old split cannot decide those. *(`PUR-009`)*
 
 **Field Bag.** The stanza, by identifier and revision, with its three source
 rows.
@@ -358,8 +406,12 @@ Then the 21 split into four columns, which the child fills:
 
 *(`PUR4J-002`)*
 
-> **FOUND.** There are only four numbers in the whole book. Never twenty-three,
-> never forty-one. Just seven, ninety, ninety-nine and a hundred. *(`PUR4J-009`)*
+> **FOUND.** When this book counts *forts*, it only ever uses four numbers.
+> Never twenty-three, never forty-one. Just seven, ninety, ninety-nine and a
+> hundred. *(`PUR4J-009`)*
+>
+> The book has plenty of other numbers in it — fifty, a thousand — and some of
+> them are in these very verses. They are just never counting forts.
 
 **Asked to conclude.** One question, three options plus free text, no score:
 *"Which is the number of forts in this poem?"* — a hundred / ninety-nine /
@@ -402,8 +454,13 @@ before build; this unit supplies no diacritic of its own.)*
 > words: *nava*, nine, and *navatí*, ninety. Sometimes they are next to each
 > other and sometimes there are other words in between. *(`PUR4J-004`)*
 >
-> **FOUND.** And *navatí* is not really a plural. It is one word meaning "a
-> ninety" — like saying "a dozen". *(`PUR4J-005`)*
+> **FOUND.** And in five of these six, *navatí* is not really a plural. It is
+> one word meaning "a ninety" — like saying "a dozen". *(`PUR4J-005`)*
+>
+> **Look at RV 4.26.3 again.** That one is different: there it *is* a plural,
+> *navatih*. Five one way, one the other. We are telling you because you can see
+> it in the table in front of you, and if we said "always" you would have caught
+> us. *(`PUR4J-005`)*
 
 Then, two of the six carry something extra:
 
@@ -481,8 +538,12 @@ written on them. Ninety-three are blank.
 The interface does **not** shuffle to put the ten early. A child who turns over
 twelve cards will most likely see none of them, and that is the lesson.
 
-**What they see.** After the child has turned over at least twelve cards, a
-counter appears and stays:
+**What they see.** A counter appears and stays as soon as the child has turned
+over twelve cards **or** taps "show me the answer", whichever comes first. The
+"show me" control is present from the first card, is not hidden, and is not
+worded as giving up. A child who turns over three cards and stops sees the
+counter on their way to the next screen; nobody is held at this screen to earn
+a number.
 
 | | |
 |---|---|
@@ -492,6 +553,26 @@ counter appears and stays:
 | doesn't say | 93 passages |
 
 *(`PUR4J-012`)*
+
+**Then the child taps "made of metal" and the eight open up.** This is the
+sharpest evidence in the whole investigation and it must not sit behind a
+number:
+
+> **WE THINK.** Only **one** of the eight metal forts belongs to an enemy and
+> gets knocked down.
+>
+> In five of them somebody is *asking* for a metal fort to keep them safe. In
+> two of those five, the fort is not a building at all — in one, a god is asked
+> to *be* the fort; in another, the fort **is a river**. And in the last one,
+> priests are told to go and *make* metal forts. *(`PUR4J-013`, PROVISIONAL)*
+>
+> So when the poem says "metal fort", it is not always talking about a fort.
+> Sometimes it is talking about a god. Once it is talking about a river.
+
+**A river cannot be photographed as a fort.** If a child takes one thing from
+S-07, this is the one, and it is why `PUR4J-013` belongs on this screen rather
+than in a footnote — a metal fort that is a river is the investigation's own
+question answered by the corpus itself.
 
 Then the stone one, which is the stanza from S-01, now translated:
 
@@ -544,10 +625,19 @@ be loaded into this interface, and it is built so that none can be.
 
 1. **Stone against raw.** The one stone fort (RV 4.30.20) beside the one
    unbaked-earth fort (RV 2.35.6). What is alike: both are single, both are
-   materials. What differs: one is being knocked down, one is somewhere safe.
+   materials. What differs: **what the verb does to it** — one is being thrown
+   down, one is a place nothing reaches.
+   *(The terms are the material word and the verb. Not who owned it: an earlier
+   draft compared these two as "the other side's" against "ours", which is a
+   human-affiliation term and is none of the four kinds S-08 admits. Removed
+   under §10.4.7 — see `04-rules-and-gates.md` §2.)*
 2. **A hundred against ninety-nine.** Nine verses beside six. What is alike:
-   both are round-ish, both attach to the same stories. What differs: one is a
-   single word, one is never a single word.
+   both are round-ish. What differs: one is a single word, one is never a single
+   word. *(`PUR4J-002`, `PUR4J-004`)*
+   *(An earlier draft added "both attach to the same stories". That is
+   `PUR4J-010` at `PROVISIONAL`, it is named-entity material, and it belongs on
+   S-06 in prose where the museum explains its own doubt — not as an unlabelled
+   term of a comparison. Removed under gates G-02 and G-10.)*
 3. **A thing knocked down against a place you are in.** Two grammar cards. Of
    the 83 plain fort-words in the book, 56 are the thing a verb is done *to*,
    and **3** say somebody is *in* one. `PUR4J-020`.
@@ -558,16 +648,21 @@ be loaded into this interface, and it is built so that none can be.
 > broken. Three times out of eighty-three, it is a place somebody is inside.
 > *(`PUR4J-020`)*
 >
-> **MAYBE.** So maybe these were somebody else's forts, and the poem is only
-> ever on the outside of them. Nobody has tested that properly yet.
+> **MAYBE.** So maybe a fort in this poem is mostly a thing to be broken rather
+> than a thing to live in. Nobody has tested that properly yet.
 > *(`PUR-027`, HYPOTHESIS)*
+>
+> **And here is what argues with that.** Of the eight metal forts, only **one**
+> belongs to an enemy and gets stormed. In five, somebody is asking for a fort
+> to protect them — and in two of those, the fort *is* a god, or *is* a river.
+> In one more, priests are told to go and make some. *(`PUR4J-013`, WE THINK)*
 
 Beside the stone/raw comparison, the museum's caution, in the child's words:
 
-> **WE THINK.** The stone one belongs to the other side. The raw one is a safe
-> place. But there is only one of each, and you cannot see a pattern in one and
-> one. *(`PUR4J-014`, PROVISIONAL — and the register says exactly this: "with
-> n=1 on each side no distribution follows")*
+> **WE THINK.** In the stone verse the fort is thrown down. In the raw verse it
+> is a place nothing can reach. But there is only one of each, and you cannot
+> see a pattern in one and one. *(`PUR4J-014`, PROVISIONAL — and the register
+> says exactly this: "with n=1 on each side no distribution follows")*
 
 **Asked to conclude.** *"Two things can look the same and be different. Show one
 pair from today where that happened."* The child picks a pair they already saw.
@@ -592,19 +687,42 @@ whole screen rests on a `HYPOTHESIS`.
 
 **A banner sits above this screen and cannot be dismissed:**
 
-> **Everything on this page is a MAYBE.** It all depends on one man's idea, from
-> 1905, about which bits of the book are older. That idea has never been checked
-> against a second, separate way of telling. We are showing you because it is
-> interesting and because hiding it would be worse. *(`PUR-028`, HYPOTHESIS;
+> **Everything on this page is a MAYBE.** It all depends on one man's idea,
+> from 1905, about which bits of the book are older.
+>
+> **We** have not checked that idea against a second, separate way of telling.
+> Other people have argued about it ever since 1905, and we have not read those
+> arguments either. So this is not "nobody knows" — it is "we have not looked",
+> which is our problem, not the evidence's. *(`PUR-028`, HYPOTHESIS;
 > `PUR-013`, single source)*
 
-**Child does.** Places 106 counters into five bins labelled by Arnold's period
-names, then presses one button: **"show what you'd expect"**, which overlays the
-whole book's shares.
+**Child does.** Places **86 counters — one per hymn, already labelled with its
+period** — into five bins, then presses one button: **"show what you'd expect"**,
+which overlays the whole book's shares.
 
-**What they see.**
+**The counters are pre-labelled and the child is told so**, exactly as at S-04.
+The child is counting, not guessing at a metrical stratum: guessing would be a
+scored task wearing a different hat. Each counter also carries Arnold's
+confidence mark, because 14 of the 106 occurrences are
+`metrical-variations-only`, his lower-confidence assignment (`PUR-011`), and a
+counter shown without it overstates.
 
-| Period | Fort words found | If forts were spread evenly |
+**The unit is the hymn, not the token, and that is not a detail.** `PUR-018`'s
+note says in terms that tokens within a hymn are not independent, *"which is why
+the hymn-level figure is the one to quote."* An earlier draft had the child
+handling 106 token counters and reading off the token-level observed/expected
+table — the token-level result in pictures, which is the overstatement the
+register warns against, and not printing the χ² does not fix it. Corrected: 86
+hymns of 1,028, which is the conservative unit `PUR-018` actually tests at.
+
+**What they see.** The by-token table below is what the register carries and is
+**not** what the screen shows; the screen shows the same shape at the hymn unit.
+The by-hymn observed and expected counts must be derived from
+`rigveda-pur-family-occurrences.csv` before build — **gate G-12** — and this
+unit did not derive them, because deriving them is a corpus operation and this
+unit performed none.
+
+| Period | Fort words (tokens) | If spread evenly (tokens) |
 |---|---:|---:|
 | Archaic | 31 | 21.8 |
 | Strophic | 32 | 24.0 |
@@ -612,10 +730,13 @@ whole book's shares.
 | Cretic | 23 | 19.1 |
 | Popular | **3** | **14.8** |
 
-*(`PUR-014`, `PUR-016`, `PUR-017`)*
+*(`PUR-014`, `PUR-016`, `PUR-017` — the token-level figures, quoted here for the
+record and not for the screen)*
 
-> **FOUND.** In the part he called the newest, we expected about 15 fort words
-> and found 3. *(`PUR-017`)*
+> **FOUND.** In the part he called the newest, there are far fewer fort words
+> than you would expect if they were spread out evenly. *(`PUR-017`, at the
+> token unit; the screen states the same shortfall at the hymn unit once
+> gate G-12 supplies the figure)*
 >
 > **MAYBE.** So maybe fort-talk is an old part of this poem, not something added
 > late. *(`PUR-026`, PROVISIONAL — and it rests on `PUR-028`, a MAYBE, so it
@@ -672,12 +793,19 @@ Then, the second kind, which is not fixable by looking:
 
 > **WE DON'T KNOW — nobody wrote it down.**
 >
-> The poem never says where. Not once, in any of the 103 verses. There is one
-> word that might be a river's name or might just mean "a river", and two
-> translators read it differently. *(`PUR4J-018`, `PUR4J-028`)*
+> No verse says where a fort was. Not one of the 103.
 >
-> So even if somebody dug up a wall tomorrow, we would have a wall and a poem
-> and no way to say they were the same wall.
+> There is a river in some of them. Six verses have a word that can be a
+> river's name — *sindhu*. In three of the six, both our translators agree it
+> is a name. In two, both agree it just means "a river". In one they disagree.
+> *(`PUR4J-028`)*
+>
+> So the poem does have a place-name in it. What it never does is put a fort at
+> that place, or anywhere else. A river is not an address. *(`PUR4J-018`)*
+>
+> And that means even if somebody dug up a wall tomorrow, we would have a wall
+> and a poem, and joining them up would be a whole new job with its own
+> evidence. Not impossible. Just not free. *(`HOLD-007`)*
 
 Then the one thing the poem might have named, and did not quite:
 
@@ -724,21 +852,49 @@ reconstruction of the exact thing the screen says we do not have (§10.4.4).
 **On it.** Six statements, and four bins. The child sorts *statements*, not
 things and not people.
 
-**Child does.** Drags each statement into `FOUND` / `WE THINK` / `MAYBE` /
-`WE DON'T KNOW`. There is no correct arrangement shown, no score, no timer.
+**Child does.** Drags each statement into one of **six** bins: `FOUND` /
+`WE THINK` / `MAYBE` / `WE DON'T KNOW — nobody wrote it down` /
+`WE DON'T KNOW — we haven't looked yet` / `WE DON'T KNOW — grown-ups disagree`.
+There is no correct arrangement shown, no score, no timer.
+
+**Six bins, not four.** An earlier draft used four, which collapsed the three
+kinds of WE DON'T KNOW back into one on the only screen where the child sorts
+them — undoing §0.1, which calls that split the most important thing in this
+specification. If the six bins prove unusable at this reading age (gate G-08),
+the fix is fewer *statements*, not fewer bins.
 
 | Statement | Where the museum puts it |
 |---|---|
 | "The poem says a hundred stone forts." | FOUND (`PUR4J-012`, `PUR4J-002`) |
 | "Only one verse in the whole book says stone." | FOUND (`PUR4J-012`) |
-| "Ninety-nine is the famous number." | FOUND — but as a fact about *people today*, not about the poem (`PUR4J-I-02`) |
-| "Ninety-nine is the poem's commonest number." | **Not true.** A hundred is. (`PUR4J-003`) |
-| "The forts were made of iron." | WE DON'T KNOW — translators disagree (`PUR4J-023`) |
+| "Ninety-nine is the famous number." | **WE THINK** — and it is a guess about *people today*, not about the poem. See below. (`PUR4J-I-02`, PROVISIONAL) |
+| "Ninety-nine is the poem's commonest number." | **FOUND — that it is false.** A hundred is commonest, 9 verses to 6. (`PUR4J-003`) |
+| "The forts were made of iron." | WE DON'T KNOW — grown-ups disagree (`PUR4J-023`) |
+| "The poem says what the forts were made of." | WE DON'T KNOW — nobody wrote it down; 93 of 103 verses never say (`PUR4J-012`) |
 | "There was a stone fort somewhere." | WE DON'T KNOW — we haven't looked (`HOLD-007`) |
 
-The fourth statement is the only one in the investigation the child can get
-*wrong against the evidence*, and the interface still does not mark it. It shows
-the count again and lets them move it or not.
+**Two notes on this table, and both are repairs.**
+
+The statement about the famous number sat at FOUND in an earlier draft, citing
+`PUR4J-I-02`, which is `PROVISIONAL`. That broke §0.1's mapping in the
+promoting direction, on the museum's own claim about itself. Worse, the only
+evidence in this repository that 99 *is* the famous number is MelaKeela's own
+page headline, which has no recorded source and is `INHERITED-UNVERIFIED` — so
+§0.2's rule against inherited material on an evidence card was broken too, and
+gate G-04 passed it. Both corrected: the statement is **WE THINK**, and the
+screen says why in the child's words:
+
+> **WE THINK.** People say "ninety-nine forts" a lot. We think that is about
+> *us*, not about the poem. But we have not actually checked where we got it
+> from. It is on one of our own pages and nobody wrote down where it came from.
+> *(`PUR4J-I-02`)*
+
+The statement about the commonest number is the only one in the investigation
+a child can place *wrong against the evidence*. It has a real bin — FOUND,
+because that it is false is a `VERIFIED` measurement (`PUR4J-003`) — so the
+screen no longer needs a seventh answer outside its own vocabulary. The
+interface still does not mark it. It shows the count again and lets the child
+move it or not.
 
 **Then the investigation's question**, in the child's words, free text plus four
 options:
@@ -746,12 +902,21 @@ options:
 > **Why is a poem not a photograph?**
 >
 > - A photograph shows one thing. A poem uses the same words for lots of things.
-> - A photograph has a place. This poem never says where.
-> - A photograph is made once. This poem was copied and copied.
+>   *(S-06: the same two words count rivers. S-07: a metal fort that is a river.)*
+> - A photograph shows you a place. This poem has a river in it and never puts a
+>   fort anywhere. *(S-10)*
+> - A photograph is taken of something. This poem might be about something, and
+>   we have not checked. *(S-10)*
 > - **We don't know / something else** *(free text)*
 
-All four are supportable from what the child saw, and the interface says so.
-The child may pick more than one.
+Each option names the screen it comes from, and each is supportable from what
+the child saw. The child may pick more than one.
+
+*(Two earlier options were removed. "This poem never says where" is contradicted
+by `PUR4J-028`, which the investigation itself shows at S-10: three verses carry
+a river-name both translators agree on. And "this poem was copied and copied"
+rested on nothing — no row in this evidence base addresses manuscript
+transmission, which is also why S-01 no longer tells that story.)*
 
 **Field Bag.** The child's six placements and their answer, all marked as theirs
 and never mixed with institutional text (§10.4.5).

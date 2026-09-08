@@ -23,7 +23,7 @@ specified end to end, for ages 8–11.
 | `01-investigation-spec.md` | the investigation: 14 screens, every action, every conclusion |
 | `02-claim-basis.csv` | every claim the investigation rests on, by `claim_id`, per screen, with what would verify it |
 | `03-evidence-cards.md` | the exact evidence a child sees, verbatim, with locators |
-| `04-rules-and-gates.md` | §10.4 rule-by-rule compliance, posture derivation, adversarial tests, and the eleven build gates |
+| `04-rules-and-gates.md` | §10.4 rule-by-rule compliance, posture derivation, adversarial tests, and the twelve build gates |
 
 ## Scope
 
@@ -41,54 +41,118 @@ already carried it, with its `claim_id` attached at the point of use.
 
 ## The headline answer this unit was asked for
 
-**The investigation rests on 45 register rows, plus one hold.**
-`02-claim-basis.csv` names all 46 by identifier, with the screens each feeds and
-what would verify it. Four of the 45 (`PUR-022`, `PUR-023`, `PUR4J-030`, and
-`PUR4J-016` in part) appear on **no screen**: they are the rows the design
-reasons *about* — the named-entity material a forbidden COMPARE step would have
-used, and the exclusion that would change every count. They are listed so the
-audit trail is complete rather than only the child-facing part of it.
+**The investigation rests on 47 claim rows, one hold, and one display
+vocabulary.** `02-claim-basis.csv` names all 49 by identifier, with the screens
+each feeds and what would verify it.
 
 | Status | Rows | Child word |
 |---|---:|---|
-| `VERIFIED` | 34 | FOUND |
-| `PROVISIONAL` | 9 | WE THINK |
+| `VERIFIED` | 35 | FOUND |
+| `PROVISIONAL` | 10 | WE THINK |
 | `HYPOTHESIS` | 2 | MAYBE |
 | `HOLD` | 1 | WE DON'T KNOW — we haven't looked yet |
+| `INHERITED-UNVERIFIED` | 1 | *(the vocabulary itself — see below)* |
 
-**The lowest status among the claim rows is `HYPOTHESIS`**, on two:
+Four rows (`PUR-022`, `PUR-023`, `PUR4J-030`, and `PUR4J-016` in part) appear on
+**no screen**: they are the rows the design reasons *about* — the named-entity
+material a forbidden COMPARE step would have used, and the exclusion that would
+change every count. They are listed so the audit trail is wider than the
+child-facing surface.
 
-- **`PUR-028`** — *"Arnold's five periods correspond to real chronological stages
-  of composition."* The whole of screen **S-09** stands on it, and S-09 carries a
-  banner saying so that cannot be dismissed.
-  **What would verify it:** a stratification of the Rigveda by an instrument that
-  is not Arnold's metre — a retrieved non-metrical periodisation, or an
-  independent metrical one built without reference to Arnold — applied to the
-  same corpus and agreeing with it, together with retrieval of the literature
-  contesting Arnold since 1905. It **cannot** be settled from the pinned corpus:
-  `strata.json` *is* Arnold (`PUR-013`), so no re-run of it tests it. Arnold
-  himself calls the period names "provisional" (1905 §§60–61).
-- **`PUR-027`** — *"The Rigvedic púr- is a fortification of a kind the composers
-  attack rather than inhabit."* Shown on **S-08** and **S-12**, labelled MAYBE.
+### The lowest status is not `HYPOTHESIS`
+
+**Among the claim rows it is `HYPOTHESIS`.** Below that, the investigation rests
+on one thing that is `INHERITED-UNVERIFIED`, and it is not a minor one: **the
+four-word vocabulary itself.** `FOUND / WE THINK / MAYBE / WE DON'T KNOW` comes
+from `01-INHERITED/chatgpt-project-handoff.md` L347 and
+`06-BACKLOG/EXPANSION-PROMPT-2026-09-07.md` L254; backlog item 33's flow and
+§10.4.7's three prohibitions are inherited too.
+
+A display vocabulary is not a claim about the past, so "verification" does not
+apply to it — but the *assertion that it maps onto the seven statuses losing
+nothing* is a claim, it is the claim the entire design rests on, and an earlier
+draft made it and **it was false**. Corrected at `01-investigation-spec.md`
+§0.1, which now states both losses: `WE GOT THIS WRONG` is not a status at all,
+and three different things map onto `WE DON'T KNOW`, so the mapping does not run
+backwards. §10.4.7's prohibitions bind regardless of their status, because they
+are prohibitions on what the institution builds.
+
+### The two `HYPOTHESIS` rows
+
+- **`PUR-028`** — Arnold's five periods as real chronological stages. The whole
+  of screen **S-09** stands on it and carries a banner saying so that cannot be
+  dismissed.
+  **What would verify it:** a stratification by an instrument that is not
+  Arnold's metre — a retrieved non-metrical periodisation, or an independent
+  metrical one built without reference to Arnold — applied to the same corpus
+  and agreeing, together with retrieval of the literature contesting Arnold
+  since 1905. It **cannot** be settled from the pinned corpus: `strata.json`
+  *is* Arnold (`PUR-013`), so no re-run of it tests it. Arnold himself calls the
+  period names "provisional" (1905 §§60–61).
+- **`PUR-027`** — the púr- as attacked rather than inhabited. Shown as MAYBE at
+  S-08 and S-12, now beside `PUR4J-013`, which argues with it.
   **What would verify it:** a passage-by-passage reading of the grammatical role
-  of `púr-` across all 106 tokens. `PUR4J-020` has since measured the case
-  distribution over all 83 simplex tokens, which is a substantial part of that
-  reading; whether it discharges the blocker is a re-audit question, raised here
-  as `RA-002`. It is **not** treated as discharged, and the row is quoted at
-  `HYPOTHESIS`.
+  across all 106 tokens. `PUR4J-020` has since measured the case distribution
+  over all 83 simplex tokens, which is a substantial part of it; whether that
+  discharges the blocker is `RA-020`. Not treated as discharged.
 
-**Separately, one item the investigation rests on is a `HOLD`** — `HOLD-007`,
-raised by this unit. It is not a claim ranked below `HYPOTHESIS`; it is a
-retrieval that has not been run, and screen **S-10** is entirely about it.
+### The hold
 
-**Nine `PROVISIONAL` rows, and seven of them can never be anything else.**
+**`HOLD-007`**, raised by this unit. Not a claim ranked below `HYPOTHESIS` — a
+retrieval nobody has run. Screen **S-10** is entirely about it.
+
+### The ten `PROVISIONAL` rows
+
+Eight are capped at `PROVISIONAL` and can never be anything else:
 `04-AUDITS/rigveda-pur-4j-method.md` §7 holds that a `VERIFIED` row is a count,
-a form, a gloss or a printed rendering. Every one of the nine is a *reading*, so
-the register caps it at `PROVISIONAL` by construction. An independent second
-coder would raise confidence in them; it would not raise their status. Two
-(`PUR4J-I-02`, `PUR4J-024`) additionally have retrieval that would sharpen them
-without promoting them. Where that is the answer, `02-claim-basis.csv` says so
-rather than inventing a retrieval that would not change anything.
+a form, a gloss or a printed rendering, and each is a *reading*. An independent
+second coder raises confidence, not status.
+
+Two are not simply capped, and the CSV says so rather than hiding them under the
+cap: **`PUR4J-I-02`** has a specific, cheap, unattempted retrieval behind it
+(where MelaKeela's 99 came from; a pre-Griffith English source), and
+**`PUR4J-024`** is part retrieval and part judgement. And three `VERIFIED` rows
+— `PUR-003`, `PUR-004`, `PUR-005` — carry `RA-001` open against them, so
+"already `VERIFIED`" is the one thing they are not; their CSV rows now say so.
+
+## Adversarial review
+
+This unit was adversarially reviewed on 2026-09-08 by an agent that did not
+produce it, and repaired. Four repairs changed a position rather than a
+sentence, and all four are recorded in place:
+
+1. **The posture derivation did not fire on a proper count.** §1.5 rule 3 counts
+   the exhibit's *propositions*; the first draft counted proportions inside
+   individual claims (82 of 103 passages, 93 of 103) and asserted a majority
+   without counting — then silently amended the rule to "typed absences **or
+   holds**", the holds `04-rules-and-gates.md` §5 insists are not typed
+   absences. §3 and §5 contradicted each other, load-bearingly. Rewritten:
+   the posture is now an **editorial assignment under gate G-01**, not a
+   derivation, and **on the §1.5 residual reading this investigation may not be
+   built at all.** Also logged `IC-P-004`: §1.7's table and its own prose
+   disagree about whether Field Mode is forbidden in Reading Room, and the whole
+   argument rests on the table cell the prose omits.
+2. **`PUR4J-013` was missing from the entire unit** — only one of the eight
+   metal forts is an enemy's; in two of them the fort *is* a god or a river.
+   Omitting it left `PUR-027` less challenged than the register leaves it *and*
+   withheld the sharpest evidence in the corpus for this investigation's own
+   question. Now on S-07 and S-08.
+3. **S-08 performed the excluded move with the vocabulary removed** — "the other
+   side", "somebody else's forts" — while S-10 told the child the museum was not
+   showing them that material. The COMPARE terms are now the verb and the
+   grammatical role.
+4. **Four child-facing FOUND statements overstated their rows**, and all four
+   overstated toward this investigation's own thesis. That direction is the
+   finding, not the four sentences.
+
+Also repaired: unsourced dates removed throughout (nothing in this repository
+dates the Rigveda); `PUR4J-I-02` was labelled FOUND at `PROVISIONAL` on the one
+line where the inherited "99" reached an evidence screen, and gate G-04 passed
+it; the §0.1 claim that the status mapping "loses nothing" was false in two
+ways; S-11's four bins collapsed the three kinds of WE DON'T KNOW on the one
+screen that sorts them; S-09 showed the token-level distribution the register
+says overstates; `HOLD-007` named a period and a region it has no source for;
+and `RA-002` collided with an existing identifier.
 
 ## What this unit found while specifying
 

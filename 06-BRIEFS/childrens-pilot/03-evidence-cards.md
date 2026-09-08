@@ -246,9 +246,24 @@ it, and so does the screen.
 `02-SOURCES/access-ledger.csv`, all 88 rows, shown at reading age with each
 row's category.
 
-**What the child will find:** primary corpora, primary texts, primary
-annotations, translations, lexicons, editorial apparatus, comparative datasets,
-retrieval channels, infrastructure probes, one monograph on metre (Arnold 1905).
+**What the child will find**, by the ledger's own `category` values — the real
+list, not a sample of it: `primary-corpus`, `primary-text`,
+`primary-text-edition`, `primary-text-archive`, `primary-annotation`,
+`primary-lexicon`, `primary-lexical-data`, `primary-reference-work`,
+`primary-monograph` (Arnold 1905, on metre), `primary-comparative-dataset`,
+`primary-source-repository`, `translation`, `editorial-apparatus`,
+`reference-work-derivative`, `reference-dataset`, `derived-database`,
+`reconstruction-set`, `classification-and-bibliography`,
+`journal-literature`, `paywalled-journal-archive`, `preprint-repository`,
+`secondary`, `secondary-literature`, `secondary-web`, `tertiary`,
+`tertiary-reference`, `citation-infrastructure`, `search-index`,
+`retrieval-channel`, `mcp-connector`, `infrastructure`,
+`repository-self-audit`, `metadata`.
+
+The child is promised the museum's real list and must be given it. An earlier
+draft of this card summarised it and dropped the journal, preprint, secondary
+and connector categories — a summary of the source list is not the source list,
+on the one screen whose whole point is that the child audits the museum.
 
 **What the child will not find, because it is not there:** any excavation
 report, site report, survey, archaeological dataset, museum object record, or

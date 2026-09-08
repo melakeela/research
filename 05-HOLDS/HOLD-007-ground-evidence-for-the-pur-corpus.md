@@ -13,8 +13,34 @@ despite it. Screen S-10 shows the hold to the child.
 
 Any one of: an excavation report, a site report, a regional survey, an
 archaeological dataset, a museum object record, or a geographic gazetteer,
-bearing on fortification in the region and period at issue, retrievable and
-loggable in `02-SOURCES/access-ledger.csv`.
+bearing on fortification, retrievable and loggable in
+`02-SOURCES/access-ledger.csv`.
+
+### This hold cannot yet state its own region or its own period, and says so
+
+An earlier draft read *"bearing on second-millennium-BCE fortification in the
+relevant region."* Both halves were unsourced and are withdrawn.
+
+- **No period.** Nothing in this repository dates the composition of the
+  Rigveda. A search of every `rigveda-pur-*.csv` for `BCE`, `B.C.` and
+  `millennium` returns nothing. The only chronological instrument in hand is
+  Arnold's relative periodisation, and `PUR-028` holds at `HYPOTHESIS` that it
+  is chronological at all.
+- **No region.** `PUR4J-018` (`VERIFIED`) records that the pinned corpus carries
+  no geographic content. `PUR4J-028` records the one thread that could ever
+  reach a geography — `sindhu-`, a proper name for both translators in three of
+  six passages — and the register declines to place it. Version 12 line 1175
+  holds research against identifying the forts with one archaeological culture.
+
+**A hold that names its own date range and region without a source has done the
+identification it exists to request.** So this one does not. What it asks for is
+a source; what it is *for* is stated under "Why it is needed"; and **bounding
+the question — constitution §5 step 1 — is itself part of the work the hold
+blocks, not a precondition this unit can supply.**
+
+That is uncomfortable and it is the honest position: this repository currently
+cannot say where or when to dig, and saying so is not the same as having no
+question.
 
 ## Why it is needed
 
@@ -73,6 +99,19 @@ warns against automatically translating *púr* into a Mature Harappan city.
 **Closing this hold makes the question harder, not easier.** The children's
 investigation's screen S-10 says so to the child, and any adult exhibit built on
 a closed HOLD-007 must say the same.
+
+## What this hold is not
+
+**It is not a blocked attempt.** No retrieval was attempted in this unit. Nobody
+was prevented from reaching anything, and `CLAUDE.md`'s gloss for `HOLD` —
+"Blocked on source access" — describes something that has not happened here.
+
+The status is still `HOLD` and not a typed absence, for the reason given above:
+the alternative is to type an absence in the record of the past on the strength
+of a search nobody ran. But the child-facing gloss must not say "we tried and
+could not get there", and `01-investigation-spec.md` §0.1 was corrected under
+review for saying exactly that. The gloss is now **"there is a job on our list
+that nobody has done"**, which is true.
 
 ## Escalation
 
