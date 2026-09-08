@@ -1122,3 +1122,181 @@ requested, before the Activity can run. Two behaviours:
 7. **An exercise that requires the visitor to be right about a claim below
    `VERIFIED`** (§8.2).
 8. **An activity with no accessibility equivalent** (§11.9.1).
+
+---
+
+## 9. Challenge — `mk:chl:`
+
+### 9.1 What it is
+
+**A Challenge is a bounded, designed invitation to test one institutional claim
+against the institution's own evidence, with disagreement as a permitted
+outcome.** It is the unit PROVE IT is made of.
+
+Museum framework §9.1 states what PROVE IT must be able to do: *"If PROVE IT
+cannot produce the outcome 'the institution is wrong here', it is a quiz, and a
+quiz that only confirms is publicity."* §9.2 gives it six stages and §9.3 four
+rules. Neither gives it an object, so a PROVE IT run is currently unaddressable,
+uncitable and unexportable, in a mode whose §9.3 rules require that *"every run
+is exportable … A run is citable."*
+
+The Challenge is that object. It is the unit; a **run** is one visitor's pass
+through it, and the two are distinguished in §9.5 because they have different
+lifetimes and different privacy positions.
+
+Whether PROVE IT is the correction intake this reading takes it to be is museum
+framework **D-024** and is not settled here. The specification below is written
+so that a negative answer removes §9.6 and leaves the rest standing.
+
+### 9.2 The three things called "challenge", kept apart
+
+Declared at §3.2 and restated here because this is the object where confusion
+would do damage:
+
+| Written | Identifier | What it is |
+|---|---|---|
+| `challenge:experience` | `mk:chl:` | this object — a designed invitation to test a claim |
+| `challenge:correction` | `mk:cor:` | a submitted assertion that a claim at a revision is wrong (§11.6) |
+| challenge candidate | — | §9.4's transient: a recorded disagreement in a run, before it is submitted |
+
+A bare "challenge" in a column heading, a filter, a facet or a page title is a
+defect, exactly as an undifferentiated "hold" is (§11.5).
+
+### 9.3 Fields
+
+| Field | Type | Notes |
+|---|---|---|
+| `id` | identifier | `mk:chl:<key>` |
+| `revision` | integer | append-only |
+| `targets` | `mk:rel:` (`targets`) | **exactly one**, to a `mk:clm:@r<n>`, a `mk:qst:` or a `mk:rel:`. Revision-pinned: a Challenge is against a claim as it stood, and a visitor who returns is shown what has changed since. **This is the Challenge's grounding.** |
+| `challenge_form` | enum | `test-a-claim` · `weigh-rivals` · `find-the-dependency` · `type-the-absence` · `check-the-locator` · `read-the-variant` · `apply-a-gate` |
+| `activities[]` | ordered array of `mk:act:` | the run's stages as Activity objects (§8), so the interaction constraints apply here without restatement |
+| `evidence_set[]` | array of `mk:rel:` | the Evidence Links put before the visitor, with roles, locators, editions, retrieval dates and independence groups (§3.3) |
+| `independence_tree_shown` | bool | **true.** §9.2 stage 3: *"nine citations resolving to one 1953 report is the single most instructive thing this mode can teach."* |
+| `rivals[]` | array of `mk:clm:` | every viable explanation **plus the null explanation**, independently stated (§9.2 stage 2) |
+| `exclusion_notes[]` | array of Gate Results | gated-out explanations with the gate they failed, in the fixed small footprint of §3.10 |
+| `gates_offered[]` | enum | chronological · geographical · mechanism · positive-evidence · diagnostic. Each shown with the data needed to apply it. |
+| `absences[]` | array of `mk:abs:` | §9.2 stage 5, with types |
+| `falsifiers[]` | array of Falsifier records | §9.2 stage 6, with `currently_testable` and `blocked_by` |
+| `hold_disclosure` | Block or null | **required and non-null where the target or any evidence is `HOLD`** (§9.3) |
+| `institution_position` | `mk:clm:` set | disclosed **after** the visitor has worked the evidence, never before (§9.3) |
+| `outcome_forms[]` | enum | `agree` · `disagree` · `undecided` · `insufficient-evidence` · `question-is-malformed`. All five are first-class; none is a failure state. |
+| `bias_tests_shown[]` | array of Bias Test records | **both**, with the asymmetry statement (§11.2) |
+| `disagreement_route` | enum | `none` · `correction-intake` — §9.6, subject to D-024 |
+| `age_bands[]` | array | declarative, §5.4 |
+| `preconditions[]` | array | as §8.7 |
+| `constraint_block` | Constraint Block | §5.2 |
+
+### 9.4 Grounding
+
+A Challenge grounds on its single `targets` link. The link is to a claim, a
+question or a relationship **at a named revision**, and it is required at
+creation.
+
+The single-target rule is not a simplification. A Challenge with two targets
+lets a visitor's disagreement land ambiguously, which makes the correction it
+emits unusable: §11.6 requires a challenge to be *"against a specific claim at a
+specific revision, with the evidence the challenger relies on."* An investigation
+that needs to put three claims at risk is three Challenges, and a Mission is the
+object that holds them in sequence (§10).
+
+### 9.5 Challenge and run
+
+A **Challenge** is published, addressable and citable: `mk:chl:<key>@r<n>`.
+
+A **run** is one visitor's pass through it. Runs are:
+
+- **Local by default**, in the Field Bag, on the visitor's own device, with no
+  account (§10.3, §10.4.5).
+- **Exportable by the visitor** as the claim, the evidence set, the gates and
+  their own reasoning (§9.3). The export is the citable artefact.
+- **Never transmitted by default.** A run reaches the institution only by the
+  visitor's explicit act (§9.6), and never for a child's free text: §10.4.5
+  requires that a class submission comes from the teacher's account, as the
+  class's.
+- **Not aggregated into behavioural analytics.** §10.4.5 permits aggregate,
+  non-identifying usage counts with a published measurement policy, and nothing
+  else, at any age.
+
+### 9.6 The route from disagreement to correction
+
+Subject to **D-024**. Under the reading museum framework §9.4 takes, a recorded
+disagreement is not a comment: it enters the correction pipeline as a challenge
+candidate carrying the claim, the revision, the evidence relied on, the gate or
+absence read differently, and what the visitor says would settle it.
+
+As an object flow:
+
+1. The visitor's `disagree` outcome, plus their `WEIGH` or `DECIDE` outputs,
+   forms a **challenge candidate** — transient, local, and not yet anything.
+2. The visitor submits it. Explicitly. A candidate that is not submitted is
+   deleted with the run.
+3. Submission creates a `mk:cor:` row (§11.6) with `channel = PROVE IT run`,
+   the target claim and revision, the evidence offered, and the challenger's
+   disclosed affiliation if they offered one.
+4. If upheld, the correction produces a revision of the claim (§3.6) whose
+   `triggering_record` is the correction id, so the visitor's challenge is
+   permanently part of the claim's history.
+5. Triage is public in aggregate: received, assessed, upheld, declined, median
+   time to assessment — *"published, and updated whether or not the numbers are
+   flattering"* (§11.6, rule 4).
+
+**The asymmetry that makes this worth building.** §11.6 rule 5 requires that
+challenges against the institution's preferred position be tracked separately and
+reported, because *"the failure this whole method guards against is the
+institution being easier on itself."* The Challenge object carries
+`target_is_preferred_position` (bool, editorially set, logged) so that the split
+can actually be computed rather than asserted.
+
+### 9.7 Rules
+
+- **No score, no points, no streak, no "correct"** (§9.3). A Challenge has no
+  right answer to withhold, *"because several of the propositions in this
+  institution do not have one yet."*
+- **The institution's position is disclosed last.** Not withheld — disclosed,
+  with its status and its confidence inputs, after the visitor has worked the
+  evidence. A Challenge that leads with what MelaKeela thinks has become a
+  comprehension exercise.
+- **Both adversarial tests are shown, with the asymmetry statement**, and the
+  preferred-counter-narrative test is shown on Challenges that contradict a
+  dominant account. §9.3: PROVE IT *"is worthless if it applies only the first."*
+- **A Challenge never runs on a `HOLD` without showing the hold** (§9.3). A
+  visitor must not be asked to weigh evidence the institution has told them it
+  could not reach.
+- **Rivals are shown at equal visual weight to the primary and are one
+  interaction away** (§4.5), while **space allocation follows evidence** (§3.10).
+  These are not in conflict: the first is about reachability, the second about
+  extent. A rival is always reachable; it is not always as long.
+- **`unknown` is never a rival** (§3.7). `insufficient-evidence` is an outcome
+  the visitor may reach; it is not an explanation on the list.
+- **The Challenge may not be a Character's argument.** No Character advocates a
+  position in a Challenge, and none opposes the visitor. §13.6.
+- **Decay.** When the target claim revises, the Challenge does not silently
+  re-point: the pin holds, the visitor is shown that a newer revision exists and
+  how it differs (§2.1), and the Challenge is queued for editorial re-issue
+  against the new revision. When the target is rejected, the Challenge stays
+  resolvable and shows that the institution came to agree with the visitors who
+  disagreed — which is the outcome the mode exists to make possible and the last
+  one to hide.
+
+### 9.8 What a Challenge may never be
+
+1. **A quiz with a withheld answer.** The distinction is the disclosure order
+   and the absence of a score, and both are fields.
+2. **A defence of the institution.** A Challenge whose evidence set omits the
+   evidence that bears against the claim has been curated into an argument — the
+   same failure §8.6 names for an Atlas *"in which every artifact turns out to be
+   linguistically meaningful."*
+3. **A vote.** Aggregating visitor outcomes into a displayed tally would make
+   agreement a measurement and disagreement a minority position. Corrections are
+   assessed on evidence, not on counts (§11.6, rule 1).
+4. **An exercise on a live custody or restitution matter put to a child**
+   (§10.4.6). Field Mode is forbidden in the Extraction / Collection and
+   Reconnection postures (§1.7); an adult Challenge there is mandatory, and a
+   child's is refused.
+5. **A sort, a scored classification or a staged persecution** (§5.2), by way of
+   any Activity it contains.
+6. **A surface where a claim the institution has not made gets said** — by a
+   prompt, a hint, a framing sentence or a Character. Everything a Challenge
+   asserts resolves to `targets`, `rivals[]`, `evidence_set[]` or
+   `institution_position`.
