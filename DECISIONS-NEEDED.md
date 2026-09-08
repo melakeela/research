@@ -984,11 +984,20 @@ The attempt to invent a ninth type for it has already been made and struck down:
 under independent review, correctly, because it would have let undone work
 masquerade as evidence about the past.
 
-`museum-framework.md` §11.1's negative rows in the Institutional Obligations
-Register are the nearest existing fit — *"refused requests, unanswered letters,
-unreturned objects, consultations not held"* — but §1.6.2 attaches them to the
-**Reconnection** posture alone, and they are obligations to third parties, not
-obligations to the record.
+`museum-framework.md` §11.1's Institutional Obligations Register is the nearest
+existing fit — §1.6.2's table row gives it *"refused requests, unanswered
+letters, unreturned objects, consultations not held"* — but those rows are
+attached to the **Reconnection** posture alone, and they are obligations to third
+parties, not obligations to the record.
+
+**And one existing rule reaches the problem without settling it.** Inherited
+standing rule 12 (`IH-347`, `INHERITED-UNVERIFIED`): *"A search named as owed is
+a dependency; a page depending on it is INCOMPLETE."* That types the page's
+**state**, correctly, and `what-varna-meant` is `INCOMPLETE` under it today. It
+says nothing about what the page may **display**, which is the whole of this
+decision. Any answer below should say why rule 12 is not enough — or, if the
+owner thinks it is, that is a fourth option and it means option 3 with the state
+recorded internally.
 
 ### The concrete instance
 
