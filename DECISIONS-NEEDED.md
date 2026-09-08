@@ -961,3 +961,54 @@ touches published copy.
 **Asked of the owner:** whether the page should name its digitization
 and carry the range in the interim. The change itself belongs in
 `melakeela/site`, not here. Queued as `RA-009`.
+
+## D-046 — Do the §10.4.7 prohibitions bind the whole institution?
+
+**Raised by:** experience object model §5.4
+**Category:** publication approval; two consequential positions both viable
+
+Museum framework §10.4.7 states three prohibitions — no sorting of human
+beings into types, no reward mechanic on extremist categories, no
+persecution as spectacle — and scopes them to the children's mode:
+*"anywhere in the children's mode, in any Living World, in any pilot."*
+
+Two facts about the architecture put that scope under pressure.
+
+First, **the institution cannot know who is looking.** §10.4.5 requires
+that no account is offered to under-16 visitors and the Field Bag is local
+by default. There is therefore no age gate anywhere, and a child can reach
+every surface. Protections that activate only in a children's mode protect
+children only where the institution guessed right.
+
+Second, **the prohibitions are on interaction patterns, not on subjects.**
+§10.4.7 says so: *"the same interaction is the same interaction whatever is
+loaded into it."* A rule of that form does not obviously have an audience
+scope at all — the argument that a sorting interface teaches that the
+categories are operable does not weaken when the person sorting is
+nineteen.
+
+The experience object model takes the extension **within its own layer**:
+the Constraint Block binds all eight object types at every age band. That
+was the instruction the document was written under, and it is what the
+no-gate architecture implies for objects that ask a visitor to do
+something.
+
+It does not extend the prohibitions beyond that layer, because the costs
+there are real and are not the model's to weigh.
+
+| Option | Consequence |
+|---|---|
+| **Bind the whole institution.** No surface anywhere offers an interaction that sorts, scores or stages people | The rule becomes checkable in one place and cannot be defeated by an audience guess. Cost: an exhibit whose *subject* is a nineteenth-century racial schema may need to reproduce that schema's operation to analyse it, and a blanket interaction ban could stop the historiography the record most needs — the `WMP-9` programme is precisely a study of how a racial category was built. |
+| **Bind the experience layer only** (the position this model takes for itself) | Anything asking a visitor to do or conclude something is covered, at any age. Cost: a register view, an Atlas layer combination or a long-form Reading Room exhibit is outside, and the boundary between "arranging the record" and "asking the visitor to do something" will be argued over. |
+| **Bind child-facing surfaces only**, as §10.4.7 states | Nothing changes and the owner's wording governs unaltered. Cost: the guarantee is only as good as an audience guess the institution has deliberately made itself unable to make. |
+
+The wording of the three constraints is `INHERITED-UNVERIFIED`
+(`MELA-KEELA-WHO-MADE-THE-PAST.md` §9 is not in this repository;
+`RESEARCH-QUEUE.md` `WMP-9` records the provenance and the numbering
+discrepancy raised as D-037). Their standing as constraints does not
+depend on that — they are prohibitions on what the institution builds, not
+claims about the past — but their **scope** is the owner's, and it is what
+is being asked here.
+
+**Decision:** do the three prohibitions bind the whole institution, the
+experience layer, or child-facing surfaces only?
