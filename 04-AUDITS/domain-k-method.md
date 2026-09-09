@@ -108,8 +108,9 @@ to a site (`DK-M-022`–`DK-M-024`).
 
 Two searches, deliberately different in kind.
 
-**Search A, a candidate census.** Twenty-four of the 63 lookups return
-ABSENT, and they represent 22 distinct stems — `pattra` and `patra` are
+**Search A, a candidate census.** Twenty-five of the 63 lookups return
+ABSENT — 24 distinct queries, since `likh` was queried both as a nominal
+stem and as a root, and 22 distinct stems — `pattra` and `patra` are
 one stem written two ways, and so are `mudra` and `mudrā`. Seventeen are
 the later Sanskrit vocabulary of writing and sealing: `likh`, `lekha`,
 `lekhaka`, `lipi`, `libi`, `grantha`, `pattra`, `pustaka`, `phalaka`,
@@ -270,9 +271,9 @@ geography. Neither could be run. No absolute date for the Indus sequence
 or for Rigvedic composition was retrieved in this session, and this
 repository holds no `VERIFIED` date for either; the only chronology in
 hand is Arnold's relative stratification inside the Rigveda, which is
-recorded per occurrence and claims nothing absolute. Seven of the eleven
+recorded per occurrence and claims nothing absolute. Six of the eleven
 hypotheses are therefore `NOT-ELIGIBLE-SOURCE-BLOCKED` rather than
-judged, and the gate rows say `CANNOT BE GATED IN THIS SESSION` in the
+judged, and two more are excluded on other grounds, and the gate rows say `CANNOT BE GATED IN THIS SESSION` in the
 chronology and geography fields rather than leaving them blank.
 
 ## 8. What this unit did not do

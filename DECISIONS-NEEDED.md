@@ -1325,7 +1325,7 @@ recorded a regression; neither asked for a list.
 
 **If the answer is none.** That is a legitimate answer and the
 consequence is stated rather than argued: domain K stays at its Rigvedic
-half, nine of its eleven hypotheses stay gated as source-blocked, and
+half, six of its eleven hypotheses stay gated as source-blocked, and
 `HOLD-008` stays open. The unit was written so that this outcome costs
 nothing already banked — every measurement in it is of a source that was
 actually retrieved.

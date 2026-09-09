@@ -134,7 +134,7 @@ thing the investigation is most likely to get wrong.
 | H | Rigvedic and Old Avestan social worlds | A violent-Indic versus peaceful-Iranian binary; genre mistaken for society |
 | I | Rigvedic society, patronage and canonization | Sanitizing patronage as timeless spirituality |
 | J | The Rigvedic forts | Translating *pur* into a Mature Harappan city; one famous count standing for the corpus — *corpus built 2026-09-07 at the stanza unit, 103 passages, all fifteen enumerated items addressed and the five-way typology assigned. 99 is stated in 6 passages and is not the modal count; 100 is, in 8. Poet lineage rests on Geldner alone (`HOLD-006`); proposed geography is `NOT PRODUCED` — the pinned corpus carries no geographic content. See `06-BRIEFS/pur-4j-corpus.md`.* |
-| K | Indus writing and institutional discontinuity | Concluding that populations vanished because institutions and archives did — *run 2026-09-09 and split by the egress boundary. The Rigvedic half is measured in full: 22 later writing and sealing stems absent, a gloss scan of the whole lexicon returning no writing or sealing word, and `akṣára-` denoting a syllable of chanted speech in all eight occurrences. The Indus half reached one volunteer digitisation — 179 unicorn seals from one site, no find-spot — so seals as a class, sealings, tablets, function, distribution and post-urban survival have no evidence here at all. `HOLD-008`; nine of eleven hypotheses gated source-blocked. See `06-BRIEFS/domain-k-brief.md`.* |
+| K | Indus writing and institutional discontinuity | Concluding that populations vanished because institutions and archives did — *run 2026-09-09 and split by the egress boundary. The Rigvedic half is measured in full: 22 later writing and sealing stems absent, a gloss scan of the whole lexicon returning no writing or sealing word, and `akṣára-` denoting a syllable of chanted speech in all eight occurrences. The Indus half reached one volunteer digitisation — 179 unicorn seals from one site, no find-spot — so seals as a class, sealings, tablets, function, distribution and post-urban survival have no evidence here at all. `HOLD-008`; six of eleven hypotheses gated source-blocked and two more rejected. See `06-BRIEFS/domain-k-brief.md`.* |
 | L | Avestan writing | Reading a Sasanian-era alphabet as transparent evidence of Gāthic pronunciation |
 | M | Brahui, Kurukh and Malto | Medieval migration treated as documented fact; living people used as linguistic fossils |
 | N | Grammatical ontologies | Typological similarity read as descent or contact without a mechanism |
@@ -307,7 +307,7 @@ an owner decision; they are research-programme scheduling.
 
 - **Retrieve the Indus corpus and its literature.** `HOLD-008`. Mahadevan
   1977, CISI, the Wells sign list and ICIT, Mukhopadhyay 2023, the ASI
-  reports, Rao et al. 2009 and Farmer, Sproat and Witzel 2004. Nine of the
+  reports, Rao et al. 2009 and Farmer, Sproat and Witzel 2004. Six of the
   eleven hypotheses in the domain are gated on them, and so is every
   question §4.K asks about seals, sealings, tablets, function,
   distribution and post-urban survival.
