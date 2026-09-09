@@ -75,19 +75,24 @@ and §11 (packets R20–R21), plus one domain that has no entry in either
     every chronological claim in this repository reaches Arnold 1905 through
     `DEP-001`, and this unit examines that path.
 
-    Registers: `03-REGISTERS/domain-a-measurements.csv` (21),
-    `domain-a-claims.csv` (15), `domain-a-eight-dates.csv` (8),
+    Registers: `03-REGISTERS/domain-a-measurements.csv` (24),
+    `domain-a-claims.csv` (17), `domain-a-eight-dates.csv` (8),
     `domain-a-conventional-date-basis.csv` (7),
-    `domain-a-arnold-dependency.csv` (48),
+    `domain-a-arnold-dependency.csv` (60),
     `domain-a-hypothesis-eligibility.csv` (5). Method and both §8 tests:
-    `04-AUDITS/domain-a-method.md`. Script and thirteen tables:
-    `04-AUDITS/domain-a-instruments.py`, `04-AUDITS/domain-a-tables/`.
+    `04-AUDITS/domain-a-method.md`, repaired against adversarial review at §15.
+    Script and seventeen tables: `04-AUDITS/domain-a-instruments.py`,
+    `04-AUDITS/domain-a-tables/`.
 
-    **Maṇḍala number is not a time axis, and this is now measured rather than
-    asserted**: Spearman ρ between book number and Arnold-late pāda share is
-    −0.0667, with 23 of 45 book pairs inverted against chance's 22.5. Books 8
-    and 9 carry the *lowest* late share in the corpus and books 5–7 sit within
-    three points of book 1. Only book 10 separates.
+    **Book order and Arnold's strata do not co-vary, and the disjunction is the
+    finding**: either the strata are chronological and maṇḍala number is not, or
+    maṇḍala number is and the strata are not, or neither is. Spearman ρ =
+    −0.0667 at an exact two-sided permutation *p* of 0.8651 — **underpowered at
+    ten books**, so this is no evidence *for* an ordering, not evidence against
+    one. Books 8 and 9 carry the *lowest* Arnold-late share in the corpus and
+    books 5–7 sit within three points of book 1; only book 10 separates. That a
+    maṇḍala number is an arrangement fact and not a date stands as a **method
+    rule** (`DA-003`), not as a result this unit proved.
 
     **Three dependencies were measured rather than asserted.** Oldenberg and
     Wüst flag almost the same stanzas (Jaccard 0.836), so the four non-Arnold
@@ -96,10 +101,16 @@ and §11 (packets R20–R21), plus one domain that has no entry in either
     (`DEP-035`); and the most promising independent metrical instrument is by
     the man who transcribed Arnold (`DEP-031`, `RA-022`). After those, the
     count of instruments bearing on the strata that are neither Arnold nor
-    entangled with each other is **one**: Grassmann 1876–7 — and it *does*
-    corroborate, at 2.34× base within books 1–9, with book 10 removed
+    entangled with each other is **one**: Grassmann 1876–7 — and it *does* mark
+    Arnold's late strata at 2.34× base within books 1–9, with book 10 removed
     (`DA-006`). That result is reported at the same weight as the ones cutting
-    the other way; `BF-028` records why it had to be.
+    the other way; `BF-028` records why the control had to be run. **But
+    adversarial review found that the unit then shielded it**: whether Arnold
+    1905 *used* Grassmann 1876–7 was never asked, while the identical question
+    was asked and left open for Ryan. `DEP-036` opens it as untested and
+    untestable here; `BF-029` records the failure. A unit that has just
+    corrected itself for scepticism is at its most vulnerable to the opposite
+    error.
 
     The eight dates are kept apart and six of them are `HYPOTHESIS` or `HOLD`.
     **Pāṇini has never been retrieved in this repository in any session**, so
@@ -114,7 +125,9 @@ and §11 (packets R20–R21), plus one domain that has no entry in either
     Hellwig–Scarlata–Widmer full text was never reachable. `HOLD-008`: the unit
     sent to examine the Arnold dependency could not open Arnold.
 
-    Method **step 13 was not run** — see `RA-023` under "Opened by domain A".
+    Method **step 13 was not run** against `melakeela/site` — see `RA-023`.
+    Four internal contradictions were nonetheless found, all of them by
+    adversarial review rather than by the unit: `IC-A-001` to `IC-A-004`.
 
 ## Blocked on inputs
 
@@ -148,7 +161,7 @@ thing the investigation is most likely to get wrong.
 
 | # | Domain | The named trap |
 |---|---|---|
-| A | Rigvedic chronology and transmission | Neither "a perfect audio recording" nor "Pāṇini rewrote it" — *run 2026-09-09 as a dependency audit. Both traps refuted from the corpus itself: 72.04% of stanzas differ between the transmitted Saṃhitāpāṭha and the metrically restored text, and the tradition preserves a second analysis of its own text diverging from the first at ~9% of its segments. Maṇḍala number is not a time axis (ρ = −0.0667). Pāṇini remains wholly unretrieved. `A-1` is `NOT-ELIGIBLE-SOURCE-BLOCKED` on `HOLD-008`.* |
+| A | Rigvedic chronology and transmission | Neither "a perfect audio recording" nor "Pāṇini rewrote it" — *run 2026-09-09 as a dependency audit. Both traps refuted from the corpus itself: 72.04% of stanzas differ between the transmitted Saṃhitāpāṭha and the metrically restored text, and the tradition preserves a second analysis of its own text diverging from the first at ~9% of its segments. Book order and the strata do not co-vary, though at ten books that excludes nothing (ρ = −0.0667, exact *p* = 0.8651). Pāṇini remains wholly unretrieved. `A-1` is `NOT-ELIGIBLE-SOURCE-BLOCKED` on `HOLD-008`.* |
 | B | Early Rigvedic, Old Avestan and Classical Sanskrit | Family-tree labels predetermining an anonymized comparison; unequal archives read as equal samples |
 | C | The Sanskrit sound system is historically composite | Projecting the later alphabet back as one pristine PIE design; reading the 5×5 grid as 25 inherited phonemes |
 | D | Proto-Dravidian and Tamil phonology | Treating either analytical system as an imperfect version of the other |
@@ -349,6 +362,19 @@ an owner decision; they are research-programme scheduling.
   without deciding which metal. Corpus-internal and blocked on nothing.
 - **Open a Pāṇini lane.** No edition, translation or study has been retrieved in
   any session. Constitution §4.A, §4.C and §4.N all reach for it.
+- **Resolve `SRC-026` (`IC-A-003`, `RA-025`).** One source identifier names two
+  different works: Arnold 1905 in the access ledger, Grassmann's *Wörterbuch* in
+  `DEP-021` and in `06-BRIEFS/pur-translation-standard.md`. Nine `VERIFIED` rows
+  cite it for dictionary glosses. Deciding it changes rows in two prior units.
+- **Reconcile `PUR-028` with `A-1` (`IC-A-004`, `RA-026`).** One hypothesis, two
+  identifiers, two registers, neither `SUPERSEDED`. This unit created it.
+- **Test `DEP-036` (`RA-027`).** Whether Arnold used Grassmann. If he did, this
+  unit's one favourable finding stops being corroboration and `A-1` loses its
+  only positive evidence.
+- **Give the domain A rows a destination (`RA-028`).** `supports_page` reads
+  `rigvedic chronology (proposed)` on all 51 rows and resolves to no brief, no
+  programme row and no site route. CLAUDE.md: evidence that supports nothing is
+  not collected.
 
 ## Standing sequencing rules
 
