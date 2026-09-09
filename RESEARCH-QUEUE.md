@@ -46,11 +46,8 @@ and §11 (packets R20–R21), plus one domain that has no entry in either
 6. **Controller amendment** — methodology installed, reconciled against
    the controller, decisions register and this queue seeded. Merged as
    PR #6.
-
-## Now
-
 7. **Domain E, comparative half — Dravidian, Munda and unidentified
-   substrate claims.** *(This change.)* The lexical and comparative
+   substrate claims.** The lexical and comparative
    counterpart to item 4, run from CDIAL, DEDR and Munda data retrieved
    through the git proxy lane. Registers, audits, hypothesis gate,
    bridges, draft copy and `HOLD-005` are in place; both §8 adversarial
@@ -67,6 +64,57 @@ and §11 (packets R20–R21), plus one domain that has no entry in either
    registers and holds are kept apart deliberately; `DEP-016` to
    `DEP-020` record where their ledger rows are the same source probed
    twice.
+
+   *Merged into `main` as PR #10; moved from **Now** to **Done** by the domain
+   A change, keeping its published number.*
+
+## Now
+
+12. **Domain A — Rigvedic chronology and transmission.** *(This change.)*
+    Run as a dependency audit rather than as a use of the instrument: nearly
+    every chronological claim in this repository reaches Arnold 1905 through
+    `DEP-001`, and this unit examines that path.
+
+    Registers: `03-REGISTERS/domain-a-measurements.csv` (21),
+    `domain-a-claims.csv` (15), `domain-a-eight-dates.csv` (8),
+    `domain-a-conventional-date-basis.csv` (7),
+    `domain-a-arnold-dependency.csv` (48),
+    `domain-a-hypothesis-eligibility.csv` (5). Method and both §8 tests:
+    `04-AUDITS/domain-a-method.md`. Script and thirteen tables:
+    `04-AUDITS/domain-a-instruments.py`, `04-AUDITS/domain-a-tables/`.
+
+    **Maṇḍala number is not a time axis, and this is now measured rather than
+    asserted**: Spearman ρ between book number and Arnold-late pāda share is
+    −0.0667, with 23 of 45 book pairs inverted against chance's 22.5. Books 8
+    and 9 carry the *lowest* late share in the corpus and books 5–7 sit within
+    three points of book 1. Only book 10 separates.
+
+    **Three dependencies were measured rather than asserted.** Oldenberg and
+    Wüst flag almost the same stanzas (Jaccard 0.836), so the four non-Arnold
+    columns are at most three (`DEP-030`); the Arnold 1897 column sits 94.1%
+    inside Arnold 1905's late strata, which is `DEP-022` with a number
+    (`DEP-035`); and the most promising independent metrical instrument is by
+    the man who transcribed Arnold (`DEP-031`, `RA-022`). After those, the
+    count of instruments bearing on the strata that are neither Arnold nor
+    entangled with each other is **one**: Grassmann 1876–7 — and it *does*
+    corroborate, at 2.34× base within books 1–9, with book 10 removed
+    (`DA-006`). That result is reported at the same weight as the ones cutting
+    the other way; `BF-028` records why it had to be.
+
+    The eight dates are kept apart and six of them are `HYPOTHESIS` or `HOLD`.
+    **Pāṇini has never been retrieved in this repository in any session**, so
+    §4.A's *chandasi* question is unanswerable here and `A-4` is `CANNOT-GATE`.
+    The conventional date is given as a range, not a point, and the three
+    retrieved readings of the Mitanni evidence are mutually incompatible across
+    1909–2015.
+
+    **`A-1` — that Arnold's strata are chronological stages — is
+    `NOT-ELIGIBLE-SOURCE-BLOCKED`, not rejected.** Arnold 1905 was readable on
+    2026-09-07 and refused on 2026-09-08 (`SRC-100`), and the
+    Hellwig–Scarlata–Widmer full text was never reachable. `HOLD-008`: the unit
+    sent to examine the Arnold dependency could not open Arnold.
+
+    Method **step 13 was not run** — see `RA-023` under "Opened by domain A".
 
 ## Blocked on inputs
 
@@ -100,7 +148,7 @@ thing the investigation is most likely to get wrong.
 
 | # | Domain | The named trap |
 |---|---|---|
-| A | Rigvedic chronology and transmission | Neither "a perfect audio recording" nor "Pāṇini rewrote it" |
+| A | Rigvedic chronology and transmission | Neither "a perfect audio recording" nor "Pāṇini rewrote it" — *run 2026-09-09 as a dependency audit. Both traps refuted from the corpus itself: 72.04% of stanzas differ between the transmitted Saṃhitāpāṭha and the metrically restored text, and the tradition preserves a second analysis of its own text diverging from the first at ~9% of its segments. Maṇḍala number is not a time axis (ρ = −0.0667). Pāṇini remains wholly unretrieved. `A-1` is `NOT-ELIGIBLE-SOURCE-BLOCKED` on `HOLD-008`.* |
 | B | Early Rigvedic, Old Avestan and Classical Sanskrit | Family-tree labels predetermining an anonymized comparison; unequal archives read as equal samples |
 | C | The Sanskrit sound system is historically composite | Projecting the later alphabet back as one pristine PIE design; reading the 5×5 grid as 25 inherited phonemes |
 | D | Proto-Dravidian and Tamil phonology | Treating either analytical system as an imperfect version of the other |
@@ -279,6 +327,29 @@ an owner decision; they are research-programme scheduling.
   not a property — which is what D-042 asks — and any unit that relied on the
   2026-09-07 reading should be re-checked rather than assumed.
 
+## Opened by domain A
+
+- **Lift `HOLD-008`.** Eight documents, of which Arnold 1905 and Oldenberg 1888
+  both sit behind archive.org alone. Restoring one domain would move `A-1` off
+  `SOURCE-BLOCKED` and is the cheapest item in the whole hold.
+- **Read Ryan 2021 (`RA-022`).** The one candidate second metrical instrument,
+  by one of the two compilers of the strata layer. Until it is read it is
+  neither an instrument nor excluded.
+- **Sweep the prose, and run step 13 (`RA-023`).** The dependency scan behind
+  `domain-a-arnold-dependency.csv` covered `03-REGISTERS/` only. Stratum
+  readings in `06-BRIEFS/` and `13-PRODUCT-ARCHITECTURE/`, and any Rigvedic
+  dating claim on `melakeela/site`, are uncovered.
+- **Restate the five affected rows (`RA-024`).** `DME-010`, `DME-017`,
+  `PUR-017`, `PUR-018` and `PUR4J-011` are recorded as falling to `PROVISIONAL`
+  if `A-1` fails. They are **not** demoted here, because this unit will not
+  demote rows on a test it could not run.
+- **Open an `áyas-` lemma study.** Pillar 3 of the conventional date turns
+  entirely on it, the §7 translation block has never been produced for it, and
+  `PUR4J-012` already records `ayasa-` "of metal" in eight `púr-` passages
+  without deciding which metal. Corpus-internal and blocked on nothing.
+- **Open a Pāṇini lane.** No edition, translation or study has been retrieved in
+  any session. Constitution §4.A, §4.C and §4.N all reach for it.
+
 ## Standing sequencing rules
 
 - One programme at a time. Do not open parallel programmes until one has
@@ -326,6 +397,7 @@ number to new, with the branch that holds the item:
 | — | 8 → 9 | Register intake for Who Made the Past | `claude/prompt-pack-inventory-reconcile-iz1phs` (PR #14) |
 | 6 → 7 | 10 | Backlog reconciliation | `main` |
 | 7 → 8 | 11 | Packets R1–R19 | `main` |
+| — | 12 | Domain A, Rigvedic chronology and transmission | `claude/rigvedic-chronology-dependency-h449cc` |
 
 The second column's arrows record the one further shift made on 2026-09-07
 when `main` merged PR #16, whose domain M unit took item 5 and moved the
