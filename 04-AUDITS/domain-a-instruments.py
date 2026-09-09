@@ -5,7 +5,7 @@ Instrument measurements over the VedaWeb bundle at commit d3eb8af.
 
 Every number this unit reports is produced here. Nothing is typed by hand.
 
-Inputs (all inside one clone; see 02-SOURCES/vedaweb-manifest-2026-09-08-domain-a.md):
+Inputs (all inside one clone; see 02-SOURCES/vedaweb-manifest-2026-09-09-domain-a.md):
   rigveda/info/strata.json            SRC-023 : Arnold 1905, per-pada metre + stratum
   rigveda/info/stanza_properties.json SRC-071 : five scholars' stanza-level flags
   rigveda/versions/aufrecht.csv       SRC-020 : transmitted Samhitapatha
@@ -238,10 +238,13 @@ emit("A6c-restoration-length-effect.csv", rows,
      ["effect_on_stanza_string", "stanzas", "pct_of_differing"])
 
 # ---------------------------------------- A7 padapatha against the Samhita
-# The padapatha is UNACCENTED in this bundle and the Samhitapatha is accented,
-# so a raw string comparison is 100% different and measures nothing. Accents and
-# other combining marks are stripped from both sides before comparison, leaving
-# the segmental skeleton. What is then measured is how much of the recited
+# CORRECTED 2026-09-09 after adversarial review. The earlier comment here said
+# "the padapatha is UNACCENTED in this bundle". That is FALSE: padapatha.csv
+# carries 11,936 U+0301 acute accents and 2,268 U+0307. The two layers do differ
+# in accent notation, which is why a raw comparison is uninformative, but the
+# reason is a difference of convention, not the absence of accents. Combining
+# marks are stripped from both sides before comparison, leaving the segmental
+# skeleton. What is then measured is how much of the recited
 # Samhita string is NOT recoverable letter-for-letter from the word-analysis:
 # i.e. how much sandhi and contraction the padapatha undoes.
 def deaccent(s_):
@@ -365,6 +368,102 @@ rows = [[b, v, ranks_l[i]] for i, (b, v) in enumerate(lates)]
 rows.append(["spearman_rho_book_vs_pct_late", round(rho, 4), ""])
 rows.append(["inversions_of_monotone_increase_max_45", inv, ""])
 emit("A8-mandala-order-vs-arnold-late.csv", rows, ["book_or_measure", "pct_late_CP_or_value", "rank_by_late"])
+
+# ================= A11  the null at A8, given a size =================
+# A8 reports rho without a p-value or an interval, which lets a null be read as
+# a finding. n = 10 admits exhaustive enumeration, so the exact permutation
+# distribution is computed rather than approximated.
+import itertools, random
+def _rho(v):
+    n = len(v)
+    srt = sorted(range(n), key=lambda i: v[i]); rk = [0] * n
+    for r, i in enumerate(srt): rk[i] = r + 1
+    return 1 - 6 * sum((i + 1 - rk[i]) ** 2 for i in range(n)) / (n * (n * n - 1))
+_late = [pct(sum(tab[b][c] for c in LATE), sum(tab[b].values())) for b in books]
+_obs = _rho(_late)
+_ge = sum(1 for perm in itertools.permutations(range(len(_late)))
+          if abs(_rho([_late[i] for i in perm])) >= abs(_obs) - 1e-12)
+_tot = math.factorial(len(_late))
+random.seed(0)
+_sim = sorted(_rho(random.sample(_late, len(_late))) for _ in range(20000))
+rows = [["spearman_rho_observed", round(_obs, 4), ""],
+        ["exact_two_sided_permutation_p", round(_ge / _tot, 4), "all %d permutations enumerated" % _tot],
+        ["null_95pct_lower", round(_sim[500], 3), "20000 draws, seed 0"],
+        ["null_95pct_upper", round(_sim[19500], 3), "20000 draws, seed 0"],
+        ["interpretation", "UNDERPOWERED", "n=10 cannot distinguish rho=0 from a strong monotone relation; anything up to about |rho|=0.64 is inside the null range"]]
+emit("A11-mandala-order-null-and-power.csv", rows, ["measure", "value", "note"])
+
+# ============ A12  association between metre label and stratum ============
+# A10's modal-stratum accuracy is a weak measure and understates the confound.
+# These are the standard measures over the same table.
+_N = sum(sum(mx[l].values()) for l in mx)
+_rowt = {l: sum(mx[l].values()) for l in mx}
+_colt = {s: sum(mx[l][s] for l in mx) for s in ORDER}
+_chi = 0.0
+for l in mx:
+    for s in ORDER:
+        e = _rowt[l] * _colt[s] / _N
+        if e > 0: _chi += (mx[l][s] - e) ** 2 / e
+def _H(d):
+    t = sum(d.values())
+    return -sum((v / t) * math.log(v / t, 2) for v in d.values() if v)
+_Hs = _H(_colt)
+_MI = _Hs - sum(_rowt[l] / _N * _H(mx[l]) for l in mx)
+rows = [["padas", _N, ""],
+        ["chi_square", round(_chi, 1), "%d metre labels x 5 strata" % len(mx)],
+        ["cramers_v", round(math.sqrt(_chi / (_N * (min(len(mx), 5) - 1))), 4), "0 = independent, 1 = deterministic"],
+        ["majority_class_accuracy_without_metre", pct(max(_colt.values()), _N), "predict the modal stratum for every pada"],
+        ["modal_stratum_accuracy_given_metre", pct(det, tot), "as reported at A10"],
+        ["uncertainty_coefficient_U_stratum_given_metre", round(_MI / _Hs, 4), "fraction of the stratum's entropy explained by the metre label"],
+        ["mutual_information_bits", round(_MI, 4), "H(stratum) = %.4f bits" % _Hs]]
+emit("A12-metre-stratum-association.csv", rows, ["measure", "value", "note"])
+
+# ====== A13  flagged stanza keys that do not exist in strata.json ======
+_phantom = sorted(k for k in flags if k not in strata)
+rows = [[k, ";".join(sorted(flags[k]))] for k in _phantom]
+rows.append(["TOTAL", str(len(_phantom))])
+emit("A13-flagged-keys-absent-from-strata.csv", rows, ["stanza_key", "columns_flagging_it"])
+
+# ===== A14  how much of A6a's 72.04% is notation rather than language =====
+def _deacc(s_):
+    s_ = unicodedata.normalize("NFD", s_)
+    KEEP = {"\u0304", "\u0323", "\u0331", "\u0307", "\u0303"}
+    return unicodedata.normalize("NFC", "".join(c for c in s_ if not unicodedata.combining(c) or c in KEEP))
+_EDIT = set("@+\\*&~")
+_strip = lambda s_: "".join(c for c in _deacc(s_) if c not in _EDIT)
+_raw = [k for k in shared if flat(au[k]) != flat(vn[k])]
+_na = [k for k in shared if _deacc(flat(au[k])) != _deacc(flat(vn[k]))]
+_fu = [k for k in shared if _strip(flat(au[k])) != _strip(flat(vn[k]))]
+_ec = collections.Counter(c for k in shared for c in flat(vn[k]) if c in _EDIT)
+rows = [["raw_strings", len(_raw), pct(len(_raw), len(shared))],
+        ["combining_marks_stripped", len(_na), pct(len(_na), len(shared))],
+        ["marks_and_editorial_characters_stripped", len(_fu), pct(len(_fu), len(shared))],
+        ["differ_only_in_notation", len(_raw) - len(_fu), pct(len(_raw) - len(_fu), len(_raw))],
+        ["editorial_characters_in_vnh", "; ".join("%s=%d" % (k, v) for k, v in sorted(_ec.items())), ""]]
+emit("A14-samhita-vs-restored-normalisation-sensitivity.csv", rows, ["normalisation", "stanzas_differing", "pct"])
+
+# ===== A15  padapatha comparison, directional as well as symmetric =====
+# SequenceMatcher.ratio() is 2M/(len(a)+len(b)) and is symmetric; a statement
+# about how much of THE RECITED TEXT is unmatched needs M/len(samhita).
+_sym, _dir = [], []
+for k in sh:
+    a_ = _strip(norm_au(flat(au[k]))); b_ = _strip(norm_pp(strip_iti(pp[k])))
+    m = difflib.SequenceMatcher(None, a_, b_)
+    M = sum(bl.size for bl in m.get_matching_blocks())
+    _sym.append(2 * M / (len(a_) + len(b_))); _dir.append(M / len(a_))
+_sym.sort(); _dir.sort()
+_la = sum(len(_strip(norm_au(flat(au[k])))) for k in sh)
+_lp = sum(len(_strip(norm_pp(strip_iti(pp[k])))) for k in sh)
+rows = [["symmetric_ratio_median", round(_sym[len(_sym) // 2], 4), "2M/(len(a)+len(b))"],
+        ["symmetric_ratio_mean", round(sum(_sym) / len(_sym), 4), ""],
+        ["directional_median_matched_over_samhita", round(_dir[len(_dir) // 2], 4), "M/len(samhita) - the figure a claim about the recited text needs"],
+        ["directional_mean_matched_over_samhita", round(sum(_dir) / len(_dir), 4), ""],
+        ["total_chars_samhita", _la, ""],
+        ["total_chars_padapatha", _lp, "padapatha longer by %.1f%%" % (100.0 * (_lp - _la) / _la)]]
+emit("A15-padapatha-directional.csv", rows, ["measure", "value", "note"])
+
+print("A11 exact p = %.4f ; A12 Cramer V = %.4f ; A13 phantom keys = %d ; A14 notation-only = %d ; A15 directional median = %.4f"
+      % (_ge / _tot, math.sqrt(_chi / (_N * (min(len(mx), 5) - 1))), len(_phantom), len(_raw) - len(_fu), _dir[len(_dir) // 2]))
 
 print("\n--- headline numbers ---")
 print("padas with a stratum code:", len(pada_rows))

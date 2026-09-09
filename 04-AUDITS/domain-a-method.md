@@ -9,7 +9,9 @@
 `domain-a-hypothesis-eligibility.csv` (5)
 **Script:** `04-AUDITS/domain-a-instruments.py` → `04-AUDITS/domain-a-tables/`
 **Manifest:** `02-SOURCES/vedaweb-manifest-2026-09-09-domain-a.md`
-**Ledger:** `SRC-099` … `SRC-117`. **Dependencies:** `DEP-029` … `DEP-035`.
+**Ledger:** `SRC-099` … `SRC-118`. **Dependencies:** `DEP-029` … `DEP-036`.
+**Contradictions:** `IC-A-001` … `IC-A-004`. **Bias failures:** `BF-027` … `BF-030`.
+**Repaired 2026-09-09** against adversarial review; §15 lists what changed.
 **Hold:** `HOLD-008`.
 
 ---
@@ -149,8 +151,18 @@ asserted, which is the point of method step 5:
   and the abstract does not say. Recorded as **UNDETERMINED**, not resolved
   either way. Queued as `RA-022`.
 
+- **`DEP-036`. The one instrument that supports Arnold got the least scrutiny.**
+  Added 2026-09-09 after adversarial review. Grassmann's independence from
+  Arnold was measured *column against column* inside `stanza_properties.json`,
+  which cannot see whether Arnold 1905 **read** Grassmann 1876–7 — and
+  Grassmann's edition is among the works nineteenth-century metrical chronology
+  was built on. `DEP-031` asks exactly this of Ryan and answers UNDETERMINED; no
+  equivalent row existed for Grassmann until the review asked for it. Untestable
+  here: Arnold 1905 is `EGRESS_BLOCKED`. `DA-M-023`, `BF-029`, `RA-027`.
+
 After these, the count of instruments bearing on Arnold's strata that are
-neither Arnold nor entangled with each other is **one**: Grassmann 1876–7.
+neither Arnold nor entangled with each other is **one**: Grassmann 1876–7 —
+and whether *that* one is independent of Arnold is now itself an open row.
 
 ## 6. Archive audit
 
@@ -213,6 +225,16 @@ words were identified and neither was worked:
 - **`chandas-`.** Pāṇini's term for the Vedic register and the thing Arnold's
   strata partition. No Pāṇini source has ever been retrieved here (`DA-D-006`),
   so the word has no entry in this record.
+
+**One §4.A item was filed in the wrong place and is now separated.** *Metre as
+evidence for older pronunciation* (item 8) is a different claim from *later
+sandhi obscuring an older metrical form* (item 9). Item 9 says the transmitted
+text hides a metrical shape; item 8 says the metrical shape tells us how the
+language sounded. This unit measured the disyllabic restorations — `-iya-`,
+`-uva-` — and filed all of them under item 9. The inference to a phonological
+stage was never made. `DA-017` records that as a `HYPOTHESIS`, and `SRC-112` is
+the one retrieved work that runs item 8, abstract-only and with its independence
+from Arnold undetermined.
 
 The inherited English categories audited before use in this unit: *period*,
 *stratum*, *layer*, *early*, *late*, *original*, *interpolation*. Every one of
@@ -284,6 +306,25 @@ corrective?*
    is more likely reporting that book 9 is 73.3% Normal metre than that it is
    old. The measurement stands; the inference is declined.
 
+4. **The failure this test did *not* catch, found by adversarial review.**
+   Having corrected itself for running sceptical, the unit then shielded its one
+   favourable finding: Grassmann's independence from Arnold was asserted and
+   never tested, while the identical question was asked and left open for Ryan.
+   Two smaller instances run the same way — `DA-M-006` reported the weakest of
+   the available association statistics, the one most favourable to Arnold, with
+   the stronger ones computable from the same table; and `DA-008` added an
+   exculpation ("that Arnold's metrical stratification in particular is
+   unsupported") that the abstract cannot support, since the abstract says *any*
+   of the proposed stratifications. All three are repaired and logged as
+   `BF-029`. **A unit that has just corrected itself for scepticism is at its
+   most vulnerable to the opposite error, and `BF-028` is where that
+   vulnerability was created.**
+5. **And the bookkeeping failure, `BF-030`.** Three counts the unit made about
+   *itself* were wrong or unstated, and the `SRC-026` anomaly — one source id
+   naming two different works — was noticed and normalised into 29 notes fields
+   instead of being logged. An auditor applying a weaker standard to its own
+   record than to the audited material. `IC-A-001`, `IC-A-003`.
+
 **Neither correction pretends the archives are equal.** Arnold, Oldenberg,
 Grassmann, Wüst and Geldner were produced and preserved by a European
 institutional apparatus that has no counterpart in this record for the
@@ -304,6 +345,7 @@ Constitution §6. No absence argument in this unit is made without a type.
 | Scite citation-context measurement | `NOT ACCESSIBLE` | `SRC-104`, monthly quota. Step 11 cannot be run. |
 | No Archaic pāda in books 3, 4, 7 | **not typed as an absence at all** | It is a property of Arnold's assignment, not of the corpus. Recorded at `DA-M-005` as a fact about the instrument. |
 | No stratum-code documentation in the bundle | `NOT PRODUCED` | The publisher documented the glossing abbreviations and not these. `DA-M-020`. |
+| No co-variation between book order and Arnold's strata | `ABSENT DESPITE ADEQUATE SEARCH` for the data, `NOT PRODUCED` for the inference | Added 2026-09-09. Coverage is total — all 39,833 pādas — so the absence is not a sampling artefact. But ten books is too few units to resolve: exact two-sided *p* = 0.8651 and the null 95% range of ρ runs to ±0.64. The record establishes that Arnold's instrument supplies **no evidence** that book order tracks lateness, not that it supplies evidence against. `DA-M-003`, `DA-002`, `A-2`. |
 | No non-European source in this unit | `NOT ACCESSIBLE` | `SRC-080`–`SRC-083` refused on 2026-09-07 and archive.org again here. |
 
 "Unknown" appears nowhere in these registers as a rival explanation.
@@ -338,19 +380,29 @@ Recorded in the eligibility register per hypothesis. The three that would move
 the most here: reading Arnold 1905 §265 and Appendix IV against `strata.json`
 directly, to see whether the transcription is faithful and what the criteria
 were; reading the 2021 full text, to see whether metre survives its controls;
-and a §7 lemma study of `áyas-`, which is the whole of pillar 3.
+and a §7 lemma study of `áyas-`, which is the whole of pillar 3. To that list
+adversarial review adds a fourth: reading Arnold's bibliography and preface to
+see whether he used Grassmann (`DEP-036`, `RA-027`). If he did, this unit's one
+favourable finding stops being corroboration.
 
 ## 13. Step 13 — check MelaKeela itself
 
 **Not run against `melakeela/site` in this unit.** The site is a separate
 repository and no site claim about Rigvedic dating was retrieved here. Queued
-as `RA-018` together with the prose sweep, because `SRC-117`'s scan covered
+as `RA-023` together with the prose sweep, because `SRC-117`'s scan covered
 `03-REGISTERS/` only and stratum readings also appear in `06-BRIEFS/` and
 `13-PRODUCT-ARCHITECTURE/`.
 
 One internal check *was* run and passed: `DA-M-007` reproduces `PUR-012` exactly
 on the uppercase/lowercase split (9,607 / 945) and adds a fact `PUR-012` did not
 state — two stanzas mix stratum *letters*. Not a contradiction; an addition.
+
+**Four contradictions were found, none of them by this unit's own step 13.** All
+four came out of adversarial review: `IC-A-001` (the unit's count of its own
+coverage), `IC-A-002` (sixteen flagged stanzas that `strata.json` does not
+contain), `IC-A-003` (`SRC-026` names both Arnold 1905 and Grassmann's
+*Wörterbuch*), `IC-A-004` (this unit's `A-1` duplicates `PUR-028`). `IC-A-003`
+is the serious one and it was *visible in the material this unit read*.
 
 ## 14. Public copy
 
@@ -360,3 +412,41 @@ The two that would carry a page — that the Rigveda transmits two forms of
 itself which disagree at nine tenths of its stanzas, and that the conventional
 date is inferred rather than attested — are held until `HOLD-008` moves, because
 a page built on them would need Arnold and Pāṇini in a way this session did not.
+
+
+## 15. Repaired against adversarial review, 2026-09-09
+
+An independent reviewer re-ran the script, re-derived every statistic and
+cross-checked all 48 dependency rows. **All seventeen tables reproduced
+byte-identical and no arithmetic error was found.** The findings were about what
+the arithmetic was made to say. What changed:
+
+| Row | Was | Is |
+|---|---|---|
+| `DA-002` | `VERIFIED`, "maṇḍala number is not a time axis … can be shown" | `PROVISIONAL`, a three-way disjunction; the exact *p* = 0.8651 is stated and the test is called underpowered |
+| `DA-M-003` | ρ with no *p*, no interval, no power statement | ρ, exact permutation *p*, null 95 % range, and an explicit "no evidence for, not evidence against" |
+| `A-2` | `NOT-ELIGIBLE` — "FAILS on the one instrument" | `CANNOT-GATE`. An instrument that cannot license the positive inference (`DA-003`) cannot license the exclusion either |
+| `DA-M-006` | modal-stratum accuracy alone, with a reading attached, `VERIFIED` | measurement only, with Cramér's V = 0.5314, U = 0.2919, MI = 0.668 bits; the reading moved to `DA-016` as `PROVISIONAL` and now runs both ways |
+| `DA-M-008` | 1,094 / 1,308 / 2,372 over 10,552 | the A5c population of existing stanzas, plus `DA-M-022` on the sixteen keys that name stanzas `strata.json` lacks |
+| `DA-M-015` | 72.04 %, no normalisation caveat; "darśate me > darśata ime" | 72.04 % raw and 70.81 % normalised, 130 stanzas differing only in notation; the 1.2.1 instance corrected to `darśatemé > darśataimé` |
+| `DA-M-018` | "about 9 % of the recited text", from a symmetric ratio | directional median 0.9298, i.e. about 7 %, with the padapāṭha noted as the longer string |
+| `DA-M-021` / `SRC-117` | five registers, 15 rows in `rigveda-pur-family.csv`, filter unstated | six registers, 14 rows, and the `VERIFIED`-only filter named along with everything it excluded |
+| `DA-005` | half of the 2021 sentence | the whole sentence, including "not substantial" |
+| `DA-008` | also claimed the null does not touch Arnold's stratification | that exculpation withdrawn: the abstract says *any* of the proposed stratifications, and Arnold's is the canonical one |
+| `DA-006`, `A-1` | Grassmann as the independent instrument | independence marked as **untested and untestable here** (`DEP-036`) |
+| `DA-015` | claimed the dependency register was complete | states what the filter excluded; the register went from 48 rows to 60 |
+| dependency register | 48 rows; 9 excused on a false statement about `SRC-026`; 5 on a criterion false of them; 2 whose column contradicted their own note | 60 rows, every misclassification corrected in place and stated as a correction |
+| `BF-027`, `BF-028` | process claims about ordering that git cannot support | withdrawn; what is checkable is stated instead |
+| — | — | `BF-029`, `BF-030`, `IC-A-001`…`IC-A-004`, `DEP-036`, `DA-016`, `DA-017`, `DA-M-022`…`DA-M-024`, `RA-025`…`RA-028` opened |
+
+**Three findings the reviewer raised that are recorded rather than repaired**,
+because repairing them means changing another unit's registers: `IC-A-003`
+(`SRC-026`), `IC-A-004` (`PUR-028` duplicating `A-1`), and `RA-028` (the
+`supports_page` value resolves to no brief). The re-audit rows say who decides.
+
+The reviewer also confirmed, and it is recorded here because a negative result
+from an adversary is evidence: no bug in the Yates χ², the Jaccard, the Spearman
+ρ (176 of 990 pairs hand-checked), the enrichment ratios or the modal-stratum
+accuracy; `autojunk` does not bite; `DA-M-007`'s two mixed stanzas are right; no
+`01-INHERITED/` material is cited as evidence anywhere in the unit; and `A-1`'s
+refusal to gate on abstracts is the right call.

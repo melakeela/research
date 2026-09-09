@@ -1,0 +1,7 @@
+"measure","value","note"
+"symmetric_ratio_median","0.9128","2M/(len(a)+len(b))"
+"symmetric_ratio_mean","0.9095",""
+"directional_median_matched_over_samhita","0.9298","M/len(samhita) - the figure a claim about the recited text needs"
+"directional_mean_matched_over_samhita","0.9262",""
+"total_chars_samhita","917041",""
+"total_chars_padapatha","949991","padapatha longer by 3.6%"

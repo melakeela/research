@@ -1,0 +1,8 @@
+"measure","value","note"
+"padas","39833",""
+"chi_square","44992.1","66 metre labels x 5 strata"
+"cramers_v","0.5314","0 = independent, 1 = deterministic"
+"majority_class_accuracy_without_metre","24.72","predict the modal stratum for every pada"
+"modal_stratum_accuracy_given_metre","42.36","as reported at A10"
+"uncertainty_coefficient_U_stratum_given_metre","0.2919","fraction of the stratum's entropy explained by the metre label"
+"mutual_information_bits","0.6681","H(stratum) = 2.2888 bits"

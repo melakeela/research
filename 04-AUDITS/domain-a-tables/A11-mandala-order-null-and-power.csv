@@ -1,0 +1,6 @@
+"measure","value","note"
+"spearman_rho_observed","-0.0667",""
+"exact_two_sided_permutation_p","0.8651","all 3628800 permutations enumerated"
+"null_95pct_lower","-0.648","20000 draws, seed 0"
+"null_95pct_upper","0.636","20000 draws, seed 0"
+"interpretation","UNDERPOWERED","n=10 cannot distinguish rho=0 from a strong monotone relation; anything up to about |rho|=0.64 is inside the null range"
