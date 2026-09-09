@@ -20,8 +20,8 @@ traps are all versions of the same error.
 2. Two further classes are carried deliberately, and they are NOT the same
    thing. LOOK-ALIKE-CONTROL is glass, faience, Egyptian blue, frit, azurite,
    turquoise, sodalite and jasper: materials confusable with lapis or carnelian
-   and mineralogically distinct from both. SAME-MINERAL-FAMILY is agate,
-   chalcedony and sard, which are NOT controls at all - DRR-009 records that
+   and mineralogically distinct from both. SAME-MINERAL-FAMILY is agate and
+   chalcedony, which are NOT controls at all - DRR-009 records that
    bead carnelian is heat-treated iron-rich agate, so an object catalogued
    "agate" and one catalogued "carnelian" may be the same mineral differing
    only in a cataloguer's word. Merging the two, as the first version of this
@@ -52,7 +52,11 @@ CAR = re.compile(r"carnelian|cornelian|\bsard\b", re.I)
 # records that bead carnelian IS heat-treated iron-rich agate, so an object
 # catalogued "agate" and one catalogued "carnelian" may be the same mineral
 # differing only in a cataloguer's word. They are their own class.
-SAME_FAMILY = re.compile(r"agate|chalcedony|\bsard\b", re.I)
+# "sard" is deliberately NOT here: CAR matches it first, so a sard branch
+# in this class would be dead code and the class composition would be a
+# statement the data do not support. Re-review caught the docstring
+# claiming a member the class cannot contain.
+SAME_FAMILY = re.compile(r"agate|chalcedony", re.I)
 LOOK = re.compile(r"sodalite|azurite|turquoise|jasper|glass|faience|frit|egyptian blue", re.I)
 
 FIELDS = ["candidate_id", "candidate_class", "p_number", "designation", "object_type",

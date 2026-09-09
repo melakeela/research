@@ -91,55 +91,99 @@ def core(tok):
 
 # ---------------------------------------------------------------- targets
 
+# ONE rule for a place-named material, applied to all four toponyms after
+# adversarial re-review found mes-me-luh-ha counted as a use of the toponym
+# and {gesz}mes-ma2-kan-na counted as not one, although they are the same
+# formation on two different names. A toponym qualifying a material or a
+# creature is not the toponym naming a place, whether or not the material
+# determinative happens to be written.
+MATERIAL_DETS = ("gesz", "sar", "zabar", "siki", "sig2", "u2", "muszen", "za4")
+MATERIAL_PREFIX = ("mes-", "ab-ba-")
+
+def material_or_creature(d, c):
+    for x in MATERIAL_DETS:
+        if x in d:
+            return "QUALIFIER OF A MATERIAL OR CREATURE ({%s}) - not the place" % x
+    if c.startswith(MATERIAL_PREFIX):
+        return "QUALIFIER OF A MATERIAL OR CREATURE (bound compound, no determinative) - not the place"
+    return None
+
 def cls_meluhha(tok, d, c, ctx):
-    if "muszen" in d:  return "BIRD-DETERMINATIVE"
-    if "gesz" in d:    return "WOOD-DETERMINATIVE"
+    m = material_or_creature(d, c)
+    if m:              return m
     if "kur" in d:     return "LAND-DETERMINATIVE (kur)"
     if "ki" in d:      return "PLACE-DETERMINATIVE (ki)"
-    if c.startswith(("mes-", "ab-ba-", "ur-", "lu2-")): return "BOUND-IN-COMPOUND-OR-NAME"
+    if "d" in d:       return "DIVINE-NAME - not the place"
+    if c.startswith(("ur-", "lu2-")): return "BOUND-IN-COMPOUND-OR-NAME"
     return "UNMARKED"
 
 def cls_magan(tok, d, c, ctx):
     if c.startswith("sza-ma-gan") or "sza-ma-gan" in c: return "REJECT-DIVINE-NAME"
     if not re.match(r"^(lu2-|mes-)?ma2?-(gan|kan)", c): return "REJECT-NOT-TOPONYM"
-    if "gesz" in d: return "TIMBER-DETERMINATIVE (gesz) - not the toponym"
-    if "d" in d:    return "DIVINE-NAME - not the toponym"
-    if "sar" in d:  return "VEGETABLE-DETERMINATIVE (sar) - not the toponym"
+    m = material_or_creature(d, c)
+    if m:                    return m
+    if "d" in d:             return "DIVINE-NAME - not the place"
     if c.startswith("lu2-"): return "PERSON-OF (lu2-)"
     if "ki" in d:            return "PLACE-DETERMINATIVE (ki)"
-    if c.startswith("mes-"): return "BOUND-IN-COMPOUND-OR-NAME"
     return "UNMARKED"
 
 def cls_dilmun(tok, d, c, ctx):
     u = bare(tok).upper()
-    # The unit of account is written both as one token and, far more often, as
-    # two adjacent ones. Reading only the token was the error at BF-032.
-    if "GIN2-DILMUN" in u or "GIN2.DILMUN" in u: return "UNIT-OF-ACCOUNT (gin2 dilmun)"
-    if re.search(r"\bgin2\b", ctx.prev) or re.search(r"\bgin2\b", ctx.next):
-        return "UNIT-OF-ACCOUNT (gin2 dilmun)"
-    if "zabar" in d:                     return "METAL-DETERMINATIVE (zabar) - not the toponym"
-    if "d" in d:                         return "DIVINE-NAME - not the toponym"
-    if not re.search(r"\b(dilmun|tilmun|ni-tuk)\b", c): return "REJECT-NOT-TOPONYM"
+    # Case-insensitive: the sequence is written DILMUN in Akkadian logographic
+    # spellings and GIN2-DILMUN in the unit of account. Moving this check to the
+    # top of the function without the flag rejected 216 of them at a stroke, and
+    # the rejected file is why that was visible within one run.
+    if not re.search(r"\b(dilmun|tilmun|ni-tuk)\b", c, re.I): return "REJECT-NOT-TOPONYM"
+    # Determinatives and the commodity branch are tested FIRST. Re-review found
+    # the gin2 rule running ahead of them and swallowing place references -
+    # among them Neo-Assyrian recipes reading zu2-lum-ma dilmun{ki} 1(disz)
+    # gin2 i3-udu, "Dilmun dates, one shekel of sheep fat", where the shekel
+    # belongs to the NEXT ingredient. A rule that fires on a two-token window
+    # cannot tell which side the measure belongs to; requiring immediate
+    # adjacency and yielding to an explicit determinative is what it can do.
+    m = material_or_creature(d, c)
+    if m:                                return m
+    if "d" in d:                         return "DIVINE-NAME - not the place"
     if "ki" in d:                        return "PLACE-DETERMINATIVE (ki)"
     if c.startswith(("nimbar-", "gada-")) or "gada" in d: return "COMMODITY-QUALIFIER"
+    if "GIN2-DILMUN" in u or "GIN2.DILMUN" in u: return "UNIT-OF-ACCOUNT (gin2 dilmun)"
+    if re.search(r"\bgin2\b", ctx.prev1) or re.search(r"\bgin2\b", ctx.next1):
+        return "UNIT-OF-ACCOUNT (gin2 dilmun, adjacent)"
+    # A gin2 two tokens away may belong to this phrase or to the next entry in
+    # the list. Neither reading can be settled without an edition, so the band
+    # is its own class rather than being resolved by fiat in either direction -
+    # the first version resolved it one way and the correction would have
+    # resolved it the other.
+    if re.search(r"\bgin2\b", ctx.prev) or re.search(r"\bgin2\b", ctx.next):
+        return "UNIT-OF-ACCOUNT (gin2 dilmun, within two tokens - AMBIGUOUS)"
     if c.startswith("e2-"):              return "BOUND-IN-COMPOUND-OR-NAME"
     return "UNMARKED"
 
 def cls_marhasi(tok, d, c, ctx):
-    if "sar" in d:  return "VEGETABLE-DETERMINATIVE (sar) - not the toponym"
-    if "gesz" in d: return "TIMBER-DETERMINATIVE (gesz) - not the toponym"
-    if "d" in d:    return "DIVINE-NAME - not the toponym"
+    m = material_or_creature(d, c)
+    if m:           return m
+    if "d" in d:    return "DIVINE-NAME - not the place"
     if "ki" in d:   return "PLACE-DETERMINATIVE (ki)"
     return "UNMARKED"
 
 def cls_lapis(tok, d, c, ctx):
+    # The determinative screen belongs here too. Re-review found 20 rows
+    # classified as the unmarked colour-or-quality term while carrying {d}
+    # (a divine name, ten times), {sig2} and {siki} (blue-dyed wool), {u2}
+    # (a plant) - which is precisely what the screen catches for the toponyms.
     if "na4" in d: return "STONE-DETERMINATIVE ({na4})"
+    for x in ("d", "sig2", "siki", "u2", "za4", "za"):
+        if x in d:
+            return "NON-STONE DETERMINATIVE ({%s}) - not the mineral" % x
     if "_" in tok: return "AKKADIAN-LOGOGRAM (no {na4})"
     return "UNMARKED (may be the colour or quality term)"
 
 def cls_carnelian(tok, d, c, ctx):
-    if "na4" not in d: return "REJECT-NOT-THE-STONE"
-    return "STONE-DETERMINATIVE ({na4})"
+    if "na4" in d: return "STONE-DETERMINATIVE ({na4})"
+    for x in ("d", "sig2", "siki", "u2", "gesz", "sar"):
+        if x in d:
+            return "NON-STONE DETERMINATIVE ({%s}) - not the mineral" % x
+    return "REJECT-NOT-THE-STONE"
 
 REGIONS = re.compile(r"mar-tu|gu-ti-um|mar2?-ha-(szi|s,i|s,u)|me-luh-ha|ma2?-gan|dilmun|elam")
 COMMODITY = re.compile(r"\bma2\b|\bzi3\b|\bdug\b|\bku6\b|\bkaskal\b|\bsila3\b|\bban2\b")
@@ -151,10 +195,16 @@ def cls_emebal(tok, d, c, ctx):
         return "LEXICAL-EQUATION (glossed with Akkadian)"
     if REGIONS.search(ctx.next) or REGIONS.search(ctx.prev):
         return "TITLE-WITH-A-NAMED-REGION"
-    if COMMODITY.search(ctx.prev) or COMMODITY.search(ctx.next):
-        return "COMMODITY-OR-VESSEL CONTEXT - not securely the title"
-    if c.endswith("-me") or ctx.prev.strip().endswith("ugula"):
+    # Title markers are tested BEFORE the commodity context. Re-review found
+    # the ordering reversed, so rations issued TO the office-holders were typed
+    # "not securely the title" - in an Ur III disbursement archive that is most
+    # lines, and several of the tablets so typed carry an eme-bala-me line of
+    # their own that the classifier did read as the office. The correction runs
+    # against the direction the reviewer was pushing, which is why it is made.
+    if c.endswith("-me") or re.search(r"\bugula\b", ctx.prev) or re.search(r"\bugula\b", ctx.line):
         return "TITLE-OR-OFFICE, no region named"
+    if COMMODITY.search(ctx.prev) or COMMODITY.search(ctx.next):
+        return "COMMODITY-OR-VESSEL CONTEXT - the office reading is not excluded"
     return "UNMARKED - no region named"
 
 TARGETS = [
@@ -168,11 +218,18 @@ TARGETS = [
 ]
 
 class Ctx:
-    """The neighbouring tokens and the whole line, for classifiers that need them."""
-    __slots__ = ("prev", "next", "line")
+    """The neighbouring tokens and the whole line, for classifiers that need them.
+
+    prev/next are a two-token window; prev1/next1 are the immediately adjacent
+    token only. A rule that must know which side a measure belongs to needs the
+    narrow one - see cls_dilmun.
+    """
+    __slots__ = ("prev", "next", "prev1", "next1", "line")
     def __init__(self, toks, i, line):
         self.prev = " ".join(bare(t) for t in toks[max(0, i - 2):i])
         self.next = " ".join(bare(t) for t in toks[i + 1:i + 3])
+        self.prev1 = bare(toks[i - 1]) if i > 0 else ""
+        self.next1 = bare(toks[i + 1]) if i + 1 < len(toks) else ""
         self.line = line
 
 def main():

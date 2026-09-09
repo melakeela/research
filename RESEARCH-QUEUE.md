@@ -72,7 +72,7 @@ and §11 (packets R20–R21), plus one domain that has no entry in either
     THE BLUE ROAD and THE RED ROAD run as one investigation under the
     fourteen-step method. `03-REGISTERS/domain-r-claims.csv` (64 claims: 54
     VERIFIED, 7 PROVISIONAL, 2 HOLD, 1 REJECTED),
-    `domain-r-translation-fields.csv` (7 terms), `domain-r-object-fields.csv`
+    `domain-r-translation-fields.csv` (11 terms), `domain-r-object-fields.csv`
     (13 objects, each with the owner's ten fields kept separate),
     `domain-r-museum-candidates.csv` (796 objects with custody and image
     status), `domain-r-negative-evidence.csv` (13 typed absences),
@@ -102,9 +102,14 @@ and §11 (packets R20–R21), plus one domain that has no entry in either
     of four names and generalised to all, a geographical claim quantified with
     "every" and falsified by four rows of the register it cited, and the one
     measurement carrying an argument about language made outside the committed
-    pipeline. All are repaired and every derived figure re-stated. The general
-    lesson is at `RA-027`: the two §8 tests examine reasoning and cannot catch
-    an error in the code that produced the numbers.
+    pipeline. **A second review of the repairs found fourteen more**, including
+    a fault introduced by a repair, a control applied to four of its own set's
+    six members, and two over-corrections running in the reviewer's own
+    direction — both corrected against it (`BF-039` to `BF-042`, `RA-030`). All
+    are repaired and every derived figure re-stated: 854 texts naming one of the
+    four, 805 naming exactly one, 547 of 893 Dilmun occurrences a unit of
+    account. The general lesson is at `RA-027`: the two §8 tests examine
+    reasoning and cannot catch an error in the code that produced the numbers.
 
     Step 13 ran against `melakeela/site` and returned seven findings
     (`IC-R-001` to `IC-R-007`), of which two are not faults. Nothing on the site

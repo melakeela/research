@@ -97,10 +97,10 @@ supplier, not a mine, and those are different questions.
 
 ### MELAKEELA'S CURRENT INTERPRETATION
 
-Badakhshan is the leading hypothesis and is held as one. It is not treated as
-the default answer, because the alternatives were not excluded — most were never
-sampled — and because the one that was seriously entertained was removed by
-reassigning its evidence.
+Badakhshan is the leading hypothesis and is held as one (`HYP-R-001`). It is not
+treated as the default answer, because the alternatives were not excluded — most
+were never sampled — and because the one that was seriously entertained was
+removed by reassigning its evidence (`DRB-006`).
 
 **Not every blue object is Badakhshan lapis, and not every blue object is
 lapis.** Both halves are literal. In the largest reachable object catalogue,
@@ -237,21 +237,23 @@ returns depends on what was put in it.
 
 Dilmun, Magan, Meluhha and Marhaši are Mesopotamian words. They are what one
 society called four others, and there is no surviving text from any of the four
-naming itself. Of the 791 texts, 720 have a recorded findspot and 716 of those
+naming itself. Of the 854 texts, 776 have a recorded findspot and 772 of those
 are in Mesopotamia, Syria or Assyria; the four exceptions are three Old Akkadian
 texts from Susa and one from Alalakh, and none is from the Indus region,
 Gujarat, Oman or Bahrain (`DRM-010`).
 
 They are usually introduced as a set. In the surviving record they are almost
-never a set: of 791 texts naming at least one, **742 name exactly one**, and all
+never a set: of 854 texts naming at least one, **805 name exactly one**, and all
 four appear together in a single text (`DRM-006`). The grouping comes from a
 small number of royal and literary texts, not from the administrative mass.
 
 Nor is one name one kind of thing. `me-luh-ha` is written with the determinative
 for a land, and for a place, and for a **bird**, and it qualifies two kinds of
 **timber**, and it stands in personal names. The same is true of the others once
-you look: 115 occurrences of `ma2-gan` are marked as **timber**, four of
-`dilmun` as **bronze**, and one of `mar-ha-szi` as a **vegetable** — an onion
+you look, under one rule: a name qualifying a material or a creature is not the
+name of a place. 115 occurrences of `ma2-gan` are marked as **timber** — though
+103 of those are Neo-Assyrian and are one word, *mesu*-wood of Magan — four of
+`dilmun` as **bronze**, and one of `mar-ha-szi` as a **vegetable**, an onion
 (`DRM-007`). And the marking does not stay put: in the third millennium and the
 Old Babylonian period `me-luh-ha` takes the place-marker, in texts of mixed
 kinds at Girsu, Ur and Nippur; more than a thousand years later it takes the
@@ -280,8 +282,8 @@ carried it in between, what a text called it, where it was dug up, what a museum
 wrote on its label, and who holds it now.
 
 Filling that in honestly, for thirteen objects, **exporter and intermediary came
-out empty for all thirteen**, and so did whether an openly licensed image
-exists.
+out empty for all thirteen**, and so did whether an openly licensed image exists
+(`domain-r-object-fields.csv`; `BR-R-006`, `DRM-023`).
 
 The last one is not a fact about antiquity. It is a fact about this session:
 every museum database that would answer it is blocked (`DRM-023`, `D-055`). And

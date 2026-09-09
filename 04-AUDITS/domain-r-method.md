@@ -10,8 +10,8 @@ Mesopotamia, alternative geological sources.
 `domain-r-object-fields.csv` (13), `domain-r-museum-candidates.csv` (796),
 `domain-r-negative-evidence.csv` (13), `domain-r-hypothesis-eligibility.csv`
 (10), `domain-r-cdli-attestations.csv` (3,688), `domain-r-cdli-rejected.csv`
-(417); `domain-r-translation-fields.csv` (7 terms); `04-AUDITS/` scripts, seven
-archive-and-power rows, twelve bias-failure rows, eight re-audit rows, seven
+(417); `domain-r-translation-fields.csv` (11 terms); `04-AUDITS/` scripts, seven
+archive-and-power rows, sixteen bias-failure rows, nine re-audit rows, seven
 internal-contradiction rows; nine bridges; eight dependency rows; 30
 access-ledger rows (SRC-099 to SRC-128); four holds; one owner decision.
 
@@ -54,10 +54,12 @@ what they show about method, and labelled.
 
 **Terms needing original-language work.** `me-luh-ha`, `ma2-gan`, `dilmun` /
 `ni-tuk`, `mar-ha-szi`; `za-gin3` and Akkadian `uqnû`; `gug` and Akkadian
-`sāmtu`; `eme-bal` / `eme-bala`; `e2-duru5`; `dumu`; `gin2 dilmun`. The six
-consequential ones, plus the inherited English category *civilisation*, are in
+`sāmtu`; `eme-bal` / `eme-bala`; `e2-duru5`; `dumu`; `gin2 dilmun`. **All ten**,
+plus the inherited English category *civilisation*, are in
 `03-REGISTERS/domain-r-translation-fields.csv` — written only after adversarial
-review found the standard named at this step and run on nothing (`BF-038`).
+review found the standard named at this step and run on nothing (`BF-038`), and
+extended to the four toponyms only after a second review found them excluded on
+the unargued ground that they were not consequential (`BF-042`).
 
 **Viable explanations for a foreign material at a site.** Trade; gift; tribute;
 raid; relocation of craftspeople; relocation of consumers; recycling of older
@@ -95,10 +97,10 @@ locations. The corridor's political control was not treated as evidence of use:
 Achaemenid control reaching eastern Afghanistan is noted at `DRB-010` as the
 argument the source makes, not as a finding.
 
-The principal geographical result is negative and is `DRM-010`: of the 791 texts
-naming one of the four, 720 have a recorded findspot, and **716 of those are in
+The principal geographical result is negative and is `DRM-010`: of the 854 texts
+naming one of the four, 776 have a recorded findspot, and **772 of those are in
 Mesopotamia, Syria or Assyria.** Four are not — three Old Akkadian texts from
-Susa and one from Alalakh — and 71 have no findspot at all. The corridor's
+Susa and one from Alalakh — and 78 have no findspot at all. The corridor's
 textual record was overwhelmingly written at one end, and the exceptions are
 stated because the first version of this claim said "every" and was falsified by
 four rows of the register it cited (`BF-034`).
@@ -239,7 +241,7 @@ they can hold, **and all three lean the same way, towards debunking.**
    surviving record: a receipt naming Magan had no occasion to name Dilmun.
    Amended — the claim now concerns **modern** practice, which is what the trap
    actually calls for: the synthesis introduces the four as a set, and the
-   record presents them as a set in nine texts out of 863.
+   record presents them as a set in eleven texts out of 854.
 2. *"Men designated son of Meluhha bear Sumerian names"* was written as though
    it bore on what they spoke. A Sumerian archive records people under names its
    scribes could write. Amended — the claim is now only that designation and
@@ -263,8 +265,9 @@ Seven failures, logged as `BF-032` to `BF-038` and re-audited under `RA-027` to
   occurrences of a unit of account were counted as references to a place — and
   the extraction script's own docstring names this exact phenomenon as a reason
   the script exists. The observation was right and the implementation did not
-  follow it. Every derived figure was re-derived: 791 texts naming one of the
-  four, not 863; 742 naming exactly one, not 813.
+  follow it. After the repair and the two further faults it exposed
+  (`BF-039`), the unit of account is 547 of 893 Dilmun occurrences, and the
+  toponym base is 854 texts of which 805 name exactly one.
 - **`BF-033`.** The determinative screen was run for Meluhha and generalised to
   all four names without being run on the other three. Running it found 123
   further non-toponymic occurrences, the largest group being Magan-timber.
@@ -287,6 +290,37 @@ Running the bias tests on conclusions cannot catch an error in the code that
 produced the numbers the conclusions rest on. The controls at `RA-027` are
 written to close that gap, and the general one is: a figure that cannot be
 re-derived from a committed script is not a measurement.
+
+### And what the second review found in the repairs
+
+The same reviewer re-reviewed the corrected unit and found fourteen further
+problems, five of them blocking. Four are logged as `BF-039` to `BF-042` and
+re-audited at `RA-030`. They are about *correcting*, not about researching:
+
+- **A repair introduced a new fault.** Moving the toponym test to the top of the
+  Dilmun classifier dropped its case-insensitive flag and rejected 216
+  occurrences at a stroke. It was visible in one run only because the rejected
+  file is published (`BF-039`).
+- **A repair was incomplete and its own correction field said otherwise.**
+  `BF-032` claimed every derived figure had been restated. `APA-R-001` still
+  read 863, and `DRM-006`'s live note still carried 863 and a superseded
+  pairwise figure — correction history had been updated and the analytical text
+  had not.
+- **A control was written and applied to four of its own set's six members**
+  (`BF-041`), and a classification scheme was written per target and never
+  diffed across targets (`BF-040`).
+- **Two repairs over-corrected in the direction the reviewer had pushed.** The
+  `eme-bal` classifier tested commodity context before title markers, so rations
+  issued *to* the office-holders were typed as not securely the title — in
+  tablets carrying an `eme-bala-me` line of their own. And the Dilmun `gin2`
+  rule ran ahead of the determinatives and swallowed genuine place references,
+  including Neo-Assyrian recipes where the shekel belongs to the next
+  ingredient. Both were corrected *against* the reviewer's direction, which is
+  the point: a reviewer's direction is a hypothesis too.
+
+The honest summary of two rounds is that this unit's arithmetic needed an
+outside re-derivation twice, and the second round found more faults in the
+repairs than the first found in some of the original work.
 
 ### Two further method failures, not bias
 
