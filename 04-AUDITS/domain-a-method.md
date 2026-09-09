@@ -240,8 +240,12 @@ cited or nationally useful?*
 2. **"Four scholars agree with Arnold" was about to be written.** Five column
    headings in a prestigious digital edition read as five instruments. Crossing
    them showed two of them are one (`DEP-030`) and one of them is Arnold
-   (`DEP-035`). The dependency rows were written **before** the enrichment
-   figures were computed, not after.
+   (`DEP-035`). The dependency rows were logged **before any claim was allowed
+   to rest on the columns** — `DEP-030` and `DEP-035` are in commit `8d88fd3`,
+   the measurements register in `3bce762`. They were *not* written before the
+   figures were computed: overlap and enrichment come out of the same run of
+   the script. An earlier draft of `BF-027` said they were, which was false and
+   is corrected in that row.
 3. **The conventional date was nearly stated as a fact with sources appended.**
    The pillars register is written the other way round — each argument's *form*
    first, then what it can support, then what was actually retrieved — and it
