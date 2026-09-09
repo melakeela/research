@@ -1292,3 +1292,40 @@ blocked only at the point of filling this one slot.
 **Decision:** which of the four, and if the first, does the WATER build wait
 on the community-authority work or proceed with the slot held open and
 visibly typed as held?
+
+## D-055 — Four hosts, and what each one would settle
+
+**Raised:** 2026-09-09, by domain K.
+**Blocks:** the Indus half of domain K and packet R20.
+**Register row:** `09-DECISIONS/OWNER-DECISIONS.csv` `D-055`.
+
+Domain K ran on 2026-09-09 and reached its Rigvedic half in full and its
+Indus half almost not at all. Sixteen hosts were probed and every one
+refused at the egress gateway; the only open retrieval channel was the
+git proxy's anonymous lane, which serves public GitHub repositories and
+nothing else. What that lane returned for this domain was one volunteer's
+partial digitisation of the Indus corpus: 179 seals, one site, one
+iconographic class, three fields per record, no find-spot.
+
+This is not a request to open the network. It is four hosts, and each one
+settles something named:
+
+| Host | What it would settle |
+|---|---|
+| `archive.org` | Mahadevan 1977, *The Indus Script: Texts, Concordance and Tables*. Every corpus figure this platform publishes — about 4,000 objects, mean five signs, the longest text — traces to it and none has been verified here. It alone would close `RA-022` and `IC-K-001`. |
+| `nature.com` | Mukhopadhyay 2023, the find-spot argument for the administrative reading of the seals, which `melakeela/site` states as its leading argument and this record could not read (`IC-K-003`, `RA-023`); and the 2021 allograph paper carrying the ICIT corpus totals. |
+| `asi.nic.in` | Excavation reports and *Indian Archaeology — A Review*: stratigraphy, context and date for every object class §4.K names. Without them, distribution, function and post-urban survival have no evidence at all. |
+| `epigraphica.de` | The Wells sign list and ICIT. The sign-inventory disagreement measured at `DK-M-012`–`DK-M-015` was measured through one annotator's crosswalk; this is the only way to check it. |
+
+**Why the owner and not the researcher.** CLAUDE.md reserves
+institutional access to the owner, and this is a standing question about
+how the programme's network policy is set rather than a judgement about
+evidence. `D-001` and `D-042` asked whether reachability is stable and
+recorded a regression; neither asked for a list.
+
+**If the answer is none.** That is a legitimate answer and the
+consequence is stated rather than argued: domain K stays at its Rigvedic
+half, nine of its eleven hypotheses stay gated as source-blocked, and
+`HOLD-008` stays open. The unit was written so that this outcome costs
+nothing already banked — every measurement in it is of a source that was
+actually retrieved.
