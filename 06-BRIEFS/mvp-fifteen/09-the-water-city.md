@@ -53,7 +53,6 @@ a negative claim about a category, and it is the one the headline turns on —
 *no palace* is what makes the sentence an argument rather than a description.
 
 
-
 ---
 
 ## 2. Environment and epistemic posture

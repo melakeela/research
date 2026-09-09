@@ -56,7 +56,6 @@ distributional evidence, not by a list of glosses — and a gloss list is what a
 dictionary entry looks like.
 
 
-
 ---
 
 ## 2. Environment and epistemic posture

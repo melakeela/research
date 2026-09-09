@@ -55,7 +55,6 @@ rework requests, evaluations. The second names a state body and asserts
 interference.
 
 
-
 ---
 
 ## 2. Environment and epistemic posture

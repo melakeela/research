@@ -326,6 +326,18 @@ def atlas_inbound(pg_by):
     return mine, top_slug, top_n, ordinal_word(pos + 1)
 
 
+# Section 5's first gate for artifact-atlas, quoted verbatim by section 7's
+# disclaimer. One string, used in both places: a draft typed them separately and
+# section 7 went on quoting a sentence section 5 no longer contained (BF-031).
+ATLAS_GATE_1 = (
+    "Whatever \u00a78.1's rule is taken to require of this page \u2014 its own words "
+    "are that the number in view is a property of the current filter, \"always "
+    "shown *with* the filter, never as a title\", and the page's current title "
+    "states a total. What follows from that is D-034's to settle and not this "
+    "brief's: \u00a77 records the conflict and the three arms without choosing one, "
+    "and this gate states the rule rather than a launch condition derived from "
+    "it.")
+
 NUMBER_WORDS = {2: "two", 3: "three", 4: "four", 5: "five", 6: "six",
                 7: "seven", 8: "eight", 9: "nine", 10: "ten"}
 
@@ -338,6 +350,43 @@ def ordinal_word(n):
     if not 1 <= n <= len(ORDINALS):
         fail("no ordinal word for %r; a brief prints one" % n)
     return ORDINALS[n - 1]
+
+
+def check_superlatives(pg_by, mvp_by, as_by):
+    """BF-028's standing control: a comparative or superlative over the
+    workbook's columns is printed in a brief only with a build-time check
+    behind it. It was applied to artifact-atlas alone when it was written;
+    four more were typed and unguarded (BF-031). Each entry names the brief
+    that prints the claim, so a failure says what to rewrite."""
+    all_pages = pg_by
+    def n(slug, col, src=None):
+        return int((src or pg_by)[slug][col])
+
+    checks = [
+        ("02-enter.md", "enter has the most inbound links of all 96 audited pages",
+         max(all_pages, key=lambda k: int(all_pages[k]["Inbound links"])) == "enter"
+         and sorted((int(r["Inbound links"]) for r in all_pages.values()),
+                    reverse=True)[1] < n("enter", "Inbound links")),
+        ("01-index.md", "index is the only one of the fifteen with no inbound links",
+         [s_ for s_ in MVP_SLUGS if n(s_, "Inbound links") == 0] == ["index"]),
+        ("05-tinai.md", "tinai is the only one of the fifteen with a live external link",
+         [s_ for s_ in MVP_SLUGS if n(s_, "External links") > 0] == ["tinai"]),
+        ("13-the-other-laws.md",
+         "the-other-laws is the only one of the fifteen whose Decision is not "
+         "Keep, Revise or Hold",
+         [s_ for s_ in MVP_SLUGS
+          if pg_by[s_]["Decision"] not in ("Keep", "Revise", "Hold")]
+         == ["the-other-laws"]),
+        ("README.md",
+         "before-the-indus is the only Critical-risk page of the fifteen",
+         [s_ for s_ in MVP_SLUGS if pg_by[s_]["Risk"] == "Critical"]
+         == ["before-the-indus"]),
+    ]
+    bad = ["  %s prints: %s" % (f, claim) for f, claim, ok in checks if not ok]
+    if bad:
+        fail("a superlative a brief states over the workbook's columns no "
+             "longer holds:\n" + "\n".join(bad))
+    return len(checks)
 
 
 def owner_decision(did, must_be=None):
@@ -757,8 +806,7 @@ against {words} words of prose is a measurement of a page's furniture.
 number.** That is an argument from absence over one document, so it is typed:
 `claim-risk.csv` is the sheet whose method is *"Flagged categorical, causal,
 priority/origin, institutional and quantitative central claims"* — a site count
-in a title being the fourth and fifth of those — and it holds no row for this
-page. The absence is `NOT PRODUCED` within the workbook's own scope, checked at
+in a title being the fifth of those five — and it holds no row for this page. The absence is `NOT PRODUCED` within the workbook's own scope, checked at
 build time; it says nothing about whether the number was examined anywhere else,
 and `IH-250` records that it was, in the inheritance, and left unresolved.""",
  "evidence": [
@@ -810,7 +858,7 @@ Assertions and typed Date Assertions (§2.7, §2.8), and the 145 rows marked
 the exclusion export (§5.2) are the parts that make every absence argument on the
 map checkable, and they are the parts most easily deferred.""",
  "launch": [
-   "Whatever \u00a78.1's rule is taken to require of this page \u2014 its own words are that the number in view is a property of the current filter, *\"always shown with the filter, never as a title\"*, and the page's current title states a total. What follows from that is D-034's to settle and not this brief's: \u00a77 records the conflict and the three arms without choosing one, and this gate states the rule rather than a launch condition derived from it.",
+   ATLAS_GATE_1,
    "Every mapped thing is an object with a status and an attestation mode; a findspot and an attributed provenance are never the same marker (§8.2).",
    "The 145 `assumed` date rows are typed as assertions with their basis, or excluded. Rendering them identically to the 54 report-dated rows is `IH-105` published as if it were `IH-105` solved.",
    "Unknown zones are a rendered layer, and the excavation/survey coverage overlay exists (§8.2) — without it no absence on the map is checkable.",
@@ -848,11 +896,14 @@ choosing one.
 that §8.1's no-headline-count rule *"is the one that makes the page launchable at
 all"* and that *"under that rule the Atlas ships before D-034 is answered."* That
 was a settlement, written in this brief's own voice, of a decision that is
-`{d034}`. It is withdrawn in §2 and preserved there rather than deleted. §5's
-first gate — *"No headline count anywhere on the page, per §8.1"* — is a
-statement of what §8.1 requires, not a finding that the requirement is met or
-that meeting it would end the matter; see the last paragraph of this section on
-what that gate does and does not reach.
+`{d034}`. It is withdrawn in §2 and preserved there rather than deleted.
+
+§5's first gate reads, in full, printed from the same string §5 prints:
+
+> {gate1}
+
+That is a statement of the rule. It is not a launch condition derived from the
+rule, and not a finding that D-034 has an answer.
 
 The page's own title asserts a figure that this repository has logged as disputed
 and has not closed, and the same workbook schedules the page {rank_ordinal}:
@@ -897,34 +948,43 @@ and *"The atlas number is load-bearing for a page ranked third in the launch
 set."* This brief adds no identifier and takes no position; it records that the
 conflict survives into the brief set and names what each arm would change.
 
-**What changes under each arm**, stated so the decision is legible and for no
-other purpose. They are listed in no order of preference, and each is reachable
-without the other two:
+**What changes under each arm.** Three arms, each given the same three lines and
+no others — what it does, what of D-034 it settles, and what it costs. The
+structure is fixed because the alternative is tuning: this section's balance has
+been found wrong twice, in opposite directions, and both times the asymmetry was
+in what one arm's prose was allowed to carry that another's was not (`BF-029`,
+`BF-030`). They are in no order of preference and each is reachable without the
+other two.
 
-- **The number is settled.** The dataset is extracted and counted (§6, MVP-U3)
-  and X-01 closes. What the title then does is *still* open, and this brief
-  cannot say it survives with a re-derived figure: §8.1 as quoted below forbids a
-  number in the title under any circumstances, so a settled count makes the title
-  question answerable without answering it. Rank {rank} stands unless something
-  else moves it. **Cost:** this is the only arm that waits on the archive (see
-  below), and the only one that produces a value D-034 asks for.
-- **The title is changed, the number left open.** The title drops the figure. The
-  page ships at rank {rank} with no total in its own voice, and D-034 stays
-  `{d034}` — the page-count half of it untouched, and the atlas half unanswered
-  rather than resolved. **Cost:** an editorial act is exactly what §2 of this
-  brief records this repository cannot yet perform. The Editorial Register that
-  §11.5 specifies to hold *"a publication decision, an environment assignment or
-  a duplication finding"* **does not exist**, and §2's finding applies here
-  unchanged — *"an assignment with no derivation to disagree with cannot be
-  audited."* A title changed with nothing recording who changed it, from what,
-  and why is the shape of the problem this page is about.
-- **The rank is changed.** The page moves out of the {top_ranks} and the release
-  opens on something whose central claim is not an unsettled number. D-034 stays
-  `{d034}` in both halves, and the title is untouched. **Cost:** `page-audit.csv`
-  records **{inbound} inbound links** to this page, the {inbound_ordinal} count
-  among the fifteen behind `{top_slug}`'s {top_n}, so demoting it changes the
-  site's link structure and not only an order — and the Editorial Register
-  problem in the arm above applies to a rank change too.
+**Arm 1 — the number is settled.**
+- *Does:* the dataset is extracted and counted (§6, MVP-U3); X-01 closes.
+- *Settles of D-034:* the atlas-count half — the value the decision asks for.
+  Not the page-count half. Not what the title then says: §8.1 as read below
+  forbids a number in a title under any circumstances, so a settled count makes
+  the title question answerable without answering it.
+- *Costs:* it is the only arm that waits on the archive (below). The count then
+  has to be published as a claim with a status and an inclusion rule, and if the
+  title changes with it, the Editorial Register problem below applies here too.
+
+**Arm 2 — the title is changed, the number left open.**
+- *Does:* the title drops the figure; the page ships at rank {rank} with no total
+  in its own voice.
+- *Settles of D-034:* neither half. The atlas count stays `{d034}` and unanswered
+  rather than resolved, and the page-count half is untouched.
+- *Costs:* the Editorial Register that §11.5 specifies to hold *"a publication
+  decision, an environment assignment or a duplication finding"* does not exist,
+  and §2's finding applies unchanged — *"an assignment with no derivation to
+  disagree with cannot be audited."*
+
+**Arm 3 — the rank is changed.**
+- *Does:* the page moves out of the {top_ranks}; the release opens on something
+  whose central claim is not an unsettled number.
+- *Settles of D-034:* neither half. Both stay `{d034}`, and the title is
+  untouched.
+- *Costs:* `page-audit.csv` records **{inbound} inbound links** to this page, the
+  {inbound_ordinal} count among the fifteen behind `{top_slug}`'s {top_n}, so
+  demoting it changes the site's link structure and not only an order. The
+  Editorial Register problem in arm 2 applies here too.
 
 **One thing all three arms share, and it does not decide between them.** The
 count itself cannot be derived here: §6 records that the atlas data lives in
@@ -947,10 +1007,13 @@ and left the status quo as the only reading. Withdrawn, and recorded rather than
 deleted.
 
 **What §8.1 reaches, read exactly.** A draft of this section said *"§8.1 does not
-reach the title at all"*. It does. **§8.1's rule ends** — the section itself continues past it — *"The
-number of sites in view is a property of the current filter and is always shown
-with the filter, never as a title."* The rule reaches the title directly, and the current title breaks it. Three things follow,
-and none of them closes D-034.
+reach the title at all"*. It does. **§8.1's rule ends** — the section itself
+continues past it — "The number of sites in view is a property of the current
+filter and is always shown *with* the filter, never as a title." The emphasis on
+*with* is the source's and is reproduced because this block claims to read the
+rule exactly; a draft dropped it to avoid nesting italics. The rule reaches the
+title directly, and the current title breaks it. Three things follow, and none of
+them closes D-034.
 
 - The second arm is what §8.1 **would require if the specification were
   adopted** — not an alternative to the rule, and not something the rule can
@@ -2328,6 +2391,16 @@ def emit(page, wb, hits, scanned):
              "linked_reading %s. Write the reading, or remove it." %
              (slug, len(linked), "present" if "linked_reading" in page else "absent"))
     if linked:
+        # Presence is not coverage. An earlier version tested only that a
+        # reading existed, so a second row arriving on an already-linked page
+        # built cleanly while the reading covered one row and called it the
+        # only one (BF-031). Every linked claim_id must be named in the text.
+        unread = [c for _, c, _ in linked if c and c not in page["linked_reading"]]
+        if unread:
+            fail("%r: linked_reading does not name %s. A reading that covers "
+                 "some of a page's linked rows is not a reading of the page's "
+                 "links; write the new row in or remove it from the register."
+                 % (slug, ", ".join(unread)))
         if "linked_licenses_copy" not in page:
             fail("%r has a linked row and no linked_licenses_copy. Decide "
                  "whether the row licenses public copy and say so." % slug)
@@ -2342,11 +2415,12 @@ def emit(page, wb, hits, scanned):
             "carries" if len(linked) == 1 else "carry"
         st_list = " and ".join("`%s`" % a for a in others)
         premise = ("§3 below records {} register {} linked to it — {} — and "
-                   "reads it: it {} no proposition this page asserts. Nothing "
+                   "reads {}: {} no proposition this page asserts. Nothing "
                    "else bearing on the page carries a status other than "
                    "`INHERITED-UNVERIFIED`.".format(
                        n_l, row_s, ids,
-                       "carries" if n_l == 1 else "carry between them"))
+                       "it" if n_l == 1 else "them",
+                       "it carries" if n_l == 1 else "between them they carry"))
         supports_cell = ("no claim bearing on what this page asserts stands "
                          "outside the `INHERITED-UNVERIFIED` floor; the {} "
                          "linked {} read in §3"
@@ -2382,11 +2456,10 @@ def emit(page, wb, hits, scanned):
     A("**QUESTION.** {}\n".format(page["question"]))
     A(NO_PUBLIC_COPY.format(premise=premise, supports_cell=supports_cell))
     A("\n### What the workbook records as observed\n")
-    A(page["observed"].format(
+    A((page["observed"].format(
         entries=m["page"]["Source entries (est.)"], words=m["page"]["Words"],
         inbound=m["page"]["Inbound links"]) if "{" in page["observed"]
-      else page["observed"])
-    A("\n")
+       else page["observed"]) + "\n")
     A("\n---\n")
 
     A("## 2. Environment and epistemic posture\n")
@@ -2466,9 +2539,13 @@ def emit(page, wb, hits, scanned):
     A("## 6. What unit of work would verify it\n")
     A(page["unit"] + "\n")
 
-    if page["conflicts"] and slug == "artifact-atlas":
-        # Section 7's substitutions and its two build-stopping checks are
-        # specific to this page; before-the-indus's section 7 takes none.
+    if slug == "artifact-atlas":
+        # This page's section 7 takes substitutions and two build-stopping
+        # checks; before-the-indus's takes neither. The guard covers the
+        # substitution only -- an earlier version wrapped the emission in it
+        # too and silently deleted before-the-indus's section 7, the whole
+        # per-page record of owner decision D-032, leaving four references
+        # pointing at nothing (BF-031).
         d034 = owner_decision("D-034", must_be="OPEN")
         claim_risk_absent(slug)
         rank = int(m["mvp"]["Rank"])
@@ -2484,7 +2561,10 @@ def emit(page, wb, hits, scanned):
             n_running_w=NUMBER_WORDS[len([f for f in os.listdir(
                 os.path.join(ROOT, "01-INHERITED", "site-review"))
                 if "RUNNINGLIST" in f.upper()])],
-            top_ranks="first %s" % NUMBER_WORDS[rank]))
+            top_ranks="first %s" % NUMBER_WORDS[rank],
+            gate1=ATLAS_GATE_1))
+
+    if page["conflicts"]:
         A("\n---\n")
         A(page["conflicts"] + "\n")
 
@@ -2682,8 +2762,12 @@ correction implies the two bodies of scholarship start level.
 The first build was committed on 2026-09-08. Between then and 2026-09-09
 `03-REGISTERS/water-living-world-readiness.csv` was added to the repository on
 another branch. It is the fifteenth register carrying a `supports_page` column,
-and one of its rows, `WLW-001`, carries `supports_page = the-water-city` at a
-status other than `INHERITED-UNVERIFIED`.
+and one of its rows, `WLW-001`, carries `supports_page = the-water-city` at
+`VERIFIED`. *(That status is stated here as the historical fact it is — what
+arrived on 2026-09-08, and the reason it mattered. §0.2's rule against typed
+statuses governs the briefs' live readings, not this record of an event; a
+draft applied it here and made the audit trail vaguer than the thing it
+records.)*
 
 The generator caught part of this by itself and missed the rest, and the split is
 the argument for building briefs from a script rather than writing them out.
@@ -2784,6 +2868,23 @@ found that the previous round's own account of itself was wrong.
    above it had corrected — with one of its sentences made false by the previous
    repair. All are fixed above and marked where they stood.
 
+9. **Every superlative over the workbook's columns has a check behind it.**
+   `BF-028`'s own standing control had been applied to the one page under review
+   when it was written; four more sat typed and unguarded in `01-index.md`,
+   `02-enter.md`, `05-tinai.md`, `13-the-other-laws.md` and §6 of this README.
+   All five now stop the build if the workbook moves under them, and each check
+   names the brief that prints the claim.
+10. **A section is emitted for every page whose source defines one.** The
+   substitutions §7 of `03-artifact-atlas.md` takes are specific to that page,
+   and a guard written to scope them was wrapped around the emission as well —
+   which silently deleted `08-before-the-indus.md` §7, sixty-three lines
+   recording owner decision D-032, and left four references in committed output
+   pointing at nothing. The guard now covers the substitution only. This is the
+   worst thing any round of this work has done: a repair that had spent three
+   commits insisting that withdrawn text is recorded and never deleted removed a
+   live record of an `OPEN` decision, and the round that did it logged five
+   findings without noticing. `BF-031`; the class is `RA-025`.
+
 **The direction of the failures is the finding of the third round.** `BF-029`
 recorded a repair leaning toward leaving the launch order alone. `BF-030` records
 the correction of it leaning the other way — §7 began preferring the arm that
@@ -2857,8 +2958,8 @@ the highest in the set when `enter` has 113 — which is the error a reader
 attached to the existing launch order would make.
 
 **Preferred-counter-narrative challenge.** Found: **yes, once, and it runs
-against this unit's own product.** `WLW-001` arrived carrying a status other
-than `INHERITED-UNVERIFIED`, and its arrival
+against this unit's own product.** `WLW-001` arrived at `VERIFIED` — stated
+here as the historical fact, per §0.2 — and its arrival
 falsified the sentence this directory was built around: *"No page in the MVP set
 has a single register row behind it."* The reading in `09-the-water-city.md` §3
 lets the substance of that sentence stand — the row is about the registers, not
@@ -2928,8 +3029,8 @@ collected."* Read the other way round, which is the way that matters here: on th
 repository's own accounting, **no page in the launch set has a register row
 recorded as supporting a proposition it makes about the past**. That is narrower
 than the sentence two earlier builds printed here — *"the launch set is supported
-by nothing"* — which stopped being true of every page when `WLW-001` appeared
-and is corrected rather than deleted (`BF-030`). What the scan above returned,
+by nothing"* — which appeared in three builds, stopped being true of every page when
+`WLW-001` arrived, and is corrected rather than deleted (`BF-030`). What the scan above returned,
 and what each linked page's §3 makes of it, is the record.
 
 Three consequences, and they are the shape of the whole unit:
@@ -3053,8 +3154,8 @@ that *"these are publication gates, not optional polish."*
 status other than `INHERITED-UNVERIFIED`, **whose subject is a proposition the
 page makes about the past**. {r1_note}
 
-*Two earlier builds stated R1 without its second clause and asserted that no page
-passed it. As written then, `WLW-001` satisfied R1 — a mechanical test with a
+*Three earlier builds stated R1 without its second clause and asserted that no
+page passed it. As written then, `WLW-001` satisfied R1 — a mechanical test with a
 typed verdict that the scan already contradicted (`BF-030`). The clause is what
 the gate always meant; the brief's §3 is where it is applied, because whether a
 row's subject is the page's past is a judgement and not a scan.*
@@ -3135,7 +3236,7 @@ def main():
 
     wb = {s: {"mvp": mvp_by[s], "page": pg_by[s], "asset": as_by[s],
               "env": env_by[mvp_by[s]["Environment"]]} for s in MVP_SLUGS}
-    n_quotes = verify_quotes()
+    n_quotes = verify_quotes() + check_superlatives(pg_by, mvp_by, as_by)
     hits, scanned = scan_supports_page()
 
     by_slug = {p["slug"]: p for p in PAGES}
@@ -3209,14 +3310,25 @@ def main():
             "different status is not a higher one: framework §3.2 rules that "
             "these do not form a ladder, and the floor is stated by the rule "
             "that a row with no retrieval event behind it cannot be stood above.")
+        # The verdict is derived, and it is derived from the same field the
+        # build gate uses: linked_licenses_copy is the per-page judgement that
+        # a linked row does or does not carry a proposition the page asserts,
+        # and emit() halts if any page sets it true. So while this README
+        # builds, no page can pass R1 -- and the sentence says which field it
+        # is reading rather than asserting the outcome (BF-031).
+        passing = [s_ for s_ in linked_slugs
+                   if by_slug[s_].get("linked_licenses_copy")]
         r1_note = (
-            "**No page in the set passes R1 today.** {} of the fifteen has a row "
-            "with a status other than `INHERITED-UNVERIFIED` — {} — and that "
-            "page's §3 records that its subject is the state of this "
-            "repository's registers at a timestamp rather than the past the page "
-            "describes.".format(
+            "{} of the fifteen {} a row carrying a status other than "
+            "`INHERITED-UNVERIFIED` — {} — and {}. **{}**".format(
                 len(linked_slugs),
-                ", ".join("`%s`" % s_ for s_ in linked_slugs)))
+                "has" if len(linked_slugs) == 1 else "have",
+                ", ".join("`%s`" % s_ for s_ in linked_slugs),
+                "that page's §3 records what its subject is"
+                if len(linked_slugs) == 1
+                else "each page's §3 records what its rows' subjects are",
+                "No page in the set passes R1 today." if not passing else
+                "Passing R1 today: " + ", ".join("`%s`" % p for p in passing)))
     else:
         floor_note = ("Nothing bearing on any of the fifteen carries any status "
                       "other than `INHERITED-UNVERIFIED`.")

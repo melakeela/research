@@ -60,7 +60,6 @@ that denominator. Neither is stated as a number, which is why neither reads as a
 claim.
 
 
-
 ---
 
 ## 2. Environment and epistemic posture

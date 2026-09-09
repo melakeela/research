@@ -54,7 +54,6 @@ the rest of the institution then uses is not one exhibit among fifteen; it is a
 dependency of the others. `Living Tiṇai` is a posture named after it.
 
 
-
 ---
 
 ## 2. Environment and epistemic posture

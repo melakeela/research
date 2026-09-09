@@ -17,7 +17,7 @@ scanned for `supports_page`.
 `SCHEMA.md`, `method-limits.csv`, `summary.csv`, `claim-risk.csv`,
 `overlap-tensions.csv`, `02-SOURCES/access-ledger.csv`, `DECISIONS-NEEDED.md`,
 `RESEARCH-QUEUE.md`, `CLAUDE.md` and `04-AUDITS/BIAS-FAILURE-LOG.csv`. The
-generator makes **95 assertions** against those files and fails the build
+generator makes **100 assertions** against those files and fails the build
 if one does not hold — covering the §1.5 derivation rules *with their numbers*
 (the briefs cite the numbers), the negative-evidence type names, and `SRC-052`'s
 probe list and constraint.
@@ -183,8 +183,12 @@ correction implies the two bodies of scholarship start level.
 The first build was committed on 2026-09-08. Between then and 2026-09-09
 `03-REGISTERS/water-living-world-readiness.csv` was added to the repository on
 another branch. It is the fifteenth register carrying a `supports_page` column,
-and one of its rows, `WLW-001`, carries `supports_page = the-water-city` at a
-status other than `INHERITED-UNVERIFIED`.
+and one of its rows, `WLW-001`, carries `supports_page = the-water-city` at
+`VERIFIED`. *(That status is stated here as the historical fact it is — what
+arrived on 2026-09-08, and the reason it mattered. §0.2's rule against typed
+statuses governs the briefs' live readings, not this record of an event; a
+draft applied it here and made the audit trail vaguer than the thing it
+records.)*
 
 The generator caught part of this by itself and missed the rest, and the split is
 the argument for building briefs from a script rather than writing them out.
@@ -260,7 +264,7 @@ found that the previous round's own account of itself was wrong.
    are all read at build time. A first draft of the section retyped every one of
    them and called 56 the highest inbound-link count in the set; it is the
    second, behind `enter`'s 113.
-6. **`WLW-001` is quote-checked.** The build's 95 assertions guard quotations from
+6. **`WLW-001` is quote-checked.** The build's 100 assertions guard quotations from
    the framework, the constitution and the workbook; the row this whole build
    exists to respond to was guarded by none, and it has already been amended once
    under review. Its claim text, its locator and its `notes` are now checked, and
@@ -284,6 +288,23 @@ found that the previous round's own account of itself was wrong.
    prestige-bias entry still carrying the misattribution the narrative eight lines
    above it had corrected — with one of its sentences made false by the previous
    repair. All are fixed above and marked where they stood.
+
+9. **Every superlative over the workbook's columns has a check behind it.**
+   `BF-028`'s own standing control had been applied to the one page under review
+   when it was written; four more sat typed and unguarded in `01-index.md`,
+   `02-enter.md`, `05-tinai.md`, `13-the-other-laws.md` and §6 of this README.
+   All five now stop the build if the workbook moves under them, and each check
+   names the brief that prints the claim.
+10. **A section is emitted for every page whose source defines one.** The
+   substitutions §7 of `03-artifact-atlas.md` takes are specific to that page,
+   and a guard written to scope them was wrapped around the emission as well —
+   which silently deleted `08-before-the-indus.md` §7, sixty-three lines
+   recording owner decision D-032, and left four references in committed output
+   pointing at nothing. The guard now covers the substitution only. This is the
+   worst thing any round of this work has done: a repair that had spent three
+   commits insisting that withdrawn text is recorded and never deleted removed a
+   live record of an `OPEN` decision, and the round that did it logged five
+   findings without noticing. `BF-031`; the class is `RA-025`.
 
 **The direction of the failures is the finding of the third round.** `BF-029`
 recorded a repair leaning toward leaving the launch order alone. `BF-030` records
@@ -358,8 +379,8 @@ the highest in the set when `enter` has 113 — which is the error a reader
 attached to the existing launch order would make.
 
 **Preferred-counter-narrative challenge.** Found: **yes, once, and it runs
-against this unit's own product.** `WLW-001` arrived carrying a status other
-than `INHERITED-UNVERIFIED`, and its arrival
+against this unit's own product.** `WLW-001` arrived at `VERIFIED` — stated
+here as the historical fact, per §0.2 — and its arrival
 falsified the sentence this directory was built around: *"No page in the MVP set
 has a single register row behind it."* The reading in `09-the-water-city.md` §3
 lets the substance of that sentence stand — the row is about the registers, not
@@ -445,8 +466,8 @@ collected."* Read the other way round, which is the way that matters here: on th
 repository's own accounting, **no page in the launch set has a register row
 recorded as supporting a proposition it makes about the past**. That is narrower
 than the sentence two earlier builds printed here — *"the launch set is supported
-by nothing"* — which stopped being true of every page when `WLW-001` appeared
-and is corrected rather than deleted (`BF-030`). What the scan above returned,
+by nothing"* — which appeared in three builds, stopped being true of every page when
+`WLW-001` arrived, and is corrected rather than deleted (`BF-030`). What the scan above returned,
 and what each linked page's §3 makes of it, is the record.
 
 Three consequences, and they are the shape of the whole unit:
@@ -568,10 +589,10 @@ that *"these are publication gates, not optional polish."*
 
 **R1.** At least one claim with `supports_page` naming the slug, carrying a
 status other than `INHERITED-UNVERIFIED`, **whose subject is a proposition the
-page makes about the past**. **No page in the set passes R1 today.** 1 of the fifteen has a row with a status other than `INHERITED-UNVERIFIED` — `the-water-city` — and that page's §3 records that its subject is the state of this repository's registers at a timestamp rather than the past the page describes.
+page makes about the past**. 1 of the fifteen has a row carrying a status other than `INHERITED-UNVERIFIED` — `the-water-city` — and that page's §3 records what its subject is. **No page in the set passes R1 today.**
 
-*Two earlier builds stated R1 without its second clause and asserted that no page
-passed it. As written then, `WLW-001` satisfied R1 — a mechanical test with a
+*Three earlier builds stated R1 without its second clause and asserted that no
+page passed it. As written then, `WLW-001` satisfied R1 — a mechanical test with a
 typed verdict that the scan already contradicted (`BF-030`). The clause is what
 the gate always meant; the brief's §3 is where it is applied, because whether a
 row's subject is the page's past is a judgement and not a scan.*

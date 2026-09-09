@@ -57,7 +57,6 @@ agency, or causation is stated categorically."*
 The H1 states chronology, agency and causation categorically in three sentences.
 
 
-
 ---
 
 ## 2. Environment and epistemic posture

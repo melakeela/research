@@ -78,11 +78,9 @@ against 8 words of prose is a measurement of a page's furniture.
 number.** That is an argument from absence over one document, so it is typed:
 `claim-risk.csv` is the sheet whose method is *"Flagged categorical, causal,
 priority/origin, institutional and quantitative central claims"* — a site count
-in a title being the fourth and fifth of those — and it holds no row for this
-page. The absence is `NOT PRODUCED` within the workbook's own scope, checked at
+in a title being the fifth of those five — and it holds no row for this page. The absence is `NOT PRODUCED` within the workbook's own scope, checked at
 build time; it says nothing about whether the number was examined anywhere else,
 and `IH-250` records that it was, in the inheritance, and left unresolved.
-
 
 
 ---
@@ -254,7 +252,7 @@ Every page in the release carries the shared gates in
 five *Not completed* publication gates, and the ten framework gates F1–F10. They
 are not repeated here. What follows is what this page needs **beyond** them.
 
-1. Whatever §8.1's rule is taken to require of this page — its own words are that the number in view is a property of the current filter, *"always shown with the filter, never as a title"*, and the page's current title states a total. What follows from that is D-034's to settle and not this brief's: §7 records the conflict and the three arms without choosing one, and this gate states the rule rather than a launch condition derived from it.
+1. Whatever §8.1's rule is taken to require of this page — its own words are that the number in view is a property of the current filter, "always shown *with* the filter, never as a title", and the page's current title states a total. What follows from that is D-034's to settle and not this brief's: §7 records the conflict and the three arms without choosing one, and this gate states the rule rather than a launch condition derived from it.
 2. Every mapped thing is an object with a status and an attestation mode; a findspot and an attributed provenance are never the same marker (§8.2).
 3. The 145 `assumed` date rows are typed as assertions with their basis, or excluded. Rendering them identically to the 54 report-dated rows is `IH-105` published as if it were `IH-105` solved.
 4. Unknown zones are a rendered layer, and the excavation/survey coverage overlay exists (§8.2) — without it no absence on the map is checkable.
@@ -299,11 +297,14 @@ choosing one.
 that §8.1's no-headline-count rule *"is the one that makes the page launchable at
 all"* and that *"under that rule the Atlas ships before D-034 is answered."* That
 was a settlement, written in this brief's own voice, of a decision that is
-`OPEN`. It is withdrawn in §2 and preserved there rather than deleted. §5's
-first gate — *"No headline count anywhere on the page, per §8.1"* — is a
-statement of what §8.1 requires, not a finding that the requirement is met or
-that meeting it would end the matter; see the last paragraph of this section on
-what that gate does and does not reach.
+`OPEN`. It is withdrawn in §2 and preserved there rather than deleted.
+
+§5's first gate reads, in full, printed from the same string §5 prints:
+
+> Whatever §8.1's rule is taken to require of this page — its own words are that the number in view is a property of the current filter, "always shown *with* the filter, never as a title", and the page's current title states a total. What follows from that is D-034's to settle and not this brief's: §7 records the conflict and the three arms without choosing one, and this gate states the rule rather than a launch condition derived from it.
+
+That is a statement of the rule. It is not a launch condition derived from the
+rule, and not a finding that D-034 has an answer.
 
 The page's own title asserts a figure that this repository has logged as disputed
 and has not closed, and the same workbook schedules the page third:
@@ -348,34 +349,43 @@ and *"The atlas number is load-bearing for a page ranked third in the launch
 set."* This brief adds no identifier and takes no position; it records that the
 conflict survives into the brief set and names what each arm would change.
 
-**What changes under each arm**, stated so the decision is legible and for no
-other purpose. They are listed in no order of preference, and each is reachable
-without the other two:
+**What changes under each arm.** Three arms, each given the same three lines and
+no others — what it does, what of D-034 it settles, and what it costs. The
+structure is fixed because the alternative is tuning: this section's balance has
+been found wrong twice, in opposite directions, and both times the asymmetry was
+in what one arm's prose was allowed to carry that another's was not (`BF-029`,
+`BF-030`). They are in no order of preference and each is reachable without the
+other two.
 
-- **The number is settled.** The dataset is extracted and counted (§6, MVP-U3)
-  and X-01 closes. What the title then does is *still* open, and this brief
-  cannot say it survives with a re-derived figure: §8.1 as quoted below forbids a
-  number in the title under any circumstances, so a settled count makes the title
-  question answerable without answering it. Rank 3 stands unless something
-  else moves it. **Cost:** this is the only arm that waits on the archive (see
-  below), and the only one that produces a value D-034 asks for.
-- **The title is changed, the number left open.** The title drops the figure. The
-  page ships at rank 3 with no total in its own voice, and D-034 stays
-  `OPEN` — the page-count half of it untouched, and the atlas half unanswered
-  rather than resolved. **Cost:** an editorial act is exactly what §2 of this
-  brief records this repository cannot yet perform. The Editorial Register that
-  §11.5 specifies to hold *"a publication decision, an environment assignment or
-  a duplication finding"* **does not exist**, and §2's finding applies here
-  unchanged — *"an assignment with no derivation to disagree with cannot be
-  audited."* A title changed with nothing recording who changed it, from what,
-  and why is the shape of the problem this page is about.
-- **The rank is changed.** The page moves out of the first three and the release
-  opens on something whose central claim is not an unsettled number. D-034 stays
-  `OPEN` in both halves, and the title is untouched. **Cost:** `page-audit.csv`
-  records **56 inbound links** to this page, the second count
-  among the fifteen behind `enter`'s 113, so demoting it changes the
-  site's link structure and not only an order — and the Editorial Register
-  problem in the arm above applies to a rank change too.
+**Arm 1 — the number is settled.**
+- *Does:* the dataset is extracted and counted (§6, MVP-U3); X-01 closes.
+- *Settles of D-034:* the atlas-count half — the value the decision asks for.
+  Not the page-count half. Not what the title then says: §8.1 as read below
+  forbids a number in a title under any circumstances, so a settled count makes
+  the title question answerable without answering it.
+- *Costs:* it is the only arm that waits on the archive (below). The count then
+  has to be published as a claim with a status and an inclusion rule, and if the
+  title changes with it, the Editorial Register problem below applies here too.
+
+**Arm 2 — the title is changed, the number left open.**
+- *Does:* the title drops the figure; the page ships at rank 3 with no total
+  in its own voice.
+- *Settles of D-034:* neither half. The atlas count stays `OPEN` and unanswered
+  rather than resolved, and the page-count half is untouched.
+- *Costs:* the Editorial Register that §11.5 specifies to hold *"a publication
+  decision, an environment assignment or a duplication finding"* does not exist,
+  and §2's finding applies unchanged — *"an assignment with no derivation to
+  disagree with cannot be audited."*
+
+**Arm 3 — the rank is changed.**
+- *Does:* the page moves out of the first three; the release opens on something
+  whose central claim is not an unsettled number.
+- *Settles of D-034:* neither half. Both stay `OPEN`, and the title is
+  untouched.
+- *Costs:* `page-audit.csv` records **56 inbound links** to this page, the
+  second count among the fifteen behind `enter`'s 113, so
+  demoting it changes the site's link structure and not only an order. The
+  Editorial Register problem in arm 2 applies here too.
 
 **One thing all three arms share, and it does not decide between them.** The
 count itself cannot be derived here: §6 records that the atlas data lives in
@@ -398,10 +408,13 @@ and left the status quo as the only reading. Withdrawn, and recorded rather than
 deleted.
 
 **What §8.1 reaches, read exactly.** A draft of this section said *"§8.1 does not
-reach the title at all"*. It does. **§8.1's rule ends** — the section itself continues past it — *"The
-number of sites in view is a property of the current filter and is always shown
-with the filter, never as a title."* The rule reaches the title directly, and the current title breaks it. Three things follow,
-and none of them closes D-034.
+reach the title at all"*. It does. **§8.1's rule ends** — the section itself
+continues past it — "The number of sites in view is a property of the current
+filter and is always shown *with* the filter, never as a title." The emphasis on
+*with* is the source's and is reproduced because this block claims to read the
+rule exactly; a draft dropped it to avoid nesting italics. The rule reaches the
+title directly, and the current title breaks it. Three things follow, and none of
+them closes D-034.
 
 - The second arm is what §8.1 **would require if the specification were
   adopted** — not an alternative to the rule, and not something the rule can
