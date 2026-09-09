@@ -65,7 +65,7 @@ well-formed register in which every findspot and custody field was empty.
 
 The key is rebuilt (`"P%06d" % int(id_text)`), the fix is commented at the point
 of failure in the script, and the join now prints its match rate on every run:
-**1,686 of 1,688 matched, 2 absent from the catalogue.** Logged as `BF-029`;
+**1,763 of 1,765 matched, 2 absent from the catalogue** (the figures moved as the classifiers were repaired; see `BF-032`, `BF-039`, `BF-041`). Logged as `BF-029`;
 `RA-025` asks the same question of every other join in this repository.
 
 ---
@@ -82,8 +82,8 @@ Producing:
 
 | Output | Rows | What it is |
 |---|---|---|
-| `03-REGISTERS/domain-r-cdli-attestations.csv` | 3,688 | Accepted occurrences, classified by determinative and morphology, joined to the catalogue |
-| `03-REGISTERS/domain-r-cdli-rejected.csv` | 417 | Occurrences excluded by rule, published so the exclusions can be checked |
+| `03-REGISTERS/domain-r-cdli-attestations.csv` | 3,788 | Accepted occurrences, classified by determinative and morphology, joined to the catalogue |
+| `03-REGISTERS/domain-r-cdli-rejected.csv` | 348 | Occurrences excluded by rule, published so the exclusions can be checked |
 | `03-REGISTERS/domain-r-cdli-summary.json` | — | Target × classification counts |
 | `03-REGISTERS/domain-r-museum-candidates.csv` | 796 | Objects attributed to lapis, carnelian, or a look-alike |
 

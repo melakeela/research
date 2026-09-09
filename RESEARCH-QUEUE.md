@@ -77,8 +77,8 @@ and §11 (packets R20–R21), plus one domain that has no entry in either
     `domain-r-museum-candidates.csv` (796 objects with custody and image
     status), `domain-r-negative-evidence.csv` (13 typed absences),
     `domain-r-hypothesis-eligibility.csv` (10 gated),
-    `domain-r-cdli-attestations.csv` (3,688) and `domain-r-cdli-rejected.csv`
-    (417). Method and both adversarial tests: `04-AUDITS/domain-r-method.md`.
+    `domain-r-cdli-attestations.csv` (3,788) and `domain-r-cdli-rejected.csv`
+    (348). Method and both adversarial tests: `04-AUDITS/domain-r-method.md`.
     Draft copy: `03-REGISTERS/domain-r-draft-copy.md`.
 
     Two lanes answered and everything else was refused. The CDLI catalogue and

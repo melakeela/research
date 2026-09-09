@@ -9,8 +9,8 @@ Mesopotamia, alternative geological sources.
 **Deliverables:** `03-REGISTERS/domain-r-claims.csv` (64: 54 VERIFIED, 7 PROVISIONAL, 2 HOLD, 1 REJECTED),
 `domain-r-object-fields.csv` (13), `domain-r-museum-candidates.csv` (796),
 `domain-r-negative-evidence.csv` (13), `domain-r-hypothesis-eligibility.csv`
-(10), `domain-r-cdli-attestations.csv` (3,688), `domain-r-cdli-rejected.csv`
-(417); `domain-r-translation-fields.csv` (11 terms); `04-AUDITS/` scripts, seven
+(10), `domain-r-cdli-attestations.csv` (3,788), `domain-r-cdli-rejected.csv`
+(348); `domain-r-translation-fields.csv` (11 terms); `04-AUDITS/` scripts, seven
 archive-and-power rows, sixteen bias-failure rows, nine re-audit rows, seven
 internal-contradiction rows; nine bridges; eight dependency rows; 30
 access-ledger rows (SRC-099 to SRC-128); four holds; one owner decision.
