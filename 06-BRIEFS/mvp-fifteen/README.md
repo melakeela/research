@@ -1,6 +1,6 @@
 # MVP fifteen — page briefs
 
-**Written:** 2026-09-08
+**Written:** 2026-09-08 · **revised:** 2026-09-09
 **Unit type:** page briefs. One per page in the curatorial audit's MVP set.
 Fifteen briefs, `01-index.md` to `15-the-archive.md`, in the workbook's rank
 order. This README is the index and the shared-gate reference; it is not a
@@ -17,8 +17,10 @@ scanned for `supports_page`.
 `SCHEMA.md`, `method-limits.csv`, `summary.csv`, `claim-risk.csv`,
 `overlap-tensions.csv`, `02-SOURCES/access-ledger.csv`, `DECISIONS-NEEDED.md`,
 `RESEARCH-QUEUE.md`, `CLAUDE.md` and `04-AUDITS/BIAS-FAILURE-LOG.csv`. The
-generator makes **81 assertions** against those files and fails the build
-if one does not hold — covering the §1.5 derivation rules *with their numbers*
+generator makes **101 assertions** and fails the build if one does not
+hold — quotations checked against the files listed above, plus six comparative and
+superlative claims checked against `page-audit.csv` and `mvp.csv`, which are
+reproduced rather than quoted — covering the §1.5 derivation rules *with their numbers*
 (the briefs cite the numbers), the negative-evidence type names, and `SRC-052`'s
 probe list and constraint.
 
@@ -35,9 +37,19 @@ resolve while being attributed to the wrong speaker, given the wrong status, or
 used to support something it does not say. One such case was found by review in
 the first draft and corrected. The check narrows the space for silent error; it
 does not close it, and no claim here rests on its having done so.
-**Every count in this directory is derived at build time.** None is a typed
-literal — the inheritance's standing rule 14, which the first draft of this
-README broke by stating a diagram count from memory.
+**Every count this directory *argues from* is derived at build time**, and the
+scope of that sentence is narrower than the blanket claim two earlier builds made
+— *"Every count in this directory is derived at build time. None is a typed
+literal"* — which was false when written and is corrected rather than deleted
+(`BF-029`). The workbook figures inside each brief's *What the workbook records
+as observed* block are transcribed from `page-audit.csv` by hand and are not
+checked by the build; so are the `IH-` claim texts in each evidence table. What is
+derived is every count on which a finding rests: the register scan and its
+statuses, the inherited-row total, the diagram sets, the `supports_page` values,
+the quote total, and the two inbound-link figures §7 of `03-artifact-atlas.md`
+compares. The inheritance's standing rule 14 is the rule here; stating a
+compliance that is broader than the compliance achieved is itself a way of
+breaking it.
 
 **No retrieval was performed for this unit.** No row was added to
 `02-SOURCES/access-ledger.csv`; no claim moved status; no domain was requested.
@@ -168,6 +180,249 @@ correction implies the two bodies of scholarship start level.
 
 ---
 
+## 0.2 What the second build changed, and what found it
+
+The first build was committed on 2026-09-08. Between then and 2026-09-09
+`03-REGISTERS/water-living-world-readiness.csv` was added to the repository on
+another branch. It is the fifteenth register carrying a `supports_page` column,
+and one of its rows, `WLW-001`, carries `supports_page = the-water-city` at
+`VERIFIED`. *(That status is stated here as the historical fact it is — what
+arrived on 2026-09-08, and the reason it mattered. §0.2's rule against typed
+statuses governs the briefs' live readings, not this record of an event; a
+draft applied it here and made the audit trail vaguer than the thing it
+records.)*
+
+The generator caught part of this by itself and missed the rest, and the split is
+the argument for building briefs from a script rather than writing them out.
+
+**The derived part self-corrected.** `09-the-water-city.md` §3's opening sentence
+is composed from the scan, so on re-running it changed from *"No register row in
+this repository names this page"* to a statement of the row it found. In the
+other fourteen briefs the same sentence kept its shape and its register count
+moved from 14 to 15; in `09-the-water-city.md` the count is no longer printed
+there at all, because the sentence that carried it is the one the scan replaced.
+
+**The fixed part did not.** Four passages of prose in every one of the fifteen
+briefs asserted the scan's *result* rather than printing it — that no row in any
+register names the slug, that nothing bearing on the page stands above
+`INHERITED-UNVERIFIED`, that this *"is the same for all fifteen pages"*, and the
+lowest-status line, which was a typed literal in all fifteen. Two more were in
+this README: §2's *"zero rows naming any of the fifteen slugs"* and the table's
+floor column.
+
+**What was actually false, stated exactly.** For the fourteen unlinked slugs
+those sentences remained true; a first draft of this section said all of them
+went false at once, which is the same overstatement in the opposite direction.
+What went false was the two `the-water-city` instances and, in every brief, the
+quantifier — *"the same for all fifteen pages"* — which is the sentence that made
+the error a directory-wide one rather than a page-level one. The failure is not
+that the prose was wrong everywhere; it is that nothing in the build could tell
+where it had gone wrong.
+
+The repairs below came in five rounds. The first three items were the repair
+pass; items 4 to 7 were forced by independent adversarial review of it (`BF-029`);
+item 8 by a second review of that repair (`BF-030`); items 9 and 10 by a third
+(`BF-031`); and a fourth review returned nothing blocking, with the corrections it
+did return logged at `BF-032`. They are listed with what
+each review found rather than folded in silently, because two of the three rounds
+found that the previous round's own account of itself was wrong.
+
+1. **The linkage finding is derived.** §2 above and each brief's §3 now compose
+   their statement from the scan rather than asserting its result. A page with a
+   linked row says so and reads the row; a page without one says that. §2 prints
+   what the scan returned and stops: it does not summarise the readings, because
+   a sentence generalising over them is the `BF-027` failure again, and a first
+   version of it duly hard-coded *"in the one case on file"* beside a derived
+   count that would eventually contradict it.
+2. **The floor is derived and the rule for it is stated.** Each brief's *lowest
+   status* line is now computed from the statuses actually present. It is not a
+   sort — framework §3.2 forbids ordering `INHERITED-UNVERIFIED` against the six
+   evidential statuses — so the floor is stated by rule: a row carrying
+   `INHERITED-UNVERIFIED` has had no retrieval event behind it, so no set
+   containing one stands above it. A page whose evidence contains no such row
+   stops the build instead of publishing Python's `None` as a status, which is
+   what a first version did.
+3. **A linked row cannot be read by the generator, so it is not read by the
+   generator.** A link records that someone tied a row to a page; what the row
+   carries is a judgement. A page with a linked row must supply `linked_reading`
+   and `linked_licenses_copy`, and the build fails without them. That is why a
+   register row added on a later branch cannot silently change what a brief
+   claims: it stops the build until a person writes down what it means. A row
+   declared to license public copy also fails the build, because §1's account of
+   why the step 14 slots are empty would no longer hold.
+
+   A first version of this gate tested `page.get("linked_licenses_copy")`, which
+   a missing key satisfies, so the second half of the gate this README advertised
+   did not exist. Both fields are now required by presence. Every gate in the
+   file also raises `SystemExit` rather than asserting: a bare `assert` vanishes
+   under `python3 -O`, and a gate an interpreter flag can switch off is not one.
+4. **The floor is not a two-rung ladder.** A first version of the derivation
+   called every status that was not `INHERITED-UNVERIFIED` *"above the floor"* —
+   which is the ordering framework §3.2 forbids, and which would have printed a
+   `REJECTED` row as standing above one. The briefs now name the other statuses
+   present without ranking them against the floor, and an unstatused linked row
+   stops the build instead of being rendered as empty backticks.
+5. **`03-artifact-atlas.md` §7 derives what it argues from.** The two
+   inbound-link figures and their ordering, the `mvp.csv` and `page-audit.csv`
+   cells, D-034's status, and whether `claim-risk.csv` holds a row for the page
+   are all read at build time. A first draft of the section retyped every one of
+   them and called 56 the highest inbound-link count in the set; it is the
+   second, behind `enter`'s 113.
+6. **`WLW-001` is quote-checked.** The build's assertions guard quotations from
+   the framework, the constitution and the workbook; the row this whole build
+   exists to respond to was guarded by none, and it has already been amended once
+   under review. Its claim text, its locator and its `notes` are now checked, and
+   the *"14 registers"* / *"15 registers"* comparison in
+   `09-the-water-city.md` §3 derives its second figure instead of typing it.
+7. **Nothing is written until everything is built.** A gate firing halfway
+   through the loop used to leave the directory half-regenerated and looking
+   clean — for a directory whose entire claim is that its output is derived, the
+   worst available failure state. Every brief is now composed before any file is
+   opened for writing.
+8. **A derived value that falsifies its own sentence stops the build.** Reading a
+   value at build time is not enough if the sentence around it presumes a
+   particular value: substituting D-034's live status into *"a settlement …
+   against a decision that is `OPEN`"* produced *"a decision that is `ANSWERED`"*
+   and built cleanly. `owner_decision` now takes the status the argument needs and
+   `claim_risk_absent` halts if the row it argues from the absence of appears —
+   the pattern `atlas_inbound` already used. The same review found the ranking
+   language removed from `status_floor` surviving verbatim in the hand-written
+   reading it prints, three false scan-result sentences still standing in this
+   README after two sweeps that claimed to have removed them, and §0.2's own
+   prestige-bias entry still carrying the misattribution the narrative eight lines
+   above it had corrected — with one of its sentences made false by the previous
+   repair. All are fixed above and marked where they stood.
+
+9. **Every superlative over the workbook's columns has a check behind it.**
+   `BF-028`'s own standing control had been applied to the one page under review
+   when it was written; four more sat typed and unguarded in `01-index.md`,
+   `02-enter.md`, `05-tinai.md`, `13-the-other-laws.md` and §6 of this README.
+   All five now stop the build if the workbook moves under them, and each check
+   names the brief that prints the claim.
+10. **A section is emitted for every page whose source defines one.** The
+   substitutions §7 of `03-artifact-atlas.md` takes are specific to that page,
+   and a guard written to scope them was wrapped around the emission as well —
+   which silently deleted `08-before-the-indus.md` §7, sixty-three lines
+   recording owner decision D-032, and left four references in committed output
+   pointing at nothing. The guard now covers the substitution only. This is the
+   worst thing any round of this work has done: a repair that had spent three
+   commits insisting that withdrawn text is recorded and never deleted removed a
+   live record of an `OPEN` decision, and the round that did it logged five
+   findings without noticing. `BF-031`; the class is `RA-025`.
+
+**The direction of the failures is the finding of the third round.** `BF-029`
+recorded a repair leaning toward leaving the launch order alone. `BF-030` records
+the correction of it leaning the other way — §7 began preferring the arm that
+changes the title, through an unhedged *"requires"* on a `HYPOTHESIS` proposition,
+a launch condition smuggled into §5's gate 1, and a cost stated for two arms and
+withheld from the third. That is what an overcorrection looks like when the author
+is correcting their own overcorrection, and it is why the arms now each carry a
+labelled cost.
+
+`03-artifact-atlas.md` also gained the §7 the first build did not write. The
+title-count conflict was raised in its §1 and then **answered in its §2**, which
+wrote that §8.1's rule *"is the one that makes the page launchable at all"* and
+that *"under that rule the Atlas ships before D-034 is answered."* That is a
+settlement of an `OPEN` owner decision in the brief's own voice, and locating it
+took a second review — a first draft of this section attributed it to §1 and §5,
+neither of which resolves anything, which is why the first repair pass left the
+strongest instance standing. §2 now withdraws the sentence and keeps it visible;
+§7 disclaims §2 by name, records the conflict in the form
+`08-before-the-indus.md` §7 uses, and sets out three arms without ranking them.
+
+**What this did not change.** No retrieval was performed for the second build
+either, no claim moved status, and no page gained support: `WLW-001` is
+`VERIFIED` about the state of this repository's registers at a timestamp, not
+about the past `the-water-city` describes. The finding the directory was written
+under stands — no proposition any of the fifteen pages makes about the past is
+supported by a register row — and it now stands on a derivation instead of on a
+sentence.
+
+The method failures are logged at `04-AUDITS/BIAS-FAILURE-LOG.csv` `BF-027`,
+`BF-028` and `BF-029`. `BF-029` is the whole of the third list above: independent
+adversarial review of the repair pass returned seven blocking findings, every one
+a defect in the repair rather than in the work it repaired, and two of them ran
+toward leaving the launch order and the framework's authority undisturbed.
+`BF-027` and `BF-028` were corrected in place by that review — both had
+miscounted, in rows about miscounting — and the corrections are marked inside the
+rows. Re-audits: `RA-022` asks the same question of every document in the
+repository that states a count or a coverage finding in prose; `RA-023` asks
+whether any other gate in this repository's scripts is one only in the sense that
+these two were.
+
+### The two tests, re-run on the second build
+
+Constitution §8 requires both before a unit is called finished, and *"running one
+is a failed test"* (framework §3.11). §0.1 records them for the first build.
+
+**Prestige-bias challenge.** Found: **yes, and it is why §7 of
+`03-artifact-atlas.md` had to be written.** The prestige at work is internal.
+`13-PRODUCT-ARCHITECTURE/museum-framework.md` is this repository's own
+specification, it reads with the authority of a rule, and every design
+proposition in it is `HYPOTHESIS` by its own §14.4. The first build let its §8.1
+close the atlas title-count conflict — **§2** of that brief presented §8.1's
+no-headline-count rule as *"the resolution that makes the page launchable at
+all"* and concluded that *"under that rule the Atlas ships before D-034 is
+answered"* — while D-034 sat `OPEN` in `09-DECISIONS/OWNER-DECISIONS.csv` with a
+note saying in as many words that §8.1 neutralises the number without answering
+it. A `HYPOTHESIS` document was allowed to settle an owner decision because it is
+ours and it is well argued.
+
+*This entry said §1 and §5 for two builds, and added that they were left
+unchanged so the failing reading would stay visible. Both halves were wrong:
+neither §1 nor §5 resolves anything, which is why the first repair pass missed
+the sentence that did; and the third build then rewrote both of them, so the
+claim that they were unchanged became false as well. Corrected here rather than
+overwritten, because an audit-trail entry that quietly acquires the right answer
+is not an audit trail. §2 now withdraws the sentence in place and keeps it
+visible; §7 disclaims §2 by name.*
+
+A second, smaller instance is `BF-028`: the arm of the conflict that would move
+the page out of rank 3 was argued with an inflated cost — 56 inbound links called
+the highest in the set when `enter` has 113 — which is the error a reader
+attached to the existing launch order would make.
+
+**Preferred-counter-narrative challenge.** Found: **yes, once, and it runs
+against this unit's own product.** `WLW-001` arrived at `VERIFIED` — stated
+here as the historical fact, per §0.2 — and its arrival
+falsified the sentence this directory was built around: *"No page in the MVP set
+has a single register row behind it."* The reading in `09-the-water-city.md` §3
+lets the substance of that sentence stand — the row is about the registers, not
+about the past; it is a timestamped probe; it and this brief are one source
+rather than two. Each of those three is defensible and each of them is also
+convenient, and the reading was written by the unit whose headline finding the
+row threatened. That is the shape of motivated reading whether or not the reading
+is right. It is recorded here rather than resolved by its author: what would
+overturn it is a linked row whose subject is the past a page describes, carrying
+a status other than `INHERITED-UNVERIFIED`, and the correct response to one would be to
+rewrite §2 rather than to read it down. The scepticism this repository runs on is
+not neutral when it is pointed at a claim that would cost the current unit its
+result.
+
+**A third finding, from the review rather than from either test.** `RA-019` is
+open, `HIGH`, and its standing control is *"re-check whether any brief accepted a
+workbook `Risk` rating as an evidentiary judgement rather than a scheduling
+one."* This build added prose squarely inside that scope — §7 of
+`03-artifact-atlas.md` argues about what the `Keep` and `Low` ratings can and
+cannot settle — without running the control, and got the columns wrong in the
+process. §1 now separates `Curatorial decision` from `Claim risk`, quotes each
+layer's own limit from `method-limits.csv`, and marks the causal reading of `Low`
+as an inference the brief cannot check. `RA-019` is not closed by this; adding
+material to an open re-audit's class without running it is the failure worth
+recording.
+
+**The asymmetry statement** (§11.2): the two failures above are symmetrical in
+form and asymmetrical in what they defend. The first defends an internal
+specification's authority over an open owner decision; the second defends this
+unit's own finding against a row that contradicted it. Neither is a bias about
+the ancient world, and neither should be read as one — which is itself worth
+stating, because a unit that runs both tests and reports only internal findings
+may have run them only against itself. On the fifteen pages' *subjects* the tests
+were not re-run in this build; `RA-019` still holds for the four pages where the
+prestige test bites, and it is not closed here.
+
+---
+
 ## 1. The fifteen
 
 | # | Slug | Environment / posture | Decision | Risk | Lowest status of its evidence |
@@ -180,7 +435,7 @@ correction implies the two bodies of scholarship start level.
 | 6 | [`the-ledger`](06-the-ledger.md) | Reading Room — *known by argument from sources* | `Keep` | `Low` | `INHERITED-UNVERIFIED` |
 | 7 | [`keeladi`](07-keeladi.md) | Living Tiṇai — *known through place and material* | `Keep` | `Low` | `INHERITED-UNVERIFIED` |
 | 8 | [`before-the-indus`](08-before-the-indus.md) | Nocturnal Veḷi — *not yet known* | `Hold` | `Critical` | `INHERITED-UNVERIFIED` |
-| 9 | [`the-water-city`](09-the-water-city.md) | Living Tiṇai — *known through place and material* | `Keep` | `Low` | `INHERITED-UNVERIFIED` |
+| 9 | [`the-water-city`](09-the-water-city.md) | Living Tiṇai — *known through place and material* | `Keep` | `Low` | `INHERITED-UNVERIFIED` (+1 linked, `VERIFIED`) |
 | 10 | [`kural`](10-kural.md) | Tamil Retrofuture — *known against an official account* | `Revise` | `Medium` | `INHERITED-UNVERIFIED` |
 | 11 | [`sound-changes`](11-sound-changes.md) | Living Signal Field — *known by relation* | `Revise` | `Medium` | `INHERITED-UNVERIFIED` |
 | 12 | [`the-languages-we-lost`](12-the-languages-we-lost.md) | Nocturnal Veḷi — *not yet known* | `Keep` | `Low` | `INHERITED-UNVERIFIED` |
@@ -190,13 +445,13 @@ correction implies the two bodies of scholarship start level.
 
 ---
 
-## 2. The finding that applies to all fifteen
+## 2. The finding that applies across the fifteen
 
-**No page in the MVP set has a single register row behind it.**
+**1 of the fifteen has a register row recorded against it; the other 14 have none.**
 
-A scan of every register in `03-REGISTERS/` carrying a `supports_page` column
-(14 files) returns **zero rows naming any of the fifteen slugs**. The
-10 `supports_page` values actually in use are: `atlas layer`, `brahui`, `forts (proposed)`, `geography (proposed)`, `method`, `none — infrastructure`, `substrate (proposed)`, `the-killed.html`, `the-northwest-cousin.html`, `what-varna-meant.html`.
+A scan of every register in `03-REGISTERS/` carrying a `supports_page` column (15 files) returns rows for: `the-water-city` — `WLW-001` in `water-living-world-readiness.csv` (`VERIFIED`) (read in [`the-water-city`](09-the-water-city.md) §3). Every other slug returns zero. **A link is not support.** A link records that someone tied a row to a page; whether the row carries a proposition the page asserts is a judgement, and each linked page's brief makes it in its own §3 under the gate described in §0.2. This section prints what the scan returned and does not summarise those readings — a sentence generalising over them is the failure `BF-027` was logged for.
+
+The 24 `supports_page` values actually in use are: `atlas layer`, `brahui`, `forts (proposed)`, `geography (proposed)`, `method`, `none — infrastructure`, `substrate (proposed)`, `the-killed.html`, `the-northwest-cousin.html`, `the-water-city`, `water-living-world`, `water-living-world §0.4`, `water-living-world §4.1`, `water-living-world §4.2`, `water-living-world §4.3`, `water-living-world §4.4`, `water-living-world §4.5`, `water-living-world §6.1`, `water-living-world §6.2`, `water-living-world §9`, `what-varna-meant.html`, `§4.4`, `§4.5`, `§8`.
 `03-REGISTERS/inherited-claims.csv` holds 369 rows, all
 `INHERITED-UNVERIFIED`, and **all 369 have an empty `supports_page`**.
 
@@ -212,13 +467,18 @@ repository.
 Under `CLAUDE.md`'s register format, `supports_page` is what ties a claim to the
 atlas entry or exhibit it feeds, and *"Evidence that supports nothing is not
 collected."* Read the other way round, which is the way that matters here: on the
-repository's own accounting, **the launch set is supported by nothing**.
+repository's own accounting, **no page in the launch set has a register row
+recorded as supporting a proposition it makes about the past**. That is narrower
+than the sentence three earlier builds printed here — *"the launch set is
+supported by nothing"* — which stopped being true of every page when
+`WLW-001` arrived, and is corrected rather than deleted (`BF-030`). What the scan above returned,
+and what each linked page's §3 makes of it, is the record.
 
 Three consequences, and they are the shape of the whole unit:
 
-1. **The lowest status is the same on every page.** Nothing bearing on any of the
-   fifteen stands above `INHERITED-UNVERIFIED`. Where each brief names inherited
-   rows, they are rows that *bear on* the page, not rows that support it.
+1. **The floor is the same on every page: `INHERITED-UNVERIFIED`.** Every row bearing on any of the fifteen carries `INHERITED-UNVERIFIED`, except the linked row(s) named in §2 above, which carry another status and are read in their pages' §3. A different status is not a higher one: framework §3.2 rules that these do not form a ladder, and the floor is stated by the rule that a row with no retrieval event behind it cannot be stood above.
+   Where each brief names inherited rows, they are rows that *bear on* the page,
+   not rows that support it.
 2. **No public copy may be drafted for any of them.** Method step 14 draws public
    copy from accepted claims. There are none. Each brief therefore states its
    page's QUESTION and leaves the other six step-14 slots open with the reason.
@@ -331,8 +591,25 @@ that *"these are publication gates, not optional polish."*
 
 ### The repository-level gate
 
-**R1.** At least one claim with `supports_page` naming the slug, at a status
-above `INHERITED-UNVERIFIED`. **No page in the set passes R1 today.**
+**R1.** At least one claim with `supports_page` naming the slug, carrying a
+status other than `INHERITED-UNVERIFIED`, **whose subject is a proposition the
+page makes about the past**. 1 of the fifteen has a row carrying a status other than `INHERITED-UNVERIFIED` — `the-water-city` — and that page's §3 records what its subject is. **No page in the set passes R1 today.**
+
+*Three earlier builds stated R1 without its second clause and asserted that no
+page passed it. As written then, `WLW-001` satisfied R1 — a mechanical test with a
+typed verdict that the scan already contradicted (`BF-030`). The clause is what
+the gate always meant; the brief's §3 is where it is applied, because whether a
+row's subject is the page's past is a judgement and not a scan.*
+
+*What the verdict rests on, stated so the next reader starts from the gap rather
+than finding it: the judgement is a per-page field, `linked_subject_is_page_past`,
+which the build requires of every page carrying a linked row. The verdict above is
+read from those fields and from nothing else. A build that completes has an answer
+for every linked page; it has none for a row nobody has read, because such a row
+stops the build. A fourth build read this verdict off `linked_licenses_copy`
+instead, which asks whether a row licenses public copy — a different question,
+which a row can fail while satisfying R1, and the error ran toward preserving this
+directory's headline finding (`BF-032`).*
 
 ---
 

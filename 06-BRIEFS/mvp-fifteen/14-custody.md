@@ -2,7 +2,7 @@
 
 **Page:** *Manuscript Custody: Who Held the Texts and Who Was Kept Out* · MVP rank **14** of 15 · `Extraction / Collection` · Decision `Keep` · Risk `Medium`
 
-**Written:** 2026-09-08
+**Written:** 2026-09-08 · **revised:** 2026-09-09
 **Unit type:** page brief. A brief is a statement of what a page would have to
 be and what it would have to rest on. It is **not public copy**, and no
 sentence in it may be lifted onto a page.
@@ -24,8 +24,7 @@ was performed to write this brief and no row was added to
 
 ### Why the remaining six slots are empty
 
-Step 14 draws public copy **from accepted claims**. This page has none: §3 below
-records that nothing bearing on it stands above `INHERITED-UNVERIFIED`. Drafting
+Step 14 draws public copy **from accepted claims**. This page has none: §3 below records that every row bearing on it carries `INHERITED-UNVERIFIED` and no other status appears. Drafting
 `WHAT THE EVIDENCE SUPPORTS` from claims at that standing would be writing public
 copy for unverified claims, which is what `CLAUDE.md`'s inheritance rule and the
 museum framework's Rule S-1 forbid. The slots are therefore left open, with the
@@ -35,7 +34,7 @@ work that would fill them named in §6.
 |---|---|---|
 | QUESTION | yes | stated above; a question asserts nothing |
 | WHAT IS OBSERVED | partly | the workbook's structural counts are observations *about a page*, not about the past; the page's own observations are unretrieved |
-| WHAT THE EVIDENCE SUPPORTS | no | no claim above `INHERITED-UNVERIFIED` |
+| WHAT THE EVIDENCE SUPPORTS | no | no claim outside the `INHERITED-UNVERIFIED` floor |
 | WHAT COMPLICATES IT | no | complications are claims too, and carry the same floor |
 | WHAT REMAINS UNKNOWN | no | requires the negative-evidence typing of constitution §6, not yet performed |
 | MELAKEELA'S CURRENT INTERPRETATION | no | an interpretation over an unverified claim set states confidence retrieval has not earned |
@@ -130,7 +129,7 @@ individually, in aggregate, or only with prior notice), `OWNER-DECISIONS.csv`
 
 ## 3. The evidence it rests on
 
-**No register row in this repository names this page.** A scan of all 14 registers in `03-REGISTERS/` carrying a `supports_page` column returns zero rows for `custody` (`04-AUDITS/mvp-fifteen-briefs-build.py`, `scan_supports_page`). Under `CLAUDE.md`'s register format, `supports_page` is what ties a claim to the page it feeds — so on the repository's own accounting, this page is supported by nothing.
+**No register row in this repository names this page.** A scan of all 15 registers in `03-REGISTERS/` carrying a `supports_page` column returns zero rows for `custody` (`04-AUDITS/mvp-fifteen-briefs-build.py`, `scan_supports_page`). Under `CLAUDE.md`'s register format, `supports_page` is what ties a claim to the page it feeds — so on the repository's own accounting, this page is supported by nothing.
 
 
 **Adjacency is not support.** Where verified work in this repository happens to
@@ -176,11 +175,11 @@ ladder. Framework §3.2: six of the seven statuses describe evidential standing
 and one describes *where the assertion came from* — a prior model's summary of
 its own conversation — so *"the interface must therefore never sort or
 colour `INHERITED-UNVERIFIED` between `PROVISIONAL` and `HYPOTHESIS` as though
-the statuses formed a single ladder."* What can be said exactly is the operative
-ceiling, and it is the same for all fifteen pages: **nothing bearing on this
-page stands above `INHERITED-UNVERIFIED`.** Where the handoff labelled a finding
-`VERIFIED` or `PROVISIONAL`, that label came in with it and did not survive
-intake — `CLAUDE.md`, the inheritance rule.
+the statuses formed a single ladder."* The floor above is therefore stated by
+rule rather than by sorting: a row carrying `INHERITED-UNVERIFIED` has had no
+retrieval event behind it, so no set containing one stands above it. **Every row bearing on this page carries `INHERITED-UNVERIFIED`, and no other status appears.**
+Where the handoff labelled a finding `VERIFIED` or `PROVISIONAL`, that label came
+in with it and did not survive intake — `CLAUDE.md`, the inheritance rule.
 
 
 ---
@@ -258,4 +257,4 @@ a row in the Obligations Register and is itself the page's evidence.
 
 ---
 
-*Brief written 2026-09-08. Nothing in it is public copy. Nothing in it promotes a claim: promotion requires a retrieval event logged in `02-SOURCES/access-ledger.csv`, and this unit performed none.*
+*Brief written 2026-09-08, revised 2026-09-09. Nothing in it is public copy. Nothing in it promotes a claim: promotion requires a retrieval event logged in `02-SOURCES/access-ledger.csv`, and this unit performed none.*
