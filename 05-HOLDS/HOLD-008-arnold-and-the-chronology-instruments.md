@@ -35,6 +35,22 @@ retrieved on 2026-09-07 and refused on 2026-09-08. Reachability is a timestamped
 probe and not a property — `RA-003`, `D-042` — and this hold is an instance of
 that, not an exception to it.
 
+## Measured, 2026-09-09T02:31Z
+
+Ten hosts a Rigvedic chronology unit would need were probed directly.
+**All ten refused** (`SRC-118`): archive.org, jstor.org, doi.org, GRETIL, TITUS,
+sanskrit-lexicon.uni-koeln.de, sanskrit-trikashaivism.com, ashtadhyayi.com,
+wisdomlib.org, and vedaweb.uni-koeln.de — the last of which answered on
+2026-09-07. Two lanes worked in the same session: the git proxy anonymous read
+lane, which delivered the entire corpus, and the MCP connectors, which delivered
+abstracts.
+
+So the asymmetry above is not an impression. **Data in git repositories and
+abstracts through commercial connectors are reachable; every library, archive,
+dictionary and text collection is not.** `ashtadhyayi.com` and
+`sanskrit-lexicon.uni-koeln.de` are among the refusals, which is why the Pāṇini
+lane could not be opened even as a probe.
+
 ## What was done instead
 
 Nothing was inferred to fill the gap. Where a source was needed and absent, the
