@@ -1,6 +1,6 @@
 # MVP fifteen — page briefs
 
-**Written:** 2026-09-08
+**Written:** 2026-09-08 · **revised:** 2026-09-09
 **Unit type:** page briefs. One per page in the curatorial audit's MVP set.
 Fifteen briefs, `01-index.md` to `15-the-archive.md`, in the workbook's rank
 order. This README is the index and the shared-gate reference; it is not a
@@ -17,7 +17,7 @@ scanned for `supports_page`.
 `SCHEMA.md`, `method-limits.csv`, `summary.csv`, `claim-risk.csv`,
 `overlap-tensions.csv`, `02-SOURCES/access-ledger.csv`, `DECISIONS-NEEDED.md`,
 `RESEARCH-QUEUE.md`, `CLAUDE.md` and `04-AUDITS/BIAS-FAILURE-LOG.csv`. The
-generator makes **81 assertions** against those files and fails the build
+generator makes **84 assertions** against those files and fails the build
 if one does not hold — covering the §1.5 derivation rules *with their numbers*
 (the briefs cite the numbers), the negative-evidence type names, and `SRC-052`'s
 probe list and constraint.
@@ -168,6 +168,69 @@ correction implies the two bodies of scholarship start level.
 
 ---
 
+## 0.2 What the second build changed, and what found it
+
+The first build was committed on 2026-09-08. Between then and 2026-09-09
+`03-REGISTERS/water-living-world-readiness.csv` was added to the repository on
+another branch. It is the fifteenth register carrying a `supports_page` column,
+and one of its rows, `WLW-001`, carries `supports_page = the-water-city` at
+status `VERIFIED`.
+
+The generator caught half of this by itself and missed the other half, and the
+split is worth recording because it is the argument for building briefs from a
+script rather than writing them out. **The derived half self-corrected:**
+`09-the-water-city.md` §3's opening sentence is composed from the scan, so on
+re-running it changed from *"No register row in this repository names this
+page"* to a statement of the row it found, and the register count in every brief
+moved from 14 to 15. **The fixed half did not.** Five sentences of prose in every
+brief, and two in this README, asserted the scan's *result* rather than printing
+it — that no row named the slug, that nothing bearing on the page stood above
+`INHERITED-UNVERIFIED`, and that this *"is the same for all fifteen pages"* —
+and one brief's floor line was a typed literal. Those sentences were true when
+they were written and false the next day, and they would have gone on printing
+next to a derived count that contradicted them.
+
+Four repairs, all in the generator rather than in the output:
+
+1. **The linkage finding is derived.** §2 above and each brief's §3 now compose
+   their statement from the scan rather than asserting its result. A page with a
+   linked row says so and reads the row; a page without one says that.
+2. **The floor is derived and the rule for it is stated.** Each brief's *lowest
+   status* line is now computed from the statuses actually present. It is not a
+   sort — framework §3.2 forbids ordering `INHERITED-UNVERIFIED` against the six
+   evidential statuses — so the floor is stated by rule: a row carrying
+   `INHERITED-UNVERIFIED` has had no retrieval event behind it, so no set
+   containing one stands above it. If a page's evidence ever contains no such
+   row, the build stops and asks for a written floor rather than guessing one.
+3. **A linked row cannot be read by the generator, so it is not read by the
+   generator.** A link records that someone tied a row to a page; what the row
+   carries is a judgement. A page with a linked row must supply `linked_reading`
+   and `linked_licenses_copy`, and the build fails without them. That is why a
+   register row added on a later branch cannot silently change what a brief
+   claims: it stops the build until a person writes down what it means. A row
+   declared to license public copy also fails the build, because §1's account of
+   why the step 14 slots are empty would no longer hold.
+4. **The two inbound-link figures in `03-artifact-atlas.md` §7 are checked**
+   against `page-audit.csv`, including their ordering. A draft of that section
+   called 56 the highest in the set; it is the second, behind `enter`'s 113.
+
+`03-artifact-atlas.md` also gained the §7 the first build did not write: the
+title-count conflict was discussed in its §1 and §5 and answered there by
+framework §8.1, which is a resolution and not a flag. §8.1 removes the number
+from the page's voice; it does not reach the title and does not produce a value.
+The conflict is now recorded in the same form as `08-before-the-indus.md` §7,
+without an outcome assumed.
+
+**What this did not change.** No retrieval was performed for the second build
+either, no claim moved status, and no page gained support: `WLW-001` is
+`VERIFIED` about the state of this repository's registers at a timestamp, not
+about the past `the-water-city` describes. The finding the directory was written
+under stands — no proposition any of the fifteen pages makes about the past is
+supported by a register row — and it now stands on a derivation instead of on a
+sentence.
+
+---
+
 ## 1. The fifteen
 
 | # | Slug | Environment / posture | Decision | Risk | Lowest status of its evidence |
@@ -180,7 +243,7 @@ correction implies the two bodies of scholarship start level.
 | 6 | [`the-ledger`](06-the-ledger.md) | Reading Room — *known by argument from sources* | `Keep` | `Low` | `INHERITED-UNVERIFIED` |
 | 7 | [`keeladi`](07-keeladi.md) | Living Tiṇai — *known through place and material* | `Keep` | `Low` | `INHERITED-UNVERIFIED` |
 | 8 | [`before-the-indus`](08-before-the-indus.md) | Nocturnal Veḷi — *not yet known* | `Hold` | `Critical` | `INHERITED-UNVERIFIED` |
-| 9 | [`the-water-city`](09-the-water-city.md) | Living Tiṇai — *known through place and material* | `Keep` | `Low` | `INHERITED-UNVERIFIED` |
+| 9 | [`the-water-city`](09-the-water-city.md) | Living Tiṇai — *known through place and material* | `Keep` | `Low` | `INHERITED-UNVERIFIED` (+1 linked) |
 | 10 | [`kural`](10-kural.md) | Tamil Retrofuture — *known against an official account* | `Revise` | `Medium` | `INHERITED-UNVERIFIED` |
 | 11 | [`sound-changes`](11-sound-changes.md) | Living Signal Field — *known by relation* | `Revise` | `Medium` | `INHERITED-UNVERIFIED` |
 | 12 | [`the-languages-we-lost`](12-the-languages-we-lost.md) | Nocturnal Veḷi — *not yet known* | `Keep` | `Low` | `INHERITED-UNVERIFIED` |
@@ -190,13 +253,13 @@ correction implies the two bodies of scholarship start level.
 
 ---
 
-## 2. The finding that applies to all fifteen
+## 2. The finding that applies across the fifteen
 
-**No page in the MVP set has a single register row behind it.**
+**1 of the fifteen pages has a register row recorded against it; the other 14 have none.**
 
-A scan of every register in `03-REGISTERS/` carrying a `supports_page` column
-(14 files) returns **zero rows naming any of the fifteen slugs**. The
-10 `supports_page` values actually in use are: `atlas layer`, `brahui`, `forts (proposed)`, `geography (proposed)`, `method`, `none — infrastructure`, `substrate (proposed)`, `the-killed.html`, `the-northwest-cousin.html`, `what-varna-meant.html`.
+A scan of every register in `03-REGISTERS/` carrying a `supports_page` column (15 files) returns rows for: `the-water-city` — `WLW-001` in `water-living-world-readiness.csv` (`VERIFIED`). Every other slug returns zero. **A link is not support** — what the linked rows carry is read in each brief's §3, and in the one case on file the row's subject is the state of this repository's registers at a timestamp, not the past the page describes. The finding this directory was written under is therefore unchanged in substance: no proposition any of the fifteen pages makes about the past is supported by a register row.
+
+The 24 `supports_page` values actually in use are: `atlas layer`, `brahui`, `forts (proposed)`, `geography (proposed)`, `method`, `none — infrastructure`, `substrate (proposed)`, `the-killed.html`, `the-northwest-cousin.html`, `the-water-city`, `water-living-world`, `water-living-world §0.4`, `water-living-world §4.1`, `water-living-world §4.2`, `water-living-world §4.3`, `water-living-world §4.4`, `water-living-world §4.5`, `water-living-world §6.1`, `water-living-world §6.2`, `water-living-world §9`, `what-varna-meant.html`, `§4.4`, `§4.5`, `§8`.
 `03-REGISTERS/inherited-claims.csv` holds 369 rows, all
 `INHERITED-UNVERIFIED`, and **all 369 have an empty `supports_page`**.
 

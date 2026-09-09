@@ -2,7 +2,7 @@
 
 **Page:** *Artifact Atlas: 175 Ancient South Asian Sites Mapped* · MVP rank **3** of 15 · `Living Signal Field` · Decision `Keep` · Risk `Low`
 
-**Written:** 2026-09-08
+**Written:** 2026-09-08 · **revised:** 2026-09-09
 **Unit type:** page brief. A brief is a statement of what a page would have to
 be and what it would have to rest on. It is **not public copy**, and no
 sentence in it may be lifted onto a page.
@@ -24,8 +24,7 @@ was performed to write this brief and no row was added to
 
 ### Why the remaining six slots are empty
 
-Step 14 draws public copy **from accepted claims**. This page has none: §3 below
-records that nothing bearing on it stands above `INHERITED-UNVERIFIED`. Drafting
+Step 14 draws public copy **from accepted claims**. This page has none: §3 below records that nothing bearing on it stands above `INHERITED-UNVERIFIED`. Drafting
 `WHAT THE EVIDENCE SUPPORTS` from claims at that standing would be writing public
 copy for unverified claims, which is what `CLAUDE.md`'s inheritance rule and the
 museum framework's Rule S-1 forbid. The slots are therefore left open, with the
@@ -141,7 +140,7 @@ asserts a total in its own voice.
 
 ## 3. The evidence it rests on
 
-**No register row in this repository names this page.** A scan of all 14 registers in `03-REGISTERS/` carrying a `supports_page` column returns zero rows for `artifact-atlas` (`04-AUDITS/mvp-fifteen-briefs-build.py`, `scan_supports_page`). Under `CLAUDE.md`'s register format, `supports_page` is what ties a claim to the page it feeds — so on the repository's own accounting, this page is supported by nothing.
+**No register row in this repository names this page.** A scan of all 15 registers in `03-REGISTERS/` carrying a `supports_page` column returns zero rows for `artifact-atlas` (`04-AUDITS/mvp-fifteen-briefs-build.py`, `scan_supports_page`). Under `CLAUDE.md`'s register format, `supports_page` is what ties a claim to the page it feeds — so on the repository's own accounting, this page is supported by nothing.
 
 
 **Adjacency is not support.** Where verified work in this repository happens to
@@ -176,11 +175,11 @@ ladder. Framework §3.2: six of the seven statuses describe evidential standing
 and one describes *where the assertion came from* — a prior model's summary of
 its own conversation — so *"the interface must therefore never sort or
 colour `INHERITED-UNVERIFIED` between `PROVISIONAL` and `HYPOTHESIS` as though
-the statuses formed a single ladder."* What can be said exactly is the operative
-ceiling, and it is the same for all fifteen pages: **nothing bearing on this
-page stands above `INHERITED-UNVERIFIED`.** Where the handoff labelled a finding
-`VERIFIED` or `PROVISIONAL`, that label came in with it and did not survive
-intake — `CLAUDE.md`, the inheritance rule.
+the statuses formed a single ladder."* The floor above is therefore stated by
+rule rather than by sorting: a row carrying `INHERITED-UNVERIFIED` has had no
+retrieval event behind it, so no set containing one stands above it. **Nothing bearing on this page stands above `INHERITED-UNVERIFIED`.**
+Where the handoff labelled a finding `VERIFIED` or `PROVISIONAL`, that label came
+in with it and did not survive intake — `CLAUDE.md`, the inheritance rule.
 
 
 ---
@@ -252,4 +251,85 @@ release's connective heart on a dataset nobody here has opened.
 
 ---
 
-*Brief written 2026-09-08. Nothing in it is public copy. Nothing in it promotes a claim: promotion requires a retrieval event logged in `02-SOURCES/access-ledger.csv`, and this unit performed none.*
+## 7. The recorded conflict — a disputed count in the title, at rank 3 of the launch set
+
+**This brief records the conflict and does not resolve it. Nothing above or below
+assumes an outcome. In particular, §5's first gate states what framework §8.1
+proposes for the page's *display*; it is not a settlement of the *number*, and
+§8.1 does not reach the title at all.**
+
+The page's own title asserts a figure that this repository has logged as
+disputed and has not closed, and the same workbook schedules the page third:
+
+| File | Cell | Value |
+|---|---|---|
+| `page-audit.csv` | `Title` | *"Artifact Atlas: 175 Ancient South Asian Sites Mapped"* |
+| `mvp.csv` | `Rank` | **3** of 15 |
+| `mvp.csv` | `Decision` / `Risk` | `Keep` / **Low** |
+| `mvp.csv` | `Release dependency` | *"Preserve the core argument; complete citation, image-rights, accessibility, and copy review before publication."* |
+| `claim-risk.csv` | — | **no row for this page at all** |
+| `03-REGISTERS/inherited-claims.csv` `IH-250` | `INHERITED-UNVERIFIED` | contradiction X-01: 140 / 150 / 158 / 167→175 / 194 / 199 sites |
+| `03-REGISTERS/inherited-claims.csv` `IH-057` | `INHERITED-UNVERIFIED` | correction C-37: three different counts on three live surfaces |
+| `09-DECISIONS/OWNER-DECISIONS.csv` **D-034** | `OPEN` | *"Is 96 the authoritative page count, and what is the atlas site count?"* |
+
+Rank 3 is not an ordering detail. It is the third page a visitor is scheduled to
+meet, and on the current title it meets them with a number the inheritance
+records as one of six competing values. Neither instrument that rated the page can settle
+it: `Keep` and `Low` come from the workbook's risk column, and `method-limits.csv`
+says what that column measured — source visibility *"estimated from visible
+Sources/References sections"*, with *"a visible bibliography does not prove
+claim-level support or source quality."* 88 bibliography entries against 8 words
+of prose produced `Low`. The rating and the contradiction never came into
+contact, and `claim-risk.csv` — the sheet that would have recorded a publication
+gate on the number — has no row for this page.
+
+**Already raised, and not by this brief.** `DECISIONS-NEEDED.md` **D-034** —
+renumbered from D-006 on 2026-09-07 (`09-DECISIONS/DECISION-ID-MAP.csv`) — states
+it: *"A contested number is inside a launch page title, presented as settled,"*
+and *"The atlas number is load-bearing for a page ranked third in the launch
+set."* Its `OWNER-DECISIONS.csv` row is `OPEN` and its `notes` already record the
+distinction this section turns on: *"Neutralised but not answered by
+museum-framework.md §8.1 — the Atlas can be built without the number and cannot
+be titled without it."* This brief adds no identifier and takes no position; it
+records that the conflict survives into the brief set and names what each arm
+would change.
+
+**What §8.1 does and does not reach.** It rules that the Atlas has no headline
+count — a count is shown inside the Atlas with its status and inclusion rule, or
+not shown. That removes the number from the page's *voice* and is why §5 can
+list a launchable gate. It leaves two things standing: the **title**, which is a
+`page-audit.csv` field and a piece of public copy in its own right, and the
+**value**, which D-034 asks for and which `IH-250`'s resolution path — *"extract
+the dataset to JSON, count, and generate every stated figure from it"* — would
+have to produce. A page whose title says 175 while its map declines to state a
+total is not a page that has resolved the number.
+
+**What changes under each arm**, stated so the decision is legible and for no
+other purpose:
+
+- **Number settled first.** The dataset is extracted and counted (§6, MVP-U3),
+  X-01 closes, and the title either survives with its figure re-derived and
+  statused or is rewritten to the derived value. Rank 3 stands. This is the only
+  arm in which the page launches with a number in its title.
+- **Title changed, number left open.** The title drops the figure; the page ships
+  at rank 3 under §8.1 with no total in its own voice, and D-034 stays `OPEN`
+  against the page-count half. The `asset-register.csv` line *verified dataset*
+  is still owed, so §5's gates are unchanged.
+- **Rank changed.** The page moves out of the first three and the release opens on
+  something whose central claim is not an unsettled number. `page-audit.csv`
+  records **56 inbound links** to this page, second among the fifteen only to
+  `enter`'s 113, so demoting it is a change to the site's link structure and not
+  only to an order.
+
+**What does not change under any arm**, and this is an observation about
+sequencing rather than a resolution: the count cannot be derived from anything in
+this repository. §6 records that the atlas data lives in `artifact-atlas.html`
+inside `veli-site(3).zip`, which is not committed here and has no access-ledger
+row. Until the owner supplies that archive or names the authoritative build
+(D-033), every arm above is blocked on the same missing object, and the title
+question is blocked behind the count question.
+
+
+---
+
+*Brief written 2026-09-08, revised 2026-09-09. Nothing in it is public copy. Nothing in it promotes a claim: promotion requires a retrieval event logged in `02-SOURCES/access-ledger.csv`, and this unit performed none.*

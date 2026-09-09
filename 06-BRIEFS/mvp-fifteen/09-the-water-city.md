@@ -2,7 +2,7 @@
 
 **Page:** *Indus Water Engineering: Drains, Wells and No Palaces* · MVP rank **9** of 15 · `Living Tiṇai` · Decision `Keep` · Risk `Low`
 
-**Written:** 2026-09-08
+**Written:** 2026-09-08 · **revised:** 2026-09-09
 **Unit type:** page brief. A brief is a statement of what a page would have to
 be and what it would have to rest on. It is **not public copy**, and no
 sentence in it may be lifted onto a page.
@@ -24,8 +24,7 @@ was performed to write this brief and no row was added to
 
 ### Why the remaining six slots are empty
 
-Step 14 draws public copy **from accepted claims**. This page has none: §3 below
-records that nothing bearing on it stands above `INHERITED-UNVERIFIED`. Drafting
+Step 14 draws public copy **from accepted claims**. This page has none: §3 below records 1 register row linked to it — `WLW-001` — and reads it: it carries no proposition this page asserts. Nothing else bearing on the page stands above `INHERITED-UNVERIFIED`. Drafting
 `WHAT THE EVIDENCE SUPPORTS` from claims at that standing would be writing public
 copy for unverified claims, which is what `CLAUDE.md`'s inheritance rule and the
 museum framework's Rule S-1 forbid. The slots are therefore left open, with the
@@ -35,7 +34,7 @@ work that would fill them named in §6.
 |---|---|---|
 | QUESTION | yes | stated above; a question asserts nothing |
 | WHAT IS OBSERVED | partly | the workbook's structural counts are observations *about a page*, not about the past; the page's own observations are unretrieved |
-| WHAT THE EVIDENCE SUPPORTS | no | no claim above `INHERITED-UNVERIFIED` |
+| WHAT THE EVIDENCE SUPPORTS | no | no claim above `INHERITED-UNVERIFIED` bearing on what this page asserts; the 1 linked row is read in §3 |
 | WHAT COMPLICATES IT | no | complications are claims too, and carry the same floor |
 | WHAT REMAINS UNKNOWN | no | requires the negative-evidence typing of constitution §6, not yet performed |
 | MELAKEELA'S CURRENT INTERPRETATION | no | an interpretation over an unverified claim set states confidence retrieval has not earned |
@@ -121,19 +120,50 @@ standing in for a drainage system nobody has photographed.
 
 ## 3. The evidence it rests on
 
-**No register row in this repository names this page.** A scan of all 14 registers in `03-REGISTERS/` carrying a `supports_page` column returns zero rows for `the-water-city` (`04-AUDITS/mvp-fifteen-briefs-build.py`, `scan_supports_page`). Under `CLAUDE.md`'s register format, `supports_page` is what ties a claim to the page it feeds — so on the repository's own accounting, this page is supported by nothing.
+**1 register row names this page** in `supports_page`: `WLW-001` in `water-living-world-readiness.csv` (`VERIFIED`).
 
 
-**Adjacency is not support.** Where verified work in this repository happens to
-be *about subjects a page discusses*, it is still not *linked to that page*: no
-row in any register carries `supports_page` naming this slug. Under framework §3.3 a
-claim's status comes from its own Evidence Links, so a page cannot inherit
-standing by sitting next to a register. Linking is an editorial act (§11.5) and
-transfers nothing by itself; the page's propositions have to be written as Claim
-Objects and evidenced in their own right.
+**A link is not yet support.** The row(s) above are *recorded against* this page
+in `supports_page`. Under framework §3.3 a claim's status comes from its own
+Evidence Links, and linking is an editorial act (§11.5): the link records that
+someone tied the row to the page, not that the row establishes any proposition
+the page makes. What each linked row actually carries is stated below, and the
+page's own propositions still have to be written as Claim Objects and evidenced
+in their own right.
 
 
-What exists instead is inherited material that **bears on** this page without being linked to it. Every row below is from `03-REGISTERS/inherited-claims.csv`, whose 369 rows all carry `INHERITED-UNVERIFIED` and all carry an empty `supports_page`.
+**What the linked row carries, and what it does not.** `WLW-001` is
+`VERIFIED` — the only row above `INHERITED-UNVERIFIED` linked to any of the
+fifteen — and reads: *"As at 2026-09-08T21:13Z, before this unit added any row,
+no register in 03-REGISTERS/ carried a water claim above INHERITED-UNVERIFIED,
+and no row in any register carried supports_page = the-water-city."* Its subject
+is **the state of this repository's registers at a timestamp**, not the past this
+page describes. Nothing about drains, wells, tanks, bathing platforms or the
+absence of palaces gained standing when it was written. What changed is the
+sentence above — a row now names this page — and nothing else, so §1's account of
+why the step 14 slots stay empty is unaffected.
+
+**Three properties of the row that matter for reading it.**
+
+1. **It is tensed, and the tense is doing work.** The row's own `notes` record
+   that the first draft was falsified by its own existence — it carries
+   `supports_page = the-water-city`, so a flat *"no row carries it"* was untrue
+   the moment it was committed. *"before this unit added any row"* is the repair,
+   made under adversarial review rather than quietly. Read without that clause the
+   row contradicts itself.
+2. **It is a probe, not a standing property.** `02-SOURCES/access-ledger.csv`:
+   *"A ledger row is a timestamped probe, not a standing property (D-042)."* The
+   row's locator names a scan of **14** registers carrying the column; the scan
+   behind this brief finds 15. `VERIFIED` here certifies what a scan returned at
+   21:13Z on 2026-09-08 and certifies nothing about today.
+3. **It and this brief are one source, not two.** The row's `notes` cite
+   `06-BRIEFS/mvp-fifteen/09-the-water-city.md` §3 as having established the same
+   finding, and this brief now cites the row. Both run the same scan over the same
+   directory. Under `CLAUDE.md`'s source-independence rule they count as one, and
+   neither corroborates the other.
+
+
+What exists alongside it is inherited material that **bears on** this page without being linked to it. Every row below is from `03-REGISTERS/inherited-claims.csv`, whose 369 rows all carry `INHERITED-UNVERIFIED` and all carry an empty `supports_page`.
 
 
 | claim_id | status | locator | what it bears on |
@@ -171,7 +201,7 @@ as strong as the criterion by which one would be identified.
 
 ### Lowest status among them
 
-**`INHERITED-UNVERIFIED`** — the status of every row above, and of every row that could be listed.
+**`INHERITED-UNVERIFIED`** — the status of every inherited row above, and of every inherited row that could be listed. The linked row carries `VERIFIED`, read in §3 above; it does not raise this floor.
 
 
 **On "lowest status".** `INHERITED-UNVERIFIED` is not the bottom rung of a
@@ -179,11 +209,11 @@ ladder. Framework §3.2: six of the seven statuses describe evidential standing
 and one describes *where the assertion came from* — a prior model's summary of
 its own conversation — so *"the interface must therefore never sort or
 colour `INHERITED-UNVERIFIED` between `PROVISIONAL` and `HYPOTHESIS` as though
-the statuses formed a single ladder."* What can be said exactly is the operative
-ceiling, and it is the same for all fifteen pages: **nothing bearing on this
-page stands above `INHERITED-UNVERIFIED`.** Where the handoff labelled a finding
-`VERIFIED` or `PROVISIONAL`, that label came in with it and did not survive
-intake — `CLAUDE.md`, the inheritance rule.
+the statuses formed a single ladder."* The floor above is therefore stated by
+rule rather than by sorting: a row carrying `INHERITED-UNVERIFIED` has had no
+retrieval event behind it, so no set containing one stands above it. **1 row linked to this page carries a status above that floor — `VERIFIED` — and §3 states what it is about. A row above the floor raises the floor for nothing else.**
+Where the handoff labelled a finding `VERIFIED` or `PROVISIONAL`, that label came
+in with it and did not survive intake — `CLAUDE.md`, the inheritance rule.
 
 
 ---
@@ -253,4 +283,4 @@ the half of this unit that changes the page most.
 
 ---
 
-*Brief written 2026-09-08. Nothing in it is public copy. Nothing in it promotes a claim: promotion requires a retrieval event logged in `02-SOURCES/access-ledger.csv`, and this unit performed none.*
+*Brief written 2026-09-08, revised 2026-09-09. Nothing in it is public copy. Nothing in it promotes a claim: promotion requires a retrieval event logged in `02-SOURCES/access-ledger.csv`, and this unit performed none.*
