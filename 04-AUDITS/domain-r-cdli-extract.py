@@ -58,13 +58,40 @@ def dets(tok):
     """Determinatives, in order, as written between braces."""
     return [d.lower() for d in re.findall(r"\{([^}]*)\}", NOISE.sub("", tok))]
 
+def certainty(tok):
+    """How securely the {na4} determinative is present on the tablet.
+
+    ONE rule for both stones, added 2026-09-09 after adversarial review found
+    the lapis and carnelian figures computed under different rules and the
+    lapis percentages failing to sum. A marker counts if it is inside the
+    braces or immediately wraps them: <> is an editorial supply and is not on
+    the tablet at all; # is damage; [] is a break; ? is uncertainty; ! is a
+    collation. Anything else is clean.
+    """
+    # The brace group may itself carry the markup: {[na4]} is a broken
+    # determinative and {<na4>} an editorially supplied one, so the pattern
+    # must allow characters before "na4" inside the braces.
+    m = re.search(r"\{[^}]*na4[^}]*\}", tok, re.I)
+    if not m:
+        return "no {na4}"
+    s0, e0 = m.span()
+    both = m.group(0) + tok[max(0, s0 - 1):s0] + tok[e0:e0 + 1]
+    for mark, label in (("<", "editorially supplied <> - not on the tablet"),
+                        (">", "editorially supplied <> - not on the tablet"),
+                        ("#", "damaged #"), ("[", "broken []"), ("]", "broken []"),
+                        ("?", "uncertain ?"), ("!", "collated !")):
+        if mark in both:
+            return label
+    return "clean"
+
+
 def core(tok):
     """The token with its determinatives removed."""
     return re.sub(r"\{[^}]*\}", "", bare(tok)).strip("-")
 
 # ---------------------------------------------------------------- targets
 
-def cls_meluhha(tok, d, c):
+def cls_meluhha(tok, d, c, ctx):
     if "muszen" in d:  return "BIRD-DETERMINATIVE"
     if "gesz" in d:    return "WOOD-DETERMINATIVE"
     if "kur" in d:     return "LAND-DETERMINATIVE (kur)"
@@ -72,36 +99,63 @@ def cls_meluhha(tok, d, c):
     if c.startswith(("mes-", "ab-ba-", "ur-", "lu2-")): return "BOUND-IN-COMPOUND-OR-NAME"
     return "UNMARKED"
 
-def cls_magan(tok, d, c):
+def cls_magan(tok, d, c, ctx):
     if c.startswith("sza-ma-gan") or "sza-ma-gan" in c: return "REJECT-DIVINE-NAME"
-    if "d" in d and "sza-ma-gan" in c:                  return "REJECT-DIVINE-NAME"
     if not re.match(r"^(lu2-|mes-)?ma2?-(gan|kan)", c): return "REJECT-NOT-TOPONYM"
+    if "gesz" in d: return "TIMBER-DETERMINATIVE (gesz) - not the toponym"
+    if "d" in d:    return "DIVINE-NAME - not the toponym"
+    if "sar" in d:  return "VEGETABLE-DETERMINATIVE (sar) - not the toponym"
     if c.startswith("lu2-"): return "PERSON-OF (lu2-)"
     if "ki" in d:            return "PLACE-DETERMINATIVE (ki)"
     if c.startswith("mes-"): return "BOUND-IN-COMPOUND-OR-NAME"
     return "UNMARKED"
 
-def cls_dilmun(tok, d, c):
+def cls_dilmun(tok, d, c, ctx):
     u = bare(tok).upper()
+    # The unit of account is written both as one token and, far more often, as
+    # two adjacent ones. Reading only the token was the error at BF-032.
     if "GIN2-DILMUN" in u or "GIN2.DILMUN" in u: return "UNIT-OF-ACCOUNT (gin2 dilmun)"
+    if re.search(r"\bgin2\b", ctx.prev) or re.search(r"\bgin2\b", ctx.next):
+        return "UNIT-OF-ACCOUNT (gin2 dilmun)"
+    if "zabar" in d:                     return "METAL-DETERMINATIVE (zabar) - not the toponym"
+    if "d" in d:                         return "DIVINE-NAME - not the toponym"
     if not re.search(r"\b(dilmun|tilmun|ni-tuk)\b", c): return "REJECT-NOT-TOPONYM"
     if "ki" in d:                        return "PLACE-DETERMINATIVE (ki)"
     if c.startswith(("nimbar-", "gada-")) or "gada" in d: return "COMMODITY-QUALIFIER"
     if c.startswith("e2-"):              return "BOUND-IN-COMPOUND-OR-NAME"
     return "UNMARKED"
 
-def cls_marhasi(tok, d, c):
-    if "ki" in d: return "PLACE-DETERMINATIVE (ki)"
+def cls_marhasi(tok, d, c, ctx):
+    if "sar" in d:  return "VEGETABLE-DETERMINATIVE (sar) - not the toponym"
+    if "gesz" in d: return "TIMBER-DETERMINATIVE (gesz) - not the toponym"
+    if "d" in d:    return "DIVINE-NAME - not the toponym"
+    if "ki" in d:   return "PLACE-DETERMINATIVE (ki)"
     return "UNMARKED"
 
-def cls_lapis(tok, d, c):
+def cls_lapis(tok, d, c, ctx):
     if "na4" in d: return "STONE-DETERMINATIVE ({na4})"
     if "_" in tok: return "AKKADIAN-LOGOGRAM (no {na4})"
     return "UNMARKED (may be the colour or quality term)"
 
-def cls_carnelian(tok, d, c):
+def cls_carnelian(tok, d, c, ctx):
     if "na4" not in d: return "REJECT-NOT-THE-STONE"
     return "STONE-DETERMINATIVE ({na4})"
+
+REGIONS = re.compile(r"mar-tu|gu-ti-um|mar2?-ha-(szi|s,i|s,u)|me-luh-ha|ma2?-gan|dilmun|elam")
+COMMODITY = re.compile(r"\bma2\b|\bzi3\b|\bdug\b|\bku6\b|\bkaskal\b|\bsila3\b|\bban2\b")
+
+def cls_emebal(tok, d, c, ctx):
+    """eme-bal / eme-bala. NOT all occurrences are the interpreter title."""
+    line = ctx.line
+    if "= %a" in line or "=%a" in line:
+        return "LEXICAL-EQUATION (glossed with Akkadian)"
+    if REGIONS.search(ctx.next) or REGIONS.search(ctx.prev):
+        return "TITLE-WITH-A-NAMED-REGION"
+    if COMMODITY.search(ctx.prev) or COMMODITY.search(ctx.next):
+        return "COMMODITY-OR-VESSEL CONTEXT - not securely the title"
+    if c.endswith("-me") or ctx.prev.strip().endswith("ugula"):
+        return "TITLE-OR-OFFICE, no region named"
+    return "UNMARKED - no region named"
 
 TARGETS = [
     ("MELUHHA",   re.compile(r"me-luh-ha"),                                          cls_meluhha),
@@ -110,7 +164,16 @@ TARGETS = [
     ("MARHASI",   re.compile(r"mar2?-ha-(szi|s,i|s,u)|bar-ah-szi|wa-ra-ah-s"),       cls_marhasi),
     ("LAPIS",     re.compile(r"za-gin3", re.I),                                      cls_lapis),
     ("CARNELIAN", re.compile(r"(?<![a-z0-9])gug(?![0-9])", re.I),                    cls_carnelian),
+    ("EMEBAL",    re.compile(r"\beme-bala?\b"),                                     cls_emebal),
 ]
+
+class Ctx:
+    """The neighbouring tokens and the whole line, for classifiers that need them."""
+    __slots__ = ("prev", "next", "line")
+    def __init__(self, toks, i, line):
+        self.prev = " ".join(bare(t) for t in toks[max(0, i - 2):i])
+        self.next = " ".join(bare(t) for t in toks[i + 1:i + 3])
+        self.line = line
 
 def main():
     for p, want in EXPECT.items():
@@ -140,17 +203,20 @@ def main():
             if not m:
                 continue
             lineref, body = m.group(1).rstrip("."), m.group(2)
-            for tok in body.replace(",", " ").split():
+            toks = body.replace(",", " ").split()
+            for i, tok in enumerate(toks):
                 b, c, d = bare(tok), core(tok), dets(tok)
                 if not b:
                     continue
+                ctx = Ctx(toks, i, body)
                 for name, pat, clsf in TARGETS:
                     if not pat.search(b):
                         continue
-                    verdict = clsf(tok, d, c)
+                    verdict = clsf(tok, d, c, ctx)
                     row = dict(target=name, p_number=pid, line_ref=lineref,
                                raw_token=tok, core=c, determinatives="|".join(d),
-                               classification=verdict, line=body.strip()[:300])
+                               classification=verdict, certainty=certainty(tok),
+                               line=body.strip()[:300])
                     (excluded if verdict.startswith("REJECT") else occ).append(row)
     print(f"    {len(occ)} accepted occurrences, {len(excluded)} rejected")
 
@@ -180,14 +246,16 @@ def main():
 
     with open(os.path.join(OUT, "domain-r-cdli-attestations.csv"), "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f, quoting=csv.QUOTE_ALL)
-        w.writerow(["att_id", "target", "classification", "p_number", "line_ref", "raw_token",
+        w.writerow(["att_id", "target", "classification", "determinative_certainty",
+                    "p_number", "line_ref", "raw_token",
                     "determinatives", "line", "cdli_period", "cdli_provenience",
                     "cdli_collection", "cdli_museum_no", "cdli_material",
                     "cdli_excavation_no", "cdli_primary_publication", "source_id",
                     "retrieval_date"])
         for i, r in enumerate(sorted(occ, key=lambda r: (r["target"], r["classification"], r["p_number"] or "")), 1):
             p = r["p_number"]
-            w.writerow(["DRA-%04d" % i, r["target"], r["classification"], p, r["line_ref"], r["raw_token"],
+            w.writerow(["DRA-%04d" % i, r["target"], r["classification"], r["certainty"],
+                        p, r["line_ref"], r["raw_token"],
                         r["determinatives"], r["line"],
                         cget(p, "period"), cget(p, "provenience"), cget(p, "collection"),
                         cget(p, "museum_no"), cget(p, "material"),

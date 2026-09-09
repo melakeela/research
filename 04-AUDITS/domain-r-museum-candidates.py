@@ -17,11 +17,15 @@ traps are all versions of the same error.
    column and it is empty for every row, which is the finding, not a gap in
    the register.
 
-2. The look-alikes are included deliberately. The catalogue contains
-   objects of glass, faience, Egyptian blue, frit, azurite, turquoise,
-   sodalite, chalcedony, agate and jasper. Some are blue and none is lapis;
-   some are red-orange and none is necessarily carnelian. They are carried
-   in the same file as a standing control on the first trap.
+2. Two further classes are carried deliberately, and they are NOT the same
+   thing. LOOK-ALIKE-CONTROL is glass, faience, Egyptian blue, frit, azurite,
+   turquoise, sodalite and jasper: materials confusable with lapis or carnelian
+   and mineralogically distinct from both. SAME-MINERAL-FAMILY is agate,
+   chalcedony and sard, which are NOT controls at all - DRR-009 records that
+   bead carnelian is heat-treated iron-rich agate, so an object catalogued
+   "agate" and one catalogued "carnelian" may be the same mineral differing
+   only in a cataloguer's word. Merging the two, as the first version of this
+   script did, made the control set contain the target material.
 
 3. Custody is stated as of a date, never in the present tense. The
    retrieved dump's own README says "Last update was August 2022" and the
@@ -44,7 +48,12 @@ SNAPSHOT = "2022-08-21"
 
 LAP = re.compile(r"lapis|lazul", re.I)
 CAR = re.compile(r"carnelian|cornelian|\bsard\b", re.I)
-LOOK = re.compile(r"agate|chalcedony|sodalite|azurite|turquoise|jasper|glass|faience|frit|egyptian blue", re.I)
+# Split after adversarial review. Agate and chalcedony are NOT controls: DRR-009
+# records that bead carnelian IS heat-treated iron-rich agate, so an object
+# catalogued "agate" and one catalogued "carnelian" may be the same mineral
+# differing only in a cataloguer's word. They are their own class.
+SAME_FAMILY = re.compile(r"agate|chalcedony|\bsard\b", re.I)
+LOOK = re.compile(r"sodalite|azurite|turquoise|jasper|glass|faience|frit|egyptian blue", re.I)
 
 FIELDS = ["candidate_id", "candidate_class", "p_number", "designation", "object_type",
           "geological_source", "analytical_provenance", "workshop", "manufacturing_tradition",
@@ -63,6 +72,7 @@ def main():
             m = (r.get("material") or "").strip()
             cls = ("LAPIS-ATTRIBUTED" if LAP.search(m) else
                    "CARNELIAN-ATTRIBUTED" if CAR.search(m) else
+                   "SAME-MINERAL-FAMILY (agate/chalcedony)" if SAME_FAMILY.search(m) else
                    "LOOK-ALIKE-CONTROL" if LOOK.search(m) else None)
             if not cls:
                 continue
@@ -117,8 +127,9 @@ def main():
             w.writerow(r)
 
     c = collections.Counter(r["candidate_class"] for r in rows)
-    prec = collections.Counter(r["findspot_precision"] for r in rows if r["candidate_class"] != "LOOK-ALIKE-CONTROL")
-    img = collections.Counter(r["image_held_by_cdli"].split(" ")[0] for r in rows if r["candidate_class"] != "LOOK-ALIKE-CONTROL")
+    TARGETS = {"LAPIS-ATTRIBUTED", "CARNELIAN-ATTRIBUTED"}
+    prec = collections.Counter(r["findspot_precision"] for r in rows if r["candidate_class"] in TARGETS)
+    img = collections.Counter(r["image_held_by_cdli"].split(" ")[0] for r in rows if r["candidate_class"] in TARGETS)
     print(f"{len(rows)} rows -> {OUT}")
     for k, v in c.most_common():
         print(f"   {v:>5}  {k}")

@@ -71,7 +71,8 @@ and §11 (packets R20–R21), plus one domain that has no entry in either
 12. **Domain R — materials and corridors, both roads.** *(This change.)*
     THE BLUE ROAD and THE RED ROAD run as one investigation under the
     fourteen-step method. `03-REGISTERS/domain-r-claims.csv` (64 claims: 54
-    VERIFIED, 7 PROVISIONAL, 2 HOLD, 1 REJECTED), `domain-r-object-fields.csv`
+    VERIFIED, 7 PROVISIONAL, 2 HOLD, 1 REJECTED),
+    `domain-r-translation-fields.csv` (7 terms), `domain-r-object-fields.csv`
     (13 objects, each with the owner's ten fields kept separate),
     `domain-r-museum-candidates.csv` (796 objects with custody and image
     status), `domain-r-negative-evidence.csv` (13 typed absences),
@@ -93,9 +94,17 @@ and §11 (packets R20–R21), plus one domain that has no entry in either
     Both §8 tests failed and both were corrected before commit: prestige bias
     against Iranian authors on Iranian material (`BF-028`) and
     preferred-counter-narrative bias in three of the unit's own headline
-    measurements (`BF-030`). Two further method failures are logged, including a
-    silent zero-match join that produced a complete and entirely empty register
-    (`BF-029`).
+    measurements (`BF-030`). **An independent adversarial review then found
+    seven failures the two tests did not catch** (`BF-032` to `BF-038`), four of
+    them measurement errors in claims the unit had called decisive — a
+    classifier that could not see a two-token form and inflated the Dilmun
+    toponym counts by a factor of about 2.5, a determinative screen run on one
+    of four names and generalised to all, a geographical claim quantified with
+    "every" and falsified by four rows of the register it cited, and the one
+    measurement carrying an argument about language made outside the committed
+    pipeline. All are repaired and every derived figure re-stated. The general
+    lesson is at `RA-027`: the two §8 tests examine reasoning and cannot catch
+    an error in the code that produced the numbers.
 
     Step 13 ran against `melakeela/site` and returned seven findings
     (`IC-R-001` to `IC-R-007`), of which two are not faults. Nothing on the site

@@ -10,9 +10,10 @@ Mesopotamia, alternative geological sources.
 `domain-r-object-fields.csv` (13), `domain-r-museum-candidates.csv` (796),
 `domain-r-negative-evidence.csv` (13), `domain-r-hypothesis-eligibility.csv`
 (10), `domain-r-cdli-attestations.csv` (3,688), `domain-r-cdli-rejected.csv`
-(417); `04-AUDITS/` scripts, seven archive-and-power rows, five bias-failure
-rows, five re-audit rows, seven internal-contradiction rows; nine bridges; six
-dependency rows; 27 access-ledger rows; four holds; one owner decision.
+(417); `domain-r-translation-fields.csv` (7 terms); `04-AUDITS/` scripts, seven
+archive-and-power rows, twelve bias-failure rows, eight re-audit rows, seven
+internal-contradiction rows; nine bridges; eight dependency rows; 30
+access-ledger rows (SRC-099 to SRC-128); four holds; one owner decision.
 
 ---
 
@@ -53,7 +54,10 @@ what they show about method, and labelled.
 
 **Terms needing original-language work.** `me-luh-ha`, `ma2-gan`, `dilmun` /
 `ni-tuk`, `mar-ha-szi`; `za-gin3` and Akkadian `uqnû`; `gug` and Akkadian
-`sāmtu`; `eme-bal` / `eme-bala`.
+`sāmtu`; `eme-bal` / `eme-bala`; `e2-duru5`; `dumu`; `gin2 dilmun`. The six
+consequential ones, plus the inherited English category *civilisation*, are in
+`03-REGISTERS/domain-r-translation-fields.csv` — written only after adversarial
+review found the standard named at this step and run on nothing (`BF-038`).
 
 **Viable explanations for a foreign material at a site.** Trade; gift; tribute;
 raid; relocation of craftspeople; relocation of consumers; recycling of older
@@ -91,9 +95,13 @@ locations. The corridor's political control was not treated as evidence of use:
 Achaemenid control reaching eastern Afghanistan is noted at `DRB-010` as the
 argument the source makes, not as a finding.
 
-The decisive geographical result is negative and is `DRM-010`: **every findspot
-for the four toponyms is Mesopotamian, Syrian or Assyrian.** The corridor's
-textual record was written at one end.
+The principal geographical result is negative and is `DRM-010`: of the 791 texts
+naming one of the four, 720 have a recorded findspot, and **716 of those are in
+Mesopotamia, Syria or Assyria.** Four are not — three Old Akkadian texts from
+Susa and one from Alalakh — and 71 have no findspot at all. The corridor's
+textual record was overwhelmingly written at one end, and the exceptions are
+stated because the first version of this claim said "every" and was falsified by
+four rows of the register it cited (`BF-034`).
 
 ## 4. Evidence classes, inventoried separately
 
@@ -188,10 +196,13 @@ claims only.**
 
 ---
 
-## The two adversarial tests
+## The two adversarial tests, and the independent review
 
-Both were run. **Both found something**, and both corrections were applied
-before the unit was committed.
+Both internal tests were run and both found something. **An independent review
+then found seven further failures that neither test caught**, including four
+measurement errors in claims this note had called decisive. That is recorded
+here at the top of the section rather than at the bottom, because the honest
+summary of this unit's self-audit is that it was not sufficient.
 
 ### Prestige-bias challenge — FAILED, corrected (`BF-028`)
 
@@ -241,6 +252,41 @@ they can hold, **and all three lean the same way, towards debunking.**
 **Also checked and found clean:** the "Chagai eliminated by reattribution"
 reading was attractive as a debunking story, and the row says explicitly that
 the reattribution has a stated evidential basis and may well be right.
+
+### What the independent review found that the two tests did not
+
+Seven failures, logged as `BF-032` to `BF-038` and re-audited under `RA-027` to
+`RA-029`. Four are measurement errors:
+
+- **`BF-032`.** The Dilmun unit of account was detected only inside a single
+  token, and in this corpus the form is overwhelmingly two tokens. 334
+  occurrences of a unit of account were counted as references to a place — and
+  the extraction script's own docstring names this exact phenomenon as a reason
+  the script exists. The observation was right and the implementation did not
+  follow it. Every derived figure was re-derived: 791 texts naming one of the
+  four, not 863; 742 naming exactly one, not 813.
+- **`BF-033`.** The determinative screen was run for Meluhha and generalised to
+  all four names without being run on the other three. Running it found 123
+  further non-toponymic occurrences, the largest group being Magan-timber.
+- **`BF-034`.** The geographical claim was written from the head of a frequency
+  table and quantified with "every". Four rows of the cited register refute it.
+- **`BF-035`.** The one measurement carrying an argument about *language* — the
+  interpreter title — was made by an uncommitted grep, counted lines rather than
+  occurrences, and treated boats, flour and jars as instances of a title.
+
+Three are method-standard omissions: `BF-036`, a hypothesis failed on an
+unretrieved date, which is the same move `BF-031` records refusing an hour
+earlier and which ran toward the congenial answer this time; `BF-037`, a control
+set that contained the target material under another name; and `BF-038`, the
+translation standard named at step 1 and run on nothing.
+
+**What this says about the two tests.** They are tests of *reasoning*, and every
+one of these seven is a failure of *execution* — a classifier, a screen, a
+quantifier, a pipeline, a gate ground, a class boundary, a standard not run.
+Running the bias tests on conclusions cannot catch an error in the code that
+produced the numbers the conclusions rest on. The controls at `RA-027` are
+written to close that gap, and the general one is: a figure that cannot be
+re-derived from a committed script is not a measurement.
 
 ### Two further method failures, not bias
 
