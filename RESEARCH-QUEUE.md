@@ -75,24 +75,28 @@ and §11 (packets R20–R21), plus one domain that has no entry in either
     every chronological claim in this repository reaches Arnold 1905 through
     `DEP-001`, and this unit examines that path.
 
-    Registers: `03-REGISTERS/domain-a-measurements.csv` (24),
+    Registers: `03-REGISTERS/domain-a-measurements.csv` (25),
     `domain-a-claims.csv` (17), `domain-a-eight-dates.csv` (8),
     `domain-a-conventional-date-basis.csv` (7),
-    `domain-a-arnold-dependency.csv` (60),
+    `domain-a-arnold-dependency.csv` (60 classifications over 395 rows),
     `domain-a-hypothesis-eligibility.csv` (5). Method and both §8 tests:
-    `04-AUDITS/domain-a-method.md`, repaired against adversarial review at §15.
-    Script and seventeen tables: `04-AUDITS/domain-a-instruments.py`,
-    `04-AUDITS/domain-a-tables/`.
+    `04-AUDITS/domain-a-method.md`, repaired against **two** rounds of
+    adversarial review at §15 and §16. Script and 23 tables:
+    `04-AUDITS/domain-a-instruments.py`, `04-AUDITS/domain-a-tables/`.
 
-    **Book order and Arnold's strata do not co-vary, and the disjunction is the
-    finding**: either the strata are chronological and maṇḍala number is not, or
-    maṇḍala number is and the strata are not, or neither is. Spearman ρ =
-    −0.0667 at an exact two-sided permutation *p* of 0.8651 — **underpowered at
-    ten books**, so this is no evidence *for* an ordering, not evidence against
-    one. Books 8 and 9 carry the *lowest* Arnold-late share in the corpus and
-    books 5–7 sit within three points of book 1; only book 10 separates. That a
-    maṇḍala number is an arrangement fact and not a date stands as a **method
-    rule** (`DA-003`), not as a result this unit proved.
+    **The relation between book order and Arnold's strata is scope-dependent,
+    and the unit first tested it at a unit too coarse to see that.** At the book
+    unit ρ = −0.0667 at an exact two-sided *p* of 0.8651, underpowered: nothing
+    weaker than |ρ| = 0.6364 resolves at ten books. At the hymn unit, n = 1,028,
+    it resolves — ρ = +0.2125 over all books, −0.1526 over books 1–9, and
+    **+0.1648 within the family books 2–7**, which runs *toward* the standard
+    ordering. Three caveats attach and none is optional: still Arnold's
+    instrument, hymns within a book are not independent, and 65.4% of hymns
+    carry no late pāda at all (`DA-M-025`). Books 8 and 9 carry the lowest
+    Arnold-late share in the corpus and books 5–7 sit within three points of
+    book 1. That a maṇḍala number is an arrangement fact and not a date stands
+    as a **method rule** (`DA-003`), not as a result this unit proved; the claim
+    that once said otherwise is `SUPERSEDED` (`DA-002`). `BF-031`.
 
     **Three dependencies were measured rather than asserted.** Oldenberg and
     Wüst flag almost the same stanzas (Jaccard 0.836), so the four non-Arnold
@@ -127,7 +131,11 @@ and §11 (packets R20–R21), plus one domain that has no entry in either
 
     Method **step 13 was not run** against `melakeela/site` — see `RA-023`.
     Four internal contradictions were nonetheless found, all of them by
-    adversarial review rather than by the unit: `IC-A-001` to `IC-A-004`.
+    adversarial review rather than by the unit: `IC-A-001` to `IC-A-004`. Five
+    bias failures are logged, `BF-027` to `BF-031`, and **three of the five were
+    found by the reviewer and not by the unit** — including `BF-031`, where the
+    first repair pass left a ledger row uncorrected while the contradiction row
+    logging that failure asserted it was fixed.
 
 ## Blocked on inputs
 
@@ -161,7 +169,7 @@ thing the investigation is most likely to get wrong.
 
 | # | Domain | The named trap |
 |---|---|---|
-| A | Rigvedic chronology and transmission | Neither "a perfect audio recording" nor "Pāṇini rewrote it" — *run 2026-09-09 as a dependency audit. Both traps refuted from the corpus itself: 72.04% of stanzas differ between the transmitted Saṃhitāpāṭha and the metrically restored text, and the tradition preserves a second analysis of its own text diverging from the first at ~9% of its segments. Book order and the strata do not co-vary, though at ten books that excludes nothing (ρ = −0.0667, exact *p* = 0.8651). Pāṇini remains wholly unretrieved. `A-1` is `NOT-ELIGIBLE-SOURCE-BLOCKED` on `HOLD-008`.* |
+| A | Rigvedic chronology and transmission | Neither "a perfect audio recording" nor "Pāṇini rewrote it" — *run 2026-09-09 as a dependency audit. Both traps refuted from the corpus itself: 72.04% of stanzas differ between the transmitted Saṃhitāpāṭha and the metrically restored text, and the tradition preserves a second analysis of its own text diverging from the first at ~9% of its segments. The book-order relation is scope-dependent and resolves only at the hymn unit (ρ = +0.2125 over 1,028 hymns, −0.1526 over books 1–9, +0.1648 within family books 2–7). Pāṇini remains wholly unretrieved. `A-1` is `NOT-ELIGIBLE-SOURCE-BLOCKED` on `HOLD-008`.* |
 | B | Early Rigvedic, Old Avestan and Classical Sanskrit | Family-tree labels predetermining an anonymized comparison; unequal archives read as equal samples |
 | C | The Sanskrit sound system is historically composite | Projecting the later alphabet back as one pristine PIE design; reading the 5×5 grid as 25 inherited phonemes |
 | D | Proto-Dravidian and Tamil phonology | Treating either analytical system as an imperfect version of the other |
