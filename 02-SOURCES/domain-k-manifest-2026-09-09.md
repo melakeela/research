@@ -18,8 +18,11 @@ Three are blocked and one answered.
 | Machine-readable sign corpus on GitHub | `SRC-102`, `SRC-103` | **retrieved** |
 
 Two further GitHub datasets were retrieved and are logged with what they
-can and cannot carry: `SRC-104` (a decipherment claim) and `SRC-105`
-(seal photographs without provenance).
+can and cannot carry: `SRC-104` (a decipherment claim) and `SRC-105` (327
+seal photographs and a spreadsheet of 135 rows scraped from harappa.com
+captions, locating 38 of them even to a site). This manifest's first
+reading said `SRC-105` had no provenance table; the file is `.xlsx` and
+its README says csv. `BF-027`.
 
 ## 2. The channel picture on 2026-09-09
 
@@ -72,7 +75,7 @@ prestige-bias challenge, and it is the reason `HOLD-008` exists.
 |---|---|---|
 | `mayig/indus-valley-script-corpus` | `ad2f1e218a34b8c33c57de0d6cb8d99272765bbb` (2025-04-16) | 179 corpus JSON + 397 feature JSON; concatenated sha256 `96d0174e29cc74b07b6e60bb9d278ee9f7bc206475c778892deb7127e7b30f11` |
 | `ramnerd/IVC_script_decoded` | `982d621384ce8a0230f9925d39e84b07de82dd47` (2026-08-10) | `dataset/dataset_IVC.csv`, 556 rows, no header, no artefact ids |
-| `akksshhaay/Indus-Seal-Dataset` | `536a7e2218ab06255ca2863f032431453afc6d92` (2021-02-02) | 329 files, images only; the README's CSV is absent |
+| `akksshhaay/Indus-Seal-Dataset` | `536a7e2218ab06255ca2863f032431453afc6d92` (2021-02-02) | 329 files: 327 JPEGs, a README, and `ExhaustiveDatabaseOfSeals.xlsx` with 135 data rows, 38 carrying a location and 18 a date (`DK-M-022`–`DK-M-024`, `BF-027`) |
 | `VedaWebProject/vedaweb-data` | `d3eb8af7324338161520d2d35eae8f7e985a19a5` (2025-06-13) | identical to the commit pinned at `SRC-019`/`SRC-047`/`SRC-069`/`SRC-085`; `lubotsky.csv` sha256 `14f89279…05bee`, `aufrecht.csv` sha256 `7b99eb3d…af21c10` |
 
 Derived: `rv_tokens.tsv`, 164,758 tokens, sha256

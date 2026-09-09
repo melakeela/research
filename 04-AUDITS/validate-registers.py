@@ -23,6 +23,15 @@ Checks:
      construction.
   5. Every D- reference in the tree resolves to exactly one row in
      09-DECISIONS/OWNER-DECISIONS.csv.
+  6. Every CSV in 03-REGISTERS/, 04-AUDITS/, 02-SOURCES/ and 09-DECISIONS/
+     is structurally sound: every row has the same number of fields as its
+     header. Added 2026-09-09 after BF-028, in which a register was
+     committed with 12 rows that were fragments of the preceding row - a
+     TSV read with a plain line loop, over glosses containing embedded
+     newlines - and this validator reported "all checks pass" over it. The
+     old check ran only on 03-REGISTERS/ and looked only at statuses,
+     sources and ids, so a malformed file passed twice over: once because
+     its directory was not covered, once because nothing looked at shape.
 
 CSVs in this repository mix CRLF and LF and carry embedded newlines
 inside quoted cells. Everything here opens with newline='' and never
@@ -142,12 +151,39 @@ def check_decision_refs(known):
                 fail(f"{path.relative_to(ROOT)}: reference {ref} has no OWNER-DECISIONS row")
 
 
+STRUCTURE_DIRS = ("03-REGISTERS", "04-AUDITS", "02-SOURCES", "09-DECISIONS")
+
+
+def check_structure(path):
+    """Every row carries exactly the header's field count."""
+    try:
+        with open(path, newline="", encoding="utf-8") as fh:
+            rows = list(csv.reader(fh))
+    except Exception as exc:                       # unreadable is a failure
+        fail(f"{path.relative_to(ROOT)}: cannot be parsed as CSV: {exc}")
+        return
+    if not rows:
+        return
+    width = len(rows[0])
+    for n, row in enumerate(rows[1:], start=2):
+        if not row:
+            continue
+        if len(row) != width:
+            fail(f"{path.relative_to(ROOT)}: row {n} has {len(row)} fields, "
+                 f"header has {width}")
+
+
 def main():
     ledger = ledger_ids()
     known, _ = decision_ids()
     if REGISTER_DIR.exists():
         for path in sorted(REGISTER_DIR.rglob("*.csv")):
             check_register(path, ledger)
+    for d in STRUCTURE_DIRS:
+        base = ROOT / d
+        if base.exists():
+            for path in sorted(base.rglob("*.csv")):
+                check_structure(path)
     check_decision_refs(known)
 
     if failures:

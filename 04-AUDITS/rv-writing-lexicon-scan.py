@@ -190,6 +190,12 @@ FIELD = {
     "SEAL": ["siegel", "stempel", "abdruck", "prägen", "gepräg", "sigill"],
     "INCISE": ["ritz", "eingrab", "gravier", "einschneid", "schnitz",
                "meissel", "meißel", "sculp", "incid"],
+    # Added after adversarial review, which found the weights negative
+    # (DK-A-005, DK-R-014) resting on Search A alone - on words someone
+    # thought to look for - while the writing negative had two instruments.
+    "WEIGHT": ["waage", "gewicht", "wägen", "wagen ab", "abwägen", "wäg",
+               "massstab", "maßstab", "mass", "maß", "gegengewicht",
+               "libra", "pondus", "abgemessen", "messen", "messschnur"],
 }
 
 # Adjudication. A hit is TRUE only if the GLOSS puts the word in the field;
@@ -208,6 +214,24 @@ ADJ_TRUE = {
     "yakṣabhŕ̥t-": "'ein Zeichen (?) tragend', bearing a sign - Grassmann's own question mark retained.",
     "tryàruṣa-": "'an drei Stellen rötlich gezeichnet', marked with red in three places.",
     "śréṇi-": "'Reihe, Linie Zug, Schar, Gruppe': a line in the sense of a rank of people or things, not a drawn line.",
+    "pratimā́na-": "'was gleiches Mass, gleiche Grösse, gleiche Kraft mit einem andern hat; Vergleichung'. A counterpart or match, and the nearest thing in the corpus to a comparison of magnitudes. Not a balance and not a weight standard; adjudicated TRUE for the field so that it is visible rather than filtered.",
+    "triviṣṭidhā́tu-": "Grassmann's entry quotes Geldner's 'das dreifache (Gegengewicht)', a threefold counterweight, inside a gloss that is otherwise uncertain. Adjudicated TRUE for the field on the strength of the quoted word, with the uncertainty carried into the register row rather than resolved here.",
+    "mā́na- 1": "'Messschnur, Mass', a measuring cord. An instrument of measurement, which is why DK-R-014 names it as the only one.",
+    "mā́na- 3": "'Messschnur, Mass' in one of Grassmann's senses for this homonym; the same instrument as mā́na- 1.",
+    "√mā- 1": "'messen, abmessen, zumessen, zuteilen', to measure and to mete out. The act, not the instrument.",
+    "mā́trā-": "'Masstab, Mass', a standard and a measure. With khārī́- this is why DK-R-014 was rewritten after review: the corpus does have standard measures.",
+    "khārī́-": "'ein Hohlmass', a measure of capacity - a named unit, and the closest thing in the corpus to a metrological standard.",
+    "téjana-": "'Rohrstab (zum Ausmessen RV 01.110.05)', a reed rod used for measuring out. An instrument.",
+    "yójana-": "'Gespann, Wegstrecke, Wegmass', a measure of distance.",
+    "vimā́na- 1": "'das Durchmessen, Durchlaufen', measuring through or traversing.",
+    "vimā́na- 2": "the same gloss under Grassmann's second homonym.",
+    "gurú-": "'schwer, gewichtig, hart, heftig, drückend, gross', heavy and weighty. The property, not a unit and not an instrument.",
+    "ámita-": "'ungemessen; unermesslich', unmeasured. A measure word in the negative.",
+    "súmita-": "'schön gemessen, schön errichtet', well measured out.",
+    "parómātra-": "'über das Mass hinaus gross', beyond measure.",
+    "tuvimātrá-": "'viel zumessend, viel gewährend', measuring out much.",
+    "pramā́-": "'das Abmessen' oder 'Grundmass, Name eines Metrums' (?). Grassmann offers both a measuring-out and a metre and marks the entry uncertain; counted TRUE for the field with his question mark carried through.",
+    "māná-": "'nicht klar; vielleicht Erzeugnis, Präparat (*das Abgemessene?)'. Grassmann does not know what it means; the starred paraphrase is his reconstruction, not a sense. Counted TRUE for the field only because the paraphrase is a measuring word, and it supports nothing.",
 }
 ADJ_FALSE_RULES = [
     ("bezeichn", "METALANGUAGE. Grassmann's German 'Bezeichnung eines Volkes', 'the designation of a people', describes what the dictionary entry does, not what the Vedic word means."),
@@ -219,6 +243,20 @@ ADJ_FALSE_RULES = [
     ("zugeschrieben", "GERMAN MORPHOLOGY. 'zugeschrieben' means ascribed, said of hymns attributed to a poet."),
     ("bestrichen", "GERMAN MORPHOLOGY. 'bestrichen', smeared, contains strich."),
     ("ackerbau", "GERMAN MORPHOLOGY. 'ackerbauend', farming, contains kerb."),
+    ("versmass", "GERMAN POLYSEMY. German Mass is both a measure and a metre; a Versmass is a metrical scheme and has nothing to do with weighing."),
+    ("silben", "GERMAN POLYSEMY. A syllable-count gloss reached through Versmass or Mass."),
+    ("ausmass", "GERMAN POLYSEMY. 'in hohem Ausmass' is an adverbial extent, not a measurement."),
+    ("klumpen", "GERMAN POLYSEMY. German Masse, a lump or mass of stuff, is not Mass, a measure."),
+    ("wirre masse", "GERMAN POLYSEMY. Masse as a lump."),
+    ("wassermasse", "GERMAN POLYSEMY. Masse as a bulk of water."),
+    ("wolkenmassen", "GERMAN POLYSEMY. Masse as a bulk of cloud."),
+    ("körper (masse)", "GERMAN POLYSEMY. Masse as bodily bulk."),
+    ("anmassung", "GERMAN MORPHOLOGY. 'Vermessenheit, Anmassung', presumption, is built on messen but means arrogance."),
+    ("angemessen", "GERMAN MORPHOLOGY. 'angemessen', fitting, is built on messen and is not a measurement."),
+    ("schwägerin", "GERMAN MORPHOLOGY. 'Schwägerin', sister-in-law, contains the substring waeg written as wäg."),
+    ("lobgesang, ein versmass", "GERMAN POLYSEMY. A metre."),
+    ("preislied", "GERMAN POLYSEMY. A metre or a praise-song reached through Mass."),
+    ("das mass der tri", "GERMAN POLYSEMY. 'das Mass der triṣṭúbh- habend' is a metrical scheme."),
     ("eine kennzeichnung", "METALANGUAGE. 'eine Kennzeichnung der Marut' is Grassmann saying the word characterises the Maruts, not that it means a mark."),
     ("gekennzeichnet ist", "METALANGUAGE. The gloss is a starred paraphrase of the compound's structure, '*Gut habend das durch Gedanken gekennzeichnet ist', not a sense of the word."),
 ]
@@ -275,6 +313,20 @@ def main():
             verdict, reason = adjudicate(lem, gloss)
             out.append((field, lem, gra, n, hit, verdict, reason, gloss))
             break
+    # Field independence. The loop above breaks after the first matching
+    # field, so a gloss matching WRITING is never tested for SEAL. That is
+    # only safe if no gloss matches two fields, and adversarial review was
+    # right that this was assumed rather than shown. It is now measured and
+    # printed, so a future keyword addition that creates an overlap is
+    # visible instead of silent.
+    overlap = collections.defaultdict(set)
+    for (lem, gra, gloss), n in pair.items():
+        low = gloss.lower()
+        for field, keys in FIELD.items():
+            if any(k in low for k in keys):
+                overlap[(lem, gloss)].add(field)
+    multi = {k: v for k, v in overlap.items() if len(v) > 1}
+
     out.sort(key=lambda x: (x[0], x[5] != "TRUE", -x[3]))
     with open(OUT + "-glossscan.tsv", "w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh, delimiter="\t")
@@ -282,6 +334,8 @@ def main():
                     "keyword", "verdict", "reason", "gloss"])
         for r in out:
             w.writerow(r)
+    print("  glosses matching more than one field: %d%s"
+          % (len(multi), "" if not multi else " - " + str(sorted(multi.items()))))
     tally = collections.Counter((r[0], r[5]) for r in out)
     for field in FIELD:
         t = tally[(field, "TRUE")]

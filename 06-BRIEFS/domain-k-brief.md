@@ -1,19 +1,28 @@
 # Domain K brief — the script they didn't read
 
 **Status: brief, not page.** Drafted 2026-09-09 from accepted claims
-only, in the step-14 shape. Nothing here schedules or approves a page;
-`D-032` still governs the MVP set and this unit does not touch it. Every
-paragraph below is traceable to a register row, and where a row is
-`PROVISIONAL` the copy says so in its own words rather than in a note.
+only, in the step-14 shape; repaired 2026-09-09 after adversarial review,
+which found this draft asserting Indus figures no register holds and
+crossing two bridges the registers refuse. Nothing here schedules or
+approves a page; `D-032` still governs the MVP set and this unit does not
+touch it. Every quantity below is traceable to a register row, and where
+a figure belongs to the platform rather than to this record the copy says
+so.
 
 ---
 
 ## QUESTION
 
-The Indus cities left tens of thousands of inscribed objects and no one
-can read them. The Rigveda, composed in the same broad region afterwards,
-never unambiguously describes writing. Does the second fact tell us
-anything about the first?
+The Indus cities left inscribed objects — how many is a question this
+record cannot answer, because the corpus publication was unreachable — and
+no one can read them. The Rigveda, composed in a region that overlaps
+theirs, never unambiguously describes writing. Does the second fact tell
+us anything about the first?
+
+Whether "afterwards" is the right word is itself unsettled here: no
+absolute date for either side was retrievable, so this record cannot place
+the two in sequence, only note that both are conventionally placed in the
+same broad region.
 
 ## WHAT IS OBSERVED
 
@@ -23,7 +32,9 @@ not historical.
 **In the Rigveda, which can be searched completely.** Seventeen of the
 words later Sanskrit uses for writing and sealing are simply not in the
 corpus — no *lipi*, no *lekha*, no *mudrā*, no word for ink, pen, tablet,
-book or scribe. Nor are the words for a balance, a number or a reckoning. A scan of every glossed word in the corpus for the German
+book or scribe. Nor is there a word for a balance or a pair of scales,
+though the corpus does measure: it has a measuring cord, a measuring rod,
+a measure of capacity and a measure of distance. A scan of every glossed word in the corpus for the German
 and Latin vocabulary of writing returns five words and all five are
 accidents of German spelling. The same scan for the vocabulary of sealing
 returns nothing at all.
@@ -38,8 +49,9 @@ share, debt, levy, price, measuring.
 What it has no word for is **recording** any of it.
 
 **On the Indus side, almost nothing could be reached.** The one
-machine-readable corpus available was 179 seals, all from Mohenjo-daro,
-all of one kind — the unicorn seals — carrying 984 sign tokens in 181
+machine-readable corpus available was 179 seals, all carrying CISI
+M-numbers — the Mohenjo-daro series, on the digitizer's word, since the
+printed corpus could not be opened to check — and all of one kind — the unicorn seals — carrying 984 sign tokens in 181
 sign classes, with a median inscription of five signs. That file records
 no find-spot, no stratum, no date, no material and no museum number for a
 single object.
@@ -109,10 +121,12 @@ not have it.
 
 The one thing the record does say firmly is negative, and it is the thing
 §4.K exists to protect: **institutions and archives changing is not
-populations disappearing.** The seals stop, the cities change, the
-sign system leaves no successor that we can recognise — and none of that
-is a statement about who lived there afterwards. People outlive the
-institutions that recorded them. That is the ordinary case.
+populations disappearing.** If the seals stop and the cities change — and
+this record could retrieve no evidence about when either happened — that
+still says nothing about who lived there afterwards. People outlive the
+institutions that recorded them. That is the ordinary case, and the
+inference from one to the other fails on its own terms, before any
+evidence is brought to it.
 
 ## WHAT WOULD CHANGE IT
 
@@ -120,8 +134,11 @@ institutions that recorded them. That is the ordinary case.
   inscribed surface as its object. None was found in 232 occurrences;
   one would overturn the negative.
 - Mahadevan's concordance, or ICIT, read directly — which would replace
-  every second-hand corpus figure on this platform with a sourced one,
-  and settle whether the longest Indus text is ten signs or seventeen.
+  every second-hand corpus figure on this platform with a sourced one.
+  MelaKeela's own pages currently give the longest Indus text as ten signs
+  on one page and about seventeen on another (`IC-K-001`); neither figure
+  has ever been checked here, and this record's 179 seals cannot check
+  them.
 - Excavation reports with find-spots, which would make the question of
   what the seals were for answerable instead of arguable.
 - A Mesopotamian text naming Meluhhan writing or scribes.

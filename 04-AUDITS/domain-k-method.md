@@ -19,12 +19,28 @@
 
 ## 1. What this unit is, and what it is not
 
-§4.K asks twelve things. This unit could reach evidence on three of them
-— the absence of an unambiguous Rigvedic description of Indus writing,
-whether relevant terminology may be unrecognised, and (partly) durability
-— and could reach no evidence at all on seals as an object class,
-sealings, tablets, proposed functions, distribution, post-urban survival,
-whether the script had become unreadable, or institutional rupture.
+§4.K asks twelve things. Which of them have measurement rows in this
+unit, by row:
+
+| §4.K bullet | Rows | Standing |
+|---|---|---|
+| Indus seals | `DK-M-001`–`DK-M-018`, `DK-M-025`, `DK-M-026` | measured, but of 179 unicorn seals from one site as one annotator transcribed them |
+| steatite objects | none | material is recorded nowhere in the retrieved data (`DK-M-016`) |
+| clay sealings and impressions | none | `DK-A-007`, NOT ACCESSIBLE |
+| tablets | none | `DK-A-007`, NOT ACCESSIBLE |
+| proposed administrative or economic functions | none | `DK-H-003`, `DK-H-004`, both gated source-blocked |
+| durability | none that measure it | `DK-A-006` types the perishable-media question NOT PRESERVED and says the typing is asserted on general grounds |
+| distribution | none | `DK-A-008`, no find-spot in the retrieved data |
+| post-urban survival | none | `DK-A-009`, NOT ACCESSIBLE |
+| the absence of an unambiguous Rigvedic description of Indus writing | `DK-R-002`–`DK-R-012`, `DK-A-004` | measured on the Rigvedic side; the identification to *Indus* is `NOT RECOGNISED` |
+| whether relevant terminology may be unrecognised | `DK-R-005`–`DK-R-008`, `DK-R-016`, `DK-R-017`, `DK-H-008` | tested with two instruments, the only §4.K question this session could answer |
+| whether the script had already become unreadable | none | `DK-A-009`, `DK-H-002`, source-blocked |
+| institutional rupture | Rigvedic half only | `DK-H-006`, ELIGIBLE IN PART |
+
+So: one question answered, one measured on one side, and ten with no
+evidence retrieved. The seals row is the one to read carefully — there
+are eighteen measurement rows about seals and not one of them can say
+where a seal was found.
 
 The split is not a judgement about which questions matter. It is the
 egress boundary. The Rigveda is on GitHub; the Indus corpus is in print
@@ -63,13 +79,13 @@ work-in-progress digitization of CISI. What it contains, exactly:
 
 | | |
 |---|---|
-| objects | 179, one side each, CISI M-1 to M-184, five numbers missing |
-| site | Mohenjo-daro, all of them |
+| object ids | 179, one side each, CISI M-numbers M-1 to M-184, five missing |
+| site | the M-series is Mohenjo-daro on the digitizer's statement of the CISI scheme; CISI itself is blocked, so `DK-M-002` is PROVISIONAL |
 | object class | unicorn seals, all of them, in five sub-types |
 | graphemes | 1,003, of which 19 are the damage placeholder P000 |
 | sign tokens | 984, in 181 classes, 77 of them hapax |
 | length | 1 to 13 signs, median 5, mean 5.50 |
-| lines | 990 graphemes on line 1, 13 on line 2 |
+| lines | 990 graphemes on line 1, 13 on line 2; 7 of the 179 records carry any line-2 grapheme |
 | fields per record | three: id, description, graphemes |
 
 Every one of those numbers is a property of the file set. The last row is
@@ -132,13 +148,27 @@ Grassmann gloss.
 | SEAL | 0 | 0 |
 | MARK | 9 | 112 |
 | INCISE | 1 | 12 |
+| WEIGHT | 18 | 13 |
+
+The WEIGHT field was added after adversarial review, which found the
+weights negative resting on Search A alone while the writing negative
+rested on two instruments — an asymmetry running in the direction of this
+unit's own framing. Adding it changed the finding: the corpus has
+`mā́trā-` a *Masstab*, `khārī́-` a *Hohlmass*, `téjana-` a measuring rod
+and `yójana-` a distance measure, so "no standard measure" was wrong.
+What survives is narrower and now doubly instrumented: no balance, no
+weight unit (`DK-R-014`, `DK-R-016`).
+
+No gloss in the corpus matches more than one field, so the tallies are
+independent of the order the fields are tested in — measured and printed
+by the script rather than assumed (`DK-R-017`).
 
 The false positives are printed with reasons rather than deleted, because
 substring matching is what makes the scan exhaustive and what makes it
 noisy: German *ausgezeichnet* contains **zeichn**, *spritzen* contains
 **ritz**, *Vorschrift* contains **schrift**, *bestrichen* contains
 **strich**, *ackerbauend* contains **kerb**, and Grassmann's own
-metalanguage — "Bezeichnung eines Volkes" — accounts for 90 hits by
+metalanguage — "Bezeichnung eines Volkes" — accounts for 83 hits by
 itself.
 
 **What the scan found that the census could not.** `√rikh-`, glossed
@@ -189,8 +219,9 @@ seals because it is the familiar, institutionally comfortable one?
 `DK-H-003` was gated as source-blocked, and `DK-H-004` — identity,
 ritual, kinship, membership — was written and gated identically so that
 the administrative reading would not become the default by being the only
-one written down. The term audit removes *administrators*, *archive*,
-*bureaucracy* and *literacy* from this record's own voice
+one written down. The term audit removes *administrators*, *archive* and
+*bureaucracy* from this record's own voice, and restricts *literacy* to
+the name of a proposed argument
 (`06-BRIEFS/domain-k-translation-blocks.md` §4). "Sign-makers" and
 "sign-users" are used throughout with institutional role unresolved, as
 the task required.
@@ -252,7 +283,11 @@ Thirteen absences are typed. Ten license nothing at all. Three are
 vocabulary, no balance or weight standard in the Rigvedic lexicon — and
 they earn that type on four grounds: the corpus is complete rather than
 sampled, the search is reproducible, two independent instruments agree,
-and the coverage gap is stated (296 unglossed lemmas).
+and the coverage gap is stated (296 unglossed lemmas). The third ground
+was untrue of the weights absence when this unit was first written — the
+gloss scan had no weight field — and adversarial review found it. Adding
+the field narrowed the claim rather than confirming it (`DK-R-014`,
+`DK-R-016`), which is what a second instrument is for.
 
 Even those three license only statements about the corpus. The bridge to
 the society is refused at `BR-K-006` and the archive audit at `APA-K-001`
@@ -271,9 +306,10 @@ geography. Neither could be run. No absolute date for the Indus sequence
 or for Rigvedic composition was retrieved in this session, and this
 repository holds no `VERIFIED` date for either; the only chronology in
 hand is Arnold's relative stratification inside the Rigveda, which is
-recorded per occurrence and claims nothing absolute. Six of the eleven
-hypotheses are therefore `NOT-ELIGIBLE-SOURCE-BLOCKED` rather than
-judged, and two more are excluded on other grounds, and the gate rows say `CANNOT BE GATED IN THIS SESSION` in the
+recorded per occurrence and claims nothing absolute. Seven of the twelve
+hypotheses are therefore `NOT-ELIGIBLE-SOURCE-BLOCKED` rather than judged
+— six from the start, and `DK-H-012`, the demographic question, split out
+of `DK-H-009` on review — and two more are excluded on other grounds, and the gate rows say `CANNOT BE GATED IN THIS SESSION` in the
 chronology and geography fields rather than leaving them blank.
 
 ## 8. What this unit did not do

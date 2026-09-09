@@ -79,8 +79,9 @@ and §11 (packets R20–R21), plus one domain that has no entry in either
     The four targets the task named were probed and logged either way:
     Mahadevan's concordance, the Wells sign list and the ASI reports are
     refused at the gateway; a machine-readable sign corpus on GitHub
-    answered. That corpus is `SRC-102`/`SRC-103` and it is 179 Mohenjo-daro
-    unicorn seals with three fields each.
+    answered. That corpus is `SRC-102`/`SRC-103` and it is 179 unicorn
+    seals with three fields each, all carrying CISI M-numbers, which are
+    the Mohenjo-daro series on the digitizer's word.
 
     Thirteen absences are typed and ten of them license nothing. Only the
     three Rigvedic lexical absences are `ABSENT DESPITE ADEQUATE SEARCH`,
@@ -134,7 +135,7 @@ thing the investigation is most likely to get wrong.
 | H | Rigvedic and Old Avestan social worlds | A violent-Indic versus peaceful-Iranian binary; genre mistaken for society |
 | I | Rigvedic society, patronage and canonization | Sanitizing patronage as timeless spirituality |
 | J | The Rigvedic forts | Translating *pur* into a Mature Harappan city; one famous count standing for the corpus — *corpus built 2026-09-07 at the stanza unit, 103 passages, all fifteen enumerated items addressed and the five-way typology assigned. 99 is stated in 6 passages and is not the modal count; 100 is, in 8. Poet lineage rests on Geldner alone (`HOLD-006`); proposed geography is `NOT PRODUCED` — the pinned corpus carries no geographic content. See `06-BRIEFS/pur-4j-corpus.md`.* |
-| K | Indus writing and institutional discontinuity | Concluding that populations vanished because institutions and archives did — *run 2026-09-09 and split by the egress boundary. The Rigvedic half is measured in full: 22 later writing and sealing stems absent, a gloss scan of the whole lexicon returning no writing or sealing word, and `akṣára-` denoting a syllable of chanted speech in all eight occurrences. The Indus half reached one volunteer digitisation — 179 unicorn seals from one site, no find-spot — so seals as a class, sealings, tablets, function, distribution and post-urban survival have no evidence here at all. `HOLD-008`; six of eleven hypotheses gated source-blocked and two more rejected. See `06-BRIEFS/domain-k-brief.md`.* |
+| K | Indus writing and institutional discontinuity | Concluding that populations vanished because institutions and archives did — *run 2026-09-09 and split by the egress boundary. The Rigvedic half is measured in full: 17 later writing and sealing stems absent, a gloss scan of the whole lexicon returning no writing or sealing word, and `akṣára-` denoting a syllable of chanted speech in all eight occurrences. The Indus half reached one volunteer digitisation — 179 unicorn seals from one site, no find-spot — so seals as a class, sealings, tablets, function, distribution and post-urban survival have no evidence here at all. `HOLD-008`; seven of twelve hypotheses gated source-blocked, one rejected and one inference rejected. See `06-BRIEFS/domain-k-brief.md`.* |
 | L | Avestan writing | Reading a Sasanian-era alphabet as transparent evidence of Gāthic pronunciation |
 | M | Brahui, Kurukh and Malto | Medieval migration treated as documented fact; living people used as linguistic fossils |
 | N | Grammatical ontologies | Typological similarity read as descent or contact without a mechanism |
