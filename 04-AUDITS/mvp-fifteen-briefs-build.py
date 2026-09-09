@@ -2468,6 +2468,60 @@ under stands — no proposition any of the fifteen pages makes about the past is
 supported by a register row — and it now stands on a derivation instead of on a
 sentence.
 
+The method failures are logged at `04-AUDITS/BIAS-FAILURE-LOG.csv` `BF-027` and
+`BF-028`; the work they touch elsewhere is `04-AUDITS/REAUDIT-QUEUE.csv`
+`RA-022`, which asks the same question of every document in the repository that
+states a count or a coverage finding in prose.
+
+### The two tests, re-run on the second build
+
+Constitution §8 requires both before a unit is called finished, and *"running one
+is a failed test"* (framework §3.11). §0.1 records them for the first build.
+
+**Prestige-bias challenge.** Found: **yes, and it is why §7 of
+`03-artifact-atlas.md` had to be written.** The prestige at work is internal.
+`13-PRODUCT-ARCHITECTURE/museum-framework.md` is this repository's own
+specification, it reads with the authority of a rule, and every design
+proposition in it is `HYPOTHESIS` by its own §14.4. The first build let its §8.1
+close the atlas title-count conflict — §1 and §5 present §8.1's no-headline-count
+rule as *"the resolution that makes the page launchable at all"* — while D-034
+sat `OPEN` in `09-DECISIONS/OWNER-DECISIONS.csv` with a note saying in as many
+words that §8.1 neutralises the number without answering it. A `HYPOTHESIS`
+document was allowed to settle an owner decision because it is ours and it is
+well argued. §7 now separates the two, and §1 and §5 are unchanged so the reading
+that produced the failure stays visible.
+
+A second, smaller instance is `BF-028`: the arm of the conflict that would move
+the page out of rank 3 was argued with an inflated cost — 56 inbound links called
+the highest in the set when `enter` has 113 — which is the error a reader
+attached to the existing launch order would make.
+
+**Preferred-counter-narrative challenge.** Found: **yes, once, and it runs
+against this unit's own product.** `WLW-001` is `VERIFIED`, and its arrival
+falsified the sentence this directory was built around: *"No page in the MVP set
+has a single register row behind it."* The reading in `09-the-water-city.md` §3
+lets the substance of that sentence stand — the row is about the registers, not
+about the past; it is a timestamped probe; it and this brief are one source
+rather than two. Each of those three is defensible and each of them is also
+convenient, and the reading was written by the unit whose headline finding the
+row threatened. That is the shape of motivated reading whether or not the reading
+is right. It is recorded here rather than resolved by its author: what would
+overturn it is a linked row whose subject is the past a page describes, at a
+status above `INHERITED-UNVERIFIED`, and the correct response to one would be to
+rewrite §2 rather than to read it down. The scepticism this repository runs on is
+not neutral when it is pointed at a claim that would cost the current unit its
+result.
+
+**The asymmetry statement** (§11.2): the two failures above are symmetrical in
+form and asymmetrical in what they defend. The first defends an internal
+specification's authority over an open owner decision; the second defends this
+unit's own finding against a row that contradicted it. Neither is a bias about
+the ancient world, and neither should be read as one — which is itself worth
+stating, because a unit that runs both tests and reports only internal findings
+may have run them only against itself. On the fifteen pages' *subjects* the tests
+were not re-run in this build; `RA-019` still holds for the four pages where the
+prestige test bites, and it is not closed here.
+
 ---
 
 ## 1. The fifteen
