@@ -518,10 +518,15 @@ for label, keep in (("all_books", lambda b: True),
         sh_ = ys[:]; random.shuffle(sh_)
         if abs(_rho_ties(xs, sh_)) >= abs(r) - 1e-12: hits += 1
     zero = sum(1 for v in ys if v == 0.0)
-    rows.append([label, len(ks), round(r, 4), round((hits + 1) / 5001.0, 4),
+    pv = (hits + 1) / 5001.0
+    # 1/5001 is the resolution floor of a 5000-shuffle permutation, not a
+    # measured value; a p at the floor is reported as a bound.
+    rows.append([label, len(ks), round(r, 4),
+                 ("<%.4f" % (1 / 5001.0)) if hits == 0 else ("%.4f" % pv),
                  pct(zero, len(ks)), round(sorted(ys)[len(ys) // 2], 4)])
 emit("A16-hymn-level-order-vs-arnold-late.csv", rows,
-     ["scope", "hymns", "spearman_rho_tied", "permutation_p_5000_shuffles",
+     ["scope", "hymns", "spearman_rho_tied",
+      "permutation_p_5000_shuffles_floor_0.0002",
       "pct_hymns_with_zero_late_padas", "median_late_share"])
 print("A16:", rows)
 

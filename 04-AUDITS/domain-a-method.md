@@ -501,8 +501,10 @@ must arrive at the number the register holds.
 aggregated a per-pāda instrument to ten books, got a null, and reported the null
 as the limit of what could be done — in `DA-002`, `DA-M-003` and `A-2` — while
 `A-2`'s own falsifier field named the finer test and the same script could have
-run it. At the hymn unit the question resolves: ρ = +0.2125 over all 1,028 hymns,
-−0.1526 over books 1–9, **+0.1648 within the family books 2–7**, all at p ≤ 0.0012.
+run it. At the hymn unit the question becomes **answerable**: ρ = +0.2125 over
+all 1,028 hymns, −0.1526 over books 1–9, **+0.1648 within the family books 2–7**
+(the first two below the 5,000-shuffle resolution floor of 0.0002, the third at
+0.0012).
 The sign flips with scope, and inside the family books it runs *toward* the
 standard ordering — the hypothesis the first draft gated out and the first repair
 declined to gate. Three caveats are attached to `DA-M-025` and none is optional:
@@ -523,3 +525,38 @@ of the record of how this number was established.
 (the prose sweep and step 13), `RA-027` (whether Arnold used Grassmann) and
 `RA-028` (a `supports_page` that resolves to no brief). Each changes another
 unit's registers or needs a source this session cannot reach.
+
+
+## 17. Third pass: cleared
+
+The reviewer re-ran the script (23 tables, byte-identical), re-derived `A16`
+independently, and re-ran `SRC-117`'s stated `probe_call` verbatim, which
+returns 48 whole-row and 44 claim-field with exactly the four notes-only rows the
+ledger names. All five blocking findings closed. `DA-002`'s `SUPERSEDED` was
+checked against the vocabulary rule — *replaced; must point to what replaced it*
+— and both the claim field and the locator name `DA-M-003` and `DA-M-025`, with
+the row retained rather than deleted.
+
+Four residues were reported and are fixed here, none of them blocking:
+
+- `DA-M-025`'s claim field opened "the same question **resolves**" while its notes
+  said the row is not a finding about the Rigveda. A downstream unit quotes claim
+  text, not notes — the gap that took `DA-002` three passes. It now reads
+  **answerable**.
+- `p = 0.0002` is the resolution floor of a 5,000-shuffle permutation (1/5001),
+  not a measured value. `A16` and `DA-M-025` now report it as a bound and name
+  the floor in the column heading.
+- `DA-M-015`'s **instance list** still carried the superseded form three
+  sentences ahead of its own correction. The list is the part a reader lifts, so
+  it now carries `darśatemé` → `darśata` + `imé`.
+- The Aufrecht line quoted inside that correction was itself garbled. It now
+  reads verbatim from the file: `vā́yav ā́ yāhi darśatemé sómā áraṁkr̥tāḥ`, split
+  by van Nooten and Holland as `vā́yav ā́ yāhi darśata` / `imé sómā áraṁkr̥tāḥ`.
+
+**Three rounds of review, and the count that matters:** of the failures logged in
+`04-AUDITS/BIAS-FAILURE-LOG.csv` for this unit, `BF-027` and `BF-028` were found
+by the unit itself and `BF-029`, `BF-030` and `BF-031` were found by the reviewer.
+Two of the three reviewer findings were about the unit's own bookkeeping and one
+was about a test it had the means to run and did not. That ratio is the honest
+summary of how much of this unit's discipline came from its own §8 tests and how
+much from being read by someone else.
