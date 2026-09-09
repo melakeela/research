@@ -363,10 +363,15 @@ def check_superlatives(pg_by, mvp_by, as_by):
         return int((src or pg_by)[slug][col])
 
     checks = [
-        ("02-enter.md", "enter has the most inbound links of all 96 audited pages",
+        # The brief says "by a wide margin", which is a quantitative claim: a
+        # bare maximum passes at 72 against 71 (BF-032). Wide is taken as at
+        # least half again the runner-up.
+        ("02-enter.md",
+         "enter has the most inbound links of all 96 audited pages, by a wide margin",
          max(all_pages, key=lambda k: int(all_pages[k]["Inbound links"])) == "enter"
-         and sorted((int(r["Inbound links"]) for r in all_pages.values()),
-                    reverse=True)[1] < n("enter", "Inbound links")),
+         and n("enter", "Inbound links") >= 1.5 * sorted(
+             (int(r["Inbound links"]) for r in all_pages.values()),
+             reverse=True)[1]),
         ("01-index.md", "index is the only one of the fifteen with no inbound links",
          [s_ for s_ in MVP_SLUGS if n(s_, "Inbound links") == 0] == ["index"]),
         ("05-tinai.md", "tinai is the only one of the fifteen with a live external link",
@@ -377,9 +382,17 @@ def check_superlatives(pg_by, mvp_by, as_by):
          [s_ for s_ in MVP_SLUGS
           if pg_by[s_]["Decision"] not in ("Keep", "Revise", "Hold")]
          == ["the-other-laws"]),
-        ("README.md",
+        # Printed in two places, and it is two claims, not one.
+        ("README.md and 08-before-the-indus.md",
          "before-the-indus is the only Critical-risk page of the fifteen",
          [s_ for s_ in MVP_SLUGS if pg_by[s_]["Risk"] == "Critical"]
+         == ["before-the-indus"]),
+        ("README.md and 08-before-the-indus.md",
+         "before-the-indus is the only one of the fifteen in this state: "
+         "MVP yes, Decision Hold, and a withhold-from-MVP release dependency",
+         [s_ for s_ in MVP_SLUGS
+          if pg_by[s_]["MVP"] == "Yes" and pg_by[s_]["Decision"] == "Hold"
+          and mvp_by[s_]["Release dependency"].startswith("Withhold from MVP")]
          == ["before-the-indus"]),
     ]
     bad = ["  %s prints: %s" % (f, claim) for f, claim, ok in checks if not ok]
@@ -997,14 +1010,18 @@ SEARCH`. `01-INHERITED/site-review/` holds {n_running_w} inherited running-list 
 that have not been searched for atlas site records, so even the `NOT ACCESSIBLE`
 typing is provisional on that search.
 
-That is an access fact, not an evidential one, and it bears on the first arm
-only. The second and third arms are editorial decisions about a title and an
-order; neither needs the count, and treating them as blocked behind it would
-convert a missing archive into a reason to leave the launch order as it is. An
-earlier draft of this section did exactly that, closing with *"the title question
-is blocked behind the count question"* — which eliminated the second arm by fiat
-and left the status quo as the only reading. Withdrawn, and recorded rather than
-deleted.
+That is an access fact, not an evidential one, and it bears on arm 1 only. Arms 2
+and 3 are editorial decisions about a title and an order; neither needs the
+count.
+
+*Withdrawal record. An earlier draft closed this section with "the title question
+is blocked behind the count question", which eliminated arm 2 by fiat and left
+the status quo as the only reading (`BF-029`). A later draft replaced it with a
+sentence arguing that treating arms 2 and 3 as blocked would convert a missing
+archive into a reason to leave the launch order alone — true, and still an
+argument against one arm, of exactly the kind the three-line structure above
+exists to keep out of the arms (`BF-032`). Both are recorded here rather than
+deleted; neither is this section's position.*
 
 **What §8.1 reaches, read exactly.** A draft of this section said *"§8.1 does not
 reach the title at all"*. It does. **§8.1's rule ends** — the section itself
@@ -1570,6 +1587,10 @@ D-032.""",
 {
  "slug": "the-water-city",
  "linked_licenses_copy": False,
+ # R1's predicate, and a different question from the one above: is WLW-001's
+ # subject a proposition this page makes about the past? No -- its subject is
+ # the state of this repository's registers at a timestamp. Section 3 argues it.
+ "linked_subject_is_page_past": False,
  "linked_reading": """\
 **What the linked row carries, and what it does not.** `WLW-001` carries
 {linked_statuses}, and it is the only row linked to any of the fifteen that
@@ -2401,9 +2422,13 @@ def emit(page, wb, hits, scanned):
                  "some of a page's linked rows is not a reading of the page's "
                  "links; write the new row in or remove it from the register."
                  % (slug, ", ".join(unread)))
-        if "linked_licenses_copy" not in page:
-            fail("%r has a linked row and no linked_licenses_copy. Decide "
-                 "whether the row licenses public copy and say so." % slug)
+        for f in ("linked_licenses_copy", "linked_subject_is_page_past"):
+            if f not in page:
+                fail("%r has a linked row and no %s. Both judgements are "
+                     "required and they are different questions: whether the "
+                     "row licenses public copy, and whether its subject is a "
+                     "proposition the page makes about the past. README §4's "
+                     "gate R1 turns on the second (BF-032)." % (slug, f))
         if page["linked_licenses_copy"]:
             fail("%r declares a linked row that licenses public copy. Section "
                  "1's 'why the six slots are empty' no longer holds and has to "
@@ -2596,8 +2621,10 @@ scanned for `supports_page`.
 `SCHEMA.md`, `method-limits.csv`, `summary.csv`, `claim-risk.csv`,
 `overlap-tensions.csv`, `02-SOURCES/access-ledger.csv`, `DECISIONS-NEEDED.md`,
 `RESEARCH-QUEUE.md`, `CLAUDE.md` and `04-AUDITS/BIAS-FAILURE-LOG.csv`. The
-generator makes **{n_quotes} assertions** against those files and fails the build
-if one does not hold — covering the §1.5 derivation rules *with their numbers*
+generator makes **{n_quotes} assertions** and fails the build if one does not
+hold — quotations checked against the files listed above, plus six comparative and
+superlative claims checked against `page-audit.csv` and `mvp.csv`, which are
+reproduced rather than quoted — covering the §1.5 derivation rules *with their numbers*
 (the briefs cite the numbers), the negative-evidence type names, and `SRC-052`'s
 probe list and constraint.
 
@@ -2796,9 +2823,11 @@ the error a directory-wide one rather than a page-level one. The failure is not
 that the prose was wrong everywhere; it is that nothing in the build could tell
 where it had gone wrong.
 
-The repairs below came in three rounds. The first three items were the repair
+The repairs below came in five rounds. The first three items were the repair
 pass; items 4 to 7 were forced by independent adversarial review of it (`BF-029`);
-item 8 by a second review of that repair (`BF-030`). They are listed with what
+item 8 by a second review of that repair (`BF-030`); items 9 and 10 by a third
+(`BF-031`); and a fourth review returned nothing blocking, with the corrections it
+did return logged at `BF-032`. They are listed with what
 each review found rather than folded in silently, because two of the three rounds
 found that the previous round's own account of itself was wrong.
 
@@ -2843,7 +2872,7 @@ found that the previous round's own account of itself was wrong.
    are all read at build time. A first draft of the section retyped every one of
    them and called 56 the highest inbound-link count in the set; it is the
    second, behind `enter`'s 113.
-6. **`WLW-001` is quote-checked.** The build's {n_quotes} assertions guard quotations from
+6. **`WLW-001` is quote-checked.** The build's assertions guard quotations from
    the framework, the constitution and the workbook; the row this whole build
    exists to respond to was guarded by none, and it has already been amended once
    under review. Its claim text, its locator and its `notes` are now checked, and
@@ -3028,8 +3057,8 @@ atlas entry or exhibit it feeds, and *"Evidence that supports nothing is not
 collected."* Read the other way round, which is the way that matters here: on the
 repository's own accounting, **no page in the launch set has a register row
 recorded as supporting a proposition it makes about the past**. That is narrower
-than the sentence two earlier builds printed here — *"the launch set is supported
-by nothing"* — which appeared in three builds, stopped being true of every page when
+than the sentence three earlier builds printed here — *"the launch set is
+supported by nothing"* — which stopped being true of every page when
 `WLW-001` arrived, and is corrected rather than deleted (`BF-030`). What the scan above returned,
 and what each linked page's §3 makes of it, is the record.
 
@@ -3159,6 +3188,16 @@ page passed it. As written then, `WLW-001` satisfied R1 — a mechanical test wi
 typed verdict that the scan already contradicted (`BF-030`). The clause is what
 the gate always meant; the brief's §3 is where it is applied, because whether a
 row's subject is the page's past is a judgement and not a scan.*
+
+*What the verdict rests on, stated so the next reader starts from the gap rather
+than finding it: the judgement is a per-page field, `linked_subject_is_page_past`,
+which the build requires of every page carrying a linked row. The verdict above is
+read from those fields and from nothing else. A build that completes has an answer
+for every linked page; it has none for a row nobody has read, because such a row
+stops the build. A fourth build read this verdict off `linked_licenses_copy`
+instead, which asks whether a row licenses public copy — a different question,
+which a row can fail while satisfying R1, and the error ran toward preserving this
+directory's headline finding (`BF-032`).*
 
 ---
 
@@ -3310,14 +3349,16 @@ def main():
             "different status is not a higher one: framework §3.2 rules that "
             "these do not form a ladder, and the floor is stated by the rule "
             "that a row with no retrieval event behind it cannot be stood above.")
-        # The verdict is derived, and it is derived from the same field the
-        # build gate uses: linked_licenses_copy is the per-page judgement that
-        # a linked row does or does not carry a proposition the page asserts,
-        # and emit() halts if any page sets it true. So while this README
-        # builds, no page can pass R1 -- and the sentence says which field it
-        # is reading rather than asserting the outcome (BF-031).
+        # R1 asks whether a linked row's subject is a proposition the page
+        # makes about the past. An earlier version read that off
+        # linked_licenses_copy, which asks a different question -- a row can
+        # satisfy R1 without licensing copy -- and the error ran toward
+        # preserving this directory's headline finding, which is the direction
+        # CLAUDE.md says to re-derive rather than trust. R1 now has its own
+        # per-page field, required by emit() alongside the other two, and the
+        # verdict is read from it (BF-032).
         passing = [s_ for s_ in linked_slugs
-                   if by_slug[s_].get("linked_licenses_copy")]
+                   if by_slug[s_]["linked_subject_is_page_past"]]
         r1_note = (
             "{} of the fifteen {} a row carrying a status other than "
             "`INHERITED-UNVERIFIED` — {} — and {}. **{}**".format(

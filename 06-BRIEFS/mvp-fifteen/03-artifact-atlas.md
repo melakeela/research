@@ -398,14 +398,18 @@ SEARCH`. `01-INHERITED/site-review/` holds two inherited running-list documents
 that have not been searched for atlas site records, so even the `NOT ACCESSIBLE`
 typing is provisional on that search.
 
-That is an access fact, not an evidential one, and it bears on the first arm
-only. The second and third arms are editorial decisions about a title and an
-order; neither needs the count, and treating them as blocked behind it would
-convert a missing archive into a reason to leave the launch order as it is. An
-earlier draft of this section did exactly that, closing with *"the title question
-is blocked behind the count question"* — which eliminated the second arm by fiat
-and left the status quo as the only reading. Withdrawn, and recorded rather than
-deleted.
+That is an access fact, not an evidential one, and it bears on arm 1 only. Arms 2
+and 3 are editorial decisions about a title and an order; neither needs the
+count.
+
+*Withdrawal record. An earlier draft closed this section with "the title question
+is blocked behind the count question", which eliminated arm 2 by fiat and left
+the status quo as the only reading (`BF-029`). A later draft replaced it with a
+sentence arguing that treating arms 2 and 3 as blocked would convert a missing
+archive into a reason to leave the launch order alone — true, and still an
+argument against one arm, of exactly the kind the three-line structure above
+exists to keep out of the arms (`BF-032`). Both are recorded here rather than
+deleted; neither is this section's position.*
 
 **What §8.1 reaches, read exactly.** A draft of this section said *"§8.1 does not
 reach the title at all"*. It does. **§8.1's rule ends** — the section itself

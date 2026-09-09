@@ -17,8 +17,10 @@ scanned for `supports_page`.
 `SCHEMA.md`, `method-limits.csv`, `summary.csv`, `claim-risk.csv`,
 `overlap-tensions.csv`, `02-SOURCES/access-ledger.csv`, `DECISIONS-NEEDED.md`,
 `RESEARCH-QUEUE.md`, `CLAUDE.md` and `04-AUDITS/BIAS-FAILURE-LOG.csv`. The
-generator makes **100 assertions** against those files and fails the build
-if one does not hold — covering the §1.5 derivation rules *with their numbers*
+generator makes **101 assertions** and fails the build if one does not
+hold — quotations checked against the files listed above, plus six comparative and
+superlative claims checked against `page-audit.csv` and `mvp.csv`, which are
+reproduced rather than quoted — covering the §1.5 derivation rules *with their numbers*
 (the briefs cite the numbers), the negative-evidence type names, and `SRC-052`'s
 probe list and constraint.
 
@@ -217,9 +219,11 @@ the error a directory-wide one rather than a page-level one. The failure is not
 that the prose was wrong everywhere; it is that nothing in the build could tell
 where it had gone wrong.
 
-The repairs below came in three rounds. The first three items were the repair
+The repairs below came in five rounds. The first three items were the repair
 pass; items 4 to 7 were forced by independent adversarial review of it (`BF-029`);
-item 8 by a second review of that repair (`BF-030`). They are listed with what
+item 8 by a second review of that repair (`BF-030`); items 9 and 10 by a third
+(`BF-031`); and a fourth review returned nothing blocking, with the corrections it
+did return logged at `BF-032`. They are listed with what
 each review found rather than folded in silently, because two of the three rounds
 found that the previous round's own account of itself was wrong.
 
@@ -264,7 +268,7 @@ found that the previous round's own account of itself was wrong.
    are all read at build time. A first draft of the section retyped every one of
    them and called 56 the highest inbound-link count in the set; it is the
    second, behind `enter`'s 113.
-6. **`WLW-001` is quote-checked.** The build's 100 assertions guard quotations from
+6. **`WLW-001` is quote-checked.** The build's assertions guard quotations from
    the framework, the constitution and the workbook; the row this whole build
    exists to respond to was guarded by none, and it has already been amended once
    under review. Its claim text, its locator and its `notes` are now checked, and
@@ -465,8 +469,8 @@ atlas entry or exhibit it feeds, and *"Evidence that supports nothing is not
 collected."* Read the other way round, which is the way that matters here: on the
 repository's own accounting, **no page in the launch set has a register row
 recorded as supporting a proposition it makes about the past**. That is narrower
-than the sentence two earlier builds printed here — *"the launch set is supported
-by nothing"* — which appeared in three builds, stopped being true of every page when
+than the sentence three earlier builds printed here — *"the launch set is
+supported by nothing"* — which stopped being true of every page when
 `WLW-001` arrived, and is corrected rather than deleted (`BF-030`). What the scan above returned,
 and what each linked page's §3 makes of it, is the record.
 
@@ -596,6 +600,16 @@ page passed it. As written then, `WLW-001` satisfied R1 — a mechanical test wi
 typed verdict that the scan already contradicted (`BF-030`). The clause is what
 the gate always meant; the brief's §3 is where it is applied, because whether a
 row's subject is the page's past is a judgement and not a scan.*
+
+*What the verdict rests on, stated so the next reader starts from the gap rather
+than finding it: the judgement is a per-page field, `linked_subject_is_page_past`,
+which the build requires of every page carrying a linked row. The verdict above is
+read from those fields and from nothing else. A build that completes has an answer
+for every linked page; it has none for a row nobody has read, because such a row
+stops the build. A fourth build read this verdict off `linked_licenses_copy`
+instead, which asks whether a row licenses public copy — a different question,
+which a row can fail while satisfying R1, and the error ran toward preserving this
+directory's headline finding (`BF-032`).*
 
 ---
 
