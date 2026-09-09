@@ -68,6 +68,31 @@ and §11 (packets R20–R21), plus one domain that has no entry in either
    `DEP-020` record where their ledger rows are the same source probed
    twice.
 
+12. **Domain K — Indus writing and institutional discontinuity**, Rigvedic
+    half complete, Indus half held. Registers, absence typing, hypothesis
+    gate, bridges, archive audit, translation blocks, method note with both
+    §8 tests and a step-14 brief are in place;
+    `04-AUDITS/domain-k-method.md` §5 carries the adversarial tests and
+    §7 records that method steps 2 and 3 could not be run at all, because
+    no absolute chronology for either side was retrievable.
+
+    The four targets the task named were probed and logged either way:
+    Mahadevan's concordance, the Wells sign list and the ASI reports are
+    refused at the gateway; a machine-readable sign corpus on GitHub
+    answered. That corpus is `SRC-102`/`SRC-103` and it is 179 unicorn
+    seals with three fields each, all carrying CISI M-numbers, which are
+    the Mohenjo-daro series on the digitizer's word.
+
+    Thirteen absences are typed and ten of them license nothing. Only the
+    three Rigvedic lexical absences are `ABSENT DESPITE ADEQUATE SEARCH`,
+    and even those are refused the bridge to the society at `BR-K-006`.
+    The domain's headline absence — no unambiguous Rigvedic description of
+    Indus writing — is typed `NOT RECOGNISED` and licenses the least of
+    all.
+
+    `D-055` asks the owner for four hosts. `D-056` asks whether to write to
+    the ICIT administrator.
+
 ## Blocked on inputs
 
 Items **8** and **9** are reserved for the prompt-pack intake and the
@@ -110,7 +135,7 @@ thing the investigation is most likely to get wrong.
 | H | Rigvedic and Old Avestan social worlds | A violent-Indic versus peaceful-Iranian binary; genre mistaken for society |
 | I | Rigvedic society, patronage and canonization | Sanitizing patronage as timeless spirituality |
 | J | The Rigvedic forts | Translating *pur* into a Mature Harappan city; one famous count standing for the corpus — *corpus built 2026-09-07 at the stanza unit, 103 passages, all fifteen enumerated items addressed and the five-way typology assigned. 99 is stated in 6 passages and is not the modal count; 100 is, in 8. Poet lineage rests on Geldner alone (`HOLD-006`); proposed geography is `NOT PRODUCED` — the pinned corpus carries no geographic content. See `06-BRIEFS/pur-4j-corpus.md`.* |
-| K | Indus writing and institutional discontinuity | Concluding that populations vanished because institutions and archives did |
+| K | Indus writing and institutional discontinuity | Concluding that populations vanished because institutions and archives did — *run 2026-09-09 and split by the egress boundary. The Rigvedic half is measured in full: 17 later writing and sealing stems absent, a gloss scan of the whole lexicon returning no writing or sealing word, and `akṣára-` denoting a syllable of chanted speech in all eight occurrences. The Indus half reached one volunteer digitisation — 179 unicorn seals from one site, no find-spot — so seals as a class, sealings, tablets, function, distribution and post-urban survival have no evidence here at all. `HOLD-008`; seven of twelve hypotheses gated source-blocked, one rejected and one inference rejected. See `06-BRIEFS/domain-k-brief.md`.* |
 | L | Avestan writing | Reading a Sasanian-era alphabet as transparent evidence of Gāthic pronunciation |
 | M | Brahui, Kurukh and Malto | Medieval migration treated as documented fact; living people used as linguistic fossils |
 | N | Grammatical ontologies | Typological similarity read as descent or contact without a mechanism |
@@ -278,6 +303,32 @@ an owner decision; they are research-programme scheduling.
   `api.openalex.org` all refuse again. Reachability is a timestamped probe,
   not a property — which is what D-042 asks — and any unit that relied on the
   2026-09-07 reading should be re-checked rather than assumed.
+
+## Opened by domain K
+
+- **Retrieve the Indus corpus and its literature.** `HOLD-008`. Mahadevan
+  1977, CISI, the Wells sign list and ICIT, Mukhopadhyay 2023, the ASI
+  reports, Rao et al. 2009 and Farmer, Sproat and Witzel 2004. Six of the
+  eleven hypotheses in the domain are gated on them, and so is every
+  question §4.K asks about seals, sealings, tablets, function,
+  distribution and post-urban survival.
+- **Search a cuneiform corpus for Meluhhan writing.** `DK-A-013`. The most
+  answerable open question in the domain: it is a text search over a
+  published corpus and it failed here only on egress. Belongs with domain
+  **S**.
+- **The platform's Indus corpus figures have never been verified here.**
+  `RA-022`, `IC-K-001`, `IC-K-002`. Two pages give different figures for
+  the longest Indus text, ten and seventeen, and the corpus figures are
+  sourced through journalism rather than the concordance.
+- **The administrative reading of the seals.** `RA-023`. The platform
+  states a trade bureaucracy as its leading argument, citing an article on
+  a blocked host. `DK-H-003` and `DK-H-004` are gated together and must be
+  re-gated together.
+- **`RA-024` is programme-wide, and is the second instance of the
+  pattern.** After `RA-008`: in this domain the reachable evidence and the
+  unreachable evidence fall on opposite sides of the question, and the
+  reachable side is the Sanskritic, textual, canonical one. Every unit
+  should state which side of its question its sources sit on.
 
 ## Standing sequencing rules
 

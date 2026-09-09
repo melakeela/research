@@ -1,0 +1,357 @@
+# Domain K — Indus writing and institutional discontinuity
+
+**Unit of work:** 2026-09-09
+**Registers:** `03-REGISTERS/domain-k-indus-measurements.csv` (26 rows),
+`domain-k-indus-signs.csv` (397 sign classes),
+`domain-k-rigveda-lexicon.csv` (18 rows),
+`domain-k-rigveda-writing-candidates.csv` (63 lookups),
+`domain-k-rigveda-marking-occurrences.csv` (232 occurrences),
+`domain-k-absences.csv` (13 typed absences),
+`domain-k-hypothesis-eligibility.csv` (12 gated hypotheses)
+**Sources:** `SRC-099`–`SRC-116`  **Dependencies:** `DEP-029`–`DEP-033`
+**Hold:** `HOLD-008`  **Method failures:** `BF-027`, `BF-028`
+**Re-audits:** `RA-022`–`RA-026`  **Contradictions:** `IC-K-001`–`IC-K-006`
+**Reproduce:** `04-AUDITS/domain-k-indus-corpus.py`, then
+`rv-token-extract.py`, `rv-writing-lexicon-scan.py`,
+`rv-marking-occurrences.py`
+
+---
+
+## 1. What this unit is, and what it is not
+
+§4.K asks twelve things. Which of them have measurement rows in this
+unit, by row:
+
+| §4.K bullet | Rows | Standing |
+|---|---|---|
+| Indus seals | `DK-M-001`–`DK-M-018`, `DK-M-025`, `DK-M-026` | measured, but of 179 unicorn seals from one site as one annotator transcribed them |
+| steatite objects | none | material is recorded nowhere in the retrieved data (`DK-M-016`) |
+| clay sealings and impressions | none | `DK-A-007`, NOT ACCESSIBLE |
+| tablets | none | `DK-A-007`, NOT ACCESSIBLE |
+| proposed administrative or economic functions | none | `DK-H-003`, `DK-H-004`, both gated source-blocked |
+| durability | none that measure it | `DK-A-006` types the perishable-media question NOT PRESERVED and says the typing is asserted on general grounds |
+| distribution | none | `DK-A-008`, no find-spot in the retrieved data |
+| post-urban survival | none | `DK-A-009`, NOT ACCESSIBLE |
+| the absence of an unambiguous Rigvedic description of Indus writing | `DK-R-002`–`DK-R-012`, `DK-A-004` | measured on the Rigvedic side; the identification to *Indus* is `NOT RECOGNISED` |
+| whether relevant terminology may be unrecognised | `DK-R-005`–`DK-R-008`, `DK-R-016`, `DK-R-017`, `DK-H-008` | tested with two instruments, the only §4.K question this session could answer |
+| whether the script had already become unreadable | none | `DK-A-009`, `DK-H-002`, source-blocked |
+| institutional rupture | Rigvedic half only | `DK-H-006`, ELIGIBLE IN PART |
+
+So: four of the twelve bullets have rows and eight have none. Of the
+four, one question is answered — the unrecognised-terminology one — one
+is measured on the Rigvedic side only, one is eligible in half, and the
+first is the row to read carefully: there are twenty measurement rows
+about seals (`DK-M-001`–`DK-M-018`, `DK-M-025`, `DK-M-026`) and not one
+of them can say where a seal was found.
+
+The split is not a judgement about which questions matter. It is the
+egress boundary. The Rigveda is on GitHub; the Indus corpus is in print
+volumes, on `archive.org`, at `asi.nic.in` and behind `nature.com`, and
+all of those are refused (`SRC-099`, `SRC-109`–`SRC-114`).
+
+So this unit is: a full measurement of the Rigvedic half, a bounded
+measurement of one small derivative of the Indus corpus, thirteen typed
+absences, eleven gated hypotheses, and a hold. It is not an account of
+Indus writing, and it does not compare the two bodies of evidence. The
+comparison §4.K asks for — Indus technologies against the early Rigvedic
+archive — is not attempted, because one side of it has no measurements.
+
+## 2. The retrieval picture
+
+Reachable on 2026-09-09: the git proxy's anonymous lane for public GitHub
+repositories, and `raw.githubusercontent.com`. That reached three Indus
+datasets and the VedaWeb Rigveda.
+
+Refused: sixteen scholarly and archival hosts, on `curl` and on `WebFetch`
+alike; the GitHub REST API for anything outside this session's own
+repositories, which is a narrowing since `SRC-057` and meant repository
+names had to be found by WebSearch and then fetched by git; and every
+literature connector.
+
+The four named targets of the task were all probed and the outcome logged
+either way: Mahadevan's concordance refused (`SRC-109`), the Wells sign
+list refused (`SRC-110`), ASI excavation reports refused (`SRC-111`), and
+a machine-readable sign corpus on GitHub **retrieved** (`SRC-102`,
+`SRC-103`).
+
+## 3. The Indus side
+
+`mayig/indus-valley-script-corpus` @ `ad2f1e2` is one annotator's
+work-in-progress digitization of CISI. What it contains, exactly:
+
+| | |
+|---|---|
+| object ids | 179, one side each, CISI M-numbers M-1 to M-184, five missing |
+| site | the M-series is Mohenjo-daro on the digitizer's statement of the CISI scheme; CISI itself is blocked, so `DK-M-002` is PROVISIONAL |
+| object class | unicorn seals, all of them, in five sub-types |
+| graphemes | 1,003, of which 19 are the damage placeholder P000 |
+| sign tokens | 984, in 181 classes, 77 of them hapax |
+| length | 1 to 13 signs, median 5, mean 5.50 |
+| lines | 990 graphemes on line 1, 13 on line 2; 7 of the 179 records carry any line-2 grapheme |
+| fields per record | three: id, description, graphemes |
+
+Every one of those numbers is a property of the file set. The last row is
+the one that governs the rest: there is no find-spot, no stratum, no
+date, no material, no dimension and no museum number anywhere in it
+(`DK-M-016`). That is why §4.K's distribution and function questions have
+no measurement rows in this unit rather than weak ones.
+
+**The crosswalk is the one genuinely new measurement.** The 397 sign
+entries carry, for each class, the Parpola V-numbers, Wells W-numbers and
+Mahadevan M-numbers the annotator folded into it. Counted:
+
+| System | Distinct numbers | Classes taking >1 | Largest fold | Classes taking none |
+|---|---|---|---|---|
+| Parpola V | 662 | 195 | 7 | 1 |
+| Wells W | 498 | 76 | 17 | 66 |
+| Mahadevan M | 359 | 29 | 5 | 63 |
+
+Thirteen Mahadevan numbers appear under more than one Parpola class,
+which makes the crosswalk not a function at those points. The
+interpretive consequence is held to one line and one register row
+(`DK-M-015`, `DK-A-011`): the number of Indus signs is a property of a
+sign list and its allography rules. Four lists in one file disagree by a
+factor of 1.8. Any argument that runs from inventory size to whether the
+signs are writing inherits that.
+
+The other two datasets carry nothing and are logged saying so.
+`ramnerd/IVC_script_decoded` claims a complete decoding at 98.84%
+correlation with Old Tamil over a 556-row file with no artefact
+identifiers and no sign key (`DK-M-019`–`DK-M-021`).
+`akksshhaay/Indus-Seal-Dataset` is 327 photographs and a spreadsheet
+scraped from `harappa.com` captions that locates 38 of 135 objects even
+to a site (`DK-M-022`–`DK-M-024`).
+
+## 4. The Rigvedic side
+
+Two searches, deliberately different in kind.
+
+**Search A, a candidate census.** Twenty-five of the 63 lookups return
+ABSENT — 24 distinct queries, since `likh` was queried both as a nominal
+stem and as a root, and 22 distinct stems — `pattra` and `patra` are
+one stem written two ways, and so are `mudra` and `mudrā`. Seventeen are
+the later Sanskrit vocabulary of writing and sealing: `likh`, `lekha`,
+`lekhaka`, `lipi`, `libi`, `grantha`, `pattra`, `pustaka`, `phalaka`,
+`masi`, `kalama`, `mudrā`, `aṅkana`, `cihna`, `lāñchana`, `lakṣman`,
+`lakṣaṇa`. Five more are `saṃkhyā`, `tulā` and the roots `gaṇ-`, `paṇ-`
+and `vraśc-`. Positive controls return 543 tokens for
+`gáv- ~ gó-`, 471 for `rátha-`, 83 for `púr-`. The cow is queried twice,
+as `go` and as `gav`, because the Zurich lemma for it is an alternation
+that a lookup which does not split alternants would miss entirely; both
+return 543, so the splitting works.
+
+Earlier versions of this note said the `go` control had been left in its
+failing form and returned nothing. That was **false** — the committed
+register shows 543 against it — and second-round adversarial review found
+it. It was also the sentence this unit used to show that its negatives
+were instrumented, which is the worst place for a claim that does not
+check out. The instrumentation is real; that particular illustration of
+it was not.
+
+**Search B, a gloss scan of the whole attested lexicon**, then
+adjudicated hit by hit. 98.5% of tokens and 97.0% of lemmas carry a
+Grassmann gloss.
+
+| Field | True | False positive |
+|---|---|---|
+| WRITING | 0 | 5 |
+| SEAL | 0 | 0 |
+| MARK | 9 | 112 |
+| INCISE | 1 | 12 |
+| WEIGHT | 18 | 13 |
+
+The WEIGHT field was added after adversarial review, which found the
+weights negative resting on Search A alone while the writing negative
+rested on two instruments — an asymmetry running in the direction of this
+unit's own framing. Adding it changed the finding: the corpus has
+`mā́trā-` a *Masstab*, `khārī́-` a *Hohlmass*, `téjana-` a measuring rod
+and `yójana-` a distance measure, so "no standard measure" was wrong.
+What survives is narrower and now doubly instrumented: no balance, no
+weight unit (`DK-R-014`, `DK-R-016`).
+
+No gloss in the corpus matches more than one field, so the tallies are
+independent of the order the fields are tested in — measured and printed
+by the script rather than assumed (`DK-R-017`).
+
+The false positives are printed with reasons rather than deleted, because
+substring matching is what makes the scan exhaustive and what makes it
+noisy: German *ausgezeichnet* contains **zeichn**, *spritzen* contains
+**ritz**, *Vorschrift* contains **schrift**, *bestrichen* contains
+**strich**, *ackerbauend* contains **kerb**, and Grassmann's own
+metalanguage — "Bezeichnung eines Volkes" — accounts for 83 hits by
+itself.
+
+**What the scan found that the census could not.** `√rikh-`, glossed
+exactly *ritzen*, to scratch or incise. Twice, both in RV 6.53: Pūṣan
+carrying an `ā́rā`, an awl, and scratching open the hearts of the
+stingy. The statement "the root that later means *write* is absent from
+the Rigveda" is therefore false, and a candidate list built from
+Classical Sanskrit produces exactly that false statement (`DK-R-006`).
+
+**What the corpus does with the words it has.** `akṣára-`, the word that
+later names a written character, occurs eight times, and in all eight
+both translators render a syllable of chanted speech or the imperishable
+— the syllable that measures the metres at 1.164.24, the syllable of the
+`r̥c` in the highest heaven at 1.164.39. `√takṣ-` fashions chariots,
+hymns, bolts, cups and heaven; its one carving passage carves a
+horse-post knob. `√piś-` decks the sky with stars and trims flesh on a
+board. `ketú-` is a banner or a light. A keyword scan of both
+translations across all 232 registered occurrences returns six stanzas
+and not one of them is about writing.
+
+And the corpus is not short of the language of obligation: `bhāgá-`
+share 60, `r̥ṇá-` debt 10, `balí-` levy 4, `śulká-` price 2, `√mā-`
+measure 90. What it lacks is the language of **recording** them.
+
+## 5. The two adversarial tests
+
+### Prestige-bias challenge
+
+**Item 1, and it governs the unit.** Did this privilege the Sanskritic,
+canonical, textual side because that is the side the network reached? Yes,
+structurally, and no amount of care removes it. The Rigveda arrived as
+164,758 morphologically annotated tokens with four translations; the
+Indus material arrived as 179 seals with three fields. Eighteen Rigvedic
+claim rows and 232 registered occurrences stand against an Indus side
+that cannot state a find-spot.
+
+The corrections applied: no comparative conclusion is drawn anywhere in
+this unit; the asymmetry is stated in the manifest before any analysis
+(`02-SOURCES/domain-k-manifest-2026-09-09.md` §3); it is audited as a
+property of this record at `APA-K-004`; `HOLD-008` forbids the
+comparison explicitly; and `RA-024` extends the question to every other
+domain in the repository. What could not be corrected is the shape of the
+evidence itself, and a reader should treat the Rigvedic half of this unit
+as a well-measured half of a question, not as the answer.
+
+**Item 2.** Did the unit privilege the administrative reading of the
+seals because it is the familiar, institutionally comfortable one?
+`DK-H-003` was gated as source-blocked, and `DK-H-004` — identity,
+ritual, kinship, membership — was written and gated identically so that
+the administrative reading would not become the default by being the only
+one written down. The term audit removes *administrators*, *archive*,
+*bureaucracy* and *literacy* from this record's own voice — the last of
+those after two review rounds, the first of which found the rule stated
+more widely than it was kept
+(`06-BRIEFS/domain-k-translation-blocks.md` §4). "Sign-makers" and
+"sign-users" are used throughout with institutional role unresolved, as
+the task required.
+
+**Item 3.** Did the unit privilege *writing* as the default reading of
+the signs? `DK-H-001` and `DK-H-011` are registered as a pair and gated
+identically. The word *script* is reserved for the disputed claim.
+
+**Item 4.** Did the Rigvedic negative get an easier ride than an Indus
+positive would have? This is the one where the answer is close. The
+Rigvedic absences are typed `ABSENT DESPITE ADEQUATE SEARCH` and the
+Indus absences are typed `NOT ACCESSIBLE` — and that is not a double
+standard but the difference between a complete text and an unreachable
+archive. The check that keeps it honest is `BR-K-006`: the Rigvedic
+absence is refused as evidence about the Rigvedic world, and the
+strongest measurement in the unit is therefore also the one whose
+inference is most tightly blocked.
+
+### Preferred-counter-narrative challenge
+
+**Item 1.** The one retrieved decipherment claim is a Dravidian-priority
+claim (`SRC-104`, 98.84% correlation with Old Tamil). It was retrieved,
+read, registered at `DK-M-019`–`DK-M-021` and rejected at `DK-H-007` on
+recoverability — its sign identities resolve to no published list, so no
+line of it can be checked by any reader. The test that keeps this from
+being a political exclusion: the same objection would reject an
+Indo-Aryan, Sumerian or Elamite decipherment presented the same way, and
+it is the objection the platform's own page already applies to all such
+claims.
+
+**Item 2.** Was the Dravidian-Indus reading given an easy ride
+elsewhere? The step-13 check found `the-deep-root.html` stating "the
+Indus world was Dravidian-related" as the platform's best-supported
+reading, labelled as a reading and carrying its own falsifier. This unit
+neither adopted nor attacked it: nothing retrieved here bears on the
+language of the Indus signs, and `BR-K-007` records the three separate
+bridges such a claim must cross.
+
+**Item 3.** Was institutional rupture — the packet's own framing, R20
+"THE MISSING RECORD" — accepted because it is the interesting answer?
+`DK-H-006` is gated `ELIGIBLE IN PART`: the Rigvedic half was measured
+and the Indus half is unreachable, and the join between them is not
+made. `DK-H-010`, the null explanation — a liturgical praise corpus
+would not describe a graphic technology in any case — is registered
+first among the explanations of the silence, because the null is what
+the others have to beat. `BR-K-004` records that the end of a practice
+and the end of an institution are two claims.
+
+**Item 4.** The trap itself. `DK-H-009` — the inference from the end of
+the signs and the institutions to the disappearance of the people — is
+`REJECTED`, and rejected on the logic rather than on the evidence,
+because the evidence is unreachable and the inference is invalid without
+it. The repository's aDNA material is inherited and was not cited
+(`IH-109`, `IH-110`).
+
+The row originally rejected two things at once: the inference, and the
+demographic proposition itself. Adversarial review pointed out that
+`REJECTED` rows are never deleted, so that phrasing would have left a
+permanent rejection standing against a question this unit never tested.
+The demographic question is now `DK-H-012` and is **held, not rejected**
+— gated `NOT-ELIGIBLE-SOURCE-BLOCKED` like the rest of the Indus side.
+Getting that split wrong is the same failure as the trap, one level up:
+the trap says do not infer population change from institutional change,
+and the register was quietly ruling the population question out on the
+strength of having refused the inference.
+
+## 6. Why only three absences license anything
+
+Thirteen absences are typed. Ten license nothing at all. Three are
+`ABSENT DESPITE ADEQUATE SEARCH` — no writing vocabulary, no sealing
+vocabulary, no balance or weight standard in the Rigvedic lexicon — and
+they earn that type on four grounds: the corpus is complete rather than
+sampled, the search is reproducible, two independent instruments agree,
+and the coverage gap is stated (296 unglossed lemmas). The third ground
+was untrue of the weights absence when this unit was first written — the
+gloss scan had no weight field — and adversarial review found it. Adding
+the field narrowed the claim rather than confirming it (`DK-R-014`,
+`DK-R-016`), which is what a second instrument is for.
+
+Even those three license only statements about the corpus. The bridge to
+the society is refused at `BR-K-006` and the archive audit at `APA-K-001`
+says why: a liturgical corpus records what the liturgy and the patron
+need.
+
+The domain's headline absence — no unambiguous Rigvedic description of
+Indus writing — is typed `NOT RECOGNISED` and licenses the least of all,
+because we could not identify such a description as *Indus* even if it
+were there (`DK-A-004`).
+
+## 7. The gates that could not be run
+
+Method step 2 requires chronology before comparison and step 3 requires
+geography. Neither could be run. No absolute date for the Indus sequence
+or for Rigvedic composition was retrieved in this session, and this
+repository holds no `VERIFIED` date for either; the only chronology in
+hand is Arnold's relative stratification inside the Rigveda, which is
+recorded per occurrence and claims nothing absolute. Seven of the twelve
+hypotheses are therefore `NOT-ELIGIBLE-SOURCE-BLOCKED` rather than judged
+— six from the start, and `DK-H-012`, the demographic question, split out
+of `DK-H-009` on review — and two more are excluded on other grounds, and the gate rows say `CANNOT BE GATED IN THIS SESSION` in the
+chronology and geography fields rather than leaving them blank.
+
+## 8. What this unit did not do
+
+- It did not read CISI, ICIT, Mahadevan 1977, any ASI report, or any
+  peer-reviewed article on Indus writing.
+- It did not measure any Indus object class other than unicorn seals from
+  one site, and did not measure distribution, stratigraphy or date.
+- It did not read the 224 Rigvedic stanzas in Sanskrit. The passage-level
+  check ran through two translations of one philological tradition, which
+  is why `DK-A-003` is typed `NOT RECOGNISED` rather than
+  `ABSENT DESPITE ADEQUATE SEARCH`.
+- It did not read `citrá-` (147 tokens), `nā́man-` (117) or `rūpá-` (49)
+  passage by passage; all three are glossed in the field of appearance
+  rather than of marking, and the exclusion is a judgement recorded in
+  `04-AUDITS/rv-marking-occurrences.py`.
+- It did not test whether the later senses of `akṣára-`, `várṇa-` and
+  `lipi-` develop where and when they are usually said to; every source
+  that would date that development is blocked.
+- It drafted no public copy for publication. `06-BRIEFS/domain-k-brief.md`
+  is a brief in the step-14 shape, from accepted claims only, and is not
+  a page.
