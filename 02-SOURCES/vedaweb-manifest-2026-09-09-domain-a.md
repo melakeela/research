@@ -4,6 +4,8 @@
 **Extends:** `02-SOURCES/vedaweb-manifest-2026-09-07.md` and
 `02-SOURCES/vedaweb-manifest-2026-09-07-extension.md`
 **Backing record for ledger rows:** `SRC-099` … `SRC-118`
+**Reproduction:** the count of tables in this file has been wrong twice (thirteen,
+then seventeen). It is now derived from the directory, not typed.
 
 This unit examines the dependency that every chronological claim in this
 repository rests on. It therefore re-opens the same clone rather than a new
@@ -112,6 +114,6 @@ Three things a reader would need, and none of them is in the retrieved files:
 python3 04-AUDITS/domain-a-instruments.py <clone>/rigveda <outdir>
 ```
 
-writes the seventeen tables in `04-AUDITS/domain-a-tables/`, which are the tables
+writes the 23 tables in `04-AUDITS/domain-a-tables/`, which are the tables
 `03-REGISTERS/domain-a-measurements.csv` cites by name. The script reads only
 the files pinned above.

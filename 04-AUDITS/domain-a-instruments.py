@@ -133,10 +133,20 @@ NON_ARNOLD = [c for c in cols if c != "arnold"]
 per = collections.Counter()
 for st, d in flags.items():
     for c in d: per[c] += 1
-rows = [[c, sp[header_key][c], per[c], pct(per[c], len(strata))] for c in cols]
-rows.append(["ANY", "at least one scholar", len(flags), pct(len(flags), len(strata))])
+# Sixteen keys in stanza_properties.json name stanzas that strata.json does not
+# contain (A13). Publishing the raw key count over a denominator of 10,552 real
+# stanzas puts a numerator including non-existent stanzas over a count of
+# existing ones, so both populations are emitted and the rate uses the second.
+_real = {k for k in flags if k in strata}
+per_real = collections.Counter()
+for st_, d in flags.items():
+    if st_ not in strata: continue
+    for c in d: per_real[c] += 1
+rows = [[c, sp[header_key][c], per[c], per_real[c], per[c] - per_real[c], pct(per_real[c], len(strata))] for c in cols]
+rows.append(["ANY", "at least one scholar", len(flags), len(_real), len(flags) - len(_real), pct(len(_real), len(strata))])
 emit("A5a-scholar-flag-counts.csv", rows,
-     ["column", "source_as_named_in_file", "stanzas_flagged", "pct_of_10552_stanzas"])
+     ["column", "source_as_named_in_file", "keys_in_file", "stanzas_that_exist_in_strata",
+      "keys_naming_absent_stanzas", "pct_of_10552_existing_stanzas"])
 
 # pairwise co-flagging
 rows = []
@@ -384,13 +394,18 @@ _obs = _rho(_late)
 _ge = sum(1 for perm in itertools.permutations(range(len(_late)))
           if abs(_rho([_late[i] for i in perm])) >= abs(_obs) - 1e-12)
 _tot = math.factorial(len(_late))
-random.seed(0)
-_sim = sorted(_rho(random.sample(_late, len(_late))) for _ in range(20000))
+# The null is enumerated, not sampled: the n=10 Spearman null is exactly
+# symmetric about zero, so a sampled interval reports its own noise as an
+# asymmetry. An earlier version drew 20,000 samples and published -0.648/+0.636;
+# both bounds are the same number.
+_all = sorted(_rho([_late[i] for i in perm]) for perm in itertools.permutations(range(len(_late))))
+_lo = _all[int(0.025 * _tot)]
+_hi = _all[int(0.975 * _tot)]
 rows = [["spearman_rho_observed", round(_obs, 4), ""],
         ["exact_two_sided_permutation_p", round(_ge / _tot, 4), "all %d permutations enumerated" % _tot],
-        ["null_95pct_lower", round(_sim[500], 3), "20000 draws, seed 0"],
-        ["null_95pct_upper", round(_sim[19500], 3), "20000 draws, seed 0"],
-        ["interpretation", "UNDERPOWERED", "n=10 cannot distinguish rho=0 from a strong monotone relation; anything up to about |rho|=0.64 is inside the null range"]]
+        ["null_95pct_lower", round(_lo, 4), "exact, all %d permutations" % _tot],
+        ["null_95pct_upper", round(_hi, 4), "exact, all %d permutations" % _tot],
+        ["interpretation", "UNDERPOWERED", "n=10 cannot distinguish rho=0 from a strong monotone relation; anything up to |rho|=0.6364 is inside the null range"]]
 emit("A11-mandala-order-null-and-power.csv", rows, ["measure", "value", "note"])
 
 # ============ A12  association between metre label and stratum ============
@@ -464,6 +479,51 @@ emit("A15-padapatha-directional.csv", rows, ["measure", "value", "note"])
 
 print("A11 exact p = %.4f ; A12 Cramer V = %.4f ; A13 phantom keys = %d ; A14 notation-only = %d ; A15 directional median = %.4f"
       % (_ge / _tot, math.sqrt(_chi / (_N * (min(len(mx), 5) - 1))), len(_phantom), len(_raw) - len(_fu), _dir[len(_dir) // 2]))
+
+# ===== A16  the same question at the hymn unit, which A-2's falsifier names =====
+# A8/A11 aggregate to ten books, which is too few units to resolve anything.
+# strata.json divides 1,028 hymns. This is the finer test the unit should have
+# run in the first place; it was added 2026-09-09 after adversarial review
+# pointed out that A-2's own falsifier named it.
+_hy = collections.defaultdict(collections.Counter)
+for st, b, h, n, pd_, mt, code in pada_rows:
+    _hy[(b, h)][code.upper()] += 1
+def _rho_ties(xs, ys):
+    def rank(v):
+        order = sorted(range(len(v)), key=lambda i: v[i])
+        r = [0.0] * len(v); i = 0
+        while i < len(order):
+            j = i
+            while j + 1 < len(order) and v[order[j + 1]] == v[order[i]]: j += 1
+            avg = (i + j) / 2.0 + 1
+            for k2 in range(i, j + 1): r[order[k2]] = avg
+            i = j + 1
+        return r
+    rx, ry = rank(xs), rank(ys)
+    mx_, my_ = sum(rx) / len(rx), sum(ry) / len(ry)
+    num = sum((a - mx_) * (b2 - my_) for a, b2 in zip(rx, ry))
+    den = math.sqrt(sum((a - mx_) ** 2 for a in rx) * sum((b2 - my_) ** 2 for b2 in ry))
+    return num / den if den else 0.0
+random.seed(1)
+rows = []
+for label, keep in (("all_books", lambda b: True),
+                    ("books_1_to_9", lambda b: b != 10),
+                    ("family_books_2_to_7", lambda b: 2 <= b <= 7)):
+    ks = [k for k in sorted(_hy) if keep(k[0])]
+    xs = [k[0] for k in ks]
+    ys = [sum(_hy[k][c] for c in LATE) / sum(_hy[k].values()) for k in ks]
+    r = _rho_ties(xs, ys)
+    hits = 0
+    for _ in range(5000):
+        sh_ = ys[:]; random.shuffle(sh_)
+        if abs(_rho_ties(xs, sh_)) >= abs(r) - 1e-12: hits += 1
+    zero = sum(1 for v in ys if v == 0.0)
+    rows.append([label, len(ks), round(r, 4), round((hits + 1) / 5001.0, 4),
+                 pct(zero, len(ks)), round(sorted(ys)[len(ys) // 2], 4)])
+emit("A16-hymn-level-order-vs-arnold-late.csv", rows,
+     ["scope", "hymns", "spearman_rho_tied", "permutation_p_5000_shuffles",
+      "pct_hymns_with_zero_late_padas", "median_late_share"])
+print("A16:", rows)
 
 print("\n--- headline numbers ---")
 print("padas with a stratum code:", len(pada_rows))

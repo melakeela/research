@@ -2,16 +2,19 @@
 
 **Run:** 2026-09-08 / 2026-09-09
 **Branch:** `claude/rigvedic-chronology-dependency-h449cc`
-**Registers:** `03-REGISTERS/domain-a-measurements.csv` (21),
-`domain-a-claims.csv` (15), `domain-a-eight-dates.csv` (8),
+**Registers:** `03-REGISTERS/domain-a-measurements.csv` (25),
+`domain-a-claims.csv` (17), `domain-a-eight-dates.csv` (8),
 `domain-a-conventional-date-basis.csv` (7),
-`domain-a-arnold-dependency.csv` (48),
+`domain-a-arnold-dependency.csv` (60 classifications, covering 395 register rows
+— four of them stand for an entire occurrence register),
 `domain-a-hypothesis-eligibility.csv` (5)
 **Script:** `04-AUDITS/domain-a-instruments.py` → `04-AUDITS/domain-a-tables/`
 **Manifest:** `02-SOURCES/vedaweb-manifest-2026-09-09-domain-a.md`
 **Ledger:** `SRC-099` … `SRC-118`. **Dependencies:** `DEP-029` … `DEP-036`.
-**Contradictions:** `IC-A-001` … `IC-A-004`. **Bias failures:** `BF-027` … `BF-030`.
-**Repaired 2026-09-09** against adversarial review; §15 lists what changed.
+**Contradictions:** `IC-A-001` … `IC-A-004`. **Bias failures:** `BF-027` … `BF-031`.
+**Repaired twice on 2026-09-09** against two rounds of adversarial review; §15
+lists what changed and §16 what the second round changed. **These header counts
+were stale after the first repair and are the kind of thing §16 is about.**
 **Hold:** `HOLD-008`.
 
 ---
@@ -428,13 +431,13 @@ the arithmetic was made to say. What changed:
 | `A-2` | `NOT-ELIGIBLE` — "FAILS on the one instrument" | `CANNOT-GATE`. An instrument that cannot license the positive inference (`DA-003`) cannot license the exclusion either |
 | `DA-M-006` | modal-stratum accuracy alone, with a reading attached, `VERIFIED` | measurement only, with Cramér's V = 0.5314, U = 0.2919, MI = 0.668 bits; the reading moved to `DA-016` as `PROVISIONAL` and now runs both ways |
 | `DA-M-008` | 1,094 / 1,308 / 2,372 over 10,552 | the A5c population of existing stanzas, plus `DA-M-022` on the sixteen keys that name stanzas `strata.json` lacks |
-| `DA-M-015` | 72.04 %, no normalisation caveat; "darśate me > darśata ime" | 72.04 % raw and 70.81 % normalised, 130 stanzas differing only in notation; the 1.2.1 instance corrected to `darśatemé > darśataimé` |
+| `DA-M-015` | 72.04 %, no normalisation caveat; "darśate me > darśata ime" | 72.04 % raw and 70.81 % normalised, 130 stanzas differing only in notation. The 1.2.1 instance was then written wrongly a *second* time as `darśatemé > darśataimé`; §16 corrects it to `darśatemé` (one word, transmitted) → `darśata imé` (two, restored) |
 | `DA-M-018` | "about 9 % of the recited text", from a symmetric ratio | directional median 0.9298, i.e. about 7 %, with the padapāṭha noted as the longer string |
 | `DA-M-021` / `SRC-117` | five registers, 15 rows in `rigveda-pur-family.csv`, filter unstated | six registers, 14 rows, and the `VERIFIED`-only filter named along with everything it excluded |
 | `DA-005` | half of the 2021 sentence | the whole sentence, including "not substantial" |
 | `DA-008` | also claimed the null does not touch Arnold's stratification | that exculpation withdrawn: the abstract says *any* of the proposed stratifications, and Arnold's is the canonical one |
 | `DA-006`, `A-1` | Grassmann as the independent instrument | independence marked as **untested and untestable here** (`DEP-036`) |
-| `DA-015` | claimed the dependency register was complete | states what the filter excluded; the register went from 48 rows to 60 |
+| `DA-015` | claimed the dependency register was complete | states what the filter excluded; the register went from 48 classifications to 60 |
 | dependency register | 48 rows; 9 excused on a false statement about `SRC-026`; 5 on a criterion false of them; 2 whose column contradicted their own note | 60 rows, every misclassification corrected in place and stated as a correction |
 | `BF-027`, `BF-028` | process claims about ordering that git cannot support | withdrawn; what is checkable is stated instead |
 | — | — | `BF-029`, `BF-030`, `IC-A-001`…`IC-A-004`, `DEP-036`, `DA-016`, `DA-017`, `DA-M-022`…`DA-M-024`, `RA-025`…`RA-028` opened |
@@ -445,8 +448,78 @@ because repairing them means changing another unit's registers: `IC-A-003`
 `supports_page` value resolves to no brief). The re-audit rows say who decides.
 
 The reviewer also confirmed, and it is recorded here because a negative result
-from an adversary is evidence: no bug in the Yates χ², the Jaccard, the Spearman
-ρ (176 of 990 pairs hand-checked), the enrichment ratios or the modal-stratum
+from an adversary is evidence: no bug in the Yates χ², the Jaccard, the Spearman ρ, the enrichment ratios or the modal-stratum
 accuracy; `autojunk` does not bite; `DA-M-007`'s two mixed stanzas are right; no
 `01-INHERITED/` material is cited as evidence anywhere in the unit; and `A-1`'s
 refusal to gate on abstracts is the right call.
+
+
+## 16. Repaired again, same day, against a second round of review
+
+The second pass ran the script (all 23 tables byte-identical), re-derived the
+new statistics, and re-tested the dependency register against its own criterion.
+It found that **four of its five blocking findings were introduced or preserved
+by the first repair.** That is the shape of the thing worth recording: a repair
+pass is itself work, and it was not audited to the standard it was applying.
+
+**The one that matters most.** `SRC-117` — the ledger row that *is* the
+retrieval record for the dependency scan — **was never edited.** `DA-M-021` was
+corrected to six registers and 14 rows; its sole source still said five and 15;
+and `IC-A-001`, the contradiction row logging exactly that class of failure,
+asserted that both had been fixed and closed itself. For one commit a `VERIFIED`
+row contradicted its own retrieval record. `BF-030`'s own future control — *re-run
+the recorded scan verbatim and diff it against the register* — fails at the first
+step when applied to the repair that created it, and `BF-030` now says so.
+
+**And the count still was not derivable.** Run against `DA-M-021`'s stated
+criterion the scan returns **44**, not 48, with `rigveda-pur-family.csv` at 10.
+The difference is `PUR-001`, `PUR-020`, `PUR-023` and `PUR-024`, which match only
+in their *notes* — `PUR-024`'s reads "Its single token is Archaic". The criterion
+was mis-stated as matching *claim text* when it matches **any field of the row**.
+Both figures are now given, in both places, because a reader re-running the scan
+must arrive at the number the register holds.
+
+| Row | Second-pass finding | Now |
+|---|---|---|
+| `SRC-117` | never edited; `DA-M-021` contradicted its own source | corrected; states the whole-row criterion and the 44/48 pair |
+| `IC-A-001` | claimed a fix that had not been made, and closed itself | reopened, resolved on the second attempt, and says which pass failed |
+| `DA-002` | still led with "do not co-vary … the disjunction this forces"; `PROVISIONAL` is not a landing place for "could not establish" | **`SUPERSEDED`** by `DA-M-003` and `DA-M-025`. A claims row that adds nothing to its measurements should not exist |
+| `A-2` | "cannot be tested at this size" — a size the unit chose, when its own falsifier named the finer test | the finer test is run: `DA-M-025`, `A16`. Verdict stays `CANNOT-GATE`, for the right reason |
+| `DA-M-018` | three figures in no table (0.9100, 0.9265, 4.4 %) | 0.9128, 0.9262, 3.6 %, read from `A7` and `A15` |
+| `DA-M-015` | the corrected transliteration was wrong the other way — it fused the *restored* form | `darśatemé` → `darśata imé`, verified against `aufrecht` 01.002.01a and `vnh` 01.002.01a/b |
+| manifest, §15 | "seventeen tables"; it writes 23 | derived from the directory, not typed. It has been wrong three times |
+| method header | still said 21 / 15 / 48 registers | 25 / 17 / 60, and the header says why |
+| `A11` | sampled quantiles where it had already enumerated, publishing ±noise as ±0.648/±0.636 | exact, symmetric, ±0.6364 |
+| `DA-M-003` | typed the absence `ABSENT DESPITE ADEQUATE SEARCH` while its own headline is `UNDERPOWERED` — adequacy is what it lacks — and typed an *inference* under a standard for *evidence* | typing withdrawn. **Constitution §6 has no type for "measured but underpowered"**, and that is recorded as a gap in the standard, of the same kind `BF-017`/`RA-018` already log |
+| `BF-029` | its causal clause asserted an ordering git cannot show — the error `BF-027`/`BF-028` had just been corrected for | clause withdrawn; the finding needs no ordering |
+| `A5a` | still published the counts `DA-M-008` says are wrong | emits both populations; rates over existing stanzas only |
+| `DA-017` | `HYPOTHESIS` for a checkable fact about the record | `VERIFIED`, matching `DA-013` and `DA-M-023` |
+| `DA-M-023`, `DA-M-024` | one locator a universal negative, one under-enumerating its own claim | both corrected |
+| — | — | `BF-031`, `DA-M-025`, table `A16` opened |
+
+**`BF-031` is the new bias failure and it is not a small one.** The unit
+aggregated a per-pāda instrument to ten books, got a null, and reported the null
+as the limit of what could be done — in `DA-002`, `DA-M-003` and `A-2` — while
+`A-2`'s own falsifier field named the finer test and the same script could have
+run it. At the hymn unit the question resolves: ρ = +0.2125 over all 1,028 hymns,
+−0.1526 over books 1–9, **+0.1648 within the family books 2–7**, all at p ≤ 0.0012.
+The sign flips with scope, and inside the family books it runs *toward* the
+standard ordering — the hypothesis the first draft gated out and the first repair
+declined to gate. Three caveats are attached to `DA-M-025` and none is optional:
+it is still Arnold's instrument, hymns within a book are not independent, and
+65.4 % of hymns carry no late pāda at all. It is a finding about the unit, not
+about the Rigveda.
+
+**Also recorded, because a correction from an adversary is evidence too.** The
+first review reported the exact permutation *p* as 0.8382. On re-review it
+withdrew that: the threshold had been taken at the rounded `0.0667`, excluding
+the 2.69 % of permutations sitting exactly at the observed |ρ| = 0.0666…. The
+script's `abs(_obs)` is right and 0.8651 stands. No register row ever carried the
+other figure. It is written here because the reviewer's self-correction is part
+of the record of how this number was established.
+
+**Still open after two passes**, and stated rather than closed: `IC-A-003`
+(`SRC-026` naming two works), `IC-A-004` (`PUR-028` duplicating `A-1`), `RA-023`
+(the prose sweep and step 13), `RA-027` (whether Arnold used Grassmann) and
+`RA-028` (a `supports_page` that resolves to no brief). Each changes another
+unit's registers or needs a source this session cannot reach.
