@@ -20,20 +20,33 @@ and calibration stated; a survey coverage report.
 `CLAUDE.md`'s negative-evidence standard governs arguing **from** absence about
 the past. Nothing here argues from absence about the past.
 
-None of the eight types applies:
+None of the eight types applies, and the reason is the same for all eight:
+**every one of them is a finding about the record, and no search of the record
+was run.**
 
-- not `NOT EXCAVATED` — people have excavated, extensively;
-- not `NOT PUBLISHED` — reports exist;
-- not `NOT ACCESSIBLE` — nothing was requested and refused;
-- not `ABSENT DESPITE ADEQUATE SEARCH` — **no search was run**;
-- not `NOT PRODUCED`, `NOT PRESERVED`, `NOT RECOGNIZED` or
-  `DOCUMENTED DESTRUCTION` — none of these describes a gap in a modern
-  institution's reading list.
+- not `ABSENT DESPITE ADEQUATE SEARCH` — no search was run at all, so the
+  adequacy condition is not merely unmet, it is unassessed;
+- not `NOT ACCESSIBLE` — nothing was requested and nothing was refused; there is
+  no `EGRESS_BLOCKED` row and no refusal on file;
+- not `NOT EXCAVATED`, `NOT PUBLISHED`, `NOT PRODUCED`, `NOT PRESERVED`,
+  `NOT RECOGNIZED` or `DOCUMENTED DESTRUCTION` — each of these asserts something
+  about what exists or once existed in the world, and this repository holds no
+  evidence bearing on any of them either way.
 
-What is true is narrower and entirely about us: **`02-SOURCES/access-ledger.csv`
-contains 99 rows and not one of them is archaeological.** Every source behind
-every *púr-* register row is a text, a translation, a dictionary, a metrical
-study, or a lexical database.
+**An earlier draft of this hold argued the point differently and worse**, by
+asserting that *"people have excavated, extensively"* and *"reports exist"*.
+Those may well be true, and this repository holds no source for either, so
+using them as premises would have made the typing decision rest on exactly the
+kind of unevidenced background assumption the standard exists to catch. The
+argument above needs no such premise: an untyped gap is untyped because nobody
+looked, and that is a fact about us.
+
+What is true is narrower and entirely about us:
+**`02-SOURCES/access-ledger.csv` contains 98 data rows — `SRC-001` to
+`SRC-098`, derived with `csv.DictReader` and not from the file's 99 lines — and
+not one of them is archaeological.** Every source behind every *púr-* register
+row is a text, a translation, a dictionary, a metrical study, or a lexical
+database.
 
 That statement is checkable, and screen `CP-3.5` is built so that a child
 checks it against the real ledger rather than being told it.

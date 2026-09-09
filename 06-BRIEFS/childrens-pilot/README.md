@@ -49,18 +49,24 @@ reviewable. It is specification wording. It has not been through constitution
 | File | Row | Why |
 |---|---|---|
 | `05-HOLDS/HOLD-008-ground-evidence-for-the-pur-corpus.md` | new | The ground half of this investigation has no source. The hold names what is needed. |
+| `02-SOURCES/access-ledger.csv` | `SRC-099` | The two searches screens `CP-3.5` and `CP-3.4` display: the ledger self-audit, and the absolute-date scan, with its coverage boundary. |
+| `04-AUDITS/INTERNAL-CONTRADICTIONS.csv` | `IC-CP-001` | §1.7 forbids Field Mode in Reading Room; §1.5 rule 7 assigns Reading Room as the residual; §1.6.1 calls that residual an encoding defect. |
 | `09-DECISIONS/OWNER-DECISIONS.csv` | `D-055`, `D-056`, `D-057` | Three decisions this specification raises and does not take. |
 | `DECISIONS-NEEDED.md` | `D-055`, `D-056` | The two that block. |
-| `04-AUDITS/REAUDIT-QUEUE.csv` | `RA-022` | A stale figure found in `PUR4J-I-02` while reading for this unit. |
+| `04-AUDITS/REAUDIT-QUEUE.csv` | `RA-022`, `RA-023` | A stale figure in `PUR4J-I-02`, and `SRC-026` cited for Grassmann's *Wörterbuch* when the ledger row is Arnold 1905. Both found while reading for this unit. |
 
 ## The three gates, in one place
 
 **G-1 — posture. `BLOCKING`.** Museum framework §1.7 forbids Field Mode in the
-Reading Room posture. The curatorial audit assigns `the-forts` to Reading Room
-(`INHERITED-UNVERIFIED`). §1.5 derivation over *this investigation's* claim set
-returns **Nocturnal Veḷi** (rule 3, absence dominance), where Field Mode is
-*available*. The two answers differ, and posture is not the specification's to
-assign. `D-055`.
+Reading Room posture, and the curatorial audit assigns `the-forts` to Reading
+Room (`INHERITED-UNVERIFIED`). Run strictly, §1.5's derivation over *this
+investigation's* claim set **does not fire rules 1–6** — rule 3 needs a majority
+of load-bearing propositions resolving to *typed* absences, and this
+investigation's propositions are mostly positive measurements — so it falls to
+rule 7 and returns Reading Room as the **residual**, which §1.6.1 says is not a
+posture finding at all. **There is therefore no derived answer**, derivation is
+advisory, and the assignment is the owner's. `D-055` carries both readings and
+the arguments for each. `IC-CP-001` logs the framework tension this exposed.
 
 **G-2 — the ground half. `BLOCKING`.** No archaeological source exists in
 `02-SOURCES/access-ledger.csv`. Screen `CP-3.5` therefore reports an empty
@@ -83,9 +89,11 @@ the option so that the choice is made against a real description.
 `06-BRIEFS/pur-translation-standard.md`, `06-BRIEFS/rv01-reconciliation.md`,
 `13-PRODUCT-ARCHITECTURE/museum-framework.md` §10.
 
-Forty-five identifiers are cited. Forty-two carry a status: **32 `VERIFIED`,
-8 `PROVISIONAL`, 2 `HYPOTHESIS`**. The other three are two passage rows, which
-are addresses rather than claims, and one archive-and-power-audit row.
+Forty-six identifiers are cited, derived by scanning the specification body
+and joining against the register status columns. Forty-three carry a status:
+**32 `VERIFIED`, 9 `PROVISIONAL`, 2 `HYPOTHESIS`**. The other three are two
+passage rows, which are addresses rather than claims, and one
+archive-and-power-audit row, whose file has no status column.
 
 The load-bearing `HYPOTHESIS` is `PUR-028` — that Arnold's five metrical
 periods correspond to real stages of composition. It sits under the chronology

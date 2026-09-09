@@ -1312,21 +1312,42 @@ and its matrix sets Field to `forbidden` in **Reading Room** as well.
 in both its assigned and its recommended column. That row is
 `INHERITED-UNVERIFIED`.
 
-Framework §1.5's derivation, run over the **investigation's own claim set**
-rather than over the essay's, returns **Nocturnal Veḷi** on rule 3, absence
-dominance: four of the six FIND OUT screens terminate in an absence or an
-unknown — no number for the forts, no place, no year, no ground. Field Mode is
-*available* in Nocturnal Veḷi.
+**The derivation does not settle it, and an earlier draft of this section
+claimed it did.** Run strictly over the investigation's own claim set, §1.5 rule
+3 does not fire: it requires a majority of **load-bearing propositions**
+resolving to **typed absences**, and the specification counts 43 statused
+propositions of which 32 are positive `VERIFIED` measurements, with only two of
+its four terminal unknowns typed as absences — its own §5.2 says the ground gap
+is a `HOLD`, not a typed absence. The derivation therefore falls to **rule 7**
+and returns Reading Room as the **residual**, flagged `derived_residual = true`.
 
-**The two answers differ, and §1.3 reserves the assignment.** Posture is derived
-and then confirmed or overridden editorially, with the override logged. A
-specification may not assign its own posture, and it may not soften §1.7 to fit
-itself.
+§1.6.1 is explicit that the residual is not a posture finding:
+
+> *"An exhibit does not become Reading Room by being unclassifiable. Derivation
+> rule 7 makes Reading Room the residual **only for derivation**, and every
+> residual assignment is flagged `derived_residual = true` … so the size of the
+> unclassified set is visible rather than laundered into a posture count."*
+
+and §1.5 closes by stating that **derivation is advisory** and the assigned
+posture is editorial, written with an override reason.
+
+**So the owner is choosing without a derived answer.** §1.3 reserves the
+assignment in any case: a specification may not assign its own posture, and it
+may not soften §1.7 to fit itself.
+
+**A framework defect this raises, logged separately.** §1.7's Field prohibition
+attaches to the posture *value*; rule 7 assigns that value as a residual; §1.6.1
+says the residual is an encoding defect. Composed, **any exhibit the derivation
+cannot classify is forbidden Field Mode by default** — a prohibition falling out
+of an admitted defect rather than out of a judgement about the exhibit. Recorded
+at `04-AUDITS/INTERNAL-CONTRADICTIONS.csv` `IC-CP-001`. It does not change this
+decision: if the answer is Reading Room *as an assignment*, the specification is
+withdrawn.
 
 | Option | Consequence |
 |---|---|
-| **Nocturnal Veḷi** | The investigation may be built as specified. The posture's `Avoid` — *"no fantasy portal or occult styling"* — is carried as a design note on every screen and is a real constraint on a children's surface. |
-| **Reading Room** | Field Mode is forbidden and the specification is **withdrawn**, not amended. This is the honest consequence and it is recorded so that the option is a real one. |
+| **Nocturnal Veḷi** | The investigation may be built as specified. Argument for: four of six evidence screens terminate in an unknown and the investigation's own conclusion is that the museum cannot say. Argument against: on the framework's counting rule the positive measurements are the majority, so this is an **override** of a derivation that did not fire, and §1.5 requires the override reason to be written into the Editorial Register. The posture's `Avoid` — *"no fantasy portal or occult styling"* — is carried as a design note on every screen. |
+| **Reading Room** | Field Mode is forbidden and the specification is **withdrawn**, not amended. This is the honest consequence and it is recorded so that the option is a real one. Argument against: §1.6.1 diagnoses the curatorial audit's assignment as its residual bucket — Reading Room is the secondary environment for all 96 pages and primary for 34 *"because the audit had nothing more specific to say about them"* — so the assignment carries little information. |
 | **Split** | The long-form argument stays Reading Room; the investigation stands as its own Nocturnal Veḷi exhibit over the same claim set. The curatorial audit already recommends `Split` for `the-forts`, which is an argument for this option and not a decision. It must be a real split — a separate exhibit with its own posture assignment — not a Field Mode tab bolted onto a Reading Room page. |
 | **Defer** | Consistent with `D-006` being open. Costs nothing except the schedule. |
 
