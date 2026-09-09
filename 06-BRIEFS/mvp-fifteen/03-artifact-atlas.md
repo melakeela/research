@@ -59,20 +59,30 @@ gives *Curatorial decision* as *"Keep, Revise, Hold, Split or Merge based on rol
 source visibility, risk and overlap"*, limited by *"Decisions remain provisional
 until factual and specialist review."* It gives *Claim risk* separately, as
 *"Flagged categorical, causal, priority/origin, institutional and quantitative
-central claims"*, limited by the sentence `RA-019` exists to enforce:
+central claims"*, limited by the sentence one clause of `RA-019`'s
+`what_to_recheck` puts a standing control on:
 *"Risk means verification priority, not falsehood."* `Low` is therefore not a
 judgement that the page is sound; it is a judgement that the page is not near the
 front of the verification queue.
 
 A third layer, *Source visibility*, was *"Estimated bibliography entries from
-visible Sources/References sections"*, limited by *"A visible bibliography does
-not prove claim-level support or source quality."* The 88 entries belong to that
-layer. **Whether they are what produced `Low` is an inference this brief cannot
-check** — the workbook nowhere states how the two relate — and an earlier draft
-asserted it as fact in two places. What can be said without inference is that
-88 estimated entries against 8 words of prose is a measurement of a page's
-furniture, and that no instrument in the workbook read the page's central number
-at all.
+visible Sources/References sections and counted live external links."*, limited
+by *"A visible bibliography does not prove claim-level support or source
+quality."* The 88 entries belong to that layer. **Whether they are what
+produced `Low` is an inference this brief cannot check** — the workbook nowhere
+states how the two relate — and an earlier draft asserted it as fact in two
+places. What can be said without inference is that 88 estimated entries
+against 8 words of prose is a measurement of a page's furniture.
+
+**And the workbook holds no row in which any instrument read the page's central
+number.** That is an argument from absence over one document, so it is typed:
+`claim-risk.csv` is the sheet whose method is *"Flagged categorical, causal,
+priority/origin, institutional and quantitative central claims"* — a site count
+in a title being the fourth and fifth of those — and it holds no row for this
+page. The absence is `NOT PRODUCED` within the workbook's own scope, checked at
+build time; it says nothing about whether the number was examined anywhere else,
+and `IH-250` records that it was, in the inheritance, and left unresolved.
+
 
 
 ---
@@ -244,7 +254,7 @@ Every page in the release carries the shared gates in
 five *Not completed* publication gates, and the ten framework gates F1–F10. They
 are not repeated here. What follows is what this page needs **beyond** them.
 
-1. No headline count anywhere on the page, per §8.1: the number in view is a property of the current filter and is *"always shown *with* the filter, never as a title."* The page's current title breaks this, and §7 records what that does and does not settle.
+1. Whatever §8.1's rule is taken to require of this page — its own words are that the number in view is a property of the current filter, *"always shown with the filter, never as a title"*, and the page's current title states a total. What follows from that is D-034's to settle and not this brief's: §7 records the conflict and the three arms without choosing one, and this gate states the rule rather than a launch condition derived from it.
 2. Every mapped thing is an object with a status and an attestation mode; a findspot and an attributed provenance are never the same marker (§8.2).
 3. The 145 `assumed` date rows are typed as assertions with their basis, or excluded. Rendering them identically to the 54 report-dated rows is `IH-105` published as if it were `IH-105` solved.
 4. Unknown zones are a rendered layer, and the excavation/survey coverage overlay exists (§8.2) — without it no absence on the map is checkable.
@@ -304,7 +314,7 @@ and has not closed, and the same workbook schedules the page third:
 | `mvp.csv` | `Rank` | **3** of 15 |
 | `mvp.csv` | `Decision` / `Risk` | `Keep` / **Low** |
 | `mvp.csv` | `Release dependency` | *"Preserve the core argument; complete citation, image-rights, accessibility, and copy review before publication."* |
-| `claim-risk.csv` | row for `artifact-atlas` | **no row for this page at all** |
+| `claim-risk.csv` | row for `artifact-atlas` | **none; the build stops if one appears** |
 | `03-REGISTERS/inherited-claims.csv` `IH-250` | `INHERITED-UNVERIFIED` | contradiction X-01: 140 / 150 / 158 / 167→175 / 194 / 199 sites |
 | `03-REGISTERS/inherited-claims.csv` `IH-057` | `INHERITED-UNVERIFIED` | correction C-37: three different counts on three live surfaces |
 | `09-DECISIONS/OWNER-DECISIONS.csv` **D-034** | status | `OPEN` |
@@ -318,7 +328,8 @@ inheritance records as one of six competing values. Neither column that rated th
 page reached that number. §1 above sets out why — `Decision` and `Risk` are
 different instruments with different limits, `Risk` means verification priority
 and not falsehood, and the `claim-risk.csv` sheet that would have recorded a
-publication gate on a quantitative central claim has **no row for this page at all**.
+publication gate on a quantitative central claim holds no row for this page at
+all — checked at build time, and this section will not build if one is added.
 
 **This section prints the six competing counts, and `IH-250` says not to.** The
 row's resolution path reads in full: *"Extract the atlas dataset to JSON, count,
@@ -341,21 +352,30 @@ conflict survives into the brief set and names what each arm would change.
 other purpose. They are listed in no order of preference, and each is reachable
 without the other two:
 
-- **The number is settled.** The dataset is extracted and counted (§6, MVP-U3),
-  X-01 closes, and the title either survives with its figure re-derived and
-  statused or is rewritten to the derived value. Rank 3 stands. This is the
-  only arm in which the page launches with a number in its title, and the only
-  one that waits on the archive (see below).
+- **The number is settled.** The dataset is extracted and counted (§6, MVP-U3)
+  and X-01 closes. What the title then does is *still* open, and this brief
+  cannot say it survives with a re-derived figure: §8.1 as quoted below forbids a
+  number in the title under any circumstances, so a settled count makes the title
+  question answerable without answering it. Rank 3 stands unless something
+  else moves it. **Cost:** this is the only arm that waits on the archive (see
+  below), and the only one that produces a value D-034 asks for.
 - **The title is changed, the number left open.** The title drops the figure. The
-  page ships at rank 3 under §8.1 with no total in its own voice, and D-034
-  stays `OPEN`. This is an editorial act on a `page-audit.csv` field and needs
-  no data: it does not wait on the archive, and it is available today.
+  page ships at rank 3 with no total in its own voice, and D-034 stays
+  `OPEN` — the page-count half of it untouched, and the atlas half unanswered
+  rather than resolved. **Cost:** an editorial act is exactly what §2 of this
+  brief records this repository cannot yet perform. The Editorial Register that
+  §11.5 specifies to hold *"a publication decision, an environment assignment or
+  a duplication finding"* **does not exist**, and §2's finding applies here
+  unchanged — *"an assignment with no derivation to disagree with cannot be
+  audited."* A title changed with nothing recording who changed it, from what,
+  and why is the shape of the problem this page is about.
 - **The rank is changed.** The page moves out of the first three and the release
-  opens on something whose central claim is not an unsettled number.
-  `page-audit.csv` records **56 inbound links** to this page, the
-  second count among the fifteen behind `enter`'s 113, so
-  demoting it changes the site's link structure and not only an order. This arm also
-  needs no data and does not wait on the archive.
+  opens on something whose central claim is not an unsettled number. D-034 stays
+  `OPEN` in both halves, and the title is untouched. **Cost:** `page-audit.csv`
+  records **56 inbound links** to this page, the second count
+  among the fifteen behind `enter`'s 113, so demoting it changes the
+  site's link structure and not only an order — and the Editorial Register
+  problem in the arm above applies to a rank change too.
 
 **One thing all three arms share, and it does not decide between them.** The
 count itself cannot be derived here: §6 records that the atlas data lives in
@@ -364,9 +384,9 @@ repository and has no `02-SOURCES/access-ledger.csv` row. Under `CLAUDE.md`'s
 negative-evidence standard that absence types as **`NOT ACCESSIBLE`** — the
 evidence exists, was produced, is known to be held by the owner, and is simply
 not here — and not as `NOT PRODUCED`, `NOT PRESERVED` or `ABSENT DESPITE ADEQUATE
-SEARCH`. `01-INHERITED/site-review/` holds two running-list documents that have
-not been searched for atlas site records, so even the `NOT ACCESSIBLE` typing is
-provisional on that search.
+SEARCH`. `01-INHERITED/site-review/` holds two inherited running-list documents
+that have not been searched for atlas site records, so even the `NOT ACCESSIBLE`
+typing is provisional on that search.
 
 That is an access fact, not an evidential one, and it bears on the first arm
 only. The second and third arms are editorial decisions about a title and an
@@ -377,20 +397,23 @@ is blocked behind the count question"* — which eliminated the second arm by fi
 and left the status quo as the only reading. Withdrawn, and recorded rather than
 deleted.
 
-**What §8.1 reaches, read exactly.** A draft of this section said the rule does
-not reach the title and that the specification is silent on the point. It is not
-silent: §8.1 ends *"The number of sites in view is a property of the current
-filter and is always shown *with* the filter, never as a title."* The rule
-reaches the title directly, and the current title breaks it. Three things follow,
+**What §8.1 reaches, read exactly.** A draft of this section said *"§8.1 does not
+reach the title at all"*. It does. **§8.1's rule ends** — the section itself continues past it — *"The
+number of sites in view is a property of the current filter and is always shown
+with the filter, never as a title."* The rule reaches the title directly, and the current title breaks it. Three things follow,
 and none of them closes D-034.
 
-- The second arm is what §8.1 *requires*, not an alternative to it. That does not
-  merge it into the first: §8.1 says the number may not be a title and says
-  nothing about what the number is.
-- §8.1 is a design proposition at `HYPOTHESIS` (framework §14.4). A rule at that
-  standing does not amend a `page-audit.csv` field or overrule the workbook's
-  rank; it states what the specification would require if adopted, and adopting
-  it is itself an owner act nobody has recorded.
+- The second arm is what §8.1 **would require if the specification were
+  adopted** — not an alternative to the rule, and not something the rule can
+  compel. §8.1 is a design proposition at `HYPOTHESIS` (framework §14.4). A
+  proposition at that standing does not amend a `page-audit.csv` field or
+  overrule the workbook's rank, and adopting the specification is itself an owner
+  act nobody has recorded. An earlier draft of this bullet wrote *"is what §8.1
+  requires"*, which is the same category error §2's withdrawn sentence made,
+  pointed at a different arm.
+- Even fully adopted, §8.1 would settle only where a number may appear. It says
+  nothing about what the number is, which is the half of D-034 the first arm
+  addresses and the second does not.
 - The framework's own paragraph after the rule reads *"the Atlas can be built and
   shipped before that is answered, because it never asserts a total in its own
   voice"* — which is the sentence §2 of this brief adopted and has withdrawn.

@@ -58,6 +58,7 @@ completed, factual assertion about alignment and about relative chronology. §3
 records what the evidence behind it is rated at.
 
 
+
 ---
 
 ## 2. Environment and epistemic posture
@@ -272,68 +273,6 @@ specific search has not been run. Type the absence before writing the verdict, p
 is owed for each once the search has been run and failed, naming what each would
 settle; `05-HOLDS/` already contains six such records, so the form is
 established.
-
-
----
-
-## 7. The recorded conflict — MVP rank 8 and withhold-from-MVP
-
-**This brief records the conflict and does not resolve it. Nothing above or below
-assumes an outcome.**
-
-`before-the-indus` is, in the same workbook, at once inside the launch set and
-excluded from it:
-
-| Sheet | Cell | Value |
-|---|---|---|
-| `mvp.csv` | `Rank` | **8** of 15 |
-| `mvp.csv` | `Decision` | `Hold` |
-| `mvp.csv` | `Risk` | **Critical** |
-| `mvp.csv` | `Release dependency` | *"Withhold from MVP until load-bearing claims receive claim-level citations and specialist/editorial review."* |
-| `page-audit.csv` | `MVP` | **Yes** |
-| `page-audit.csv` | `Decision` / `Risk` | `Hold` / `Critical` |
-| `page-audit.csv` | `Required action` | *"Withhold from MVP until load-bearing claims receive claim-level citations and specialist/editorial review."* |
-| `asset-register.csv` | `Priority` | **MVP** |
-| `claim-risk.csv` | `Publication gate` | `Hold` |
-| `claim-risk.csv` | `Owner/status` | `Unassigned` |
-
-The row instructs the reader not to do what the sheet it appears on does. It is
-the only one of the fifteen in this state and the only Critical-risk page in the
-launch set. Three sheets schedule it for the MVP; three cells in those same
-sheets withhold it.
-
-**Already raised, and not by this brief.** `DECISIONS-NEEDED.md` **D-032** —
-*"`before-the-indus` is inside the MVP set and marked withhold-from-MVP"* —
-carries it, with a row in `09-DECISIONS/OWNER-DECISIONS.csv`, raised 2026-09-07 by
-the curatorial audit schema review and renumbered from D-004 on the same day
-(`09-DECISIONS/DECISION-ID-MAP.csv`). Its category is *two consequential positions
-both remaining viable / publication approval*. This brief adds no new identifier
-and takes no position; it records that the conflict survives into the brief set
-and names what each arm would change.
-
-**What changes under each arm**, stated so the decision is legible and for no
-other purpose:
-
-- **In.** The `Hold` is overridden. Fifteen pages launch. The Critical-risk page
-  is in the release, and every gate in §5 becomes a launch blocker on a page the
-  workbook rated as needing specialist review. The override must be logged with a
-  reason in the Editorial Register (§11.5); an override with an empty reason is
-  invalid (§1.5).
-- **Out.** The MVP set is fourteen with a gap at rank 8. The asset-register
-  `Priority = MVP` row is wrong and should be re-derived. `before-the-indus`
-  moves to the verification queue, where MVP-U8 belongs regardless. The overlap
-  cluster *Meluhha and Indus* — `meluhha`, `meluhha-trade`, `the-water-city`,
-  `before-the-indus`, recommended as *"one curated exhibit sequence"* — goes from
-  two members in the release to one. `meluhha` and `meluhha-trade` are `MVP = No`
-  in `page-audit.csv` and were never in it.
-
-**What does not change under either arm**, and this is an observation about
-sequencing, not a resolution: the page cannot be published today under either
-reading, because `IH-243` is HELD and `IH-125`'s absolute dates are open, and
-PENDING-RULE 19 makes those a gate. The membership question is a separate
-question from the readiness question, and answering the second does not answer
-the first — rank, gap, asset priority and the exhibit sequence all still turn on
-D-032.
 
 
 ---

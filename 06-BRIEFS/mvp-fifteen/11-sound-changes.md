@@ -54,6 +54,7 @@ the schematic/measured distinction explicit"* — and that distinction is the
 page's whole difficulty: a phoneme chart looks measured and can be schematic.
 
 
+
 ---
 
 ## 2. Environment and epistemic posture

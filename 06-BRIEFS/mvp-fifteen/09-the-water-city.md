@@ -53,6 +53,7 @@ a negative claim about a category, and it is the one the headline turns on —
 *no palace* is what makes the sentence an argument rather than a description.
 
 
+
 ---
 
 ## 2. Environment and epistemic posture
@@ -132,9 +133,10 @@ page's own propositions still have to be written as Claim Objects and evidenced
 in their own right.
 
 
-**What the linked row carries, and what it does not.** `WLW-001` is
-`VERIFIED` — the only row above `INHERITED-UNVERIFIED` linked to any of the
-fifteen — and reads: *"As at 2026-09-08T21:13Z, before this unit added any row,
+**What the linked row carries, and what it does not.** `WLW-001` carries
+`VERIFIED`, and it is the only row linked to any of the fifteen that
+carries anything other than `INHERITED-UNVERIFIED` — a difference of status, not
+a position above one. It reads: *"As at 2026-09-08T21:13Z, before this unit added any row,
 no register in 03-REGISTERS/ carried a water claim above INHERITED-UNVERIFIED,
 and no row in any register carried supports_page = the-water-city."* Its subject
 is **the state of this repository's registers at a timestamp**, not the past this
@@ -156,7 +158,7 @@ why the step 14 slots stay empty is unaffected.
    property (D-042)."* An earlier draft cited the file without the row, which is
    the locator failure `BF-024` already logs. The
    row's locator names a *"scan of all 14 registers carrying a supports_page
-   column"*; the scan behind this brief finds 15. `VERIFIED` here certifies
+   column"*; the scan behind this brief finds 15. The row's status certifies
    what a scan returned at 21:13Z on 2026-09-08 and certifies nothing about
    today.
 3. **It and this brief are one source, not two.** The row's `notes` cite
@@ -183,17 +185,25 @@ logs. The rows above are the nearest Indus-related material the inheritance
 offers and none of them supports this page's claims; they are listed so that the
 gap is legible rather than implied.
 
-**One row that is claimed to bear on it, and does not.** `WLW-001`'s `notes`
-name two rows as water claims in `inherited-claims.csv`: `IH-138`, which is
-above and is a claim about the past, and `IH-183`, which is not. `IH-183` is a
-`SUPERSEDED` product row recording that the *"A Drop of Water"* single-experience
-plan replaced `VELI-06` and was replaced in turn — its subject is the release
-plan, and the water is in the exhibit's title. It is listed here because a row
-cited elsewhere as bearing on this page should not simply be absent from it, and
-because the disagreement is small, recorded, and neither side's to settle
-quietly: this brief reads `IH-183` as a product record, `WLW-001` reads it as a
-water claim, and nothing turns on which reading is right — under either, it is
-`INHERITED-UNVERIFIED` and supports nothing here.
+**One row that is cited as bearing on it, and does not.** `WLW-001`'s `notes`
+name two rows as water claims in `inherited-claims.csv`: `IH-138`, which is above
+and is a claim about the past, and `IH-183`, which is not. `IH-183` carries
+`INHERITED-UNVERIFIED`, like every other row in that register; its *claim* text
+opens with the word `SUPERSEDED`, which is the handoff's own disposition and not
+a status — `CLAUDE.md` C-1: a disposition is *"recorded alongside a status, never
+in place of one."* What the row records is a chain of replaced release shapes —
+*The Ledger and the First Gallery*, then *Into Veli: The First Door* (`VELI-06`
+A6), then *A Drop of Water*, then T4, then T5 — so its subject is the release
+plan and the water is in an exhibit's title.
+
+**That disagreement is with a register row, and it is not settled here.** This
+brief reads `IH-183` as a product record; `WLW-001`'s supporting note reads it as
+a water claim. One of the two is wrong. `WLW-001` carries `VERIFIED`, and a
+brief is not the instrument for amending a register row at any status. Logged as
+`IC-X-002` in
+`04-AUDITS/INTERNAL-CONTRADICTIONS.csv` and queued as `RA-024`. What does *not*
+turn on it: under either reading `IH-183` carries `INHERITED-UNVERIFIED` and
+supports nothing on this page.
 
 **The negative claim is the page's real work, and the standard for it is
 written.** `CLAUDE.md`'s negative-evidence standard requires, *before* arguing

@@ -52,6 +52,7 @@ Note the shape. 26 bibliography entries, no table, no external link, on a page
 whose subject is how to check sources.
 
 
+
 ---
 
 ## 2. Environment and epistemic posture

@@ -54,6 +54,7 @@ whose subject is *evidence* carrying two source entries is asserting a standard
 it does not demonstrate.
 
 
+
 ---
 
 ## 2. Environment and epistemic posture

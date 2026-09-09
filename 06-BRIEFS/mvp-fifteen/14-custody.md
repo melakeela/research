@@ -53,6 +53,7 @@ documented**."*
 Seven source entries against a claim quantified as *every*.
 
 
+
 ---
 
 ## 2. Environment and epistemic posture

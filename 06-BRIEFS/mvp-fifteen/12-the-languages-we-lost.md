@@ -57,6 +57,7 @@ metadata does not say so and this brief does not assert it. Recorded as an
 inconsistency to resolve when the page is opened.
 
 
+
 ---
 
 ## 2. Environment and epistemic posture
