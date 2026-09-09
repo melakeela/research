@@ -1292,3 +1292,79 @@ blocked only at the point of filling this one slot.
 **Decision:** which of the four, and if the first, does the WATER build wait
 on the community-authority work or proceed with the slot held open and
 visibly typed as held?
+
+## D-055 — Should museum collection databases and archaeometric journals be added to the egress allowlist for the object domains?
+
+**Raised by:** domain R, materials and corridors, 2026-09-09.
+**Blocks:** the `analytical_provenance`, `museum_attribution`, `modern_custody`
+and `open_licensed_image` fields of
+`03-REGISTERS/domain-r-object-fields.csv` and
+`03-REGISTERS/domain-r-museum-candidates.csv`. It does not block the rest of
+domain R, which ran on the two lanes that answer.
+
+**This is not D-001 again.** D-001 asks which domains should be added to the
+allowlist and is framed around journal literature and the retrieval of
+arguments. This asks something the object domains need and the text domains
+did not: the *custodian's own record of the object*. Those are different
+hosts, different data and different failure consequences, and one of them is
+the deliverable the owner asked for by name — "for every object that could
+carry a museum exhibit, record its present custodian and whether an openly
+licensed image exists."
+
+**What was probed and refused.** `SRC-099` and `SRC-100`, 2026-09-08 and
+2026-09-09: `britishmuseum.org`, `collectionapi.metmuseum.org`,
+`metmuseum.org`, `collections.louvre.fr`, `penn.museum`, `api.si.edu`,
+`commons.wikimedia.org`, `wikidata.org`, `asi.nic.in`, `mindat.org`,
+`sciencedirect.com`, `jstor.org`, `cambridge.org`, `tandfonline.com`,
+`link.springer.com`, `antiquity.ac.uk`, `journals.openedition.org`,
+`hal.science`, `zenodo.org`, `persee.fr`, `archive.org`,
+`cdli.mpiwg-berlin.mpg.de`, `oracc.museum.upenn.edu`,
+`etcsl.orinst.ox.ac.uk`. All returned 403 to CONNECT with zero bytes.
+
+**What that costs, exactly.** Four things, and they are not the same size.
+
+1. **Custody cannot be stated in the present tense.** This unit knows where
+   an object was when its record was made, not where it is now. The CDLI
+   catalogue's `collection` field is a catalogue statement of unknown date;
+   the Kish beads are recorded as studied by permission of the Field Museum
+   in a 2025 paper (`SRC-109`), which is the most recent custody statement
+   this unit has for any object, and it is second-hand. For objects in
+   Baghdad, Kabul and Mosul the gap between record and present is not a
+   formality: it spans documented wartime losses.
+2. **Image licensing cannot be determined at all.** Not "is uncertain" —
+   determined at all. Whether an object has an openly licensed image is a
+   fact held on the custodian's own object page and nowhere else this
+   session can reach. Every row of the museum-candidate register therefore
+   carries `image_licence_status = NOT ACCESSIBLE (SRC-099)`, and no
+   candidate can be cleared for a museum use on image grounds until this is
+   answered.
+3. **Analytical provenance is reachable only where Wiley published it.**
+   `SRC-105` reaches Archaeometry and Arabian Archaeology and Epigraphy and
+   does not reach Elsevier's *Journal of Archaeological Science*, which is
+   where much of the lapis and carnelian archaeometry sits. The unit's
+   evidence is therefore shaped by a publisher's catalogue, and the
+   `04-AUDITS/BIAS-FAILURE-LOG.csv` row `BF-027` records that as a method
+   failure rather than as a property of the evidence.
+4. **One site is missing entirely.** Shortugai is the pivot of THE BLUE
+   ROAD — an Indus-related settlement placed near the Badakhshan sources —
+   and it is published in French monographs by Francfort that are in no
+   corpus this session can reach. A twenty-passage query on it returned
+   nothing about it. `HOLD-008`.
+
+**Options.**
+
+| Option | Consequence |
+|---|---|
+| **Add the museum collection hosts only** (British Museum, Metropolitan, Louvre, Penn, Smithsonian, Wikimedia Commons, Wikidata) | Closes 1 and 2 outright, which are the museum programme's own blockers, and is the smallest change that unblocks the deliverable the owner named. Leaves 3 and 4 open. Cost: nothing this unit can see; these are public collection APIs, several of which publish open-licence data by policy. |
+| **Add the archaeometric publishers as well** | Closes 3 for the reachable literature and lets a dependency measurement replace an asserted one. Cost: paywalls mean allowlisting may not equal access, so this may buy a login page; and it overlaps D-001, which should then be answered at the same time rather than twice. |
+| **Add the cuneiform archives** (ORACC, ETCSL, CDLI web) | Would let the transliterations this unit counted be checked against edited, translated text with a philological apparatus. Cost: the least urgent of the four, because the CDLI *data* was retrieved by another route and the counts stand; what is missing is the edition, which affects interpretation and not the measurements. |
+| **Change nothing** | Defensible if the object domains are not near-term product. Cost: the museum-candidate register stays a list of objects whose present custodian is unconfirmed and whose images cannot be cleared, which is not a usable basis for an exhibit; and `image_licence_status` stays `NOT ACCESSIBLE` on every row indefinitely. |
+
+**Recommendation, non-binding:** the first option. It is the narrowest, it
+targets public collection APIs rather than paywalled content, and it is the
+only one of the four that unblocks something the owner asked for in the
+instruction that commissioned this unit.
+
+**Decision:** which hosts, if any; and if none, whether the museum-candidate
+register should continue to be maintained with custody and image fields that
+cannot be filled.

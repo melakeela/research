@@ -68,6 +68,61 @@ and §11 (packets R20–R21), plus one domain that has no entry in either
    `DEP-020` record where their ledger rows are the same source probed
    twice.
 
+12. **Domain R — materials and corridors, both roads.** *(This change.)*
+    THE BLUE ROAD and THE RED ROAD run as one investigation under the
+    fourteen-step method. `03-REGISTERS/domain-r-claims.csv` (64 claims: 54
+    VERIFIED, 7 PROVISIONAL, 2 HOLD, 1 REJECTED),
+    `domain-r-translation-fields.csv` (11 terms), `domain-r-object-fields.csv`
+    (13 objects, each with the owner's ten fields kept separate),
+    `domain-r-museum-candidates.csv` (796 objects with custody and image
+    status), `domain-r-negative-evidence.csv` (13 typed absences),
+    `domain-r-hypothesis-eligibility.csv` (10 gated),
+    `domain-r-cdli-attestations.csv` (3,788) and `domain-r-cdli-rejected.csv`
+    (348). Method and both adversarial tests: `04-AUDITS/domain-r-method.md`.
+    Draft copy: `03-REGISTERS/domain-r-draft-copy.md`.
+
+    Two lanes answered and everything else was refused. The CDLI catalogue and
+    transliteration corpus were retrieved through the Git LFS media endpoint and
+    verified byte-for-byte against the publisher's own sha256 (`SRC-102`,
+    `SRC-103`); the Wiley archaeometric literature answered at passage level
+    (`SRC-105`). Twenty-nine hosts — every museum collection database, every
+    other archaeometric publisher, the mineralogical and gazetteer references,
+    and ORACC, ETCSL and CDLI's own front end — returned 403 to CONNECT
+    (`SRC-099`). `BF-027` records that the unit's findings are shaped by that
+    lane rather than by the evidence.
+
+    Both §8 tests failed and both were corrected before commit: prestige bias
+    against Iranian authors on Iranian material (`BF-028`) and
+    preferred-counter-narrative bias in three of the unit's own headline
+    measurements (`BF-030`). **An independent adversarial review then found
+    seven failures the two tests did not catch** (`BF-032` to `BF-038`), four of
+    them measurement errors in claims the unit had called decisive — a
+    classifier that could not see a two-token form and inflated the Dilmun
+    toponym counts by a factor of about 2.5, a determinative screen run on one
+    of four names and generalised to all, a geographical claim quantified with
+    "every" and falsified by four rows of the register it cited, and the one
+    measurement carrying an argument about language made outside the committed
+    pipeline. **A second review of the repairs found fourteen more**, including
+    a fault introduced by a repair, a control applied to four of its own set's
+    six members, and two over-corrections running in the reviewer's own
+    direction — both corrected against it (`BF-039` to `BF-042`, `RA-030`). All
+    are repaired and every derived figure re-stated: 854 texts naming one of the
+    four, 805 naming exactly one, 547 of 893 Dilmun occurrences a unit of
+    account. The general lesson is at `RA-027`: the two §8 tests examine
+    reasoning and cannot catch an error in the code that produced the numbers.
+
+    Step 13 ran against `melakeela/site` and returned seven findings
+    (`IC-R-001` to `IC-R-007`), of which two are not faults. Nothing on the site
+    was edited.
+
+    **Four holds, and one of them is the domain's own pivot.** `HOLD-008`:
+    Shortugai is in no reachable corpus and this unit makes no claim about it in
+    either direction. `HOLD-009`: where Marhaši was, and what first-millennium
+    Meluhha denotes. `HOLD-010`: the Ajanta date, and image licensing for every
+    object. `HOLD-011`: the Meluhha interpreter inscription, which carries
+    MelaKeela's largest language inference. `D-055` asks for the museum-database
+    and archaeometry allowlist.
+
 ## Blocked on inputs
 
 Items **8** and **9** are reserved for the prompt-pack intake and the
@@ -117,7 +172,7 @@ thing the investigation is most likely to get wrong.
 | O | Pāli, Prakrit and vernacular Indo-Aryan | Prakrit as corrupted Sanskrit; one pure language decaying |
 | P | South Asian linguistic convergence | Modern areal distribution converted automatically into prehistoric substrate |
 | Q | Greek–South Asian contact | Starting at Alexander; "Greek invention" from first surviving text, "Indian influence" from similarity plus contact |
-| R | Materials and corridors | Assigning language to artifacts; museums repeating one attribution counted as confirmation |
+| R | Materials and corridors | Assigning language to artifacts; museums repeating one attribution counted as confirmation — *both roads run 2026-09-09 as item 12. Nine bridges tested and one accepted; no claim in the unit assigns a language to any artifact. Shortugai could not be retrieved at all (`HOLD-008`) and the unit makes no claim about it.* |
 | S | Meluhha, Marhaši, Magan, Dilmun and extraction | Collapsing Marhaši into Meluhha; "moored ships" read as captured fleets |
 | T | Hormuz and modern comparison | "Modern ruler = Sargon"; undated contemporary claims |
 | U | Sacrifice, renunciation and appropriation | A peaceful-Indigenous versus violent-migrant race story |
@@ -326,6 +381,7 @@ number to new, with the branch that holds the item:
 | — | 8 → 9 | Register intake for Who Made the Past | `claude/prompt-pack-inventory-reconcile-iz1phs` (PR #14) |
 | 6 → 7 | 10 | Backlog reconciliation | `main` |
 | 7 → 8 | 11 | Packets R1–R19 | `main` |
+| — | 12 | Domain R, materials and corridors | `claude/domain-r-materials-corridors-8aq8mp` |
 
 The second column's arrows record the one further shift made on 2026-09-07
 when `main` merged PR #16, whose domain M unit took item 5 and moved the

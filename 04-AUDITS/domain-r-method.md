@@ -1,0 +1,345 @@
+# Domain R — materials and corridors: method
+
+**Run:** 2026-09-08 to 2026-09-09.
+**Scope:** constitution §4.R, both roads. THE BLUE ROAD — lapis from
+Badakhshan, Iranian plateau routes, BMAC, Shortugai, Indus networks, Susa,
+Mesopotamia, Syria, Egypt. THE RED ROAD — Gujarat/Kutch/Cambay carnelian,
+Harappan production, drilling and etching, Gulf exchange, Magan, Dilmun, Susa,
+Mesopotamia, alternative geological sources.
+**Deliverables:** `03-REGISTERS/domain-r-claims.csv` (64: 54 VERIFIED, 7 PROVISIONAL, 2 HOLD, 1 REJECTED),
+`domain-r-object-fields.csv` (13), `domain-r-museum-candidates.csv` (796),
+`domain-r-negative-evidence.csv` (13), `domain-r-hypothesis-eligibility.csv`
+(10), `domain-r-cdli-attestations.csv` (3,788), `domain-r-cdli-rejected.csv`
+(348); `domain-r-translation-fields.csv` (11 terms); `04-AUDITS/` scripts, seven
+archive-and-power rows, sixteen bias-failure rows, nine re-audit rows, seven
+internal-contradiction rows; nine bridges; eight dependency rows; 30
+access-ledger rows (SRC-099 to SRC-128); four holds; one owner decision.
+
+---
+
+## 0. Read the status counts correctly before reading anything else
+
+The claim register is 54 VERIFIED out of 64. That is **not** 54 established
+historical facts, and reading it that way would invert the unit's whole point.
+
+A `VERIFIED` row here is exactly one of two things:
+
+1. **A measurement this session made** on primary data whose integrity was
+   checked against the publisher's own manifest, re-derivable by a committed
+   script; or
+2. **A statement of what a named source says**, at a locator precise enough to
+   re-find.
+
+It is never a statement that a proposition about the past has been established.
+Eleven rows drafted as bare world-facts were reworded to the reported form
+during the build, and the substantive propositions on both roads —
+where the Persepolis lapis came from, where Shahr-i Sokhta's came from,
+whether Indus craftspeople settled in Mesopotamia, whether Gulf carnelian is
+local — all stand at `PROVISIONAL`.
+
+---
+
+## 1. Bound the question
+
+**Proposition.** For objects of lapis lazuli and of carnelian moving between
+South Asia, Iran, Central Asia, the Gulf, Mesopotamia, Syria and Egypt in the
+fourth to first millennia BCE, what is separately established about each of the
+owner's ten fields: geological source, analytical provenance, workshop,
+manufacturing tradition, exporter, intermediary, textual provenance label,
+findspot, museum attribution, modern custody?
+
+**Date range.** c.4000 BCE to c.500 BCE for the corridor; later objects
+(Persepolis, Ajanta, Sumhuram, Dibba, the Palatine, Yongle) admitted only for
+what they show about method, and labelled.
+
+**Terms needing original-language work.** `me-luh-ha`, `ma2-gan`, `dilmun` /
+`ni-tuk`, `mar-ha-szi`; `za-gin3` and Akkadian `uqnû`; `gug` and Akkadian
+`sāmtu`; `eme-bal` / `eme-bala`; `e2-duru5`; `dumu`; `gin2 dilmun`. **All ten**,
+plus the inherited English category *civilisation*, are in
+`03-REGISTERS/domain-r-translation-fields.csv` — written only after adversarial
+review found the standard named at this step and run on nothing (`BF-038`), and
+extended to the four toponyms only after a second review found them excluded on
+the unargued ground that they were not consequential (`BF-042`).
+
+**Viable explanations for a foreign material at a site.** Trade; gift; tribute;
+raid; relocation of craftspeople; relocation of consumers; recycling of older
+objects; and misidentification of the material.
+
+**The null explanation.** The object is not of the material it is catalogued as;
+or it is, and its source is one nobody has sampled. Both are live throughout,
+and `DRM-005` and `DRM-002` are why.
+
+---
+
+## 2. Chronology first
+
+Composition, attestation, excavation, publication and interpretation were kept
+apart throughout.
+
+- Every CDLI period label dates **the tablet**, not the event it records and not
+  the object it mentions. Stated at `DRB-018`.
+- The Blue Road's textual record begins, in this corpus, at Ebla c.2350–2250
+  and peaks in the Neo-Assyrian period; the Red Road's peaks in Ur III.
+- **The earliest recovered attestation is not first contact**, and in one case
+  it is not even an attestation in the ordinary sense: the corpus's earliest
+  carnelian occurrence has its stone determinative supplied in angle brackets by
+  a modern editor (`DRR-014`, `OBJ-R-011`).
+- Two dating problems were **held rather than corrected**: the Ajanta murals'
+  date, asserted by its study without a cited authority (`DRB-014`,
+  `HOLD-010`), and Shahr-i Sokhta's internal periodisation, for which three
+  published schemes differ by about five hundred years on the same phase
+  (`DRM-020`).
+
+## 3. Geography and contact
+
+Findspots were recorded as CDLI attributes them and separated from proposed
+locations. The corridor's political control was not treated as evidence of use:
+Achaemenid control reaching eastern Afghanistan is noted at `DRB-010` as the
+argument the source makes, not as a finding.
+
+The principal geographical result is negative and is `DRM-010`: of the 854 texts
+naming one of the four, 776 have a recorded findspot, and **772 of those are in
+Mesopotamia, Syria or Assyria.** Four are not — three Old Akkadian texts from
+Susa and one from Alalakh — and 78 have no findspot at all. The corridor's
+textual record was overwhelmingly written at one end, and the exceptions are
+stated because the first version of this claim said "every" and was falsified by
+four rows of the register it cited (`BF-034`).
+
+## 4. Evidence classes, inventoried separately
+
+| Class | What was reachable | What it could carry |
+|---|---|---|
+| Textual | CDLI transliterations, 3.56M lines, hash-verified | Attestation counts, determinatives, findspot, custody |
+| Object-catalogue | CDLI catalogue, 353,283 rows, hash-verified | Material *attribution*, findspot, museum no., custody, image flag |
+| Archaeometric | 22 articles at passage level, one publisher | Analytical provenance, and its limits |
+| Epigraphic | Not reachable as edition; ORACC and ETCSL refused | — |
+| Genetic, environmental, oral | Not applicable / not retrieved | — |
+
+**No class borrowed certainty from another.** In particular the object
+catalogue's `material` column was never allowed to stand as an analytical
+result: it is an attribution, and the catalogue has no column in which an
+analysis could be cited (`DR-NEG-003`).
+
+## 5. Source genealogy
+
+Six dependency rows, `DEP-029` to `DEP-034`. The three that matter most:
+
+- **The four toponym equations** appear in seven papers here and are argued in
+  none; where a source is given it is one of four upstream authorities in a
+  parenthesis. Seven papers are one citation.
+- **Carnelian LA-ICP-MS results are not comparable between laboratories**, on
+  the analysts' own statement. The Kish result has no possible independent
+  replication at present. This is a stronger form of dependency than the usual
+  one: not many publications on one dataset, but one dataset that no other can
+  be compared with.
+- **Every lapis provenance statement** retrieved is a comparison against one of
+  five upstream reference datasets, and those datasets are not mutually
+  commensurable (`DRB-007`).
+
+## 6. Archive audit
+
+Seven rows, `APA-R-001` to `APA-R-007`. The one that governs the domain is the
+last: **no miner, bead-maker, driller or carrier is named in any source in this
+unit, on either road, in any period.** Every object here is known by its owner's
+burial, its custodian's accession number, or its excavator's name.
+
+## 7. Hypothesis gating, before any space was allocated
+
+Ten gated. Six eligible, two not, one blocked on sources, one that cannot be
+gated at all. Badakhshan-as-universal-source passes every gate and is recorded
+as a **hypothesis, not as background**, because its alternatives were never
+excluded on evidence — most were never sampled. Chagai gets a short section,
+not a parallel one.
+
+## 8. Independent evaluation
+
+Each eligible hypothesis was reconstructed on its own strongest evidence before
+comparison. The Badakhshan case was written from the pyrite Ni/Cu marker, its
+strongest line, not from the bulk comparison that fails.
+
+## 9. Proportional space
+
+THE BLUE ROAD gets 20 claims and THE RED ROAD 17, with 27 method and corridor
+claims serving both. Chagai gets a paragraph. `HYP-R-007`, the Mehrgarh
+identification, gets a rejection row and no section.
+
+## 10. Bridges
+
+Nine tested (`BR-R-001` to `BR-R-009`); **one accepted**, and its scope fixed to
+what Damour's 1865 rule licenses — transport of matter, and nothing about who
+carried it. The rest refused or cut back. No claim in this unit assigns a
+language to any artifact.
+
+## 11. Current standing
+
+Recorded per hypothesis. The instructive case is `DRB-008`: the strongest
+published claim on the Persepolis lapis is downgraded by the next paper to cite
+it, which is what step 11 exists to catch.
+
+## 12. Falsifiers
+
+Recorded in the `falsifier` column of every gated hypothesis. Four are cheap and
+decisive, and are listed in the draft copy: analyse the sixteen lapis beads on
+the Kish necklace whose carnelian is already analysed (`DR-NEG-009`); survey the
+Chagai district; put field-collected Jebel al-Ma'taradh samples into the
+carnelian reference database; study the Ur unfinished beads (`DR-NEG-010`).
+
+## 13. MelaKeela checked
+
+Seven rows, `IC-R-001` to `IC-R-007`, against `meluhha-trade.html`,
+`what-travelled.html`, `material-culture-ancient-south-asia.html` and
+`MELUHHA_TO_KEEZHADI_synthesis.md`. Two of the seven are not faults. Nothing on
+the site was edited: CLAUDE.md forbids writing site code from this repository.
+
+## 14. Draft copy
+
+`03-REGISTERS/domain-r-draft-copy.md`, in the seven-part shape, **from accepted
+claims only.**
+
+---
+
+## The two adversarial tests, and the independent review
+
+Both internal tests were run and both found something. **An independent review
+then found seven further failures that neither test caught**, including four
+measurement errors in claims this note had called decisive. That is recorded
+here at the top of the section rather than at the bottom, because the honest
+summary of this unit's self-audit is that it was not sufficient.
+
+### Prestige-bias challenge — FAILED, corrected (`BF-028`)
+
+The first draft dissected the Persepolis lapis study closely — its internal
+contradiction, its incommensurable reference comparison, its eliminated rival —
+while accepting the Kish carnelian study's conclusion that Indus craftspeople
+settled in Mesopotamian cities with much less resistance, **although that
+conclusion is a larger inferential leap than any the Persepolis paper makes.**
+
+The pattern is the one the constitution names. The Kish study is by the field's
+leading figures, in its leading journal, using its most expensive instrument.
+The Persepolis study is by Iranian scholars, on Iranian material, from Iranian
+institutions. Applying more scepticism to the second is precisely the failure.
+
+**Correction.** The Kish study's own limits were promoted from notes to
+first-class claims: the 69.9% source-level cross-validation (`DRR-002`), the
+fact that narrowing to the ten Deccan sources did not improve it (`DRR-003`),
+and the proxy sources standing in for the Arabian and Anatolian alternatives
+(`DRR-004`). Its population conclusion is `PROVISIONAL` and refused as a bridge
+at `BR-R-002`. The Persepolis findings were left as they stood, because they
+were accurate.
+
+**Also checked and found clean:** the CDLI corpus is itself a prestige archive —
+the surviving voice of the importing societies — and the unit was built on it.
+That is recorded at `DRM-010` and `APA-R-001` rather than absorbed.
+
+### Preferred-counter-narrative challenge — FAILED, corrected (`BF-030`)
+
+Three of this unit's own headline measurements were drafted carrying more than
+they can hold, **and all three lean the same way, towards debunking.**
+
+1. *"94.2% of texts name exactly one of the four"* was written as though it
+   showed that ancient writers held the four apart. It shows the shape of the
+   surviving record: a receipt naming Magan had no occasion to name Dilmun.
+   Amended — the claim now concerns **modern** practice, which is what the trap
+   actually calls for: the synthesis introduces the four as a set, and the
+   record presents them as a set in eleven texts out of 854.
+2. *"Men designated son of Meluhha bear Sumerian names"* was written as though
+   it bore on what they spoke. A Sumerian archive records people under names its
+   scribes could write. Amended — the claim is now only that designation and
+   name point different ways and neither settles the other.
+3. The Jebel al-Ma'taradh source was allowed to imply that Gulf carnelian is
+   local. Amended — `DRR-005` (the deposits exist and were worked) is separated
+   from `DRR-006` (that Bronze Age beads came from them), which is macroscopic,
+   not analytical, and `PROVISIONAL`.
+
+**Also checked and found clean:** the "Chagai eliminated by reattribution"
+reading was attractive as a debunking story, and the row says explicitly that
+the reattribution has a stated evidential basis and may well be right.
+
+### What the independent review found that the two tests did not
+
+Seven failures, logged as `BF-032` to `BF-038` and re-audited under `RA-027` to
+`RA-029`. Four are measurement errors:
+
+- **`BF-032`.** The Dilmun unit of account was detected only inside a single
+  token, and in this corpus the form is overwhelmingly two tokens. 334
+  occurrences of a unit of account were counted as references to a place — and
+  the extraction script's own docstring names this exact phenomenon as a reason
+  the script exists. The observation was right and the implementation did not
+  follow it. After the repair and the two further faults it exposed
+  (`BF-039`), the unit of account is 547 of 893 Dilmun occurrences, and the
+  toponym base is 854 texts of which 805 name exactly one.
+- **`BF-033`.** The determinative screen was run for Meluhha and generalised to
+  all four names without being run on the other three. Running it found 123
+  further non-toponymic occurrences, the largest group being Magan-timber.
+- **`BF-034`.** The geographical claim was written from the head of a frequency
+  table and quantified with "every". Four rows of the cited register refute it.
+- **`BF-035`.** The one measurement carrying an argument about *language* — the
+  interpreter title — was made by an uncommitted grep, counted lines rather than
+  occurrences, and treated boats, flour and jars as instances of a title.
+
+Three are method-standard omissions: `BF-036`, a hypothesis failed on an
+unretrieved date, which is the same move `BF-031` records refusing an hour
+earlier and which ran toward the congenial answer this time; `BF-037`, a control
+set that contained the target material under another name; and `BF-038`, the
+translation standard named at step 1 and run on nothing.
+
+**What this says about the two tests.** They are tests of *reasoning*, and every
+one of these seven is a failure of *execution* — a classifier, a screen, a
+quantifier, a pipeline, a gate ground, a class boundary, a standard not run.
+Running the bias tests on conclusions cannot catch an error in the code that
+produced the numbers the conclusions rest on. The controls at `RA-027` are
+written to close that gap, and the general one is: a figure that cannot be
+re-derived from a committed script is not a measurement.
+
+### And what the second review found in the repairs
+
+The same reviewer re-reviewed the corrected unit and found fourteen further
+problems, five of them blocking. Four are logged as `BF-039` to `BF-042` and
+re-audited at `RA-030`. They are about *correcting*, not about researching:
+
+- **A repair introduced a new fault.** Moving the toponym test to the top of the
+  Dilmun classifier dropped its case-insensitive flag and rejected 216
+  occurrences at a stroke. It was visible in one run only because the rejected
+  file is published (`BF-039`).
+- **A repair was incomplete and its own correction field said otherwise.**
+  `BF-032` claimed every derived figure had been restated. `APA-R-001` still
+  read 863, and `DRM-006`'s live note still carried 863 and a superseded
+  pairwise figure — correction history had been updated and the analytical text
+  had not.
+- **A control was written and applied to four of its own set's six members**
+  (`BF-041`), and a classification scheme was written per target and never
+  diffed across targets (`BF-040`).
+- **Two repairs over-corrected in the direction the reviewer had pushed.** The
+  `eme-bal` classifier tested commodity context before title markers, so rations
+  issued *to* the office-holders were typed as not securely the title — in
+  tablets carrying an `eme-bala-me` line of their own. And the Dilmun `gin2`
+  rule ran ahead of the determinatives and swallowed genuine place references,
+  including Neo-Assyrian recipes where the shekel belongs to the next
+  ingredient. Both were corrected *against* the reviewer's direction, which is
+  the point: a reviewer's direction is a hypothesis too.
+
+The honest summary of two rounds is that this unit's arithmetic needed an
+outside re-derivation twice, and the second round found more faults in the
+repairs than the first found in some of the original work.
+
+### Two further method failures, not bias
+
+- **`BF-027`.** The evidence base is shaped by one publisher's catalogue and the
+  shape presents as a substantive result: the Gulf is unusually well covered
+  here, Central Asia barely at all, and that is a paywall boundary.
+- **`BF-029`.** The catalogue join silently matched **0 of 1,688** and produced
+  a complete, well-formed, entirely empty register that read as a finding. The
+  join now prints its match rate on every run.
+
+---
+
+## What this unit could not do
+
+- **Shortugai.** The pivot of THE BLUE ROAD. Nothing retrievable; no claim made
+  in either direction. `HOLD-008`.
+- **Marhaši's location**, and what first-millennium Meluhha denotes. Both known
+  to scholarship, neither retrieved, so neither stated. `HOLD-009`.
+- **Image licensing**, for any object. Not uncertain — undeterminable from here.
+  `HOLD-010`, `D-055`.
+- **The Meluhha interpreter inscription**, which carries MelaKeela's largest
+  language inference. `HOLD-011`.
