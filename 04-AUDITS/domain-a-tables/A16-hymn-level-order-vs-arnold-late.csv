@@ -1,0 +1,4 @@
+"scope","hymns","spearman_rho_tied","permutation_p_5000_shuffles_floor_0.0002","pct_hymns_with_zero_late_padas","median_late_share"
+"all_books","1028","0.2125","<0.0002","65.37","0.0"
+"books_1_to_9","837","-0.1526","<0.0002","74.91","0.0"
+"family_books_2_to_7","429","0.1648","0.0012","70.16","0.0"
