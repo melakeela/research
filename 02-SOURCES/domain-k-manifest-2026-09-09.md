@@ -57,7 +57,7 @@ four times (`SRC-106`, `SRC-107`).
 
 The Indus side is retrievable only as one annotator's partial
 digitization of a print corpus that cannot be opened here (`SRC-102`,
-`DEP-029`), covering 179 objects from one site.
+`DEP-029`), covering 179 objects from one CISI number-series.
 
 No excavation report, no find-spot table, no museum catalogue and no
 peer-reviewed article on Indus writing was read in this session.

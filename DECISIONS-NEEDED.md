@@ -1304,8 +1304,9 @@ Indus half almost not at all. Sixteen hosts were probed and every one
 refused at the egress gateway; the only open retrieval channel was the
 git proxy's anonymous lane, which serves public GitHub repositories and
 nothing else. What that lane returned for this domain was one volunteer's
-partial digitisation of the Indus corpus: 179 seals, one site, one
-iconographic class, three fields per record, no find-spot.
+partial digitisation of the Indus corpus: 179 seals from one CISI
+number-series, one iconographic class, three fields per record, no
+find-spot.
 
 This is not a request to open the network. It is four hosts, and each one
 settles something named:

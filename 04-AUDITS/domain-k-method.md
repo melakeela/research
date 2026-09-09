@@ -3,14 +3,14 @@
 **Unit of work:** 2026-09-09
 **Registers:** `03-REGISTERS/domain-k-indus-measurements.csv` (26 rows),
 `domain-k-indus-signs.csv` (397 sign classes),
-`domain-k-rigveda-lexicon.csv` (15 rows),
+`domain-k-rigveda-lexicon.csv` (18 rows),
 `domain-k-rigveda-writing-candidates.csv` (63 lookups),
 `domain-k-rigveda-marking-occurrences.csv` (232 occurrences),
 `domain-k-absences.csv` (13 typed absences),
-`domain-k-hypothesis-eligibility.csv` (11 gated hypotheses)
+`domain-k-hypothesis-eligibility.csv` (12 gated hypotheses)
 **Sources:** `SRC-099`–`SRC-116`  **Dependencies:** `DEP-029`–`DEP-033`
-**Hold:** `HOLD-008`  **Method failure:** `BF-027`
-**Re-audits:** `RA-022`–`RA-025`  **Contradictions:** `IC-K-001`–`IC-K-005`
+**Hold:** `HOLD-008`  **Method failures:** `BF-027`, `BF-028`
+**Re-audits:** `RA-022`–`RA-026`  **Contradictions:** `IC-K-001`–`IC-K-006`
 **Reproduce:** `04-AUDITS/domain-k-indus-corpus.py`, then
 `rv-token-extract.py`, `rv-writing-lexicon-scan.py`,
 `rv-marking-occurrences.py`
@@ -37,10 +37,12 @@ unit, by row:
 | whether the script had already become unreadable | none | `DK-A-009`, `DK-H-002`, source-blocked |
 | institutional rupture | Rigvedic half only | `DK-H-006`, ELIGIBLE IN PART |
 
-So: one question answered, one measured on one side, and ten with no
-evidence retrieved. The seals row is the one to read carefully — there
-are eighteen measurement rows about seals and not one of them can say
-where a seal was found.
+So: four of the twelve bullets have rows and eight have none. Of the
+four, one question is answered — the unrecognised-terminology one — one
+is measured on the Rigvedic side only, one is eligible in half, and the
+first is the row to read carefully: there are twenty measurement rows
+about seals (`DK-M-001`–`DK-M-018`, `DK-M-025`, `DK-M-026`) and not one
+of them can say where a seal was found.
 
 The split is not a judgement about which questions matter. It is the
 egress boundary. The Rigveda is on GitHub; the Indus corpus is in print
@@ -133,10 +135,18 @@ the later Sanskrit vocabulary of writing and sealing: `likh`, `lekha`,
 `masi`, `kalama`, `mudrā`, `aṅkana`, `cihna`, `lāñchana`, `lakṣman`,
 `lakṣaṇa`. Five more are `saṃkhyā`, `tulā` and the roots `gaṇ-`, `paṇ-`
 and `vraśc-`. Positive controls return 543 tokens for
-`gáv- ~ gó-`, 471 for `rátha-`, 83 for `púr-`. One control is kept in
-its failing form in the output: querying `go` alone returns nothing,
-because the Zurich lemma is an alternation — the lookup bug a census
-without controls would have published as a finding.
+`gáv- ~ gó-`, 471 for `rátha-`, 83 for `púr-`. The cow is queried twice,
+as `go` and as `gav`, because the Zurich lemma for it is an alternation
+that a lookup which does not split alternants would miss entirely; both
+return 543, so the splitting works.
+
+Earlier versions of this note said the `go` control had been left in its
+failing form and returned nothing. That was **false** — the committed
+register shows 543 against it — and second-round adversarial review found
+it. It was also the sentence this unit used to show that its negatives
+were instrumented, which is the worst place for a claim that does not
+check out. The instrumentation is real; that particular illustration of
+it was not.
 
 **Search B, a gloss scan of the whole attested lexicon**, then
 adjudicated hit by hit. 98.5% of tokens and 97.0% of lemmas carry a
@@ -201,7 +211,7 @@ measure 90. What it lacks is the language of **recording** them.
 canonical, textual side because that is the side the network reached? Yes,
 structurally, and no amount of care removes it. The Rigveda arrived as
 164,758 morphologically annotated tokens with four translations; the
-Indus material arrived as 179 seals with three fields. Fifteen Rigvedic
+Indus material arrived as 179 seals with three fields. Eighteen Rigvedic
 claim rows and 232 registered occurrences stand against an Indus side
 that cannot state a find-spot.
 
@@ -219,9 +229,10 @@ seals because it is the familiar, institutionally comfortable one?
 `DK-H-003` was gated as source-blocked, and `DK-H-004` — identity,
 ritual, kinship, membership — was written and gated identically so that
 the administrative reading would not become the default by being the only
-one written down. The term audit removes *administrators*, *archive* and
-*bureaucracy* from this record's own voice, and restricts *literacy* to
-the name of a proposed argument
+one written down. The term audit removes *administrators*, *archive*,
+*bureaucracy* and *literacy* from this record's own voice — the last of
+those after two review rounds, the first of which found the rule stated
+more widely than it was kept
 (`06-BRIEFS/domain-k-translation-blocks.md` §4). "Sign-makers" and
 "sign-users" are used throughout with institutional role unresolved, as
 the task required.
@@ -270,11 +281,23 @@ first among the explanations of the silence, because the null is what
 the others have to beat. `BR-K-004` records that the end of a practice
 and the end of an institution are two claims.
 
-**Item 4.** The trap itself. `DK-H-009` — that the people disappeared
-because the signs and the institutions did — is `REJECTED`, and rejected
-on the logic rather than on the evidence, because the evidence is
-unreachable and the inference is invalid without it. The repository's
-aDNA material is inherited and was not cited (`IH-109`, `IH-110`).
+**Item 4.** The trap itself. `DK-H-009` — the inference from the end of
+the signs and the institutions to the disappearance of the people — is
+`REJECTED`, and rejected on the logic rather than on the evidence,
+because the evidence is unreachable and the inference is invalid without
+it. The repository's aDNA material is inherited and was not cited
+(`IH-109`, `IH-110`).
+
+The row originally rejected two things at once: the inference, and the
+demographic proposition itself. Adversarial review pointed out that
+`REJECTED` rows are never deleted, so that phrasing would have left a
+permanent rejection standing against a question this unit never tested.
+The demographic question is now `DK-H-012` and is **held, not rejected**
+— gated `NOT-ELIGIBLE-SOURCE-BLOCKED` like the rest of the Indus side.
+Getting that split wrong is the same failure as the trap, one level up:
+the trap says do not infer population change from institutional change,
+and the register was quietly ruling the population question out on the
+strength of having refused the inference.
 
 ## 6. Why only three absences license anything
 

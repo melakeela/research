@@ -18,13 +18,17 @@ relevant terminology is present but unrecognised. So:
   SEARCH A - candidate census. A declared list of stems, looked up by
   normalised lemma, reported present or absent, per lemma and never merged
   across lemmas. It carries positive controls, so that a row of zeros is
-  distinguishable from a broken lookup. One control, gó- 'cow', is kept in
-  its failing form in the output: the Zurich lemma is the alternation
-  "gáv- ~ gó-", and a lookup that does not split alternants misses 543
-  tokens. That is what a control is for.
+  distinguishable from a broken lookup. The cow is queried twice, as "go"
+  and as "gav", because the Zurich lemma for it is the alternation
+  "gáv- ~ gó-" and a lookup that did not split alternants would miss 543
+  tokens; stem() splits on the tilde, so both queries return 543. Earlier
+  versions of this docstring and of the registers said the "go" query had
+  been left in its failing form and returned nothing. It does not, and it
+  never did in the committed output. Withdrawn on adversarial review.
 
   SEARCH B - gloss scan. Every lemma attested in the corpus, matched against
-  the semantic field of writing, marking, incising and sealing in the German
+  the semantic field of writing, marking, incising, sealing, weighing and
+  measuring in the German
   and Latin of the Grassmann glosses, then ADJUDICATED hit by hit. The
   method is 04-AUDITS/rv-pur-numeral-scan.py's, applied to a different field.
   Its three known failure modes are handled: substring rather than
@@ -36,7 +40,7 @@ relevant terminology is present but unrecognised. So:
   (to spray) contains ritz, "Vorschrift" (prescription) contains schrift,
   "bestrichen" (smeared) contains strich, "ackerbauend" (farming) contains
   kerb, and Grassmann's own metalanguage - "Bezeichnung eines Volkes",
-  "the designation of a people" - contains bezeichn on 90 lemmas that have
+  "the designation of a people" - contains bezeichn on 83 lemmas that have
   nothing to do with marking. Every hit below is classified, with a reason,
   and the false positives are printed rather than deleted.
 

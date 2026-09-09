@@ -23,9 +23,8 @@ Checks:
      construction.
   5. Every D- reference in the tree resolves to exactly one row in
      09-DECISIONS/OWNER-DECISIONS.csv.
-  6. Every CSV in 03-REGISTERS/, 04-AUDITS/, 02-SOURCES/ and 09-DECISIONS/
-     is structurally sound: every row has the same number of fields as its
-     header. Added 2026-09-09 after BF-028, in which a register was
+  6. Every CSV in the repository is structurally sound: every row has the
+     same number of fields as its header. Added 2026-09-09 after BF-028, in which a register was
      committed with 12 rows that were fragments of the preceding row - a
      TSV read with a plain line loop, over glosses containing embedded
      newlines - and this validator reported "all checks pass" over it. The
@@ -151,7 +150,11 @@ def check_decision_refs(known):
                 fail(f"{path.relative_to(ROOT)}: reference {ref} has no OWNER-DECISIONS row")
 
 
-STRUCTURE_DIRS = ("03-REGISTERS", "04-AUDITS", "02-SOURCES", "09-DECISIONS")
+# Every tracked CSV, not a whitelist of directories. BF-028's control is
+# written as a universal rule and adversarial review was right that the
+# first implementation was four directories. Skips .git and anything a
+# session leaves in a scratch directory.
+SKIP_DIRS = {".git", "node_modules", "__pycache__"}
 
 
 def check_structure(path):
@@ -179,11 +182,10 @@ def main():
     if REGISTER_DIR.exists():
         for path in sorted(REGISTER_DIR.rglob("*.csv")):
             check_register(path, ledger)
-    for d in STRUCTURE_DIRS:
-        base = ROOT / d
-        if base.exists():
-            for path in sorted(base.rglob("*.csv")):
-                check_structure(path)
+    for path in sorted(ROOT.rglob("*.csv")):
+        if SKIP_DIRS & set(path.relative_to(ROOT).parts):
+            continue
+        check_structure(path)
     check_decision_refs(known)
 
     if failures:

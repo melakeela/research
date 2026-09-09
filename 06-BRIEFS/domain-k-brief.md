@@ -68,12 +68,17 @@ different work.
 
 **That "how many Indus signs are there" is a question about a sign
 list.** The one dataset reached carries four numbering systems for the
-same signs, and they disagree: 397 classes, 662 Parpola numbers, 498
-Wells numbers, 359 Mahadevan numbers — a factor of 1.8 between the
-largest and the smallest, with a single class in one system absorbing
-seventeen signs in another. Whether two shapes are one sign or two is a
-decision an analyst makes. Every argument that runs from the size of the
-inventory to whether the signs are writing inherits that decision.
+same signs, and inside that file they disagree: 397 classes, 662 Parpola
+numbers, 498 Wells numbers, 359 Mahadevan numbers — a factor of 1.8
+between the largest and the smallest, with a single class absorbing
+seventeen numbers from another system. This is measured on one
+annotator's alignment of three published lists, none of which could be
+opened here, so as a statement about the published lists it is
+provisional and not verified (`DK-M-015`, `DEP-030`). What is not in
+doubt is the shape of the problem: whether two shapes are one sign or two
+is a decision an analyst makes, and every argument that runs from the
+size of the inventory to whether the signs are writing inherits that
+decision.
 
 ## WHAT COMPLICATES IT
 
@@ -93,8 +98,9 @@ chariots, cattle, soma equipment, the sacrificial ground, the fee. That
 is the null explanation of its silence, and it is the explanation the
 more interesting ones have to beat.
 
-**The 179 seals are not a sample.** One site, one iconographic class, one
-annotator, digitised from a printed corpus nobody here could open. Their
+**The 179 seals are not a sample.** One CISI number-series, one
+iconographic class, one annotator, digitised from a printed corpus nobody
+here could open. Their
 median length of five signs is a measurement of unicorn seals and not of
 Indus inscriptions.
 
@@ -148,7 +154,7 @@ evidence is brought to it.
 ---
 
 **Register trail.** Observations: `DK-M-001`–`DK-M-026`,
-`DK-R-001`–`DK-R-015`. Absences and their types:
+`DK-R-001`–`DK-R-018`. Absences and their types:
 `DK-A-001`–`DK-A-013`. Hypotheses and their gates:
-`DK-H-001`–`DK-H-011`. Bridges not crossed: `BR-K-001`–`BR-K-010`.
-Blocked: `HOLD-008`.
+`DK-H-001`–`DK-H-012`. Bridges not crossed: `BR-K-001`–`BR-K-010`.
+Blocked: `HOLD-008`. Method failures: `BF-027`, `BF-028`.
