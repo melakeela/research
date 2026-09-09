@@ -70,8 +70,8 @@ and §11 (packets R20–R21), plus one domain that has no entry in either
 
 12. **Domain R — materials and corridors, both roads.** *(This change.)*
     THE BLUE ROAD and THE RED ROAD run as one investigation under the
-    fourteen-step method. `03-REGISTERS/domain-r-claims.csv` (64 claims: 55
-    VERIFIED, 7 PROVISIONAL, 1 REJECTED, 2 HOLD), `domain-r-object-fields.csv`
+    fourteen-step method. `03-REGISTERS/domain-r-claims.csv` (64 claims: 54
+    VERIFIED, 7 PROVISIONAL, 2 HOLD, 1 REJECTED), `domain-r-object-fields.csv`
     (13 objects, each with the owner's ten fields kept separate),
     `domain-r-museum-candidates.csv` (796 objects with custody and image
     status), `domain-r-negative-evidence.csv` (13 typed absences),

@@ -6,7 +6,7 @@ Badakhshan, Iranian plateau routes, BMAC, Shortugai, Indus networks, Susa,
 Mesopotamia, Syria, Egypt. THE RED ROAD — Gujarat/Kutch/Cambay carnelian,
 Harappan production, drilling and etching, Gulf exchange, Magan, Dilmun, Susa,
 Mesopotamia, alternative geological sources.
-**Deliverables:** `03-REGISTERS/domain-r-claims.csv` (64),
+**Deliverables:** `03-REGISTERS/domain-r-claims.csv` (64: 54 VERIFIED, 7 PROVISIONAL, 2 HOLD, 1 REJECTED),
 `domain-r-object-fields.csv` (13), `domain-r-museum-candidates.csv` (796),
 `domain-r-negative-evidence.csv` (13), `domain-r-hypothesis-eligibility.csv`
 (10), `domain-r-cdli-attestations.csv` (3,688), `domain-r-cdli-rejected.csv`
@@ -18,7 +18,7 @@ dependency rows; 27 access-ledger rows; four holds; one owner decision.
 
 ## 0. Read the status counts correctly before reading anything else
 
-The claim register is 53 VERIFIED out of 64. That is **not** 53 established
+The claim register is 54 VERIFIED out of 64. That is **not** 54 established
 historical facts, and reading it that way would invert the unit's whole point.
 
 A `VERIFIED` row here is exactly one of two things:
