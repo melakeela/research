@@ -56,8 +56,8 @@ rather than being told about it.
 | No ethnic or national identification of objects, people or remains | §10.4.4 | R-02. |
 | Human remains only under §11.2/§11.4, never as a puzzle | §10.4.4 | None in scope. R-04 states the exclusion to the child. |
 | No competition, scoreboard or time pressure | §10.4.4 | R-05. |
-| No sorting of human beings; no reward for extremist categories; no persecution as spectacle | §10.4.7 | R-01, R-02, R-03. The single hardest constraint on *this* subject. §6. |
-| No account, no analytics, no free-text publication, no photographs of children | §10.4.5 | R-08, R-09, R-10. |
+| No sorting of human beings; no reward for extremist categories; no persecution as spectacle | §10.4.7 | R-01, R-02, R-05. The single hardest constraint on *this* subject. §6. Nothing here stages, dramatizes or role-plays a siege or its aftermath: the third constraint is met by having no such screen, not by moderating one. |
+| No account, no analytics, no free-text publication, no photographs of children | §10.4.5 | R-08, R-09. |
 | Field Mode forbidden in Reading Room / Extraction / Reconnection | §1.7 | Gate G-1. §2. |
 | Source Mode mandatory everywhere | §1.7 | Every badge in this investigation is tappable through to the register row. §1.3. |
 | Field Bag is local, keeps status, shows changes, is exportable | §10.3 | §4. |
@@ -70,8 +70,8 @@ rather than being told about it.
   WHAT COMPLICATES IT / WHAT REMAINS UNKNOWN / MELAKEELA'S CURRENT INTERPRETATION /
   WHAT WOULD CHANGE IT. The child meets all seven, renamed.
 - **§4J's translation prohibition.** *"Do not automatically translate* pur *into a
-  Mature Harappan city."* Carried into the children's mode as R-06 and screen
-  `CP-3.6`.
+  Mature Harappan city."* Carried into the children's mode as R-03 and screens
+  `CP-3.3` and `CP-3.6`.
 - **Attestation gradient (§4E).** An attested word, a translator's English word and
   a modern guess are three different things, and the child is shown all three
   separately at `CP-3.6`.
@@ -661,12 +661,26 @@ no answer of the form "no, the forts were made up". The first is unsupported;
 the second is `PUR4J-I-01`'s deflationary reading, which the register itself
 holds at `PROVISIONAL` and warns is the convenient answer (`BF-014`).
 
-**Badge.** Each measurement **FOUND**. The screen's conclusion:
+**Balance card, required, shown last.** `PUR4J-026` (`PROVISIONAL`): all six
+of the ninety-nine passages present a fort as a real thing in the story that
+somebody holds and somebody breaks. The number behaving like a formula does not
+make the passage a formula, and the register keeps the two as separate claims in
+separate files for exactly this reason.
+
+> *Careful. The numbers behaving oddly does not mean the lines are just
+> decoration. In every one of the ninety-nine lines, somebody is holding
+> something and somebody else is breaking it. We are saying you cannot count
+> them. We are not saying nothing happened.*
+
+**Badge.** Each measurement **FOUND**. The balance card **WE THINK**
+(`PUR4J-026`, `PROVISIONAL`). The screen's conclusion:
 **WE DON'T KNOW** · *the poem doesn't say*.
 
 **Rests on.** `PUR-005`, `PUR4J-001`, `PUR4J-002`, `PUR4J-003`, `PUR4J-004`,
-`PUR4J-006`, `PUR4J-009`, `PUR4J-020`, `PUR-P-041`. Lowest status:
-**`VERIFIED`**.
+`PUR4J-006`, `PUR4J-009`, `PUR4J-020`, `PUR-P-041` (`VERIFIED`); `PUR4J-026`
+(**`PROVISIONAL`**). Lowest status: **`PROVISIONAL`** — `PUR4J-026`, which is
+why the balance card is badged **WE THINK** and the measurements around it stay
+**FOUND**. Verifying unit: **`U-5`**.
 
 **Field Bag.** The four-number chart; the 106/? pair; the river line; the
 correction card.
@@ -687,6 +701,16 @@ words describe what a fort was made of. Metal (`āyasá-`) in 8 passages, stone
 anything at all.
 
 > *Our line is the only one in the whole poem that says stone.*
+
+And the two odd ones out point opposite ways, which `PUR4J-014` (`PROVISIONAL`)
+records as **two data points and not a pattern**, because with one passage on
+each side no distribution follows: the stone fort at RV 4.30.20 is an enemy's
+and it is thrown down; the unbaked one at RV 2.35.6 is a place nothing bad can
+reach you. Shown to the child as two cards, side by side, with the museum's own
+caution on them:
+
+> *Two lines. One each. That is not enough to see a pattern in, and we are not
+> going to pretend it is.*
 
 The other 93 are shown as blanks, with the type on the card:
 
@@ -764,8 +788,8 @@ metal question **WE DON'T KNOW** · *the poem doesn't say* — and, on tap, the
 longer truth: nobody has settled it, and `U-4` is the unit that would try.
 
 **Rests on.** `PUR4J-012` (`VERIFIED`), `PUR4J-013` (**`PROVISIONAL`**),
-`PUR4J-023` (`VERIFIED`), `PUR-P-041`. Lowest status: **`PROVISIONAL`** —
-`PUR4J-013`. Verifying unit: **`U-5`**. Until then the (b) sorting card is
+`PUR4J-014` (**`PROVISIONAL`**), `PUR4J-023` (`VERIFIED`), `PUR-P-041`. Lowest
+status: **`PROVISIONAL`** — `PUR4J-013` and `PUR4J-014`. Verifying unit: **`U-5`**. Until then the (b) sorting card is
 badged **WE THINK** and may not be badged **FOUND**, and `PUR4J-013`'s own
 recorded alternative — that counting the two bird passages as hostile makes it
 3 of 8 rather than 1 of 8 — is shown on the card's reverse, because the register
@@ -1466,7 +1490,7 @@ summary:
 | `CP-1.1` | `VERIFIED` | FOUND | — |
 | `CP-1.2` | `VERIFIED` | FOUND | — |
 | `CP-2.1` | *(no evidence shown)* | — | — |
-| `CP-3.1` | `VERIFIED` | FOUND | — |
+| `CP-3.1` | **`PROVISIONAL`** (`PUR4J-026`, balance card only) | FOUND on the measurements; WE THINK on the balance card | `U-5` |
 | `CP-3.2` | **`PROVISIONAL`** (`PUR4J-013`) | WE THINK | `U-5` |
 | `CP-3.3` | `VERIFIED` | FOUND | — |
 | `CP-3.4` | **`HYPOTHESIS`** (`PUR-028`) | MAYBE | `U-2`, `U-3` |
@@ -1487,21 +1511,23 @@ not change this screen, because the screen does not assert who held the forts
 and would not assert it at any status. Naming a unit here would imply the card
 is waiting to say something it is never going to say.
 
-**The full list of `claim_id`s this investigation uses.** 41 distinct
-identifiers: 32 `VERIFIED`, 8 `PROVISIONAL`, 1 `HYPOTHESIS`.
+**The full list of `claim_id`s this investigation uses.** 45 distinct
+identifiers are cited. 42 carry a status: **32 `VERIFIED`, 8 `PROVISIONAL`, 2
+`HYPOTHESIS`**. The other three carry none — two passage rows, which are
+addresses rather than claims (`PUR-P-041`, `PUR-P-101`), and one
+archive-and-power-audit row (`APA-E-006`).
 
 - `VERIFIED` (32): `PUR-005`, `PUR-011`, `PUR-012`, `PUR-013`, `PUR-014`,
   `PUR-015`, `PUR-016`, `PUR-017`, `PUR-018`, `PUR-019`, `PUR-020`, `PUR-021`,
   `PUR-022`, `PUR-023`, `PUR4J-001`, `PUR4J-002`, `PUR4J-003`, `PUR4J-004`,
   `PUR4J-006`, `PUR4J-008`, `PUR4J-009`, `PUR4J-012`, `PUR4J-015`, `PUR4J-017`,
   `PUR4J-018`, `PUR4J-020`, `PUR4J-021`, `PUR4J-022`, `PUR4J-023`, `PUR4J-028`,
-  `PUR4J-030`, `DE-M-027`. *(Plus `APA-E-006`, an archive-and-power-audit row
-  rather than a claim register row, and `PUR-P-041`, a passage row.)*
+  `PUR4J-030`, `DE-M-027`.
 - `PROVISIONAL` (8): `PUR-026`, `PUR4J-013`, `PUR4J-014`, `PUR4J-025`,
   `PUR4J-026`, `PUR4J-I-01`, `PUR4J-I-02`, `PUR4J-I-03`.
-- `HYPOTHESIS` (1 load-bearing, 1 referenced): `PUR-028` — load-bearing at
-  `CP-3.4`; `PUR-027` — referenced at `CP-3.7` only to say the museum has not
-  answered.
+- `HYPOTHESIS` (2): `PUR-028`, load-bearing at `CP-3.4` and the lowest status in
+  the whole investigation; and `PUR-027`, referenced at `CP-3.7` only to say
+  that the museum has not answered who held the forts.
 
 **Nothing `INHERITED-UNVERIFIED` is shown to a child as evidence.** Three
 inherited things are *used* and none of them is evidence: the four-badge
@@ -1521,8 +1547,8 @@ three that a builder is most likely to undo without noticing:
   any framing, including a debunking framing. §10.4.7. The corpus supplies the
   buckets ready-made (§6) — this refusal has to be actively held, not merely
   intended.
-- **R-06.** No pin on the map, no candidate site, no archaeological culture
-  named beside a fort. §4J; Version 12 line 1175; §10.4.4.
+- **R-03 and R-06.** No archaeological culture, site or region named beside a
+  fort, and no pin on the map. §4J; Version 12 line 1175; §10.4.4.
 - **R-05.** No score, badge, streak, timer or progress reward anywhere, on any
   screen, including the "well done" that creeps in during copy review.
   §10.4.4, §10.4.7 second constraint.

@@ -51,7 +51,7 @@ reviewable. It is specification wording. It has not been through constitution
 | `05-HOLDS/HOLD-008-ground-evidence-for-the-pur-corpus.md` | new | The ground half of this investigation has no source. The hold names what is needed. |
 | `09-DECISIONS/OWNER-DECISIONS.csv` | `D-055`, `D-056`, `D-057` | Three decisions this specification raises and does not take. |
 | `DECISIONS-NEEDED.md` | `D-055`, `D-056` | The two that block. |
-| `04-AUDITS/REAUDIT-QUEUE.csv` | `RQ-…` | A stale figure found in `PUR4J-I-02` while reading for this unit. |
+| `04-AUDITS/REAUDIT-QUEUE.csv` | `RA-022` | A stale figure found in `PUR4J-I-02` while reading for this unit. |
 
 ## The three gates, in one place
 
@@ -83,8 +83,12 @@ the option so that the choice is made against a real description.
 `06-BRIEFS/pur-translation-standard.md`, `06-BRIEFS/rv01-reconciliation.md`,
 `13-PRODUCT-ARCHITECTURE/museum-framework.md` §10.
 
-Of the 41 distinct `claim_id`s the investigation uses, **32 are `VERIFIED`, 8
-are `PROVISIONAL`, 1 is `HYPOTHESIS`**. The `HYPOTHESIS` is `PUR-028` — that
-Arnold's five metrical periods correspond to real stages of composition — and
-it sits under the chronology screen, which is where this specification puts it
-in front of the child rather than under them.
+Forty-five identifiers are cited. Forty-two carry a status: **32 `VERIFIED`,
+8 `PROVISIONAL`, 2 `HYPOTHESIS`**. The other three are two passage rows, which
+are addresses rather than claims, and one archive-and-power-audit row.
+
+The load-bearing `HYPOTHESIS` is `PUR-028` — that Arnold's five metrical
+periods correspond to real stages of composition. It sits under the chronology
+screen, `CP-3.4`, which is where this specification puts it **in front of** the
+child rather than under them. That screen's badge ceiling is **MAYBE** and the
+specification forbids raising it.
