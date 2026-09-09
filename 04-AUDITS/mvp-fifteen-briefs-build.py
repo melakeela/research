@@ -89,6 +89,11 @@ def scan_supports_page():
 # line wrapping in the source does not matter.
 QUOTE_CHECKS = {
     "13-PRODUCT-ARCHITECTURE/museum-framework.md": [
+        # 8.1, quoted in 03-artifact-atlas.md sections 5 and 7. Its final clause
+        # settles whether the rule reaches the page title; a draft of section 7
+        # said the specification was silent on that (BF-029).
+        "The number of sites in view is a property of the current filter and is always shown *with* the filter, never as a title.",
+        "the Atlas can be built and shipped before that is answered, because it never asserts a total in its own voice",
         "Themes change with the visitor's relationship to knowledge; the institutional shell remains stable.",
         "because environments are postures rather than topics, a page can move between them without its content changing",
         "nothing in `03-REGISTERS/` records a publication decision, an environment assignment, or a duplication finding",
@@ -159,6 +164,12 @@ QUOTE_CHECKS = {
         "Keep distinct but present as one curated exhibit sequence.",
         "Curated institutional-power exhibit with claim-level documents and right-of-reply field.",
     ],
+    "03-REGISTERS/inherited-claims.csv": [
+        # IH-250's resolution path, quoted in 03-artifact-atlas.md sections 3, 6
+        # and 7 and in 02-enter.md. Its final clause was cut twice; the clause
+        # is what constrains the brief's own printing of counts.
+        "Extract the atlas dataset to JSON, count, and generate every stated figure from it; until then no document prints a site count.",
+    ],
     "01-INHERITED/curatorial-audit-v1.1/claim-risk.csv": [
         "Before the Indus, the graves already faced the sun.",
     ],
@@ -174,6 +185,14 @@ QUOTE_CHECKS = {
         # D-034, quoted in the artifact-atlas conflict section
         "A contested number is inside a launch page title, presented as settled.",
         "The atlas number is load-bearing for a page ranked third in the launch set.",
+    ],
+    "03-REGISTERS/water-living-world-readiness.csv": [
+        # WLW-001, quoted in 09-the-water-city.md section 3. It has been amended
+        # once already, under review; nothing guarded it until BF-029.
+        "As at 2026-09-08T21:13Z, before this unit added any row, no register in 03-REGISTERS/ carried a water claim above INHERITED-UNVERIFIED, and no row in any register carried supports_page = the-water-city.",
+        "scan of all 14 registers carrying a supports_page column",
+        "06-BRIEFS/mvp-fifteen/09-the-water-city.md \u00a73 established the same for the page.",
+        "IH-138 (post-urban settlement moved east tracking a weakening monsoon) is a water claim in 03-REGISTERS/inherited-claims.csv, as is IH-183",
     ],
     "09-DECISIONS/OWNER-DECISIONS.csv": [
         "Neutralised but not answered by museum-framework.md \u00a78.1 \u2014 the Atlas can be built without the number and cannot be titled without it.",
@@ -276,15 +295,59 @@ def supports_page_values():
     return sorted(vals), with_col, without_col
 
 
-def check_atlas_inbound(pg_by):
-    """The artifact-atlas conflict section states two inbound-link figures and
-    their ordering. They are checked here so an edit to the workbook fails the
-    build instead of leaving a false comparison in the brief."""
-    ranked = sorted(((int(pg_by[s]["Inbound links"]), s) for s in MVP_SLUGS),
+def fail(msg):
+    """Every gate in this file raises rather than asserting. A bare assert
+    vanishes under python3 -O, and a gate that can be switched off by an
+    interpreter flag is not a gate."""
+    raise SystemExit("mvp-fifteen build stopped: " + msg)
+
+
+def atlas_inbound(pg_by):
+    """The two inbound-link figures 03-artifact-atlas.md section 7 compares,
+    derived from page-audit.csv rather than typed, with the comparison itself
+    derived. Returns (this page's count, the highest slug, its count, the
+    ordinal word for this page's position among the fifteen)."""
+    ranked = sorted(((int(pg_by[s_]["Inbound links"]), s_) for s_ in MVP_SLUGS),
                     reverse=True)
-    assert ranked[0] == (113, "enter"), ranked[:2]
-    assert ranked[1] == (56, "artifact-atlas"), ranked[:2]
-    return len(ranked)
+    mine = dict((sl, n) for n, sl in ranked)["artifact-atlas"]
+    pos = [sl for _, sl in ranked].index("artifact-atlas")
+    if pos == 0:
+        fail("artifact-atlas now has the highest inbound-link count of the "
+             "fifteen; section 7 compares it against a higher one and needs "
+             "rewriting by hand.")
+    top_n, top_slug = ranked[0]
+    return mine, top_slug, top_n, ordinal_word(pos + 1)
+
+
+ORDINALS = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh",
+            "eighth", "ninth", "tenth", "eleventh", "twelfth", "thirteenth",
+            "fourteenth", "fifteenth"]
+
+
+def ordinal_word(n):
+    if not 1 <= n <= len(ORDINALS):
+        fail("no ordinal word for %r; a brief prints one" % n)
+    return ORDINALS[n - 1]
+
+
+def owner_decision(did):
+    """One row of 09-DECISIONS/OWNER-DECISIONS.csv, so a brief prints a
+    decision's live status instead of the status it had when it was drafted."""
+    for r in csv.DictReader(open(os.path.join(
+            ROOT, "09-DECISIONS", "OWNER-DECISIONS.csv"), encoding="utf-8")):
+        if r["decision_id"] == did:
+            return r
+    fail("%s is cited by a brief and is not in OWNER-DECISIONS.csv" % did)
+
+
+def claim_risk_row(slug):
+    """The claim-risk.csv row for a slug, or None. The absence is an argument
+    in 03-artifact-atlas.md section 7 and is therefore derived, not typed."""
+    _, rows = sheet("claim-risk.csv", 3)
+    for r in rows:
+        if r.get("Slug") == slug:
+            return r
+    return None
 
 
 def n_inherited_rows():
@@ -292,24 +355,42 @@ def n_inherited_rows():
         os.path.join(ROOT, "03-REGISTERS", "inherited-claims.csv")))))
 
 
-def status_floor(linked, ih_rows):
-    """The operative floor over a page's evidence, and the statuses present.
+def status_floor(slug, linked, ih_rows):
+    """The floor over a page's evidence, and the other statuses its rows carry.
 
-    Not a sort. Framework 3.2 forbids ordering INHERITED-UNVERIFIED against the
-    six evidential statuses, so the floor is stated by rule: a row carrying
+    Nothing here is sorted and nothing is called *above* anything. Framework
+    3.2 rules that six of the seven statuses describe evidential standing and
+    one describes where an assertion came from, so they do not form a ladder;
+    an earlier version of this function called every status that was not
+    INHERITED-UNVERIFIED "above the floor", which would have printed a REJECTED
+    row as standing above one (BF-029).
+
+    The floor is stated by one rule and no comparison: a row carrying
     INHERITED-UNVERIFIED has had no retrieval event behind it, so no set
-    containing one stands above it. If no such row is present the caller has to
-    say what the floor is; the build stops rather than guessing.
+    containing one stands above it. A page whose evidence carries no such row
+    has no floor this function can state, and the build stops.
     """
-    present = sorted({(st or "").strip() for _, _, st in linked} |
-                     {(r["status"] or "").strip() for r in ih_rows} - {""})
+    lk = [(c, (st or "").strip()) for _, c, st in linked]
+    for cid, st in lk:
+        if not st:
+            fail("%r: linked row %r carries no status. CLAUDE.md: every claim "
+                 "carries exactly one status; no claim is unstatused."
+                 % (slug, cid or "(no id)"))
+    ih = [(r["claim_id"], (r["status"] or "").strip()) for r in ih_rows]
+    for cid, st in ih:
+        if not st:
+            fail("%r: inherited row %r carries no status." % (slug, cid))
+    present = sorted(set(st for _, st in lk + ih))
     if not present:
-        return None, present
-    assert "INHERITED-UNVERIFIED" in present, (
-        "no INHERITED-UNVERIFIED row in this page's evidence; the floor can no "
-        "longer be stated by rule and this brief needs a written one: " +
-        repr(present))
-    return "INHERITED-UNVERIFIED", present
+        fail("%r: no row of any status bears on this page, so it has no floor "
+             "to state. Write the section by hand or give the page evidence."
+             % slug)
+    if "INHERITED-UNVERIFIED" not in present:
+        fail("%r: no INHERITED-UNVERIFIED row in this page's evidence, so the "
+             "floor can no longer be stated by rule and this brief needs a "
+             "written one. Statuses present: %s" % (slug, ", ".join(present)))
+    others = sorted(st for st in present if st != "INHERITED-UNVERIFIED")
+    return "INHERITED-UNVERIFIED", others
 
 
 def inherited(ids):
@@ -622,14 +703,29 @@ assessment's collision A, whose words these are — `INHERITED-UNVERIFIED`, quot
 inside a `HYPOTHESIS` document, and not the framework's own verdict: the count
 was *"adopted as settled fact, put in a page title, and rated low-risk."*
 
-The `Low` risk rating deserves reading against the instrument that produced it.
-`method-limits.csv` says source visibility was estimated from *"visible
-Sources/References sections"* and that *"a visible bibliography does not prove
-claim-level support or source quality."* 88 visible entries against 8 words of
-prose is what produced `Low`. It is a measurement of a page's furniture.""",
+**`Keep` and `Low` are two different columns produced by two different
+instruments, and an earlier draft of this brief collapsed them.** `method-limits.csv`
+gives *Curatorial decision* as *"Keep, Revise, Hold, Split or Merge based on role,
+source visibility, risk and overlap"*, limited by *"Decisions remain provisional
+until factual and specialist review."* It gives *Claim risk* separately, as
+*"Flagged categorical, causal, priority/origin, institutional and quantitative
+central claims"*, limited by the sentence `RA-019` exists to enforce:
+*"Risk means verification priority, not falsehood."* `Low` is therefore not a
+judgement that the page is sound; it is a judgement that the page is not near the
+front of the verification queue.
+
+A third layer, *Source visibility*, was *"Estimated bibliography entries from
+visible Sources/References sections"*, limited by *"A visible bibliography does
+not prove claim-level support or source quality."* The 88 entries belong to that
+layer. **Whether they are what produced `Low` is an inference this brief cannot
+check** — the workbook nowhere states how the two relate — and an earlier draft
+asserted it as fact in two places. What can be said without inference is that
+88 estimated entries against 8 words of prose is a measurement of a page's
+furniture, and that no instrument in the workbook read the page's central number
+at all.""",
  "evidence": [
    ("IH-105", "The atlas holds 194 site records, 315 class-windows and 14 classes, with **54 of 199 site-class rows dated from excavation reports and 145 marked assumed**. Three quarters of the dating is flagged as assumption inside the dataset itself."),
-   ("IH-250", "Contradiction X-01: 140 / 150 / 158 / 167→175 / 194 / 199 sites, and 299 against 315 windows. Resolution path: extract the dataset to JSON, count, and generate every stated figure from it."),
+   ("IH-250", "Contradiction X-01: 140 / 150 / 158 / 167→175 / 194 / 199 sites, and 299 against 315 windows. Recorded resolution path: *\"Extract the atlas dataset to JSON, count, and generate every stated figure from it; until then no document prints a site count.\"*"),
    ("IH-057", "Correction C-37: three different counts on three live surfaces."),
    ("IH-060", "Correction C-40: the owner's visual-concept document and VELI-03 disagree on sites and windows; the handoff blocks the prospectus on it."),
    ("IH-201", "`/artifact-atlas` returns no text to a fetcher because it is JS-rendered. An atlas unreadable without JavaScript fails release gate 5 before any accessibility review begins."),
@@ -652,11 +748,20 @@ here, because the build has not been retrieved:
 4. *Let a filter silently drop the weak evidence to produce a cleaner picture.*
    Untestable from here.
 
-§8.1's resolution is the one that makes the page launchable at all: **the Atlas
-has no headline count.** A count is a claim with a status, an inclusion rule and
-a falsifier, shown inside the Atlas with its status visible, or it is not shown.
-Under that rule the Atlas ships *before* D-034 is answered, because it never
-asserts a total in its own voice.""",
+§8.1 proposes a rule for the first of those four: **the Atlas has no headline
+count.** A count is a claim with a status, an inclusion rule and a falsifier,
+shown inside the Atlas with its status visible, or it is not shown.
+
+**The first build of this brief wrote, here, that §8.1's rule "is the one that
+makes the page launchable at all" and that "under that rule the Atlas ships
+*before* D-034 is answered."** That reading is withdrawn and is recorded rather
+than deleted, because it is the failure `BF-029` logs: a design proposition at
+`HYPOTHESIS` in a specification this repository wrote was allowed to settle an
+`OPEN` owner decision, and the sentence sat four sections away from the conflict
+it was settling. `OWNER-DECISIONS.csv` D-034's own `notes` say what §8.1 does:
+*"Neutralised but not answered by museum-framework.md §8.1 — the Atlas can be
+built without the number and cannot be titled without it."* §7 records the
+conflict; nothing in this section decides it.""",
  "asset_extra": """\
 This is the one page of the fifteen whose asset set is not embargoed by §3.12 —
 its assets are a dataset and its presentation, not diagrams derived from
@@ -667,7 +772,7 @@ Assertions and typed Date Assertions (§2.7, §2.8), and the 145 rows marked
 the exclusion export (§5.2) are the parts that make every absence argument on the
 map checkable, and they are the parts most easily deferred.""",
  "launch": [
-   "No headline count anywhere on the page, per §8.1. The number in view is a property of the current filter and is shown with the filter.",
+   "No headline count anywhere on the page, per §8.1: the number in view is a property of the current filter and is *\"always shown *with* the filter, never as a title.\"* The page's current title breaks this, and §7 records what that does and does not settle.",
    "Every mapped thing is an object with a status and an attestation mode; a findspot and an attributed provenance are never the same marker (§8.2).",
    "The 145 `assumed` date rows are typed as assertions with their basis, or excluded. Rendering them identically to the 54 report-dated rows is `IH-105` published as if it were `IH-105` solved.",
    "Unknown zones are a rendered layer, and the excavation/survey coverage overlay exists (§8.2) — without it no absence on the map is checkable.",
@@ -677,8 +782,11 @@ map checkable, and they are the parts most easily deferred.""",
  "unit": """\
 **MVP-U3 — atlas dataset extraction and count derivation.** The unit is already
 specified, by the inheritance itself: `IH-250`'s recorded resolution path is
-*"extract the atlas dataset to JSON, count, and generate every stated figure from
-it."* Done properly it produces a register of site records with typed place and
+*"Extract the atlas dataset to JSON, count, and generate every stated figure from
+it; until then no document prints a site count."* The final clause was cut from
+both of this brief's quotations of the row in an earlier draft, and it is the
+only part of `IH-250` that constrains what this brief may itself print
+(`BF-029`); §7 records where the constraint bites. Done properly it produces a register of site records with typed place and
 date assertions, a dependency map for the 88 bibliography entries (framework §3.5
 — 88 citations tracing to a handful of excavation reports count as a handful),
 and a derived count with an inclusion rule.
@@ -691,83 +799,125 @@ unblocking action is the owner supplying the archive, or naming the authoritativ
 build (D-033). Until then a `HOLD` row is owed, and this page cannot be the
 release's connective heart on a dataset nobody here has opened.""",
  "conflicts": """\
-## 7. The recorded conflict — a disputed count in the title, at rank 3 of the launch set
+## 7. The recorded conflict — a disputed count in the title, at rank {rank} of the launch set
 
-**This brief records the conflict and does not resolve it. Nothing above or below
-assumes an outcome. In particular, §5's first gate states what framework §8.1
-proposes for the page's *display*; it is not a settlement of the *number*, and
-§8.1 does not reach the title at all.**
+**This brief records the conflict and does not resolve it.** Three arms are set
+out below because a conflict whose consequences are not stated is not legible;
+none of them is preferred here, and no sentence in this section is to be read as
+choosing one.
 
-The page's own title asserts a figure that this repository has logged as
-disputed and has not closed, and the same workbook schedules the page third:
+**What this section disclaims, by name.** §2 above wrote, in the first build,
+that §8.1's no-headline-count rule *"is the one that makes the page launchable at
+all"* and that *"under that rule the Atlas ships before D-034 is answered."* That
+was a settlement, written in this brief's own voice, of a decision that is
+`{d034}`. It is withdrawn in §2 and preserved there rather than deleted. §5's
+first gate — *"No headline count anywhere on the page, per §8.1"* — is a
+statement of what §8.1 requires, not a finding that the requirement is met or
+that meeting it would end the matter; see the last paragraph of this section on
+what that gate does and does not reach.
+
+The page's own title asserts a figure that this repository has logged as disputed
+and has not closed, and the same workbook schedules the page {rank_ordinal}:
 
 | File | Cell | Value |
 |---|---|---|
-| `page-audit.csv` | `Title` | *"Artifact Atlas: 175 Ancient South Asian Sites Mapped"* |
-| `mvp.csv` | `Rank` | **3** of 15 |
-| `mvp.csv` | `Decision` / `Risk` | `Keep` / **Low** |
-| `mvp.csv` | `Release dependency` | *"Preserve the core argument; complete citation, image-rights, accessibility, and copy review before publication."* |
-| `claim-risk.csv` | — | **no row for this page at all** |
+| `page-audit.csv` | `Title` | *"{title}"* |
+| `mvp.csv` | `Rank` | **{rank}** of 15 |
+| `mvp.csv` | `Decision` / `Risk` | `{decision}` / **{risk}** |
+| `mvp.csv` | `Release dependency` | *"{release_dep}"* |
+| `claim-risk.csv` | row for `artifact-atlas` | {claim_risk} |
 | `03-REGISTERS/inherited-claims.csv` `IH-250` | `INHERITED-UNVERIFIED` | contradiction X-01: 140 / 150 / 158 / 167→175 / 194 / 199 sites |
 | `03-REGISTERS/inherited-claims.csv` `IH-057` | `INHERITED-UNVERIFIED` | correction C-37: three different counts on three live surfaces |
-| `09-DECISIONS/OWNER-DECISIONS.csv` **D-034** | `OPEN` | *"Is 96 the authoritative page count, and what is the atlas site count?"* |
+| `09-DECISIONS/OWNER-DECISIONS.csv` **D-034** | status | `{d034}` |
 
-Rank 3 is not an ordering detail. It is the third page a visitor is scheduled to
-meet, and on the current title it meets them with a number the inheritance
-records as one of six competing values. Neither instrument that rated the page can settle
-it: `Keep` and `Low` come from the workbook's risk column, and `method-limits.csv`
-says what that column measured — source visibility *"estimated from visible
-Sources/References sections"*, with *"a visible bibliography does not prove
-claim-level support or source quality."* 88 bibliography entries against 8 words
-of prose produced `Low`. The rating and the contradiction never came into
-contact, and `claim-risk.csv` — the sheet that would have recorded a publication
-gate on the number — has no row for this page.
+*(Every cell in that table is read from its file at build time. §7 of an earlier
+draft retyped them, in a section written to remove typed literals — `BF-029`.)*
+
+Rank {rank} is not an ordering detail: it is the {rank_ordinal} page a visitor is
+scheduled to meet, and on the current title it meets them with a number the
+inheritance records as one of six competing values. Neither column that rated the
+page reached that number. §1 above sets out why — `Decision` and `Risk` are
+different instruments with different limits, `Risk` means verification priority
+and not falsehood, and the `claim-risk.csv` sheet that would have recorded a
+publication gate on a quantitative central claim has {claim_risk}.
+
+**This section prints the six competing counts, and `IH-250` says not to.** The
+row's resolution path reads in full: *"Extract the atlas dataset to JSON, count,
+and generate every stated figure from it; until then no document prints a site
+count."* An earlier draft quoted that row twice and cut the final clause both
+times. The clause is restored, and this section is inside its scope: what is
+printed above is the *contradiction* — six values none of which is asserted as
+the count — rather than a site count, and that is a reading of `IH-250`'s intent,
+not a permission it grants. It is recorded here so that a reader who thinks the
+row forbids this table can see that the question was noticed rather than avoided.
 
 **Already raised, and not by this brief.** `DECISIONS-NEEDED.md` **D-034** —
 renumbered from D-006 on 2026-09-07 (`09-DECISIONS/DECISION-ID-MAP.csv`) — states
 it: *"A contested number is inside a launch page title, presented as settled,"*
 and *"The atlas number is load-bearing for a page ranked third in the launch
-set."* Its `OWNER-DECISIONS.csv` row is `OPEN` and its `notes` already record the
-distinction this section turns on: *"Neutralised but not answered by
-museum-framework.md §8.1 — the Atlas can be built without the number and cannot
-be titled without it."* This brief adds no identifier and takes no position; it
-records that the conflict survives into the brief set and names what each arm
-would change.
-
-**What §8.1 does and does not reach.** It rules that the Atlas has no headline
-count — a count is shown inside the Atlas with its status and inclusion rule, or
-not shown. That removes the number from the page's *voice* and is why §5 can
-list a launchable gate. It leaves two things standing: the **title**, which is a
-`page-audit.csv` field and a piece of public copy in its own right, and the
-**value**, which D-034 asks for and which `IH-250`'s resolution path — *"extract
-the dataset to JSON, count, and generate every stated figure from it"* — would
-have to produce. A page whose title says 175 while its map declines to state a
-total is not a page that has resolved the number.
+set."* This brief adds no identifier and takes no position; it records that the
+conflict survives into the brief set and names what each arm would change.
 
 **What changes under each arm**, stated so the decision is legible and for no
-other purpose:
+other purpose. They are listed in no order of preference, and each is reachable
+without the other two:
 
-- **Number settled first.** The dataset is extracted and counted (§6, MVP-U3),
+- **The number is settled.** The dataset is extracted and counted (§6, MVP-U3),
   X-01 closes, and the title either survives with its figure re-derived and
-  statused or is rewritten to the derived value. Rank 3 stands. This is the only
-  arm in which the page launches with a number in its title.
-- **Title changed, number left open.** The title drops the figure; the page ships
-  at rank 3 under §8.1 with no total in its own voice, and D-034 stays `OPEN`
-  against the page-count half. The `asset-register.csv` line *verified dataset*
-  is still owed, so §5's gates are unchanged.
-- **Rank changed.** The page moves out of the first three and the release opens on
-  something whose central claim is not an unsettled number. `page-audit.csv`
-  records **56 inbound links** to this page, second among the fifteen only to
-  `enter`'s 113, so demoting it is a change to the site's link structure and not
-  only to an order.
+  statused or is rewritten to the derived value. Rank {rank} stands. This is the
+  only arm in which the page launches with a number in its title, and the only
+  one that waits on the archive (see below).
+- **The title is changed, the number left open.** The title drops the figure. The
+  page ships at rank {rank} under §8.1 with no total in its own voice, and D-034
+  stays `{d034}`. This is an editorial act on a `page-audit.csv` field and needs
+  no data: it does not wait on the archive, and it is available today.
+- **The rank is changed.** The page moves out of the first three and the release
+  opens on something whose central claim is not an unsettled number.
+  `page-audit.csv` records **{inbound} inbound links** to this page, the
+  {inbound_ordinal} count among the fifteen behind `{top_slug}`'s {top_n}, so
+  demoting it changes the site's link structure and not only an order. This arm also
+  needs no data and does not wait on the archive.
 
-**What does not change under any arm**, and this is an observation about
-sequencing rather than a resolution: the count cannot be derived from anything in
-this repository. §6 records that the atlas data lives in `artifact-atlas.html`
-inside `veli-site(3).zip`, which is not committed here and has no access-ledger
-row. Until the owner supplies that archive or names the authoritative build
-(D-033), every arm above is blocked on the same missing object, and the title
-question is blocked behind the count question.""",
+**One thing all three arms share, and it does not decide between them.** The
+count itself cannot be derived here: §6 records that the atlas data lives in
+`artifact-atlas.html` inside `veli-site(3).zip`, which is not committed to this
+repository and has no `02-SOURCES/access-ledger.csv` row. Under `CLAUDE.md`'s
+negative-evidence standard that absence types as **`NOT ACCESSIBLE`** — the
+evidence exists, was produced, is known to be held by the owner, and is simply
+not here — and not as `NOT PRODUCED`, `NOT PRESERVED` or `ABSENT DESPITE ADEQUATE
+SEARCH`. `01-INHERITED/site-review/` holds two running-list documents that have
+not been searched for atlas site records, so even the `NOT ACCESSIBLE` typing is
+provisional on that search.
+
+That is an access fact, not an evidential one, and it bears on the first arm
+only. The second and third arms are editorial decisions about a title and an
+order; neither needs the count, and treating them as blocked behind it would
+convert a missing archive into a reason to leave the launch order as it is. An
+earlier draft of this section did exactly that, closing with *"the title question
+is blocked behind the count question"* — which eliminated the second arm by fiat
+and left the status quo as the only reading. Withdrawn, and recorded rather than
+deleted.
+
+**What §8.1 reaches, read exactly.** A draft of this section said the rule does
+not reach the title and that the specification is silent on the point. It is not
+silent: §8.1 ends *"The number of sites in view is a property of the current
+filter and is always shown *with* the filter, never as a title."* The rule
+reaches the title directly, and the current title breaks it. Three things follow,
+and none of them closes D-034.
+
+- The second arm is what §8.1 *requires*, not an alternative to it. That does not
+  merge it into the first: §8.1 says the number may not be a title and says
+  nothing about what the number is.
+- §8.1 is a design proposition at `HYPOTHESIS` (framework §14.4). A rule at that
+  standing does not amend a `page-audit.csv` field or overrule the workbook's
+  rank; it states what the specification would require if adopted, and adopting
+  it is itself an owner act nobody has recorded.
+- The framework's own paragraph after the rule reads *"the Atlas can be built and
+  shipped before that is answered, because it never asserts a total in its own
+  voice"* — which is the sentence §2 of this brief adopted and has withdrawn.
+  D-034's `notes` put the same fact the other way round: *"the Atlas can be built
+  without the number and cannot be titled without it."* Both are true and neither
+  is a count.""",
 },
 
 {
@@ -1326,11 +1476,14 @@ why the step 14 slots stay empty is unaffected.
    the moment it was committed. *"before this unit added any row"* is the repair,
    made under adversarial review rather than quietly. Read without that clause the
    row contradicts itself.
-2. **It is a probe, not a standing property.** `02-SOURCES/access-ledger.csv`:
-   *"A ledger row is a timestamped probe, not a standing property (D-042)."* The
-   row's locator names a scan of **14** registers carrying the column; the scan
-   behind this brief finds 15. `VERIFIED` here certifies what a scan returned at
-   21:13Z on 2026-09-08 and certifies nothing about today.
+2. **It is a probe, not a standing property.** `02-SOURCES/access-ledger.csv`
+   `SRC-080`, `notes`: *"A ledger row is a timestamped probe, not a standing
+   property (D-042)."* An earlier draft cited the file without the row, which is
+   the locator failure `BF-024` already logs. The
+   row's locator names a *"scan of all 14 registers carrying a supports_page
+   column"*; the scan behind this brief finds {scanned}. `VERIFIED` here certifies
+   what a scan returned at 21:13Z on 2026-09-08 and certifies nothing about
+   today.
 3. **It and this brief are one source, not two.** The row's `notes` cite
    `06-BRIEFS/mvp-fifteen/09-the-water-city.md` §3 as having established the same
    finding, and this brief now cites the row. Both run the same scan over the same
@@ -1352,10 +1505,24 @@ a negative claim about a category, and it is the one the headline turns on —
    ("IH-263", "Contradiction X-14, and the row `DECISIONS-NEEDED.md` **D-033** rests on: the live `rakhigarhi` page says there is no seafaring in the Rigveda while the site's corpus file records *nau-* at n = 40 — and `rakhigarhi` is not among the 96 pages of the audited build."),
  ],
  "evidence_extra": """\
-**Nothing in any register bears on the water engineering or on the absence of
-palaces.** The two rows above are the nearest Indus-related material in the
-inheritance and neither supports this page's claims; they are listed so that the
+**No row listed above bears on the water engineering or on the absence of
+palaces**, and this is a statement about the rows this brief examined, not a
+quantifier over every register — asserting the second is the failure `BF-027`
+logs. The rows above are the nearest Indus-related material the inheritance
+offers and none of them supports this page's claims; they are listed so that the
 gap is legible rather than implied.
+
+**One row that is claimed to bear on it, and does not.** `WLW-001`'s `notes`
+name two rows as water claims in `inherited-claims.csv`: `IH-138`, which is
+above and is a claim about the past, and `IH-183`, which is not. `IH-183` is a
+`SUPERSEDED` product row recording that the *"A Drop of Water"* single-experience
+plan replaced `VELI-06` and was replaced in turn — its subject is the release
+plan, and the water is in the exhibit's title. It is listed here because a row
+cited elsewhere as bearing on this page should not simply be absent from it, and
+because the disagreement is small, recorded, and neither side's to settle
+quietly: this brief reads `IH-183` as a product record, `WLW-001` reads it as a
+water claim, and nothing turns on which reading is right — under either, it is
+`INHERITED-UNVERIFIED` and supports nothing here.
 
 **The negative claim is the page's real work, and the standard for it is
 written.** `CLAUDE.md`'s negative-evidence standard requires, *before* arguing
@@ -2089,53 +2256,56 @@ def emit(page, wb, hits, scanned):
             .format(scanned, slug))
 
     n_ih = n_inherited_rows()
-    floor, present = status_floor(linked, ih)
-    above = sorted(p for p in present if p != "INHERITED-UNVERIFIED")
+    floor, others = status_floor(slug, linked, ih)
 
     # A linked row is a recorded editorial act, and what it carries is not
-    # derivable from the fact of the link. The brief has to say. Two fields are
-    # required together, and the build stops without them, so a register row
-    # added later cannot silently change what a brief claims.
-    assert bool(linked) == bool(page.get("linked_reading")), (
-        "supports_page scan and brief disagree for %r: %d linked row(s), "
-        "linked_reading %s. Write the reading, or remove it." %
-        (slug, len(linked), "present" if page.get("linked_reading") else "absent"))
-    licenses = bool(page.get("linked_licenses_copy"))
-    assert not licenses, (
-        "%r declares a linked row that licenses public copy. Section 1's "
-        "'why the six slots are empty' no longer holds and has to be rewritten "
-        "by hand before this brief can be built." % slug)
+    # derivable from the fact of the link. The brief has to say. Both fields are
+    # required, by presence and not by truthiness — an earlier version tested
+    # page.get("linked_licenses_copy"), which a missing key satisfies, so the
+    # gate the README advertised did not exist (BF-029).
+    if bool(linked) != ("linked_reading" in page):
+        fail("supports_page scan and brief disagree for %r: %d linked row(s), "
+             "linked_reading %s. Write the reading, or remove it." %
+             (slug, len(linked), "present" if "linked_reading" in page else "absent"))
+    if linked:
+        if "linked_licenses_copy" not in page:
+            fail("%r has a linked row and no linked_licenses_copy. Decide "
+                 "whether the row licenses public copy and say so." % slug)
+        if page["linked_licenses_copy"]:
+            fail("%r declares a linked row that licenses public copy. Section "
+                 "1's 'why the six slots are empty' no longer holds and has to "
+                 "be rewritten by hand before this brief can be built." % slug)
 
     if linked:
         ids = ", ".join("`%s`" % c for _, c, _ in linked)
         n_l, row_s, carry = len(linked), "row" if len(linked) == 1 else "rows", \
             "carries" if len(linked) == 1 else "carry"
+        st_list = " and ".join("`%s`" % a for a in others)
         premise = ("§3 below records {} register {} linked to it — {} — and "
                    "reads it: it {} no proposition this page asserts. Nothing "
-                   "else bearing on the page stands above "
+                   "else bearing on the page carries a status other than "
                    "`INHERITED-UNVERIFIED`.".format(
                        n_l, row_s, ids,
                        "carries" if n_l == 1 else "carry between them"))
-        supports_cell = ("no claim above `INHERITED-UNVERIFIED` bearing on what "
-                         "this page asserts; the {} linked {} read in §3"
+        supports_cell = ("no claim bearing on what this page asserts stands "
+                         "outside the `INHERITED-UNVERIFIED` floor; the {} "
+                         "linked {} read in §3"
                          .format(n_l, row_s + " is" if n_l == 1 else row_s + " are"))
-        ceiling = ("**{} {} linked to this page {} a status above that floor — {} "
-                   "— and §3 states what it is about. A row above the floor "
-                   "raises the floor for nothing else.**".format(
-                       n_l, row_s, carry,
-                       ", ".join("`%s`" % a for a in above)))
+        ceiling = ("**{} {} linked to this page {} a different status — {} — and "
+                   "§3 states what it is about.** Nothing here ranks the two: the "
+                   "floor is stated by the rule above, and a row carrying another "
+                   "status neither lifts it nor is lifted by it.".format(
+                       n_l, row_s, carry, st_list))
         floor_gloss = ("the status of every inherited row above, and of every "
                        "inherited row that could be listed. The linked {} {} "
-                       "{}, read in §3 above; {} does not raise this floor"
-                       .format(row_s, carry,
-                               " and ".join("`%s`" % a for a in above),
-                               "it" if n_l == 1 else "they"))
+                       "{}, read in §3 above; that is a different status and "
+                       "not a higher one".format(row_s, carry, st_list))
     else:
-        premise = ("§3 below records that nothing bearing on it stands above "
-                   "`INHERITED-UNVERIFIED`.")
-        supports_cell = "no claim above `INHERITED-UNVERIFIED`"
-        ceiling = ("**Nothing bearing on this page stands above "
-                   "`INHERITED-UNVERIFIED`.**")
+        premise = ("§3 below records that every row bearing on it carries "
+                   "`INHERITED-UNVERIFIED` and no other status appears.")
+        supports_cell = ("no claim outside the `INHERITED-UNVERIFIED` floor")
+        ceiling = ("**Every row bearing on this page carries "
+                   "`INHERITED-UNVERIFIED`, and no other status appears.**")
         floor_gloss = ("the status of every row above, and of every row that "
                        "could be listed")
 
@@ -2177,7 +2347,7 @@ def emit(page, wb, hits, scanned):
     A(link_stmt + "\n")
     A("\n" + (ADJACENCY_NOTE_LINKED if linked else ADJACENCY_NOTE))
     if linked:
-        A("\n" + page["linked_reading"] + "\n")
+        A("\n" + page["linked_reading"].format(scanned=scanned) + "\n")
     A("\nWhat exists {} is inherited material that **bears on** this page "
       "without being linked to it. Every row below is from "
       "`03-REGISTERS/inherited-claims.csv`, whose {} rows all carry "
@@ -2225,6 +2395,19 @@ def emit(page, wb, hits, scanned):
     A(page["unit"] + "\n")
 
     if page["conflicts"]:
+        d034 = owner_decision("D-034")
+        cr = claim_risk_row(slug)
+        inbound, top_slug, top_n, ordinal = atlas_inbound(
+            {k: v["page"] for k, v in wb.items()})
+        page = dict(page, conflicts=page["conflicts"].format(
+            title=m["page"]["Title"], rank=m["mvp"]["Rank"],
+            decision=m["page"]["Decision"], risk=m["page"]["Risk"],
+            release_dep=m["mvp"]["Release dependency"],
+            claim_risk=("**no row for this page at all**" if cr is None else
+                        "`%s` / gate `%s`" % (cr["Risk"], cr["Publication gate"])),
+            d034=d034["status"], inbound=inbound, top_slug=top_slug,
+            top_n=top_n, inbound_ordinal=ordinal,
+            rank_ordinal=ordinal_word(int(m["mvp"]["Rank"]))))
         A("\n---\n")
         A(page["conflicts"] + "\n")
 
@@ -2274,9 +2457,19 @@ resolve while being attributed to the wrong speaker, given the wrong status, or
 used to support something it does not say. One such case was found by review in
 the first draft and corrected. The check narrows the space for silent error; it
 does not close it, and no claim here rests on its having done so.
-**Every count in this directory is derived at build time.** None is a typed
-literal — the inheritance's standing rule 14, which the first draft of this
-README broke by stating a diagram count from memory.
+**Every count this directory *argues from* is derived at build time**, and the
+scope of that sentence is narrower than the blanket claim two earlier builds made
+— *"Every count in this directory is derived at build time. None is a typed
+literal"* — which was false when written and is corrected rather than deleted
+(`BF-029`). The workbook figures inside each brief's *What the workbook records
+as observed* block are transcribed from `page-audit.csv` by hand and are not
+checked by the build; so are the `IH-` claim texts in each evidence table. What is
+derived is every count on which a finding rests: the register scan and its
+statuses, the inherited-row total, the diagram sets, the `supports_page` values,
+the quote total, and the two inbound-link figures §7 of `03-artifact-atlas.md`
+compares. The inheritance's standing rule 14 is the rule here; stating a
+compliance that is broader than the compliance achieved is itself a way of
+breaking it.
 
 **No retrieval was performed for this unit.** No row was added to
 `02-SOURCES/access-ledger.csv`; no claim moved status; no domain was requested.
@@ -2415,32 +2608,52 @@ another branch. It is the fifteenth register carrying a `supports_page` column,
 and one of its rows, `WLW-001`, carries `supports_page = the-water-city` at
 status `VERIFIED`.
 
-The generator caught half of this by itself and missed the other half, and the
-split is worth recording because it is the argument for building briefs from a
-script rather than writing them out. **The derived half self-corrected:**
-`09-the-water-city.md` §3's opening sentence is composed from the scan, so on
-re-running it changed from *"No register row in this repository names this
-page"* to a statement of the row it found, and the register count in every brief
-moved from 14 to 15. **The fixed half did not.** Five sentences of prose in every
-brief, and two in this README, asserted the scan's *result* rather than printing
-it — that no row named the slug, that nothing bearing on the page stood above
-`INHERITED-UNVERIFIED`, and that this *"is the same for all fifteen pages"* —
-and one brief's floor line was a typed literal. Those sentences were true when
-they were written and false the next day, and they would have gone on printing
-next to a derived count that contradicted them.
+The generator caught part of this by itself and missed the rest, and the split is
+the argument for building briefs from a script rather than writing them out.
 
-Four repairs, all in the generator rather than in the output:
+**The derived part self-corrected.** `09-the-water-city.md` §3's opening sentence
+is composed from the scan, so on re-running it changed from *"No register row in
+this repository names this page"* to a statement of the row it found. In the
+other fourteen briefs the same sentence kept its shape and its register count
+moved from 14 to 15; in `09-the-water-city.md` the count is no longer printed
+there at all, because the sentence that carried it is the one the scan replaced.
+
+**The fixed part did not.** Four passages of prose in every one of the fifteen
+briefs asserted the scan's *result* rather than printing it — that no row in any
+register names the slug, that nothing bearing on the page stands above
+`INHERITED-UNVERIFIED`, that this *"is the same for all fifteen pages"*, and the
+lowest-status line, which was a typed literal in all fifteen. Two more were in
+this README: §2's *"zero rows naming any of the fifteen slugs"* and the table's
+floor column.
+
+**What was actually false, stated exactly.** For the fourteen unlinked slugs
+those sentences remained true; a first draft of this section said all of them
+went false at once, which is the same overstatement in the opposite direction.
+What went false was the two `the-water-city` instances and, in every brief, the
+quantifier — *"the same for all fifteen pages"* — which is the sentence that made
+the error a directory-wide one rather than a page-level one. The failure is not
+that the prose was wrong everywhere; it is that nothing in the build could tell
+where it had gone wrong.
+
+Seven repairs, all in the generator rather than in the output. The first three
+were the repair pass; the next four were forced by adversarial review of it, and
+are listed with what the review found rather than folded in silently.
 
 1. **The linkage finding is derived.** §2 above and each brief's §3 now compose
    their statement from the scan rather than asserting its result. A page with a
-   linked row says so and reads the row; a page without one says that.
+   linked row says so and reads the row; a page without one says that. §2 prints
+   what the scan returned and stops: it does not summarise the readings, because
+   a sentence generalising over them is the `BF-027` failure again, and a first
+   version of it duly hard-coded *"in the one case on file"* beside a derived
+   count that would eventually contradict it.
 2. **The floor is derived and the rule for it is stated.** Each brief's *lowest
    status* line is now computed from the statuses actually present. It is not a
    sort — framework §3.2 forbids ordering `INHERITED-UNVERIFIED` against the six
    evidential statuses — so the floor is stated by rule: a row carrying
    `INHERITED-UNVERIFIED` has had no retrieval event behind it, so no set
-   containing one stands above it. If a page's evidence ever contains no such
-   row, the build stops and asks for a written floor rather than guessing one.
+   containing one stands above it. A page whose evidence contains no such row
+   stops the build instead of publishing Python's `None` as a status, which is
+   what a first version did.
 3. **A linked row cannot be read by the generator, so it is not read by the
    generator.** A link records that someone tied a row to a page; what the row
    carries is a judgement. A page with a linked row must supply `linked_reading`
@@ -2449,16 +2662,46 @@ Four repairs, all in the generator rather than in the output:
    claims: it stops the build until a person writes down what it means. A row
    declared to license public copy also fails the build, because §1's account of
    why the step 14 slots are empty would no longer hold.
-4. **The two inbound-link figures in `03-artifact-atlas.md` §7 are checked**
-   against `page-audit.csv`, including their ordering. A draft of that section
-   called 56 the highest in the set; it is the second, behind `enter`'s 113.
 
-`03-artifact-atlas.md` also gained the §7 the first build did not write: the
-title-count conflict was discussed in its §1 and §5 and answered there by
-framework §8.1, which is a resolution and not a flag. §8.1 removes the number
-from the page's voice; it does not reach the title and does not produce a value.
-The conflict is now recorded in the same form as `08-before-the-indus.md` §7,
-without an outcome assumed.
+   A first version of this gate tested `page.get("linked_licenses_copy")`, which
+   a missing key satisfies, so the second half of the gate this README advertised
+   did not exist. Both fields are now required by presence. Every gate in the
+   file also raises `SystemExit` rather than asserting: a bare `assert` vanishes
+   under `python3 -O`, and a gate an interpreter flag can switch off is not one.
+4. **The floor is not a two-rung ladder.** A first version of the derivation
+   called every status that was not `INHERITED-UNVERIFIED` *"above the floor"* —
+   which is the ordering framework §3.2 forbids, and which would have printed a
+   `REJECTED` row as standing above one. The briefs now name the other statuses
+   present without ranking them against the floor, and an unstatused linked row
+   stops the build instead of being rendered as empty backticks.
+5. **`03-artifact-atlas.md` §7 derives what it argues from.** The two
+   inbound-link figures and their ordering, the `mvp.csv` and `page-audit.csv`
+   cells, D-034's status, and whether `claim-risk.csv` holds a row for the page
+   are all read at build time. A first draft of the section retyped every one of
+   them and called 56 the highest inbound-link count in the set; it is the
+   second, behind `enter`'s 113.
+6. **`WLW-001` is quote-checked.** The build's {n_quotes} assertions guard quotations from
+   the framework, the constitution and the workbook; the row this whole build
+   exists to respond to was guarded by none, and it has already been amended once
+   under review. Its claim text, its locator and its `notes` are now checked, and
+   the *"14 registers"* / *"{scanned} registers"* comparison in
+   `09-the-water-city.md` §3 derives its second figure instead of typing it.
+7. **Nothing is written until everything is built.** A gate firing halfway
+   through the loop used to leave the directory half-regenerated and looking
+   clean — for a directory whose entire claim is that its output is derived, the
+   worst available failure state. Every brief is now composed before any file is
+   opened for writing.
+
+`03-artifact-atlas.md` also gained the §7 the first build did not write. The
+title-count conflict was raised in its §1 and then **answered in its §2**, which
+wrote that §8.1's rule *"is the one that makes the page launchable at all"* and
+that *"under that rule the Atlas ships before D-034 is answered."* That is a
+settlement of an `OPEN` owner decision in the brief's own voice, and locating it
+took a second review — a first draft of this section attributed it to §1 and §5,
+neither of which resolves anything, which is why the first repair pass left the
+strongest instance standing. §2 now withdraws the sentence and keeps it visible;
+§7 disclaims §2 by name, records the conflict in the form
+`08-before-the-indus.md` §7 uses, and sets out three arms without ranking them.
 
 **What this did not change.** No retrieval was performed for the second build
 either, no claim moved status, and no page gained support: `WLW-001` is
@@ -2468,10 +2711,17 @@ under stands — no proposition any of the fifteen pages makes about the past is
 supported by a register row — and it now stands on a derivation instead of on a
 sentence.
 
-The method failures are logged at `04-AUDITS/BIAS-FAILURE-LOG.csv` `BF-027` and
-`BF-028`; the work they touch elsewhere is `04-AUDITS/REAUDIT-QUEUE.csv`
-`RA-022`, which asks the same question of every document in the repository that
-states a count or a coverage finding in prose.
+The method failures are logged at `04-AUDITS/BIAS-FAILURE-LOG.csv` `BF-027`,
+`BF-028` and `BF-029`. `BF-029` is the whole of the third list above: independent
+adversarial review of the repair pass returned seven blocking findings, every one
+a defect in the repair rather than in the work it repaired, and two of them ran
+toward leaving the launch order and the framework's authority undisturbed.
+`BF-027` and `BF-028` were corrected in place by that review — both had
+miscounted, in rows about miscounting — and the corrections are marked inside the
+rows. Re-audits: `RA-022` asks the same question of every document in the
+repository that states a count or a coverage finding in prose; `RA-023` asks
+whether any other gate in this repository's scripts is one only in the sense that
+these two were.
 
 ### The two tests, re-run on the second build
 
@@ -2511,6 +2761,18 @@ status above `INHERITED-UNVERIFIED`, and the correct response to one would be to
 rewrite §2 rather than to read it down. The scepticism this repository runs on is
 not neutral when it is pointed at a claim that would cost the current unit its
 result.
+
+**A third finding, from the review rather than from either test.** `RA-019` is
+open, `HIGH`, and its standing control is *"re-check whether any brief accepted a
+workbook `Risk` rating as an evidentiary judgement rather than a scheduling
+one."* This build added prose squarely inside that scope — §7 of
+`03-artifact-atlas.md` argues about what the `Keep` and `Low` ratings can and
+cannot settle — without running the control, and got the columns wrong in the
+process. §1 now separates `Curatorial decision` from `Claim risk`, quotes each
+layer's own limit from `method-limits.csv`, and marks the causal reading of `Low`
+as an inference the brief cannot check. `RA-019` is not closed by this; adding
+material to an open re-audit's class without running it is the failure worth
+recording.
 
 **The asymmetry statement** (§11.2): the two failures above are symmetrical in
 form and asymmetrical in what they defend. The first defends an internal
@@ -2744,37 +3006,41 @@ def main():
     as_by = {r["Slug"]: r for r in as_rows}
 
     order = [r["Slug"] for r in mvp_rows]
-    assert order == MVP_SLUGS, (order, MVP_SLUGS)
+    if order != MVP_SLUGS:
+        fail("mvp.csv's rank order is not the order this script builds in: %r"
+             % (order,))
 
     wb = {s: {"mvp": mvp_by[s], "page": pg_by[s], "asset": as_by[s],
               "env": env_by[mvp_by[s]["Environment"]]} for s in MVP_SLUGS}
-    verify_quotes()
-    check_atlas_inbound(pg_by)
+    n_quotes = verify_quotes()
     hits, scanned = scan_supports_page()
 
     by_slug = {p["slug"]: p for p in PAGES}
-    assert set(by_slug) == set(MVP_SLUGS), set(MVP_SLUGS) ^ set(by_slug)
+    if set(by_slug) != set(MVP_SLUGS):
+        fail("PAGES and mvp.csv name different slugs: %r"
+             % (set(MVP_SLUGS) ^ set(by_slug),))
 
-    os.makedirs(OUT, exist_ok=True)
-    rows = []
-    floors = {}
+    # Every brief is composed before any is written. A gate that fires halfway
+    # through the loop used to leave a directory half-derived and looking
+    # clean, which for a directory whose whole claim is that its output is
+    # derived is the worst failure state available (BF-029).
+    built, rows = [], []
     for i, slug in enumerate(MVP_SLUGS, 1):
         name = "{:02d}-{}.md".format(i, slug)
         text = emit(by_slug[slug], wb, hits, scanned)
-        open(os.path.join(OUT, name), "w").write(text)
+        built.append((name, text))
         m = wb[slug]
-        floor, _ = status_floor(hits[slug],
-                                inherited([c for c, _ in by_slug[slug]["evidence"]]))
-        floors[slug] = floor
+        floor, others = status_floor(
+            slug, hits[slug],
+            inherited([c for c, _ in by_slug[slug]["evidence"]]))
         rows.append("| {} | [`{}`]({}) | {} — *{}* | `{}` | `{}` | `{}`{} |"
                     .format(i, slug, name, m["mvp"]["Environment"],
                             POSTURE_TABLE[m["mvp"]["Environment"]][0],
                             m["page"]["Decision"], m["page"]["Risk"], floor,
-                            " (+{} linked)".format(len(hits[slug]))
+                            " (+{} linked, {})".format(
+                                len(hits[slug]), ", ".join("`%s`" % o for o in others))
                             if hits[slug] else ""))
-        print("wrote", name, len(text), "bytes")
 
-    n_quotes = verify_quotes()
     linked_slugs = [s_ for s_ in MVP_SLUGS if hits[s_]]
     if not linked_slugs:
         linkage_finding = (
@@ -2783,29 +3049,43 @@ def main():
             "`supports_page` column ({} files) returns **zero rows naming any of "
             "the fifteen slugs**.".format(scanned))
     else:
+        # The scan's result is printed; what the linked rows *mean* is not
+        # summarised here. A generalisation over readings is the sentence
+        # BF-027 was logged for, and writing one in the same file would repeat
+        # it. Each brief's own reading is the record; this section points at
+        # them and stops.
         detail = "; ".join(
-            "`{}` — {}".format(s_, ", ".join(
-                "`{}` in `{}` (`{}`)".format(c, f, st or "no status")
-                for f, c, st in hits[s_]))
+            "`{}` — {} (read in [`{}`]({}) §3)".format(
+                s_, ", ".join("`{}` in `{}` (`{}`)".format(c, f, st)
+                              for f, c, st in hits[s_]),
+                s_, "{:02d}-{}.md".format(MVP_SLUGS.index(s_) + 1, s_))
             for s_ in linked_slugs)
         linkage_finding = (
-            "**{} of the fifteen pages has a register row recorded against it; "
-            "the other {} have none.**\n\n"
+            "**{} of the fifteen {} a register row recorded against {}; the "
+            "other {} {} none.**\n\n"
             "A scan of every register in `03-REGISTERS/` carrying a "
             "`supports_page` column ({} files) returns rows for: {}. Every other "
-            "slug returns zero. **A link is not support** — what the linked "
-            "rows carry is read in each brief's §3, and in the one case on file "
-            "the row's subject is the state of this repository's registers at a "
-            "timestamp, not the past the page describes. The finding this "
-            "directory was written under is therefore unchanged in substance: no "
-            "proposition any of the fifteen pages makes about the past is "
-            "supported by a register row.".format(
-                len(linked_slugs), 15 - len(linked_slugs), scanned, detail))
+            "slug returns zero. **A link is not support.** A link records that "
+            "someone tied a row to a page; whether the row carries a "
+            "proposition the page asserts is a judgement, and each linked "
+            "page's brief makes it in its own §3 under the gate described in "
+            "§0.2. This section prints what the scan returned and does not "
+            "summarise those readings — a sentence generalising over them is "
+            "the failure `BF-027` was logged for.".format(
+                len(linked_slugs),
+                "pages have" if len(linked_slugs) > 1 else "has",
+                "them" if len(linked_slugs) > 1 else "it",
+                15 - len(linked_slugs),
+                "have" if 15 - len(linked_slugs) != 1 else "has",
+                scanned, detail))
     diag = count_asset_sets_with("claim-specific diagram", as_by)
     sp_vals, sp_with, sp_without = supports_page_values()
-    n_ih = len(list(csv.DictReader(open(
-        os.path.join(ROOT, "03-REGISTERS", "inherited-claims.csv")))))
+    n_ih = n_inherited_rows()
 
+    os.makedirs(OUT, exist_ok=True)
+    for name, text in built:
+        open(os.path.join(OUT, name), "w").write(text)
+        print("wrote", name, len(text), "bytes")
     open(os.path.join(OUT, "README.md"), "w").write(README.format(
         written=WRITTEN,
         revised=REVISED,

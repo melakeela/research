@@ -24,7 +24,7 @@ was performed to write this brief and no row was added to
 
 ### Why the remaining six slots are empty
 
-Step 14 draws public copy **from accepted claims**. This page has none: §3 below records 1 register row linked to it — `WLW-001` — and reads it: it carries no proposition this page asserts. Nothing else bearing on the page stands above `INHERITED-UNVERIFIED`. Drafting
+Step 14 draws public copy **from accepted claims**. This page has none: §3 below records 1 register row linked to it — `WLW-001` — and reads it: it carries no proposition this page asserts. Nothing else bearing on the page carries a status other than `INHERITED-UNVERIFIED`. Drafting
 `WHAT THE EVIDENCE SUPPORTS` from claims at that standing would be writing public
 copy for unverified claims, which is what `CLAUDE.md`'s inheritance rule and the
 museum framework's Rule S-1 forbid. The slots are therefore left open, with the
@@ -34,7 +34,7 @@ work that would fill them named in §6.
 |---|---|---|
 | QUESTION | yes | stated above; a question asserts nothing |
 | WHAT IS OBSERVED | partly | the workbook's structural counts are observations *about a page*, not about the past; the page's own observations are unretrieved |
-| WHAT THE EVIDENCE SUPPORTS | no | no claim above `INHERITED-UNVERIFIED` bearing on what this page asserts; the 1 linked row is read in §3 |
+| WHAT THE EVIDENCE SUPPORTS | no | no claim bearing on what this page asserts stands outside the `INHERITED-UNVERIFIED` floor; the 1 linked row is read in §3 |
 | WHAT COMPLICATES IT | no | complications are claims too, and carry the same floor |
 | WHAT REMAINS UNKNOWN | no | requires the negative-evidence typing of constitution §6, not yet performed |
 | MELAKEELA'S CURRENT INTERPRETATION | no | an interpretation over an unverified claim set states confidence retrieval has not earned |
@@ -151,11 +151,14 @@ why the step 14 slots stay empty is unaffected.
    the moment it was committed. *"before this unit added any row"* is the repair,
    made under adversarial review rather than quietly. Read without that clause the
    row contradicts itself.
-2. **It is a probe, not a standing property.** `02-SOURCES/access-ledger.csv`:
-   *"A ledger row is a timestamped probe, not a standing property (D-042)."* The
-   row's locator names a scan of **14** registers carrying the column; the scan
-   behind this brief finds 15. `VERIFIED` here certifies what a scan returned at
-   21:13Z on 2026-09-08 and certifies nothing about today.
+2. **It is a probe, not a standing property.** `02-SOURCES/access-ledger.csv`
+   `SRC-080`, `notes`: *"A ledger row is a timestamped probe, not a standing
+   property (D-042)."* An earlier draft cited the file without the row, which is
+   the locator failure `BF-024` already logs. The
+   row's locator names a *"scan of all 14 registers carrying a supports_page
+   column"*; the scan behind this brief finds 15. `VERIFIED` here certifies
+   what a scan returned at 21:13Z on 2026-09-08 and certifies nothing about
+   today.
 3. **It and this brief are one source, not two.** The row's `notes` cite
    `06-BRIEFS/mvp-fifteen/09-the-water-city.md` §3 as having established the same
    finding, and this brief now cites the row. Both run the same scan over the same
@@ -173,10 +176,24 @@ What exists alongside it is inherited material that **bears on** this page witho
 | `IH-263` | `INHERITED-UNVERIFIED` | `01-INHERITED/claude-project-handoff.md L487` | Contradiction X-14, and the row `DECISIONS-NEEDED.md` **D-033** rests on: the live `rakhigarhi` page says there is no seafaring in the Rigveda while the site's corpus file records *nau-* at n = 40 — and `rakhigarhi` is not among the 96 pages of the audited build. |
 
 
-**Nothing in any register bears on the water engineering or on the absence of
-palaces.** The two rows above are the nearest Indus-related material in the
-inheritance and neither supports this page's claims; they are listed so that the
+**No row listed above bears on the water engineering or on the absence of
+palaces**, and this is a statement about the rows this brief examined, not a
+quantifier over every register — asserting the second is the failure `BF-027`
+logs. The rows above are the nearest Indus-related material the inheritance
+offers and none of them supports this page's claims; they are listed so that the
 gap is legible rather than implied.
+
+**One row that is claimed to bear on it, and does not.** `WLW-001`'s `notes`
+name two rows as water claims in `inherited-claims.csv`: `IH-138`, which is
+above and is a claim about the past, and `IH-183`, which is not. `IH-183` is a
+`SUPERSEDED` product row recording that the *"A Drop of Water"* single-experience
+plan replaced `VELI-06` and was replaced in turn — its subject is the release
+plan, and the water is in the exhibit's title. It is listed here because a row
+cited elsewhere as bearing on this page should not simply be absent from it, and
+because the disagreement is small, recorded, and neither side's to settle
+quietly: this brief reads `IH-183` as a product record, `WLW-001` reads it as a
+water claim, and nothing turns on which reading is right — under either, it is
+`INHERITED-UNVERIFIED` and supports nothing here.
 
 **The negative claim is the page's real work, and the standard for it is
 written.** `CLAUDE.md`'s negative-evidence standard requires, *before* arguing
@@ -201,7 +218,7 @@ as strong as the criterion by which one would be identified.
 
 ### Lowest status among them
 
-**`INHERITED-UNVERIFIED`** — the status of every inherited row above, and of every inherited row that could be listed. The linked row carries `VERIFIED`, read in §3 above; it does not raise this floor.
+**`INHERITED-UNVERIFIED`** — the status of every inherited row above, and of every inherited row that could be listed. The linked row carries `VERIFIED`, read in §3 above; that is a different status and not a higher one.
 
 
 **On "lowest status".** `INHERITED-UNVERIFIED` is not the bottom rung of a
@@ -211,7 +228,7 @@ its own conversation — so *"the interface must therefore never sort or
 colour `INHERITED-UNVERIFIED` between `PROVISIONAL` and `HYPOTHESIS` as though
 the statuses formed a single ladder."* The floor above is therefore stated by
 rule rather than by sorting: a row carrying `INHERITED-UNVERIFIED` has had no
-retrieval event behind it, so no set containing one stands above it. **1 row linked to this page carries a status above that floor — `VERIFIED` — and §3 states what it is about. A row above the floor raises the floor for nothing else.**
+retrieval event behind it, so no set containing one stands above it. **1 row linked to this page carries a different status — `VERIFIED` — and §3 states what it is about.** Nothing here ranks the two: the floor is stated by the rule above, and a row carrying another status neither lifts it nor is lifted by it.
 Where the handoff labelled a finding `VERIFIED` or `PROVISIONAL`, that label came
 in with it and did not survive intake — `CLAUDE.md`, the inheritance rule.
 

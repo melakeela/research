@@ -24,7 +24,7 @@ was performed to write this brief and no row was added to
 
 ### Why the remaining six slots are empty
 
-Step 14 draws public copy **from accepted claims**. This page has none: §3 below records that nothing bearing on it stands above `INHERITED-UNVERIFIED`. Drafting
+Step 14 draws public copy **from accepted claims**. This page has none: §3 below records that every row bearing on it carries `INHERITED-UNVERIFIED` and no other status appears. Drafting
 `WHAT THE EVIDENCE SUPPORTS` from claims at that standing would be writing public
 copy for unverified claims, which is what `CLAUDE.md`'s inheritance rule and the
 museum framework's Rule S-1 forbid. The slots are therefore left open, with the
@@ -34,7 +34,7 @@ work that would fill them named in §6.
 |---|---|---|
 | QUESTION | yes | stated above; a question asserts nothing |
 | WHAT IS OBSERVED | partly | the workbook's structural counts are observations *about a page*, not about the past; the page's own observations are unretrieved |
-| WHAT THE EVIDENCE SUPPORTS | no | no claim above `INHERITED-UNVERIFIED` |
+| WHAT THE EVIDENCE SUPPORTS | no | no claim outside the `INHERITED-UNVERIFIED` floor |
 | WHAT COMPLICATES IT | no | complications are claims too, and carry the same floor |
 | WHAT REMAINS UNKNOWN | no | requires the negative-evidence typing of constitution §6, not yet performed |
 | MELAKEELA'S CURRENT INTERPRETATION | no | an interpretation over an unverified claim set states confidence retrieval has not earned |
@@ -53,11 +53,26 @@ assessment's collision A, whose words these are — `INHERITED-UNVERIFIED`, quot
 inside a `HYPOTHESIS` document, and not the framework's own verdict: the count
 was *"adopted as settled fact, put in a page title, and rated low-risk."*
 
-The `Low` risk rating deserves reading against the instrument that produced it.
-`method-limits.csv` says source visibility was estimated from *"visible
-Sources/References sections"* and that *"a visible bibliography does not prove
-claim-level support or source quality."* 88 visible entries against 8 words of
-prose is what produced `Low`. It is a measurement of a page's furniture.
+**`Keep` and `Low` are two different columns produced by two different
+instruments, and an earlier draft of this brief collapsed them.** `method-limits.csv`
+gives *Curatorial decision* as *"Keep, Revise, Hold, Split or Merge based on role,
+source visibility, risk and overlap"*, limited by *"Decisions remain provisional
+until factual and specialist review."* It gives *Claim risk* separately, as
+*"Flagged categorical, causal, priority/origin, institutional and quantitative
+central claims"*, limited by the sentence `RA-019` exists to enforce:
+*"Risk means verification priority, not falsehood."* `Low` is therefore not a
+judgement that the page is sound; it is a judgement that the page is not near the
+front of the verification queue.
+
+A third layer, *Source visibility*, was *"Estimated bibliography entries from
+visible Sources/References sections"*, limited by *"A visible bibliography does
+not prove claim-level support or source quality."* The 88 entries belong to that
+layer. **Whether they are what produced `Low` is an inference this brief cannot
+check** — the workbook nowhere states how the two relate — and an earlier draft
+asserted it as fact in two places. What can be said without inference is that
+88 estimated entries against 8 words of prose is a measurement of a page's
+furniture, and that no instrument in the workbook read the page's central number
+at all.
 
 
 ---
@@ -129,11 +144,20 @@ here, because the build has not been retrieved:
 4. *Let a filter silently drop the weak evidence to produce a cleaner picture.*
    Untestable from here.
 
-§8.1's resolution is the one that makes the page launchable at all: **the Atlas
-has no headline count.** A count is a claim with a status, an inclusion rule and
-a falsifier, shown inside the Atlas with its status visible, or it is not shown.
-Under that rule the Atlas ships *before* D-034 is answered, because it never
-asserts a total in its own voice.
+§8.1 proposes a rule for the first of those four: **the Atlas has no headline
+count.** A count is a claim with a status, an inclusion rule and a falsifier,
+shown inside the Atlas with its status visible, or it is not shown.
+
+**The first build of this brief wrote, here, that §8.1's rule "is the one that
+makes the page launchable at all" and that "under that rule the Atlas ships
+*before* D-034 is answered."** That reading is withdrawn and is recorded rather
+than deleted, because it is the failure `BF-029` logs: a design proposition at
+`HYPOTHESIS` in a specification this repository wrote was allowed to settle an
+`OPEN` owner decision, and the sentence sat four sections away from the conflict
+it was settling. `OWNER-DECISIONS.csv` D-034's own `notes` say what §8.1 does:
+*"Neutralised but not answered by museum-framework.md §8.1 — the Atlas can be
+built without the number and cannot be titled without it."* §7 records the
+conflict; nothing in this section decides it.
 
 
 ---
@@ -158,7 +182,7 @@ What exists instead is inherited material that **bears on** this page without be
 | claim_id | status | locator | what it bears on |
 |---|---|---|---|
 | `IH-105` | `INHERITED-UNVERIFIED` | `01-INHERITED/claude-project-handoff.md L230` | The atlas holds 194 site records, 315 class-windows and 14 classes, with **54 of 199 site-class rows dated from excavation reports and 145 marked assumed**. Three quarters of the dating is flagged as assumption inside the dataset itself. |
-| `IH-250` | `INHERITED-UNVERIFIED` | `01-INHERITED/claude-project-handoff.md L474` | Contradiction X-01: 140 / 150 / 158 / 167→175 / 194 / 199 sites, and 299 against 315 windows. Resolution path: extract the dataset to JSON, count, and generate every stated figure from it. |
+| `IH-250` | `INHERITED-UNVERIFIED` | `01-INHERITED/claude-project-handoff.md L474` | Contradiction X-01: 140 / 150 / 158 / 167→175 / 194 / 199 sites, and 299 against 315 windows. Recorded resolution path: *"Extract the atlas dataset to JSON, count, and generate every stated figure from it; until then no document prints a site count."* |
 | `IH-057` | `INHERITED-UNVERIFIED` | `01-INHERITED/claude-project-handoff.md L158` | Correction C-37: three different counts on three live surfaces. |
 | `IH-060` | `INHERITED-UNVERIFIED` | `01-INHERITED/claude-project-handoff.md L164` | Correction C-40: the owner's visual-concept document and VELI-03 disagree on sites and windows; the handoff blocks the prospectus on it. |
 | `IH-201` | `INHERITED-UNVERIFIED` | `01-INHERITED/claude-project-handoff.md L382` | `/artifact-atlas` returns no text to a fetcher because it is JS-rendered. An atlas unreadable without JavaScript fails release gate 5 before any accessibility review begins. |
@@ -177,7 +201,7 @@ its own conversation — so *"the interface must therefore never sort or
 colour `INHERITED-UNVERIFIED` between `PROVISIONAL` and `HYPOTHESIS` as though
 the statuses formed a single ladder."* The floor above is therefore stated by
 rule rather than by sorting: a row carrying `INHERITED-UNVERIFIED` has had no
-retrieval event behind it, so no set containing one stands above it. **Nothing bearing on this page stands above `INHERITED-UNVERIFIED`.**
+retrieval event behind it, so no set containing one stands above it. **Every row bearing on this page carries `INHERITED-UNVERIFIED`, and no other status appears.**
 Where the handoff labelled a finding `VERIFIED` or `PROVISIONAL`, that label came
 in with it and did not survive intake — `CLAUDE.md`, the inheritance rule.
 
@@ -220,7 +244,7 @@ Every page in the release carries the shared gates in
 five *Not completed* publication gates, and the ten framework gates F1–F10. They
 are not repeated here. What follows is what this page needs **beyond** them.
 
-1. No headline count anywhere on the page, per §8.1. The number in view is a property of the current filter and is shown with the filter.
+1. No headline count anywhere on the page, per §8.1: the number in view is a property of the current filter and is *"always shown *with* the filter, never as a title."* The page's current title breaks this, and §7 records what that does and does not settle.
 2. Every mapped thing is an object with a status and an attestation mode; a findspot and an attributed provenance are never the same marker (§8.2).
 3. The 145 `assumed` date rows are typed as assertions with their basis, or excluded. Rendering them identically to the 54 report-dated rows is `IH-105` published as if it were `IH-105` solved.
 4. Unknown zones are a rendered layer, and the excavation/survey coverage overlay exists (§8.2) — without it no absence on the map is checkable.
@@ -234,8 +258,11 @@ are not repeated here. What follows is what this page needs **beyond** them.
 
 **MVP-U3 — atlas dataset extraction and count derivation.** The unit is already
 specified, by the inheritance itself: `IH-250`'s recorded resolution path is
-*"extract the atlas dataset to JSON, count, and generate every stated figure from
-it."* Done properly it produces a register of site records with typed place and
+*"Extract the atlas dataset to JSON, count, and generate every stated figure from
+it; until then no document prints a site count."* The final clause was cut from
+both of this brief's quotations of the row in an earlier draft, and it is the
+only part of `IH-250` that constrains what this brief may itself print
+(`BF-029`); §7 records where the constraint bites. Done properly it produces a register of site records with typed place and
 date assertions, a dependency map for the 88 bibliography entries (framework §3.5
 — 88 citations tracing to a handful of excavation reports count as a handful),
 and a derived count with an inclusion rule.
@@ -253,13 +280,23 @@ release's connective heart on a dataset nobody here has opened.
 
 ## 7. The recorded conflict — a disputed count in the title, at rank 3 of the launch set
 
-**This brief records the conflict and does not resolve it. Nothing above or below
-assumes an outcome. In particular, §5's first gate states what framework §8.1
-proposes for the page's *display*; it is not a settlement of the *number*, and
-§8.1 does not reach the title at all.**
+**This brief records the conflict and does not resolve it.** Three arms are set
+out below because a conflict whose consequences are not stated is not legible;
+none of them is preferred here, and no sentence in this section is to be read as
+choosing one.
 
-The page's own title asserts a figure that this repository has logged as
-disputed and has not closed, and the same workbook schedules the page third:
+**What this section disclaims, by name.** §2 above wrote, in the first build,
+that §8.1's no-headline-count rule *"is the one that makes the page launchable at
+all"* and that *"under that rule the Atlas ships before D-034 is answered."* That
+was a settlement, written in this brief's own voice, of a decision that is
+`OPEN`. It is withdrawn in §2 and preserved there rather than deleted. §5's
+first gate — *"No headline count anywhere on the page, per §8.1"* — is a
+statement of what §8.1 requires, not a finding that the requirement is met or
+that meeting it would end the matter; see the last paragraph of this section on
+what that gate does and does not reach.
+
+The page's own title asserts a figure that this repository has logged as disputed
+and has not closed, and the same workbook schedules the page third:
 
 | File | Cell | Value |
 |---|---|---|
@@ -267,67 +304,99 @@ disputed and has not closed, and the same workbook schedules the page third:
 | `mvp.csv` | `Rank` | **3** of 15 |
 | `mvp.csv` | `Decision` / `Risk` | `Keep` / **Low** |
 | `mvp.csv` | `Release dependency` | *"Preserve the core argument; complete citation, image-rights, accessibility, and copy review before publication."* |
-| `claim-risk.csv` | — | **no row for this page at all** |
+| `claim-risk.csv` | row for `artifact-atlas` | **no row for this page at all** |
 | `03-REGISTERS/inherited-claims.csv` `IH-250` | `INHERITED-UNVERIFIED` | contradiction X-01: 140 / 150 / 158 / 167→175 / 194 / 199 sites |
 | `03-REGISTERS/inherited-claims.csv` `IH-057` | `INHERITED-UNVERIFIED` | correction C-37: three different counts on three live surfaces |
-| `09-DECISIONS/OWNER-DECISIONS.csv` **D-034** | `OPEN` | *"Is 96 the authoritative page count, and what is the atlas site count?"* |
+| `09-DECISIONS/OWNER-DECISIONS.csv` **D-034** | status | `OPEN` |
 
-Rank 3 is not an ordering detail. It is the third page a visitor is scheduled to
-meet, and on the current title it meets them with a number the inheritance
-records as one of six competing values. Neither instrument that rated the page can settle
-it: `Keep` and `Low` come from the workbook's risk column, and `method-limits.csv`
-says what that column measured — source visibility *"estimated from visible
-Sources/References sections"*, with *"a visible bibliography does not prove
-claim-level support or source quality."* 88 bibliography entries against 8 words
-of prose produced `Low`. The rating and the contradiction never came into
-contact, and `claim-risk.csv` — the sheet that would have recorded a publication
-gate on the number — has no row for this page.
+*(Every cell in that table is read from its file at build time. §7 of an earlier
+draft retyped them, in a section written to remove typed literals — `BF-029`.)*
+
+Rank 3 is not an ordering detail: it is the third page a visitor is
+scheduled to meet, and on the current title it meets them with a number the
+inheritance records as one of six competing values. Neither column that rated the
+page reached that number. §1 above sets out why — `Decision` and `Risk` are
+different instruments with different limits, `Risk` means verification priority
+and not falsehood, and the `claim-risk.csv` sheet that would have recorded a
+publication gate on a quantitative central claim has **no row for this page at all**.
+
+**This section prints the six competing counts, and `IH-250` says not to.** The
+row's resolution path reads in full: *"Extract the atlas dataset to JSON, count,
+and generate every stated figure from it; until then no document prints a site
+count."* An earlier draft quoted that row twice and cut the final clause both
+times. The clause is restored, and this section is inside its scope: what is
+printed above is the *contradiction* — six values none of which is asserted as
+the count — rather than a site count, and that is a reading of `IH-250`'s intent,
+not a permission it grants. It is recorded here so that a reader who thinks the
+row forbids this table can see that the question was noticed rather than avoided.
 
 **Already raised, and not by this brief.** `DECISIONS-NEEDED.md` **D-034** —
 renumbered from D-006 on 2026-09-07 (`09-DECISIONS/DECISION-ID-MAP.csv`) — states
 it: *"A contested number is inside a launch page title, presented as settled,"*
 and *"The atlas number is load-bearing for a page ranked third in the launch
-set."* Its `OWNER-DECISIONS.csv` row is `OPEN` and its `notes` already record the
-distinction this section turns on: *"Neutralised but not answered by
-museum-framework.md §8.1 — the Atlas can be built without the number and cannot
-be titled without it."* This brief adds no identifier and takes no position; it
-records that the conflict survives into the brief set and names what each arm
-would change.
-
-**What §8.1 does and does not reach.** It rules that the Atlas has no headline
-count — a count is shown inside the Atlas with its status and inclusion rule, or
-not shown. That removes the number from the page's *voice* and is why §5 can
-list a launchable gate. It leaves two things standing: the **title**, which is a
-`page-audit.csv` field and a piece of public copy in its own right, and the
-**value**, which D-034 asks for and which `IH-250`'s resolution path — *"extract
-the dataset to JSON, count, and generate every stated figure from it"* — would
-have to produce. A page whose title says 175 while its map declines to state a
-total is not a page that has resolved the number.
+set."* This brief adds no identifier and takes no position; it records that the
+conflict survives into the brief set and names what each arm would change.
 
 **What changes under each arm**, stated so the decision is legible and for no
-other purpose:
+other purpose. They are listed in no order of preference, and each is reachable
+without the other two:
 
-- **Number settled first.** The dataset is extracted and counted (§6, MVP-U3),
+- **The number is settled.** The dataset is extracted and counted (§6, MVP-U3),
   X-01 closes, and the title either survives with its figure re-derived and
-  statused or is rewritten to the derived value. Rank 3 stands. This is the only
-  arm in which the page launches with a number in its title.
-- **Title changed, number left open.** The title drops the figure; the page ships
-  at rank 3 under §8.1 with no total in its own voice, and D-034 stays `OPEN`
-  against the page-count half. The `asset-register.csv` line *verified dataset*
-  is still owed, so §5's gates are unchanged.
-- **Rank changed.** The page moves out of the first three and the release opens on
-  something whose central claim is not an unsettled number. `page-audit.csv`
-  records **56 inbound links** to this page, second among the fifteen only to
-  `enter`'s 113, so demoting it is a change to the site's link structure and not
-  only to an order.
+  statused or is rewritten to the derived value. Rank 3 stands. This is the
+  only arm in which the page launches with a number in its title, and the only
+  one that waits on the archive (see below).
+- **The title is changed, the number left open.** The title drops the figure. The
+  page ships at rank 3 under §8.1 with no total in its own voice, and D-034
+  stays `OPEN`. This is an editorial act on a `page-audit.csv` field and needs
+  no data: it does not wait on the archive, and it is available today.
+- **The rank is changed.** The page moves out of the first three and the release
+  opens on something whose central claim is not an unsettled number.
+  `page-audit.csv` records **56 inbound links** to this page, the
+  second count among the fifteen behind `enter`'s 113, so
+  demoting it changes the site's link structure and not only an order. This arm also
+  needs no data and does not wait on the archive.
 
-**What does not change under any arm**, and this is an observation about
-sequencing rather than a resolution: the count cannot be derived from anything in
-this repository. §6 records that the atlas data lives in `artifact-atlas.html`
-inside `veli-site(3).zip`, which is not committed here and has no access-ledger
-row. Until the owner supplies that archive or names the authoritative build
-(D-033), every arm above is blocked on the same missing object, and the title
-question is blocked behind the count question.
+**One thing all three arms share, and it does not decide between them.** The
+count itself cannot be derived here: §6 records that the atlas data lives in
+`artifact-atlas.html` inside `veli-site(3).zip`, which is not committed to this
+repository and has no `02-SOURCES/access-ledger.csv` row. Under `CLAUDE.md`'s
+negative-evidence standard that absence types as **`NOT ACCESSIBLE`** — the
+evidence exists, was produced, is known to be held by the owner, and is simply
+not here — and not as `NOT PRODUCED`, `NOT PRESERVED` or `ABSENT DESPITE ADEQUATE
+SEARCH`. `01-INHERITED/site-review/` holds two running-list documents that have
+not been searched for atlas site records, so even the `NOT ACCESSIBLE` typing is
+provisional on that search.
+
+That is an access fact, not an evidential one, and it bears on the first arm
+only. The second and third arms are editorial decisions about a title and an
+order; neither needs the count, and treating them as blocked behind it would
+convert a missing archive into a reason to leave the launch order as it is. An
+earlier draft of this section did exactly that, closing with *"the title question
+is blocked behind the count question"* — which eliminated the second arm by fiat
+and left the status quo as the only reading. Withdrawn, and recorded rather than
+deleted.
+
+**What §8.1 reaches, read exactly.** A draft of this section said the rule does
+not reach the title and that the specification is silent on the point. It is not
+silent: §8.1 ends *"The number of sites in view is a property of the current
+filter and is always shown *with* the filter, never as a title."* The rule
+reaches the title directly, and the current title breaks it. Three things follow,
+and none of them closes D-034.
+
+- The second arm is what §8.1 *requires*, not an alternative to it. That does not
+  merge it into the first: §8.1 says the number may not be a title and says
+  nothing about what the number is.
+- §8.1 is a design proposition at `HYPOTHESIS` (framework §14.4). A rule at that
+  standing does not amend a `page-audit.csv` field or overrule the workbook's
+  rank; it states what the specification would require if adopted, and adopting
+  it is itself an owner act nobody has recorded.
+- The framework's own paragraph after the rule reads *"the Atlas can be built and
+  shipped before that is answered, because it never asserts a total in its own
+  voice"* — which is the sentence §2 of this brief adopted and has withdrawn.
+  D-034's `notes` put the same fact the other way round: *"the Atlas can be built
+  without the number and cannot be titled without it."* Both are true and neither
+  is a count.
 
 
 ---
