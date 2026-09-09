@@ -20,10 +20,10 @@ anything about the first?
 Two things were measured here, on opposite sides of a boundary that is
 not historical.
 
-**In the Rigveda, which can be searched completely.** Twenty-two of the
+**In the Rigveda, which can be searched completely.** Seventeen of the
 words later Sanskrit uses for writing and sealing are simply not in the
 corpus — no *lipi*, no *lekha*, no *mudrā*, no word for ink, pen, tablet,
-book or scribe. A scan of every glossed word in the corpus for the German
+book or scribe. Nor are the words for a balance, a number or a reckoning. A scan of every glossed word in the corpus for the German
 and Latin vocabulary of writing returns five words and all five are
 accidents of German spelling. The same scan for the vocabulary of sealing
 returns nothing at all.

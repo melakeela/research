@@ -108,12 +108,14 @@ to a site (`DK-M-022`–`DK-M-024`).
 
 Two searches, deliberately different in kind.
 
-**Search A, a candidate census.** Twenty-two stems of the later Sanskrit
-writing and sealing vocabulary are absent from the corpus's lemma
-inventory: `likh`, `lekha`, `lipi`, `libi`, `grantha`, `pattra`,
-`patra`, `pustaka`, `phalaka`, `masi`, `kalama`, `lekhaka`, `mudra`,
-`aṅkana`, `cihna`, `lāñchana`, `lakṣman`, `lakṣaṇa`, `saṃkhyā`, `tulā`
-and the roots `gaṇ-` and `paṇ-`. Positive controls return 543 tokens for
+**Search A, a candidate census.** Twenty-four of the 63 lookups return
+ABSENT, and they represent 22 distinct stems — `pattra` and `patra` are
+one stem written two ways, and so are `mudra` and `mudrā`. Seventeen are
+the later Sanskrit vocabulary of writing and sealing: `likh`, `lekha`,
+`lekhaka`, `lipi`, `libi`, `grantha`, `pattra`, `pustaka`, `phalaka`,
+`masi`, `kalama`, `mudrā`, `aṅkana`, `cihna`, `lāñchana`, `lakṣman`,
+`lakṣaṇa`. Five more are `saṃkhyā`, `tulā` and the roots `gaṇ-`, `paṇ-`
+and `vraśc-`. Positive controls return 543 tokens for
 `gáv- ~ gó-`, 471 for `rátha-`, 83 for `púr-`. One control is kept in
 its failing form in the output: querying `go` alone returns nothing,
 because the Zurich lemma is an alternation — the lookup bug a census
