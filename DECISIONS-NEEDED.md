@@ -1292,3 +1292,104 @@ blocked only at the point of filling this one slot.
 **Decision:** which of the four, and if the first, does the WATER build wait
 on the community-authority work or proceed with the slot held open and
 visibly typed as held?
+
+---
+
+## D-055 — Is the children's fort investigation Nocturnal Veḷi, or Reading Room?
+
+**Raised:** 2026-09-09
+**Blocks:** the entire build of `06-BRIEFS/childrens-pilot/`.
+**Register row:** `09-DECISIONS/OWNER-DECISIONS.csv` `D-055`.
+
+Museum framework §1.7 states, without qualification:
+
+> **Field Mode is forbidden in Extraction / Collection and Reconnection.**
+
+and its matrix sets Field to `forbidden` in **Reading Room** as well.
+
+`01-INHERITED/curatorial-audit-v1.1/page-audit.csv` assigns `the-forts` —
+*"The Dasa Forts: Indus Country, But Centuries Too Late"* — to **Reading Room**
+in both its assigned and its recommended column. That row is
+`INHERITED-UNVERIFIED`.
+
+**The derivation does not settle it, and an earlier draft of this section
+claimed it did.** Run strictly over the investigation's own claim set, §1.5 rule
+3 does not fire: it requires a majority of **load-bearing propositions**
+resolving to **typed absences**, and the specification counts 43 statused
+propositions of which 32 are positive `VERIFIED` measurements, with only two of
+its four terminal unknowns typed as absences — its own §5.2 says the ground gap
+is a `HOLD`, not a typed absence. The derivation therefore falls to **rule 7**
+and returns Reading Room as the **residual**, flagged `derived_residual = true`.
+
+§1.6.1 is explicit that the residual is not a posture finding:
+
+> *"An exhibit does not become Reading Room by being unclassifiable. Derivation
+> rule 7 makes Reading Room the residual **only for derivation**, and every
+> residual assignment is flagged `derived_residual = true` … so the size of the
+> unclassified set is visible rather than laundered into a posture count."*
+
+and §1.5 closes by stating that **derivation is advisory** and the assigned
+posture is editorial, written with an override reason.
+
+**So the owner is choosing without a derived answer.** §1.3 reserves the
+assignment in any case: a specification may not assign its own posture, and it
+may not soften §1.7 to fit itself.
+
+**A framework defect this raises, logged separately.** §1.7's Field prohibition
+attaches to the posture *value*; rule 7 assigns that value as a residual; §1.6.1
+says the residual is an encoding defect. Composed, **any exhibit the derivation
+cannot classify is forbidden Field Mode by default** — a prohibition falling out
+of an admitted defect rather than out of a judgement about the exhibit. Recorded
+at `04-AUDITS/INTERNAL-CONTRADICTIONS.csv` `IC-CP-001`. It does not change this
+decision: if the answer is Reading Room *as an assignment*, the specification is
+withdrawn.
+
+| Option | Consequence |
+|---|---|
+| **Nocturnal Veḷi** | The investigation may be built as specified. Argument for: four of six evidence screens terminate in an unknown and the investigation's own conclusion is that the museum cannot say. Argument against: on the framework's counting rule the positive measurements are the majority, so this is an **override** of a derivation that did not fire, and §1.5 requires the override reason to be written into the Editorial Register. The posture's `Avoid` — *"no fantasy portal or occult styling"* — is carried as a design note on every screen. |
+| **Reading Room** | Field Mode is forbidden and the specification is **withdrawn**, not amended. This is the honest consequence and it is recorded so that the option is a real one. Argument against: §1.6.1 diagnoses the curatorial audit's assignment as its residual bucket — Reading Room is the secondary environment for all 96 pages and primary for 34 *"because the audit had nothing more specific to say about them"* — so the assignment carries little information. |
+| **Split** | The long-form argument stays Reading Room; the investigation stands as its own Nocturnal Veḷi exhibit over the same claim set. The curatorial audit already recommends `Split` for `the-forts`, which is an argument for this option and not a decision. It must be a real split — a separate exhibit with its own posture assignment — not a Field Mode tab bolted onto a Reading Room page. |
+| **Defer** | Consistent with `D-006` being open. Costs nothing except the schedule. |
+
+**Decision:** which posture, and if Split, is the investigation a separate
+exhibit with its own assignment?
+
+---
+
+## D-056 — May a children's pilot ship with a truthfully empty ground half?
+
+**Raised:** 2026-09-09
+**Blocks:** release of `06-BRIEFS/childrens-pilot/`. Not its build.
+**Register row:** `09-DECISIONS/OWNER-DECISIONS.csv` `D-056`. **Hold:**
+`05-HOLDS/HOLD-008-ground-evidence-for-the-pur-corpus.md`.
+
+The investigation asks a child to end able to say three things: what the poem
+claims, what the ground shows, and where the two do not meet. On the evidence
+this repository holds, the second answer is **we have not looked yet**.
+
+`02-SOURCES/access-ledger.csv` holds 99 rows. Not one is an excavation report,
+a site chronology, a stratigraphic sequence or a radiocarbon dataset. Every
+source behind the *púr-* registers is a text, a translation, a dictionary, a
+metrical study or a lexical database.
+
+**This is not a negative-evidence claim about the past and must never be typed
+as one.** None of the eight types applies: it is not `NOT EXCAVATED`, because
+people have excavated; it is not `NOT PUBLISHED` or `NOT ACCESSIBLE`, because
+nothing was requested and refused. It is a gap in **this institution's
+retrieval**, and its home is a `HOLD`.
+
+Screen `CP-3.5` therefore shows the child the museum's own ledger, grouped by
+kind, and lets them filter it. The shelf marked *digging reports* is empty, and
+the screen says so in the museum's own voice: *people have dug; we have not
+read any of it yet; that is not the same as nobody knows; so we are not going
+to show you a picture of a wall and tell you it is the one in the poem.*
+
+| Option | Consequence |
+|---|---|
+| **Ship it** | The empty shelf is the finding, and the child learns to tell *"we haven't looked"* from *"the poem doesn't say"* from *"nobody knows"* — which is the most transferable thing in the method (`CLAUDE.md`, negative-evidence standard). Cost: the institution publishes its own undone homework to children, and a reviewer may reasonably call that a thin product. |
+| **Hold until `U-1` runs** | The pilot ships with a real ground half and the comparison the title promises. Cost: the pilot waits on retrieval that has not started, and `U-1` is not a small unit — it needs excavation reports whose relationship to *any* passage is itself unestablished and bounded by the research hold at Version 12 line 1175. |
+| **Ship with the ground screen removed** | Buildable now and tidier. Cost, and it is the reason this option is recorded rather than recommended: the child asks the question at `CP-2.1`, and a museum that drops the question it was asked teaches that unanswerable questions are improper. It also converts a stated `HOLD` into a silence, which is the failure `CLAUDE.md`'s negative-evidence standard exists to prevent. |
+| **Defer** | Consistent with `D-006` and `D-055` being open. |
+
+**Decision:** which of the four — and if the first, does the ground screen carry
+a visible commitment to `U-1`, or only the statement of the gap?
